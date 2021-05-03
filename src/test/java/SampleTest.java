@@ -7,4 +7,7 @@ public class SampleTest {
     public void test() {
         Assert.assertTrue(true);
     }
+
+    @Test
+    public void test2() {Assert.assertEquals(20, 20);}
 }
