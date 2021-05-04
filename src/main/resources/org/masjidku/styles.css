@@ -1,3 +1,7 @@
 .label {
     -fx-text-fill: blue;
 }
+
+.sidebar {
+    -fx-background-color: #0F2F2D;
+}
