@@ -5,3 +5,36 @@
 .sidebar {
     -fx-background-color: #0F2F2D;
 }
+
+.button {
+    -fx-border-color: #0F2F2D;
+}
+
+.button:selected {
+    -fx-border-color: #3AAFA9;
+}
+
+#btn_home {
+    -fx-background-image: url("icon/home_icon.png");
+    -fx-background-size: 32 32;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left;
+}
+
+#btn_login {
+    -fx-background-image: url("icon/user.png");
+    -fx-background-size: 32 32;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left;
+}
+
+#btn_about {
+    -fx-background-image: url("icon/about_icon.png");
+    -fx-background-size: 32 32;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left;
+}
+
+.main {
+    -fx-background-color: #fff;
+}
