@@ -27,6 +27,7 @@ public class MainApp extends Application {
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.getIcons().add(new Image(MainApp.class.getResourceAsStream("./icon/favicon.png")));
+        primaryStage.setTitle("Masjidku");
         primaryStage.show();
     }
 }

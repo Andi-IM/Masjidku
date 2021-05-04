@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.paint.*?>
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<SplitPane dividerPositions="0.29797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-           minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1">
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="sidebar"
-                stylesheets="@styles.css">
-        <Button mnemonicParsing="false" text="Beranda" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                AnchorPane.topAnchor="10.0">
-            <font>
-                <Font name="Roboto" size="12.0"/>
-            </font>
-        </Button>
-    </AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0"/>
+<SplitPane dividerPositions="0.29797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="852.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <items>
+       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="sidebar" stylesheets="@styles.css">
+          <children>
+              <Button fx:id="btn_home" alignment="BASELINE_LEFT" mnemonicParsing="false" styleClass="sidebar" stylesheets="@styles.css" text="Beranda" textFill="#feffff" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+                  <font>
+                      <Font name="Roboto" size="22.0" />
+                  </font>
+               <padding>
+                  <Insets left="100.0" />
+               </padding>
+                  
+              </Button>
+          </children>
+       </AnchorPane>
+       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="main" stylesheets="@styles.css" />
+   </items>
 </SplitPane>
