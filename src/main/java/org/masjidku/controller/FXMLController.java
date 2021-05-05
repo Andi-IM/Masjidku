@@ -1,13 +1,22 @@
-package org.masjidku;
+package org.masjidku.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import org.masjidku.MainApp;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class FXMLController implements Initializable {
+
+    private MainApp mainApp;
+
+    /**
+     * Is called by the main application to give a reference back to itself.
+     * @param mainApp the context
+     */
+    public void setMainApp(MainApp mainApp){ this.mainApp = mainApp; }
 
     @FXML
     private Label label;
