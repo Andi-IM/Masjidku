@@ -84,6 +84,10 @@ public class MainApp extends Application {
         }
     }
 
+    /**
+     * Returns the main stage
+     * @param args arguments
+     */
     public static void main(String[] args) {
         launch(args);
     }
