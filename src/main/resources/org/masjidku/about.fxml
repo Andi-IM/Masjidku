@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="480.0" prefWidth="665.0" styleClass="main" stylesheets="@styles.css, @fontstyles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.masjidku.controller.AboutController">
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@icon/app_icon.png" />
+         </image>
+      </ImageView>
+      <Text fill="#3AAFA9" layoutX="115.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="app-title" text="Aplikasi Desktop MasjidKu " />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="233.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="233.0" AnchorPane.rightAnchor="232.0" AnchorPane.topAnchor="121.0">
+         <image>
+            <Image url="@icon/app_logo.png" />
+         </image>
+         <rotationAxis>
+            <Point3D />
+         </rotationAxis>
+      </ImageView>
+      <Text fill="#3aafa9" layoutX="249.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="content" text="Aplikasi Desktop versi 1.0" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="281.83203125">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text fill="#3aafa9" layoutX="306.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="content" text="Made by :" />
+      <Text fill="#3aafa9" layoutX="203.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="content" text="Abid Asshidiqie Nugraha (1911082014)">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text fill="#3aafa9" layoutX="248.0" layoutY="324.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="content" text="Andi Irham (1911082006)">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text fill="#3aafa9" layoutX="238.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="content" text="Hakkan Syukri (1911082017)">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text fill="#3aafa9" layoutX="227.0" layoutY="401.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="content" text="Luthfiyyah Riznisa (1911082010)">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
