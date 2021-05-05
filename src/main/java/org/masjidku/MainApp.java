@@ -2,13 +2,10 @@ package org.masjidku;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import org.masjidku.controller.FXMLController;
 import org.masjidku.controller.RootLayoutController;
@@ -37,7 +34,7 @@ public class MainApp extends Application {
                 .add(new Image(MainApp.class.getResourceAsStream("./icon/favicon.png")));
 
         initRootLayout();
-        // showContent();
+        showContent();
     }
 
     /**
@@ -49,7 +46,7 @@ public class MainApp extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(
                     getClass().getResource("root_layout.fxml"));
-            rootLayout = (SplitPane) loader.load();
+            rootLayout = loader.load();
 
             // show the scene containing the root layout
             Scene scene = new Scene(rootLayout);
@@ -59,6 +56,7 @@ public class MainApp extends Application {
             RootLayoutController controller = loader.getController();
             controller.setMainApp(this);
 
+            primaryStage.show();
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -71,13 +69,11 @@ public class MainApp extends Application {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(
-                    getClass().getResource("scene.fxml")
-            );
-            AnchorPane overview = (AnchorPane) loader.load();
+            loader.setLocation(getClass().getResource("scene.fxml"));
+            AnchorPane overview = loader.load();
 
             // set the item into the right divider.
-            rootLayout.getItems().set(0, overview);
+            rootLayout.getItems().set(1, overview);
 
             // Give the controller access to the main app.
             FXMLController controller = loader.getController();
