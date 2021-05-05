@@ -18,7 +18,7 @@
 
 #btn_home {
     -fx-background-image: url("icon/home_icon.png");
-    -fx-background-size: 32 32;
+    -fx-background-size: 20 20;
     -fx-background-repeat: no-repeat;
     -fx-background-position: left;
     -fx-start-margin: 10.0;
@@ -26,7 +26,7 @@
 
 #btn_login {
     -fx-background-image: url("icon/user.png");
-    -fx-background-size: 32 32;
+    -fx-background-size: 20 20;
     -fx-background-repeat: no-repeat;
     -fx-background-position: left;
     -fx-start-margin: 10.0;
@@ -34,7 +34,7 @@
 
 #btn_about {
     -fx-background-image: url("icon/about_icon.png");
-    -fx-background-size: 32 32;
+    -fx-background-size: 20 20;
     -fx-background-repeat: no-repeat;
     -fx-background-position: left;
     -fx-start-margin: 10.0;
