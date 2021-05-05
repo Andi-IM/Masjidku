@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
-<?import javafx.scene.paint.*?>
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<SplitPane dividerPositions="0.29797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="852.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.29797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="852.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.masjidku.controller.RootLayoutController">
    <items>
        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="sidebar" stylesheets="@styles.css">
           <children>
-              <Button fx:id="btn_home" alignment="BASELINE_LEFT" mnemonicParsing="false" styleClass="sidebar" stylesheets="@styles.css" text="Beranda" textFill="#feffff" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+              <Button fx:id="btn_home" alignment="BASELINE_LEFT" mnemonicParsing="false" stylesheets="@styles.css" text="Beranda" textFill="#feffff" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                   <font>
                       <Font name="Roboto" size="22.0" />
                   </font>
                <padding>
                   <Insets left="100.0" />
                </padding>
-                  
+
               </Button>
           </children>
        </AnchorPane>

@@ -34,4 +34,4 @@ javafx {
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
-mainClassName = 'org.masjidku.MainApp'
+mainClassName = 'Main'
