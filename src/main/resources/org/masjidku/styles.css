@@ -8,6 +8,8 @@
 
 .button:hover{
     -fx-background-color: #3AAFA9;
+    -fx-border-radius: 0.0;
+    -fx-background-radius: 0.0;
 }
 
 .button:selected {
@@ -19,6 +21,7 @@
     -fx-background-size: 32 32;
     -fx-background-repeat: no-repeat;
     -fx-background-position: left;
+    -fx-start-margin: 10.0;
 }
 
 #btn_login {
@@ -26,6 +29,7 @@
     -fx-background-size: 32 32;
     -fx-background-repeat: no-repeat;
     -fx-background-position: left;
+    -fx-start-margin: 10.0;
 }
 
 #btn_about {
@@ -33,6 +37,7 @@
     -fx-background-size: 32 32;
     -fx-background-repeat: no-repeat;
     -fx-background-position: left;
+    -fx-start-margin: 10.0;
 }
 
 .main {

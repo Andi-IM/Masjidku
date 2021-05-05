@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -10,24 +10,21 @@
    <items>
        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="480.0" prefWidth="185.0" styleClass="sidebar" stylesheets="@styles.css" SplitPane.resizableWithParent="false">
           <children>
-              <Button fx:id="btn_home" mnemonicParsing="false" styleClass="button" stylesheets="@styles.css" text="Beranda" textFill="#feffff" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="54.0">
+              <Button fx:id="btn_home" mnemonicParsing="false" styleClass="" stylesheets="" text="Beranda" textFill="#feffff" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="54.0">
                   <font>
                       <Font name="Roboto" size="20.0" />
                   </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
               </Button>
-            <Button fx:id="btn_login" layoutX="14.0" layoutY="180.0" mnemonicParsing="false" styleClass="button" stylesheets="@styles.css" text="Masuk" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="106.0">
-               <font>
-                  <Font name="Roboto" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="btn_about" layoutX="10.0" layoutY="175.0" mnemonicParsing="false" styleClass="button" stylesheets="@styles.css" text="Tentang" textFill="WHITE" AnchorPane.bottomAnchor="289.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
-               <font>
-                  <Font name="Roboto" size="20.0" />
-               </font>
-            </Button>
+              <Button fx:id="btn_login" layoutX="14.0" layoutY="180.0" mnemonicParsing="false" styleClass="" stylesheets="" text="Masuk" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="106.0">
+                 <font>
+                     <Font name="Roboto" size="20.0" />
+                 </font>
+              </Button>
+              <Button fx:id="btn_about" onAction="#handleAbout" layoutX="10.0" layoutY="175.0" mnemonicParsing="false" styleClass="" stylesheets="" text="Tentang" textFill="WHITE" AnchorPane.bottomAnchor="289.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                 <font>
+                     <Font name="Roboto" size="20.0" />
+                 </font>
+              </Button>
           </children>
        </AnchorPane>
        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="480.0" styleClass="main" stylesheets="@styles.css" SplitPane.resizableWithParent="false" />
