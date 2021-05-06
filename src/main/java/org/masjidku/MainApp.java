@@ -7,9 +7,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import org.masjidku.controller.AboutController;
-import org.masjidku.controller.FXMLController;
-import org.masjidku.controller.RootLayoutController;
+import org.masjidku.controller.*;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -17,7 +15,7 @@ import java.util.Objects;
 public class MainApp extends Application {
 
     private Stage primaryStage;
-    private SplitPane rootLayout;
+    protected SplitPane rootLayout;
 
     /**
      * Constructor
@@ -72,17 +70,35 @@ public class MainApp extends Application {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("scene.fxml"));
+            loader.setLocation(getClass().getResource("home.fxml"));
             AnchorPane overview = loader.load();
 
             // set the item into the right divider.
             rootLayout.getItems().set(1, overview);
 
             // Give the controller access to the main app.
-            FXMLController controller = loader.getController();
+            HomeController controller = loader.getController();
             controller.setMainApp(this);
 
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showLogin(){
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("login.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            LoginController controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e){
             e.printStackTrace();
         }
     }

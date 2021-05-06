@@ -14,3 +14,11 @@
 .content {
     -fx-font-family: 'Roboto';
 }
+
+@font-face {
+    src: url("fonts/Roboto-Bold.ttf");
+}
+
+.headline {
+    -fx-font-family: "Roboto Bold";
+}

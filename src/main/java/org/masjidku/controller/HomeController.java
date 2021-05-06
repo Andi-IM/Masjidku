@@ -3,7 +3,7 @@ package org.masjidku.controller;
 import javafx.fxml.FXML;
 import org.masjidku.MainApp;
 
-public class RootLayoutController {
+public class HomeController {
     // Reference to the main application
     private MainApp mainApp;
 
@@ -14,23 +14,8 @@ public class RootLayoutController {
     public void setMainApp(MainApp mainApp){ this.mainApp = mainApp; }
 
     /**
-     * Opens home page.
-     */
-    @FXML
-    public void handleHome() { mainApp.showContent(); }
-
-    /**
      * Opens login page.
      */
     @FXML
-    public void handleLogin() { mainApp.showLogin(); }
-
-    /**
-     * Opens about page.
-     */
-    @FXML
-    public void handleAbout() {
-        mainApp.showAbout();
-    }
-
+    public void handleLoginPage() { mainApp.showLogin(); }
 }
