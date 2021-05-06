@@ -7,3 +7,7 @@
 
 # Masjidku
 MasjidKu is a desktop application that records financial activities and affairs. This application is based offline using a local database.
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/21165698/117233235-e9e86080-ae4c-11eb-8cf2-767ec0604045.png" alt="HomePage" width="600">
+</p>
