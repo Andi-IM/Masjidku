@@ -1,0 +1,24 @@
+@font-face {
+    src: url("fonts/Righteous-Regular.ttf");
+}
+
+.app-title {
+    -fx-font-family: 'Righteous';
+    -fx-font-size: 20.0;
+}
+
+@font-face {
+    src: url("fonts/Roboto-Regular.ttf");
+}
+
+.content {
+    -fx-font-family: 'Roboto';
+}
+
+@font-face {
+    src: url("fonts/Roboto-Bold.ttf");
+}
+
+.headline {
+    -fx-font-family: "Roboto Bold";
+}
