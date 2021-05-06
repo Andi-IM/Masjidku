@@ -1,5 +1,6 @@
 package org.masjidku.util;
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,7 +20,7 @@ public class DatabaseConnection {
 
     public Connection getConnection(){
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             return java.sql.DriverManager.getConnection(url, username, password);
         } catch (ClassNotFoundException | SQLException e) {
             Logger.getLogger(DatabaseConnection.class.getName()).log(Level.SEVERE, null, e);
@@ -30,4 +31,14 @@ public class DatabaseConnection {
     public ResultSet getQuery(Connection con, String sql) throws SQLException {
         return con.createStatement().executeQuery(sql);
     }
+
+    public static void main(String[] args) {
+        DatabaseConnection koneksi = new DatabaseConnection();
+        if (koneksi.getConnection() != null) {
+            JOptionPane.showMessageDialog(null, "Connection OK!");
+        } else {
+            JOptionPane.showMessageDialog(null, "404");
+        }
+    }
+
 }
