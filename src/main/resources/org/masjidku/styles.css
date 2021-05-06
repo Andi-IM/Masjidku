@@ -21,7 +21,6 @@
     -fx-background-size: 20 20;
     -fx-background-repeat: no-repeat;
     -fx-background-position: left;
-    -fx-start-margin: 10.0;
 }
 
 #btn_login {
@@ -29,7 +28,6 @@
     -fx-background-size: 20 20;
     -fx-background-repeat: no-repeat;
     -fx-background-position: left;
-    -fx-start-margin: 10.0;
 }
 
 #btn_about {
@@ -37,7 +35,6 @@
     -fx-background-size: 20 20;
     -fx-background-repeat: no-repeat;
     -fx-background-position: left;
-    -fx-start-margin: 10.0;
 }
 
 .main {
