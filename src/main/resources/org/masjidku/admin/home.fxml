@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane
+        prefHeight="480.0"
+        prefWidth="665.0"
+        styleClass="main"
+        stylesheets=""
+        xmlns="http://javafx.com/javafx/8"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="org.masjidku.admin.HomeController">
+   <children>
+      <ImageView
+              fitHeight="150.0"
+              fitWidth="200.0"
+              layoutY="24.0"
+              layoutX="24.0"
+              pickOnBounds="true"
+              preserveRatio="true"
+              AnchorPane.leftAnchor="0.0"
+              AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="../icon/app_icon.png" />
+         </image>
+      </ImageView>
+      <Text fill="#3AAFA9" layoutX="125.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="app-title" text="Aplikasi Desktop MasjidKu " />
+      <Text fill="#3AAFA9" layoutX="54.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="headline" text="Catat Seluruh Kegiatan Masjid Dalam Satu Aplikasi!" wrappingWidth="350.0">
+         <font>
+            <Font name="Roboto Bold" size="25.0" />
+         </font></Text>
+      <Text fill="#3AAFA9" layoutX="54.0" layoutY="269.0" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dengan menggunakan database secara offline, seluruh data masjid mu dapat kami simpan. Berbagai kemudahan akan kami tawarkan dalam penggunaan aplikasi ini. Ayo gunakan aplikasi in!" wrappingWidth="350.0">
+         <font>
+            <Font name="Roboto" size="15.0" />
+         </font>
+      </Text>
+      <Button layoutX="54.0" onAction="#handleLoginPage" layoutY="364.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefWidth="350.0" text="Button" textFill="WHITE" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="478.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="../icon/book.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

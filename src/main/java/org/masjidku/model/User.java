@@ -1,16 +1,27 @@
 package org.masjidku.model;
 
 public class User {
-    int id;
-    String username;
-    String password;
-    String nama;
-    String jabatan;
-    String notelp;
-    String status;
-    String alamat;
-    String created_at;
-    String updated_at;
+    private int id;
+    private String username;
+    private String password;
+    private String nama;
+    private String jabatan;
+    private String notelp;
+    private String status;
+    private String alamat;
+    private String created_at;
+    private String updated_at;
+
+    public User(){}
+
+    public User(String username, String nama, String jabatan, String notelp, String alamat, String status){
+        this.username = username;
+        this.nama = nama;
+        this.jabatan = jabatan;
+        this.notelp = notelp;
+        this.alamat = alamat;
+        this.status = status;
+    }
 
     public int getId() {
         return id;
