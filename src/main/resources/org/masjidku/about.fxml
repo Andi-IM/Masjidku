@@ -8,7 +8,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="480.0" prefWidth="665.0" styleClass="main" stylesheets="@fontstyles.css, @styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.masjidku.controller.AboutController">
+<?import java.net.URL?>
+<AnchorPane prefHeight="480.0" prefWidth="665.0" styleClass="main" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.masjidku.controller.AboutController">
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="24.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
@@ -47,4 +48,8 @@
          </font>
       </Text>
    </children>
+   <stylesheets>
+      <URL value="@styles/fontstyles.css" />
+      <URL value="@styles/styles.css" />
+   </stylesheets>
 </AnchorPane>
