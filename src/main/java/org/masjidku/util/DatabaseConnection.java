@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  * @author Andi Irham
  */
 public class DatabaseConnection {
-    static final private String url = "jdbc:mysql://127.0.0.1/masjidku";
+    static final private String url = "jdbc:mysql://127.0.0.1:3306/masjidku";
     static final private String username = "root";
     static final private String password = "";
 
