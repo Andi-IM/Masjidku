@@ -3,9 +3,9 @@
 
 name: Java CI with Gradle
 env:
-  MYSQL_DATABASE: masjidku
-  MYSQL_USER: root
-  MYSQL_PASSWORD: root
+  DB_DATABASE: masjidku
+  DB_USER: root
+  DB_PASSWORD: root
 
 on:
   push:
