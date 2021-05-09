@@ -46,4 +46,6 @@ jobs:
         done
 
     - name: Test with Gradle
+      env:
+        PORT: ${{ job.services.mysql.ports[3306] }}
       run: ./gradlew test
