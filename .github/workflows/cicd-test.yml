@@ -35,7 +35,7 @@ jobs:
     - name: Create test database
       run: |
         ls; pwd;
-        **sudo systemctl start mysql** mysql -uroot < main/resources/org/masjidku/db/masjidku.sql
+        **sudo systemctl start mysql** mysql -uroot < src/main/resources/org/masjidku/db/masjidku.sql
         ./gradlew testMigrate
 
     - name: Grant execute permission for gradlew
