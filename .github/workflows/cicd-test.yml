@@ -2,6 +2,10 @@
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
 
 name: Java CI with Gradle
+env:
+  MYSQL_DATABASE: masjidku
+  MYSQL_USER: root
+  MYSQL_PASSWORD: root
 
 on:
   push:
@@ -21,8 +25,14 @@ jobs:
           - 3306
         env:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_DATABASE: masjidku
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+          MYSQL_USER: ${{ env.MYSQL_USER }}
+          MYSQL_DATABASE: ${{ env.MYSQL_DATABASE }}
+        options: >-
+          --name=mysql
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
 
     steps:
     - uses: actions/checkout@v2
@@ -34,8 +44,8 @@ jobs:
 
     - name: Create test database
       run: |
-        sudo systemctl start mysql; mysql -uroot -proot < src/main/resources/org/masjidku/db/masjidku.sql
-        ./gradlew testMigrate
+        sudo systemctl start mysql; mysql -u${{ env.MYSQL_USER }} < src/main/resources/org/masjidku/db/masjidku.sql;
+        exit;
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
