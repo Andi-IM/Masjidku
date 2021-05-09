@@ -31,14 +31,4 @@ public class DatabaseConnection {
     public ResultSet getQuery(Connection con, String sql) throws SQLException {
         return con.createStatement().executeQuery(sql);
     }
-
-    public static void main(String[] args) {
-        DatabaseConnection koneksi = new DatabaseConnection();
-        if (koneksi.getConnection() != null) {
-            JOptionPane.showMessageDialog(null, "Connection OK!");
-        } else {
-            JOptionPane.showMessageDialog(null, "404");
-        }
-    }
-
 }
