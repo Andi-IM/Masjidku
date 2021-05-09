@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 public class DatabaseConnection {
     static final private String url = "jdbc:mysql://127.0.0.1:3306/masjidku";
     static final private String username = "root";
-    static final private String password = "";
+    static final private String password = ""; // using default password=root in github
 
     public Connection getConnection(){
         try {
