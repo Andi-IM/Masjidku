@@ -42,11 +42,6 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
 
-    - name: Create test database
-      run: |
-        sudo systemctl start mysql; mysql -u${{ env.MYSQL_USER }} < src/main/resources/org/masjidku/db/masjidku.sql;
-        exit;
-
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
