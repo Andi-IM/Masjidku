@@ -15,8 +15,8 @@ public class UserDao {
     Connection con;
     private final String SQL_USER_TABLE = "user";
     private final String SQL_GET_USERS = "SELECT (username, jabatan, status, created_at, updated_at) FROM " + SQL_USER_TABLE;
-    private final String SQL_GET_USER_DATA = "SELECT (username, nama, jabatan, no_telp, status, alamat) FROM "+ SQL_USER_TABLE + " WHERE id =?";
-    private final String SQL_GET_USER = "SELECT (username, password, jabatan, status) FROM "+ SQL_USER_TABLE + " WHERE username =? and password=?";
+    private final String SQL_GET_USER_DATA = "SELECT (username, nama, jabatan, no_telp, status, alamat) FROM "+ SQL_USER_TABLE + " WHERE id=? LIMIT 1";
+    private final String SQL_GET_USER = "SELECT nama FROM "+ SQL_USER_TABLE + " WHERE username=? and password=? LIMIT 1";
     private final String SQL_INSERT_USER = "INSERT INTO " + SQL_USER_TABLE + "(username, password, status) VALUES(?,?,?)";
     private final String SQL_UPDATE_USER = "UPDATE " + SQL_USER_TABLE + " SET username=?, password=?, nama=?, jabatan=?, no_telp=?, alamat=? WHERE id=?";
     private final String SQL_RESET_USER = "UPDATE "+SQL_USER_TABLE + " SET password=? WHERE id=?";
@@ -130,20 +130,18 @@ public class UserDao {
         return model;
     }
 
-    public User getUser(String username, String password) throws SQLException {
-        User model= new User();
+    public boolean getUser(String username, String password) throws SQLException {
         ps = con.prepareStatement(SQL_GET_USER);
         ps.setString(1, username);
         ps.setString(2, password);
         ResultSet rs = ps.executeQuery();
 
         if (rs.next()){
-            model.setUsername(rs.getString(3));
-            model.setPassword(rs.getString(4));
-            model.setJabatan(rs.getString(5));
-            model.setStatus(rs.getString(6));
+            System.out.println("Hi "+rs.getString(1)+"!");
+            return true;
         }
-        return model;
+
+        return false;
     }
 
     /**

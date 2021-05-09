@@ -14,7 +14,7 @@ import java.util.Objects;
 
 public class MainApp extends Application {
 
-    private Stage primaryStage;
+    protected Stage primaryStage;
     protected SplitPane rootLayout;
 
     /**
@@ -31,7 +31,7 @@ public class MainApp extends Application {
 
         // App icon
         this.primaryStage.getIcons()
-                .add(new Image(Objects.requireNonNull(MainApp.class.getResourceAsStream("./icon/favicon.png"))));
+                .add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("./icon/favicon.png"))));
 
         initRootLayout();
         showContent();
@@ -50,7 +50,6 @@ public class MainApp extends Application {
 
             // show the scene containing the root layout
             Scene scene = new Scene(rootLayout);
-            scene.getStylesheets().add(getClass().getResource("fontstyles.css").toExternalForm());
             primaryStage.setScene(scene);
 
             // Give the controller access to the MainApp
@@ -87,10 +86,11 @@ public class MainApp extends Application {
 
     public void showLogin(){
         try {
-            // Load Content
+            // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("login.fxml"));
             AnchorPane overview = loader.load();
+
 
             // set the item into the right divider.
             rootLayout.getItems().set(1, overview);
