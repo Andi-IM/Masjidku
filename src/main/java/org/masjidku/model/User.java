@@ -14,7 +14,8 @@ public class User {
 
     public User(){}
 
-    public User(String username, String nama, String jabatan, String notelp, String alamat, String status){
+    public User(int id, String username, String nama, String jabatan, String notelp, String alamat, String status){
+        this.id = id;
         this.username = username;
         this.nama = nama;
         this.jabatan = jabatan;

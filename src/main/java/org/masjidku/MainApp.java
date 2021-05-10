@@ -7,9 +7,13 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.masjidku.admin.AdminHome;
+import org.masjidku.admin.AdminRoot;
 import org.masjidku.controller.*;
+import org.masjidku.model.User;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class MainApp extends Application {
@@ -20,9 +24,8 @@ public class MainApp extends Application {
     /**
      * Constructor
      */
-    public MainApp(){
+    public MainApp(){ }
 
-    }
 
     @Override
     public void start(Stage primaryStage) {
@@ -84,6 +87,9 @@ public class MainApp extends Application {
         }
     }
 
+    /**
+     * Show User Login
+     */
     public void showLogin(){
         try {
             // Load the fxml file and create a new stage for the popup dialog.
@@ -103,6 +109,9 @@ public class MainApp extends Application {
         }
     }
 
+    /**
+     * Show App About
+     */
     public void showAbout(){
         try {
             // Load Content
@@ -118,6 +127,53 @@ public class MainApp extends Application {
             controller.setMainApp(this);
 
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Change the root layout
+     */
+    public void adminAuth(User user){
+        try {
+            // load root layout from fxml file
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(
+                    getClass().getResource("admin/root_layout.fxml"));
+            AnchorPane menu = loader.load();
+
+            // set the item into the left divider.
+            rootLayout.getItems().set(0, menu);
+
+            // Give the controller access to the MainApp
+            AdminRoot controller = loader.getController();
+            controller.setMainApp(this);
+
+            adminHome(user);
+
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Change the dashboard
+     */
+    public void adminHome(User user){
+        try {
+            // load root layout from fxml file
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(
+                    getClass().getResource("admin/home.fxml"));
+            AnchorPane menu = loader.load();
+
+            // set the item into the left divider.
+            rootLayout.getItems().set(1, menu);
+
+            // Give the controller access to the MainApp
+            AdminHome controller = loader.getController();
+            controller.setMainApp(this, user);
+        } catch (IOException e){
             e.printStackTrace();
         }
     }
