@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import org.masjidku.MainApp;
 import org.masjidku.model.User;
 import org.masjidku.model.UserDao;
+import org.masjidku.util.UserSession;
 
 import javax.swing.*;
 import java.nio.charset.StandardCharsets;
@@ -21,6 +22,7 @@ public class LoginController {
     private MainApp mainApp;
     private Stage dialogStage;
     private UserDao dao;
+    private User user;
 
     /**
      * Is called by the main application to give a reference back to itself.
@@ -52,26 +54,57 @@ public class LoginController {
                 .toString();
 
         try {
-            if (dao.getUser(un, ps)){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.initOwner(dialogStage);
-                alert.setTitle("Prompt");
-                alert.setHeaderText("Masuk berhasil!");
-                alert.setContentText("Silakan lanjut");
+            String userId = dao.getUser(un, ps);
+            if ( userId != null){
+                user = dao.getUserData(userId);
 
-                alert.showAndWait();
+                if (user.getStatus().equals("Aktif")){
+                    switch (user.getJabatan()){
+                        case "admin":
+                            mainApp.adminAuth(user);
+                            break;
+                        case "ketua":
+                            alertInfo("Dalam Perbaikan", "Mohon maaf status bagian ini dalam perbaikan");
+                            break;
+                        case "sektretaris":
+                            alertInfo("Dalam Perbaikan", "Mohon maaf status bagian ini dalam perbaikan");
+                            break;
+                        case "bendahara":
+                            alertInfo("Dalam Perbaikan", "Mohon maaf status bagian ini dalam perbaikan");
+                            break;
+                        default:
+                            throw new IllegalArgumentException("Illegal Data Argument");
+                    }
+
+                } else {
+                    alertError("Gagal Masuk", "Mohon maaf, akun Anda tidak lagi aktif. " +
+                            "Kontak Admin untuk informasi lebih lanjut.");
+                }
             } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.initOwner(dialogStage);
-                alert.setTitle("Prompt");
-                alert.setHeaderText("Gagal Masuk");
-                alert.setContentText("Periksa username dan password");
-
-                alert.showAndWait();
+                alertError("Gagal Masuk", "Periksa username dan password");
             }
         } catch (SQLException e){
-            e.getMessage();
+            System.err.println(e);
         }
     }
 
+    private void alertInfo(String header, String content){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.initOwner(dialogStage);
+        alert.setTitle("Prompt");
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+
+        alert.showAndWait();
+    }
+
+    private void alertError(String header, String content){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.initOwner(dialogStage);
+        alert.setTitle("Prompt");
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+
+        alert.showAndWait();
+    }
 }

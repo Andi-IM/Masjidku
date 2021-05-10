@@ -9,6 +9,7 @@ public class DbTest {
 
     @Test
     public void databaseConnectionTest(){
+        // calling connection in dbconnection
         Assert.assertNotNull("Periksa koneksi database!", "");
     }
 }

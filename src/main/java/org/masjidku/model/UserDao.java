@@ -14,9 +14,9 @@ import java.util.List;
 public class UserDao {
     Connection con;
     private final String SQL_USER_TABLE = "user";
-    private final String SQL_GET_USERS = "SELECT (username, jabatan, status, created_at, updated_at) FROM " + SQL_USER_TABLE;
-    private final String SQL_GET_USER_DATA = "SELECT (username, nama, jabatan, no_telp, status, alamat) FROM "+ SQL_USER_TABLE + " WHERE id=? LIMIT 1";
-    private final String SQL_GET_USER = "SELECT nama FROM "+ SQL_USER_TABLE + " WHERE username=? and password=? LIMIT 1";
+    private final String SQL_GET_USERS = "SELECT username, jabatan, status, created_at, updated_at FROM " + SQL_USER_TABLE;
+    private final String SQL_GET_USER_DATA = "SELECT id, username, nama, jabatan, no_telp, status, alamat FROM "+ SQL_USER_TABLE + " WHERE id=? LIMIT 1";
+    private final String SQL_GET_USER = "SELECT id, nama FROM "+ SQL_USER_TABLE + " WHERE username=? and password=? LIMIT 1";
     private final String SQL_INSERT_USER = "INSERT INTO " + SQL_USER_TABLE + "(username, password, status) VALUES(?,?,?)";
     private final String SQL_UPDATE_USER = "UPDATE " + SQL_USER_TABLE + " SET username=?, password=?, nama=?, jabatan=?, no_telp=?, alamat=? WHERE id=?";
     private final String SQL_RESET_USER = "UPDATE "+SQL_USER_TABLE + " SET password=? WHERE id=?";
@@ -32,17 +32,16 @@ public class UserDao {
     /**
      * Only Admin can create User
      *
-     * @param model an User Model
      * @throws SQLException as Error Handling
      */
-    public void create(User model) throws SQLException {
+    public void create(String username, String password) throws SQLException {
         ps = con.prepareStatement(SQL_INSERT_USER);
-        ps.setString(1, model.getUsername());
+        ps.setString(1, username);
 
         @SuppressWarnings("UnstableApiUsage")
         String hex = Hashing
                 .sha256()
-                .hashString(model.getPassword(), StandardCharsets.UTF_8)
+                .hashString(password, StandardCharsets.UTF_8)
                 .toString();
         ps.setString(2, hex);
         ps.setString(3, "Aktif");
@@ -110,38 +109,48 @@ public class UserDao {
 
     /**
      * Only Specified User can see this
+     * also this code used for Authorization
      *
      * @throws SQLException
      */
-    public User getUserData(int id) throws SQLException {
+    public User getUserData(String id) throws SQLException {
         ps = con.prepareStatement(SQL_GET_USER_DATA);
-        ps.setInt(1, id);
+        ps.setString(1, id);
         User model = new User();
         ResultSet resultSet = ps.executeQuery();
         if (resultSet.next()){
             model = new User(
+                    Integer.parseInt(resultSet.getString(1)),
                     resultSet.getString(2),
                     resultSet.getString(3),
                     resultSet.getString(4),
                     resultSet.getString(5),
-                    resultSet.getString(6),
-                    resultSet.getString(7));
+                    resultSet.getString(7),
+                    resultSet.getString(6));
         }
         return model;
     }
 
-    public boolean getUser(String username, String password) throws SQLException {
+    /**
+     *  Get UserInfo for Authentication
+     *
+     * @param username username
+     * @param password user password
+     * @return userId
+     * @throws SQLException for Error Handling
+     */
+    public String getUser(String username, String password) throws SQLException {
         ps = con.prepareStatement(SQL_GET_USER);
         ps.setString(1, username);
         ps.setString(2, password);
         ResultSet rs = ps.executeQuery();
 
         if (rs.next()){
-            System.out.println("Hi "+rs.getString(1)+"!");
-            return true;
+            System.out.println("Hi "+rs.getString(2)+"!");
+            return rs.getString(1);
         }
 
-        return false;
+        return null;
     }
 
     /**
@@ -154,5 +163,13 @@ public class UserDao {
         ps = con.prepareStatement(SQL_DELETE_USER);
         ps.setInt(1, id);
         ps.executeUpdate();
+    }
+
+    public static void main(String[] args) throws SQLException {
+        UserDao dao = new UserDao();
+
+        dao.create("paijo", "paijo");
+        //User user = dao.getUserData("1");
+        //System.out.println(user.getStatus());
     }
 }
