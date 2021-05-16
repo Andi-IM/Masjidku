@@ -1,11 +1,7 @@
 package org.masjidku.util;
 
-import javax.swing.*;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *  The MySQL Connection
@@ -14,31 +10,21 @@ import java.util.logging.Logger;
  * @author Andi Irham
  */
 public class DatabaseConnection {
-    static final private String url = "jdbc:mysql://127.0.0.1:3306/masjidku";
-    static final private String username = "root";
-    static final private String password = ""; // using default password=root in github
+    public Connection dbLink;
 
     public Connection getConnection(){
+        String dbName = "masjidku";
+        String url = "jdbc:mysql://127.0.0.1:3306/"+dbName;
+        String username = "root";
+        String password = ""; // using default password=root in github
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            return java.sql.DriverManager.getConnection(url, username, password);
+            dbLink = java.sql.DriverManager.getConnection(url, username, password);
         } catch (ClassNotFoundException | SQLException e) {
-            Logger.getLogger(DatabaseConnection.class.getName()).log(Level.SEVERE, null, e);
+            e.printStackTrace();
+            e.getCause();
         }
-        return null;
+        return dbLink;
     }
-
-    public ResultSet getQuery(Connection con, String sql) throws SQLException {
-        return con.createStatement().executeQuery(sql);
-    }
-
-    public static void main(String[] args) {
-        DatabaseConnection koneksi = new DatabaseConnection();
-        if (koneksi.getConnection() != null) {
-            JOptionPane.showMessageDialog(null, "Connection OK!");
-        } else {
-            JOptionPane.showMessageDialog(null, "404");
-        }
-    }
-
 }

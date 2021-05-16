@@ -131,51 +131,70 @@ public class MainApp extends Application {
         }
     }
 
-    /**
-     * Change the root layout
-     */
-    public void adminAuth(User user){
+    public void setAdminView(User user){
         try {
             // load root layout from fxml file
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(
                     getClass().getResource("admin/root_layout.fxml"));
-            AnchorPane menu = loader.load();
+            rootLayout = loader.load();
 
-            // set the item into the left divider.
-            rootLayout.getItems().set(0, menu);
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
 
             // Give the controller access to the MainApp
             AdminRoot controller = loader.getController();
             controller.setMainApp(this);
 
-            adminHome(user);
-
+            showAdminHome(user);
         } catch (IOException e){
             e.printStackTrace();
         }
     }
 
-    /**
-     * Change the dashboard
-     */
-    public void adminHome(User user){
+    private void showAdminHome(User user) {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("admin/home.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            AdminHome controller = loader.getController();
+            controller.setMainApp(this, user);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onLogoutAction() {
         try {
             // load root layout from fxml file
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(
-                    getClass().getResource("admin/home.fxml"));
-            AnchorPane menu = loader.load();
+                    getClass().getResource("root_layout.fxml"));
+            rootLayout = loader.load();
 
-            // set the item into the left divider.
-            rootLayout.getItems().set(1, menu);
+            // show the scene containing the root layout
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
 
             // Give the controller access to the MainApp
-            AdminHome controller = loader.getController();
-            controller.setMainApp(this, user);
+            RootLayoutController controller = loader.getController();
+            controller.setMainApp(this);
+
+            showContent();
         } catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+
+    public void dismiss(){
+        primaryStage.close();
     }
 
     /**

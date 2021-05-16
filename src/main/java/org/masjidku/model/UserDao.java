@@ -3,6 +3,7 @@ package org.masjidku.model;
 import com.google.common.hash.Hashing;
 import org.masjidku.util.DatabaseConnection;
 
+import javax.swing.*;
 import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,19 +15,14 @@ import java.util.List;
 public class UserDao {
     Connection con;
     private final String SQL_USER_TABLE = "user";
-    private final String SQL_GET_USERS = "SELECT username, jabatan, status, created_at, updated_at FROM " + SQL_USER_TABLE;
-    private final String SQL_GET_USER_DATA = "SELECT id, username, nama, jabatan, no_telp, status, alamat FROM "+ SQL_USER_TABLE + " WHERE id=? LIMIT 1";
-    private final String SQL_GET_USER = "SELECT id, nama FROM "+ SQL_USER_TABLE + " WHERE username=? and password=? LIMIT 1";
-    private final String SQL_INSERT_USER = "INSERT INTO " + SQL_USER_TABLE + "(username, password, status) VALUES(?,?,?)";
-    private final String SQL_UPDATE_USER = "UPDATE " + SQL_USER_TABLE + " SET username=?, password=?, nama=?, jabatan=?, no_telp=?, alamat=? WHERE id=?";
-    private final String SQL_RESET_USER = "UPDATE "+SQL_USER_TABLE + " SET password=? WHERE id=?";
-    private final String SQL_SUSPEND_USER = "UPDATE "+SQL_USER_TABLE + " SET status=? WHERE id=?";
-    private final String SQL_DELETE_USER = "DELETE FROM "+ SQL_USER_TABLE +" WHERE id=?";
 
     PreparedStatement ps;
     public UserDao(){
         DatabaseConnection connection = new DatabaseConnection();
+
+        if (connection.getConnection() != null)
         con = connection.getConnection();
+        else JOptionPane.showMessageDialog(null, "Database belum hidup!");
     }
 
     /**
@@ -35,6 +31,7 @@ public class UserDao {
      * @throws SQLException as Error Handling
      */
     public void create(String username, String password) throws SQLException {
+        String SQL_INSERT_USER = "INSERT INTO " + SQL_USER_TABLE + "(username, password, status) VALUES(?,?,?)";
         ps = con.prepareStatement(SQL_INSERT_USER);
         ps.setString(1, username);
 
@@ -55,6 +52,7 @@ public class UserDao {
      *  @throws SQLException as Error Handling
      */
     public void update(User model) throws SQLException {
+        String SQL_UPDATE_USER = "UPDATE " + SQL_USER_TABLE + " SET username=?, password=?, nama=?, jabatan=?, no_telp=?, alamat=? WHERE id=?";
         ps = con.prepareStatement(SQL_UPDATE_USER);
     }
 
@@ -65,6 +63,7 @@ public class UserDao {
      *  @throws SQLException as Error Handling
      */
     public void reset(int id) throws SQLException {
+        String SQL_RESET_USER = "UPDATE " + SQL_USER_TABLE + " SET password=? WHERE id=?";
         ps = con.prepareStatement(SQL_RESET_USER);
 
         @SuppressWarnings("UnstableApiUsage")
@@ -85,6 +84,7 @@ public class UserDao {
      * @throws SQLException as Error Handling.
      */
     public void suspend(int id, String status) throws SQLException {
+        String SQL_SUSPEND_USER = "UPDATE " + SQL_USER_TABLE + " SET status=? WHERE id=?";
         ps = con.prepareStatement(SQL_SUSPEND_USER);
         ps.setString(1, status);
         ps.setInt(2, id);
@@ -93,9 +93,10 @@ public class UserDao {
 
     /**
      * Only Admin can see this
-     * @throws SQLException
+     * @throws SQLException as Error Handling
      */
     public List<User> getUsers() throws SQLException {
+        String SQL_GET_USERS = "SELECT username, jabatan, status, created_at, updated_at FROM " + SQL_USER_TABLE;
         ps = con.prepareStatement(SQL_GET_USERS);
         ResultSet resultset = ps.executeQuery();
         List<User> list = new ArrayList<>();
@@ -111,9 +112,10 @@ public class UserDao {
      * Only Specified User can see this
      * also this code used for Authorization
      *
-     * @throws SQLException
+     * @throws SQLException as Error Handling
      */
     public User getUserData(String id) throws SQLException {
+        String SQL_GET_USER_DATA = "SELECT id, username, nama, jabatan, no_telp, status, alamat FROM " + SQL_USER_TABLE + " WHERE id=? LIMIT 1";
         ps = con.prepareStatement(SQL_GET_USER_DATA);
         ps.setString(1, id);
         User model = new User();
@@ -140,6 +142,7 @@ public class UserDao {
      * @throws SQLException for Error Handling
      */
     public String getUser(String username, String password) throws SQLException {
+        String SQL_GET_USER = "SELECT id, nama FROM " + SQL_USER_TABLE + " WHERE username=? and password=? LIMIT 1";
         ps = con.prepareStatement(SQL_GET_USER);
         ps.setString(1, username);
         ps.setString(2, password);
@@ -156,10 +159,11 @@ public class UserDao {
     /**
      *  Only Admin can delete user.
      *
-     * @param id
-     * @throws SQLException
+     * @param id user Id
+     * @throws SQLException as Error Handling
      */
     public void delete(int id) throws  SQLException {
+        String SQL_DELETE_USER = "DELETE FROM " + SQL_USER_TABLE + " WHERE id=?";
         ps = con.prepareStatement(SQL_DELETE_USER);
         ps.setInt(1, id);
         ps.executeUpdate();
@@ -169,7 +173,5 @@ public class UserDao {
         UserDao dao = new UserDao();
 
         dao.create("paijo", "paijo");
-        //User user = dao.getUserData("1");
-        //System.out.println(user.getStatus());
     }
 }
