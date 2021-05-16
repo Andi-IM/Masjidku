@@ -15,6 +15,7 @@ public class AdminHome {
 
     @FXML
     public void handleLoginPage(ActionEvent actionEvent) {
+
     }
 
     public void setMainApp(MainApp mainApp, User user) {
@@ -23,6 +24,10 @@ public class AdminHome {
         greeting.setText("Bapak "+user.getNama());
     }
 
-    public void onLogoutClick(ActionEvent actionEvent) {
+
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
     }
+
+
 }

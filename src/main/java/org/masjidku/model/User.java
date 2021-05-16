@@ -1,5 +1,7 @@
 package org.masjidku.model;
 
+import static org.masjidku.model.Jabatan.*;
+
 public class User {
     private int id;
     private String username;
@@ -12,9 +14,10 @@ public class User {
     private String created_at;
     private String updated_at;
 
-    public User(){}
+    public User() {
+    }
 
-    public User(int id, String username, String nama, String jabatan, String notelp, String alamat, String status){
+    public User(int id, String username, String nama, String jabatan, String notelp, String alamat, String status) {
         this.id = id;
         this.username = username;
         this.nama = nama;
@@ -56,8 +59,18 @@ public class User {
         this.nama = nama;
     }
 
-    public String getJabatan() {
-        return jabatan;
+    public Jabatan getJabatan() {
+        switch (this.jabatan) {
+            case "admin":
+                return admin;
+            case "ketua":
+                return ketua;
+            case "sekretaris":
+                return sekretaris;
+            case "bendahara":
+                return bendahara;
+        }
+        return null;
     }
 
     public void setJabatan(String jabatan) {
@@ -72,8 +85,8 @@ public class User {
         this.notelp = notelp;
     }
 
-    public String getStatus() {
-        return status;
+    public Boolean getStatus() {
+        return this.status.equals("Aktif");
     }
 
     public void setStatus(String status) {
@@ -104,4 +117,3 @@ public class User {
         this.updated_at = updated_at;
     }
 }
-

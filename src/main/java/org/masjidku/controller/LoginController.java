@@ -4,17 +4,13 @@ import com.google.common.hash.Hashing;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
 import org.masjidku.model.User;
 import org.masjidku.model.UserDao;
-import org.masjidku.util.UserSession;
 
-import javax.swing.*;
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
-import java.util.Objects;
 
 
 public class LoginController {
@@ -34,9 +30,9 @@ public class LoginController {
     }
 
     @FXML
-    private TextField username;
+    private TextField txtUsername;
     @FXML
-    private TextField password;
+    private TextField txtPassword;
     private boolean buttonPressed = false;
     /**
      * Initializes the controller class. This method is automatically called
@@ -47,30 +43,39 @@ public class LoginController {
 
     @FXML
     public void handleLogin() {
-        String un = username.getText();
-        String ps = Hashing
+        if (!txtUsername.getText().isBlank() && !txtPassword.getText().isBlank()){
+            validateLogin();
+        } else {
+            alertError("Alert!","Mohon untuk menginput username dan passwordnya!");
+        }
+    }
+
+    private void validateLogin(){
+        String username = txtUsername.getText();
+        @SuppressWarnings("UnstableApiUsage")
+        String password = Hashing
                 .sha256()
-                .hashString(password.getText(), StandardCharsets.UTF_8)
+                .hashString(txtPassword.getText(), StandardCharsets.UTF_8)
                 .toString();
 
         try {
-            String userId = dao.getUser(un, ps);
+            String userId = dao.getUser(username, password);
             if ( userId != null){
                 user = dao.getUserData(userId);
 
-                if (user.getStatus().equals("Aktif")){
+                if (user.getStatus()){
                     switch (user.getJabatan()){
-                        case "admin":
-                            mainApp.adminAuth(user);
+                        case admin:
+                            mainApp.setAdminView(user);
                             break;
-                        case "ketua":
-                            alertInfo("Dalam Perbaikan", "Mohon maaf status bagian ini dalam perbaikan");
+                        case ketua:
+                            alertInfo("Dalam Perbaikan", "Mohon maaf status ketua dalam perbaikan");
                             break;
-                        case "sektretaris":
-                            alertInfo("Dalam Perbaikan", "Mohon maaf status bagian ini dalam perbaikan");
+                        case sekretaris:
+                            alertInfo("Dalam Perbaikan", "Mohon maaf status sekretaris dalam perbaikan");
                             break;
-                        case "bendahara":
-                            alertInfo("Dalam Perbaikan", "Mohon maaf status bagian ini dalam perbaikan");
+                        case bendahara:
+                            alertInfo("Dalam Perbaikan", "Mohon maaf status bendahara dalam perbaikan");
                             break;
                         default:
                             throw new IllegalArgumentException("Illegal Data Argument");
@@ -97,7 +102,6 @@ public class LoginController {
 
         alert.showAndWait();
     }
-
     private void alertError(String header, String content){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.initOwner(dialogStage);

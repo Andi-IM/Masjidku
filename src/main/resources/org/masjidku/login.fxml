@@ -22,8 +22,8 @@
             <Image url="@icon/title.png" />
          </image>
       </ImageView>
-      <TextField fx:id="username" layoutX="258.0" layoutY="202.0" promptText="Username" />
-      <PasswordField fx:id="password" layoutX="258.0" layoutY="246.0" promptText="Password" />
+      <TextField fx:id="txtUsername" layoutX="258.0" layoutY="202.0" promptText="Username" />
+      <PasswordField fx:id="txtPassword" layoutX="258.0" layoutY="246.0" promptText="Password" />
       <CheckBox layoutX="258.0" layoutY="288.0" mnemonicParsing="false" text="Ingat Saya!" textFill="#3aafa9">
          <font>
             <Font name="Roboto" size="12.0" />
