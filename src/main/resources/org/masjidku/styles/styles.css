@@ -2,15 +2,22 @@
     -fx-background-color: #0F2F2D;
 }
 
-.button {
+.sidebarButton {
     -fx-background-color: #0F2F2D;
 }
 
-.button:hover{
+.generalButton {
+    -fx-background-color: #3AAFa9;
+    -fx-font-family: 'Roboto Bold';
+    -fx-font-size: 18;
+}
+
+.sideBarButton:hover{
     -fx-background-color: #3AAFA9;
     -fx-border-radius: 0.0;
     -fx-background-radius: 0.0;
 }
+
 
 .button:selected {
     -fx-border-color: #3AAFA9;

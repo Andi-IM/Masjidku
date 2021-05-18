@@ -34,7 +34,11 @@
             <Image url="@../icon/book.png" />
          </image>
       </ImageView>
-      <Button layoutX="580.0" layoutY="17.0" mnemonicParsing="false" onAction="#onLogoutClick" text="Logout" textFill="WHITE" />
+      <ImageView fx:id="logout" fitHeight="32.0" fitWidth="32.0" layoutX="398.0" layoutY="42.0" onMouseClicked="#onLogoutClick" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <image>
+            <Image url="@../icon/logout.png" />
+         </image>
+      </ImageView>
    </children>
    <stylesheets>
       <URL value="@../styles/styles.css" />

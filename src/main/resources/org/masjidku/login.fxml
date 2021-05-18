@@ -29,7 +29,7 @@
             <Font name="Roboto" size="12.0" />
          </font>
       </CheckBox>
-      <Button onAction="#handleLogin" layoutX="238.0" layoutY="318.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefWidth="200.0" text="Masuk" textFill="WHITE" />
+      <Button onAction="#handleLogin" layoutX="238.0" layoutY="318.0" maxHeight="-Infinity" styleClass="generalButton" maxWidth="-Infinity" mnemonicParsing="false" prefWidth="200.0" text="Masuk" textFill="WHITE" />
    </children>
    <stylesheets>
       <URL value="@styles/fontstyles.css" />

@@ -22,9 +22,10 @@ public class LoginController {
 
     /**
      * Is called by the main application to give a reference back to itself.
+     *
      * @param mainApp the context
      */
-    public void setMainApp(MainApp mainApp){
+    public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
         dao = new UserDao();
     }
@@ -34,23 +35,25 @@ public class LoginController {
     @FXML
     private TextField txtPassword;
     private boolean buttonPressed = false;
+
     /**
      * Initializes the controller class. This method is automatically called
      * after the fxml file has been loaded.
      */
     @FXML
-    public void initialize(){ }
+    public void initialize() {
+    }
 
     @FXML
     public void handleLogin() {
-        if (!txtUsername.getText().isBlank() && !txtPassword.getText().isBlank()){
+        if (!txtUsername.getText().isBlank() && !txtPassword.getText().isBlank()) {
             validateLogin();
         } else {
-            alertError("Alert!","Mohon untuk menginput username dan passwordnya!");
+            alertError("Alert!", "Mohon untuk menginput username dan passwordnya!");
         }
     }
 
-    private void validateLogin(){
+    private void validateLogin() {
         String username = txtUsername.getText();
         @SuppressWarnings("UnstableApiUsage")
         String password = Hashing
@@ -59,41 +62,45 @@ public class LoginController {
                 .toString();
 
         try {
-            String userId = dao.getUser(username, password);
-            if ( userId != null){
-                user = dao.getUserData(userId);
+            if (dao.getConnection()) {
+                String userId = dao.getUser(username, password);
 
-                if (user.getStatus()){
-                    switch (user.getJabatan()){
-                        case admin:
-                            mainApp.setAdminView(user);
-                            break;
-                        case ketua:
-                            alertInfo("Dalam Perbaikan", "Mohon maaf status ketua dalam perbaikan");
-                            break;
-                        case sekretaris:
-                            alertInfo("Dalam Perbaikan", "Mohon maaf status sekretaris dalam perbaikan");
-                            break;
-                        case bendahara:
-                            alertInfo("Dalam Perbaikan", "Mohon maaf status bendahara dalam perbaikan");
-                            break;
-                        default:
-                            throw new IllegalArgumentException("Illegal Data Argument");
+                if (userId != null) {
+                    user = dao.getUserData(userId);
+
+                    if (user.getStatus()) {
+                        switch (user.getJabatan()) {
+                            case admin:
+                                mainApp.setAdminView(user);
+                                break;
+                            case ketua:
+                                alertInfo("Dalam Perbaikan", "Mohon maaf status ketua dalam perbaikan");
+                                break;
+                            case sekretaris:
+                                alertInfo("Dalam Perbaikan", "Mohon maaf status sekretaris dalam perbaikan");
+                                break;
+                            case bendahara:
+                                alertInfo("Dalam Perbaikan", "Mohon maaf status bendahara dalam perbaikan");
+                                break;
+                            default:
+                                throw new IllegalArgumentException("Illegal Data Argument");
+                        }
+                    } else {
+                        alertError("Gagal Masuk", "Mohon maaf, akun Anda tidak lagi aktif. " +
+                                "Kontak Admin untuk informasi lebih lanjut.");
                     }
-
                 } else {
-                    alertError("Gagal Masuk", "Mohon maaf, akun Anda tidak lagi aktif. " +
-                            "Kontak Admin untuk informasi lebih lanjut.");
+                    alertError("Gagal Masuk", "Periksa username dan password");
                 }
             } else {
-                alertError("Gagal Masuk", "Periksa username dan password");
+                alertError("Error DB", "Mohon Nyalakan Database!");
             }
-        } catch (SQLException e){
+        } catch (SQLException e) {
             System.err.println(e);
         }
     }
 
-    private void alertInfo(String header, String content){
+    private void alertInfo(String header, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.initOwner(dialogStage);
         alert.setTitle("Prompt");
@@ -102,7 +109,8 @@ public class LoginController {
 
         alert.showAndWait();
     }
-    private void alertError(String header, String content){
+
+    private void alertError(String header, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.initOwner(dialogStage);
         alert.setTitle("Prompt");
