@@ -11,17 +11,17 @@
    <items>
        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="480.0" prefWidth="185.0" styleClass="sidebar" SplitPane.resizableWithParent="false">
           <children>
-              <Button fx:id="btn_home" mnemonicParsing="false" onAction="#handleHome" styleClass="" stylesheets="" text="Beranda" textFill="#feffff" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="54.0">
+              <Button fx:id="btn_home" mnemonicParsing="false" onAction="#handleHome" styleClass="sidebarButton" text="Beranda" textFill="#feffff" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="54.0">
                   <font>
                       <Font name="Roboto" size="20.0" />
                   </font>
               </Button>
-              <Button fx:id="btn_login" layoutX="14.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleLogin" styleClass="" stylesheets="" text="Masuk" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="106.0">
+              <Button fx:id="btn_login" layoutX="14.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleLogin" styleClass="sidebarButton" text="Masuk" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="106.0">
                  <font>
                      <Font name="Roboto" size="20.0" />
                  </font>
               </Button>
-              <Button fx:id="btn_about" layoutX="10.0" layoutY="175.0" mnemonicParsing="false" onAction="#handleAbout" styleClass="" stylesheets="" text="Tentang" textFill="WHITE" AnchorPane.bottomAnchor="289.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+              <Button fx:id="btn_about" layoutX="10.0" layoutY="175.0" mnemonicParsing="false" onAction="#handleAbout" styleClass="sidebarButton" text="Tentang" textFill="WHITE" AnchorPane.bottomAnchor="289.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                  <font>
                      <Font name="Roboto" size="20.0" />
                  </font>

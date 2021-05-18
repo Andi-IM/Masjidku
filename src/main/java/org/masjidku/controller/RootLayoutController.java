@@ -1,9 +1,17 @@
 package org.masjidku.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import org.masjidku.MainApp;
 
 public class RootLayoutController {
+    @FXML
+    public Button btn_home;
+    @FXML
+    public Button btn_login;
+    @FXML
+    public Button btn_about;
+
     // Reference to the main application
     private MainApp mainApp;
 
@@ -17,7 +25,9 @@ public class RootLayoutController {
      * Opens home page.
      */
     @FXML
-    public void handleHome() { mainApp.showContent(); }
+    public void handleHome() {
+        mainApp.showContent();
+    }
 
     /**
      * Opens login page.
