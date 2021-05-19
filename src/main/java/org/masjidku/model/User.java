@@ -1,7 +1,9 @@
 package org.masjidku.model;
 
+import static org.masjidku.model.Jabatan.*;
+
 public class User {
-    private int id;
+    private String userId;
     private String username;
     private String password;
     private String nama;
@@ -12,9 +14,11 @@ public class User {
     private String created_at;
     private String updated_at;
 
-    public User(){}
+    public User() {
+    }
 
-    public User(String username, String nama, String jabatan, String notelp, String alamat, String status){
+    public User(String id, String username, String nama, String jabatan, String notelp, String alamat, String status) {
+        this.userId = id;
         this.username = username;
         this.nama = nama;
         this.jabatan = jabatan;
@@ -23,12 +27,12 @@ public class User {
         this.status = status;
     }
 
-    public int getId() {
-        return id;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {
@@ -55,8 +59,18 @@ public class User {
         this.nama = nama;
     }
 
-    public String getJabatan() {
-        return jabatan;
+    public Jabatan getJabatan() {
+        switch (this.jabatan) {
+            case "admin":
+                return admin;
+            case "ketua":
+                return ketua;
+            case "sekretaris":
+                return sekretaris;
+            case "bendahara":
+                return bendahara;
+        }
+        return null;
     }
 
     public void setJabatan(String jabatan) {
@@ -71,8 +85,8 @@ public class User {
         this.notelp = notelp;
     }
 
-    public String getStatus() {
-        return status;
+    public Boolean getStatus() {
+        return this.status.equals("Aktif");
     }
 
     public void setStatus(String status) {

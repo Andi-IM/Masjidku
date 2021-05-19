@@ -7,22 +7,27 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.masjidku.admin.AdminHome;
+import org.masjidku.admin.AdminRoot;
+import org.masjidku.admin.UserForm;
+import org.masjidku.admin.UserLists;
 import org.masjidku.controller.*;
+import org.masjidku.model.User;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class MainApp extends Application {
 
-    private Stage primaryStage;
+    protected Stage primaryStage;
     protected SplitPane rootLayout;
 
     /**
      * Constructor
      */
-    public MainApp(){
+    public MainApp(){ }
 
-    }
 
     @Override
     public void start(Stage primaryStage) {
@@ -31,7 +36,7 @@ public class MainApp extends Application {
 
         // App icon
         this.primaryStage.getIcons()
-                .add(new Image(Objects.requireNonNull(MainApp.class.getResourceAsStream("./icon/favicon.png"))));
+                .add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("./icon/favicon.png"))));
 
         initRootLayout();
         showContent();
@@ -45,17 +50,17 @@ public class MainApp extends Application {
             // load root layout from fxml file
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(
-                    getClass().getResource("root_layout.fxml"));
+                    getClass().getResource("home_root.fxml"));
             rootLayout = loader.load();
 
             // show the scene containing the root layout
             Scene scene = new Scene(rootLayout);
-            scene.getStylesheets().add(getClass().getResource("fontstyles.css").toExternalForm());
             primaryStage.setScene(scene);
 
             // Give the controller access to the MainApp
             RootLayoutController controller = loader.getController();
             controller.setMainApp(this);
+            controller.btn_home.setSelected(true);
 
             primaryStage.show();
         } catch (IOException e){
@@ -85,12 +90,16 @@ public class MainApp extends Application {
         }
     }
 
+    /**
+     * Show User Login
+     */
     public void showLogin(){
         try {
-            // Load Content
+            // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("login.fxml"));
             AnchorPane overview = loader.load();
+
 
             // set the item into the right divider.
             rootLayout.getItems().set(1, overview);
@@ -103,6 +112,9 @@ public class MainApp extends Application {
         }
     }
 
+    /**
+     * Show App About
+     */
     public void showAbout(){
         try {
             // Load Content
@@ -120,6 +132,121 @@ public class MainApp extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Admin Priviledge
+     * @param user admin user
+     */
+    public void setAdminView(User user){
+        try {
+            // load root layout from fxml file
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(
+                    getClass().getResource("admin/admin_root.fxml"));
+            rootLayout = loader.load();
+
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+
+            // Give the controller access to the MainApp
+            AdminRoot controller = loader.getController();
+            controller.setMainApp(this);
+
+            showAdminHome(user);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Admin Home
+     * @param user admin user
+     */
+    private void showAdminHome(User user) {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("admin/home.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            AdminHome controller = loader.getController();
+            controller.setMainApp(this, user);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showUser(){
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("admin/user_lists.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            UserLists controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void createUser(){
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("admin/user_form.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            UserForm controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Logout
+     */
+    public void onLogoutAction() {
+        try {
+            // load root layout from fxml file
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(
+                    getClass().getResource("admin_root.fxml"));
+            rootLayout = loader.load();
+
+            // show the scene containing the root layout
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+
+            // Give the controller access to the MainApp
+            RootLayoutController controller = loader.getController();
+            controller.setMainApp(this);
+
+            showContent();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Close the app
+     */
+    public void dismiss(){
+        primaryStage.close();
     }
 
     /**

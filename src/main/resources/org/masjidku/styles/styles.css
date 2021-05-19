@@ -1,0 +1,69 @@
+.main {
+    -fx-background-color: #fff;
+}
+
+.sidebar {
+    -fx-background-color: #0F2F2D;
+}
+
+.sidebarButton {
+    -fx-background-color: #0F2F2D;
+    -fx-font-family: 'Roboto';
+    -fx-font-size: 18px;
+    -fx-text-fill: #FFFFFF;
+}
+
+.sidebarButton:hover{
+    -fx-background-color: #3AAFA9;
+    -fx-border-radius: 0.0;
+    -fx-background-radius: 0.0;
+}
+
+.sidebarButton:selected {
+    -fx-border-style: hidden hidden hidden solid;
+    -fx-border-width: 10;
+    -fx-border-color: #3aafa9;
+}
+
+.formField{
+    -fx-background-color: #DEF2F1;
+    -fx-border-color: #7fb3b0;
+    -fx-border-radius: 10.0;
+    -fx-background-radius: 10.0;
+}
+
+.check-box .box {
+    -fx-background-color: white;
+    -fx-border-color: grey;
+    -fx-border-radius: 3px;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: white;
+}
+
+.check-box:selected .box{
+    -fx-background-color: #7fb3b0;
+}
+
+.labelForm {
+    -fx-font-family: 'Roboto';
+    -fx-font-size: 12;
+}
+
+.generalButton {
+    -fx-background-color: #3AAFa9;
+    -fx-font-family: 'Roboto Bold';
+    -fx-font-size: 11;
+    -fx-text-fill: #FFFFFF;
+}
+
+.formLogin{
+    -fx-prompt-text-fill: #3AAFa9;
+    -fx-background-color: transparent;
+    -fx-text-fill: #3AAFa9;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-width: 2;
+    -fx-border-color: #3AAFa9;
+}
+
