@@ -6,7 +6,6 @@ public class User {
     private String userId;
     private String username;
     private String password;
-    private String nama;
     private String jabatan;
     private String notelp;
     private String status;
@@ -17,10 +16,9 @@ public class User {
     public User() {
     }
 
-    public User(String id, String username, String nama, String jabatan, String notelp, String alamat, String status) {
-        this.userId = id;
+    public User(String userId, String username, String jabatan, String notelp, String alamat, String status) {
+        this.userId = userId;
         this.username = username;
-        this.nama = nama;
         this.jabatan = jabatan;
         this.notelp = notelp;
         this.alamat = alamat;
@@ -49,14 +47,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getNama() {
-        return nama;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
     }
 
     public Jabatan getJabatan() {

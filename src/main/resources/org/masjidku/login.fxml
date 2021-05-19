@@ -34,8 +34,8 @@
                </image>
             </ImageView>
             <TextField fx:id="txtUsername" maxWidth="-Infinity" prefWidth="200.0" promptText="User ID" styleClass="formLogin" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-            <TextField fx:id="txtPassword" maxWidth="-Infinity" prefWidth="200.0" promptText="Password" styleClass="formLogin" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-             <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefWidth="200.0" styleClass="generalButton" text="Masuk" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+            <PasswordField fx:id="txtPassword" maxWidth="-Infinity" prefWidth="200.0" promptText="Password" styleClass="formLogin" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+             <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleLogin" prefWidth="200.0" styleClass="generalButton" text="Masuk" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
          </children>
       </GridPane>
     </children>

@@ -1,20 +1,21 @@
 package org.masjidku.admin;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import org.masjidku.MainApp;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class UserForm implements Initializable {
+    ObservableList<String> list = FXCollections.observableArrayList();
+
     @FXML
     public TextField txtUserId;
     @FXML
@@ -30,19 +31,18 @@ public class UserForm implements Initializable {
         this.mainApp = mainApp;
     }
 
-    public UserForm(){
-        pilJabatan = new ChoiceBox<String>();
-        pilJabatan.getItems().addAll("Pilih..","Ketua","Sekretaris","Bendahara");
-    }
-
-    @FXML
-    private void handleButtonAction(){
-
+    private void loadData(){
+        list.removeAll();
+        String ketua = "ketua";
+        String sekretaris = "sekretaris";
+        String bendahara = "bendahara";
+        list.addAll(ketua, sekretaris, bendahara);
+        pilJabatan.getItems().addAll(list);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        loadData();
     }
 
     @FXML
@@ -60,5 +60,25 @@ public class UserForm implements Initializable {
         txtUserId.clear();
         txtUserName.clear();
         statusCheckBox.setSelected(false);
+    }
+
+    public void gotoList() { mainApp.showUser(); }
+
+    public void onUserSubmitted() {
+        if (formValidation()){
+            String userid = txtUserId.getText();
+            String username = txtUserName.getText();
+            String jabatan = pilJabatan.getValue();
+            String status = statusCheckBox.getText();
+        }
+    }
+
+    private boolean formValidation() {
+        if (txtUserId.isCache()){
+            if (txtUserName.isCache()){
+                return pilJabatan.getValue() != null;
+            }
+        }
+        return false;
     }
 }

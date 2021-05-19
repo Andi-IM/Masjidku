@@ -136,9 +136,9 @@ public class MainApp extends Application {
 
     /**
      * Admin Priviledge
-     * @param user admin user
+     * @param username admin username
      */
-    public void setAdminView(User user){
+    public void setAdminView(String username){
         try {
             // load root layout from fxml file
             FXMLLoader loader = new FXMLLoader();
@@ -151,23 +151,23 @@ public class MainApp extends Application {
 
             // Give the controller access to the MainApp
             AdminRoot controller = loader.getController();
-            controller.setMainApp(this);
-
-            showAdminHome(user);
+            controller.setMainApp(this, username);
+            showAdminHome(username);
         } catch (IOException e){
-            e.printStackTrace();
+            System.err.println(e.getMessage());
+            e.getCause();
         }
     }
 
     /**
      * Admin Home
-     * @param user admin user
+     * @param username admin username
      */
-    private void showAdminHome(User user) {
+    private void showAdminHome(String username) {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("admin/home.fxml"));
+            loader.setLocation(getClass().getResource("admin/admin_home.fxml"));
             AnchorPane overview = loader.load();
 
             // set the item into the right divider.
@@ -175,9 +175,9 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             AdminHome controller = loader.getController();
-            controller.setMainApp(this, user);
+            controller.setMainApp(this, username);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
     }
 
@@ -224,8 +224,7 @@ public class MainApp extends Application {
         try {
             // load root layout from fxml file
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(
-                    getClass().getResource("admin_root.fxml"));
+            loader.setLocation(getClass().getResource("home_root.fxml"));
             rootLayout = loader.load();
 
             // show the scene containing the root layout
@@ -235,8 +234,9 @@ public class MainApp extends Application {
             // Give the controller access to the MainApp
             RootLayoutController controller = loader.getController();
             controller.setMainApp(this);
-
+            controller.btn_home.setSelected(true);
             showContent();
+
         } catch (IOException e){
             e.printStackTrace();
         }
