@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 06 Bulan Mei 2021 pada 12.39
+-- Waktu pembuatan: 19 Bulan Mei 2021 pada 11.56
 -- Versi server: 5.7.24
 -- Versi PHP: 7.3.26
 
@@ -180,6 +180,25 @@ CREATE TABLE `penerima_zakat` (
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `profil_user`
+--
+
+CREATE TABLE `profil_user` (
+  `userid` varchar(15) NOT NULL,
+  `notelp` varchar(15) DEFAULT NULL,
+  `alamat` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `profil_user`
+--
+
+INSERT INTO `profil_user` (`userid`, `notelp`, `alamat`) VALUES
+('paijo', '12345678', 'jl. Kisanak');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `tahunanggaran`
 --
 
@@ -221,35 +240,22 @@ CREATE TABLE `tpakeluar` (
 --
 
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
+  `userid` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `username` varchar(50) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `nama` varchar(30) DEFAULT NULL,
   `jabatan` enum('admin','ketua','sekretaris','bendahara') DEFAULT NULL,
-  `no_telp` varchar(15) DEFAULT NULL,
-  `status` enum('Aktif','Nonaktif') DEFAULT NULL,
-  `alamat` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `status` enum('Aktif','Nonaktif') DEFAULT 'Nonaktif',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data untuk tabel `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `password`, `nama`, `jabatan`, `no_telp`, `status`, `alamat`, `created_at`, `updated_at`) VALUES
-(1, 'root', '44cb005ee2e65d9cc817b0a083579369fb6c24a4be728cb43fd9d4c3ca7f4c2e', NULL, NULL, NULL, 'Aktif', NULL, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `user_type`
---
-
-CREATE TABLE `user_type` (
-  `user_type` varchar(255) DEFAULT NULL,
-  `username` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO `user` (`userid`, `password`, `username`, `jabatan`, `status`, `created_at`, `updated_at`) VALUES
+('paijo', '3c0becdf230ba5a952c9a499a2cf8aade19b56b9309dad1c0dc4cfc5a48a0824', NULL, 'ketua', 'Aktif', NULL, NULL),
+('root', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Admin', 'admin', 'Aktif', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -268,10 +274,16 @@ ALTER TABLE `penerima_zakat`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `profil_user`
+--
+ALTER TABLE `profil_user`
+  ADD UNIQUE KEY `index_userid` (`userid`);
+
+--
 -- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`userid`);
 
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
@@ -290,10 +302,14 @@ ALTER TABLE `penerima_zakat`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Ketidakleluasaan untuk tabel `profil_user`
+--
+ALTER TABLE `profil_user`
+  ADD CONSTRAINT `foreign_userid` FOREIGN KEY (`userid`) REFERENCES `user` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

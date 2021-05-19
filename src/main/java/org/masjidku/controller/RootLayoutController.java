@@ -1,16 +1,19 @@
 package org.masjidku.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import org.masjidku.MainApp;
 
 public class RootLayoutController {
     @FXML
-    public Button btn_home;
+    public ToggleButton btn_home;
     @FXML
-    public Button btn_login;
+    public ToggleButton btn_login;
     @FXML
-    public Button btn_about;
+    public ToggleButton btn_about;
+
+    public ToggleGroup groupButton;
 
     // Reference to the main application
     private MainApp mainApp;
@@ -33,7 +36,9 @@ public class RootLayoutController {
      * Opens login page.
      */
     @FXML
-    public void handleLogin() { mainApp.showLogin(); }
+    public void handleLogin() {
+        mainApp.showLogin();
+    }
 
     /**
      * Opens about page.

@@ -9,6 +9,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.masjidku.admin.AdminHome;
 import org.masjidku.admin.AdminRoot;
+import org.masjidku.admin.UserForm;
+import org.masjidku.admin.UserLists;
 import org.masjidku.controller.*;
 import org.masjidku.model.User;
 
@@ -48,7 +50,7 @@ public class MainApp extends Application {
             // load root layout from fxml file
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(
-                    getClass().getResource("root_layout.fxml"));
+                    getClass().getResource("home_root.fxml"));
             rootLayout = loader.load();
 
             // show the scene containing the root layout
@@ -58,6 +60,7 @@ public class MainApp extends Application {
             // Give the controller access to the MainApp
             RootLayoutController controller = loader.getController();
             controller.setMainApp(this);
+            controller.btn_home.setSelected(true);
 
             primaryStage.show();
         } catch (IOException e){
@@ -131,12 +134,16 @@ public class MainApp extends Application {
         }
     }
 
+    /**
+     * Admin Priviledge
+     * @param user admin user
+     */
     public void setAdminView(User user){
         try {
             // load root layout from fxml file
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(
-                    getClass().getResource("admin/root_layout.fxml"));
+                    getClass().getResource("admin/admin_root.fxml"));
             rootLayout = loader.load();
 
             Scene scene = new Scene(rootLayout);
@@ -152,6 +159,10 @@ public class MainApp extends Application {
         }
     }
 
+    /**
+     * Admin Home
+     * @param user admin user
+     */
     private void showAdminHome(User user) {
         try {
             // Load Content
@@ -170,12 +181,51 @@ public class MainApp extends Application {
         }
     }
 
+    public void showUser(){
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("admin/user_lists.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            UserLists controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void createUser(){
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("admin/user_form.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            UserForm controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Logout
+     */
     public void onLogoutAction() {
         try {
             // load root layout from fxml file
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(
-                    getClass().getResource("root_layout.fxml"));
+                    getClass().getResource("admin_root.fxml"));
             rootLayout = loader.load();
 
             // show the scene containing the root layout
@@ -192,7 +242,9 @@ public class MainApp extends Application {
         }
     }
 
-
+    /**
+     * Close the app
+     */
     public void dismiss(){
         primaryStage.close();
     }

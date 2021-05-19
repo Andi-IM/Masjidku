@@ -24,10 +24,7 @@ public class AdminHome {
         greeting.setText("Bapak "+user.getNama());
     }
 
-
     public void onLogoutClick() {
         mainApp.onLogoutAction();
     }
-
-
 }

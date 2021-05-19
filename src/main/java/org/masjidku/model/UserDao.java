@@ -3,7 +3,6 @@ package org.masjidku.model;
 import com.google.common.hash.Hashing;
 import org.masjidku.util.DatabaseConnection;
 
-import javax.swing.*;
 import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,6 +14,7 @@ import java.util.List;
 public class UserDao {
     Connection con;
     private final String SQL_USER_TABLE = "user";
+    private final String SQL_PROFIL_USER_TABLE = "profil_user";
 
     PreparedStatement ps;
 
@@ -35,18 +35,23 @@ public class UserDao {
      *
      * @throws SQLException as Error Handling
      */
-    public void create(String username, String password) throws SQLException {
-        String SQL_INSERT_USER = "INSERT INTO " + SQL_USER_TABLE + "(username, password, status) VALUES(?,?,?)";
+    public void create(String userid, String username, String jabatan, String status) throws SQLException {
+        String SQL_INSERT_USER = "INSERT INTO " + SQL_USER_TABLE + "(userid, password, username, jabatan, status, created_at, updated_at) VALUES(?,?,?,?,?,?,?)";
         ps = con.prepareStatement(SQL_INSERT_USER);
-        ps.setString(1, username);
+        ps.setString(1, userid);
 
         @SuppressWarnings("UnstableApiUsage")
         String hex = Hashing
                 .sha256()
-                .hashString(password, StandardCharsets.UTF_8)
+                .hashString("12345678", StandardCharsets.UTF_8)
                 .toString();
+
         ps.setString(2, hex);
-        ps.setString(3, "Aktif");
+        ps.setString(3, username);
+        ps.setString(4, jabatan);
+        ps.setString(5, status);
+        ps.setString(6, null);
+        ps.setString(7, null);
         ps.executeUpdate();
     }
 
@@ -125,14 +130,10 @@ public class UserDao {
         User model = new User();
         ResultSet resultSet = ps.executeQuery();
         if (resultSet.next()){
-            model = new User(
-                    Integer.parseInt(resultSet.getString(1)),
-                    resultSet.getString(2),
-                    resultSet.getString(3),
-                    resultSet.getString(4),
-                    resultSet.getString(5),
-                    resultSet.getString(7),
-                    resultSet.getString(6));
+            model.setUserId(resultSet.getString(1));
+            model.setUsername(resultSet.getString(2));
+            model.setJabatan(resultSet.getString(3));
+            model.setStatus(resultSet.getString(4));
         }
         return model;
     }
@@ -171,11 +172,5 @@ public class UserDao {
         ps = con.prepareStatement(SQL_DELETE_USER);
         ps.setString(1, userid);
         ps.executeUpdate();
-    }
-
-    public static void main(String[] args) throws SQLException {
-        UserDao dao = new UserDao();
-
-        dao.create("paijo", "paijo");
     }
 }
