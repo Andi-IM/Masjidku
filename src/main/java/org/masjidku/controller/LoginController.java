@@ -32,9 +32,9 @@ public class LoginController {
 
     @FXML
     private TextField txtUsername;
+
     @FXML
     private TextField txtPassword;
-    private boolean buttonPressed = false;
 
     /**
      * Initializes the controller class. This method is automatically called

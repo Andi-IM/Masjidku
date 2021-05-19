@@ -3,7 +3,7 @@ package org.masjidku.model;
 import static org.masjidku.model.Jabatan.*;
 
 public class User {
-    private int id;
+    private String userId;
     private String username;
     private String password;
     private String nama;
@@ -17,8 +17,8 @@ public class User {
     public User() {
     }
 
-    public User(int id, String username, String nama, String jabatan, String notelp, String alamat, String status) {
-        this.id = id;
+    public User(String id, String username, String nama, String jabatan, String notelp, String alamat, String status) {
+        this.userId = id;
         this.username = username;
         this.nama = nama;
         this.jabatan = jabatan;
@@ -27,12 +27,12 @@ public class User {
         this.status = status;
     }
 
-    public int getId() {
-        return id;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {

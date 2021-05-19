@@ -1,20 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import java.net.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import java.net.URL?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.masjidku.admin.UserLists"
-            prefHeight="480.0" prefWidth="665.0"
-            styleClass="main">
-
+<AnchorPane prefHeight="480.0" prefWidth="665.0" styleClass="main" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.masjidku.admin.UserLists">
     <stylesheets>
         <URL value="@../styles/styles.css" />
         <URL value="@../styles/fontstyles.css" />
     </stylesheets>
+   <children>
+       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="24.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+          <image>
+              <Image url="@../icon/app_icon.png" />
+          </image>
+       </ImageView>
+       <Text fill="#3AAFA9" layoutX="125.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="app-title" text="Aplikasi Desktop MasjidKu " />
+       <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="398.0" layoutY="42.0" onMouseClicked="#onLogoutClick" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+          <image>
+              <Image url="@../icon/logout.png" />
+          </image>
+       </ImageView>
+   
+       <Text fill="#3AAFA9" layoutX="14.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="headline" text="KELOLA PENGGUNA">
+           <font>
+            <Font size="22.0" />
+           </font>
+       </Text>
+       <TableView layoutX="30.0" layoutY="224.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
+         <columns>
+             <TableColumn prefWidth="75.0" text="userid" />
+             <TableColumn prefWidth="75.0" text="username" />
+             <TableColumn prefWidth="75.0" text="jabatan" />
+             <TableColumn prefWidth="75.0" text="status" />
+         </columns>
+       </TableView>
+       <Button layoutX="30.0" layoutY="191.0" mnemonicParsing="false" onAction="#addUserListener" styleClass="generalButton" text="Tambah Pengguna" />
+       <Button layoutX="30.0" layoutY="432.0" mnemonicParsing="false" styleClass="generalButton" text="Kembali" />
+   </children>
 </AnchorPane>

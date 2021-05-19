@@ -3,25 +3,32 @@ package org.masjidku.admin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import org.masjidku.MainApp;
-import org.masjidku.model.UserDao;
 
 public class AdminRoot {
+
     private MainApp mainApp;
 
     @FXML
-    public Button btn_login;
-    @FXML
-    public Button btn_home;
-    @FXML
-    public Button btn_about;
-
-    @FXML
-    public void handleLoginPage() {
-
-    }
+    public ToggleGroup sidebarButton;
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
+    }
+
+    @FXML
+    public void homeAction() {  }
+
+    @FXML
+    public void profileAction(){ }
+
+    @FXML
+    public void userManage(){ }
+
+    @FXML
+    public void aboutAction(){
+        mainApp.showAbout();
     }
 }
