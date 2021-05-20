@@ -76,8 +76,8 @@ public class User {
         this.notelp = notelp;
     }
 
-    public Boolean getStatus() {
-        return this.status.equals("Aktif");
+    public String getStatus() {
+        return this.status;
     }
 
     public void setStatus(String status) {
