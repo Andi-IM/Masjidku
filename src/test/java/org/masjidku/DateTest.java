@@ -7,7 +7,7 @@ import org.masjidku.util.DateUtil;
 public class DateTest {
     static final String thisDate = "22-June-2020";
     static final String anotherDate = "2020-06-22";
-    DateUtil util = new DateUtil();
+    final DateUtil util = new DateUtil();
 
     @Test
     public void thisDateTest(){

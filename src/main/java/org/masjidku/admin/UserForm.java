@@ -17,7 +17,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class UserForm implements Initializable {
-    ObservableList<String> list = FXCollections.observableArrayList();
+    final ObservableList<String> list = FXCollections.observableArrayList();
 
     @FXML
     public TextField txtUserId;
