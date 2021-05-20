@@ -16,6 +16,8 @@ import java.sql.SQLException;
 public class LoginController {
     // Reference to the main application
     private MainApp mainApp;
+
+    @SuppressWarnings("unused")
     private Stage dialogStage;
     private UserDao dao;
 
@@ -99,6 +101,7 @@ public class LoginController {
         }
     }
 
+    @SuppressWarnings("SameParameterValue")
     private void alertInfo(String header, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.initOwner(dialogStage);

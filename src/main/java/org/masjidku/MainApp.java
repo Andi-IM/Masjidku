@@ -12,10 +12,8 @@ import org.masjidku.admin.AdminRoot;
 import org.masjidku.admin.UserForm;
 import org.masjidku.admin.UserLists;
 import org.masjidku.controller.*;
-import org.masjidku.model.User;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Objects;
 
 public class MainApp extends Application {
@@ -125,17 +123,13 @@ public class MainApp extends Application {
             // set the item into the right divider.
             rootLayout.getItems().set(1, overview);
 
-            // Give the controller access to the main app.
-            AboutController controller = loader.getController();
-            controller.setMainApp(this);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     /**
-     * Admin Priviledge
+     * Admin Privilege
      * @param username admin username
      */
     public void setAdminView(String username){
@@ -240,13 +234,6 @@ public class MainApp extends Application {
         } catch (IOException e){
             e.printStackTrace();
         }
-    }
-
-    /**
-     * Close the app
-     */
-    public void dismiss(){
-        primaryStage.close();
     }
 
     /**

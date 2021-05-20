@@ -2,15 +2,18 @@ package org.masjidku.admin;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import org.masjidku.MainApp;
+import org.masjidku.model.UserDao;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class UserForm implements Initializable {
@@ -26,6 +29,9 @@ public class UserForm implements Initializable {
     public CheckBox statusCheckBox;
 
     private MainApp mainApp;
+
+    @SuppressWarnings("unused")
+    private Stage dialogStage;
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
@@ -70,15 +76,53 @@ public class UserForm implements Initializable {
             String username = txtUserName.getText();
             String jabatan = pilJabatan.getValue();
             String status = statusCheckBox.getText();
+
+            UserDao dao = new UserDao();
+            if (dao.getConnection()){
+               try {
+                   dao.create(userid, username, jabatan, status);
+                   alertInfo("Success", "User ditambahkan!");
+                   mainApp.showUser();
+               } catch (SQLException e){
+                   System.out.println(e.getSQLState());
+               }
+            } else {
+                alertError("Error", "Database belum dinyalakan!");
+            }
+        } else {
+            alertError("Error", "Data belum lengkap!");
         }
+
     }
 
     private boolean formValidation() {
-        if (txtUserId.isCache()){
-            if (txtUserName.isCache()){
-                return pilJabatan.getValue() != null;
+        if (!txtUserId.getText().isBlank()){
+            if (!txtUserName.getText().isBlank()){
+                return !pilJabatan.getValue().isBlank();
             }
         }
         return false;
+    }
+
+    @SuppressWarnings("SameParameterValue")
+    private void alertInfo(String header, String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.initOwner(dialogStage);
+        alert.setTitle("Prompt");
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+
+        alert.showAndWait();
+    }
+
+    @SuppressWarnings("SameParameterValue")
+    private void alertError(String header, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.initOwner(dialogStage);
+        alert.setTitle("Prompt");
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+
+        alert.showAndWait();
     }
 }

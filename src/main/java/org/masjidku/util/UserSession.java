@@ -3,6 +3,7 @@ package org.masjidku.util;
 import java.util.HashSet;
 import java.util.Set;
 
+@SuppressWarnings("unused")
 public final class UserSession {
     private static UserSession instance;
 

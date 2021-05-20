@@ -2,6 +2,7 @@ package org.masjidku.model;
 
 import static org.masjidku.model.Jabatan.*;
 
+@SuppressWarnings("unused")
 public class User {
     private String userId;
     private String username;

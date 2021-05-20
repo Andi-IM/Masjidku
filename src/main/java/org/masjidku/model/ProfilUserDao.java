@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@SuppressWarnings({"FieldCanBeLocal", "unused"})
 public class ProfilUserDao {
     Connection con;
     PreparedStatement ps;
