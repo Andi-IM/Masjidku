@@ -12,8 +12,8 @@ import java.util.logging.Logger;
 
 @SuppressWarnings("unused")
 public class ReportUtil {
-    Connection connection;
-    DatabaseConnection db;
+    final Connection connection;
+    final DatabaseConnection db;
 
     public ReportUtil(){
         db = new DatabaseConnection();
