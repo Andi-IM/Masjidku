@@ -66,10 +66,8 @@ public class LoginController {
             if (dao.getConnection()) {
                 if (dao.getUser(username, password)) {
                     User user = dao.getUserData(username);
-                    System.out.println(user.getUserId());
-                    System.out.println(user.getUsername());
-                    System.out.println(user.getStatus());
-                    if (user.getStatus()) {
+
+                    if (user.getStatus().equals("Aktif")) {
                         switch (user.getJabatan()) {
                             case admin:
                                 mainApp.setAdminView(user.getUsername());
