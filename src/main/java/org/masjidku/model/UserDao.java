@@ -106,12 +106,19 @@ public class UserDao {
      * @throws SQLException as Error Handling
      */
     public List<User> getUsers() throws SQLException {
-        String SQL_GET_USERS = "SELECT username, jabatan, status, created_at, updated_at FROM " + SQL_USER_TABLE;
+        String SQL_GET_USERS = "SELECT userid, username, jabatan, status, created_at, updated_at FROM " + SQL_USER_TABLE;
         ps = con.prepareStatement(SQL_GET_USERS);
         ResultSet resultset = ps.executeQuery();
         List<User> list = new ArrayList<>();
-        User user = new User();
-        if (resultset.next()){
+        User user = null;
+        while (resultset.next()){
+            user = new User();
+            user.setUserId(resultset.getString(1));
+            user.setUsername(resultset.getString(2));
+            user.setJabatan(resultset.getString(3));
+            user.setStatus(resultset.getString(4));
+            user.setCreated_at(resultset.getString(5));
+            user.setUpdated_at(resultset.getString(6));
             list.add(user);
         }
         return list;
@@ -124,7 +131,7 @@ public class UserDao {
      * @throws SQLException as Error Handling
      */
     public User getUserData(String userid) throws SQLException {
-        String SQL_GET_USER_DATA = "SELECT * FROM " + SQL_USER_TABLE + " WHERE userid= ? ";
+        String SQL_GET_USER_DATA = "SELECT * FROM " + SQL_USER_TABLE + " WHERE userid=? ";
         ps = con.prepareStatement(SQL_GET_USER_DATA);
         ps.setString(1, userid);
         User model = null;
@@ -173,5 +180,18 @@ public class UserDao {
         ps = con.prepareStatement(SQL_DELETE_USER);
         ps.setString(1, userid);
         ps.executeUpdate();
+    }
+
+    public static void main(String[] args) {
+        UserDao dao = new UserDao();
+
+        if (dao.getConnection()){
+            try {
+                List<User> list = dao.getUsers();
+                System.out.println(list.get(0).getUsername());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
