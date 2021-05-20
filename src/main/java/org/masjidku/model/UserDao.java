@@ -11,10 +11,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class UserDao {
     Connection con;
     private final String SQL_USER_TABLE = "user";
-    private final String SQL_PROFIL_USER_TABLE = "profil_user";
 
     PreparedStatement ps;
 
@@ -124,16 +124,22 @@ public class UserDao {
      * @throws SQLException as Error Handling
      */
     public User getUserData(String userid) throws SQLException {
-        String SQL_GET_USER_DATA = "SELECT userid, username, jabatan, status FROM " + SQL_USER_TABLE + " WHERE userid=? LIMIT 1";
+        String SQL_GET_USER_DATA = "SELECT * FROM " + SQL_USER_TABLE + " WHERE userid= ? ";
         ps = con.prepareStatement(SQL_GET_USER_DATA);
         ps.setString(1, userid);
-        User model = new User();
-        ResultSet resultSet = ps.executeQuery();
-        if (resultSet.next()){
-            model.setUserId(resultSet.getString(1));
-            model.setUsername(resultSet.getString(2));
-            model.setJabatan(resultSet.getString(3));
-            model.setStatus(resultSet.getString(4));
+        User model = null;
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()){
+            model = new User();
+            model.setUserId(rs.getString(1));
+            model.setPassword(rs.getString(2));
+            model.setUsername(rs.getString(3));
+            model.setJabatan(rs.getString(4));
+            model.setStatus(rs.getString(5));
+            model.setAlamat(null);
+            model.setNotelp(null);
+            model.setCreated_at(rs.getString(6));
+            model.setUpdated_at(rs.getString(7));
         }
         return model;
     }
@@ -146,19 +152,14 @@ public class UserDao {
      * @return userId
      * @throws SQLException for Error Handling
      */
-    public String getUser(String userid, String password) throws SQLException {
-        String SQL_GET_USER = "SELECT username FROM " + SQL_USER_TABLE + " WHERE userid=? and password=? LIMIT 1";
+    public boolean getUser(String userid, String password) throws SQLException {
+        String SQL_GET_USER = "SELECT userid FROM " + SQL_USER_TABLE + " WHERE userid=? and password=? LIMIT 1";
         ps = con.prepareStatement(SQL_GET_USER);
         ps.setString(1, userid);
         ps.setString(2, password);
         ResultSet rs = ps.executeQuery();
 
-        if (rs.next()){
-            System.out.println("Hi "+rs.getString(2)+"!");
-            return rs.getString(1);
-        }
-
-        return null;
+        return rs.next();
     }
 
     /**

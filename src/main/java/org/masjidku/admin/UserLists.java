@@ -1,10 +1,7 @@
 package org.masjidku.admin;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.input.MouseEvent;
 import org.masjidku.MainApp;
-import org.masjidku.model.User;
 
 public class UserLists {
     private MainApp mainApp;

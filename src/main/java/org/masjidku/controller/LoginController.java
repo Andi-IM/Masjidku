@@ -16,9 +16,10 @@ import java.sql.SQLException;
 public class LoginController {
     // Reference to the main application
     private MainApp mainApp;
+
+    @SuppressWarnings("unused")
     private Stage dialogStage;
     private UserDao dao;
-    private User user;
 
     /**
      * Is called by the main application to give a reference back to itself.
@@ -63,15 +64,15 @@ public class LoginController {
 
         try {
             if (dao.getConnection()) {
-                String userId = dao.getUser(username, password);
-
-                if (userId != null) {
-                    user = dao.getUserData(userId);
-
+                if (dao.getUser(username, password)) {
+                    User user = dao.getUserData(username);
+                    System.out.println(user.getUserId());
+                    System.out.println(user.getUsername());
+                    System.out.println(user.getStatus());
                     if (user.getStatus()) {
                         switch (user.getJabatan()) {
                             case admin:
-                                mainApp.setAdminView(user);
+                                mainApp.setAdminView(user.getUsername());
                                 break;
                             case ketua:
                                 alertInfo("Dalam Perbaikan", "Mohon maaf status ketua dalam perbaikan");
@@ -96,10 +97,11 @@ public class LoginController {
                 alertError("Error DB", "Mohon Nyalakan Database!");
             }
         } catch (SQLException e) {
-            System.err.println(e);
+            System.err.println(e.getSQLState());
         }
     }
 
+    @SuppressWarnings("SameParameterValue")
     private void alertInfo(String header, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.initOwner(dialogStage);

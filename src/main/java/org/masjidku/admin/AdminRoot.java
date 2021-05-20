@@ -1,31 +1,31 @@
 package org.masjidku.admin;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import org.masjidku.MainApp;
 
 public class AdminRoot {
 
     private MainApp mainApp;
-
+    private String username = null;
     @FXML
     public ToggleGroup sidebarButton;
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(MainApp mainApp, String username) {
+        this.username = username;
         this.mainApp = mainApp;
     }
 
     @FXML
-    public void homeAction() {  }
+    public void homeAction() {
+        mainApp.setAdminView(username);
+    }
 
     @FXML
     public void profileAction(){ }
 
     @FXML
-    public void userManage(){ }
+    public void userManage(){ mainApp.showUser(); }
 
     @FXML
     public void aboutAction(){

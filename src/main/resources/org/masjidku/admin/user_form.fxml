@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import java.net.URL?>
+<!--suppress ALL -->
 <AnchorPane prefHeight="480.0" prefWidth="665.0" styleClass="main" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.masjidku.admin.UserForm">
     <stylesheets>
         <URL value="@../styles/styles.css" />
@@ -36,8 +36,8 @@
             <Label styleClass="labelForm" text="userid" />
             <Label styleClass="labelForm" text="username" GridPane.rowIndex="1" />
             <Label styleClass="labelForm" text="jabatan" GridPane.rowIndex="2" />
-            <TextField fx:id="txtUserId" prefHeight="25.0" prefWidth="113.0" styleClass="formField" GridPane.columnIndex="1" />
-            <TextField fx:id="txtUserName" styleClass="formField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtUserId" prefHeight="25.0" prefWidth="113.0" promptText="masukkan userid" styleClass="formField" GridPane.columnIndex="1" />
+            <TextField fx:id="txtUserName" promptText="masukkan username" styleClass="formField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <ChoiceBox fx:id="pilJabatan" maxWidth="1.7976931348623157E308" prefWidth="150.0" styleClass="formField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label styleClass="labelForm" text="status" GridPane.rowIndex="3" />
             <CheckBox fx:id="statusCheckBox" mnemonicParsing="false" onAction="#onCheckboxAction" text="Nonaktif" GridPane.columnIndex="1" GridPane.rowIndex="3">
@@ -50,7 +50,7 @@
                   <Insets right="10.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" styleClass="generalButton" text="OK" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Button mnemonicParsing="false" onAction="#onUserSubmitted" styleClass="generalButton" text="OK" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets left="10.0" right="10.0" />
                </GridPane.margin>
@@ -63,7 +63,7 @@
                <Font name="Roboto Bold" size="25.0" />
            </font>
        </Text>
-      <Button layoutX="14.0" layoutY="441.0" mnemonicParsing="false" styleClass="generalButton" text="Keluar" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" />
+      <Button layoutX="14.0" layoutY="441.0" mnemonicParsing="false" onAction="#gotoList" styleClass="generalButton" text="kembali" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" />
       <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="408.0" layoutY="52.0" onMouseClicked="#onLogoutClick" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <image>
             <Image url="@../icon/logout.png" />

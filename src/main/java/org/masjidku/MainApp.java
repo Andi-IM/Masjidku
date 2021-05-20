@@ -12,10 +12,8 @@ import org.masjidku.admin.AdminRoot;
 import org.masjidku.admin.UserForm;
 import org.masjidku.admin.UserLists;
 import org.masjidku.controller.*;
-import org.masjidku.model.User;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Objects;
 
 public class MainApp extends Application {
@@ -125,20 +123,16 @@ public class MainApp extends Application {
             // set the item into the right divider.
             rootLayout.getItems().set(1, overview);
 
-            // Give the controller access to the main app.
-            AboutController controller = loader.getController();
-            controller.setMainApp(this);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     /**
-     * Admin Priviledge
-     * @param user admin user
+     * Admin Privilege
+     * @param username admin username
      */
-    public void setAdminView(User user){
+    public void setAdminView(String username){
         try {
             // load root layout from fxml file
             FXMLLoader loader = new FXMLLoader();
@@ -151,23 +145,23 @@ public class MainApp extends Application {
 
             // Give the controller access to the MainApp
             AdminRoot controller = loader.getController();
-            controller.setMainApp(this);
-
-            showAdminHome(user);
+            controller.setMainApp(this, username);
+            showAdminHome(username);
         } catch (IOException e){
-            e.printStackTrace();
+            System.err.println(e.getMessage());
+            e.getCause();
         }
     }
 
     /**
      * Admin Home
-     * @param user admin user
+     * @param username admin username
      */
-    private void showAdminHome(User user) {
+    private void showAdminHome(String username) {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("admin/home.fxml"));
+            loader.setLocation(getClass().getResource("admin/admin_home.fxml"));
             AnchorPane overview = loader.load();
 
             // set the item into the right divider.
@@ -175,9 +169,9 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             AdminHome controller = loader.getController();
-            controller.setMainApp(this, user);
+            controller.setMainApp(this, username);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
     }
 
@@ -224,8 +218,7 @@ public class MainApp extends Application {
         try {
             // load root layout from fxml file
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(
-                    getClass().getResource("admin_root.fxml"));
+            loader.setLocation(getClass().getResource("home_root.fxml"));
             rootLayout = loader.load();
 
             // show the scene containing the root layout
@@ -235,18 +228,12 @@ public class MainApp extends Application {
             // Give the controller access to the MainApp
             RootLayoutController controller = loader.getController();
             controller.setMainApp(this);
-
+            controller.btn_home.setSelected(true);
             showContent();
+
         } catch (IOException e){
             e.printStackTrace();
         }
-    }
-
-    /**
-     * Close the app
-     */
-    public void dismiss(){
-        primaryStage.close();
     }
 
     /**
