@@ -11,10 +11,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class UserDao {
     Connection con;
     private final String SQL_USER_TABLE = "user";
-    private final String SQL_PROFIL_USER_TABLE = "profil_user";
 
     PreparedStatement ps;
 
@@ -159,10 +159,7 @@ public class UserDao {
         ps.setString(2, password);
         ResultSet rs = ps.executeQuery();
 
-        if (rs.next()){
-            return true;
-        }
-        return false;
+        return rs.next();
     }
 
     /**
@@ -176,12 +173,5 @@ public class UserDao {
         ps = con.prepareStatement(SQL_DELETE_USER);
         ps.setString(1, userid);
         ps.executeUpdate();
-    }
-
-    public static void main(String[] args) throws SQLException {
-        UserDao dao = new UserDao();
-        dao.getConnection();
-
-        System.out.println(dao.getUser("paijo", "paijo"));
     }
 }
