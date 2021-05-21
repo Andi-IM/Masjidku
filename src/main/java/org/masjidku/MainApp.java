@@ -12,6 +12,7 @@ import org.masjidku.admin.AdminRoot;
 import org.masjidku.admin.UserForm;
 import org.masjidku.admin.UserLists;
 import org.masjidku.controller.*;
+import org.masjidku.model.User;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -193,7 +194,13 @@ public class MainApp extends Application {
         }
     }
 
-    public void createUser(){
+    /**
+     * Open the scene to edit detail for the specified user. If the user
+     * clicks OK, the changes are save to the database
+     *
+     * @param user the user object to be edited.
+     */
+    public void showUserEditScene(User user){
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
@@ -205,6 +212,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             UserForm controller = loader.getController();
+            controller.setUser(user);
             controller.setMainApp(this);
         } catch (IOException e) {
             e.printStackTrace();
