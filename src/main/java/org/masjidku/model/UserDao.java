@@ -56,23 +56,24 @@ public class UserDao {
     }
 
     /**
-     *  Only Specified User can Modify
-     *
-     *  @param model an User Model
-     *  @throws SQLException as Error Handling
+     *  Updating user preference by admin
+     * @param userid the user id specified
+     * @param jabatan change the role
+     * @param status change user status.
+     * @throws SQLException as Error Handling.
      */
-    public void update(User model) throws SQLException {
-        String SQL_UPDATE_USER = "UPDATE " + SQL_USER_TABLE + " SET username=?, password=? jabatan=? WHERE userid=?";
+    public void update(String userid, String jabatan, String status) throws SQLException {
+        String SQL_UPDATE_USER = "UPDATE " + SQL_USER_TABLE + " SET jabatan=?, status=? WHERE userid=?";
         ps = con.prepareStatement(SQL_UPDATE_USER);
     }
 
     /**
      *  Only admin can reset user account.
      *
-     *  @param id an user id
+     *  @param userId an user id
      *  @throws SQLException as Error Handling
      */
-    public void reset(int id) throws SQLException {
+    public void reset(String userId) throws SQLException {
         String SQL_RESET_USER = "UPDATE " + SQL_USER_TABLE + " SET password=? WHERE userid=?";
         ps = con.prepareStatement(SQL_RESET_USER);
 
@@ -81,7 +82,8 @@ public class UserDao {
                 .sha256()
                 .hashString("12345678", StandardCharsets.UTF_8)
                 .toString();
-        ps.setInt(2, id);
+
+        ps.setString(2, userId);
         ps.setString(1, hex);
         ps.executeUpdate();
     }
@@ -149,6 +151,21 @@ public class UserDao {
             model.setUpdated_at(rs.getString(7));
         }
         return model;
+    }
+
+    /**
+     * method for update user
+     * @param userid user id
+     * @return status
+     * @throws SQLException an Error Handling
+     */
+    public boolean isUserExist(String userid) throws SQLException {
+        String SQL_GET_USER_DATA = "SELECT * FROM " + SQL_USER_TABLE + " WHERE userid=? ";
+        ps = con.prepareStatement(SQL_GET_USER_DATA);
+        ps.setString(1, userid);
+        ResultSet rs = ps.executeQuery();
+
+        return rs.next();
     }
 
     /**

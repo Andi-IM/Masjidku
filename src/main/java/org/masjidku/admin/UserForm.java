@@ -4,12 +4,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
+import org.masjidku.model.User;
 import org.masjidku.model.UserDao;
 
 import java.net.URL;
@@ -32,6 +30,16 @@ public class UserForm implements Initializable {
 
     @SuppressWarnings("unused")
     private Stage dialogStage;
+    private User user;
+
+    public void setUser(User user) {
+        this.user = user;
+
+        txtUserId.setText(user.getUserId());
+        txtUserName.setText(user.getUsername());
+        pilJabatan.getSelectionModel().select(user.getJabatan().toString());
+        statusCheckBox.setSelected(user.getStatus().equals("Aktif"));
+    }
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
@@ -68,8 +76,10 @@ public class UserForm implements Initializable {
         statusCheckBox.setSelected(false);
     }
 
+    @FXML
     public void gotoList() { mainApp.showUser(); }
 
+    @FXML
     public void onUserSubmitted() {
         if (formValidation()){
             String userid = txtUserId.getText();
@@ -80,8 +90,14 @@ public class UserForm implements Initializable {
             UserDao dao = new UserDao();
             if (dao.getConnection()){
                try {
-                   dao.create(userid, username, jabatan, status);
-                   alertInfo("Success", "User ditambahkan!");
+                   if (dao.isUserExist(userid)){
+                       dao.update(userid, jabatan, status);
+                       alertInfo("Success", "User telah diperbarui!");
+                   }
+                   else {
+                       dao.create(userid, username, jabatan, status);
+                       alertInfo("Success", "User ditambahkan!");
+                   }
                    mainApp.showUser();
                } catch (SQLException e){
                    System.out.println(e.getSQLState());
