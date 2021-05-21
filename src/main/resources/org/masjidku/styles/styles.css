@@ -52,10 +52,46 @@
 }
 
 .generalButton {
-    -fx-background-color: #3AAFa9;
+    -fx-background-color: #3AAFA9;
+    -fx-effect: dropShadow(two-pass-box, rgba(0,0,0,0.6), 5, 0.0, 0, 4);
     -fx-font-family: 'Roboto Bold';
     -fx-font-size: 11;
     -fx-text-fill: #FFFFFF;
+}
+
+.generalButton:hover {
+    -fx-background-color: rgba(58, 175, 169, 0.5);
+}
+
+.generalButton:pressed {
+    -fx-background-color: #369F9A;
+    -fx-effect: none;
+}
+
+.generalButton:disabled {
+    -fx-background-color: #DEF2F1;
+}
+
+.secondaryButton {
+    -fx-background-color: #2B7A78;
+    -fx-effect: dropShadow(two-pass-box, rgba(0,0,0,0.6), 5, 0.0, 0, 4);
+    -fx-font-family: 'Roboto Bold';
+    -fx-font-size: 18;
+    -fx-text-fill: #FFFFFF;
+}
+
+.secondaryButton:hover {
+    -fx-background-color: #2B7A78;
+    -fx-opacity: 60%;
+}
+
+.secondaryButton:pressed {
+    -fx-background-color: #2A6A69;
+    -fx-effect: none;
+}
+
+.secondaryButton:disabled {
+    -fx-background-color: #D0DEDD;
 }
 
 .formLogin{
@@ -68,10 +104,43 @@
 }
 
 .table-view {
-
+    -fx-base: #3aafa9;
+    -fx-control-inner-background: #fafafa;
+    -fx-background-color: #fafafa;
+    -fx-table-border-color: #3aafa9;
+    -fx-table-header-color: #3aafa9;
+    -fx-padding: 4;
 }
 
 .table-view .column-header-background {
-
+    -fx-background-color: transparent;
 }
 
+.table-view .column-header, .table-view .filler {
+    -fx-size: 20;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-color: transparent;
+    -fx-border-color:
+        transparent
+        transparent
+        derive(-fx-base, 100%)
+        transparent;
+    -fx-border-insets: 0 10 1 0;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 13pt;
+    -fx-font-family: "Roboto";
+    -fx-text-fill: #3aafa9;
+    -fx-alignment: "center";
+    -fx-opacity: 1;
+}
+
+.split-pane:horizontal > .split-pane-divider {
+    -fx-border-color: #0F2F2D;
+    -fx-background-color: #0F2F2D;
+}
+
+.split-pane {
+    -fx-padding: 1 0 0 0;
+}
