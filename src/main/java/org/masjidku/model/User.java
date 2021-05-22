@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2021. Creative Commons Legal Code
+ *
+ *                            CC0 1.0 Universal
+ *
+ *                                CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
+ *                                LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN
+ *                                ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
+ *                                INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
+ *                                REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS
+ *                                PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
+ *                                THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
+ *                                HEREUNDER.
+ */
+
 package org.masjidku.model;
 
 import static org.masjidku.model.Jabatan.*;
@@ -8,22 +23,31 @@ public class User {
     private String username;
     private String password;
     private String jabatan;
-    private String notelp;
     private String status;
-    private String alamat;
     private String created_at;
     private String updated_at;
 
-    public User() {
-    }
+    /**
+     * Constructor
+     */
+    public User() { this(null, null, "none", null, null, null); }
 
-    public User(String userId, String username, String jabatan, String notelp, String alamat, String status) {
-        this.userId = userId;
-        this.username = username;
-        this.jabatan = jabatan;
-        this.notelp = notelp;
-        this.alamat = alamat;
-        this.status = status;
+    /**
+     * Filled Constructor
+     * @param userId an user id
+     * @param username an user name
+     * @param jabatan user role
+     * @param status user status
+     * @param created_at first time create
+     * @param updated_at after user update data.
+     */
+    public User(String userId, String username, String jabatan, String status, String created_at, String updated_at) {
+        setUserId(userId);
+        setUsername(username);
+        setJabatan(jabatan);
+        setStatus(status);
+        setCreated_at(created_at);
+        setUpdated_at(updated_at);
     }
 
     public String getUserId() {
@@ -60,20 +84,13 @@ public class User {
                 return sekretaris;
             case "bendahara":
                 return bendahara;
+            default:
+                return none;
         }
-        return null;
     }
 
     public void setJabatan(String jabatan) {
-        this.jabatan = jabatan;
-    }
-
-    public String getNotelp() {
-        return notelp;
-    }
-
-    public void setNotelp(String notelp) {
-        this.notelp = notelp;
+        this.jabatan = jabatan.toLowerCase();
     }
 
     public String getStatus() {
@@ -82,14 +99,6 @@ public class User {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public String getAlamat() {
-        return alamat;
-    }
-
-    public void setAlamat(String alamat) {
-        this.alamat = alamat;
     }
 
     public String getCreated_at() {

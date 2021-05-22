@@ -1,6 +1,23 @@
+/*
+ * Copyright (c) 2021. Creative Commons Legal Code
+ *
+ *                            CC0 1.0 Universal
+ *
+ *                                CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
+ *                                LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN
+ *                                ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
+ *                                INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
+ *                                REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS
+ *                                PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
+ *                                THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
+ *                                HEREUNDER.
+ */
+
 package org.masjidku.model;
 
 import com.google.common.hash.Hashing;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.masjidku.util.DatabaseConnection;
 
 import java.nio.charset.StandardCharsets;
@@ -8,7 +25,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("unused")
@@ -36,7 +52,7 @@ public class UserDao {
      * @throws SQLException as Error Handling
      */
     public void create(String userid, String username, String jabatan, String status) throws SQLException {
-        String SQL_INSERT_USER = "INSERT INTO " + SQL_USER_TABLE + "(userid, password, username, jabatan, status, created_at, updated_at) VALUES(?,?,?,?,?,?,?)";
+        String SQL_INSERT_USER = "INSERT INTO " + SQL_USER_TABLE + "(userid, password, username, jabatan, status) VALUES(?,?,?,?,?)";
         ps = con.prepareStatement(SQL_INSERT_USER);
         ps.setString(1, userid);
 
@@ -50,8 +66,6 @@ public class UserDao {
         ps.setString(3, username);
         ps.setString(4, jabatan);
         ps.setString(5, status);
-        ps.setString(6, null);
-        ps.setString(7, null);
         ps.executeUpdate();
     }
 
@@ -107,12 +121,13 @@ public class UserDao {
      * Only Admin can see this
      * @throws SQLException as Error Handling
      */
-    public List<User> getUsers() throws SQLException {
-        String SQL_GET_USERS = "SELECT userid, username, jabatan, status, created_at, updated_at FROM " + SQL_USER_TABLE;
-        ps = con.prepareStatement(SQL_GET_USERS);
+    public ObservableList<User> getUsers() throws SQLException {
+        ObservableList<User> list = FXCollections.observableArrayList();
+        String query = "SELECT userid, username, jabatan, status, created_at, updated_at FROM " + SQL_USER_TABLE;
+        ps = con.prepareStatement(query);
         ResultSet resultset = ps.executeQuery();
-        List<User> list = new ArrayList<>();
-        User user = null;
+
+        User user;
         while (resultset.next()){
             user = new User();
             user.setUserId(resultset.getString(1));
@@ -145,8 +160,6 @@ public class UserDao {
             model.setUsername(rs.getString(3));
             model.setJabatan(rs.getString(4));
             model.setStatus(rs.getString(5));
-            model.setAlamat(null);
-            model.setNotelp(null);
             model.setCreated_at(rs.getString(6));
             model.setUpdated_at(rs.getString(7));
         }

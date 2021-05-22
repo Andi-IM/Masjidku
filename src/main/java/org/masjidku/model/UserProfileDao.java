@@ -1,20 +1,36 @@
+/*
+ * Copyright (c) 2021. Creative Commons Legal Code
+ *
+ *                            CC0 1.0 Universal
+ *
+ *                                CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
+ *                                LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN
+ *                                ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
+ *                                INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
+ *                                REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS
+ *                                PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
+ *                                THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
+ *                                HEREUNDER.
+ */
+
 package org.masjidku.model;
 
 import org.masjidku.util.DatabaseConnection;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @SuppressWarnings({"FieldCanBeLocal", "unused"})
-public class ProfilUserDao {
+public class UserProfileDao {
     Connection con;
     PreparedStatement ps;
     private final String SQL_PROFILE_TABLE = "profil_user";
     private final String SQL_USER_TABLE = "user";
 
     // Constructor
-    public ProfilUserDao(){}
+    public UserProfileDao(){}
 
     public boolean getConnection(){
         DatabaseConnection connection = new DatabaseConnection();
@@ -49,7 +65,7 @@ public class ProfilUserDao {
     }
 
     public User getFullUserData() throws SQLException{
-        User model = new User();
+        UserProfile model = new UserProfile();
         String SQL_GET_ADDITIONAL_INFO = "SELECT "+SQL_USER_TABLE+".userid, password, username, jabatan, notelp, alamat " +
                 "FROM "+SQL_USER_TABLE+" INNER JOIN "+SQL_PROFILE_TABLE+" pu on "+SQL_USER_TABLE+".userid = pu.userid";
         ps = con.prepareStatement(SQL_GET_ADDITIONAL_INFO);
