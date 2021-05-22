@@ -1,19 +1,18 @@
 #!/usr/bin/env sh
 
 #
-# Copyright 2015 the original author or authors.
+# Copyright (c) 2021. Creative Commons Legal Code
 #
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
+#                            CC0 1.0 Universal
 #
-#      https://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+#                                CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
+#                                LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN
+#                                ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
+#                                INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
+#                                REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS
+#                                PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
+#                                THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
+#                                HEREUNDER.
 #
 
 ##############################################################################

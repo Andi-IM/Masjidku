@@ -15,16 +15,11 @@
 
 package org.masjidku.model;
 
-public enum Jabatan{
-    admin("admin"),
-    ketua("ketua"),
-    sekretaris("sekretaris"),
-    bendahara("bendahara"),
-    none("");
+import org.junit.Before;
 
-    public final String toString;
+public class UserProfileTest extends User {
 
-    Jabatan(String toString) {
-        this.toString = toString;
+    @Before
+    public void setUp() throws Exception {
     }
 }
