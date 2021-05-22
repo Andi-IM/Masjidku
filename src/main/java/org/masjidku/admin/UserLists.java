@@ -1,12 +1,24 @@
+/*
+ * Copyright (c) 2021. Creative Commons Legal Code
+ *
+ *                            CC0 1.0 Universal
+ *
+ *                                CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
+ *                                LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN
+ *                                ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
+ *                                INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
+ *                                REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS
+ *                                PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
+ *                                THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
+ *                                HEREUNDER.
+ */
+
 package org.masjidku.admin;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -17,7 +29,6 @@ import org.masjidku.MainApp;
 import org.masjidku.model.User;
 import org.masjidku.model.UserDao;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -51,6 +62,8 @@ public class UserLists implements Initializable {
     //Reference to the main application.
     private MainApp mainApp;
 
+    // create some stage
+    @SuppressWarnings("unused")
     private Stage dialogStage;
 
     /**
@@ -67,7 +80,7 @@ public class UserLists implements Initializable {
 
     /**
      * Is called by the main application to give a reference back to itself
-     * @param mainApp
+     * @param mainApp reference to main application
      */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
@@ -76,6 +89,7 @@ public class UserLists implements Initializable {
     /**
      * Log out user.
      */
+    @FXML
     public void onLogoutClick() {
         mainApp.onLogoutAction();
     }
@@ -101,16 +115,6 @@ public class UserLists implements Initializable {
         username.setCellValueFactory(new PropertyValueFactory<>("username"));
         jabatan.setCellValueFactory(new PropertyValueFactory<>("jabatan"));
         status.setCellValueFactory(new PropertyValueFactory<>("status"));
-
-        if(userTable.getSelectionModel().isEmpty()){
-            btnEdit.setDisable(false);
-            btnRemove.setDisable(false);
-            btnReset.setDisable(false);
-        } else {
-            btnEdit.setDisable(true);
-            btnReset.setDisable(true);
-            btnRemove.setDisable(true);
-        }
     }
 
     /**
@@ -141,7 +145,9 @@ public class UserLists implements Initializable {
             if (dao.getConnection()){
                 try {
                     if (dao.isUserExist(selectedUser.getUserId())){
+                        userTable.getItems().remove(selectedUser);
                         dao.delete(selectedUser.getUserId());
+                        alertInfo("Success", "User dihapus!");
                     } else {
                         alertError("SQL Error", "User tidak ditemukan!");
                     }
@@ -192,7 +198,7 @@ public class UserLists implements Initializable {
     }
 
     /**
-     * Alert Builder
+     * Alert Error Builder
      * @param header header message
      * @param content content message
      */
@@ -205,5 +211,34 @@ public class UserLists implements Initializable {
         alert.setContentText(content);
 
         alert.showAndWait();
+    }
+
+    /**
+     * Alert Info Builder
+     * @param header header message
+     * @param content content message
+     */
+    @SuppressWarnings("SameParameterValue")
+    private void alertInfo(String header, String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.initOwner(dialogStage);
+        alert.setTitle("Prompt");
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+
+        alert.showAndWait();
+    }
+
+    @FXML
+    public void onMousePressed() {
+        if(userTable.getSelectionModel().isEmpty()){
+            btnEdit.setDisable(true);
+            btnRemove.setDisable(true);
+            btnReset.setDisable(true);
+        } else {
+            btnEdit.setDisable(false);
+            btnRemove.setDisable(false);
+            btnReset.setDisable(false);
+        }
     }
 }

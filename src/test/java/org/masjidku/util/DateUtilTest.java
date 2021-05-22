@@ -13,18 +13,28 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model;
+package org.masjidku.util;
 
-public enum Jabatan{
-    admin("admin"),
-    ketua("ketua"),
-    sekretaris("sekretaris"),
-    bendahara("bendahara"),
-    none("");
+import org.junit.Test;
 
-    public final String toString;
+import static org.junit.Assert.assertEquals;
 
-    Jabatan(String toString) {
-        this.toString = toString;
+public class DateUtilTest {
+    static final String thisDate = "22-June-2020";
+    static final String anotherDate = "2020-06-22";
+    final DateUtil util = new DateUtil();
+
+    @Test
+    public void thisDateTest(){
+        String[] anotherMethod;
+        anotherMethod = util.dateFormatter(thisDate).split("-");
+        assertEquals("06", anotherMethod[1]);
+    }
+
+    @Test
+    public void anotherDateTest(){
+        String[] anotherMethod;
+        anotherMethod = util.dateFormatter(anotherDate).split("-");
+        assertEquals(2020, Integer.parseInt(anotherMethod[2]));
     }
 }
