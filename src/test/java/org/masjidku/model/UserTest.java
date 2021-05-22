@@ -15,16 +15,27 @@
 
 package org.masjidku.model;
 
-public enum Jabatan{
-    admin("admin"),
-    ketua("ketua"),
-    sekretaris("sekretaris"),
-    bendahara("bendahara"),
-    none("");
+import org.junit.Before;
+import org.junit.Test;
 
-    public final String toString;
+import static org.junit.Assert.assertEquals;
 
-    Jabatan(String toString) {
-        this.toString = toString;
+public class UserTest {
+    private User user;
+
+    @Before
+    public void setUp() throws Exception {
+        user = new User("ucok",
+                "Ucok",
+                "Ketua",
+                "Aktif",
+                "22 Januari 2020",
+                "21 Januari 2020"
+        );
+    }
+
+    @Test
+    public void getJabatan() {
+        assertEquals("ketua", user.getJabatan().toString);
     }
 }

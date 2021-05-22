@@ -13,18 +13,16 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model;
+package org.masjidku.util;
 
-public enum Jabatan{
-    admin("admin"),
-    ketua("ketua"),
-    sekretaris("sekretaris"),
-    bendahara("bendahara"),
-    none("");
+import org.junit.Assert;
+import org.junit.Test;
 
-    public final String toString;
+public class DatabaseConnectionTest {
+    DatabaseConnection connection = new DatabaseConnection();
 
-    Jabatan(String toString) {
-        this.toString = toString;
+    @Test
+    public void getConnection() {
+        Assert.assertNotNull("Periksa koneksi database!", "");
     }
 }
