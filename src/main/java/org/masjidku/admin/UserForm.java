@@ -25,8 +25,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.User;
-import org.masjidku.model.UserDao;
+import org.masjidku.model.User.User;
+import org.masjidku.model.User.UserDao;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -50,6 +50,8 @@ public class UserForm implements Initializable {
     // create some stage
     @SuppressWarnings("unused")
     private Stage dialogStage;
+
+    private final boolean okClicked = false;
 
     // setting the field
     public void setUser(User user) {
@@ -129,10 +131,12 @@ public class UserForm implements Initializable {
                    if (dao.isUserExist(userid)){
                        dao.update(userid, jabatan, status);
                        alertInfo("Success", "User telah diperbarui!");
+                       mainApp.showUser();
                    }
                    else {
                        dao.create(userid, username, jabatan, status);
                        alertInfo("Success", "User ditambahkan!");
+                       mainApp.showUser();
                    }
                    mainApp.showUser();
                } catch (SQLException e){

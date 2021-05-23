@@ -26,8 +26,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.User;
-import org.masjidku.model.UserDao;
+import org.masjidku.model.User.User;
+import org.masjidku.model.User.UserDao;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -170,8 +170,12 @@ public class UserLists implements Initializable {
             UserDao dao = new UserDao();
             if (dao.getConnection()){
                 try{
-                    if (dao.isUserExist(selectedUser.getUserId())){
-                        dao.reset(selectedUser.getUserId());
+                    if (dao.isUserExist(selectedUser.getUserId())) {
+                        if (dao.isReset(selectedUser.getUserId())) {
+                            dao.reset(selectedUser.getUserId());
+                        } else {
+                            alertError("User Error", "User telah melakukan reset password!");
+                        }
                     } else {
                         alertError("SQL Error","User tidak ditemukan!");
                     }

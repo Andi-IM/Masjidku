@@ -13,7 +13,7 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model;
+package org.masjidku.model.User;
 
 public class UserProfile extends User{
     private String alamat;
