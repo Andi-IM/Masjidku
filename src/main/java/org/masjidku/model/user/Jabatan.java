@@ -13,14 +13,18 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model;
+package org.masjidku.model.user;
 
-import org.junit.Before;
-import org.masjidku.model.user.User;
+public enum Jabatan{
+    admin("admin"),
+    ketua("ketua"),
+    sekretaris("sekretaris"),
+    bendahara("bendahara"),
+    none("");
 
-public class UserProfileTest extends User {
+    public final String toString;
 
-    @Before
-    public void setUp() throws Exception {
+    Jabatan(String toString) {
+        this.toString = toString;
     }
 }

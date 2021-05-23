@@ -17,7 +17,7 @@ package org.masjidku.model;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.masjidku.model.User.User;
+import org.masjidku.model.user.User;
 
 import static org.junit.Assert.assertEquals;
 

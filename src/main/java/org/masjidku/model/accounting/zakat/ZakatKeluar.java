@@ -13,14 +13,12 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model;
+package org.masjidku.model.accounting.zakat;
 
-import org.junit.Before;
-import org.masjidku.model.user.User;
+import org.masjidku.model.accounting.UangKeluar;
 
-public class UserProfileTest extends User {
-
-    @Before
-    public void setUp() throws Exception {
+public class ZakatKeluar extends UangKeluar {
+    public ZakatKeluar(String id, String tujuan, double jumlah, String tanggal, String operator) {
+        super(id, tujuan, jumlah, tanggal, operator);
     }
 }

@@ -21,8 +21,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.User.User;
-import org.masjidku.model.User.UserDao;
+import org.masjidku.model.user.User;
+import org.masjidku.model.user.UserDao;
 
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
@@ -79,8 +79,8 @@ public class LoginController {
 
         try {
             if (dao.getConnection()) {
-                if (dao.getUser(username, password)) {
-                    User user = dao.getUserData(username);
+                if (dao.isUserExist(username, password)) {
+                    User user = dao.get(username);
 
                     if (user.getStatus().equals("Aktif")) {
                         switch (user.getJabatan()) {

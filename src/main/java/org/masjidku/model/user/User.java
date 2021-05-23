@@ -13,9 +13,9 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model.User;
+package org.masjidku.model.user;
 
-import static org.masjidku.model.User.Jabatan.*;
+import static org.masjidku.model.user.Jabatan.*;
 
 @SuppressWarnings("unused")
 public class User {

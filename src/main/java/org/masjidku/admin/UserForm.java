@@ -25,8 +25,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.User.User;
-import org.masjidku.model.User.UserDao;
+import org.masjidku.model.user.User;
+import org.masjidku.model.user.UserDao;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -125,16 +125,18 @@ public class UserForm implements Initializable {
             String jabatan = pilJabatan.getValue();
             String status = statusCheckBox.getText();
 
+            User user = new User(userid, username, jabatan, status, null, null);
             UserDao dao = new UserDao();
+
             if (dao.getConnection()){
                try {
                    if (dao.isUserExist(userid)){
-                       dao.update(userid, jabatan, status);
+                       dao.update(new String[]{user.getJabatan().toString, user.getStatus(), user.getUserId()});
                        alertInfo("Success", "User telah diperbarui!");
                        mainApp.showUser();
                    }
                    else {
-                       dao.create(userid, username, jabatan, status);
+                       dao.save(user);
                        alertInfo("Success", "User ditambahkan!");
                        mainApp.showUser();
                    }

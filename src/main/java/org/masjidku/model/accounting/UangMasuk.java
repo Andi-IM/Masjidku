@@ -13,14 +13,20 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model;
+package org.masjidku.model.accounting;
 
-import org.junit.Before;
-import org.masjidku.model.user.User;
+public abstract class UangMasuk {
+    String id;
+    String donatur;
+    double jumlah;
+    String tanggal;
+    String operator;
 
-public class UserProfileTest extends User {
-
-    @Before
-    public void setUp() throws Exception {
+    public UangMasuk(String id, String donatur, double jumlah, String tanggal, String operator) {
+        this.id = id;
+        this.donatur = donatur;
+        this.jumlah = jumlah;
+        this.tanggal = tanggal;
+        this.operator = operator;
     }
 }
