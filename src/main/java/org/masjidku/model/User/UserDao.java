@@ -13,7 +13,7 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model;
+package org.masjidku.model.User;
 
 import com.google.common.hash.Hashing;
 import javafx.collections.FXCollections;
@@ -25,7 +25,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 @SuppressWarnings("unused")
 public class UserDao {
@@ -82,10 +81,34 @@ public class UserDao {
     }
 
     /**
-     *  Only admin can reset user account.
+     * Is user already reseted.
      *
-     *  @param userId an user id
-     *  @throws SQLException as Error Handling
+     * @param userid an user id
+     * @return user reset status
+     * @throws SQLException error handling
+     */
+    public boolean isReset(String userid) throws SQLException {
+        String query = "SELECT password FROM " + SQL_USER_TABLE + " WHERE userid=?";
+        ps = con.prepareStatement(query);
+        ps.setString(1, userid);
+        ResultSet resultSet = ps.executeQuery();
+
+        if (resultSet.next()) {
+            @SuppressWarnings("UnstableApiUsage")
+            String hex = Hashing
+                    .sha256()
+                    .hashString("12345678", StandardCharsets.UTF_8)
+                    .toString();
+            return resultSet.getString(1).equals(hex);
+        }
+        return false;
+    }
+
+    /**
+     * Only admin can reset user account.
+     *
+     * @param userId an user id
+     * @throws SQLException as Error Handling
      */
     public void reset(String userId) throws SQLException {
         String SQL_RESET_USER = "UPDATE " + SQL_USER_TABLE + " SET password=? WHERE userid=?";
@@ -212,16 +235,4 @@ public class UserDao {
         ps.executeUpdate();
     }
 
-    public static void main(String[] args) {
-        UserDao dao = new UserDao();
-
-        if (dao.getConnection()){
-            try {
-                List<User> list = dao.getUsers();
-                System.out.println(list.get(0).getUsername());
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 }

@@ -13,30 +13,34 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model;
+package org.masjidku.model.tahunanggaran;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.masjidku.model.User.User;
+public class TahunAnggaran {
+    private String tahun;
+    private String status;
 
-import static org.junit.Assert.assertEquals;
-
-public class UserTest {
-    private User user;
-
-    @Before
-    public void setUp() throws Exception {
-        user = new User("ucok",
-                "Ucok",
-                "Ketua",
-                "Aktif",
-                "22 Januari 2020",
-                "21 Januari 2020"
-        );
+    public TahunAnggaran() {
+        this(null, null);
     }
 
-    @Test
-    public void getJabatan() {
-        assertEquals("ketua", user.getJabatan().toString);
+    public TahunAnggaran(String tahun, String status) {
+        setTahun(tahun);
+        setStatus(status);
+    }
+
+    public String getTahun() {
+        return tahun;
+    }
+
+    public void setTahun(String tahun) {
+        this.tahun = tahun;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

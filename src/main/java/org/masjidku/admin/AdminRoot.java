@@ -23,6 +23,7 @@ public class AdminRoot {
 
     private MainApp mainApp;
     private String username = null;
+
     @FXML
     public ToggleGroup sidebarButton;
 

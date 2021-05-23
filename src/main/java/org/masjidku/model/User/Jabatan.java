@@ -13,7 +13,7 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model;
+package org.masjidku.model.User;
 
 public enum Jabatan{
     admin("admin"),

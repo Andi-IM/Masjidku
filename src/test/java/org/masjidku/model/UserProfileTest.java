@@ -16,6 +16,7 @@
 package org.masjidku.model;
 
 import org.junit.Before;
+import org.masjidku.model.User.User;
 
 public class UserProfileTest extends User {
 
