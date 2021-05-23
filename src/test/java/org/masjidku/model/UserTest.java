@@ -25,7 +25,7 @@ public class UserTest {
     private User user;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         user = new User("ucok",
                 "Ucok",
                 "Ketua",

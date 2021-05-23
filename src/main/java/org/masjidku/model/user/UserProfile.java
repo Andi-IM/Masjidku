@@ -21,10 +21,11 @@ public class UserProfile extends User{
 
     public UserProfile(){}
 
-    public UserProfile(String userid, String password, String username, String alamat, String notelp) {
+    public UserProfile(String userid, String password, String username, String alamat, String jabatan, String notelp) {
         super.setUserId(userid);
         super.setPassword(password);
         super.setUsername(username);
+        super.setJabatan(jabatan);
         this.alamat = alamat;
         this.notelp = notelp;
     }
@@ -57,6 +58,16 @@ public class UserProfile extends User{
     @Override
     public void setUsername(String username) {
         super.setUsername(username);
+    }
+
+    @Override
+    public Jabatan getJabatan() {
+        return super.getJabatan();
+    }
+
+    @Override
+    public void setJabatan(String jabatan) {
+        super.setJabatan(jabatan);
     }
 
     public String getAlamat() {
