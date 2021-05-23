@@ -13,14 +13,12 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model;
+package org.masjidku.model.accounting.operasional;
 
-import org.junit.Before;
-import org.masjidku.model.user.User;
+import org.masjidku.model.accounting.UangMasuk;
 
-public class UserProfileTest extends User {
-
-    @Before
-    public void setUp() throws Exception {
+public class DonasiOperasional extends UangMasuk {
+    public DonasiOperasional(String id, String donatur, double jumlah, String tanggal, String operator) {
+        super(id, donatur, jumlah, tanggal, operator);
     }
 }

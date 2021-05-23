@@ -15,12 +15,18 @@
 
 package org.masjidku.model;
 
-import org.junit.Before;
-import org.masjidku.model.user.User;
+import javafx.collections.ObservableList;
 
-public class UserProfileTest extends User {
+import java.sql.SQLException;
 
-    @Before
-    public void setUp() throws Exception {
-    }
+public interface Dao<T> {
+    T get(String id) throws SQLException;
+
+    ObservableList<T> getAll() throws SQLException;
+
+    void save(T t) throws SQLException;
+
+    void update(String[] params) throws SQLException;
+
+    void delete(String id) throws SQLException;
 }

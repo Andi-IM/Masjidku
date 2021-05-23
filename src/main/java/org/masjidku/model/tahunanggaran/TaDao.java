@@ -31,13 +31,6 @@ public class TaDao {
     public TaDao() {
     }
 
-    public static void main(String[] args) throws SQLException {
-        TaDao dao = new TaDao();
-        if (dao.getConnection()) {
-            System.out.println(dao.getYear());
-        }
-    }
-
     public boolean getConnection() {
         DatabaseConnection connection = new DatabaseConnection();
         if (connection.getConnection() != null) {
@@ -45,14 +38,6 @@ public class TaDao {
             return true;
         }
         return false;
-    }
-
-    public void create(String tahun, String status) throws SQLException {
-        String query = "INSERT INTO " + TA_TABLE + "(tahun, status) VALUES(?, ?)";
-        ps = con.prepareStatement(query);
-        ps.setString(1, tahun);
-        ps.setString(2, status);
-        ps.executeUpdate();
     }
 
     public String getYear() throws SQLException {
@@ -65,6 +50,14 @@ public class TaDao {
             return resultYear.substring(0, 4);
         }
         return null;
+    }
+
+    public void save(TahunAnggaran tahunAnggaran) throws SQLException {
+        String query = "INSERT INTO " + TA_TABLE + "(tahun, status) VALUES(?, ?)";
+        ps = con.prepareStatement(query);
+        ps.setString(1, tahunAnggaran.getTahun());
+        ps.setString(2, tahunAnggaran.getStatus());
+        ps.executeUpdate();
     }
 
 }

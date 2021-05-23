@@ -13,14 +13,15 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model;
+package org.masjidku.model.accounting.anakyatim;
 
-import org.junit.Before;
-import org.masjidku.model.user.User;
+import org.masjidku.model.accounting.UangKeluar;
 
-public class UserProfileTest extends User {
+public class AnakYatim extends UangKeluar {
+    int usia;
 
-    @Before
-    public void setUp() throws Exception {
+    public AnakYatim(String id, String tujuan, int usia, double jumlah, String tanggal, String operator) {
+        super(id, tujuan, jumlah, tanggal, operator);
+        this.usia = usia;
     }
 }

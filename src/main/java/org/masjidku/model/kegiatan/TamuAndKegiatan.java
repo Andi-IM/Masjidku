@@ -13,14 +13,16 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model;
+package org.masjidku.model.kegiatan;
 
-import org.junit.Before;
-import org.masjidku.model.user.User;
+interface KegiatanInt {
+    String getIdKegiatan();
+}
 
-public class UserProfileTest extends User {
+interface TamuInt {
+    String getIdTamu();
+}
 
-    @Before
-    public void setUp() throws Exception {
-    }
+interface TamuAndKegiatan extends KegiatanInt, TamuInt {
+
 }

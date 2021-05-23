@@ -29,7 +29,7 @@ import org.masjidku.admin.UserLists;
 import org.masjidku.controller.HomeController;
 import org.masjidku.controller.LoginController;
 import org.masjidku.controller.RootLayoutController;
-import org.masjidku.model.User.User;
+import org.masjidku.model.user.User;
 
 import java.io.IOException;
 import java.util.Objects;

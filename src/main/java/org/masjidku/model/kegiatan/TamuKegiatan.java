@@ -13,18 +13,26 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model.User;
+package org.masjidku.model.kegiatan;
 
-public enum Jabatan{
-    admin("admin"),
-    ketua("ketua"),
-    sekretaris("sekretaris"),
-    bendahara("bendahara"),
-    none("");
+public class TamuKegiatan implements TamuAndKegiatan {
+    String id_kegiatan;
+    String id_tamu;
+    String keterangan;
 
-    public final String toString;
+    public TamuKegiatan(String id_kegiatan, String id_tamu, String keterangan) {
+        this.id_kegiatan = id_kegiatan;
+        this.id_tamu = id_tamu;
+        this.keterangan = keterangan;
+    }
 
-    Jabatan(String toString) {
-        this.toString = toString;
+    @Override
+    public String getIdTamu() {
+        return id_tamu;
+    }
+
+    @Override
+    public String getIdKegiatan() {
+        return id_kegiatan;
     }
 }
