@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2021. Creative Commons Legal Code
+ *
+ *                            CC0 1.0 Universal
+ *
+ *                                CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
+ *                                LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN
+ *                                ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
+ *                                INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
+ *                                REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS
+ *                                PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
+ *                                THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
+ *                                HEREUNDER.
+ */
+
 package org.masjidku.controller;
 
 import com.google.common.hash.Hashing;
@@ -6,8 +21,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.User;
-import org.masjidku.model.UserDao;
+import org.masjidku.model.user.User;
+import org.masjidku.model.user.UserDao;
 
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
@@ -64,8 +79,8 @@ public class LoginController {
 
         try {
             if (dao.getConnection()) {
-                if (dao.getUser(username, password)) {
-                    User user = dao.getUserData(username);
+                if (dao.isUserExist(username, password)) {
+                    User user = dao.get(username);
 
                     if (user.getStatus().equals("Aktif")) {
                         switch (user.getJabatan()) {
