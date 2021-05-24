@@ -15,13 +15,33 @@
 
 package org.masjidku.secretary;
 
+import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import org.masjidku.MainApp;
 
 public class SecretaryHome {
+    public Button btnKegiatan;
     private MainApp mainApp;
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
+    }
+
+    public void onLogoutClick(MouseEvent mouseEvent) {
+        
+    }
+
+    public void onKelolaKegiatanClick(ActionEvent actionEvent) {
+    }
+
+    public void editListener(ActionEvent actionEvent) {
+    }
+
+    public void onResetListener(ActionEvent actionEvent) {
+    }
+
+    public void onRemoveListener(ActionEvent actionEvent) {
     }
 
     // TODO: 20/05/2021 Atur seperti AdminHome.java
