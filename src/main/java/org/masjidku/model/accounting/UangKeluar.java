@@ -13,38 +13,20 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.admin;
+package org.masjidku.model.accounting;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.ToggleGroup;
-import org.masjidku.MainApp;
+public abstract class UangKeluar {
+    String id;
+    String tujuan;
+    double jumlah;
+    String tanggal;
+    String operator;
 
-public class AdminRoot {
-
-    private MainApp mainApp;
-    private String username = null;
-
-    @FXML
-    public ToggleGroup sidebarButton;
-
-    public void setMainApp(MainApp mainApp, String username) {
-        this.username = username;
-        this.mainApp = mainApp;
-    }
-
-    @FXML
-    public void homeAction() {
-        mainApp.setAdminView(username);
-    }
-
-    @FXML
-    public void profileAction(){ }
-
-    @FXML
-    public void userManage(){ mainApp.showUser(); }
-
-    @FXML
-    public void aboutAction(){
-        mainApp.showAbout();
+    public UangKeluar(String id, String tujuan, double jumlah, String tanggal, String operator) {
+        this.id = id;
+        this.tujuan = tujuan;
+        this.jumlah = jumlah;
+        this.tanggal = tanggal;
+        this.operator = operator;
     }
 }

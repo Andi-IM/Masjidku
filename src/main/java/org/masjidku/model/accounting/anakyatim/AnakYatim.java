@@ -13,38 +13,15 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.admin;
+package org.masjidku.model.accounting.anakyatim;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.ToggleGroup;
-import org.masjidku.MainApp;
+import org.masjidku.model.accounting.UangKeluar;
 
-public class AdminRoot {
+public class AnakYatim extends UangKeluar {
+    int usia;
 
-    private MainApp mainApp;
-    private String username = null;
-
-    @FXML
-    public ToggleGroup sidebarButton;
-
-    public void setMainApp(MainApp mainApp, String username) {
-        this.username = username;
-        this.mainApp = mainApp;
-    }
-
-    @FXML
-    public void homeAction() {
-        mainApp.setAdminView(username);
-    }
-
-    @FXML
-    public void profileAction(){ }
-
-    @FXML
-    public void userManage(){ mainApp.showUser(); }
-
-    @FXML
-    public void aboutAction(){
-        mainApp.showAbout();
+    public AnakYatim(String id, String tujuan, int usia, double jumlah, String tanggal, String operator) {
+        super(id, tujuan, jumlah, tanggal, operator);
+        this.usia = usia;
     }
 }

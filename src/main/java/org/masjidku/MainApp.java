@@ -29,7 +29,7 @@ import org.masjidku.admin.UserLists;
 import org.masjidku.controller.HomeController;
 import org.masjidku.controller.LoginController;
 import org.masjidku.controller.RootLayoutController;
-import org.masjidku.model.User;
+import org.masjidku.model.user.User;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -233,6 +233,7 @@ public class MainApp extends Application {
             UserForm controller = loader.getController();
             controller.setUser(user);
             controller.setMainApp(this);
+
         } catch (IOException e) {
             e.printStackTrace();
         }

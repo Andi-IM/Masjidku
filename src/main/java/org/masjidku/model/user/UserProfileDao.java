@@ -13,8 +13,10 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model;
+package org.masjidku.model.user;
 
+import javafx.collections.ObservableList;
+import org.masjidku.model.Dao;
 import org.masjidku.util.DatabaseConnection;
 
 import java.sql.Connection;
@@ -23,22 +25,33 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @SuppressWarnings({"FieldCanBeLocal", "unused"})
-public class UserProfileDao {
+public class UserProfileDao implements Dao<UserProfile> {
     Connection con;
     PreparedStatement ps;
     private final String SQL_PROFILE_TABLE = "profil_user";
     private final String SQL_USER_TABLE = "user";
 
     // Constructor
-    public UserProfileDao(){}
+    public UserProfileDao() {
+    }
 
-    public boolean getConnection(){
+    public boolean getConnection() {
         DatabaseConnection connection = new DatabaseConnection();
-        if (connection.getConnection() != null){
+        if (connection.getConnection() != null) {
             con = connection.getConnection();
             return true;
         }
         return false;
+    }
+
+    @Override
+    public UserProfile get(String id) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public ObservableList<UserProfile> getAll() throws SQLException {
+        return null;
     }
 
     /**
@@ -46,32 +59,38 @@ public class UserProfileDao {
      *
      * @throws SQLException as Error Handling
      */
-    public void create(String username) throws SQLException {
-        String SQL_INSERT_ADDITIONAL_INFO = "INSERT INTO " + SQL_PROFILE_TABLE + "(userid, notelp, alamat) VALUES(?,?,?)";
-        ps = con.prepareStatement(SQL_INSERT_ADDITIONAL_INFO);
-        ps.setString(1, username);
-        ps.setString(2, null);
-        ps.setString(3, null);
+    @Override
+    public void save(UserProfile userProfile) throws SQLException {
+        String insertQuery = "INSERT INTO " + SQL_PROFILE_TABLE + "(userid, notelp, alamat) VALUES(?,?,?)";
+        ps = con.prepareStatement(insertQuery);
+        ps.setString(1, userProfile.getUserId());
+        ps.setString(2, userProfile.getAlamat());
+        ps.setString(3, userProfile.getNotelp());
         ps.executeUpdate();
     }
 
-    public void update(String userid, String notelp, String alamat) throws SQLException{
-        String SQL_UPDATE_ADDITIONAL_INFO = "UPDATE " + SQL_PROFILE_TABLE + " SET notelp=?, alamat=? WHERE userid=?";
-        ps = con.prepareStatement(SQL_UPDATE_ADDITIONAL_INFO);
-        ps.setString(1, userid);
-        ps.setString(2, notelp);
-        ps.setString(3, alamat);
+    @Override
+    public void update(String[] params) throws SQLException {
+        String updateQuery = "UPDATE " + SQL_PROFILE_TABLE + " SET notelp=?, alamat=? WHERE userid=?";
+        ps = con.prepareStatement(updateQuery);
+        ps.setString(1, params[0]);
+        ps.setString(2, params[1]);
+        ps.setString(3, params[2]);
         ps.executeUpdate();
     }
 
-    public User getFullUserData() throws SQLException{
+    @Override
+    public void delete(String id) throws SQLException {
+    }
+
+    public User getFullUserData() throws SQLException {
         UserProfile model = new UserProfile();
-        String SQL_GET_ADDITIONAL_INFO = "SELECT "+SQL_USER_TABLE+".userid, password, username, jabatan, notelp, alamat " +
-                "FROM "+SQL_USER_TABLE+" INNER JOIN "+SQL_PROFILE_TABLE+" pu on "+SQL_USER_TABLE+".userid = pu.userid";
+        String SQL_GET_ADDITIONAL_INFO = "SELECT " + SQL_USER_TABLE + ".userid, password, username, jabatan, notelp, alamat " +
+                "FROM " + SQL_USER_TABLE + " INNER JOIN " + SQL_PROFILE_TABLE + " pu on " + SQL_USER_TABLE + ".userid = pu.userid";
         ps = con.prepareStatement(SQL_GET_ADDITIONAL_INFO);
 
         ResultSet resultSet = ps.executeQuery();
-        if (resultSet.next()){
+        if (resultSet.next()) {
             model.setUserId(resultSet.getString(1));
             model.setPassword(resultSet.getString(2));
             model.setUsername(resultSet.getString(3));

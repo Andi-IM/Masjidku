@@ -20,5 +20,5 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.masjidku.principal.PrincipalRoot"
             prefHeight="400.0" prefWidth="600.0">
-<!-- TODO: Buat tampilan seperti yang ada di file admin_root.fxml   -->
+    <!-- TODO: Buat tampilan seperti yang ada di file admin_root.fxml   -->
 </AnchorPane>
