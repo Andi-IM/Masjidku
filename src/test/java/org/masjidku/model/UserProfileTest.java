@@ -16,10 +16,34 @@
 package org.masjidku.model;
 
 import org.junit.Before;
+import org.junit.Test;
+import org.masjidku.model.user.User;
+import org.masjidku.model.user.UserProfile;
+
+import static org.junit.Assert.assertEquals;
 
 public class UserProfileTest extends User {
+    private UserProfile profile;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
+        profile = new UserProfile(
+                "ucok",
+                "123456",
+                "Ucok",
+                "Medan",
+                "Sekretaris",
+                "123456"
+        );
+    }
+
+    @Test
+    public void testGetId() {
+        assertEquals("ucok", profile.getUserId());
+    }
+
+    @Test
+    public void testGetJabatan() {
+        assertEquals("sekretaris", profile.getJabatan().toString);
     }
 }

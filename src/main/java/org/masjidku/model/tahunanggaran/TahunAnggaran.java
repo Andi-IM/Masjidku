@@ -13,38 +13,34 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.admin;
+package org.masjidku.model.tahunanggaran;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.ToggleGroup;
-import org.masjidku.MainApp;
+public class TahunAnggaran {
+    private String tahun;
+    private String status;
 
-public class AdminRoot {
-
-    private MainApp mainApp;
-    private String username = null;
-
-    @FXML
-    public ToggleGroup sidebarButton;
-
-    public void setMainApp(MainApp mainApp, String username) {
-        this.username = username;
-        this.mainApp = mainApp;
+    public TahunAnggaran() {
+        this(null, null);
     }
 
-    @FXML
-    public void homeAction() {
-        mainApp.setAdminView(username);
+    public TahunAnggaran(String tahun, String status) {
+        setTahun(tahun);
+        setStatus(status);
     }
 
-    @FXML
-    public void profileAction(){ }
+    public String getTahun() {
+        return tahun;
+    }
 
-    @FXML
-    public void userManage(){ mainApp.showUser(); }
+    public void setTahun(String tahun) {
+        this.tahun = tahun;
+    }
 
-    @FXML
-    public void aboutAction(){
-        mainApp.showAbout();
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

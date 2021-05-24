@@ -13,38 +13,20 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.admin;
+package org.masjidku.model;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.ToggleGroup;
-import org.masjidku.MainApp;
+import javafx.collections.ObservableList;
 
-public class AdminRoot {
+import java.sql.SQLException;
 
-    private MainApp mainApp;
-    private String username = null;
+public interface Dao<T> {
+    T get(String id) throws SQLException;
 
-    @FXML
-    public ToggleGroup sidebarButton;
+    ObservableList<T> getAll() throws SQLException;
 
-    public void setMainApp(MainApp mainApp, String username) {
-        this.username = username;
-        this.mainApp = mainApp;
-    }
+    void save(T t) throws SQLException;
 
-    @FXML
-    public void homeAction() {
-        mainApp.setAdminView(username);
-    }
+    void update(String[] params) throws SQLException;
 
-    @FXML
-    public void profileAction(){ }
-
-    @FXML
-    public void userManage(){ mainApp.showUser(); }
-
-    @FXML
-    public void aboutAction(){
-        mainApp.showAbout();
-    }
+    void delete(String id) throws SQLException;
 }

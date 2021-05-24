@@ -17,6 +17,7 @@ package org.masjidku.model;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.masjidku.model.user.User;
 
 import static org.junit.Assert.assertEquals;
 
@@ -24,7 +25,7 @@ public class UserTest {
     private User user;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         user = new User("ucok",
                 "Ucok",
                 "Ketua",

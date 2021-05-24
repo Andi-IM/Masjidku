@@ -17,6 +17,8 @@ package org.masjidku.util;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.assertEquals;
 
 public class DateUtilTest {
@@ -28,6 +30,7 @@ public class DateUtilTest {
     public void thisDateTest(){
         String[] anotherMethod;
         anotherMethod = util.dateFormatter(thisDate).split("-");
+        System.out.println(Arrays.toString(anotherMethod));
         assertEquals("06", anotherMethod[1]);
     }
 
@@ -35,6 +38,7 @@ public class DateUtilTest {
     public void anotherDateTest(){
         String[] anotherMethod;
         anotherMethod = util.dateFormatter(anotherDate).split("-");
+        System.out.println(Arrays.toString(anotherMethod));
         assertEquals(2020, Integer.parseInt(anotherMethod[2]));
     }
 }

@@ -13,38 +13,18 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.admin;
+package org.masjidku.model.user;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.ToggleGroup;
-import org.masjidku.MainApp;
+public enum Jabatan{
+    admin("admin"),
+    ketua("ketua"),
+    sekretaris("sekretaris"),
+    bendahara("bendahara"),
+    none("");
 
-public class AdminRoot {
+    public final String toString;
 
-    private MainApp mainApp;
-    private String username = null;
-
-    @FXML
-    public ToggleGroup sidebarButton;
-
-    public void setMainApp(MainApp mainApp, String username) {
-        this.username = username;
-        this.mainApp = mainApp;
-    }
-
-    @FXML
-    public void homeAction() {
-        mainApp.setAdminView(username);
-    }
-
-    @FXML
-    public void profileAction(){ }
-
-    @FXML
-    public void userManage(){ mainApp.showUser(); }
-
-    @FXML
-    public void aboutAction(){
-        mainApp.showAbout();
+    Jabatan(String toString) {
+        this.toString = toString;
     }
 }

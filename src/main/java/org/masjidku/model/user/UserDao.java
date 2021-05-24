@@ -13,11 +13,12 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model;
+package org.masjidku.model.user;
 
 import com.google.common.hash.Hashing;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.masjidku.model.Dao;
 import org.masjidku.util.DatabaseConnection;
 
 import java.nio.charset.StandardCharsets;
@@ -25,21 +26,21 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 @SuppressWarnings("unused")
-public class UserDao {
+public class UserDao implements Dao<User> {
     Connection con;
     private final String SQL_USER_TABLE = "user";
 
     PreparedStatement ps;
 
     // constructor
-    public UserDao() {}
+    public UserDao() {
+    }
 
-    public boolean getConnection(){
+    public boolean getConnection() {
         DatabaseConnection connection = new DatabaseConnection();
-        if (connection.getConnection() != null){
+        if (connection.getConnection() != null) {
             con = connection.getConnection();
             return true;
         }
@@ -47,14 +48,42 @@ public class UserDao {
     }
 
     /**
+     * Only Admin can see this
+     *
+     * @throws SQLException as Error Handling
+     */
+    @Override
+    public ObservableList<User> getAll() throws SQLException {
+        ObservableList<User> users = FXCollections.observableArrayList();
+
+        String query = "SELECT userid, username, jabatan, status, created_at, updated_at FROM " + SQL_USER_TABLE;
+        ps = con.prepareStatement(query);
+        ResultSet resultset = ps.executeQuery();
+
+        User user;
+        while (resultset.next()) {
+            user = new User();
+            user.setUserId(resultset.getString(1));
+            user.setUsername(resultset.getString(2));
+            user.setJabatan(resultset.getString(3));
+            user.setStatus(resultset.getString(4));
+            user.setCreated_at(resultset.getString(5));
+            user.setUpdated_at(resultset.getString(6));
+            users.add(user);
+        }
+        return users;
+    }
+
+    /**
      * Only Admin can create User
      *
      * @throws SQLException as Error Handling
      */
-    public void create(String userid, String username, String jabatan, String status) throws SQLException {
+    @Override
+    public void save(User user) throws SQLException {
         String SQL_INSERT_USER = "INSERT INTO " + SQL_USER_TABLE + "(userid, password, username, jabatan, status) VALUES(?,?,?,?,?)";
         ps = con.prepareStatement(SQL_INSERT_USER);
-        ps.setString(1, userid);
+        ps.setString(1, user.getUserId());
 
         @SuppressWarnings("UnstableApiUsage")
         String hex = Hashing
@@ -63,29 +92,70 @@ public class UserDao {
                 .toString();
 
         ps.setString(2, hex);
-        ps.setString(3, username);
-        ps.setString(4, jabatan);
-        ps.setString(5, status);
+        ps.setString(3, user.getUsername());
+        ps.setString(4, user.getJabatan().toString);
+        ps.setString(5, user.getStatus());
         ps.executeUpdate();
     }
 
     /**
-     *  Updating user preference by admin
-     * @param userid the user id specified
-     * @param jabatan change the role
-     * @param status change user status.
+     * Updating user preference by admin
+     *
+     * @param params the parameter
      * @throws SQLException as Error Handling.
      */
-    public void update(String userid, String jabatan, String status) throws SQLException {
-        String SQL_UPDATE_USER = "UPDATE " + SQL_USER_TABLE + " SET jabatan=?, status=? WHERE userid=?";
-        ps = con.prepareStatement(SQL_UPDATE_USER);
+    @Override
+    public void update(String[] params) throws SQLException {
+        String query = "UPDATE " + SQL_USER_TABLE + " SET jabatan=?, status=? WHERE userid=?";
+        ps = con.prepareStatement(query);
+        ps.setString(1, params[0]);
+        ps.setString(2, params[1]);
+        ps.setString(3, params[2]);
     }
 
     /**
-     *  Only admin can reset user account.
+     * Only Admin can delete user.
      *
-     *  @param userId an user id
-     *  @throws SQLException as Error Handling
+     * @param userid user Id
+     * @throws SQLException as Error Handling
+     */
+    @Override
+    public void delete(String userid) throws SQLException {
+        String SQL_DELETE_USER = "DELETE FROM " + SQL_USER_TABLE + " WHERE userid=?";
+        ps = con.prepareStatement(SQL_DELETE_USER);
+        ps.setString(1, userid);
+        ps.executeUpdate();
+    }
+
+    /**
+     * Is user already reseted.
+     *
+     * @param userid an user id
+     * @return user reset status
+     * @throws SQLException error handling
+     */
+    public boolean isReset(String userid) throws SQLException {
+        String query = "SELECT password FROM " + SQL_USER_TABLE + " WHERE userid=?";
+        ps = con.prepareStatement(query);
+        ps.setString(1, userid);
+        ResultSet resultSet = ps.executeQuery();
+
+        if (resultSet.next()) {
+            @SuppressWarnings("UnstableApiUsage")
+            String hex = Hashing
+                    .sha256()
+                    .hashString("12345678", StandardCharsets.UTF_8)
+                    .toString();
+            return resultSet.getString(1).equals(hex);
+        }
+        return false;
+    }
+
+    /**
+     * Only admin can reset user account.
+     *
+     * @param userId an user id
+     * @throws SQLException as Error Handling
      */
     public void reset(String userId) throws SQLException {
         String SQL_RESET_USER = "UPDATE " + SQL_USER_TABLE + " SET password=? WHERE userid=?";
@@ -118,42 +188,19 @@ public class UserDao {
     }
 
     /**
-     * Only Admin can see this
-     * @throws SQLException as Error Handling
-     */
-    public ObservableList<User> getUsers() throws SQLException {
-        ObservableList<User> list = FXCollections.observableArrayList();
-        String query = "SELECT userid, username, jabatan, status, created_at, updated_at FROM " + SQL_USER_TABLE;
-        ps = con.prepareStatement(query);
-        ResultSet resultset = ps.executeQuery();
-
-        User user;
-        while (resultset.next()){
-            user = new User();
-            user.setUserId(resultset.getString(1));
-            user.setUsername(resultset.getString(2));
-            user.setJabatan(resultset.getString(3));
-            user.setStatus(resultset.getString(4));
-            user.setCreated_at(resultset.getString(5));
-            user.setUpdated_at(resultset.getString(6));
-            list.add(user);
-        }
-        return list;
-    }
-
-    /**
      * Only Specified User can see this
      * also this code used for Authorization
      *
      * @throws SQLException as Error Handling
      */
-    public User getUserData(String userid) throws SQLException {
+    @Override
+    public User get(String userid) throws SQLException {
         String SQL_GET_USER_DATA = "SELECT * FROM " + SQL_USER_TABLE + " WHERE userid=? ";
         ps = con.prepareStatement(SQL_GET_USER_DATA);
         ps.setString(1, userid);
         User model = null;
         ResultSet rs = ps.executeQuery();
-        if (rs.next()){
+        if (rs.next()) {
             model = new User();
             model.setUserId(rs.getString(1));
             model.setPassword(rs.getString(2));
@@ -182,14 +229,14 @@ public class UserDao {
     }
 
     /**
-     *  Get UserInfo for Authentication
+     * Get UserInfo for Authentication
      *
-     * @param userid username
+     * @param userid   username
      * @param password user password
      * @return userId
      * @throws SQLException for Error Handling
      */
-    public boolean getUser(String userid, String password) throws SQLException {
+    public boolean isUserExist(String userid, String password) throws SQLException {
         String SQL_GET_USER = "SELECT userid FROM " + SQL_USER_TABLE + " WHERE userid=? and password=? LIMIT 1";
         ps = con.prepareStatement(SQL_GET_USER);
         ps.setString(1, userid);
@@ -197,31 +244,5 @@ public class UserDao {
         ResultSet rs = ps.executeQuery();
 
         return rs.next();
-    }
-
-    /**
-     *  Only Admin can delete user.
-     *
-     * @param userid user Id
-     * @throws SQLException as Error Handling
-     */
-    public void delete(String userid) throws  SQLException {
-        String SQL_DELETE_USER = "DELETE FROM " + SQL_USER_TABLE + " WHERE userid=?";
-        ps = con.prepareStatement(SQL_DELETE_USER);
-        ps.setString(1, userid);
-        ps.executeUpdate();
-    }
-
-    public static void main(String[] args) {
-        UserDao dao = new UserDao();
-
-        if (dao.getConnection()){
-            try {
-                List<User> list = dao.getUsers();
-                System.out.println(list.get(0).getUsername());
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
     }
 }
