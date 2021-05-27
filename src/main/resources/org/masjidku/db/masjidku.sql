@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 19 Bulan Mei 2021 pada 11.56
+-- Waktu pembumasjidkuatan: 19 Bulan Mei 2021 pada 11.56
 -- Versi server: 5.7.24
 -- Versi PHP: 7.3.26
 
