@@ -13,3 +13,7 @@
  *                                HEREUNDER.
  */
 
+package org.masjidku.secretary;
+
+public class SecretaryUndanganForm {
+}
