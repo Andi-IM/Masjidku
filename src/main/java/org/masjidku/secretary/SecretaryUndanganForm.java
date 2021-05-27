@@ -15,5 +15,20 @@
 
 package org.masjidku.secretary;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.input.MouseEvent;
+
 public class SecretaryUndanganForm {
+    @FXML
+    public void clearForm() {
+    }
+
+    @FXML
+    public void onUserSubmitted() {
+    }
+
+    @FXML
+    public void onLogoutClick() {
+    }
 }
