@@ -16,18 +16,18 @@
 package org.masjidku.model.kegiatan;
 
 public class Kegiatan implements KegiatanInt {
-    String id;
-    String nama;
-    String waktu;
-    String tanggal;
-    String tempat;
-    String operator;
+    private String idKegiatan;
+    private String nama;
+    private String waktu;
+    private String tanggal;
+    private String tempat;
+    private String operator;
 
     public Kegiatan() {
     }
 
     public Kegiatan(String id, String nama, String waktu, String tanggal, String tempat, String operator) {
-        setId(id);
+        setIdKegiatan(id);
         setNama(nama);
         setWaktu(waktu);
         setTanggal(tanggal);
@@ -36,12 +36,10 @@ public class Kegiatan implements KegiatanInt {
     }
 
     public String getIdKegiatan() {
-        return id;
+        return idKegiatan;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+    public void setIdKegiatan(String idKegiatan) { this.idKegiatan = idKegiatan; }
 
     public String getNama() {
         return nama;
