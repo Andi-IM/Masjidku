@@ -17,9 +17,14 @@ package org.masjidku.secretary;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
 public class SecretaryTamuForm {
+
+    public TextField txtTempat;
+    public TextField txtWaktu;
+    public TextField txtNamaKegiatan;
 
     @FXML
     public void onLogoutClick() {
