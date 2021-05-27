@@ -15,6 +15,7 @@
 
 package org.masjidku.admin;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 import org.masjidku.MainApp;
@@ -35,4 +36,7 @@ public class AdminHome {
     public void onLogoutClick() {
         mainApp.onLogoutAction();
     }
+
+    @FXML
+    public void onKelolaPenggunaClick() { mainApp.showUser(); }
 }

@@ -16,8 +16,8 @@
 @font-face {
     src: url("../fonts/Righteous-Regular.ttf");
 }
-
 .app-title {
+    -fx-fill: #3AAFA9;
     -fx-font-family: 'Righteous';
     -fx-font-size: 20.0;
 }
@@ -25,15 +25,16 @@
 @font-face {
     src: url("../fonts/Roboto-Regular.ttf");
 }
-
 .content {
-    -fx-font-family: 'Roboto';
-}
-
-@font-face {
-    src: url("../fonts/Roboto-Bold.ttf");
+    -fx-font-family: "roboto";
+    -fx-font-weight: regular;
+    -fx-fill: #3AAFA9;
+    -fx-font-size: 12px;
 }
 
 .headline {
-    -fx-font-family: "Roboto Bold";
+    -fx-font-family: "roboto";
+    -fx-font-weight: bold;
+    -fx-fill: #2B7A78;
+    -fx-font-size: 25px;
 }
