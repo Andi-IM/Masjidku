@@ -208,7 +208,7 @@ public class UserDao implements Dao<User> {
      * @throws SQLException an Error Handling
      */
     public boolean isUserExist(String userid) throws SQLException {
-        query = "SELECT * FROM " + SQL_USER_TABLE + " WHERE userid=? ";
+        query = "SELECT userid FROM " + SQL_USER_TABLE + " WHERE userid=? ";
         ps = con.prepareStatement(query);
         ps.setString(1, userid);
         rs = ps.executeQuery();
@@ -232,11 +232,5 @@ public class UserDao implements Dao<User> {
         rs = ps.executeQuery();
 
         return rs.next();
-    }
-
-    public static void main(String[] args) throws SQLException {
-        UserDao dao = new UserDao();
-        dao.getConnection();
-        System.out.println(dao.get("paijo").getPassword());
     }
 }
