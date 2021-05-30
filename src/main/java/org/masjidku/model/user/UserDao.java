@@ -32,7 +32,7 @@ public class UserDao implements Dao<User> {
 
     private Connection con;
     private final String SQL_USER_TABLE = "user";
-    private String query;
+    private String query = null;
     private PreparedStatement ps;
     private ResultSet rs;
 
@@ -232,5 +232,11 @@ public class UserDao implements Dao<User> {
         rs = ps.executeQuery();
 
         return rs.next();
+    }
+
+    public static void main(String[] args) throws SQLException {
+        UserDao dao = new UserDao();
+        dao.getConnection();
+        System.out.println(dao.get("paijo").getPassword());
     }
 }
