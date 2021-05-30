@@ -17,12 +17,15 @@ package org.masjidku.model.kegiatan;
 
 interface KegiatanInt {
     String getIdKegiatan();
+    void setIdKegiatan(String idKegiatan);
 }
 
 interface TamuInt {
     String getIdTamu();
+    void setIdTamu(String idTamu);
 }
 
 interface TamuAndKegiatan extends KegiatanInt, TamuInt {
-
+    String getKeterangan();
+    void setKeterangan(String keterangan);
 }
