@@ -16,11 +16,12 @@
 package org.masjidku.model.kegiatan;
 
 public class Tamu implements TamuInt {
-    String idTamu;
-    String nama;
-    String alamat;
-    String notelp;
-    String operator;
+
+    private String idTamu;
+    private String nama;
+    private String alamat;
+    private String notelp;
+    private String operator;
 
     public Tamu() {
         this(null, null, null, null, null);

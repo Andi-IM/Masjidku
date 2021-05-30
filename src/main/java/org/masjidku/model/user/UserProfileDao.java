@@ -26,8 +26,12 @@ import java.sql.SQLException;
 
 @SuppressWarnings({"FieldCanBeLocal", "unused"})
 public class UserProfileDao implements Dao<UserProfile> {
-    Connection con;
-    PreparedStatement ps;
+
+    private String query;
+    private Connection con;
+    private PreparedStatement ps;
+    private ResultSet rs;
+
     private final String SQL_PROFILE_TABLE = "profil_user";
     private final String SQL_USER_TABLE = "user";
 
@@ -61,8 +65,8 @@ public class UserProfileDao implements Dao<UserProfile> {
      */
     @Override
     public void save(UserProfile userProfile) throws SQLException {
-        String insertQuery = "INSERT INTO " + SQL_PROFILE_TABLE + "(userid, notelp, alamat) VALUES(?,?,?)";
-        ps = con.prepareStatement(insertQuery);
+        query = "INSERT INTO " + SQL_PROFILE_TABLE + "(userid, notelp, alamat) VALUES(?,?,?)";
+        ps = con.prepareStatement(query);
         ps.setString(1, userProfile.getUserId());
         ps.setString(2, userProfile.getAlamat());
         ps.setString(3, userProfile.getNotelp());
@@ -71,8 +75,8 @@ public class UserProfileDao implements Dao<UserProfile> {
 
     @Override
     public void update(String[] params) throws SQLException {
-        String updateQuery = "UPDATE " + SQL_PROFILE_TABLE + " SET notelp=?, alamat=? WHERE userid=?";
-        ps = con.prepareStatement(updateQuery);
+        query = "UPDATE " + SQL_PROFILE_TABLE + " SET notelp=?, alamat=? WHERE userid=?";
+        ps = con.prepareStatement(query);
         ps.setString(1, params[0]);
         ps.setString(2, params[1]);
         ps.setString(3, params[2]);
@@ -85,17 +89,17 @@ public class UserProfileDao implements Dao<UserProfile> {
 
     public User getFullUserData() throws SQLException {
         UserProfile model = new UserProfile();
-        String SQL_GET_ADDITIONAL_INFO = "SELECT " + SQL_USER_TABLE + ".userid, password, username, jabatan, notelp, alamat " +
+        query = "SELECT " + SQL_USER_TABLE + ".userid, password, username, jabatan, notelp, alamat " +
                 "FROM " + SQL_USER_TABLE + " INNER JOIN " + SQL_PROFILE_TABLE + " pu on " + SQL_USER_TABLE + ".userid = pu.userid";
-        ps = con.prepareStatement(SQL_GET_ADDITIONAL_INFO);
+        ps = con.prepareStatement(query);
 
-        ResultSet resultSet = ps.executeQuery();
-        if (resultSet.next()) {
-            model.setUserId(resultSet.getString(1));
-            model.setPassword(resultSet.getString(2));
-            model.setUsername(resultSet.getString(3));
-            model.setNotelp(resultSet.getString(4));
-            model.setAlamat(resultSet.getString(5));
+        rs = ps.executeQuery();
+        if (rs.next()) {
+            model.setUserId(rs.getString(1));
+            model.setPassword(rs.getString(2));
+            model.setUsername(rs.getString(3));
+            model.setNotelp(rs.getString(4));
+            model.setAlamat(rs.getString(5));
         }
         return model;
     }

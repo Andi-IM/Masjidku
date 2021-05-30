@@ -29,10 +29,12 @@ import java.sql.SQLException;
 
 @SuppressWarnings("unused")
 public class UserDao implements Dao<User> {
-    Connection con;
-    private final String SQL_USER_TABLE = "user";
 
-    PreparedStatement ps;
+    private Connection con;
+    private final String SQL_USER_TABLE = "user";
+    private String query = null;
+    private PreparedStatement ps;
+    private ResultSet rs;
 
     // constructor
     public UserDao() {
@@ -56,19 +58,19 @@ public class UserDao implements Dao<User> {
     public ObservableList<User> getAll() throws SQLException {
         ObservableList<User> users = FXCollections.observableArrayList();
 
-        String query = "SELECT userid, username, jabatan, status, created_at, updated_at FROM " + SQL_USER_TABLE;
+        query = "SELECT userid, username, jabatan, status, created_at, updated_at FROM " + SQL_USER_TABLE;
         ps = con.prepareStatement(query);
-        ResultSet resultset = ps.executeQuery();
+        rs = ps.executeQuery();
 
         User user;
-        while (resultset.next()) {
+        while (rs.next()) {
             user = new User();
-            user.setUserId(resultset.getString(1));
-            user.setUsername(resultset.getString(2));
-            user.setJabatan(resultset.getString(3));
-            user.setStatus(resultset.getString(4));
-            user.setCreated_at(resultset.getString(5));
-            user.setUpdated_at(resultset.getString(6));
+            user.setUserId(rs.getString(1));
+            user.setUsername(rs.getString(2));
+            user.setJabatan(rs.getString(3));
+            user.setStatus(rs.getString(4));
+            user.setCreated_at(rs.getString(5));
+            user.setUpdated_at(rs.getString(6));
             users.add(user);
         }
         return users;
@@ -81,8 +83,8 @@ public class UserDao implements Dao<User> {
      */
     @Override
     public void save(User user) throws SQLException {
-        String SQL_INSERT_USER = "INSERT INTO " + SQL_USER_TABLE + "(userid, password, username, jabatan, status) VALUES(?,?,?,?,?)";
-        ps = con.prepareStatement(SQL_INSERT_USER);
+        query = "INSERT INTO " + SQL_USER_TABLE + "(userid, password, username, jabatan, status) VALUES(?,?,?,?,?)";
+        ps = con.prepareStatement(query);
         ps.setString(1, user.getUserId());
 
         @SuppressWarnings("UnstableApiUsage")
@@ -106,7 +108,7 @@ public class UserDao implements Dao<User> {
      */
     @Override
     public void update(String[] params) throws SQLException {
-        String query = "UPDATE " + SQL_USER_TABLE + " SET jabatan=?, status=? WHERE userid=?";
+        query = "UPDATE " + SQL_USER_TABLE + " SET jabatan=?, status=? WHERE userid=?";
         ps = con.prepareStatement(query);
         ps.setString(1, params[0]);
         ps.setString(2, params[1]);
@@ -121,8 +123,8 @@ public class UserDao implements Dao<User> {
      */
     @Override
     public void delete(String userid) throws SQLException {
-        String SQL_DELETE_USER = "DELETE FROM " + SQL_USER_TABLE + " WHERE userid=?";
-        ps = con.prepareStatement(SQL_DELETE_USER);
+        query = "DELETE FROM " + SQL_USER_TABLE + " WHERE userid=?";
+        ps = con.prepareStatement(query);
         ps.setString(1, userid);
         ps.executeUpdate();
     }
@@ -135,18 +137,18 @@ public class UserDao implements Dao<User> {
      * @throws SQLException error handling
      */
     public boolean isReset(String userid) throws SQLException {
-        String query = "SELECT password FROM " + SQL_USER_TABLE + " WHERE userid=?";
+        query = "SELECT password FROM " + SQL_USER_TABLE + " WHERE userid=?";
         ps = con.prepareStatement(query);
         ps.setString(1, userid);
-        ResultSet resultSet = ps.executeQuery();
+        rs = ps.executeQuery();
 
-        if (resultSet.next()) {
+        if (rs.next()) {
             @SuppressWarnings("UnstableApiUsage")
             String hex = Hashing
                     .sha256()
                     .hashString("12345678", StandardCharsets.UTF_8)
                     .toString();
-            return resultSet.getString(1).equals(hex);
+            return rs.getString(1).equals(hex);
         }
         return false;
     }
@@ -158,8 +160,8 @@ public class UserDao implements Dao<User> {
      * @throws SQLException as Error Handling
      */
     public void reset(String userId) throws SQLException {
-        String SQL_RESET_USER = "UPDATE " + SQL_USER_TABLE + " SET password=? WHERE userid=?";
-        ps = con.prepareStatement(SQL_RESET_USER);
+        query = "UPDATE " + SQL_USER_TABLE + " SET password=? WHERE userid=?";
+        ps = con.prepareStatement(query);
 
         @SuppressWarnings("UnstableApiUsage")
         String hex = Hashing
@@ -173,21 +175,6 @@ public class UserDao implements Dao<User> {
     }
 
     /**
-     *  Only admin can suspend user account
-     *
-     * @param userid an user id
-     * @param status am user status
-     * @throws SQLException as Error Handling.
-     */
-    public void suspend(String userid, String status) throws SQLException {
-        String SQL_SUSPEND_USER = "UPDATE " + SQL_USER_TABLE + " SET status=? WHERE userid=?";
-        ps = con.prepareStatement(SQL_SUSPEND_USER);
-        ps.setString(1, status);
-        ps.setString(2, userid);
-        ps.executeUpdate();
-    }
-
-    /**
      * Only Specified User can see this
      * also this code used for Authorization
      *
@@ -195,11 +182,12 @@ public class UserDao implements Dao<User> {
      */
     @Override
     public User get(String userid) throws SQLException {
-        String SQL_GET_USER_DATA = "SELECT * FROM " + SQL_USER_TABLE + " WHERE userid=? ";
-        ps = con.prepareStatement(SQL_GET_USER_DATA);
+        query = "SELECT * FROM " + SQL_USER_TABLE + " WHERE userid=? ";
+        ps = con.prepareStatement(query);
         ps.setString(1, userid);
+        rs = ps.executeQuery();
+
         User model = null;
-        ResultSet rs = ps.executeQuery();
         if (rs.next()) {
             model = new User();
             model.setUserId(rs.getString(1));
@@ -220,10 +208,10 @@ public class UserDao implements Dao<User> {
      * @throws SQLException an Error Handling
      */
     public boolean isUserExist(String userid) throws SQLException {
-        String SQL_GET_USER_DATA = "SELECT * FROM " + SQL_USER_TABLE + " WHERE userid=? ";
-        ps = con.prepareStatement(SQL_GET_USER_DATA);
+        query = "SELECT userid FROM " + SQL_USER_TABLE + " WHERE userid=? ";
+        ps = con.prepareStatement(query);
         ps.setString(1, userid);
-        ResultSet rs = ps.executeQuery();
+        rs = ps.executeQuery();
 
         return rs.next();
     }
@@ -237,11 +225,11 @@ public class UserDao implements Dao<User> {
      * @throws SQLException for Error Handling
      */
     public boolean isUserExist(String userid, String password) throws SQLException {
-        String SQL_GET_USER = "SELECT userid FROM " + SQL_USER_TABLE + " WHERE userid=? and password=? LIMIT 1";
-        ps = con.prepareStatement(SQL_GET_USER);
+        query = "SELECT userid FROM " + SQL_USER_TABLE + " WHERE userid=? and password=? LIMIT 1";
+        ps = con.prepareStatement(query);
         ps.setString(1, userid);
         ps.setString(2, password);
-        ResultSet rs = ps.executeQuery();
+        rs = ps.executeQuery();
 
         return rs.next();
     }
