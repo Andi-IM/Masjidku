@@ -26,9 +26,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class KegiatanDao implements Dao<Kegiatan> {
-    Connection con;
+
+    private Connection con;
+    private String query;
+    private PreparedStatement ps;
+    private ResultSet rs;
+
     private final String TABLE = "kegiatan";
-    PreparedStatement ps;
 
     public KegiatanDao() { }
 
@@ -43,11 +47,11 @@ public class KegiatanDao implements Dao<Kegiatan> {
 
     @Override
     public Kegiatan get(String id) throws SQLException {
-        String query = "SELECT * FROM "+TABLE+" WHERE kegiatanID=?";
+        query = "SELECT * FROM "+TABLE+" WHERE kegiatanID=?";
 
         ps = con.prepareStatement(query);
         ps.setString(1, id);
-        ResultSet rs = ps.executeQuery();
+        rs = ps.executeQuery();
 
         Kegiatan model = null;
         if(rs.next()){
@@ -66,9 +70,10 @@ public class KegiatanDao implements Dao<Kegiatan> {
     @Override
     public ObservableList<Kegiatan> getAll() throws SQLException {
         ObservableList<Kegiatan> items = FXCollections.observableArrayList();
-        String query = "SELECT * FROM "+TABLE;
+
+        query = "SELECT * FROM "+TABLE;
         ps = con.prepareStatement(query);
-        ResultSet rs = ps.executeQuery();
+        rs = ps.executeQuery();
 
         Kegiatan kegiatan;
         while(rs.next()){
@@ -87,7 +92,7 @@ public class KegiatanDao implements Dao<Kegiatan> {
 
     @Override
     public void save(Kegiatan kegiatan) throws SQLException {
-        String query = "INSERT INTO "+TABLE+ "(kegiatanID, kegiatanNama, kegiatanWaktu, kegiatanTanggal, kegiatanTempat, operator) VALUES(?,?,?,?,?,?)";
+        query = "INSERT INTO "+TABLE+ "(kegiatanID, kegiatanNama, kegiatanWaktu, kegiatanTanggal, kegiatanTempat, operator) VALUES(?,?,?,?,?,?)";
 
         ps = con.prepareStatement(query);
         ps.setString(1, kegiatan.getIdKegiatan());
@@ -101,7 +106,7 @@ public class KegiatanDao implements Dao<Kegiatan> {
 
     @Override
     public void update(String[] params) throws SQLException {
-        String query = "UPDATE "+TABLE+" SET kegiatanNama=?, kegiatanWaktu=?, kegiatanTanggal=?, kegiatanTempat=?, operator=? WHERE kegiatanID=?";
+        query = "UPDATE "+TABLE+" SET kegiatanNama=?, kegiatanWaktu=?, kegiatanTanggal=?, kegiatanTempat=?, operator=? WHERE kegiatanID=?";
 
         ps = con.prepareStatement(query);
         ps.setString(1, params[0]);
@@ -114,17 +119,17 @@ public class KegiatanDao implements Dao<Kegiatan> {
 
     @Override
     public void delete(String id) throws SQLException {
-        String query = "DELETE FROM "+TABLE+" WHERE kegiatanID=?";
+        query = "DELETE FROM "+TABLE+" WHERE kegiatanID=?";
         ps = con.prepareStatement(query);
         ps.setString(1, id);
         ps.executeUpdate();
     }
 
     public boolean isKegiatanExist(String id) throws SQLException {
-        String query = "SELECT kegiatanID FROM "+TABLE+" WHERE kegiatanID=?";
+        query = "SELECT kegiatanID FROM "+TABLE+" WHERE kegiatanID=?";
         ps = con.prepareStatement(query);
         ps.setString(1, id);
-        ResultSet rs = ps.executeQuery();
+        rs = ps.executeQuery();
 
         return rs.next();
     }

@@ -23,9 +23,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class TaDao {
+    private Connection con;
+    private String query;
+    private PreparedStatement ps;
+    private ResultSet rs;
+
     private final String TA_TABLE = "tahunanggaran";
-    Connection con;
-    PreparedStatement ps;
 
     //constructor
     public TaDao() {
@@ -41,9 +44,9 @@ public class TaDao {
     }
 
     public String getYear() throws SQLException {
-        String query = "SELECT * FROM " + TA_TABLE + " WHERE status='Aktif'";
+        query = "SELECT * FROM " + TA_TABLE + " WHERE status='Aktif'";
         ps = con.prepareStatement(query);
-        ResultSet rs = ps.executeQuery();
+        rs = ps.executeQuery();
 
         if (rs.next()) {
             String resultYear = rs.getString(1);
@@ -53,7 +56,7 @@ public class TaDao {
     }
 
     public void save(TahunAnggaran tahunAnggaran) throws SQLException {
-        String query = "INSERT INTO " + TA_TABLE + "(tahun, status) VALUES(?, ?)";
+        query = "INSERT INTO " + TA_TABLE + "(tahun, status) VALUES(?, ?)";
         ps = con.prepareStatement(query);
         ps.setString(1, tahunAnggaran.getTahun());
         ps.setString(2, tahunAnggaran.getStatus());

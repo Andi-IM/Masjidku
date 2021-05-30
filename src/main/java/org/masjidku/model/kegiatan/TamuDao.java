@@ -26,9 +26,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class TamuDao implements Dao<Tamu> {
+
+    private Connection con;
+    private String query;
+    private PreparedStatement ps;
+    private ResultSet rs;
+
     private final String TABLE = "tamu";
-    Connection con;
-    PreparedStatement ps;
 
     public TamuDao() {
     }
@@ -44,11 +48,11 @@ public class TamuDao implements Dao<Tamu> {
 
     @Override
     public Tamu get(String id) throws SQLException {
-        String query = "SELECT * FROM "+TABLE+" WHERE tamuID=?";
+        query = "SELECT * FROM "+TABLE+" WHERE tamuID=?";
 
         ps = con.prepareStatement(query);
         ps.setString(1, id);
-        ResultSet rs = ps.executeQuery();
+        rs = ps.executeQuery();
 
         Tamu model = null;
         if (rs.next()){
@@ -66,9 +70,9 @@ public class TamuDao implements Dao<Tamu> {
     @Override
     public ObservableList<Tamu> getAll() throws SQLException {
         ObservableList<Tamu> items = FXCollections.observableArrayList();
-        String query = "SELECT * FROM "+TABLE;
+        query = "SELECT * FROM "+TABLE;
         ps = con.prepareStatement(query);
-        ResultSet rs = ps.executeQuery();
+        rs = ps.executeQuery();
 
         Tamu tamu;
         while(rs.next()){
@@ -86,7 +90,7 @@ public class TamuDao implements Dao<Tamu> {
 
     @Override
     public void save(Tamu tamu) throws SQLException {
-        String query = "INSERT INTO "+TABLE+"(tamuID, tamuNama, tamuAlamat, tamuNotelp, operator) VALUES(?,?,?,?,?)";
+        query = "INSERT INTO "+TABLE+"(tamuID, tamuNama, tamuAlamat, tamuNotelp, operator) VALUES(?,?,?,?,?)";
 
         ps = con.prepareStatement(query);
         ps.setString(1, tamu.getIdTamu());
@@ -99,7 +103,7 @@ public class TamuDao implements Dao<Tamu> {
 
     @Override
     public void update(String[] params) throws SQLException {
-        String query = "UPDATE "+TABLE+" SET tamuNama=?, tamuAlamat=?, tamuNotelp=?, operator=? WHERE tamuID=?";
+        query = "UPDATE "+TABLE+" SET tamuNama=?, tamuAlamat=?, tamuNotelp=?, operator=? WHERE tamuID=?";
 
         ps = con.prepareStatement(query);
         ps.setString(1, params[0]);
@@ -112,17 +116,17 @@ public class TamuDao implements Dao<Tamu> {
 
     @Override
     public void delete(String id) throws SQLException {
-        String query = "DELETE FROM "+TABLE+" WHERE tamuID=?";
+        query = "DELETE FROM "+TABLE+" WHERE tamuID=?";
         ps = con.prepareStatement(query);
         ps.setString(1, id);
         ps.executeUpdate();
     }
 
     public boolean isTamuExist(String id) throws SQLException {
-        String query = "SELECT tamuID FROM "+TABLE+" WHERE tamuID=?";
+        query = "SELECT tamuID FROM "+TABLE+" WHERE tamuID=?";
         ps = con.prepareStatement(query);
         ps.setString(1, id);
-        ResultSet rs = ps.executeQuery();
+        rs = ps.executeQuery();
 
         return rs.next();
     }
