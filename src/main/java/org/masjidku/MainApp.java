@@ -30,6 +30,8 @@ import org.masjidku.controller.HomeController;
 import org.masjidku.controller.LoginController;
 import org.masjidku.controller.RootLayoutController;
 import org.masjidku.model.user.User;
+import org.masjidku.secretary.SecretaryHome;
+import org.masjidku.secretary.SecretaryRoot;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -236,6 +238,45 @@ public class MainApp extends Application {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void setSecretaryView() {
+        try {
+            // load root layout from fxml file
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(
+                    getClass().getResource("secretary/secretary_root.fxml"));
+            rootLayout = loader.load();
+
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+
+            // Give the controller access to the MainApp
+            SecretaryRoot controller = loader.getController();
+            controller.setMainApp(this);
+
+        } catch (IOException e){
+            System.err.println(e.getMessage());
+            e.getCause();
+        }
+    }
+
+    public void setSecretaryHome() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("secretary/secretary_home.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            SecretaryHome controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
         }
     }
 
