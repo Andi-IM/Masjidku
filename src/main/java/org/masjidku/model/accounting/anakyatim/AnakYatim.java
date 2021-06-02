@@ -18,10 +18,18 @@ package org.masjidku.model.accounting.anakyatim;
 import org.masjidku.model.accounting.UangKeluar;
 
 public class AnakYatim extends UangKeluar {
-    int usia;
+    private int usia;
 
     public AnakYatim(String id, String tujuan, int usia, double jumlah, String tanggal, String operator) {
         super(id, tujuan, jumlah, tanggal, operator);
+        this.usia = usia;
+    }
+
+    public int getUsia() {
+        return usia;
+    }
+
+    public void setUsia(int usia) {
         this.usia = usia;
     }
 }
