@@ -13,28 +13,28 @@
  *                                HEREUNDER.
  */
 
-@font-face {
-    src: url("../fonts/Righteous-Regular.ttf");
-}
-.app-title {
-    -fx-fill: #3AAFA9;
-    -fx-font-family: 'Righteous';
-    -fx-font-size: 20.0;
-}
+package org.masjidku.secretary;
 
-@font-face {
-    src: url("../fonts/Roboto-Regular.ttf");
-}
-.content {
-    -fx-font-family: "roboto";
-    -fx-font-weight: regular;
-    -fx-fill: #3AAFA9;
-    -fx-font-size: 12px;
-}
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
-.headline {
-    -fx-font-family: "roboto";
-    -fx-font-weight: bold;
-    -fx-fill: #2B7A78;
-    -fx-font-size: 25px;
+public class SecretaryTamuForm {
+
+    public TextField txtTempat;
+    public TextField txtWaktu;
+    public TextField txtNamaKegiatan;
+
+    @FXML
+    public void onLogoutClick() {
+    }
+
+    @FXML
+    public void clearForm() {
+    }
+
+    @FXML
+    public void onUserSubmitted() {
+    }
 }
