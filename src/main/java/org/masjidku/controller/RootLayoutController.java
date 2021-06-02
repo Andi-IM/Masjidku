@@ -22,7 +22,7 @@ import org.masjidku.MainApp;
 
 public class RootLayoutController {
     @FXML
-    private ToggleButton btn_home;
+    public ToggleButton btn_home;
     @FXML
     private ToggleButton btn_login;
     @FXML
