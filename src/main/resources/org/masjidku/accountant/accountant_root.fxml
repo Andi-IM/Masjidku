@@ -16,11 +16,11 @@
   -->
 
 <!-- TODO : JANGAN LUPA ATUR UKURANNYA SESUAIKAN DENGAN admin_root.fxml -->
-<?import javafx.scene.layout.AnchorPane?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.masjidku.accountant.AccountantRoot"
-            prefHeight="400.0" prefWidth="600.0">
+<?import javafx.scene.control.SplitPane?>
+<SplitPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="org.masjidku.accountant.AccountantRoot"
+           prefHeight="400.0" prefWidth="600.0">
 
 <!--  TODO: Buat tampilan seperti yang ada pada admin_root  -->
-</AnchorPane>
+</SplitPane>
