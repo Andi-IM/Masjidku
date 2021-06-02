@@ -15,27 +15,5 @@
 
 package org.masjidku.accountant;
 
-import javafx.event.ActionEvent;
-import org.masjidku.MainApp;
-
-public class AccountantRoot {
-    // TODO: 20/05/2021 Atur seperti AdminRoot.java
-
-    private MainApp mainApp;
-
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
-    }
-
-    public void homeAction(ActionEvent actionEvent) {
-    }
-
-    public void profileAction(ActionEvent actionEvent) {
-    }
-
-    public void userManage(ActionEvent actionEvent) {
-    }
-
-    public void aboutAction(ActionEvent actionEvent) {
-    }
+public class AccountantZakat {
 }
