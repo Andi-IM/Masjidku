@@ -12,7 +12,7 @@ import org.masjidku.admin.AdminRoot;
 import org.masjidku.admin.UserForm;
 import org.masjidku.admin.UserLists;
 import org.masjidku.controller.*;
-import org.masjidku.model.User;
+import org.masjidku.model.user.User;
 
 import java.io.IOException;
 import java.util.Objects;
