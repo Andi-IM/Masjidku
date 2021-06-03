@@ -27,7 +27,7 @@
 }
 .content {
     -fx-font-family: "roboto";
-    -fx-font-weight: regular;
+    -fx-font-weight: normal;
     -fx-fill: #3AAFA9;
     -fx-font-size: 12px;
 }

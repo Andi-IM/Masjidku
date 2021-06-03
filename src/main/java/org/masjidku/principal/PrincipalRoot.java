@@ -15,6 +15,13 @@
 
 package org.masjidku.principal;
 
+import org.masjidku.MainApp;
+
 public class PrincipalRoot {
+    private MainApp mainApp;
+
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+    }
     // TODO: 20/05/2021 Atur seperti AdminRoot.java
 }
