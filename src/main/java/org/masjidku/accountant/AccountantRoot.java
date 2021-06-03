@@ -19,23 +19,20 @@ import javafx.event.ActionEvent;
 import org.masjidku.MainApp;
 
 public class AccountantRoot {
-    // TODO: 20/05/2021 Atur seperti AdminRoot.java
 
     private MainApp mainApp;
+    private String username = null;
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(MainApp mainApp, String username) {
+        this.username = username;
         this.mainApp = mainApp;
     }
 
-    public void homeAction(ActionEvent actionEvent) {
-    }
+    public void homeAction(ActionEvent actionEvent) { mainApp.setAccountantView(username); }
 
-    public void profileAction(ActionEvent actionEvent) {
-    }
+    public void profileAction(ActionEvent actionEvent) { }
 
-    public void userManage(ActionEvent actionEvent) {
-    }
+    public void infakManage(ActionEvent actionEvent) { }
 
-    public void aboutAction(ActionEvent actionEvent) {
-    }
+    public void aboutAction(ActionEvent actionEvent) { mainApp.showAbout(); }
 }
