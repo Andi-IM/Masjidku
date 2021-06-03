@@ -26,7 +26,6 @@ public class AdminHome {
 
     private MainApp mainApp;
 
-    @FXML
     public void setMainApp(MainApp mainApp, String username) {
         this.mainApp = mainApp;
         greeting.setText("Bapak "+username);

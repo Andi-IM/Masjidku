@@ -15,14 +15,22 @@
 
 package org.masjidku.accountant;
 
+import javafx.fxml.FXML;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import org.masjidku.MainApp;
 
 public class AccountantHome {
+    @FXML
+    public Text greeting;
     private MainApp mainApp;
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(MainApp mainApp, String username) {
+
         this.mainApp = mainApp;
+        greeting.setText("Bapak "+username);
     }
 
-    // TODO: 20/05/2021 Atur seperti AdminHome.java
+    @FXML
+    public void onLogoutClick() { mainApp.onLogoutAction(); }
 }

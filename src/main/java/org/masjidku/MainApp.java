@@ -233,16 +233,16 @@ public class MainApp extends Application {
         try {
             // load root layout from fxml file
             FXMLLoader loader = new FXMLLoader();
-            rootLayout = loader.load();
             loader.setLocation(
                     getClass().getResource("principal/principal_root.fxml"));
+            rootLayout = loader.load();
 
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
 
             // Give the controller access to the MainApp
             PrincipalRoot controller = loader.getController();
-            controller.setMainApp(this);
+            controller.setMainApp(this, username);
 
             // set initialize home
             showPrincipalHome(username);
@@ -268,7 +268,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             PrincipalHome controller = loader.getController();
-            controller.setMainApp(this);
+            controller.setMainApp(this, username);
 
         } catch (IOException e) {
             System.err.println(e.getMessage());
@@ -292,7 +292,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the MainApp
             SecretaryRoot controller = loader.getController();
-            controller.setMainApp(this);
+            controller.setMainApp(this, username);
 
             // set initialize home
             setSecretaryHome(username);
@@ -318,7 +318,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             SecretaryHome controller = loader.getController();
-            controller.setMainApp(this);
+            controller.setMainApp(this, username);
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
@@ -341,7 +341,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the MainApp
             AccountantRoot controller = loader.getController();
-            controller.setMainApp(this);
+            controller.setMainApp(this, username);
 
             // set initialize home
             setAccountantHome(username);
@@ -367,7 +367,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             AccountantHome controller = loader.getController();
-            controller.setMainApp(this);
+            controller.setMainApp(this, username);
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }

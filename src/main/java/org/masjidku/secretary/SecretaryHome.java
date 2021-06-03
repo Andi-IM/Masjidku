@@ -16,33 +16,28 @@
 package org.masjidku.secretary;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import org.masjidku.MainApp;
 
 public class SecretaryHome {
+    @FXML
     public Button btnKegiatan;
+    @FXML
+    public Text greeting;
     private MainApp mainApp;
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(MainApp mainApp, String username) {
+
         this.mainApp = mainApp;
+        greeting.setText("Bapak "+username);
     }
 
-    public void onLogoutClick(MouseEvent mouseEvent) {
-        
-    }
+    @FXML
+    public void onLogoutClick(MouseEvent mouseEvent) { mainApp.onLogoutAction(); }
 
-    public void onKelolaKegiatanClick(ActionEvent actionEvent) {
-    }
-
-    public void editListener(ActionEvent actionEvent) {
-    }
-
-    public void onResetListener(ActionEvent actionEvent) {
-    }
-
-    public void onRemoveListener(ActionEvent actionEvent) {
-    }
-
-    // TODO: 20/05/2021 Atur seperti AdminHome.java
+    @FXML
+    public void onKelolaKegiatanClick(ActionEvent actionEvent) { }
 }
