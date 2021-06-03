@@ -15,13 +15,29 @@
 
 package org.masjidku.secretary;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.ToggleGroup;
 import org.masjidku.MainApp;
 
 public class SecretaryRoot {
-    // TODO: 20/05/2021 Atur seperti AdminRoot.java
-    private MainApp mainApp;
 
-    public void setMainApp(MainApp mainApp) {
+    public ToggleGroup groupButton;
+    private MainApp mainApp;
+    private String username = null;
+    
+    
+    public void setMainApp(MainApp mainApp, String username) {
+        this.username = username;
         this.mainApp = mainApp;
     }
+
+
+    public void homeAction(ActionEvent actionEvent) { mainApp.setSecretaryView(username); }
+
+    public void profileAction(ActionEvent actionEvent) { }
+
+    public void activityManage(ActionEvent actionEvent) { }
+
+    public void aboutAction(ActionEvent actionEvent) { mainApp.showAbout(); }
 }
