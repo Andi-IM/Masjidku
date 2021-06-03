@@ -7,12 +7,18 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.masjidku.accountant.AccountantHome;
+import org.masjidku.accountant.AccountantRoot;
 import org.masjidku.admin.AdminHome;
 import org.masjidku.admin.AdminRoot;
 import org.masjidku.admin.UserForm;
 import org.masjidku.admin.UserLists;
 import org.masjidku.controller.*;
 import org.masjidku.model.user.User;
+import org.masjidku.principal.PrincipalHome;
+import org.masjidku.principal.PrincipalRoot;
+import org.masjidku.secretary.SecretaryHome;
+import org.masjidku.secretary.SecretaryRoot;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -218,6 +224,155 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Principal Privilege
+     * @param username principal username
+     */
+    public void setPrincipalView(String username){
+        try {
+            // load root layout from fxml file
+            FXMLLoader loader = new FXMLLoader();
+            rootLayout = loader.load();
+            loader.setLocation(
+                    getClass().getResource("principal/principal_root.fxml"));
+
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+
+            // Give the controller access to the MainApp
+            PrincipalRoot controller = loader.getController();
+            controller.setMainApp(this);
+
+            // set initialize home
+            showPrincipalHome(username);
+        } catch (IOException e){
+            System.err.println(e.getMessage());
+            e.getCause();
+        }
+    }
+
+    /**
+     * Showing principal home
+     * @param username
+     */
+    public void showPrincipalHome(String username){
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("principal/principal_home.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            PrincipalHome controller = loader.getController();
+            controller.setMainApp(this);
+
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    /**
+     * Secretary Privilege
+     * @param username secretary username
+     */
+    public void setSecretaryView(String username) {
+        try {
+            // load root layout from fxml file
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(
+                    getClass().getResource("secretary/secretary_root.fxml"));
+            rootLayout = loader.load();
+
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+
+            // Give the controller access to the MainApp
+            SecretaryRoot controller = loader.getController();
+            controller.setMainApp(this);
+
+            // set initialize home
+            setSecretaryHome(username);
+        } catch (IOException e){
+            System.err.println(e.getMessage());
+            e.getCause();
+        }
+    }
+
+    /**
+     * Showing secretary home
+     * @param username
+     */
+    public void setSecretaryHome(String username) {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("secretary/secretary_home.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            SecretaryHome controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    /**
+     * Accountant Privilege
+     * @param username Accountant username
+     */
+    public void setAccountantView(String username) {
+        try {
+            // load root layout from fxml file
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(
+                    getClass().getResource("accountant/accountant_root.fxml"));
+            rootLayout = loader.load();
+
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+
+            // Give the controller access to the MainApp
+            AccountantRoot controller = loader.getController();
+            controller.setMainApp(this);
+
+            // set initialize home
+            setAccountantHome(username);
+        } catch (IOException e){
+            System.err.println(e.getMessage());
+            e.getCause();
+        }
+    }
+
+    /**
+     * show accountant home
+     * @param username
+     */
+    public void setAccountantHome(String username) {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("accountant/accountant_home.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            AccountantHome controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
 
     /**
      * Logout
