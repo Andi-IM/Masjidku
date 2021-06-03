@@ -14,16 +14,13 @@
   ~                                THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
   ~                                HEREUNDER.
   -->
-<!-- TODO : JANGAN LUPA ATUR UKURANNYA SESUAIKAN DENGAN admin_root.fxml -->
 
 <?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane dividerPositions="0.5" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.masjidku.accountant.AccountantRoot">
-
-<!--  TODO: Buat tampilan seperti yang ada pada admin_root  -->
+<SplitPane dividerPositions="0.3" prefHeight="480.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.masjidku.accountant.AccountantRoot">
     <items>
         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="480.0" prefWidth="185.0" styleClass="sidebar" SplitPane.resizableWithParent="false">
             <children>
@@ -61,7 +58,7 @@
                                     </image>
                                 </ImageView>
                             </graphic></ToggleButton>
-                        <ToggleButton alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#userManage" styleClass="sidebarButton" text="Anak Yatim" toggleGroup="$groupButton" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                        <ToggleButton alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#infakManage" styleClass="sidebarButton" text="Anak Yatim" toggleGroup="$groupButton" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                             <graphic>
                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -77,7 +74,7 @@
                                     </image>
                                 </ImageView>
                             </graphic></ToggleButton>
-                  <ToggleButton alignment="CENTER_LEFT" layoutX="10.0" layoutY="86.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#userManage" styleClass="sidebarButton" text="Zakat" GridPane.rowIndex="3">
+                  <ToggleButton alignment="CENTER_LEFT" layoutX="10.0" layoutY="86.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#infakManage" styleClass="sidebarButton" text="Zakat" GridPane.rowIndex="3">
                      <toggleGroup>
                         <ToggleGroup fx:id="groupButton1" />
                      </toggleGroup>
@@ -89,7 +86,7 @@
                         </ImageView>
                      </graphic>
                   </ToggleButton>
-                  <ToggleButton alignment="CENTER_LEFT" layoutX="10.0" layoutY="126.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#userManage" styleClass="sidebarButton" text="Operasional" GridPane.rowIndex="5">
+                  <ToggleButton alignment="CENTER_LEFT" layoutX="10.0" layoutY="126.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#infakManage" styleClass="sidebarButton" text="Operasional" GridPane.rowIndex="5">
                      <toggleGroup>
                         <ToggleGroup fx:id="groupButton11" />
                      </toggleGroup>
@@ -101,7 +98,7 @@
                         </ImageView>
                      </graphic>
                   </ToggleButton>
-                  <ToggleButton alignment="CENTER_LEFT" layoutX="10.0" layoutY="126.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#userManage" styleClass="sidebarButton" text="TPA" GridPane.rowIndex="6">
+                  <ToggleButton alignment="CENTER_LEFT" layoutX="10.0" layoutY="126.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#infakManage" styleClass="sidebarButton" text="TPA" GridPane.rowIndex="6">
                      <toggleGroup>
                         <ToggleGroup fx:id="groupButton12" />
                      </toggleGroup>
@@ -113,7 +110,7 @@
                         </ImageView>
                      </graphic>
                   </ToggleButton>
-                  <ToggleButton alignment="CENTER_LEFT" layoutX="10.0" layoutY="86.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#userManage" styleClass="sidebarButton" text="Pembangunan" GridPane.rowIndex="4">
+                  <ToggleButton alignment="CENTER_LEFT" layoutX="10.0" layoutY="86.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#infakManage" styleClass="sidebarButton" text="Pembangunan" GridPane.rowIndex="4">
                      <toggleGroup>
                         <ToggleGroup fx:id="groupButton2" />
                      </toggleGroup>

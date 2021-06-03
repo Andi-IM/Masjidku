@@ -24,9 +24,6 @@ public class AdminRoot {
     private MainApp mainApp;
     private String username = null;
 
-    @FXML
-    public ToggleGroup sidebarButton;
-
     public void setMainApp(MainApp mainApp, String username) {
         this.username = username;
         this.mainApp = mainApp;

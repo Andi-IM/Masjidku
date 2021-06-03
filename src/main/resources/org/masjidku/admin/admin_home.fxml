@@ -38,11 +38,8 @@
       </ImageView>
       <Text layoutX="125.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="app-title" text="Aplikasi Desktop MasjidKu " />
       <Text layoutX="54.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="headline" text="Assalamu'alaikum" />
-      <Text fx:id="greeting" fill="#3AAFA9" layoutX="54.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="headline" text="Bapak LOREM">
-         <font>
-            <Font name="Roboto Bold" size="25.0" />
-         </font>
-      </Text>
+      <Text fx:id="greeting" fill="#3AAFA9" layoutX="54.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0"
+            styleClass="headline" text="Bapak LOREM"/>
       <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="398.0" layoutY="42.0" onMouseClicked="#onLogoutClick" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <image>
             <Image url="@../icon/logout.png" />
