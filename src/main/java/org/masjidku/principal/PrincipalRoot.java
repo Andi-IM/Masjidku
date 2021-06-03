@@ -15,13 +15,25 @@
 
 package org.masjidku.principal;
 
+import javafx.event.ActionEvent;
+import javafx.scene.control.ToggleGroup;
 import org.masjidku.MainApp;
 
 public class PrincipalRoot {
+    public ToggleGroup groupButton;
     private MainApp mainApp;
+    private String username = null;
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(MainApp mainApp, String username) {
+        this.username = username;
         this.mainApp = mainApp;
     }
-    // TODO: 20/05/2021 Atur seperti AdminRoot.java
+
+    public void homeAction() { mainApp.setPrincipalView(username); }
+
+    public void laporanManage(ActionEvent actionEvent) { }
+
+    public void aboutAction(ActionEvent actionEvent) { mainApp.showAbout(); }
+
+    public void profileAction(ActionEvent actionEvent) { }
 }
