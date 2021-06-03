@@ -88,13 +88,13 @@ public class LoginController {
                                 mainApp.setAdminView(user.getUsername());
                                 break;
                             case ketua:
-                                alertInfo("Dalam Perbaikan", "Mohon maaf status ketua dalam perbaikan");
+                                mainApp.setPrincipalView(user.getUsername());
                                 break;
                             case sekretaris:
-                                alertInfo("Dalam Perbaikan", "Mohon maaf status sekretaris dalam perbaikan");
+                                mainApp.setSecretaryView(user.getUsername());
                                 break;
                             case bendahara:
-                                alertInfo("Dalam Perbaikan", "Mohon maaf status bendahara dalam perbaikan");
+                                mainApp.setAccountantView(user.getUsername());
                                 break;
                             default:
                                 throw new IllegalArgumentException("Illegal Data Argument");
@@ -112,17 +112,6 @@ public class LoginController {
         } catch (SQLException e) {
             System.err.println(e.getSQLState());
         }
-    }
-
-    @SuppressWarnings("SameParameterValue")
-    private void alertInfo(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.initOwner(dialogStage);
-        alert.setTitle("Prompt");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-
-        alert.showAndWait();
     }
 
     private void alertError(String header, String content) {
