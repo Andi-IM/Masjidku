@@ -15,9 +15,12 @@
 
 package org.masjidku.model.accounting.anakyatim;
 
-import org.masjidku.model.accounting.DataKeuangan;
+import org.masjidku.model.accounting.DataDonasi;
 
-public class DonasiAYatim extends DataKeuangan {
+public class DonasiAYatim extends DataDonasi {
+
+    public DonasiAYatim(){}
+
     public DonasiAYatim(String id, String donatur, double jumlah, String tanggal, String operator) {
         super(id, donatur, jumlah, tanggal, operator);
     }

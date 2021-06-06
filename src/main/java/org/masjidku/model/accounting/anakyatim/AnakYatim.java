@@ -15,10 +15,13 @@
 
 package org.masjidku.model.accounting.anakyatim;
 
-import org.masjidku.model.accounting.DataKeuangan;
+import org.masjidku.model.accounting.DataDonasi;
+import org.masjidku.model.accounting.UangKeluar;
 
-public class AnakYatim extends DataKeuangan {
+public class AnakYatim extends UangKeluar {
     private int usia;
+
+    public AnakYatim(){}
 
     public AnakYatim(String id, String tujuan, int usia, double jumlah, String tanggal, String operator) {
         super(id, tujuan, jumlah, tanggal, operator);

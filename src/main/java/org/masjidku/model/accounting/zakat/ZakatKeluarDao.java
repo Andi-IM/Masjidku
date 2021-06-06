@@ -13,15 +13,39 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model.accounting.operasional;
+package org.masjidku.model.accounting.zakat;
 
-import org.masjidku.model.accounting.DataDonasi;
-import org.masjidku.model.accounting.UangKeluar;
+import javafx.collections.ObservableList;
+import org.masjidku.model.DaoFactory;
 
-public class Operasional extends UangKeluar {
-    public Operasional(){ }
+import java.sql.SQLException;
 
-    public Operasional(String id, String tujuan, String keterangan, double jumlah, String tanggal, String operator) {
-        super(id, tujuan, keterangan, jumlah, tanggal, operator);
+public class ZakatKeluarDao extends DaoFactory<ZakatKeluar> {
+
+    private final String TABLE = "penerima_zakat";
+
+    @Override
+    protected ZakatKeluar get(String id) throws SQLException {
+        return null;
+    }
+
+    @Override
+    protected ObservableList<ZakatKeluar> getAll() throws SQLException {
+        return null;
+    }
+
+    @Override
+    protected void save(ZakatKeluar zakatKeluar) throws SQLException {
+
+    }
+
+    @Override
+    protected void update(String[] params) throws SQLException {
+
+    }
+
+    @Override
+    protected void delete(String id) throws SQLException {
+
     }
 }
