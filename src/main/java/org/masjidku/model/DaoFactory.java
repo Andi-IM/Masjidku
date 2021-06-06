@@ -16,17 +16,32 @@
 package org.masjidku.model;
 
 import javafx.collections.ObservableList;
+import org.masjidku.util.DatabaseConnection;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public interface Dao<T> {
-    T get(String id) throws SQLException;
+public abstract class DaoFactory<T> {
 
-    ObservableList<T> getAll() throws SQLException;
+    protected Connection con;
+    protected String query = null;
+    protected PreparedStatement ps;
+    protected ResultSet rs;
 
-    void save(T t) throws SQLException;
+    public boolean getConnection() {
+        DatabaseConnection connection = new DatabaseConnection();
+        if (connection.getConnection() != null) {
+            con = connection.getConnection();
+            return true;
+        }
+        return false;
+    }
 
-    void update(String[] params) throws SQLException;
-
-    void delete(String id) throws SQLException;
+    protected abstract T get(String id) throws SQLException;
+    protected abstract ObservableList<T> getAll() throws SQLException;
+    protected abstract void save(T t) throws SQLException;
+    protected abstract void update(String[] params) throws SQLException;
+    protected abstract void delete(String id) throws SQLException;
 }

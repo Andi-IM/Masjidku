@@ -13,24 +13,42 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.accountant;
+package org.masjidku.model.accounting.anakyatim;
 
-import javafx.fxml.FXML;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
-import org.masjidku.MainApp;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import org.masjidku.model.DaoFactory;
 
-public class AccountantHome {
-    @FXML
-    public Text greeting;
-    private MainApp mainApp;
+import java.sql.SQLException;
 
-    public void setMainApp(MainApp mainApp, String username) {
+public class AnakYatimDao extends DaoFactory<AnakYatim> {
 
-        this.mainApp = mainApp;
-        greeting.setText("Ibu "+username);
+    private final String TABLE = "infak_anakyatim";
+
+    @Override
+    public AnakYatim get(String id) throws SQLException {
+
+        return null;
     }
 
-    @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+    @Override
+    public ObservableList<AnakYatim> getAll() throws SQLException {
+        ObservableList<AnakYatim> donatur = FXCollections.observableArrayList();
+        return null;
+    }
+
+    @Override
+    public void save(AnakYatim anakYatim) throws SQLException {
+
+    }
+
+    @Override
+    public void update(String[] params) throws SQLException {
+
+    }
+
+    @Override
+    public void delete(String id) throws SQLException {
+
+    }
 }

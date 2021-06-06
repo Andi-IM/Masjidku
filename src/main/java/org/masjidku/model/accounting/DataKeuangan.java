@@ -13,24 +13,20 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.accountant;
+package org.masjidku.model.accounting;
 
-import javafx.fxml.FXML;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
-import org.masjidku.MainApp;
+public abstract class DataKeuangan {
+    String id;
+    String pengguna;
+    double jumlah;
+    String tanggal;
+    String operator;
 
-public class AccountantHome {
-    @FXML
-    public Text greeting;
-    private MainApp mainApp;
-
-    public void setMainApp(MainApp mainApp, String username) {
-
-        this.mainApp = mainApp;
-        greeting.setText("Ibu "+username);
+    public DataKeuangan(String id, String pengguna, double jumlah, String tanggal, String operator) {
+        this.id = id;
+        this.pengguna = pengguna;
+        this.jumlah = jumlah;
+        this.tanggal = tanggal;
+        this.operator = operator;
     }
-
-    @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
 }

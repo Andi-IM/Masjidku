@@ -13,20 +13,39 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model.accounting;
+package org.masjidku.model.accounting.pembangunan;
 
-public abstract class UangKeluar {
-    String id;
-    String tujuan;
-    double jumlah;
-    String tanggal;
-    String operator;
+import javafx.collections.ObservableList;
+import org.masjidku.model.DaoFactory;
 
-    public UangKeluar(String id, String tujuan, double jumlah, String tanggal, String operator) {
-        this.id = id;
-        this.tujuan = tujuan;
-        this.jumlah = jumlah;
-        this.tanggal = tanggal;
-        this.operator = operator;
+import java.sql.SQLException;
+
+public class PembangunanDao extends DaoFactory<Pembangunan> {
+
+    private final String TABLE = "pembangunan_keluar";
+
+    @Override
+    protected Pembangunan get(String id) throws SQLException {
+        return null;
+    }
+
+    @Override
+    protected ObservableList<Pembangunan> getAll() throws SQLException {
+        return null;
+    }
+
+    @Override
+    protected void save(Pembangunan pembangunan) throws SQLException {
+
+    }
+
+    @Override
+    protected void update(String[] params) throws SQLException {
+
+    }
+
+    @Override
+    protected void delete(String id) throws SQLException {
+
     }
 }

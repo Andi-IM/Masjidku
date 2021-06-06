@@ -13,18 +13,39 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model.user;
+package org.masjidku.model.accounting.operasional;
 
-public enum Jabatan{
-    admin("admin"),
-    ketua("ketua"),
-    sekretaris("sekretaris"),
-    bendahara("bendahara"),
-    none("");
+import javafx.collections.ObservableList;
+import org.masjidku.model.DaoFactory;
 
-    public final String toString;
+import java.sql.SQLException;
 
-    Jabatan(String toString) {
-        this.toString = toString;
+public class DonasiOperationalDao extends DaoFactory<DonasiOperasional> {
+
+    private final String TABLE = "infak_operasional";
+
+    @Override
+    protected DonasiOperasional get(String id) throws SQLException {
+        return null;
+    }
+
+    @Override
+    protected ObservableList<DonasiOperasional> getAll() throws SQLException {
+        return null;
+    }
+
+    @Override
+    protected void save(DonasiOperasional donasiOperasional) throws SQLException {
+
+    }
+
+    @Override
+    protected void update(String[] params) throws SQLException {
+
+    }
+
+    @Override
+    protected void delete(String id) throws SQLException {
+
     }
 }

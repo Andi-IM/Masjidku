@@ -15,9 +15,9 @@
 
 package org.masjidku.model.accounting.zakat;
 
-import org.masjidku.model.accounting.UangMasuk;
+import org.masjidku.model.accounting.DataKeuangan;
 
-public class ZakatMasuk extends UangMasuk {
+public class ZakatMasuk extends DataKeuangan {
     public ZakatMasuk(String id, String donatur, double jumlah, String tanggal, String operator) {
         super(id, donatur, jumlah, tanggal, operator);
     }
