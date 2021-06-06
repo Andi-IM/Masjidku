@@ -17,31 +17,13 @@ package org.masjidku.model.kegiatan;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.masjidku.model.Dao;
-import org.masjidku.util.DatabaseConnection;
+import org.masjidku.model.DaoFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TamuKegiatanDao implements Dao<TamuKegiatan> {
+public class TamuKegiatanDao extends DaoFactory<TamuKegiatan> {
     private final String TABLE = "tamukegiatan";
-    Connection con;
-    PreparedStatement ps;
-
-    public TamuKegiatanDao() {
-    }
-
-    public boolean getConnection(){
-        DatabaseConnection connection = new DatabaseConnection();
-        if (connection.getConnection() != null){
-            con = connection.getConnection();
-            return true;
-        }
-        return false;
-    }
-
 
     @Override
     public TamuKegiatan get(String id) throws SQLException {

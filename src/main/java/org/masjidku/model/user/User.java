@@ -15,7 +15,7 @@
 
 package org.masjidku.model.user;
 
-import static org.masjidku.model.user.Jabatan.*;
+import static org.masjidku.model.user.User.Jabatan.*;
 
 @SuppressWarnings("unused")
 public class User {
@@ -116,4 +116,19 @@ public class User {
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
     }
+
+    public enum Jabatan{
+        admin("admin"),
+        ketua("ketua"),
+        sekretaris("sekretaris"),
+        bendahara("bendahara"),
+        none("");
+
+        public final String toString;
+
+        Jabatan(String toString) {
+            this.toString = toString;
+        }
+    }
 }
+
