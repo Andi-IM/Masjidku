@@ -13,20 +13,39 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model.accounting;
+package org.masjidku.model.accounting.zakat;
 
-public abstract class DataKeuangan {
-    String id;
-    String pengguna;
-    double jumlah;
-    String tanggal;
-    String operator;
+import javafx.collections.ObservableList;
+import org.masjidku.model.DaoFactory;
 
-    public DataKeuangan(String id, String pengguna, double jumlah, String tanggal, String operator) {
-        this.id = id;
-        this.pengguna = pengguna;
-        this.jumlah = jumlah;
-        this.tanggal = tanggal;
-        this.operator = operator;
+import java.sql.SQLException;
+
+public class ZakatMasukDao extends DaoFactory<ZakatMasuk> {
+
+    private final String TABLE = "pemberi_zakat";
+
+    @Override
+    protected ZakatMasuk get(String id) throws SQLException {
+        return null;
+    }
+
+    @Override
+    protected ObservableList<ZakatMasuk> getAll() throws SQLException {
+        return null;
+    }
+
+    @Override
+    protected void save(ZakatMasuk zakatMasuk) throws SQLException {
+
+    }
+
+    @Override
+    protected void update(String[] params) throws SQLException {
+
+    }
+
+    @Override
+    protected void delete(String id) throws SQLException {
+
     }
 }

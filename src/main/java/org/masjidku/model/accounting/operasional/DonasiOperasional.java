@@ -15,9 +15,9 @@
 
 package org.masjidku.model.accounting.operasional;
 
-import org.masjidku.model.accounting.DataKeuangan;
+import org.masjidku.model.accounting.DataDonasi;
 
-public class DonasiOperasional extends DataKeuangan {
+public class DonasiOperasional extends DataDonasi {
     public DonasiOperasional(String id, String donatur, double jumlah, String tanggal, String operator) {
         super(id, donatur, jumlah, tanggal, operator);
     }

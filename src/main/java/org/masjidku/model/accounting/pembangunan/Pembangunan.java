@@ -15,10 +15,13 @@
 
 package org.masjidku.model.accounting.pembangunan;
 
-import org.masjidku.model.accounting.DataKeuangan;
+import org.masjidku.model.accounting.DataDonasi;
+import org.masjidku.model.accounting.UangKeluar;
 
-public class Pembangunan extends DataKeuangan {
-    public Pembangunan(String id, String tujuan, double jumlah, String tanggal, String operator) {
-        super(id, tujuan, jumlah, tanggal, operator);
+public class Pembangunan extends UangKeluar {
+    public Pembangunan() { }
+
+    public Pembangunan(String id, String tujuan, String keterangan, double jumlah, String tanggal, String operator) {
+        super(id, tujuan, keterangan, jumlah, tanggal, operator);
     }
 }
