@@ -13,34 +13,17 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model.tahunanggaran;
+package org.masjidku.model;
 
-public class TahunAnggaran {
-    private String tahun;
-    private String status;
+import javafx.collections.ObservableList;
 
-    public TahunAnggaran() {
-        this(null, null);
-    }
+import java.sql.SQLException;
 
-    public TahunAnggaran(String tahun, String status) {
-        setTahun(tahun);
-        setStatus(status);
-    }
+public abstract class Dao<T> extends DaoFactory<T> {
 
-    public String getTahun() {
-        return tahun;
-    }
-
-    public void setTahun(String tahun) {
-        this.tahun = tahun;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
+    protected abstract T get(String id) throws SQLException;
+    protected abstract ObservableList<T> getAll() throws SQLException;
+    protected abstract void save(T t) throws SQLException;
+    protected abstract void update(String[] params) throws SQLException;
+    protected abstract void delete(String id) throws SQLException;
 }

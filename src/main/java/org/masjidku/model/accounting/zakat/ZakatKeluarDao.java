@@ -16,11 +16,12 @@
 package org.masjidku.model.accounting.zakat;
 
 import javafx.collections.ObservableList;
+import org.masjidku.model.Dao;
 import org.masjidku.model.DaoFactory;
 
 import java.sql.SQLException;
 
-public class ZakatKeluarDao extends DaoFactory<ZakatKeluar> {
+public class ZakatKeluarDao extends Dao<ZakatKeluar> {
 
     private final String TABLE = "penerima_zakat";
 

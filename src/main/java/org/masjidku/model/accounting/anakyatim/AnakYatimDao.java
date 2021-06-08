@@ -17,17 +17,16 @@ package org.masjidku.model.accounting.anakyatim;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.masjidku.model.DaoFactory;
+import org.masjidku.model.Dao;
 
 import java.sql.SQLException;
 
-public class AnakYatimDao extends DaoFactory<AnakYatim> {
+public class AnakYatimDao extends Dao<AnakYatim> {
 
     private final String TABLE = "infak_anakyatim";
 
     @Override
     public AnakYatim get(String id) throws SQLException {
-
         return null;
     }
 

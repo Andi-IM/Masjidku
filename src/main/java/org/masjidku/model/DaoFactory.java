@@ -38,10 +38,4 @@ public abstract class DaoFactory<T> {
         }
         return false;
     }
-
-    protected abstract T get(String id) throws SQLException;
-    protected abstract ObservableList<T> getAll() throws SQLException;
-    protected abstract void save(T t) throws SQLException;
-    protected abstract void update(String[] params) throws SQLException;
-    protected abstract void delete(String id) throws SQLException;
 }
