@@ -13,24 +13,40 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.accountant;
+package org.masjidku.model.accounting.operasional;
 
-import javafx.fxml.FXML;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
-import org.masjidku.MainApp;
+import javafx.collections.ObservableList;
+import org.masjidku.model.Dao;
+import org.masjidku.model.DaoFactory;
 
-public class AccountantHome {
-    @FXML
-    public Text greeting;
-    private MainApp mainApp;
+import java.sql.SQLException;
 
-    public void setMainApp(MainApp mainApp, String username) {
+public class DonasiOperationalDao extends Dao<DonasiOperasional> {
 
-        this.mainApp = mainApp;
-        greeting.setText("Ibu "+username);
+    private final String TABLE = "infak_operasional";
+
+    @Override
+    protected DonasiOperasional get(String id) throws SQLException {
+        return null;
     }
 
-    @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+    @Override
+    protected ObservableList<DonasiOperasional> getAll() throws SQLException {
+        return null;
+    }
+
+    @Override
+    protected void save(DonasiOperasional donasiOperasional) throws SQLException {
+
+    }
+
+    @Override
+    protected void update(String[] params) throws SQLException {
+
+    }
+
+    @Override
+    protected void delete(String id) throws SQLException {
+
+    }
 }

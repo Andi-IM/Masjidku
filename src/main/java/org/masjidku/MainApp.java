@@ -19,14 +19,17 @@ import org.masjidku.principal.PrincipalHome;
 import org.masjidku.principal.PrincipalRoot;
 import org.masjidku.secretary.SecretaryHome;
 import org.masjidku.secretary.SecretaryRoot;
+import org.masjidku.model.session.Session;
 
 import java.io.IOException;
 import java.util.Objects;
 
 public class MainApp extends Application {
 
-    protected Stage primaryStage;
-    protected SplitPane rootLayout;
+    private Stage primaryStage;
+    private SplitPane rootLayout;
+
+    private Session session;
 
     /**
      * Constructor
