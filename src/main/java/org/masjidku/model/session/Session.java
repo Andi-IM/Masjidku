@@ -16,51 +16,72 @@
 package org.masjidku.model.session;
 
 import com.google.common.base.Stopwatch;
-import javafx.collections.ObservableList;
-import org.masjidku.model.Dao;
 import org.masjidku.model.DaoFactory;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
-public class Session extends DaoFactory<Session> {
+public class Session extends DaoFactory {
     // Effective Guava v15.0, this is the one way of creating a Stopwatch instance.
-    final Stopwatch stopwatch = Stopwatch.createStarted();
+    final Stopwatch stopwatch = Stopwatch.createUnstarted();
     private String time_elapsed;
+    private final String TABLE = "sessions";
 
     public Session(){
         stopwatch.start();
+        System.out.println("login on: "+getTimeStamp());
     }
 
     public void logout(){
         stopwatch.stop();
+        System.out.println(getUserDuration());
     };
 
-    private String getUserlongSession(){
-        long hour = stopwatch.elapsed(TimeUnit.HOURS);
-        long minutes = stopwatch.elapsed(TimeUnit.MINUTES);
-        long second = stopwatch.elapsed(TimeUnit.SECONDS);
+    private String getUserDuration(){
+        long actualSecond = stopwatch.elapsed(TimeUnit.SECONDS);
 
-        return null;
+        long hour = actualSecond / 3600;
+        long minutes = actualSecond % 3600 / 60;
+        long second = actualSecond % 60;
+
+        if (hour > 0 ) {
+            return hour +" jam "+ minutes+" menit"+second+" detik.";
+        }
+        if (minutes > 0){
+            return minutes+" menit "+second+" detik.";
+        }
+        return second+" detik.";
     }
 
-//        //Effective Guava v15.0, this is the one way of creating a Stopwatch instance.
-//        final Stopwatch stopwatch = Stopwatch.createStarted();
-//
-//        //Sleep for few random milliseconds.
-//        try {
-//            Thread.sleep(new Random().nextInt(1000));
-//        } catch (final InterruptedException interruptedException) {
-//            interruptedException.printStackTrace();
-//        }
-//
-//        stopwatch.stop(); //optional
-//
-//        System.out.println("Elapsed time ==> " + stopwatch);
-//        System.out.println("Elapsed time in Nanoseconds ==> " + stopwatch.elapsed(TimeUnit.NANOSECONDS));
-//        System.out.println("Elapsed time in Microseconds ==> " + stopwatch.elapsed(TimeUnit.MICROSECONDS));
-//        System.out.println("Elapsed time in Milliseconds ==> " + stopwatch.elapsed(TimeUnit.MILLISECONDS));
-//        System.out.println("Elapsed time in Seconds ==> " + stopwatch.elapsed(TimeUnit.SECONDS));
-//        //System.out.println("Elapsed time in Minutes ==> " + stopwatch.elapsed(TimeUnit.MINUTES));
+    private String getTimeStamp(){
+        LocalDateTime myDateObj = LocalDateTime.now();
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("yy-MM-dd HH:mm:ss");
+        return myDateObj.format(myFormatObj);
+    }
 
+    public void logUserSession(String userid) {
+        query = "INSERT INTO " + TABLE + "(userid, timestamp) VALUES(?,?)";
+        try {
+            ps = con.prepareStatement(query);
+            ps.setString(1, userid);
+            ps.setString(2, getTimeStamp());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateUserSession(String userid) {
+        query = "UPDATE " + TABLE + " SET duration=? WHERE userid=?";
+        try {
+            ps = con.prepareStatement(query);
+            ps.setString(1, getUserDuration());
+            ps.setString(2, userid);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

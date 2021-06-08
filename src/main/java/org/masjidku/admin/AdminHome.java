@@ -15,27 +15,29 @@
 
 package org.masjidku.admin;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 import org.masjidku.MainApp;
+import org.masjidku.model.user.User;
 
 public class AdminHome {
     @FXML
     public Text greeting;
 
     private MainApp mainApp;
+    private User user = null;
 
-    public void setMainApp(MainApp mainApp, String username) {
+    public void setMainApp(MainApp mainApp, User user) {
+        this.user = user;
         this.mainApp = mainApp;
-        greeting.setText("Bapak "+username);
+        greeting.setText("Bapak "+user.getUsername());
     }
 
     @FXML
     public void onLogoutClick() {
-        mainApp.onLogoutAction();
+        mainApp.onLogoutAction(user.getUserId());
     }
 
     @FXML
-    public void onKelolaPenggunaClick() { mainApp.showUser(); }
+    public void onKelolaPenggunaClick() { mainApp.showUser(user.getUserId()); }
 }
