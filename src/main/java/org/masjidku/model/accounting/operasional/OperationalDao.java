@@ -13,34 +13,40 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model.tahunanggaran;
+package org.masjidku.model.accounting.operasional;
 
-public class TahunAnggaran {
-    private String tahun;
-    private String status;
+import javafx.collections.ObservableList;
+import org.masjidku.model.Dao;
+import org.masjidku.model.DaoFactory;
 
-    public TahunAnggaran() {
-        this(null, null);
+import java.sql.SQLException;
+
+public class OperationalDao extends Dao<Operasional> {
+
+    private final String TABLE = "operasional_keluar";
+
+    @Override
+    protected Operasional get(String id) throws SQLException {
+        return null;
     }
 
-    public TahunAnggaran(String tahun, String status) {
-        setTahun(tahun);
-        setStatus(status);
+    @Override
+    protected ObservableList<Operasional> getAll() throws SQLException {
+        return null;
     }
 
-    public String getTahun() {
-        return tahun;
+    @Override
+    protected void save(Operasional operasional) throws SQLException {
+
     }
 
-    public void setTahun(String tahun) {
-        this.tahun = tahun;
+    @Override
+    protected void update(String[] params) throws SQLException {
+
     }
 
-    public String getStatus() {
-        return status;
-    }
+    @Override
+    protected void delete(String id) throws SQLException {
 
-    public void setStatus(String status) {
-        this.status = status;
     }
 }
