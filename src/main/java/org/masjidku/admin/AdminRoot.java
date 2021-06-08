@@ -18,27 +18,28 @@ package org.masjidku.admin;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleGroup;
 import org.masjidku.MainApp;
+import org.masjidku.model.user.User;
 
 public class AdminRoot {
 
     private MainApp mainApp;
-    private String username = null;
+    private User user = null;
 
-    public void setMainApp(MainApp mainApp, String username) {
-        this.username = username;
+    public void setMainApp(MainApp mainApp, User user) {
+        this.user = user;
         this.mainApp = mainApp;
     }
 
     @FXML
     public void homeAction() {
-        mainApp.setAdminView(username);
+        mainApp.setAdminView(user);
     }
 
     @FXML
     public void profileAction(){ }
 
     @FXML
-    public void userManage(){ mainApp.showUser(); }
+    public void userManage(){ mainApp.showUser(user.getUserId()); }
 
     @FXML
     public void aboutAction(){

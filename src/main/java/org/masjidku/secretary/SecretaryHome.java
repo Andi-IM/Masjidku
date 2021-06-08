@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import org.masjidku.MainApp;
+import org.masjidku.model.user.User;
 
 public class SecretaryHome {
     @FXML
@@ -28,15 +29,17 @@ public class SecretaryHome {
     @FXML
     public Text greeting;
     private MainApp mainApp;
+    private User user = null;
 
-    public void setMainApp(MainApp mainApp, String username) {
+    public void setMainApp(MainApp mainApp, User user) {
 
         this.mainApp = mainApp;
-        greeting.setText("Bapak "+username);
+        this.user = user;
+        greeting.setText("Bapak "+user.getUsername());
     }
 
     @FXML
-    public void onLogoutClick(MouseEvent mouseEvent) { mainApp.onLogoutAction(); }
+    public void onLogoutClick(MouseEvent mouseEvent) { mainApp.onLogoutAction(user.getUserId()); }
 
     @FXML
     public void onKelolaKegiatanClick(ActionEvent actionEvent) { }

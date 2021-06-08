@@ -16,20 +16,22 @@
 package org.masjidku.principal;
 
 import javafx.fxml.FXML;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import org.masjidku.MainApp;
+import org.masjidku.model.user.User;
 
 public class PrincipalHome {
     @FXML
     public Text greeting;
     private MainApp mainApp;
+    private User user = null;
 
-    public void setMainApp(MainApp mainApp, String username) {
+    public void setMainApp(MainApp mainApp, User user) {
         this.mainApp = mainApp;
-        greeting.setText("Bapak "+username);
+        this.user = user;
+        greeting.setText("Bapak "+user.getUsername());
     }
 
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+    public void onLogoutClick() { mainApp.onLogoutAction(user.getUserId()); }
 }

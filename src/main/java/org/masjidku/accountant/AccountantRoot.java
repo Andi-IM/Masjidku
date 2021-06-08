@@ -17,18 +17,19 @@ package org.masjidku.accountant;
 
 import javafx.event.ActionEvent;
 import org.masjidku.MainApp;
+import org.masjidku.model.user.User;
 
 public class AccountantRoot {
 
     private MainApp mainApp;
-    private String username = null;
+    private User user = null;
 
-    public void setMainApp(MainApp mainApp, String username) {
-        this.username = username;
+    public void setMainApp(MainApp mainApp, User user) {
+        this.user = user;
         this.mainApp = mainApp;
     }
 
-    public void homeAction(ActionEvent actionEvent) { mainApp.setAccountantView(username); }
+    public void homeAction(ActionEvent actionEvent) { mainApp.setAccountantView(user); }
 
     public void profileAction(ActionEvent actionEvent) { }
 

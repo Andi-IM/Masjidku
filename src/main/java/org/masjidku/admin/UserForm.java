@@ -44,14 +44,14 @@ public class UserForm implements Initializable {
     @FXML
     public CheckBox statusCheckBox;
 
+    private String user_id = null;
+
     // reference to main application
     private MainApp mainApp;
 
     // create some stage
     @SuppressWarnings("unused")
     private Stage dialogStage;
-
-    private final boolean okClicked = false;
 
     // setting the field
     public void setUser(User user) {
@@ -65,9 +65,10 @@ public class UserForm implements Initializable {
     /**
      * Is called by the main application to give a reference back to itself
      * @param mainApp the main application reference
+     * @param user_id user id
      */
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
+    public void setMainApp(MainApp mainApp, String user_id) {
+        this.mainApp = mainApp; this.user_id = user_id;
     }
 
     @Override
@@ -84,7 +85,7 @@ public class UserForm implements Initializable {
      * Log out user.
      */
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+    public void onLogoutClick() { mainApp.onLogoutAction(user_id); }
 
     /**
      * Change the checkbox state
@@ -111,7 +112,7 @@ public class UserForm implements Initializable {
      */
     @FXML
     public void gotoList() {
-        mainApp.showUser();
+        mainApp.showUser(user_id);
     }
 
     /**
@@ -133,14 +134,12 @@ public class UserForm implements Initializable {
                    if (dao.isUserExist(userid)){
                        dao.update(new String[]{user.getJabatan().toString, user.getStatus(), user.getUserId()});
                        alertInfo("Success", "User telah diperbarui!");
-                       mainApp.showUser();
                    }
                    else {
                        dao.save(user);
                        alertInfo("Success", "User ditambahkan!");
-                       mainApp.showUser();
                    }
-                   mainApp.showUser();
+                   mainApp.showUser(user.getUserId());
                } catch (SQLException e){
                    System.out.println(e.getSQLState());
                }
