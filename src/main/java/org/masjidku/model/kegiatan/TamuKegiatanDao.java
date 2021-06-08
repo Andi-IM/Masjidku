@@ -17,12 +17,13 @@ package org.masjidku.model.kegiatan;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.masjidku.model.Dao;
 import org.masjidku.model.DaoFactory;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TamuKegiatanDao extends DaoFactory<TamuKegiatan> {
+public class TamuKegiatanDao extends Dao<TamuKegiatan> {
     private final String TABLE = "tamukegiatan";
 
     @Override

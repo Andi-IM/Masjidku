@@ -18,13 +18,13 @@ package org.masjidku.model.user;
 import com.google.common.hash.Hashing;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.masjidku.model.DaoFactory;
+import org.masjidku.model.Dao;
 
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 
 @SuppressWarnings("unused")
-public class UserDao extends DaoFactory<User> {
+public class UserDao extends Dao<User> {
 
     private final String TABLE = "user";
 

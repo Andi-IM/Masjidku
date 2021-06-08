@@ -16,12 +16,13 @@
 package org.masjidku.model.user;
 
 import javafx.collections.ObservableList;
+import org.masjidku.model.Dao;
 import org.masjidku.model.DaoFactory;
 
 import java.sql.SQLException;
 
 @SuppressWarnings({"FieldCanBeLocal", "unused"})
-public class UserProfileDao extends DaoFactory<UserProfile> {
+public class UserProfileDao extends Dao<UserProfile> {
 
     private final String PROFILE_TABLE = "profil_user";
     private final String USER_TABLE = "user";

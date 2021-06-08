@@ -16,11 +16,12 @@
 package org.masjidku.model.accounting.operasional;
 
 import javafx.collections.ObservableList;
+import org.masjidku.model.Dao;
 import org.masjidku.model.DaoFactory;
 
 import java.sql.SQLException;
 
-public class OperationalDao extends DaoFactory<Operasional> {
+public class OperationalDao extends Dao<Operasional> {
 
     private final String TABLE = "operasional_keluar";
 

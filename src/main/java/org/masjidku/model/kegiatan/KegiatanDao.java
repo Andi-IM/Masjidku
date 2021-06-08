@@ -17,11 +17,12 @@ package org.masjidku.model.kegiatan;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.masjidku.model.Dao;
 import org.masjidku.model.DaoFactory;
 
 import java.sql.SQLException;
 
-public class KegiatanDao extends DaoFactory<Kegiatan> {
+public class KegiatanDao extends Dao<Kegiatan> {
 
     private final String TABLE = "kegiatan";
 
