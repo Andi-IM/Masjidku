@@ -44,7 +44,7 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Masjidku");
-
+        this.primaryStage.resizableProperty().setValue(Boolean.FALSE);
         // App icon
         this.primaryStage.getIcons()
                 .add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("./icon/favicon.png"))));
@@ -161,9 +161,10 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             ProfileController controller = loader.getController();
-            controller.setMainApp(this);
+            controller.setMainApp(this, user.getUserId());
+
         } catch (IOException e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 

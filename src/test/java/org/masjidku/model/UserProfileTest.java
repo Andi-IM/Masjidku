@@ -27,23 +27,24 @@ public class UserProfileTest extends User {
 
     @Before
     public void setUp() {
-        profile = new UserProfile(
+        User user = new User(
                 "ucok",
-                "123456",
                 "Ucok",
-                "Medan",
                 "Sekretaris",
-                "123456"
+                "Aktif",
+                "null",
+                "null"
         );
+        profile = new UserProfile(user);
     }
 
     @Test
     public void testGetId() {
-        assertEquals("ucok", profile.getUserId());
+        assertEquals("ucok", profile.getUser().getUserId());
     }
 
     @Test
     public void testGetJabatan() {
-        assertEquals("sekretaris", profile.getJabatan().toString);
+        assertEquals("sekretaris", profile.getUser().getJabatan().toString);
     }
 }

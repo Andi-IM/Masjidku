@@ -38,5 +38,5 @@ public class PrincipalRoot {
     public void aboutAction() { mainApp.showAbout(); }
 
     @FXML
-    public void profileAction() { }
+    public void profileAction() { mainApp.showProfile(); }
 }

@@ -33,7 +33,7 @@ public class SecretaryRoot {
     public void homeAction() { mainApp.setSecretaryView(); }
 
     @FXML
-    public void profileAction() { }
+    public void profileAction() { mainApp.showProfile(); }
 
     @FXML
     public void activityManage() { }
