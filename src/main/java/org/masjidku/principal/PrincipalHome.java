@@ -24,14 +24,12 @@ public class PrincipalHome {
     @FXML
     public Text greeting;
     private MainApp mainApp;
-    private User user = null;
 
-    public void setMainApp(MainApp mainApp, User user) {
+    public void setMainApp(MainApp mainApp, String username) {
         this.mainApp = mainApp;
-        this.user = user;
-        greeting.setText("Bapak "+user.getUsername());
+        greeting.setText("Bapak "+username);
     }
 
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(user.getUserId()); }
+    public void onLogoutClick() { mainApp.onLogoutAction(); }
 }

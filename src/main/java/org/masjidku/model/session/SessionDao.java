@@ -13,30 +13,14 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.accountant;
+package org.masjidku.model.session;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import org.masjidku.MainApp;
-import org.masjidku.model.user.User;
+import javafx.collections.ObservableList;
 
-public class AccountantRoot {
-
-    private MainApp mainApp;
-
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
-    }
-
-    @FXML
-    public void homeAction() { mainApp.setAccountantView(); }
-
-    @FXML
-    public void profileAction() { }
-
-    @FXML
-    public void infakManage() { }
-
-    @FXML
-    public void aboutAction() { mainApp.showAbout(); }
+public interface SessionDao {
+    void logUserSession(String userid);
+    void updateUserSession(String sessionId);
+    UserSession getSessionData(String id);
+    ObservableList<UserSession> getAllSessions();
+    ObservableList<UserSession> getAllSessions(String userid);
 }

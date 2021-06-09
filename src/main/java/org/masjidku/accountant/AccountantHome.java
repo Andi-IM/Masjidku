@@ -24,14 +24,12 @@ public class AccountantHome {
     @FXML
     private Text greeting;
     private MainApp mainApp;
-    private User user = null;
 
-    public void setMainApp(MainApp mainApp, User user) {
+    public void setMainApp(MainApp mainApp, String username) {
         this.mainApp = mainApp;
-        this.user = user;
-        greeting.setText(user.getUsername());
+        greeting.setText(username);
     }
 
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(user.getUserId()); }
+    public void onLogoutClick() { mainApp.onLogoutAction(); }
 }
