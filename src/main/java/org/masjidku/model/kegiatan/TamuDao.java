@@ -18,33 +18,13 @@ package org.masjidku.model.kegiatan;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.masjidku.model.Dao;
-import org.masjidku.util.DatabaseConnection;
+import org.masjidku.model.DaoFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TamuDao implements Dao<Tamu> {
-
-    private Connection con;
-    private String query;
-    private PreparedStatement ps;
-    private ResultSet rs;
+public class TamuDao extends Dao<Tamu> {
 
     private final String TABLE = "tamu";
-
-    public TamuDao() {
-    }
-
-    public boolean getConnection(){
-        DatabaseConnection connection = new DatabaseConnection();
-        if (connection.getConnection() != null){
-            con = connection.getConnection();
-            return true;
-        }
-        return false;
-    }
 
     @Override
     public Tamu get(String id) throws SQLException {

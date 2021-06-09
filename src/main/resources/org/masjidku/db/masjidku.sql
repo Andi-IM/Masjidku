@@ -17,8 +17,8 @@
 CREATE DATABASE IF NOT EXISTS `masjidku` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `masjidku`;
 
--- Dumping structure for table masjidku.infak_anakyatim
-CREATE TABLE IF NOT EXISTS `infak_anakyatim` (
+-- Dumping structure for table masjidku.infakanakyatim
+CREATE TABLE IF NOT EXISTS `infakanakyatim` (
   `id` int(11) DEFAULT NULL,
   `donatur` varchar(255) DEFAULT 'HAMBA ALLAH',
   `jumlah` double DEFAULT NULL,
@@ -26,10 +26,12 @@ CREATE TABLE IF NOT EXISTS `infak_anakyatim` (
   `operator` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Data exporting was unselected.
+-- Dumping data for table masjidku.infakanakyatim: ~0 rows (approximately)
+/*!40000 ALTER TABLE `infakanakyatim` DISABLE KEYS */;
+/*!40000 ALTER TABLE `infakanakyatim` ENABLE KEYS */;
 
--- Dumping structure for table masjidku.infak_operasional
-CREATE TABLE IF NOT EXISTS `infak_operasional` (
+-- Dumping structure for table masjidku.infakoperasional
+CREATE TABLE IF NOT EXISTS `infakoperasional` (
   `id` int(11) DEFAULT NULL,
   `donatur` varchar(255) DEFAULT 'HAMBA ALLAH',
   `jumlah` double DEFAULT NULL,
@@ -37,10 +39,12 @@ CREATE TABLE IF NOT EXISTS `infak_operasional` (
   `operator` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Data exporting was unselected.
+-- Dumping data for table masjidku.infakoperasional: ~0 rows (approximately)
+/*!40000 ALTER TABLE `infakoperasional` DISABLE KEYS */;
+/*!40000 ALTER TABLE `infakoperasional` ENABLE KEYS */;
 
--- Dumping structure for table masjidku.infak_pembangunan
-CREATE TABLE IF NOT EXISTS `infak_pembangunan` (
+-- Dumping structure for table masjidku.infakpembangunan
+CREATE TABLE IF NOT EXISTS `infakpembangunan` (
   `id` int(11) DEFAULT NULL,
   `donatur` varchar(255) DEFAULT 'HAMBA ALLAH',
   `jumlah` double DEFAULT NULL,
@@ -48,10 +52,12 @@ CREATE TABLE IF NOT EXISTS `infak_pembangunan` (
   `operator` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Data exporting was unselected.
+-- Dumping data for table masjidku.infakpembangunan: ~0 rows (approximately)
+/*!40000 ALTER TABLE `infakpembangunan` DISABLE KEYS */;
+/*!40000 ALTER TABLE `infakpembangunan` ENABLE KEYS */;
 
--- Dumping structure for table masjidku.infak_tpa
-CREATE TABLE IF NOT EXISTS `infak_tpa` (
+-- Dumping structure for table masjidku.infaktpa
+CREATE TABLE IF NOT EXISTS `infaktpa` (
   `id` int(11) DEFAULT NULL,
   `donatur` varchar(255) DEFAULT 'HAMBA ALLAH',
   `jumlah` double DEFAULT NULL,
@@ -59,7 +65,9 @@ CREATE TABLE IF NOT EXISTS `infak_tpa` (
   `operator` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Data exporting was unselected.
+-- Dumping data for table masjidku.infaktpa: ~0 rows (approximately)
+/*!40000 ALTER TABLE `infaktpa` DISABLE KEYS */;
+/*!40000 ALTER TABLE `infaktpa` ENABLE KEYS */;
 
 -- Dumping structure for table masjidku.kegiatan
 CREATE TABLE IF NOT EXISTS `kegiatan` (
@@ -72,10 +80,12 @@ CREATE TABLE IF NOT EXISTS `kegiatan` (
   PRIMARY KEY (`kegiatanID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Data exporting was unselected.
+-- Dumping data for table masjidku.kegiatan: ~0 rows (approximately)
+/*!40000 ALTER TABLE `kegiatan` DISABLE KEYS */;
+/*!40000 ALTER TABLE `kegiatan` ENABLE KEYS */;
 
--- Dumping structure for table masjidku.operasional_keluar
-CREATE TABLE IF NOT EXISTS `operasional_keluar` (
+-- Dumping structure for table masjidku.operasionalkeluar
+CREATE TABLE IF NOT EXISTS `operasionalkeluar` (
   `id` int(11) DEFAULT NULL,
   `nama` varchar(50) DEFAULT NULL,
   `jumlah` double DEFAULT NULL,
@@ -83,10 +93,12 @@ CREATE TABLE IF NOT EXISTS `operasional_keluar` (
   `operator` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Data exporting was unselected.
+-- Dumping data for table masjidku.operasionalkeluar: ~0 rows (approximately)
+/*!40000 ALTER TABLE `operasionalkeluar` DISABLE KEYS */;
+/*!40000 ALTER TABLE `operasionalkeluar` ENABLE KEYS */;
 
--- Dumping structure for table masjidku.pembangunan_keluar
-CREATE TABLE IF NOT EXISTS `pembangunan_keluar` (
+-- Dumping structure for table masjidku.pembangunankeluar
+CREATE TABLE IF NOT EXISTS `pembangunankeluar` (
   `id` int(11) DEFAULT NULL,
   `nama` varchar(50) DEFAULT NULL,
   `jumlah` double DEFAULT NULL,
@@ -94,22 +106,26 @@ CREATE TABLE IF NOT EXISTS `pembangunan_keluar` (
   `operator` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Data exporting was unselected.
+-- Dumping data for table masjidku.pembangunankeluar: ~0 rows (approximately)
+/*!40000 ALTER TABLE `pembangunankeluar` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pembangunankeluar` ENABLE KEYS */;
 
 -- Dumping structure for table masjidku.pemberi_zakat
 CREATE TABLE IF NOT EXISTS `pemberi_zakat` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nama` varchar(50) DEFAULT NULL,
   `jumlah` double DEFAULT NULL,
-  `tanggal` date DEFAULT NULL,
+  `tahun` year(4) DEFAULT NULL,
   `operator` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Data exporting was unselected.
+-- Dumping data for table masjidku.pemberi_zakat: ~0 rows (approximately)
+/*!40000 ALTER TABLE `pemberi_zakat` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pemberi_zakat` ENABLE KEYS */;
 
--- Dumping structure for table masjidku.penerima_anakyatim
-CREATE TABLE IF NOT EXISTS `penerima_anakyatim` (
+-- Dumping structure for table masjidku.penerimaanakyatim
+CREATE TABLE IF NOT EXISTS `penerimaanakyatim` (
   `id` int(11) DEFAULT NULL,
   `nama` varchar(50) DEFAULT NULL,
   `usia` int(11) DEFAULT NULL,
@@ -118,19 +134,23 @@ CREATE TABLE IF NOT EXISTS `penerima_anakyatim` (
   `operator` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Data exporting was unselected.
+-- Dumping data for table masjidku.penerimaanakyatim: ~0 rows (approximately)
+/*!40000 ALTER TABLE `penerimaanakyatim` DISABLE KEYS */;
+/*!40000 ALTER TABLE `penerimaanakyatim` ENABLE KEYS */;
 
 -- Dumping structure for table masjidku.penerima_zakat
 CREATE TABLE IF NOT EXISTS `penerima_zakat` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nama` varchar(50) DEFAULT NULL,
   `jumlah` double DEFAULT NULL,
-  `tanggal` date DEFAULT NULL,
+  `tahun` year(4) DEFAULT NULL,
   `operator` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Data exporting was unselected.
+-- Dumping data for table masjidku.penerima_zakat: ~0 rows (approximately)
+/*!40000 ALTER TABLE `penerima_zakat` DISABLE KEYS */;
+/*!40000 ALTER TABLE `penerima_zakat` ENABLE KEYS */;
 
 -- Dumping structure for table masjidku.profil_user
 CREATE TABLE IF NOT EXISTS `profil_user` (
@@ -141,15 +161,11 @@ CREATE TABLE IF NOT EXISTS `profil_user` (
   CONSTRAINT `foreign_userid` FOREIGN KEY (`userid`) REFERENCES `user` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Data exporting was unselected.
-
--- Dumping structure for table masjidku.reports
-CREATE TABLE IF NOT EXISTS `reports` (
-  `report_name` varchar(150) NOT NULL,
-  `report_jasper` blob NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- Data exporting was unselected.
+-- Dumping data for table masjidku.profil_user: ~0 rows (approximately)
+/*!40000 ALTER TABLE `profil_user` DISABLE KEYS */;
+INSERT INTO `profil_user` (`userid`, `notelp`, `alamat`) VALUES
+	('paijo', '12345678', 'jl. Kisanak');
+/*!40000 ALTER TABLE `profil_user` ENABLE KEYS */;
 
 -- Dumping structure for table masjidku.tahunanggaran
 CREATE TABLE IF NOT EXISTS `tahunanggaran` (
@@ -157,7 +173,9 @@ CREATE TABLE IF NOT EXISTS `tahunanggaran` (
   `status` enum('Aktif','Nonaktif') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Data exporting was unselected.
+-- Dumping data for table masjidku.tahunanggaran: ~0 rows (approximately)
+/*!40000 ALTER TABLE `tahunanggaran` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tahunanggaran` ENABLE KEYS */;
 
 -- Dumping structure for table masjidku.tamu
 CREATE TABLE IF NOT EXISTS `tamu` (
@@ -169,7 +187,9 @@ CREATE TABLE IF NOT EXISTS `tamu` (
   PRIMARY KEY (`tamuID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Data exporting was unselected.
+-- Dumping data for table masjidku.tamu: ~0 rows (approximately)
+/*!40000 ALTER TABLE `tamu` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tamu` ENABLE KEYS */;
 
 -- Dumping structure for table masjidku.tamukegiatan
 CREATE TABLE IF NOT EXISTS `tamukegiatan` (
@@ -184,10 +204,12 @@ CREATE TABLE IF NOT EXISTS `tamukegiatan` (
   CONSTRAINT `tamukegiatan_tamu_tamuID_fk` FOREIGN KEY (`id_tamu`) REFERENCES `tamu` (`tamuID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Data exporting was unselected.
+-- Dumping data for table masjidku.tamukegiatan: ~0 rows (approximately)
+/*!40000 ALTER TABLE `tamukegiatan` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tamukegiatan` ENABLE KEYS */;
 
--- Dumping structure for table masjidku.tpa_keluar
-CREATE TABLE IF NOT EXISTS `tpa_keluar` (
+-- Dumping structure for table masjidku.tpakeluar
+CREATE TABLE IF NOT EXISTS `tpakeluar` (
   `id` int(11) DEFAULT NULL,
   `nama` varchar(50) DEFAULT NULL,
   `jumlah` double DEFAULT NULL,
@@ -195,7 +217,9 @@ CREATE TABLE IF NOT EXISTS `tpa_keluar` (
   `operator` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Data exporting was unselected.
+-- Dumping data for table masjidku.tpakeluar: ~0 rows (approximately)
+/*!40000 ALTER TABLE `tpakeluar` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tpakeluar` ENABLE KEYS */;
 
 -- Dumping structure for table masjidku.user
 CREATE TABLE IF NOT EXISTS `user` (
@@ -209,7 +233,12 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Data exporting was unselected.
+-- Dumping data for table masjidku.user: ~2 rows (approximately)
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` (`userid`, `password`, `username`, `jabatan`, `status`, `created_at`, `updated_at`) VALUES
+	('paijo', '3c0becdf230ba5a952c9a499a2cf8aade19b56b9309dad1c0dc4cfc5a48a0824', NULL, 'ketua', 'Aktif', NULL, NULL),
+	('root', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Admin', 'admin', 'Aktif', NULL, NULL);
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;

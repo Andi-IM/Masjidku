@@ -13,8 +13,9 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model.tahunanggaran;
+package org.masjidku.model;
 
+import javafx.collections.ObservableList;
 import org.masjidku.util.DatabaseConnection;
 
 import java.sql.Connection;
@@ -22,17 +23,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TaDao {
-    private Connection con;
-    private String query;
-    private PreparedStatement ps;
-    private ResultSet rs;
+public abstract class DaoFactory<T> {
 
-    private final String TA_TABLE = "tahunanggaran";
-
-    //constructor
-    public TaDao() {
-    }
+    protected Connection con;
+    protected String query = null;
+    protected PreparedStatement ps;
+    protected ResultSet rs;
 
     public boolean getConnection() {
         DatabaseConnection connection = new DatabaseConnection();
@@ -42,25 +38,4 @@ public class TaDao {
         }
         return false;
     }
-
-    public String getYear() throws SQLException {
-        query = "SELECT * FROM " + TA_TABLE + " WHERE status='Aktif'";
-        ps = con.prepareStatement(query);
-        rs = ps.executeQuery();
-
-        if (rs.next()) {
-            String resultYear = rs.getString(1);
-            return resultYear.substring(0, 4);
-        }
-        return null;
-    }
-
-    public void save(TahunAnggaran tahunAnggaran) throws SQLException {
-        query = "INSERT INTO " + TA_TABLE + "(tahun, status) VALUES(?, ?)";
-        ps = con.prepareStatement(query);
-        ps.setString(1, tahunAnggaran.getTahun());
-        ps.setString(2, tahunAnggaran.getStatus());
-        ps.executeUpdate();
-    }
-
 }

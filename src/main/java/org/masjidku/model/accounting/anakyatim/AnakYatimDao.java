@@ -13,16 +13,41 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.accountant;
+package org.masjidku.model.accounting.anakyatim;
 
-import org.masjidku.MainApp;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import org.masjidku.model.Dao;
 
-public class AccountantHome {
-    private MainApp mainApp;
+import java.sql.SQLException;
 
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
+public class AnakYatimDao extends Dao<AnakYatim> {
+
+    private final String TABLE = "infak_anakyatim";
+
+    @Override
+    public AnakYatim get(String id) throws SQLException {
+        return null;
     }
 
-    // TODO: 20/05/2021 Atur seperti AdminHome.java
+    @Override
+    public ObservableList<AnakYatim> getAll() throws SQLException {
+        ObservableList<AnakYatim> donatur = FXCollections.observableArrayList();
+        return null;
+    }
+
+    @Override
+    public void save(AnakYatim anakYatim) throws SQLException {
+
+    }
+
+    @Override
+    public void update(String[] params) throws SQLException {
+
+    }
+
+    @Override
+    public void delete(String id) throws SQLException {
+
+    }
 }
