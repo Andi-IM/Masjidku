@@ -44,8 +44,6 @@ public class UserForm implements Initializable {
     @FXML
     public CheckBox statusCheckBox;
 
-    private String user_id = null;
-
     // reference to main application
     private MainApp mainApp;
 
@@ -65,10 +63,9 @@ public class UserForm implements Initializable {
     /**
      * Is called by the main application to give a reference back to itself
      * @param mainApp the main application reference
-     * @param user_id user id
      */
-    public void setMainApp(MainApp mainApp, String user_id) {
-        this.mainApp = mainApp; this.user_id = user_id;
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
     }
 
     @Override
@@ -85,7 +82,7 @@ public class UserForm implements Initializable {
      * Log out user.
      */
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(user_id); }
+    public void onLogoutClick() { mainApp.onLogoutAction(); }
 
     /**
      * Change the checkbox state
@@ -112,7 +109,7 @@ public class UserForm implements Initializable {
      */
     @FXML
     public void gotoList() {
-        mainApp.showUser(user_id);
+        mainApp.showUser();
     }
 
     /**
@@ -139,7 +136,7 @@ public class UserForm implements Initializable {
                        dao.save(user);
                        alertInfo("Success", "User ditambahkan!");
                    }
-                   mainApp.showUser(user.getUserId());
+                   mainApp.showUser();
                } catch (SQLException e){
                    System.out.println(e.getSQLState());
                }

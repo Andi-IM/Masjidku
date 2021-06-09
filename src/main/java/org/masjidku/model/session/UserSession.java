@@ -15,8 +15,6 @@
 
 package org.masjidku.model.session;
 
-
-@SuppressWarnings("unused")
 public final class UserSession {
     private String session_id;
     private String userid;

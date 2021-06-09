@@ -25,19 +25,17 @@ public class AdminHome {
     public Text greeting;
 
     private MainApp mainApp;
-    private User user = null;
 
-    public void setMainApp(MainApp mainApp, User user) {
-        this.user = user;
+    public void setMainApp(MainApp mainApp, String username) {
         this.mainApp = mainApp;
-        greeting.setText("Bapak "+user.getUsername());
+        greeting.setText("Bapak "+username);
     }
 
     @FXML
     public void onLogoutClick() {
-        mainApp.onLogoutAction(user.getUserId());
+        mainApp.onLogoutAction();
     }
 
     @FXML
-    public void onKelolaPenggunaClick() { mainApp.showUser(user.getUserId()); }
+    public void onKelolaPenggunaClick() { mainApp.showUser(); }
 }

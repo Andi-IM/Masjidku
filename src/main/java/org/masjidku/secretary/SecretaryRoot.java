@@ -15,28 +15,29 @@
 
 package org.masjidku.secretary;
 
-import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.ToggleGroup;
 import org.masjidku.MainApp;
-import org.masjidku.model.user.User;
 
 public class SecretaryRoot {
 
+    @FXML
     public ToggleGroup groupButton;
     private MainApp mainApp;
-    private User user = null;
     
-    
-    public void setMainApp(MainApp mainApp, User user) {
-        this.user = user;
+    public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
-    public void homeAction(ActionEvent actionEvent) { mainApp.setSecretaryView(user); }
+    @FXML
+    public void homeAction() { mainApp.setSecretaryView(); }
 
-    public void profileAction(ActionEvent actionEvent) { }
+    @FXML
+    public void profileAction() { }
 
-    public void activityManage(ActionEvent actionEvent) { }
+    @FXML
+    public void activityManage() { }
 
-    public void aboutAction(ActionEvent actionEvent) { mainApp.showAbout(); }
+    @FXML
+    public void aboutAction() { mainApp.showAbout(); }
 }

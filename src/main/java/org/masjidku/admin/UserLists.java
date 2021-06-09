@@ -62,8 +62,6 @@ public class UserLists implements Initializable {
     //Reference to the main application.
     private MainApp mainApp;
 
-    private String user_id = null;
-
     // create some stage
     @SuppressWarnings("unused")
     private Stage dialogStage;
@@ -84,8 +82,8 @@ public class UserLists implements Initializable {
      * Is called by the main application to give a reference back to itself
      * @param mainApp reference to main application
      */
-    public void setMainApp(MainApp mainApp, String user_id) {
-        this.mainApp = mainApp; this.user_id = user_id;
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
     }
 
     /**
@@ -93,7 +91,7 @@ public class UserLists implements Initializable {
      */
     @FXML
     public void onLogoutClick() {
-        mainApp.onLogoutAction(user_id);
+        mainApp.onLogoutAction();
     }
 
     /**
