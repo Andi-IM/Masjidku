@@ -18,32 +18,13 @@ package org.masjidku.model.kegiatan;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.masjidku.model.Dao;
-import org.masjidku.util.DatabaseConnection;
+import org.masjidku.model.DaoFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class KegiatanDao implements Dao<Kegiatan> {
-
-    private Connection con;
-    private String query;
-    private PreparedStatement ps;
-    private ResultSet rs;
+public class KegiatanDao extends Dao<Kegiatan> {
 
     private final String TABLE = "kegiatan";
-
-    public KegiatanDao() { }
-
-    public boolean getConnection(){
-        DatabaseConnection connection = new DatabaseConnection();
-        if (connection.getConnection() != null) {
-            con = connection.getConnection();
-            return true;
-        }
-        return false;
-    }
 
     @Override
     public Kegiatan get(String id) throws SQLException {

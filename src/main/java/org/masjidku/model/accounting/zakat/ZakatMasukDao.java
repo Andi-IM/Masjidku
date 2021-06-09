@@ -13,16 +13,39 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.accountant;
+package org.masjidku.model.accounting.zakat;
 
-import org.masjidku.MainApp;
+import javafx.collections.ObservableList;
+import org.masjidku.model.Dao;
 
-public class AccountantHome {
-    private MainApp mainApp;
+import java.sql.SQLException;
 
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
+public class ZakatMasukDao extends Dao<ZakatMasuk> {
+
+    private final String TABLE = "pemberi_zakat";
+
+    @Override
+    protected ZakatMasuk get(String id) throws SQLException {
+        return null;
     }
 
-    // TODO: 20/05/2021 Atur seperti AdminHome.java
+    @Override
+    protected ObservableList<ZakatMasuk> getAll() throws SQLException {
+        return null;
+    }
+
+    @Override
+    protected void save(ZakatMasuk zakatMasuk) throws SQLException {
+
+    }
+
+    @Override
+    protected void update(String[] params) throws SQLException {
+
+    }
+
+    @Override
+    protected void delete(String id) throws SQLException {
+
+    }
 }

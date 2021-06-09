@@ -15,18 +15,37 @@
 
 package org.masjidku.model.accounting;
 
-public abstract class UangKeluar {
-    String id;
-    String tujuan;
-    double jumlah;
-    String tanggal;
-    String operator;
+public abstract class UangKeluar extends DataDonasi {
+
+    private String tujuan;
+    private String keterangan = "";
+
+    public UangKeluar(){ }
 
     public UangKeluar(String id, String tujuan, double jumlah, String tanggal, String operator) {
-        this.id = id;
+        super(id, jumlah, tanggal, operator);
         this.tujuan = tujuan;
-        this.jumlah = jumlah;
-        this.tanggal = tanggal;
-        this.operator = operator;
+    }
+
+    public UangKeluar(String id, String tujuan, String keterangan, double jumlah, String tanggal, String operator) {
+        super(id, jumlah, tanggal, operator);
+        this.tujuan = tujuan;
+        this.keterangan = keterangan;
+    }
+
+    public String getTujuan() {
+        return tujuan;
+    }
+
+    public void setTujuan(String tujuan) {
+        this.tujuan = tujuan;
+    }
+
+    public String getKeterangan() {
+        return keterangan;
+    }
+
+    public void setKeterangan(String keterangan) {
+        this.keterangan = keterangan;
     }
 }

@@ -19,14 +19,11 @@ import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
 
-public interface Dao<T> {
-    T get(String id) throws SQLException;
+public abstract class Dao<T> extends DaoFactory<T> {
 
-    ObservableList<T> getAll() throws SQLException;
-
-    void save(T t) throws SQLException;
-
-    void update(String[] params) throws SQLException;
-
-    void delete(String id) throws SQLException;
+    protected abstract T get(String id) throws SQLException;
+    protected abstract ObservableList<T> getAll() throws SQLException;
+    protected abstract void save(T t) throws SQLException;
+    protected abstract void update(String[] params) throws SQLException;
+    protected abstract void delete(String id) throws SQLException;
 }
