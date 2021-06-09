@@ -47,19 +47,22 @@ public class UserProfileDao extends DaoFactory {
         ps.executeUpdate();
     }
 
-    public User getFullUserData() throws SQLException {
+    public User getFullUserData(String userid) throws SQLException {
         UserProfile model = new UserProfile();
         query = "SELECT " + USER_TABLE + ".userid, password, username, jabatan, notelp, alamat " +
-                "FROM " + USER_TABLE + " INNER JOIN " + PROFILE_TABLE + " pu on " + USER_TABLE + ".userid = pu.userid";
+                "FROM " + USER_TABLE + " INNER JOIN " + PROFILE_TABLE + " pu on " + USER_TABLE + ".userid = pu.userid " +
+                "WHERE "+USER_TABLE+".userid=?";
         ps = con.prepareStatement(query);
+        ps.setString(1, userid);
 
         rs = ps.executeQuery();
         if (rs.next()) {
             model.setUserId(rs.getString(1));
             model.setPassword(rs.getString(2));
             model.setUsername(rs.getString(3));
-            model.setNotelp(rs.getString(4));
-            model.setAlamat(rs.getString(5));
+            model.setJabatan(rs.getString(4));
+            model.setNotelp(rs.getString(5));
+            model.setAlamat(rs.getString(6));
         }
         return model;
     }
