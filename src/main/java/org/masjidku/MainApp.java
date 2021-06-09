@@ -12,6 +12,7 @@ import org.masjidku.accountant.AccountantRoot;
 import org.masjidku.admin.*;
 import org.masjidku.controller.HomeController;
 import org.masjidku.controller.LoginController;
+import org.masjidku.controller.ProfileController;
 import org.masjidku.controller.RootLayoutController;
 import org.masjidku.model.session.Session;
 import org.masjidku.model.session.UserSession;
@@ -149,6 +150,24 @@ public class MainApp extends Application {
     }
 
     public void showProfile(){
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("profile.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            ProfileController controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public void editProfile() {
 
     }
 

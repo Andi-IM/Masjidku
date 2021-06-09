@@ -15,37 +15,24 @@
 
 package org.masjidku.controller;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.event.ActionEvent;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import org.masjidku.MainApp;
 
-public class ProfileController {
+public class EditProfile {
+    public TextField txtUserId;
+    public PasswordField txtOldPassword;
+    public PasswordField txtNewPassword;
+    public PasswordField txtConfirmPassword;
+    public TextField txtNoTel;
+    public TextField txtAlamat;
 
-    @FXML
-    public Label userId;
-    @FXML
-    public Label username;
-    @FXML
-    public Label userRole;
-    @FXML
-    public Label userPass;
-    @FXML
-    public Label userPhoneNum;
-    @FXML
-    public Label userAddress;
-
-    private MainApp mainApp;
-
-    @FXML
-    public void onLogoutClick() {
-        mainApp.onLogoutAction();
+    public void clearForm(ActionEvent actionEvent) {
     }
 
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
+    public void onUserSubmitted(ActionEvent actionEvent) {
     }
 
-    @FXML
-    public void onEditProfile() { mainApp.editProfile(); }
+    public void onLogoutClick(MouseEvent mouseEvent) { }
 }
