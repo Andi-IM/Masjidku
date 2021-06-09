@@ -78,11 +78,8 @@
                                     </image>
                                 </ImageView>
                             </graphic></ToggleButton>
-                  <ToggleButton alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#userLog" styleClass="sidebarButton" text="Log User" GridPane.rowIndex="3">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="groupButton1" />
-                     </toggleGroup>
-                     <graphic>
+                  <ToggleButton alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#userLog" styleClass="sidebarButton" text="Log User" toggleGroup="$groupButton" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../icon/Tasks.png" />

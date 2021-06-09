@@ -32,7 +32,7 @@ public class AccountantRoot {
     public void homeAction() { mainApp.setAccountantView(); }
 
     @FXML
-    public void profileAction() { }
+    public void profileAction() { mainApp.showProfile(); }
 
     @FXML
     public void infakManage() { }

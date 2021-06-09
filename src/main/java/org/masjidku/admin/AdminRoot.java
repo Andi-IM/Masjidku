@@ -15,11 +15,8 @@
 
 package org.masjidku.admin;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ToggleGroup;
 import org.masjidku.MainApp;
-import org.masjidku.model.user.User;
 
 public class AdminRoot {
 
@@ -35,7 +32,7 @@ public class AdminRoot {
     }
 
     @FXML
-    public void profileAction(){ }
+    public void profileAction(){ mainApp.showProfile(); }
 
     @FXML
     public void userManage(){ mainApp.showUser(); }

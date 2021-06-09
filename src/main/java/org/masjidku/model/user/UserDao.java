@@ -77,6 +77,20 @@ public class UserDao extends Dao<User> {
         ps.setString(4, user.getJabatan().toString);
         ps.setString(5, user.getStatus());
         ps.executeUpdate();
+
+        generateProfile(user);
+    }
+
+    /**
+     * Generating user profile
+     * @param user user Object
+     * @throws SQLException error handling
+     */
+    private void generateProfile(User user) throws SQLException {
+        UserProfileDao dao = new UserProfileDao();
+        dao.getConnection();
+        UserProfile profile = new UserProfile(user);
+        dao.save(profile);
     }
 
     /**
@@ -92,6 +106,7 @@ public class UserDao extends Dao<User> {
         ps.setString(1, params[0]);
         ps.setString(2, params[1]);
         ps.setString(3, params[2]);
+        ps.executeUpdate();
     }
 
     /**
