@@ -1,3 +1,4 @@
+
 package org.masjidku;
 
 import javafx.application.Application;

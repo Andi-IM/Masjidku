@@ -13,23 +13,32 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.accountant;
+package org.masjidku.principal;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 import org.masjidku.MainApp;
-import org.masjidku.model.user.User;
 
-public class AccountantHome {
+public class PrincipalReadDataTamu {
     @FXML
-    private Text greeting;
+    public Text greeting;
     private MainApp mainApp;
 
     public void setMainApp(MainApp mainApp, String username) {
         this.mainApp = mainApp;
-        greeting.setText(username);
+        greeting.setText("Bapak "+username);
     }
 
     @FXML
     public void onLogoutClick() { mainApp.onLogoutAction(); }
+
+    public void editListener(ActionEvent actionEvent) {
+    }
+
+    public void onResetListener(ActionEvent actionEvent) {
+    }
+
+    public void onRemoveListener(ActionEvent actionEvent) {
+    }
 }
