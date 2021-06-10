@@ -19,7 +19,7 @@ import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
 
-public abstract class Dao<T> extends DaoFactory<T> {
+public abstract class Dao<T> extends DaoFactory {
 
     protected abstract T get(String id) throws SQLException;
     protected abstract ObservableList<T> getAll() throws SQLException;

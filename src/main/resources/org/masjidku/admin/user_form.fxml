@@ -75,11 +75,8 @@
          </children>
       </GridPane>
        <Text fill="#3AAFA9" layoutX="125.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="app-title" text="Aplikasi Desktop MasjidKu " />
-       <Text fill="#3AAFA9" layoutX="54.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="headline" text="Input Pengguna" wrappingWidth="350.0">
-           <font>
-               <Font name="Roboto Bold" size="25.0" />
-           </font>
-       </Text>
+       <Text fill="#3AAFA9" layoutX="54.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="headline"
+             text="Input Pengguna" wrappingWidth="350.0"/>
       <Button layoutX="14.0" layoutY="441.0" mnemonicParsing="false" onAction="#gotoList" styleClass="generalButton" text="kembali" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" />
       <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="408.0" layoutY="52.0" onMouseClicked="#onLogoutClick" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <image>

@@ -13,38 +13,14 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model;
+package org.masjidku.model.session;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.masjidku.model.user.User;
-import org.masjidku.model.user.UserProfile;
+import javafx.collections.ObservableList;
 
-import static org.junit.Assert.assertEquals;
-
-public class UserProfileTest extends User {
-    private UserProfile profile;
-
-    @Before
-    public void setUp() {
-        User user = new User(
-                "ucok",
-                "Ucok",
-                "Sekretaris",
-                "Aktif",
-                "null",
-                "null"
-        );
-        profile = new UserProfile(user);
-    }
-
-    @Test
-    public void testGetId() {
-        assertEquals("ucok", profile.getUser().getUserId());
-    }
-
-    @Test
-    public void testGetJabatan() {
-        assertEquals("sekretaris", profile.getUser().getJabatan().toString);
-    }
+public interface SessionDao {
+    void logUserSession(String userid);
+    void updateUserSession(String sessionId);
+    UserSession getSessionData(String id);
+    ObservableList<UserSession> getAllSessions();
+    ObservableList<UserSession> getAllSessions(String userid);
 }

@@ -15,20 +15,18 @@
 
 package org.masjidku.model.session;
 
-
-@SuppressWarnings("unused")
 public final class UserSession {
     private String session_id;
     private String userid;
-    private String date;
+    private String timestamp;
     private String session_long;
 
     public UserSession(){ }
 
-    public UserSession(String session_id, String userid, String date, String session_long) {
+    public UserSession(String session_id, String userid, String timestamp, String session_long) {
         setSession_id(session_id);
         setSession_long(session_long);
-        setDate(date);
+        setTimestamp(timestamp);
         setUserid(userid);
 
     }
@@ -41,8 +39,8 @@ public final class UserSession {
         return userid;
     }
 
-    public String getDate() {
-        return date;
+    public String getTimestamp() {
+        return timestamp;
     }
 
     public String getSession_long() {
@@ -61,7 +59,7 @@ public final class UserSession {
         this.session_long = session_long;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 }

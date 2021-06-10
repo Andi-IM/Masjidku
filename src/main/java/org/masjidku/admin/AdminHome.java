@@ -15,10 +15,10 @@
 
 package org.masjidku.admin;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 import org.masjidku.MainApp;
+import org.masjidku.model.user.User;
 
 public class AdminHome {
     @FXML
