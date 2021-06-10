@@ -76,12 +76,4 @@ public class UserProfileDao extends DaoFactory {
         }
         return model;
     }
-
-    public static void main(String[] args) throws SQLException {
-        UserProfileDao dao = new UserProfileDao();
-        dao.getConnection();
-        String userid = "paijo";
-        UserProfile profile = dao.getFullUserData(userid);
-        System.out.println(profile.getUser().getUserId());
-    }
 }

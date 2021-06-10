@@ -10,13 +10,11 @@ import javafx.stage.Stage;
 import org.masjidku.accountant.AccountantHome;
 import org.masjidku.accountant.AccountantRoot;
 import org.masjidku.admin.*;
-import org.masjidku.controller.HomeController;
-import org.masjidku.controller.LoginController;
-import org.masjidku.controller.ProfileController;
-import org.masjidku.controller.RootLayoutController;
+import org.masjidku.controller.*;
 import org.masjidku.model.session.Session;
 import org.masjidku.model.session.UserSession;
 import org.masjidku.model.user.User;
+import org.masjidku.model.user.UserProfile;
 import org.masjidku.principal.PrincipalHome;
 import org.masjidku.principal.PrincipalRoot;
 import org.masjidku.secretary.SecretaryHome;
@@ -168,8 +166,22 @@ public class MainApp extends Application {
         }
     }
 
-    public void editProfile() {
+    public void editProfile(UserProfile profile) {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("edit_profile.fxml"));
+            AnchorPane overview = loader.load();
 
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            EditProfileController controller = loader.getController();
+            controller.setMainApp(this, profile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -435,6 +447,7 @@ public class MainApp extends Application {
         try {
             session.logout();
             session.updateUserSession(userSession.getSession_id());
+            user = null;
 
             // load root layout from fxml file
             FXMLLoader loader = new FXMLLoader();

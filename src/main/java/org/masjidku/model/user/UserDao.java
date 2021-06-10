@@ -24,7 +24,7 @@ import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 
 @SuppressWarnings("unused")
-public class UserDao extends Dao<User> {
+public class UserDao extends UserDaoFactory<User> {
 
     private final String TABLE = "user";
 
@@ -110,6 +110,24 @@ public class UserDao extends Dao<User> {
     }
 
     /**
+     * User personality update
+     */
+    @Override
+    public void update(String userid, String username, String password) throws  SQLException {
+        query = "UPDATE "+TABLE+" SET username=?, password=? WHERE userid=?" ;
+        ps = con.prepareStatement(query);
+        ps.setString(1, username);
+        ps.setString(3, userid);
+
+        @SuppressWarnings("UnstableApiUsage")
+        String hex = Hashing
+                .sha256()
+                .hashString(password, StandardCharsets.UTF_8)
+                .toString();
+        ps.setString(2, hex);
+    }
+
+    /**
      * Only Admin can delete user.
      *
      * @param userid user Id
@@ -130,6 +148,7 @@ public class UserDao extends Dao<User> {
      * @return user reset status
      * @throws SQLException error handling
      */
+    @Override
     public boolean isReset(String userid) throws SQLException {
         query = "SELECT password FROM " + TABLE + " WHERE userid=?";
         ps = con.prepareStatement(query);
@@ -153,6 +172,7 @@ public class UserDao extends Dao<User> {
      * @param userId an user id
      * @throws SQLException as Error Handling
      */
+    @Override
     public void reset(String userId) throws SQLException {
         query = "UPDATE " + TABLE + " SET password=? WHERE userid=?";
         ps = con.prepareStatement(query);
@@ -201,12 +221,12 @@ public class UserDao extends Dao<User> {
      * @return status
      * @throws SQLException an Error Handling
      */
+    @Override
     public boolean isUserExist(String userid) throws SQLException {
         query = "SELECT userid FROM " + TABLE + " WHERE userid=? ";
         ps = con.prepareStatement(query);
         ps.setString(1, userid);
         rs = ps.executeQuery();
-
         return rs.next();
     }
 
@@ -218,13 +238,13 @@ public class UserDao extends Dao<User> {
      * @return userId
      * @throws SQLException for Error Handling
      */
+    @Override
     public boolean isUserExist(String userid, String password) throws SQLException {
         query = "SELECT userid FROM " + TABLE + " WHERE userid=? and password=? LIMIT 1";
         ps = con.prepareStatement(query);
         ps.setString(1, userid);
         ps.setString(2, password);
         rs = ps.executeQuery();
-
         return rs.next();
     }
 }

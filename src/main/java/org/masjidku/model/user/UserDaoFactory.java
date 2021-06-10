@@ -13,26 +13,16 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.controller;
+package org.masjidku.model.user;
 
-import javafx.event.ActionEvent;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
+import org.masjidku.model.Dao;
 
-public class EditProfile {
-    public TextField txtUserId;
-    public PasswordField txtOldPassword;
-    public PasswordField txtNewPassword;
-    public PasswordField txtConfirmPassword;
-    public TextField txtNoTel;
-    public TextField txtAlamat;
+import java.sql.SQLException;
 
-    public void clearForm(ActionEvent actionEvent) {
-    }
-
-    public void onUserSubmitted(ActionEvent actionEvent) {
-    }
-
-    public void onLogoutClick(MouseEvent mouseEvent) { }
+public abstract class UserDaoFactory<T> extends Dao<T> {
+    public abstract boolean isReset(String userid) throws SQLException;
+    public abstract void reset(String userId) throws SQLException;
+    public abstract boolean isUserExist(String userid) throws SQLException;
+    public abstract boolean isUserExist(String userid, String password) throws SQLException;
+    public abstract void update(String userid, String username, String password) throws  SQLException;
 }

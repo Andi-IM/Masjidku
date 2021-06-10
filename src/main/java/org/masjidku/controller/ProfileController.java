@@ -15,18 +15,13 @@
 
 package org.masjidku.controller;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import org.masjidku.MainApp;
 import org.masjidku.model.user.UserProfile;
 import org.masjidku.model.user.UserProfileDao;
 
-import java.net.URL;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 
 public class ProfileController {
 
@@ -40,8 +35,13 @@ public class ProfileController {
     private Label userPhoneNum;
     @FXML
     private Label userAddress;
+    @FXML
+    public Label userStatus;
+    @FXML
+    public Label userLastUpdate;
 
     private MainApp mainApp;
+    private UserProfile profile;
     /**
      * get User Data from DAO.
      *
@@ -61,12 +61,14 @@ public class ProfileController {
 
     public void setMainApp(MainApp mainApp, String userid) {
         this.mainApp = mainApp;
-        UserProfile profile = getUserData(userid);
+        profile = getUserData(userid);
 
         if (profile!=null){
             userId.setText(profile.getUser().getUserId());
             username.setText(profile.getUser().getUsername());
             userRole.setText(profile.getUser().getJabatan().toString);
+            userStatus.setText(profile.getUser().getStatus());
+            userLastUpdate.setText(profile.getUser().getUpdated_at());
             userPhoneNum.setText(profile.getNotelp());
             userAddress.setText(profile.getAlamat());
         }
@@ -74,7 +76,7 @@ public class ProfileController {
 
     @FXML
     public void onEditProfile() {
-        mainApp.editProfile();
+        mainApp.editProfile(profile);
     }
 
     @FXML
