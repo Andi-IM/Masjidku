@@ -15,12 +15,20 @@
   ~                                HEREUNDER.
   -->
 
-<?import java.net.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<SplitPane dividerPositions="0.3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.masjidku.principal.PrincipalRoot">
+<SplitPane dividerPositions="0.3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.masjidku.principal.PrincipalRoot">
     <items>
         <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="480.0" prefWidth="185.0" styleClass="sidebar" SplitPane.resizableWithParent="false">
             <children>
@@ -32,7 +40,9 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints />
                     </rowConstraints>
                     <children>
                         <ToggleButton alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#homeAction" styleClass="sidebarButton" text="Beranda" textAlignment="CENTER" GridPane.valignment="CENTER">
@@ -54,15 +64,7 @@
                                     </image>
                                 </ImageView>
                             </graphic></ToggleButton>
-                        <ToggleButton alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#laporanManage" styleClass="sidebarButton" text="Data Laporan" toggleGroup="$groupButton" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                            <graphic>
-                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../icon/Tasks.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic></ToggleButton>
-                        <ToggleButton alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#aboutAction" styleClass="sidebarButton" text="Tentang" toggleGroup="$groupButton" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                        <ToggleButton alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#aboutAction" styleClass="sidebarButton" text="Tentang" toggleGroup="$groupButton" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                             <graphic>
                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -70,6 +72,36 @@
                                     </image>
                                 </ImageView>
                             </graphic></ToggleButton>
+                  <ToggleButton mnemonicParsing="false" styleClass="sidebarButton" text="Baca Laporan" GridPane.rowIndex="3">
+                     <graphic>
+                        <ImageView fitHeight="8.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icon/Ellipse%204.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </ToggleButton>
+                  <ToggleButton mnemonicParsing="false" styleClass="sidebarButton" text="Baca Data" GridPane.rowIndex="4">
+                     <graphic>
+                        <ImageView fitHeight="8.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icon/Ellipse%204.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </ToggleButton>
+                  <Label styleClass="sidebarButton" text="Fitur" GridPane.halignment="LEFT" GridPane.rowIndex="2">
+                     <graphic>
+                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../icon/Tasks.png" />
+                                    </image>
+                                </ImageView>
+                     </graphic>
+                     <GridPane.margin>
+                        <Insets left="12.0" />
+                     </GridPane.margin>
+                  </Label>
                     </children>
                 </GridPane>
             </children>
