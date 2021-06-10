@@ -251,4 +251,13 @@ public class MainApp extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+    public void setAccountantView(String username) {
+    }
+
+    public void setPrincipalView(String username) {
+    }
+
+    public void setSecretaryView(String username) {
+    }
 }
