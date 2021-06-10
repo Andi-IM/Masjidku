@@ -15,10 +15,8 @@
 
 package org.masjidku.secretary;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import org.masjidku.MainApp;
 
@@ -36,8 +34,8 @@ public class SecretaryHome {
     }
 
     @FXML
-    public void onLogoutClick(MouseEvent mouseEvent) { mainApp.onLogoutAction(); }
+    public void onLogoutClick() { mainApp.onLogoutAction(); }
 
     @FXML
-    public void onKelolaKegiatanClick(ActionEvent actionEvent) { }
+    public void onKelolaKegiatanClick() { }
 }

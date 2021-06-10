@@ -13,38 +13,26 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model;
+package org.masjidku.controller;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.masjidku.model.user.User;
-import org.masjidku.model.user.UserProfile;
+import javafx.event.ActionEvent;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
-import static org.junit.Assert.assertEquals;
+public class EditProfile {
+    public TextField txtUserId;
+    public PasswordField txtOldPassword;
+    public PasswordField txtNewPassword;
+    public PasswordField txtConfirmPassword;
+    public TextField txtNoTel;
+    public TextField txtAlamat;
 
-public class UserProfileTest extends User {
-    private UserProfile profile;
-
-    @Before
-    public void setUp() {
-        User user = new User(
-                "ucok",
-                "Ucok",
-                "Sekretaris",
-                "Aktif",
-                "null",
-                "null"
-        );
-        profile = new UserProfile(user);
+    public void clearForm(ActionEvent actionEvent) {
     }
 
-    @Test
-    public void testGetId() {
-        assertEquals("ucok", profile.getUser().getUserId());
+    public void onUserSubmitted(ActionEvent actionEvent) {
     }
 
-    @Test
-    public void testGetJabatan() {
-        assertEquals("sekretaris", profile.getUser().getJabatan().toString);
-    }
+    public void onLogoutClick(MouseEvent mouseEvent) { }
 }

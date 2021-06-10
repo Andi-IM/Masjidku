@@ -15,27 +15,15 @@
 
 package org.masjidku.model.user;
 
-import javafx.collections.ObservableList;
-import org.masjidku.model.Dao;
 import org.masjidku.model.DaoFactory;
 
 import java.sql.SQLException;
 
 @SuppressWarnings({"FieldCanBeLocal", "unused"})
-public class UserProfileDao extends Dao<UserProfile> {
+public class UserProfileDao extends DaoFactory {
 
     private final String PROFILE_TABLE = "profil_user";
     private final String USER_TABLE = "user";
-
-    @Override
-    public UserProfile get(String id) throws SQLException {
-        return null;
-    }
-
-    @Override
-    public ObservableList<UserProfile> getAll() {
-        return null;
-    }
 
     /**
      * Only Admin can create User
@@ -45,13 +33,12 @@ public class UserProfileDao extends Dao<UserProfile> {
     public void save(UserProfile userProfile) throws SQLException {
         query = "INSERT INTO " + PROFILE_TABLE + "(userid, notelp, alamat) VALUES(?,?,?)";
         ps = con.prepareStatement(query);
-        ps.setString(1, userProfile.getUserId());
+        ps.setString(1, userProfile.getUser().getUserId());
         ps.setString(2, userProfile.getAlamat());
         ps.setString(3, userProfile.getNotelp());
         ps.executeUpdate();
     }
 
-    @Override
     public void update(String[] params) throws SQLException {
         query = "UPDATE " + PROFILE_TABLE + " SET notelp=?, alamat=? WHERE userid=?";
         ps = con.prepareStatement(query);
@@ -61,24 +48,40 @@ public class UserProfileDao extends Dao<UserProfile> {
         ps.executeUpdate();
     }
 
-    @Override
-    public void delete(String id) throws SQLException {
-    }
-
-    public User getFullUserData() throws SQLException {
-        UserProfile model = new UserProfile();
-        query = "SELECT " + USER_TABLE + ".userid, password, username, jabatan, notelp, alamat " +
-                "FROM " + USER_TABLE + " INNER JOIN " + PROFILE_TABLE + " pu on " + USER_TABLE + ".userid = pu.userid";
+    public UserProfile getFullUserData(String userid) throws SQLException {
+        UserProfile model = null;
+        User user;
+        query = "SELECT user.userid, password, username, jabatan, status, notelp, alamat, created_at, updated_at " +
+                "FROM profil_user pu LEFT JOIN user ON pu.userid = user.userid " +
+                "WHERE pu.userid=?";
         ps = con.prepareStatement(query);
+        ps.setString(1, userid);
 
         rs = ps.executeQuery();
         if (rs.next()) {
-            model.setUserId(rs.getString(1));
-            model.setPassword(rs.getString(2));
-            model.setUsername(rs.getString(3));
-            model.setNotelp(rs.getString(4));
-            model.setAlamat(rs.getString(5));
+            model = new UserProfile();
+            user = new User();
+
+            user.setUserId(rs.getString("user.userid"));
+            user.setPassword(rs.getString("password"));
+            user.setUsername(rs.getString("username"));
+            user.setJabatan(rs.getString("jabatan"));
+            user.setStatus(rs.getString("status"));
+            user.setCreated_at(rs.getString("created_at"));
+            user.setUpdated_at(rs.getString("updated_at"));
+
+            model.setUser(user);
+            model.setNotelp(rs.getString("notelp"));
+            model.setAlamat(rs.getString("alamat"));
         }
         return model;
+    }
+
+    public static void main(String[] args) throws SQLException {
+        UserProfileDao dao = new UserProfileDao();
+        dao.getConnection();
+        String userid = "paijo";
+        UserProfile profile = dao.getFullUserData(userid);
+        System.out.println(profile.getUser().getUserId());
     }
 }

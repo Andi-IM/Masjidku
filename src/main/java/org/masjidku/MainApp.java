@@ -9,17 +9,18 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.masjidku.accountant.AccountantHome;
 import org.masjidku.accountant.AccountantRoot;
-import org.masjidku.admin.AdminHome;
-import org.masjidku.admin.AdminRoot;
-import org.masjidku.admin.UserForm;
-import org.masjidku.admin.UserLists;
-import org.masjidku.controller.*;
+import org.masjidku.admin.*;
+import org.masjidku.controller.HomeController;
+import org.masjidku.controller.LoginController;
+import org.masjidku.controller.ProfileController;
+import org.masjidku.controller.RootLayoutController;
+import org.masjidku.model.session.Session;
+import org.masjidku.model.session.UserSession;
 import org.masjidku.model.user.User;
 import org.masjidku.principal.PrincipalHome;
 import org.masjidku.principal.PrincipalRoot;
 import org.masjidku.secretary.SecretaryHome;
 import org.masjidku.secretary.SecretaryRoot;
-import org.masjidku.model.session.Session;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -30,6 +31,8 @@ public class MainApp extends Application {
     private SplitPane rootLayout;
 
     private Session session;
+    private UserSession userSession;
+    private User user;
 
     /**
      * Constructor
@@ -41,7 +44,7 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Masjidku");
-
+        this.primaryStage.resizableProperty().setValue(Boolean.FALSE);
         // App icon
         this.primaryStage.getIcons()
                 .add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("./icon/favicon.png"))));
@@ -138,11 +141,42 @@ public class MainApp extends Application {
         }
     }
 
+    public void recordSession(User user){
+        this.user = user;
+        session = new Session();
+        session.getConnection();
+        session.logUserSession(user.getUserId());
+        userSession = session.getSessionData(user.getUserId());
+    }
+
+    public void showProfile(){
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("profile.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            ProfileController controller = loader.getController();
+            controller.setMainApp(this, user.getUserId());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void editProfile() {
+
+    }
+
+
     /**
      * Admin Privilege
-     * @param username admin username
      */
-    public void setAdminView(String username){
+    public void setAdminView(){
         try {
             // load root layout from fxml file
             FXMLLoader loader = new FXMLLoader();
@@ -155,8 +189,8 @@ public class MainApp extends Application {
 
             // Give the controller access to the MainApp
             AdminRoot controller = loader.getController();
-            controller.setMainApp(this, username);
-            showAdminHome(username);
+            controller.setMainApp(this);
+            showAdminHome();
         } catch (IOException e){
             System.err.println(e.getMessage());
             e.getCause();
@@ -165,9 +199,8 @@ public class MainApp extends Application {
 
     /**
      * Admin Home
-     * @param username admin username
      */
-    private void showAdminHome(String username) {
+    private void showAdminHome() {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
@@ -179,12 +212,15 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             AdminHome controller = loader.getController();
-            controller.setMainApp(this, username);
+            controller.setMainApp(this, user.getUsername());
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
     }
 
+    /**
+     * show list of user
+     */
     public void showUser(){
         try {
             // Load Content
@@ -229,10 +265,30 @@ public class MainApp extends Application {
     }
 
     /**
-     * Principal Privilege
-     * @param username principal username
+     * Show list of User Activities
      */
-    public void setPrincipalView(String username){
+    public void showUserLog() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("admin/user_logs.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            UserLogs controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Principal Privilege
+     */
+    public void setPrincipalView(){
         try {
             // load root layout from fxml file
             FXMLLoader loader = new FXMLLoader();
@@ -245,10 +301,10 @@ public class MainApp extends Application {
 
             // Give the controller access to the MainApp
             PrincipalRoot controller = loader.getController();
-            controller.setMainApp(this, username);
+            controller.setMainApp(this);
 
             // set initialize home
-            showPrincipalHome(username);
+            showPrincipalHome();
         } catch (IOException e){
             System.err.println(e.getMessage());
             e.getCause();
@@ -257,9 +313,8 @@ public class MainApp extends Application {
 
     /**
      * Showing principal home
-     * @param username
      */
-    public void showPrincipalHome(String username){
+    public void showPrincipalHome(){
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
@@ -271,7 +326,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             PrincipalHome controller = loader.getController();
-            controller.setMainApp(this, username);
+            controller.setMainApp(this, user.getUsername());
 
         } catch (IOException e) {
             System.err.println(e.getMessage());
@@ -280,9 +335,8 @@ public class MainApp extends Application {
 
     /**
      * Secretary Privilege
-     * @param username secretary username
      */
-    public void setSecretaryView(String username) {
+    public void setSecretaryView() {
         try {
             // load root layout from fxml file
             FXMLLoader loader = new FXMLLoader();
@@ -295,10 +349,10 @@ public class MainApp extends Application {
 
             // Give the controller access to the MainApp
             SecretaryRoot controller = loader.getController();
-            controller.setMainApp(this, username);
+            controller.setMainApp(this);
 
             // set initialize home
-            setSecretaryHome(username);
+            setSecretaryHome();
         } catch (IOException e){
             System.err.println(e.getMessage());
             e.getCause();
@@ -307,9 +361,8 @@ public class MainApp extends Application {
 
     /**
      * Showing secretary home
-     * @param username
      */
-    public void setSecretaryHome(String username) {
+    public void setSecretaryHome() {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
@@ -321,7 +374,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             SecretaryHome controller = loader.getController();
-            controller.setMainApp(this, username);
+            controller.setMainApp(this, user.getUsername());
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
@@ -329,9 +382,8 @@ public class MainApp extends Application {
 
     /**
      * Accountant Privilege
-     * @param username Accountant username
      */
-    public void setAccountantView(String username) {
+    public void setAccountantView() {
         try {
             // load root layout from fxml file
             FXMLLoader loader = new FXMLLoader();
@@ -344,10 +396,10 @@ public class MainApp extends Application {
 
             // Give the controller access to the MainApp
             AccountantRoot controller = loader.getController();
-            controller.setMainApp(this, username);
+            controller.setMainApp(this);
 
             // set initialize home
-            setAccountantHome(username);
+            setAccountantHome();
         } catch (IOException e){
             System.err.println(e.getMessage());
             e.getCause();
@@ -356,9 +408,8 @@ public class MainApp extends Application {
 
     /**
      * show accountant home
-     * @param username
      */
-    public void setAccountantHome(String username) {
+    public void setAccountantHome() {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
@@ -370,7 +421,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             AccountantHome controller = loader.getController();
-            controller.setMainApp(this, username);
+            controller.setMainApp(this, user.getUsername());
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
@@ -382,6 +433,9 @@ public class MainApp extends Application {
      */
     public void onLogoutAction() {
         try {
+            session.logout();
+            session.updateUserSession(userSession.getSession_id());
+
             // load root layout from fxml file
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("home_root.fxml"));
