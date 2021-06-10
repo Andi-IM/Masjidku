@@ -15,25 +15,28 @@
 
 package org.masjidku.principal;
 
-import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.ToggleGroup;
 import org.masjidku.MainApp;
 
 public class PrincipalRoot {
+    @FXML
     public ToggleGroup groupButton;
     private MainApp mainApp;
-    private String username = null;
 
-    public void setMainApp(MainApp mainApp, String username) {
-        this.username = username;
+    public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
-    public void homeAction() { mainApp.setPrincipalView(username); }
+    @FXML
+    public void homeAction() { mainApp.setPrincipalView(); }
 
-    public void laporanManage(ActionEvent actionEvent) { }
+    @FXML
+    public void laporanManage() { }
 
-    public void aboutAction(ActionEvent actionEvent) { mainApp.showAbout(); }
+    @FXML
+    public void aboutAction() { mainApp.showAbout(); }
 
-    public void profileAction(ActionEvent actionEvent) { }
+    @FXML
+    public void profileAction() { mainApp.showProfile(); }
 }

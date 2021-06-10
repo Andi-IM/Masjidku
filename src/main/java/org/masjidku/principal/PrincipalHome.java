@@ -16,9 +16,9 @@
 package org.masjidku.principal;
 
 import javafx.fxml.FXML;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import org.masjidku.MainApp;
+import org.masjidku.model.user.User;
 
 public class PrincipalHome {
     @FXML

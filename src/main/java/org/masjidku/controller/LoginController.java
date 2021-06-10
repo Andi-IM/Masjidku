@@ -85,16 +85,20 @@ public class LoginController {
                     if (user.getStatus().equals("Aktif")) {
                         switch (user.getJabatan()) {
                             case admin:
-                                mainApp.setAdminView(user.getUsername());
+                                mainApp.recordSession(user);
+                                mainApp.setAdminView();
                                 break;
                             case ketua:
-                                mainApp.setPrincipalView(user.getUsername());
+                                mainApp.recordSession(user);
+                                mainApp.setPrincipalView();
                                 break;
                             case sekretaris:
-                                mainApp.setSecretaryView(user.getUsername());
+                                mainApp.recordSession(user);
+                                mainApp.setSecretaryView();
                                 break;
                             case bendahara:
-                                mainApp.setAccountantView(user.getUsername());
+                                mainApp.recordSession(user);
+                                mainApp.setAccountantView();
                                 break;
                             default:
                                 throw new IllegalArgumentException("Illegal Data Argument");
