@@ -13,38 +13,16 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model;
+package org.masjidku.model.user;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.masjidku.model.user.User;
-import org.masjidku.model.user.UserProfile;
+import org.masjidku.model.Dao;
 
-import static org.junit.Assert.assertEquals;
+import java.sql.SQLException;
 
-public class UserProfileTest extends User {
-    private UserProfile profile;
-
-    @Before
-    public void setUp() {
-        User user = new User(
-                "ucok",
-                "Ucok",
-                "Sekretaris",
-                "Aktif",
-                "null",
-                "null"
-        );
-        profile = new UserProfile(user);
-    }
-
-    @Test
-    public void testGetId() {
-        assertEquals("ucok", profile.getUser().getUserId());
-    }
-
-    @Test
-    public void testGetJabatan() {
-        assertEquals("sekretaris", profile.getUser().getJabatan().toString);
-    }
+public abstract class UserDaoFactory<T> extends Dao<T> {
+    public abstract boolean isReset(String userid) throws SQLException;
+    public abstract void reset(String userId) throws SQLException;
+    public abstract boolean isUserExist(String userid) throws SQLException;
+    public abstract boolean isUserExist(String userid, String password) throws SQLException;
+    public abstract void update(String userid, String username, String password) throws  SQLException;
 }

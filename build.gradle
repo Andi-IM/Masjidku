@@ -49,8 +49,6 @@ dependencies {
     testCompile group: 'org.hamcrest', name: 'hamcrest', version: '2.1'
     testCompile group: 'org.assertj', name: 'assertj-core', version: '3.13.2'
 
-    // MySQL Test
-
     // Hash Security /and other tools
     implementation group: 'com.google.guava', name: 'guava', version: '30.1.1-jre'
 }

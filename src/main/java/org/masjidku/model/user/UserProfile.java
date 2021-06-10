@@ -15,71 +15,41 @@
 
 package org.masjidku.model.user;
 
-public class UserProfile extends User{
+public class UserProfile{
+    private User user;
     private String alamat;
     private String notelp;
 
     public UserProfile(){}
 
-    public UserProfile(String userid, String password, String username, String alamat, String jabatan, String notelp) {
-        super.setUserId(userid);
-        super.setPassword(password);
-        super.setUsername(username);
-        super.setJabatan(jabatan);
+    public UserProfile(User user){
+        this.user = user;
+    }
+
+    public UserProfile(User user, String alamat, String notelp) {
+        this.user = user;
         this.alamat = alamat;
         this.notelp = notelp;
     }
 
-    @Override
-    public String getUserId() {
-        return super.getUserId();
-    }
-
-    @Override
-    public void setUserId(String userId) {
-        super.setUserId(userId);
-    }
-
-    @Override
-    public String getPassword() {
-        return super.getPassword();
-    }
-
-    @Override
-    public void setPassword(String password) {
-        super.setPassword(password);
-    }
-
-    @Override
-    public String getUsername() {
-        return super.getUsername();
-    }
-
-    @Override
-    public void setUsername(String username) {
-        super.setUsername(username);
-    }
-
-    @Override
-    public Jabatan getJabatan() {
-        return super.getJabatan();
-    }
-
-    @Override
-    public void setJabatan(String jabatan) {
-        super.setJabatan(jabatan);
+    public User getUser() {
+        return user;
     }
 
     public String getAlamat() {
         return alamat;
     }
 
-    public void setAlamat(String alamat) {
-        this.alamat = alamat;
-    }
-
     public String getNotelp() {
         return notelp;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
     }
 
     public void setNotelp(String notelp) {

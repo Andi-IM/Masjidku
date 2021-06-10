@@ -51,8 +51,6 @@ public class UserForm implements Initializable {
     @SuppressWarnings("unused")
     private Stage dialogStage;
 
-    private final boolean okClicked = false;
-
     // setting the field
     public void setUser(User user) {
 
@@ -133,12 +131,10 @@ public class UserForm implements Initializable {
                    if (dao.isUserExist(userid)){
                        dao.update(new String[]{user.getJabatan().toString, user.getStatus(), user.getUserId()});
                        alertInfo("Success", "User telah diperbarui!");
-                       mainApp.showUser();
                    }
                    else {
                        dao.save(user);
                        alertInfo("Success", "User ditambahkan!");
-                       mainApp.showUser();
                    }
                    mainApp.showUser();
                } catch (SQLException e){
