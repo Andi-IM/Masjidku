@@ -61,6 +61,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <Label text="Id" />
@@ -69,12 +70,16 @@
                         <Label fx:id="username" text="&lt;User Name&gt;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label text="Jabatan" GridPane.rowIndex="2" />
                         <Label fx:id="userRole" text="&lt;User Role&gt;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label text="Password" GridPane.rowIndex="3" />
-                        <Label fx:id="userPass" text="&lt;Shadowed User Password&gt;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label text="Nomor Telepon" GridPane.rowIndex="4" />
-                        <Label fx:id="userPhoneNum" text="&lt;Phone Number&gt;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Label text="Alamat" GridPane.rowIndex="5" />
-                        <Label fx:id="userAddress" text="&lt;Address&gt;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label text="Password" GridPane.rowIndex="4" />
+                        <Label text="&lt;Shadowed User Password&gt;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label text="Nomor Telepon" GridPane.rowIndex="5" />
+                        <Label fx:id="userPhoneNum" text="&lt;Phone Number&gt;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label text="Alamat" GridPane.rowIndex="6" />
+                        <Label fx:id="userAddress" text="&lt;Address&gt;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label text="Status" GridPane.rowIndex="3" />
+                        <Label fx:id="userStatus" text="&lt;User Status&gt;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label text="Perubahan Terakhir" GridPane.rowIndex="7" />
+                        <Label fx:id="userLastUpdate" text="&lt;User Last Update&gt;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                      </children>
                   </GridPane>
                </children>
