@@ -16,19 +16,18 @@
 package org.masjidku.accountant;
 
 import javafx.fxml.FXML;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import org.masjidku.MainApp;
+import org.masjidku.model.user.User;
 
 public class AccountantHome {
     @FXML
-    public Text greeting;
+    private Text greeting;
     private MainApp mainApp;
 
     public void setMainApp(MainApp mainApp, String username) {
-
         this.mainApp = mainApp;
-        greeting.setText("Ibu "+username);
+        greeting.setText(username);
     }
 
     @FXML

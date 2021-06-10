@@ -13,38 +13,11 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model;
+package org.masjidku.admin;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.masjidku.model.user.User;
-import org.masjidku.model.user.UserProfile;
+import org.masjidku.MainApp;
 
-import static org.junit.Assert.assertEquals;
+public class UserLogs {
 
-public class UserProfileTest extends User {
-    private UserProfile profile;
-
-    @Before
-    public void setUp() {
-        User user = new User(
-                "ucok",
-                "Ucok",
-                "Sekretaris",
-                "Aktif",
-                "null",
-                "null"
-        );
-        profile = new UserProfile(user);
-    }
-
-    @Test
-    public void testGetId() {
-        assertEquals("ucok", profile.getUser().getUserId());
-    }
-
-    @Test
-    public void testGetJabatan() {
-        assertEquals("sekretaris", profile.getUser().getJabatan().toString);
-    }
+    public void setMainApp(MainApp mainApp) { }
 }
