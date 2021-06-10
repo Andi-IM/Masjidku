@@ -16,24 +16,18 @@
 package org.masjidku.secretary;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
-public class SecretaryKegiatanForm {
-    public TextField txtTempat;
-    public TextField txtWaktu;
-    public TextField txtNamaKegiatan;
-    public TextField txtUserId;
-
-    public void clearForm(ActionEvent actionEvent) {
-    }
-
-    public void onUserSubmitted(ActionEvent actionEvent) {
-    }
-
-    public void gotoList(ActionEvent actionEvent) {
-    }
-
+public class SecretaryKegiatan {
     public void onLogoutClick(MouseEvent mouseEvent) {
+    }
+
+    public void editListener(ActionEvent actionEvent) {
+    }
+
+    public void onRemoveListener(ActionEvent actionEvent) {
+    }
+
+    public void onResetListener(ActionEvent actionEvent) {
     }
 }
