@@ -18,6 +18,8 @@ package org.masjidku.secretary;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
+import org.masjidku.MainApp;
+import org.masjidku.model.kegiatan.TamuKegiatan;
 
 public class SecretaryUndanganForm {
     @FXML
@@ -30,5 +32,8 @@ public class SecretaryUndanganForm {
 
     @FXML
     public void onLogoutClick() {
+    }
+
+    public void setMainApp(MainApp mainApp, TamuKegiatan undangan) {
     }
 }

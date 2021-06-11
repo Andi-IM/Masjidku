@@ -27,14 +27,16 @@ import org.masjidku.accountant.AccountantHome;
 import org.masjidku.accountant.AccountantRoot;
 import org.masjidku.admin.*;
 import org.masjidku.controller.*;
+import org.masjidku.model.kegiatan.Kegiatan;
+import org.masjidku.model.kegiatan.Tamu;
+import org.masjidku.model.kegiatan.TamuKegiatan;
 import org.masjidku.model.session.Session;
 import org.masjidku.model.session.UserSession;
 import org.masjidku.model.user.User;
 import org.masjidku.model.user.UserProfile;
 import org.masjidku.principal.PrincipalHome;
 import org.masjidku.principal.PrincipalRoot;
-import org.masjidku.secretary.SecretaryHome;
-import org.masjidku.secretary.SecretaryRoot;
+import org.masjidku.secretary.*;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -403,6 +405,134 @@ public class MainApp extends Application {
             // Give the controller access to the main app.
             SecretaryHome controller = loader.getController();
             controller.setMainApp(this, user.getUsername());
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    /**
+     * Showing secretary kegiatan
+     */
+    public void setKegiatan(){
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("secretary/secretary_kegiatan.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            SecretaryKegiatan controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    /**
+     * Showing secretary edit kegiatan
+     */
+    public void showKegiatanEditform(Kegiatan kegiatan){
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("secretary/secretary_kegiatan_form.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            SecretaryKegiatanForm controller = loader.getController();
+            controller.setMainApp(this, kegiatan);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    /**
+     * Showing secretary tamu
+     */
+    public void showTamu(){
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("secretary/secretary_tamu.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            SecretaryTamu controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    /**
+     * Showing secretary tamu edit
+     * @param tamu
+     */
+    public void showTamuEditForm(Tamu tamu){
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("secretary/secretary_tamu_form.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            SecretaryTamuForm controller = loader.getController();
+            controller.setMainApp(this, tamu);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    /**
+     * showing undangan
+     */
+    public void showUndangan(){
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("secretary/secretary_undangan.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            SecretaryUndangan controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    /**
+     * Showing undangan edit form
+     * @param undangan
+     */
+    public void showUndanganEditForm(TamuKegiatan undangan){
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("secretary/secretary_undangan_form.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            SecretaryUndanganForm controller = loader.getController();
+            controller.setMainApp(this, undangan);
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }

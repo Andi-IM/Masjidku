@@ -19,6 +19,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import org.masjidku.MainApp;
+import org.masjidku.model.kegiatan.Tamu;
 
 public class SecretaryTamuForm {
 
@@ -36,5 +38,8 @@ public class SecretaryTamuForm {
 
     @FXML
     public void onUserSubmitted() {
+    }
+
+    public void setMainApp(MainApp mainApp, Tamu tamu) {
     }
 }

@@ -15,5 +15,9 @@
 
 package org.masjidku.secretary;
 
+import org.masjidku.MainApp;
+
 public class SecretaryTamu {
+    public void setMainApp(MainApp mainApp) {
+    }
 }
