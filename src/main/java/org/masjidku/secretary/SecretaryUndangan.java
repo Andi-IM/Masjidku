@@ -15,5 +15,9 @@
 
 package org.masjidku.secretary;
 
+import org.masjidku.MainApp;
+
 public class SecretaryUndangan {
+    public void setMainApp(MainApp mainApp) {
+    }
 }

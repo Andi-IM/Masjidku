@@ -16,18 +16,24 @@
 package org.masjidku.secretary;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
+import org.masjidku.MainApp;
 
 public class SecretaryKegiatan {
-    public void onLogoutClick(MouseEvent mouseEvent) {
+    private MainApp mainApp;
+
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
     }
 
-    public void editListener(ActionEvent actionEvent) {
-    }
+    @FXML
+    public void onLogoutClick() { mainApp.onLogoutAction(); }
 
-    public void onRemoveListener(ActionEvent actionEvent) {
-    }
+    public void editListener(ActionEvent actionEvent) {  }
 
-    public void onResetListener(ActionEvent actionEvent) {
-    }
+    public void onRemoveListener(ActionEvent actionEvent) { }
+
+    public void onResetListener(ActionEvent actionEvent) { }
+
 }

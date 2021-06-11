@@ -18,6 +18,8 @@ package org.masjidku.secretary;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import org.masjidku.MainApp;
+import org.masjidku.model.kegiatan.Kegiatan;
 
 public class SecretaryKegiatanForm {
     public TextField txtTempat;
@@ -35,5 +37,8 @@ public class SecretaryKegiatanForm {
     }
 
     public void onLogoutClick(MouseEvent mouseEvent) {
+    }
+
+    public void setMainApp(MainApp mainApp, Kegiatan kegiatan) {
     }
 }

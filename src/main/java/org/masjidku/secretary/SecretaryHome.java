@@ -37,5 +37,5 @@ public class SecretaryHome {
     public void onLogoutClick() { mainApp.onLogoutAction(); }
 
     @FXML
-    public void onKelolaKegiatanClick() { }
+    public void onKelolaKegiatanClick() { mainApp.setKegiatan(); }
 }

@@ -36,7 +36,13 @@ public class SecretaryRoot {
     public void profileAction() { mainApp.showProfile(); }
 
     @FXML
-    public void activityManage() { }
+    public void activityManage() { mainApp.setKegiatan(); }
+
+    @FXML
+    public void visitorManage() { mainApp.showTamu(); }
+
+    @FXML
+    public void invitationManage() { mainApp.showUndangan(); }
 
     @FXML
     public void aboutAction() { mainApp.showAbout(); }
