@@ -35,6 +35,14 @@ public class Tamu implements TamuInt {
         setOperator(operator);
     }
 
+    public Tamu(String namaTamu, String alamat, String noTelp, String operator) {
+        setIdTamu(null);
+        setNama(namaTamu);
+        setAlamat(alamat);
+        setNotelp(noTelp);
+        setOperator(operator);
+    }
+
     public String getIdTamu() {
         return idTamu;
     }

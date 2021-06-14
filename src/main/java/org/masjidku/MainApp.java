@@ -413,7 +413,7 @@ public class MainApp extends Application {
     /**
      * Showing secretary kegiatan
      */
-    public void setKegiatan(){
+    public void showKegiatan(){
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
@@ -446,7 +446,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             SecretaryKegiatanForm controller = loader.getController();
-            controller.setMainApp(this, kegiatan);
+            controller.setMainApp(this, kegiatan, user.getUserId());
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
@@ -475,7 +475,7 @@ public class MainApp extends Application {
 
     /**
      * Showing secretary tamu edit
-     * @param tamu
+     * @param tamu tamu
      */
     public void showTamuEditForm(Tamu tamu){
         try {
@@ -489,7 +489,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             SecretaryTamuForm controller = loader.getController();
-            controller.setMainApp(this, tamu);
+            controller.setMainApp(this, tamu, user.getUserId());
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }

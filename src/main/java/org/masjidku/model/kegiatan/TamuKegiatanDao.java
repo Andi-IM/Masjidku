@@ -19,11 +19,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.masjidku.model.Dao;
 import org.masjidku.model.DaoFactory;
+import org.masjidku.model.user.UserDaoFactory;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TamuKegiatanDao extends Dao<TamuKegiatan> {
+public class TamuKegiatanDao extends TamuKegiatanDaoFactory<TamuKegiatan> {
+    private final String ACTIVITY = "kegiatan";
+    private final String GUEST = "tamu";
     private final String TABLE = "tamukegiatan";
 
     @Override
@@ -49,9 +52,9 @@ public class TamuKegiatanDao extends Dao<TamuKegiatan> {
     @Override
     public ObservableList<TamuKegiatan> getAll() throws SQLException {
         ObservableList<TamuKegiatan> items = FXCollections.observableArrayList();
-        String query = "SELECT * FROM "+TABLE;
+        query = "SELECT * FROM "+TABLE;
         ps = con.prepareStatement(query);
-        ResultSet rs = ps.executeQuery();
+        rs = ps.executeQuery();
 
         TamuKegiatan tg;
         while (rs.next()){
@@ -95,6 +98,7 @@ public class TamuKegiatanDao extends Dao<TamuKegiatan> {
         ps.executeUpdate();
     }
 
+    @Override
     public boolean isUndanganExist(String id) throws SQLException {
         String query = "SELECT id_undangan FROM "+TABLE+" WHERE id_undangan=?";
         ps = con.prepareStatement(query);

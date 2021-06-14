@@ -13,29 +13,13 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.secretary;
+package org.masjidku.model.kegiatan;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.text.Text;
-import org.masjidku.MainApp;
+import javafx.collections.ObservableList;
+import org.masjidku.model.Dao;
 
-public class SecretaryHome {
-    @FXML
-    public Button btnKegiatan;
-    @FXML
-    public Text greeting;
-    private MainApp mainApp;
+import java.sql.SQLException;
 
-    public void setMainApp(MainApp mainApp, String username) {
-
-        this.mainApp = mainApp;
-        greeting.setText("Bapak "+username);
-    }
-
-    @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
-
-    @FXML
-    public void onKelolaKegiatanClick() { mainApp.showKegiatan(); }
+public abstract class TamuKegiatanDaoFactory<T> extends Dao<T> {
+    public abstract boolean isUndanganExist(String id) throws SQLException;
 }
