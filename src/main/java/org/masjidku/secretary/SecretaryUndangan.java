@@ -18,6 +18,10 @@ package org.masjidku.secretary;
 import org.masjidku.MainApp;
 
 public class SecretaryUndangan {
+
+    private MainApp mainApp;
+
     public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
     }
 }
