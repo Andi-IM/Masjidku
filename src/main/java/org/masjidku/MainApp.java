@@ -23,8 +23,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import org.masjidku.accountant.AccountantHome;
-import org.masjidku.accountant.AccountantRoot;
+import org.masjidku.accountant.*;
 import org.masjidku.admin.*;
 import org.masjidku.controller.*;
 import org.masjidku.model.kegiatan.Kegiatan;
@@ -585,6 +584,110 @@ public class MainApp extends Application {
         }
     }
 
+    /**
+     * show anakYatimprompt
+     */
+    public void showAnakYatim() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("accountant/accountant_anakYatim.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            AccountantAnakyatim controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    /**
+     * show zakatPrompt
+     */
+    public void showZakat() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("accountant/accountant_zakat.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            AccountantZakat controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    /**
+     * show Pembangunan
+     */
+    public void showPembangunan() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("accountant/accountant_pembangunan.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            AccountantPembangunan controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    /**
+     * show operational
+     */
+    public void showOperasional() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("accountant/accountant_operasional.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            AccountantOperasional controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    /**
+     * show tpa
+     */
+    public void showTpa() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("accountant/accountant_tpa.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            AccountantTpa controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
 
     /**
      * Logout

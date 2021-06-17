@@ -15,5 +15,9 @@
 
 package org.masjidku.accountant;
 
+import org.masjidku.MainApp;
+
 public class AccountantOperasional {
+    public void setMainApp(MainApp mainApp) {
+    }
 }
