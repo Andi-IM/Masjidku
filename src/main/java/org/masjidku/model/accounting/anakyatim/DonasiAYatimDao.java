@@ -15,6 +15,7 @@
 
 package org.masjidku.model.accounting.anakyatim;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.masjidku.model.Dao;
 import org.masjidku.model.DaoFactory;
@@ -27,26 +28,85 @@ public class DonasiAYatimDao extends Dao<DonasiAYatim> {
 
     @Override
     protected DonasiAYatim get(String id) throws SQLException {
-        return null;
+        query = "SELECT * FROM "+TABLE+" WHERE id=?";
+        ps = con.prepareStatement(query);
+        ps.setString(1, id);
+        rs = ps.executeQuery();
+
+        DonasiAYatim model = null;
+        if (rs.next()){
+            model = new DonasiAYatim(
+                    rs.getString(1),
+                    rs.getString(2),
+                    Double.parseDouble(rs.getString(3)),
+                    rs.getString(4),
+                    rs.getString(5)
+            );
+        }
+        return model;
     }
 
     @Override
     protected ObservableList<DonasiAYatim> getAll() throws SQLException {
-        return null;
+        ObservableList<DonasiAYatim> donatur = FXCollections.observableArrayList();
+
+        query = "SELECT * FROM "+TABLE;
+        ps = con.prepareStatement(query);
+        rs = ps.executeQuery();
+
+        DonasiAYatim anakYatim;
+        while (rs.next()){
+            anakYatim = new DonasiAYatim(
+                    rs.getString(1),
+                    rs.getString(2),
+                    Double.parseDouble(rs.getString(3)),
+                    rs.getString(4),
+                    rs.getString(5)
+            );
+            donatur.add(anakYatim);
+        }
+        return donatur;
     }
 
     @Override
     protected void save(DonasiAYatim donasiAYatim) throws SQLException {
+        query = "INSERT INTO "+TABLE+"(id, donatur, jumlah, tanggal, operator) VALUES (?,?,?,?,?)";
 
+        ps = con.prepareStatement(query);
+        ps.setString(1, donasiAYatim.getId());
+        ps.setString(2, donasiAYatim.getDonatur());
+        ps.setString(3, String.valueOf(donasiAYatim.getJumlah()));
+        ps.setString(4, donasiAYatim.getTanggal());
+        ps.setString(5, donasiAYatim.getOperator());
+        ps.executeUpdate();
     }
 
     @Override
     protected void update(String[] params) throws SQLException {
-
+        query = "UPDATE "+TABLE+" SET donatur=?, jumlah=?, tanggal=?, operator=? WHERE id=?";
+        ps = con.prepareStatement(query);
+        ps.setString(1, params[1]);
+        ps.setString(2, params[2]);
+        ps.setString(3, params[3]);
+        ps.setString(4, params[4]);
+        ps.setString(5, params[0]);
+        ps.executeUpdate();
     }
 
     @Override
     protected void delete(String id) throws SQLException {
+        query = "DELETE FROM "+TABLE+" WHERE id=?";
+        ps = con.prepareStatement(query);
+        ps.setString(1, id);
+        ps.executeUpdate();
+    }
 
+    public boolean isDonaturExist(String id) throws SQLException {
+        query = "SELECT id FROM "+TABLE+" WHERE id=?";
+        ps = con.prepareStatement(query);
+        ps.setString(1, id);
+        rs = ps.executeQuery();
+
+        return rs.next();
     }
 }

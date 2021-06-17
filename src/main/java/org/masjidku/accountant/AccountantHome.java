@@ -18,7 +18,6 @@ package org.masjidku.accountant;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 import org.masjidku.MainApp;
-import org.masjidku.model.user.User;
 
 public class AccountantHome {
     @FXML

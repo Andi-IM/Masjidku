@@ -13,11 +13,13 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.accountant;
+package org.masjidku.model.kegiatan;
 
-import org.masjidku.MainApp;
+import javafx.collections.ObservableList;
+import org.masjidku.model.Dao;
 
-public class AccountantOperasional {
-    public void setMainApp(MainApp mainApp) {
-    }
+import java.sql.SQLException;
+
+public abstract class TamuKegiatanDaoFactory<T> extends Dao<T> {
+    public abstract boolean isUndanganExist(String id) throws SQLException;
 }
