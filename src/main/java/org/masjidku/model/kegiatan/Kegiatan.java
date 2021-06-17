@@ -26,6 +26,15 @@ public class Kegiatan implements KegiatanInt {
     public Kegiatan() {
     }
 
+    public Kegiatan(String nama, String waktu, String tanggal, String tempat, String operator) {
+        setIdKegiatan(null);
+        setNama(nama);
+        setWaktu(waktu);
+        setTanggal(tanggal);
+        setTempat(tempat);
+        setOperator(operator);
+    }
+
     public Kegiatan(String id, String nama, String waktu, String tanggal, String tempat, String operator) {
         setIdKegiatan(id);
         setNama(nama);

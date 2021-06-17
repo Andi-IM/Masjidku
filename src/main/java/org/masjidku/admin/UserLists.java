@@ -234,7 +234,7 @@ public class UserLists implements Initializable {
     }
 
     @FXML
-    public void onMousePressed() {
+    public void onMouseClicked() {
         if(userTable.getSelectionModel().isEmpty()){
             btnEdit.setDisable(true);
             btnRemove.setDisable(true);
