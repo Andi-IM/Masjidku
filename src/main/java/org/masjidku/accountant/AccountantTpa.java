@@ -15,9 +15,25 @@
 
 package org.masjidku.accountant;
 
+import javafx.event.ActionEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import org.masjidku.MainApp;
 
 public class AccountantTpa {
+    public Text txtPemasukanTerakhir;
+    public Text txtPengeluaranTerakhir;
+    public Text txtTerakhirDiubah;
+
     public void setMainApp(MainApp mainApp) {
+    }
+
+    public void onLogoutClick(MouseEvent mouseEvent) {
+    }
+
+    public void onKelolaDonasiTpa(ActionEvent actionEvent) {
+    }
+
+    public void onKelolaTpa(ActionEvent actionEvent) {
     }
 }

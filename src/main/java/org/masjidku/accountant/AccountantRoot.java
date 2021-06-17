@@ -37,9 +37,6 @@ public class AccountantRoot {
     public void profileAction() { mainApp.showProfile(); }
 
     @FXML
-    public void infakManage() { }
-
-    @FXML
     public void aboutAction() { mainApp.showAbout(); }
 
     @FXML

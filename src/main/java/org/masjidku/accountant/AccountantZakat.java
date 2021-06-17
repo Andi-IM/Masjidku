@@ -15,9 +15,21 @@
 
 package org.masjidku.accountant;
 
+import javafx.event.ActionEvent;
+import javafx.scene.text.Text;
 import org.masjidku.MainApp;
 
 public class AccountantZakat {
+    public Text txtPemasukanTerakhir;
+    public Text txtPengeluaranTerakhir;
+    public Text txtTerakhirDiubah;
+
     public void setMainApp(MainApp mainApp) {
+    }
+
+    public void onKelolaDonasiZakat(ActionEvent actionEvent) {
+    }
+
+    public void onKelolaPenerimaZakat(ActionEvent actionEvent) {
     }
 }

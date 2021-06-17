@@ -15,9 +15,51 @@
 
 package org.masjidku.accountant;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import org.masjidku.MainApp;
+import org.masjidku.model.accounting.anakyatim.AnakYatimDao;
+import org.masjidku.model.accounting.anakyatim.DonasiAYatimDao;
 
-public class AccountantAnakyatim {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class AccountantAnakyatim implements Initializable {
+    @FXML
+    public Button btnDaftarAnakYatim;
+    @FXML
+    public Button btnDaftarDonasiAnakYatim;
+    @FXML
+    public Text txtPemasukanTerakhir;
+    @FXML
+    public Text txtPengeluaranTerakhir;
+    @FXML
+    public Text txtTerakhirDiubah;
+
+    private MainApp mainApp;
     public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        AnakYatimDao ayDao = new AnakYatimDao();
+        DonasiAYatimDao dayDao = new DonasiAYatimDao();
+
+
+    }
+
+    public void onLogoutClick(MouseEvent mouseEvent) {
+    }
+
+    public void daftarDonasiAyatim(ActionEvent actionEvent) {
+    }
+
+    public void daftarAnakYatim(ActionEvent actionEvent) {
     }
 }

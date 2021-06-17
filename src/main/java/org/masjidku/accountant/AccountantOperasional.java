@@ -15,9 +15,28 @@
 
 package org.masjidku.accountant;
 
+import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import org.masjidku.MainApp;
 
 public class AccountantOperasional {
+    public Button btnDaftarKelolaDonatur;
+    public Button btnKelolaUangOperasional;
+    public Text txtPemasukanTerakhir;
+    public Text txtPengeluaranTerakhir;
+    public Text txtTerakhirDiubah;
+
     public void setMainApp(MainApp mainApp) {
+    }
+
+    public void onLogoutClick(MouseEvent mouseEvent) {
+    }
+
+    public void onKelolaDonaturClick(ActionEvent actionEvent) {
+    }
+
+    public void onKelolaOperasionalClick(ActionEvent actionEvent) {
     }
 }
