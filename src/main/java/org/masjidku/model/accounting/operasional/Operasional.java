@@ -21,7 +21,11 @@ import org.masjidku.model.accounting.UangKeluar;
 public class Operasional extends UangKeluar {
     public Operasional(){ }
 
-    public Operasional(String id, String tujuan, String keterangan, double jumlah, String tanggal, String operator) {
-        super(id, tujuan, keterangan, jumlah, tanggal, operator);
+    public Operasional(String id, String nama, String keterangan, double jumlah, String tanggal, String operator) {
+        super(id, nama, keterangan, jumlah, tanggal, operator);
+
+        public String getNama(){ return super.getTujuan(); }
+
+        public String getJumlah(){ return String.valueOf(super.getJumlah()); }
     }
 }

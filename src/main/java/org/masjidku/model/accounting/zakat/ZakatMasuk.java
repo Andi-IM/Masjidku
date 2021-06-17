@@ -18,7 +18,11 @@ package org.masjidku.model.accounting.zakat;
 import org.masjidku.model.accounting.DataDonasi;
 
 public class ZakatMasuk extends DataDonasi {
-    public ZakatMasuk(String id, String donatur, double jumlah, String tanggal, String operator) {
-        super(id, donatur, jumlah, tanggal, operator);
+    public ZakatMasuk(String id, String nama, double jumlah, String tanggal, String operator) {
+        super(id, nama, jumlah, tanggal, operator);
+
+        public String getNama(){ return super.getTujuan(); }
+
+        public String getJumlah(){ return String.valueOf(super.getJumlah()); }
     }
 }

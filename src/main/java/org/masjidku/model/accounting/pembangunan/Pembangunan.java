@@ -21,7 +21,13 @@ import org.masjidku.model.accounting.UangKeluar;
 public class Pembangunan extends UangKeluar {
     public Pembangunan() { }
 
-    public Pembangunan(String id, String tujuan, String keterangan, double jumlah, String tanggal, String operator) {
-        super(id, tujuan, keterangan, jumlah, tanggal, operator);
+    public Pembangunan(String id, String nama, String keterangan, double jumlah, String tanggal, String operator) {
+        super(id, nama, keterangan, jumlah, tanggal, operator);
+
+        public String getNama(){ return super.getTujuan(); }
+
+        public String getKeterangan(){ return super.getKeterangan(); }
+
+        public String getJumlah(){ return String.valueOf(super.getJumlah()); }
     }
 }

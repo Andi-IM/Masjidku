@@ -21,7 +21,14 @@ import org.masjidku.model.accounting.UangKeluar;
 public class ZakatKeluar extends UangKeluar {
     public ZakatKeluar() { }
 
-    public ZakatKeluar(String id, String tujuan, String keterangan, double jumlah, String tanggal, String operator) {
-        super(id, tujuan, keterangan, jumlah, tanggal, operator);
+    public ZakatKeluar(String id, String nama, double jumlah, String tanggal, String operator) {
+        super(id, nama, jumlah, tanggal, operator);
+
+        public String getNama(){ return super.getTujuan(); }
+
+        public String getJumlah(){ return String.valueOf(super.getJumlah()); }
+
+
+        }
     }
 }

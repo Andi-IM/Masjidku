@@ -19,20 +19,24 @@ import org.masjidku.model.accounting.DataDonasi;
 import org.masjidku.model.accounting.UangKeluar;
 
 public class AnakYatim extends UangKeluar {
-    private int usia;
+    private String usia;
 
     public AnakYatim(){}
 
-    public AnakYatim(String id, String tujuan, int usia, double jumlah, String tanggal, String operator) {
-        super(id, tujuan, jumlah, tanggal, operator);
+    public AnakYatim(String id, String nama, String usia, double jumlah, String tanggal, String operator) {
+        super(id, nama, jumlah, tanggal, operator);
         this.usia = usia;
     }
 
-    public int getUsia() {
+    public String getNama(){ return super.getTujuan(); }
+
+    public String getJumlah(){ return String.valueOf(super.getJumlah()); }
+
+    public String getUsia() {
         return usia;
     }
 
-    public void setUsia(int usia) {
+    public void setUsia(String usia) {
         this.usia = usia;
     }
 }
