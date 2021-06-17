@@ -15,5 +15,9 @@
 
 package org.masjidku.accountant;
 
+import org.masjidku.MainApp;
+
 public class AccountantZakat {
+    public void setMainApp(MainApp mainApp) {
+    }
 }
