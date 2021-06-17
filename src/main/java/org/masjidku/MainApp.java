@@ -725,4 +725,10 @@ public class MainApp extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+    public void showDonasiAYatim() {
+    }
+
+    public void showDaftarAnakYatim() {
+    }
 }
