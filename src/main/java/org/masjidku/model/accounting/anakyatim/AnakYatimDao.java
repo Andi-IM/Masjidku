@@ -18,36 +18,99 @@ package org.masjidku.model.accounting.anakyatim;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.masjidku.model.Dao;
+import org.masjidku.model.kegiatan.Kegiatan;
 
 import java.sql.SQLException;
 
 public class AnakYatimDao extends Dao<AnakYatim> {
 
-    private final String TABLE = "infak_anakyatim";
+    private final String TABLE = "penerima_anakyatim";
 
     @Override
     public AnakYatim get(String id) throws SQLException {
-        return null;
+        query = "SELECT * FROM "+TABLE+" WHERE id=?";
+        ps = con.prepareStatement(query);
+        ps.setString(1, id);
+        rs = ps.executeQuery();
+
+        AnakYatim model = null;
+        if (rs.next()){
+            model = new AnakYatim(
+                    rs.getString(1),
+                    rs.getString(2),
+                    Integer.parseInt(rs.getString(3)),
+                    Double.parseDouble(rs.getString(4)),
+                    rs.getString(5),
+                    rs.getString(6)
+            );
+        }
+        return model;
     }
 
     @Override
     public ObservableList<AnakYatim> getAll() throws SQLException {
-        ObservableList<AnakYatim> donatur = FXCollections.observableArrayList();
-        return null;
+        ObservableList<AnakYatim> daftar = FXCollections.observableArrayList();
+
+        query = "SELECT * FROM "+TABLE;
+        ps = con.prepareStatement(query);
+        rs = ps.executeQuery();
+
+        AnakYatim anakYatim;
+        while (rs.next()){
+            anakYatim = new AnakYatim(
+                    rs.getString(1),
+                    rs.getString(2),
+                    Integer.parseInt(rs.getString(3)),
+                    Double.parseDouble(rs.getString(4)),
+                    rs.getString(5),
+                    rs.getString(6)
+            );
+            daftar.add(anakYatim);
+        }
+        return daftar;
     }
 
     @Override
     public void save(AnakYatim anakYatim) throws SQLException {
+        query = "INSERT INTO "+TABLE+"(id, nama, usia, jumlah, tanggal, operator) VALUES (?,?,?,?,?,?)";
 
+        ps = con.prepareStatement(query);
+        ps.setString(1, anakYatim.getId());
+        ps.setString(2, anakYatim.getTujuan());
+        ps.setString(3, String.valueOf(anakYatim.getUsia()));
+        ps.setString(4, String.valueOf(anakYatim.getJumlah()));
+        ps.setString(5, anakYatim.getTanggal());
+        ps.setString(6, anakYatim.getOperator());
+        ps.executeUpdate();
     }
 
     @Override
     public void update(String[] params) throws SQLException {
-
+        query = "UPDATE "+TABLE+" SET nama=?, usia=?, jumlah=?, tanggal=?, operator=? WHERE id=?";
+        ps = con.prepareStatement(query);
+        ps.setString(1, params[1]);
+        ps.setString(2, params[2]);
+        ps.setString(3, params[3]);
+        ps.setString(4, params[4]);
+        ps.setString(5, params[5]);
+        ps.setString(6, params[0]);
+        ps.executeUpdate();
     }
 
     @Override
     public void delete(String id) throws SQLException {
+        query = "DELETE FROM "+TABLE+" WHERE id=?";
+        ps = con.prepareStatement(query);
+        ps.setString(1, id);
+        ps.executeUpdate();
+    }
 
+    public boolean isAnakYatimExist(String id) throws SQLException {
+        query = "SELECT id FROM "+TABLE+" WHERE id=?";
+        ps = con.prepareStatement(query);
+        ps.setString(1, id);
+        rs = ps.executeQuery();
+
+        return rs.next();
     }
 }

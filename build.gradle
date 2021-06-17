@@ -53,9 +53,22 @@ dependencies {
     implementation group: 'com.google.guava', name: 'guava', version: '30.1.1-jre'
 }
 
+jar {
+    manifest {
+        attributes 'Main-Class': 'Main'
+    }
+}
+
 javafx {
     version = "11.0.2"
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
-mainClassName = 'Main'
+
+application{
+    mainClassName = 'org.masjidku.MainApp'
+}
+
+installDist{
+
+}
