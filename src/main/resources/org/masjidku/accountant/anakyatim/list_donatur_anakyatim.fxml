@@ -35,19 +35,15 @@
                 <Image url="@../../icon/app_icon.png" />
             </image>
         </ImageView>
+        <Rectangle arcWidth="5.0" fill="#3aafa9" height="5.0" layoutX="101.0" layoutY="-5.0" smooth="false" stroke="BLACK" strokeLineCap="BUTT" strokeLineJoin="BEVEL" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" width="665.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
         <Text fill="#3AAFA9" layoutX="125.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="app-title" text="Aplikasi Desktop MasjidKu " />
         <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="398.0" layoutY="42.0" onMouseClicked="#onLogoutClick" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
             <image>
                 <Image url="@../../icon/logout.png" />
             </image>
         </ImageView>
-
-        <Text fill="#3AAFA9" layoutX="14.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="headline" text="KELOLA UANG ANAK YATIM">
-            <font>
-                <Font size="22.0" />
-            </font>
-        </Text>
-        <Button layoutX="30.0" layoutY="191.0" mnemonicParsing="false" onAction="#onCreateListener" styleClass="generalButton" text="Tambah Pengguna" />
+        <Text fill="#3AAFA9" layoutX="14.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="headline" text="KELOLA UANG ANAK YATIM"></Text>
+        <Button layoutX="30.0" layoutY="191.0" mnemonicParsing="false" onAction="#onCreateListener" styleClass="generalButton" text="Tambah Donatur" />
         <TableView fx:id="tblAYMasuk" layoutX="30.0" layoutY="224.0" onMouseClicked="#onMouseClicked" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
             <columns>
                 <TableColumn fx:id="nomor" prefWidth="75.0" text="No." />
@@ -74,7 +70,6 @@
             </Button>
          </children>
       </HBox>
-        <Button layoutX="14.0" layoutY="441.0" mnemonicParsing="false" onAction="#gotoHome" styleClass="generalButton" text="kembali" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" />
-      <Rectangle arcWidth="5.0" fill="#3aafa9" height="5.0" layoutX="101.0" layoutY="-5.0" smooth="false" stroke="BLACK" strokeLineCap="BUTT" strokeLineJoin="BEVEL" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" width="665.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Button layoutX="14.0" layoutY="441.0" mnemonicParsing="false" onAction="#gotoHome" styleClass="generalButton" text="kembali" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" />
     </children>
 </AnchorPane>
