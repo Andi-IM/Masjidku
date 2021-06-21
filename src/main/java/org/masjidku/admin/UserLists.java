@@ -17,6 +17,7 @@ package org.masjidku.admin;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -244,5 +245,10 @@ public class UserLists implements Initializable {
             btnRemove.setDisable(false);
             btnReset.setDisable(false);
         }
+    }
+
+    @FXML
+    public void gotoHome() {
+
     }
 }
