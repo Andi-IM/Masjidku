@@ -50,24 +50,18 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label styleClass="labelForm" text="userid" />
-            <Label styleClass="labelForm" text="username" GridPane.rowIndex="1" />
-            <Label styleClass="labelForm" text="jabatan" GridPane.rowIndex="2" />
-            <TextField fx:id="txtUserId" prefHeight="25.0" prefWidth="113.0" promptText="masukkan userid" styleClass="formField" GridPane.columnIndex="1" />
-            <TextField fx:id="txtUserName" promptText="masukkan username" styleClass="formField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ChoiceBox fx:id="pilJabatan" maxWidth="1.7976931348623157E308" prefWidth="150.0" styleClass="formField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label styleClass="labelForm" text="status" GridPane.rowIndex="3" />
-            <CheckBox fx:id="statusCheckBox" mnemonicParsing="false" onAction="#onCheckboxAction" text="Nonaktif" GridPane.columnIndex="1" GridPane.rowIndex="3">
-               <GridPane.margin>
-                  <Insets left="10.0" right="10.0" />
-               </GridPane.margin>
-            </CheckBox>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clearForm" styleClass="generalButton" text="Bersihkan" GridPane.rowIndex="4">
+             <Label styleClass="labelForm" text="Donatur" GridPane.rowIndex="0"/>
+             <Label styleClass="labelForm" text="Jumlah" GridPane.rowIndex="1" />
+             <Label styleClass="labelForm" text="Tanggal" GridPane.rowIndex="2" />
+             <TextField fx:id="txtDonatur" promptText="Masukkan Donatur" styleClass="formField" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+             <TextField fx:id="txtJumlah" promptText="Masukkan Jumlah" styleClass="formField" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+             <DatePicker fx:id="tanggal" styleClass="formField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clearForm" styleClass="generalButton" text="Bersihkan" GridPane.rowIndex="3" GridPane.columnIndex="0">
                <GridPane.margin>
                   <Insets right="10.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#onUserSubmitted" styleClass="generalButton" text="OK" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Button mnemonicParsing="false" onAction="#onUserSubmitted" styleClass="generalButton" text="OK" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="10.0" right="10.0" />
                </GridPane.margin>
