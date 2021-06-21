@@ -15,20 +15,13 @@
   ~                                HEREUNDER.
   -->
 
-<?import java.net.URL?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.ToggleButton?>
-<?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<SplitPane dividerPositions="0.3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.masjidku.principal.PrincipalRoot">
+<SplitPane dividerPositions="0.3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.masjidku.principal.PrincipalRoot">
     <items>
         <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="480.0" prefWidth="185.0" styleClass="sidebar" SplitPane.resizableWithParent="false">
             <children>
@@ -72,11 +65,11 @@
                                     </image>
                                 </ImageView>
                             </graphic></ToggleButton>
-                  <ToggleButton mnemonicParsing="false" styleClass="sidebarButton" text="Baca Laporan" GridPane.rowIndex="3">
+                  <ToggleButton mnemonicParsing="false" onMouseClicked="#laporanManage" styleClass="sidebarButton" text="Baca Laporan" GridPane.rowIndex="3">
                      <graphic>
                         <ImageView fitHeight="8.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../icon/Ellipse%204.png" />
+                              <Image url="@../icon/ellipse.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -85,7 +78,7 @@
                      <graphic>
                         <ImageView fitHeight="8.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../icon/Ellipse%204.png" />
+                              <Image url="@../icon/ellipse.png" />
                            </image>
                         </ImageView>
                      </graphic>

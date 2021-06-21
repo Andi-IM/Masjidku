@@ -73,15 +73,14 @@ public class KegiatanDao extends Dao<Kegiatan> {
 
     @Override
     public void save(Kegiatan kegiatan) throws SQLException {
-        query = "INSERT INTO "+TABLE+ "(kegiatanID, kegiatanNama, kegiatanWaktu, kegiatanTanggal, kegiatanTempat, operator) VALUES(?,?,?,?,?,?)";
+        query = "INSERT INTO "+TABLE+ "(kegiatanNama, kegiatanWaktu, kegiatanTanggal, kegiatanTempat, operator) VALUES(?,?,?,?,?)";
 
         ps = con.prepareStatement(query);
-        ps.setString(1, kegiatan.getIdKegiatan());
-        ps.setString(2, kegiatan.getNama());
-        ps.setString(3, kegiatan.getWaktu());
-        ps.setString(4, kegiatan.getTanggal());
-        ps.setString(5, kegiatan.getTempat());
-        ps.setString(6, kegiatan.getOperator());
+        ps.setString(1, kegiatan.getNama());
+        ps.setString(2, kegiatan.getWaktu());
+        ps.setString(3, kegiatan.getTanggal());
+        ps.setString(4, kegiatan.getTempat());
+        ps.setString(5, kegiatan.getOperator());
         ps.executeUpdate();
     }
 
@@ -113,5 +112,33 @@ public class KegiatanDao extends Dao<Kegiatan> {
         rs = ps.executeQuery();
 
         return rs.next();
+    }
+
+    public ObservableList<String> getAllKegiatanName() throws SQLException {
+        ObservableList<String> items = FXCollections.observableArrayList();
+
+        query = "SELECT * FROM "+TABLE;
+        ps = con.prepareStatement(query);
+        rs = ps.executeQuery();
+
+        String name;
+        while(rs.next()){
+            name = rs.getString(2);
+            items.add(name);
+        }
+        return items;
+    }
+
+    public String getIdByName(String name) throws SQLException {
+        query = "SELECT kegiatanID FROM "+TABLE+" WHERE kegiatanNama=?";
+
+        ps = con.prepareStatement(query);
+        ps.setString(1, name);
+        rs = ps.executeQuery();
+
+        if(rs.next()){
+            return rs.getString(1);
+        }
+        return "";
     }
 }

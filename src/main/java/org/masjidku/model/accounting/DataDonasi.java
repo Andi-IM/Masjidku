@@ -18,20 +18,20 @@ package org.masjidku.model.accounting;
 public abstract class DataDonasi {
     private String id;
     private String donatur;
-    private double jumlah;
+    private String jumlah;
     private String tanggal;
     private String operator;
 
     public DataDonasi(){}
 
-    public DataDonasi(String id, double jumlah, String tanggal, String operator) {
+    public DataDonasi(String id, String jumlah, String tanggal, String operator) {
         setId(id);
         setJumlah(jumlah);
         setTanggal(tanggal);
         setOperator(operator);
     }
 
-    public DataDonasi(String id, String donatur, double jumlah, String tanggal, String operator) {
+    public DataDonasi(String id, String donatur, String jumlah, String tanggal, String operator) {
         setId(id);
         setDonatur(donatur);
         setJumlah(jumlah);
@@ -55,11 +55,11 @@ public abstract class DataDonasi {
         this.donatur = donatur;
     }
 
-    public double getJumlah() {
+    public String getJumlah() {
         return jumlah;
     }
 
-    public void setJumlah(double jumlah) {
+    public void setJumlah(String jumlah) {
         this.jumlah = jumlah;
     }
 

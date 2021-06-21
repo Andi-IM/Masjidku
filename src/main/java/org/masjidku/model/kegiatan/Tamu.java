@@ -15,7 +15,7 @@
 
 package org.masjidku.model.kegiatan;
 
-public class Tamu implements TamuInt {
+public class Tamu {
 
     private String idTamu;
     private String nama;

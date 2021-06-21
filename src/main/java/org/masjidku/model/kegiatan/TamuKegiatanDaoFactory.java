@@ -22,4 +22,5 @@ import java.sql.SQLException;
 
 public abstract class TamuKegiatanDaoFactory<T> extends Dao<T> {
     public abstract boolean isUndanganExist(String id) throws SQLException;
+    public abstract void save(String idKegiatan, String idTamu, String keterangan) throws SQLException;
 }
