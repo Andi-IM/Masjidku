@@ -22,5 +22,5 @@ public class ZakatMasuk extends DataDonasi {
         super(id, donatur, jumlah, tanggal, operator);
     }
 
-    public ZakatMasuk() { this(null, null, "0", "", ""); }
+    public ZakatMasuk() { this(null, null, "0", null, null); }
 }

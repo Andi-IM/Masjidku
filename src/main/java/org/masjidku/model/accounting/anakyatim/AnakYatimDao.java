@@ -109,7 +109,7 @@ public class AnakYatimDao extends Dao<AnakYatim> {
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
 
-        AnakYatim model = null;
+        AnakYatim model = new AnakYatim();
         if (rs.next()){
             model = new AnakYatim(
                     rs.getString(1),
@@ -124,7 +124,7 @@ public class AnakYatimDao extends Dao<AnakYatim> {
     }
 
     public String getTotalOutcome() throws SQLException {
-        query = "SELECT IFNULL(0, SUM(jumlah)) FROM "+TABLE;
+        query = "SELECT IFNULL(SUM(jumlah),0) FROM "+TABLE;
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
 

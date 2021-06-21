@@ -46,7 +46,7 @@ public class DonasiAYatimDao extends Dao<DonasiAYatim> {
     }
 
     @Override
-    protected ObservableList<DonasiAYatim> getAll() throws SQLException {
+    public ObservableList<DonasiAYatim> getAll() throws SQLException {
         ObservableList<DonasiAYatim> donatur = FXCollections.observableArrayList();
 
         query = "SELECT * FROM "+TABLE;
@@ -93,7 +93,7 @@ public class DonasiAYatimDao extends Dao<DonasiAYatim> {
     }
 
     @Override
-    protected void delete(String id) throws SQLException {
+    public void delete(String id) throws SQLException {
         query = "DELETE FROM "+TABLE+" WHERE id=?";
         ps = con.prepareStatement(query);
         ps.setString(1, id);
@@ -105,7 +105,7 @@ public class DonasiAYatimDao extends Dao<DonasiAYatim> {
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
 
-        DonasiAYatim model = null;
+        DonasiAYatim model = new DonasiAYatim();
         if (rs.next()){
             model = new DonasiAYatim(
                     rs.getString(1),
@@ -119,7 +119,7 @@ public class DonasiAYatimDao extends Dao<DonasiAYatim> {
     }
 
     public String getTotalIncome() throws SQLException {
-        query = "SELECT IFNULL(0, SUM(jumlah)) FROM "+TABLE;
+        query = "SELECT IFNULL(SUM(jumlah),0) FROM "+TABLE;
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
 

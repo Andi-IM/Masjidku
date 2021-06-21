@@ -19,7 +19,7 @@ import org.masjidku.model.accounting.DataDonasi;
 import org.masjidku.model.accounting.UangKeluar;
 
 public class Pembangunan extends UangKeluar {
-    public Pembangunan() { }
+    public Pembangunan() { this(null, null, null, "0", null, null); }
 
     public Pembangunan(String id, String tujuan, String keterangan, String jumlah, String tanggal, String operator) {
         super(id, tujuan, keterangan, jumlah, tanggal, operator);

@@ -19,8 +19,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
 import org.masjidku.MainApp;
+import org.masjidku.model.accounting.DaoFunctions;
+import org.masjidku.model.accounting.tpa.TpaKeluar;
+import org.masjidku.model.accounting.tpa.TpaKeluarDao;
+import org.masjidku.model.accounting.tpa.TpaMasuk;
+import org.masjidku.model.accounting.tpa.TpaMasukDao;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class AccountantTpa implements Initializable {
@@ -47,33 +53,33 @@ public class AccountantTpa implements Initializable {
     public void onLogoutClick() { mainApp.onLogoutAction(); }
 
     @FXML
-    public void onKelolaDonasiTpa() { }
+    public void onKelolaTpa() { mainApp.showAlokasiTpa(); }
 
     @FXML
-    public void onKelolaTpa() { }
+    public void onKelolaDonasiTpa() { mainApp.showDonaturTpa(); }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-       //  opDao = new OperationalDao();
-       // DonasiOperationalDao doDao = new DonasiOperationalDao();
-       // DaoFunctions df = new DaoFunctions();
+        TpaMasukDao tpamdao= new TpaMasukDao();
+        TpaKeluarDao tpakdao = new TpaKeluarDao();
+        DaoFunctions df = new DaoFunctions();
 
-//        try {
-//            if (opDao.getConnection() && doDao.getConnection() && df.getConnection()) {
-//                Operasional penerima = opDao.getLastRecord();
-//                DonasiOperasional pemberi = doDao.getLastRecord();
-//
-//                txtPemasukanTerakhir.setText("Rp. " + penerima.getJumlah());
-//                txtPengeluaranTerakhir.setText("Rp. " + pemberi.getJumlah());
-//                txtTotalPemasukkan.setText("Rp. " + opDao.getTotalIncome());
-//                txtTotalPengeluaran.setText("Rp. " + doDao.getTotalOutcome());
-//                txtSaldo.setText("Rp. " + df.getInfakYatimBalance());
-//                txtTglPemasukkan.setText(pemberi.getTanggal());
-//                txtTglPengeluaran.setText(penerima.getTanggal());
-//
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            if (tpamdao.getConnection() && tpakdao.getConnection() && df.getConnection()) {
+                TpaKeluar penerima = tpakdao.getLastRecord();
+                TpaMasuk pemberi = tpamdao.getLastRecord();
+
+                txtPemasukanTerakhir.setText("Rp. " + pemberi.getJumlah());
+                txtPengeluaranTerakhir.setText("Rp. " + penerima.getJumlah());
+                txtTotalPemasukkan.setText("Rp. " + tpamdao.getTotalIncome());
+                txtTotalPengeluaran.setText("Rp. " + tpakdao.getTotalOutcome());
+                txtSaldo.setText("Rp. " + df.getTpaBalance());
+                txtTglPemasukkan.setText(pemberi.getTanggal());
+                txtTglPengeluaran.setText(penerima.getTanggal());
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

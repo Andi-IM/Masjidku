@@ -246,9 +246,4 @@ public class UserLists implements Initializable {
             btnReset.setDisable(false);
         }
     }
-
-    @FXML
-    public void gotoHome() {
-
-    }
 }

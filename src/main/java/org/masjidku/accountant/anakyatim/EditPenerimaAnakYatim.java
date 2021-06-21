@@ -37,7 +37,7 @@ public class EditPenerimaAnakYatim implements Initializable {
     private DatePicker date;
     private MainApp mainApp;
 
-    public void setMainApp(MainApp mainApp, AnakYatim model) {
+    public void setMainApp(MainApp mainApp, AnakYatim model, String username) {
         this.mainApp = mainApp;
     }
 

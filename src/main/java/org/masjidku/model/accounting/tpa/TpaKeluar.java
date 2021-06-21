@@ -15,5 +15,12 @@
 
 package org.masjidku.model.accounting.tpa;
 
-public class TpaKeluar {
+import org.masjidku.model.accounting.UangKeluar;
+
+public class TpaKeluar extends UangKeluar {
+    public TpaKeluar() { this(null,null,"0",null,null);}
+
+    public TpaKeluar(String id, String tujuan, String jumlah, String tanggal, String operator) {
+        super(id, tujuan, jumlah, tanggal, operator);
+    }
 }

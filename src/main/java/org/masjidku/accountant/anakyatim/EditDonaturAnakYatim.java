@@ -17,8 +17,10 @@ package org.masjidku.accountant.anakyatim;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import org.masjidku.MainApp;
 import org.masjidku.model.accounting.anakyatim.DonasiAYatim;
 
@@ -32,10 +34,19 @@ public class EditDonaturAnakYatim implements Initializable {
     private TextField txtJumlah;
     @FXML
     private DatePicker date;
+    private DonasiAYatim donatur;
     private MainApp mainApp;
+    private String operator;
 
-    public void setMainApp(MainApp mainApp, DonasiAYatim model) {
+
+    // create some stage
+    @SuppressWarnings("unused")
+    private Stage dialogStage;
+
+    public void setMainApp(MainApp mainApp, DonasiAYatim model, String operator) {
         this.mainApp = mainApp;
+        this.donatur = model;
+        this.operator = operator;
     }
 
 
@@ -45,7 +56,11 @@ public class EditDonaturAnakYatim implements Initializable {
     }
 
     @FXML
-    public void clearForm() { }
+    public void clearForm() {
+        txtNama.clear();
+        txtJumlah.clear();
+        date.setValue(null);
+    }
 
     @FXML
     public void onSubmitted() { }
@@ -54,5 +69,33 @@ public class EditDonaturAnakYatim implements Initializable {
     public void gotoList() { mainApp.showDonasiAYatim(); }
 
     public void onLogoutClick() { mainApp.onLogoutAction(); }
+
+    /**
+     * Alert Error Builder
+     *
+     * @param header  header message
+     * @param content content message
+     */
+    @SuppressWarnings("SameParameterValue")
+    private void alertInfo(String header, String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.initOwner(dialogStage);
+        alert.setTitle("Prompt");
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+
+        alert.showAndWait();
+    }
+
+    @SuppressWarnings("SameParameterValue")
+    private void alertError(String header, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.initOwner(dialogStage);
+        alert.setTitle("Prompt");
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+
+        alert.showAndWait();
+    }
 
 }

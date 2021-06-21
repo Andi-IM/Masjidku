@@ -46,7 +46,7 @@ public class ZakatKeluarDao extends Dao<ZakatKeluar> {
     }
 
     @Override
-    protected ObservableList<ZakatKeluar> getAll() throws SQLException {
+    public ObservableList<ZakatKeluar> getAll() throws SQLException {
         ObservableList<ZakatKeluar> item = FXCollections.observableArrayList();
 
         query = "SELECT * FROM "+TABLE;
@@ -94,7 +94,7 @@ public class ZakatKeluarDao extends Dao<ZakatKeluar> {
     }
 
     @Override
-    protected void delete(String id) throws SQLException {
+    public void delete(String id) throws SQLException {
         query = "DELETE FROM "+TABLE+" WHERE id=?";
         ps = con.prepareStatement(query);
         ps.setString(1, id);
@@ -106,7 +106,7 @@ public class ZakatKeluarDao extends Dao<ZakatKeluar> {
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
 
-        ZakatKeluar model = null;
+        ZakatKeluar model = new ZakatKeluar();
         if (rs.next()){
             model = new ZakatKeluar(
                     rs.getString(1),
@@ -120,7 +120,7 @@ public class ZakatKeluarDao extends Dao<ZakatKeluar> {
     }
 
     public String gettotalOutcome() throws SQLException {
-        query = "SELECT IFNULL(0, SUM(jumlah)) FROM "+TABLE;
+        query = "SELECT IFNULL(SUM(jumlah),0) FROM "+TABLE;
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
 
