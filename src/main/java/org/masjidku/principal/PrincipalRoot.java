@@ -32,7 +32,7 @@ public class PrincipalRoot {
     public void homeAction() { mainApp.setPrincipalView(); }
 
     @FXML
-    public void laporanManage() { }
+    public void laporanManage() { mainApp.setLaporan(); }
 
     @FXML
     public void aboutAction() { mainApp.showAbout(); }

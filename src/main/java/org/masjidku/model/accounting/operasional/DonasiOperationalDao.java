@@ -40,7 +40,7 @@ public class DonasiOperationalDao extends Dao<DonasiOperasional> {
             model = new DonasiOperasional(
                     rs.getString(1),
                     rs.getString(2),
-                    Double.parseDouble(rs.getString(3)),
+                    rs.getString(3),
                     rs.getString(4),
                     rs.getString(5)
             );
@@ -61,7 +61,7 @@ public class DonasiOperationalDao extends Dao<DonasiOperasional> {
             donasi = new DonasiOperasional(
                     rs.getString(1),
                     rs.getString(2),
-                    Double.parseDouble(rs.getString(3)),
+                    rs.getString(3),
                     rs.getString(4),
                     rs.getString(5)
             );
@@ -77,7 +77,7 @@ public class DonasiOperationalDao extends Dao<DonasiOperasional> {
         ps = con.prepareStatement(query);
         ps.setString(1, donasiOperasional.getId());
         ps.setString(2, donasiOperasional.getDonatur());
-        ps.setString(3, String.valueOf(donasiOperasional.getJumlah()));
+        ps.setString(3, donasiOperasional.getJumlah());
         ps.setString(4, donasiOperasional.getTanggal());
         ps.setString(5, donasiOperasional.getOperator());
         ps.executeUpdate();
@@ -110,5 +110,34 @@ public class DonasiOperationalDao extends Dao<DonasiOperasional> {
         rs = ps.executeQuery();
 
         return rs.next();
+    }
+
+    public DonasiOperasional getLastRecord() throws SQLException {
+        query = "SELECT * FROM "+TABLE+" ORDER BY ID DESC LIMIT 1";
+        ps = con.prepareStatement(query);
+        rs = ps.executeQuery();
+
+        DonasiOperasional model = null;
+        if (rs.next()){
+            model = new DonasiOperasional(
+                    rs.getString(1),
+                    rs.getString(2),
+                    rs.getString(3),
+                    rs.getString(4),
+                    rs.getString(5)
+            );
+        }
+        return model;
+    }
+
+    public String getTotalOutcome() throws SQLException {
+        query = "SELECT IFNULL(0, SUM(jumlah)) FROM "+TABLE;
+        ps = con.prepareStatement(query);
+        rs = ps.executeQuery();
+
+        if (rs.next()){
+            return rs.getString(1);
+        }
+        return null;
     }
 }

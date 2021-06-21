@@ -21,7 +21,7 @@ import org.masjidku.model.accounting.UangKeluar;
 public class Pembangunan extends UangKeluar {
     public Pembangunan() { }
 
-    public Pembangunan(String id, String tujuan, String keterangan, double jumlah, String tanggal, String operator) {
+    public Pembangunan(String id, String tujuan, String keterangan, String jumlah, String tanggal, String operator) {
         super(id, tujuan, keterangan, jumlah, tanggal, operator);
     }
 }

@@ -18,8 +18,6 @@ package org.masjidku.model.accounting.zakat;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.masjidku.model.Dao;
-import org.masjidku.model.DaoFactory;
-import org.masjidku.model.accounting.operasional.Operasional;
 
 import java.sql.SQLException;
 
@@ -39,7 +37,7 @@ public class ZakatKeluarDao extends Dao<ZakatKeluar> {
             model = new ZakatKeluar(
                     rs.getString(1),
                     rs.getString(2),
-                    Double.parseDouble(rs.getString(3)),
+                    rs.getString(3),
                     rs.getString(4),
                     rs.getString(5)
             );
@@ -60,7 +58,7 @@ public class ZakatKeluarDao extends Dao<ZakatKeluar> {
             operasional = new ZakatKeluar(
                     rs.getString(1),
                     rs.getString(2),
-                    Double.parseDouble(rs.getString(3)),
+                    rs.getString(3),
                     rs.getString(4),
                     rs.getString(5)
             );
@@ -77,7 +75,7 @@ public class ZakatKeluarDao extends Dao<ZakatKeluar> {
         ps.setString(1, zakatKeluar.getId());
         ps.setString(2, zakatKeluar.getTujuan());
         ps.setString(2, zakatKeluar.getKeterangan());
-        ps.setString(3, String.valueOf(zakatKeluar.getJumlah()));
+        ps.setString(3, zakatKeluar.getJumlah());
         ps.setString(4, zakatKeluar.getTanggal());
         ps.setString(5, zakatKeluar.getOperator());
         ps.executeUpdate();
@@ -101,6 +99,35 @@ public class ZakatKeluarDao extends Dao<ZakatKeluar> {
         ps = con.prepareStatement(query);
         ps.setString(1, id);
         ps.executeUpdate();
+    }
+
+    public ZakatKeluar getLastRecord() throws SQLException {
+        query = "SELECT * FROM "+TABLE+" ORDER BY ID DESC LIMIT 1";
+        ps = con.prepareStatement(query);
+        rs = ps.executeQuery();
+
+        ZakatKeluar model = null;
+        if (rs.next()){
+            model = new ZakatKeluar(
+                    rs.getString(1),
+                    rs.getString(2),
+                    rs.getString(3),
+                    rs.getString(4),
+                    rs.getString(5)
+            );
+        }
+        return model;
+    }
+
+    public String gettotalOutcome() throws SQLException {
+        query = "SELECT IFNULL(0, SUM(jumlah)) FROM "+TABLE;
+        ps = con.prepareStatement(query);
+        rs = ps.executeQuery();
+
+        if (rs.next()){
+            return rs.getString(1);
+        }
+        return "0";
     }
 
     public boolean isDataExist(String id) throws SQLException {

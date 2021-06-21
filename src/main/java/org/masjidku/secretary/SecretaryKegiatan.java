@@ -24,6 +24,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
 import org.masjidku.model.kegiatan.Kegiatan;
@@ -175,7 +176,13 @@ public class SecretaryKegiatan implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         tblKegiatan.setItems(getKegiatanData());
+        colNomor.setCellValueFactory(new PropertyValueFactory<>(""));
+        colNmKegiatan.setCellValueFactory(new PropertyValueFactory<>("nama"));
+        colTempatKegiatan.setCellValueFactory(new PropertyValueFactory<>("tempat"));
+        colWaktuKegiatan.setCellValueFactory(new PropertyValueFactory<>("waktu"));
+        colTanggalKegiatan.setCellValueFactory(new PropertyValueFactory<>("tanggal"));
     }
 
     @FXML

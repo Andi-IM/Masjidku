@@ -53,7 +53,6 @@ public class UserForm implements Initializable {
 
     // setting the field
     public void setUser(User user) {
-
         txtUserId.setText(user.getUserId());
         txtUserName.setText(user.getUsername());
         pilJabatan.getSelectionModel().select(user.getJabatan().toString);

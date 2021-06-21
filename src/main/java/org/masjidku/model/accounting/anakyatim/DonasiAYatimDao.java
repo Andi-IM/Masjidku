@@ -37,7 +37,7 @@ public class DonasiAYatimDao extends Dao<DonasiAYatim> {
             model = new DonasiAYatim(
                     rs.getString(1),
                     rs.getString(2),
-                    Double.parseDouble(rs.getString(3)),
+                    rs.getString(3),
                     rs.getString(4),
                     rs.getString(5)
             );
@@ -58,7 +58,7 @@ public class DonasiAYatimDao extends Dao<DonasiAYatim> {
             anakYatim = new DonasiAYatim(
                     rs.getString(1),
                     rs.getString(2),
-                    Double.parseDouble(rs.getString(3)),
+                    rs.getString(3),
                     rs.getString(4),
                     rs.getString(5)
             );
@@ -74,7 +74,7 @@ public class DonasiAYatimDao extends Dao<DonasiAYatim> {
         ps = con.prepareStatement(query);
         ps.setString(1, donasiAYatim.getId());
         ps.setString(2, donasiAYatim.getDonatur());
-        ps.setString(3, String.valueOf(donasiAYatim.getJumlah()));
+        ps.setString(3, donasiAYatim.getJumlah());
         ps.setString(4, donasiAYatim.getTanggal());
         ps.setString(5, donasiAYatim.getOperator());
         ps.executeUpdate();
@@ -110,7 +110,7 @@ public class DonasiAYatimDao extends Dao<DonasiAYatim> {
             model = new DonasiAYatim(
                     rs.getString(1),
                     rs.getString(2),
-                    Double.parseDouble(rs.getString(3)),
+                    rs.getString(3),
                     rs.getString(4),
                     rs.getString(5)
             );
@@ -119,7 +119,7 @@ public class DonasiAYatimDao extends Dao<DonasiAYatim> {
     }
 
     public String getTotalIncome() throws SQLException {
-        query = "SELECT SUM(jumlah) FROM "+TABLE;
+        query = "SELECT IFNULL(0, SUM(jumlah)) FROM "+TABLE;
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
 

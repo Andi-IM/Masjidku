@@ -105,7 +105,7 @@ public class Session extends DaoFactory implements SessionDao{
                     model.setSession_id(rs.getString(1));
                     model.setUserid(rs.getString(2));
                     model.setTimestamp(rs.getString(3));
-                    model.setSession_long(rs.getString(4));
+                    model.setDuration(rs.getString(4));
                 }
             }
 
@@ -140,6 +140,16 @@ public class Session extends DaoFactory implements SessionDao{
         return userSessions;
     }
 
+    @SuppressWarnings("SqlWithoutWhere")
+    public void truncateData() {
+        query = "DELETE FROM "+TABLE;
+        try {
+            ps = con.prepareStatement(query);
+            rs = ps.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     private void generateList() throws SQLException {
         rs = ps.executeQuery();
         UserSession sessions;
@@ -148,7 +158,7 @@ public class Session extends DaoFactory implements SessionDao{
             sessions.setSession_id(rs.getString(1));
             sessions.setUserid(rs.getString(2));
             sessions.setTimestamp(rs.getString(3));
-            sessions.setSession_long(rs.getString(4));
+            sessions.setDuration(rs.getString(4));
             userSessions.add(sessions);
         }
     }

@@ -21,7 +21,7 @@ public class DonasiAYatim extends DataDonasi {
 
     public DonasiAYatim(){}
 
-    public DonasiAYatim(String id, String donatur, double jumlah, String tanggal, String operator) {
+    public DonasiAYatim(String id, String donatur, String jumlah, String tanggal, String operator) {
         super(id, donatur, jumlah, tanggal, operator);
     }
 }

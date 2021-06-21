@@ -15,7 +15,6 @@
 
 package org.masjidku.model.accounting.anakyatim;
 
-import org.masjidku.model.accounting.DataDonasi;
 import org.masjidku.model.accounting.UangKeluar;
 
 public class AnakYatim extends UangKeluar {
@@ -23,7 +22,7 @@ public class AnakYatim extends UangKeluar {
 
     public AnakYatim(){}
 
-    public AnakYatim(String id, String tujuan, int usia, double jumlah, String tanggal, String operator) {
+    public AnakYatim(String id, String tujuan, int usia, String jumlah, String tanggal, String operator) {
         super(id, tujuan, jumlah, tanggal, operator);
         this.usia = usia;
     }

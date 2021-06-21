@@ -15,28 +15,71 @@
 
 package org.masjidku.accountant;
 
-import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
 import org.masjidku.MainApp;
+import org.masjidku.model.accounting.DaoFunctions;
+import org.masjidku.model.accounting.operasional.DonasiOperasional;
+import org.masjidku.model.accounting.operasional.DonasiOperationalDao;
+import org.masjidku.model.accounting.operasional.Operasional;
+import org.masjidku.model.accounting.operasional.OperationalDao;
 
-public class AccountantOperasional {
-    public Button btnDaftarKelolaDonatur;
-    public Button btnKelolaUangOperasional;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+
+public class AccountantOperasional implements Initializable {
+    @FXML
     public Text txtPemasukanTerakhir;
+    @FXML
     public Text txtPengeluaranTerakhir;
-    public Text txtTerakhirDiubah;
+    @FXML
+    public Text txtTglPemasukkan;
+    @FXML
+    public Text txtTotalPemasukkan;
+    @FXML
+    public Text txtTotalPengeluaran;
+    @FXML
+    public Text txtSaldo;
+    @FXML
+    public Text txtTglPengeluaran;
 
-    public void setMainApp(MainApp mainApp) {
-    }
+    private MainApp mainApp;
 
-    public void onLogoutClick(MouseEvent mouseEvent) {
-    }
+    public void setMainApp(MainApp mainApp) { this.mainApp = mainApp; }
 
-    public void onKelolaDonaturClick(ActionEvent actionEvent) {
-    }
+    @FXML
+    public void onLogoutClick() { mainApp.onLogoutAction(); }
 
-    public void onKelolaOperasionalClick(ActionEvent actionEvent) {
+    @FXML
+    public void onKelolaDonaturClick() { }
+
+    @FXML
+    public void onKelolaOperasionalClick() { }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        OperationalDao opDao = new OperationalDao();
+        DonasiOperationalDao doDao = new DonasiOperationalDao();
+        DaoFunctions df = new DaoFunctions();
+
+        try {
+            if (opDao.getConnection() && doDao.getConnection() && df.getConnection()) {
+                Operasional penerima = opDao.getLastRecord();
+                DonasiOperasional pemberi = doDao.getLastRecord();
+
+                txtPemasukanTerakhir.setText("Rp. " + penerima.getJumlah());
+                txtPengeluaranTerakhir.setText("Rp. " + pemberi.getJumlah());
+                txtTotalPemasukkan.setText("Rp. " + opDao.getTotalIncome());
+                txtTotalPengeluaran.setText("Rp. " + doDao.getTotalOutcome());
+                txtSaldo.setText("Rp. " + df.getInfakYatimBalance());
+                txtTglPemasukkan.setText(pemberi.getTanggal());
+                txtTglPengeluaran.setText(penerima.getTanggal());
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

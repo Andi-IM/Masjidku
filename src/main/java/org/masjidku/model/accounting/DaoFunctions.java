@@ -65,7 +65,6 @@ public class DaoFunctions extends DaoFactory {
         if (rs.next()){
             return rs.getString(1);
         }
-
         return null;
     }
 
@@ -77,13 +76,6 @@ public class DaoFunctions extends DaoFactory {
         if (rs.next()){
             return rs.getString(1);
         }
-
         return null;
-    }
-
-    public static void main(String[] args) throws SQLException {
-        DaoFunctions dao = new DaoFunctions();
-        dao.getConnection();
-        System.out.println(dao.getInfakYatimBalance());
     }
 }

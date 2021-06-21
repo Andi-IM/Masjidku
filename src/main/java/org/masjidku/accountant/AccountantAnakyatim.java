@@ -17,6 +17,7 @@ package org.masjidku.accountant;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import org.masjidku.MainApp;
 import org.masjidku.model.accounting.DaoFunctions;
@@ -45,6 +46,7 @@ public class AccountantAnakyatim implements Initializable {
     public Text txtSaldo;
     @FXML
     public Text txtTglPengeluaran;
+    public Button btnDaftarAnakYatim;
 
     private MainApp mainApp;
 

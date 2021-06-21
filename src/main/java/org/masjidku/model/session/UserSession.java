@@ -19,13 +19,13 @@ public final class UserSession {
     private String session_id;
     private String userid;
     private String timestamp;
-    private String session_long;
+    private String duration;
 
     public UserSession(){ }
 
-    public UserSession(String session_id, String userid, String timestamp, String session_long) {
+    public UserSession(String session_id, String userid, String timestamp, String duration) {
         setSession_id(session_id);
-        setSession_long(session_long);
+        setDuration(duration);
         setTimestamp(timestamp);
         setUserid(userid);
 
@@ -43,8 +43,8 @@ public final class UserSession {
         return timestamp;
     }
 
-    public String getSession_long() {
-        return session_long;
+    public String getDuration() {
+        return duration;
     }
 
     public void setSession_id(String session_id) {
@@ -55,8 +55,8 @@ public final class UserSession {
         this.userid = userid;
     }
 
-    public void setSession_long(String session_long) {
-        this.session_long = session_long;
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 
     public void setTimestamp(String timestamp) {

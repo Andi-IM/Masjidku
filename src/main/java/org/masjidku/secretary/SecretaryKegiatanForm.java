@@ -49,13 +49,9 @@ public class SecretaryKegiatanForm {
         this.mainApp = mainApp;
         this.kegiatan = kegiatan;
         this.operator = operator;
-
-        if (kegiatan != null) {
-            setKegiatan(kegiatan);
-        }
     }
 
-    private void setKegiatan(Kegiatan kegiatan) {
+    public void setKegiatan(Kegiatan kegiatan) {
         txtNamaKegiatan.setText(kegiatan.getNama());
         txtTempat.setText(kegiatan.getTempat());
         txtTanggal.setValue(LocalDate.parse(kegiatan.getTanggal()));
@@ -78,9 +74,7 @@ public class SecretaryKegiatanForm {
             String tempat = txtTempat.getText();
             String tanggal = txtTanggal.getValue().toString();
 
-            if (kegiatan == null) {
-                kegiatan = new Kegiatan(namaKegiatan, waktu, tanggal, tempat, operator);
-            }
+            kegiatan = new Kegiatan(namaKegiatan, waktu, tanggal, tempat, operator);
             KegiatanDao dao = new KegiatanDao();
 
             if (dao.getConnection()) {
