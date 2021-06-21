@@ -18,7 +18,6 @@ package org.masjidku.model.accounting.anakyatim;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.masjidku.model.Dao;
-import org.masjidku.model.kegiatan.Kegiatan;
 
 import java.sql.SQLException;
 
@@ -39,7 +38,7 @@ public class AnakYatimDao extends Dao<AnakYatim> {
                     rs.getString(1),
                     rs.getString(2),
                     Integer.parseInt(rs.getString(3)),
-                    Double.parseDouble(rs.getString(4)),
+                    rs.getString(4),
                     rs.getString(5),
                     rs.getString(6)
             );
@@ -61,7 +60,7 @@ public class AnakYatimDao extends Dao<AnakYatim> {
                     rs.getString(1),
                     rs.getString(2),
                     Integer.parseInt(rs.getString(3)),
-                    Double.parseDouble(rs.getString(4)),
+                    rs.getString(4),
                     rs.getString(5),
                     rs.getString(6)
             );
@@ -103,6 +102,36 @@ public class AnakYatimDao extends Dao<AnakYatim> {
         ps = con.prepareStatement(query);
         ps.setString(1, id);
         ps.executeUpdate();
+    }
+
+    public AnakYatim getLastRecord() throws SQLException {
+        query = "SELECT * FROM "+TABLE+" ORDER BY ID DESC LIMIT 1";
+        ps = con.prepareStatement(query);
+        rs = ps.executeQuery();
+
+        AnakYatim model = null;
+        if (rs.next()){
+            model = new AnakYatim(
+                    rs.getString(1),
+                    rs.getString(2),
+                    Integer.parseInt(rs.getString(3)),
+                    rs.getString(4),
+                    rs.getString(5),
+                    rs.getString(6)
+            );
+        }
+        return model;
+    }
+
+    public String getTotalOutcome() throws SQLException {
+        query = "SELECT IFNULL(0, SUM(jumlah)) FROM "+TABLE;
+        ps = con.prepareStatement(query);
+        rs = ps.executeQuery();
+
+        if (rs.next()){
+            return rs.getString(1);
+        }
+        return null;
     }
 
     public boolean isAnakYatimExist(String id) throws SQLException {

@@ -15,46 +15,82 @@
 
 package org.masjidku.model.kegiatan;
 
-public class TamuKegiatan implements TamuAndKegiatan {
-    private String id_undangan;
-    private String id_kegiatan;
-    private String id_tamu;
+public class TamuKegiatan  {
+    private String idUndangan;
+    private String idKegiatan;
+    private String idTamu;
+
+    private String nama;
+    private String kegiatan;
+    private String alamat;
+    private String notelp;
     private String keterangan;
 
-    public TamuKegiatan(String id_undangan, String id_kegiatan, String id_tamu, String keterangan) {
-        setId_undangan(id_undangan);
-        setIdKegiatan(id_kegiatan);
-        setIdTamu(id_tamu);
+    public TamuKegiatan() { this(null,null,null,null,null,null,null,null); }
+
+    public TamuKegiatan(String idUndangan, String idKegiatan, String idTamu, String nama, String kegiatan, String alamat, String notelp, String keterangan) {
+        setIdUndangan(idUndangan);
+        setIdKegiatan(kegiatan);
+        setIdTamu(idTamu);
+        setNama(nama);
+        setIdKegiatan(kegiatan);
+        setAlamat(alamat);
+        setNotelp(notelp);
         setKeterangan(keterangan);
     }
 
-    public String getId_undangan() {
-        return id_undangan;
+    public String getIdUndangan() {
+        return idUndangan;
     }
 
-    public void setId_undangan(String id_undangan) {
-        this.id_undangan = id_undangan;
+    public void setIdUndangan(String idUndangan) {
+        this.idUndangan = idUndangan;
     }
 
-    @Override
-    public String getIdTamu() {
-        return id_tamu;
-    }
-
-    @Override
-    public void setIdTamu(String idTamu) { this.id_tamu = idTamu; }
-
-    @Override
     public String getIdKegiatan() {
-        return id_kegiatan;
+        return idKegiatan;
     }
 
-    @Override
-    public void setIdKegiatan(String idKegiatan) { this.id_kegiatan = idKegiatan; }
+    public String getIdTamu() {
+        return idTamu;
+    }
 
-    @Override
-    public String getKeterangan() { return keterangan; }
+    public void setIdTamu(String idTamu) {
+        this.idTamu = idTamu;
+    }
 
-    @Override
+    public void setKegiatan(String kegiatan) {
+        this.kegiatan = kegiatan;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public String getKegiatan() {
+        return kegiatan;
+    }
+
+    public String getAlamat() {
+        return alamat;
+    }
+
+    public String getNotelp() {
+        return notelp;
+    }
+
+    public String getKeterangan() {
+        return keterangan;
+    }
+
     public void setKeterangan(String keterangan) { this.keterangan = keterangan; }
+
+    private void setNotelp(String notelp) { this.notelp = notelp; }
+
+    private void setAlamat(String alamat) { this.alamat = alamat; }
+
+    private void setNama(String nama) { this.nama = nama; }
+
+    private void setIdKegiatan(String kegiatan) { this.kegiatan = kegiatan; }
+
 }

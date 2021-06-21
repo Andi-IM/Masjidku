@@ -18,8 +18,6 @@ package org.masjidku.model.accounting.pembangunan;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.masjidku.model.Dao;
-import org.masjidku.model.DaoFactory;
-import org.masjidku.model.accounting.operasional.DonasiOperasional;
 
 import java.sql.SQLException;
 
@@ -39,7 +37,7 @@ public class DonasiPembangunanDao extends Dao<DonasiPembangunan> {
             model = new DonasiPembangunan(
                     rs.getString(1),
                     rs.getString(2),
-                    Double.parseDouble(rs.getString(3)),
+                    rs.getString(3),
                     rs.getString(4),
                     rs.getString(5)
             );
@@ -60,7 +58,7 @@ public class DonasiPembangunanDao extends Dao<DonasiPembangunan> {
             donasi = new DonasiPembangunan(
                     rs.getString(1),
                     rs.getString(2),
-                    Double.parseDouble(rs.getString(3)),
+                    rs.getString(3),
                     rs.getString(4),
                     rs.getString(5)
             );
@@ -76,7 +74,7 @@ public class DonasiPembangunanDao extends Dao<DonasiPembangunan> {
         ps = con.prepareStatement(query);
         ps.setString(1, donasiPembangunan.getId());
         ps.setString(2, donasiPembangunan.getDonatur());
-        ps.setString(3, String.valueOf(donasiPembangunan.getJumlah()));
+        ps.setString(3, donasiPembangunan.getJumlah());
         ps.setString(4, donasiPembangunan.getTanggal());
         ps.setString(5, donasiPembangunan.getOperator());
         ps.executeUpdate();
@@ -100,6 +98,35 @@ public class DonasiPembangunanDao extends Dao<DonasiPembangunan> {
         ps = con.prepareStatement(query);
         ps.setString(1, id);
         ps.executeUpdate();
+    }
+
+    public DonasiPembangunan getLastRecord() throws SQLException {
+        query = "SELECT * FROM "+TABLE+" ORDER BY ID DESC LIMIT 1";
+        ps = con.prepareStatement(query);
+        rs = ps.executeQuery();
+
+        DonasiPembangunan model = null;
+        if (rs.next()){
+            model = new DonasiPembangunan(
+                    rs.getString(1),
+                    rs.getString(2),
+                    rs.getString(3),
+                    rs.getString(4),
+                    rs.getString(5)
+            );
+        }
+        return model;
+    }
+
+    public String getTotalOutcome() throws SQLException {
+        query = "SELECT IFNULL(0, SUM(jumlah)) FROM "+TABLE;
+        ps = con.prepareStatement(query);
+        rs = ps.executeQuery();
+
+        if (rs.next()){
+            return rs.getString(1);
+        }
+        return null;
     }
 
     public boolean isDonaturExist(String id) throws SQLException {

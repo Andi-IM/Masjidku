@@ -22,12 +22,12 @@ public abstract class UangKeluar extends DataDonasi {
 
     public UangKeluar(){ }
 
-    public UangKeluar(String id, String tujuan, double jumlah, String tanggal, String operator) {
+    public UangKeluar(String id, String tujuan, String jumlah, String tanggal, String operator) {
         super(id, jumlah, tanggal, operator);
         this.tujuan = tujuan;
     }
 
-    public UangKeluar(String id, String tujuan, String keterangan, double jumlah, String tanggal, String operator) {
+    public UangKeluar(String id, String tujuan, String keterangan, String jumlah, String tanggal, String operator) {
         super(id, jumlah, tanggal, operator);
         this.tujuan = tujuan;
         this.keterangan = keterangan;
