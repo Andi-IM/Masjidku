@@ -24,8 +24,37 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.masjidku.accountant.*;
+import org.masjidku.accountant.anakyatim.DonaturAnakYatim;
+import org.masjidku.accountant.anakyatim.EditDonaturAnakYatim;
+import org.masjidku.accountant.anakyatim.EditPenerimaAnakYatim;
+import org.masjidku.accountant.anakyatim.PenerimaAnakYatim;
+import org.masjidku.accountant.operasional.DonaturOperasional;
+import org.masjidku.accountant.operasional.EditDonaturOperasional;
+import org.masjidku.accountant.operasional.EditPembayaranOperasional;
+import org.masjidku.accountant.operasional.PembayaranOperasional;
+import org.masjidku.accountant.pembangunan.EditDonaturPembangunan;
+import org.masjidku.accountant.pembangunan.EditPembayaranPembangunan;
+import org.masjidku.accountant.pembangunan.PembayaranPembangunan;
+import org.masjidku.accountant.tpa.DonaturTpa;
+import org.masjidku.accountant.tpa.EditDonaturTpa;
+import org.masjidku.accountant.tpa.EditPembayaranTpa;
+import org.masjidku.accountant.tpa.PembayaranTpa;
+import org.masjidku.accountant.zakat.DonaturZakat;
+import org.masjidku.accountant.zakat.EditDonaturZakat;
+import org.masjidku.accountant.zakat.EditPenerimaZakat;
+import org.masjidku.accountant.zakat.PenerimaZakat;
 import org.masjidku.admin.*;
 import org.masjidku.controller.*;
+import org.masjidku.model.accounting.anakyatim.AnakYatim;
+import org.masjidku.model.accounting.anakyatim.DonasiAYatim;
+import org.masjidku.model.accounting.operasional.DonasiOperasional;
+import org.masjidku.model.accounting.operasional.Operasional;
+import org.masjidku.model.accounting.pembangunan.DonasiPembangunan;
+import org.masjidku.model.accounting.pembangunan.Pembangunan;
+import org.masjidku.model.accounting.tpa.TpaKeluar;
+import org.masjidku.model.accounting.tpa.TpaMasuk;
+import org.masjidku.model.accounting.zakat.ZakatKeluar;
+import org.masjidku.model.accounting.zakat.ZakatMasuk;
 import org.masjidku.model.kegiatan.Kegiatan;
 import org.masjidku.model.kegiatan.Tamu;
 import org.masjidku.model.kegiatan.TamuKegiatan;
@@ -34,6 +63,7 @@ import org.masjidku.model.session.UserSession;
 import org.masjidku.model.user.User;
 import org.masjidku.model.user.UserProfile;
 import org.masjidku.principal.PrincipalHome;
+import org.masjidku.principal.PrincipalLaporan;
 import org.masjidku.principal.PrincipalRoot;
 import org.masjidku.secretary.*;
 
@@ -66,6 +96,15 @@ public class MainApp extends Application {
 
         initRootLayout();
         showContent();
+    }
+
+    @Override
+    public void stop() throws Exception {
+        if (session != null){
+            session.logout();
+            session.updateUserSession(userSession.getSession_id());
+        }
+        super.stop();
     }
 
     /**
@@ -361,6 +400,26 @@ public class MainApp extends Application {
             System.err.println(e.getMessage());
         }
     }
+    public void showKegiatanReport(){}
+    public void showTamuReport(){}
+    public void showAnakYatimReport(){}
+    public void setLaporan() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("principal/principal_laporan.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            PrincipalLaporan controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
 
     /**
      * Secretary Privilege
@@ -383,8 +442,7 @@ public class MainApp extends Application {
             // set initialize home
             setSecretaryHome();
         } catch (IOException e){
-            System.err.println(e.getMessage());
-            e.getCause();
+            e.printStackTrace();
         }
     }
 
@@ -517,7 +575,7 @@ public class MainApp extends Application {
 
     /**
      * Showing undangan edit form
-     * @param undangan
+     * @param undangan undangan
      */
     public void showUndanganEditForm(TamuKegiatan undangan){
         try {
@@ -531,9 +589,9 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             SecretaryUndanganForm controller = loader.getController();
-            controller.setMainApp(this, undangan);
+            controller.setMainApp(this, undangan, user.getUserId());
         } catch (IOException e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -591,7 +649,7 @@ public class MainApp extends Application {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("accountant/accountant_anakYatim.fxml"));
+            loader.setLocation(getClass().getResource("accountant/anakyatim.fxml"));
             AnchorPane overview = loader.load();
 
             // set the item into the right divider.
@@ -602,6 +660,77 @@ public class MainApp extends Application {
             controller.setMainApp(this);
         } catch (IOException e) {
             System.err.println(e.getMessage());
+            e.getCause();
+        }
+    }
+    public void showDonasiAYatim() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("accountant/anakyatim/list_donatur_anakYatim.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            DonaturAnakYatim controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+    public void showDaftarAnakYatim() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("accountant/anakyatim/list_anakYatim.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            PenerimaAnakYatim controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+    public void editDonaturAnakYatim(DonasiAYatim model){
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("accountant/anakyatim/form_donatur_anakyatim.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            EditDonaturAnakYatim controller = loader.getController();
+            controller.setMainApp(this, model);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+            e.getCause();
+        }
+    }
+    public void editAnakYatim(AnakYatim model){
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("accountant/anakyatim/form_anakyatim.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            EditPenerimaAnakYatim controller = loader.getController();
+            controller.setMainApp(this, model);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+            e.getCause();
         }
     }
 
@@ -612,7 +741,7 @@ public class MainApp extends Application {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("accountant/accountant_zakat.fxml"));
+            loader.setLocation(getClass().getResource("accountant/zakat.fxml"));
             AnchorPane overview = loader.load();
 
             // set the item into the right divider.
@@ -622,7 +751,77 @@ public class MainApp extends Application {
             AccountantZakat controller = loader.getController();
             controller.setMainApp(this);
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void showDonaturZakat() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("accountant/zakat/list_donatur_zakat.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            DonaturZakat controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
             System.err.println(e.getMessage());
+        }
+    }
+    public void showDaftarPenerimaZakat() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("accountant/zakat/list_zakat.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            PenerimaZakat controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+    public void editDonaturZakat(ZakatMasuk model) {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("accountant/zakat/form_donatur_zakat.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            EditDonaturZakat controller = loader.getController();
+            controller.setMainApp(this, model);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+            e.getCause();
+        }
+    }
+    public void editPenerimaZakat(ZakatKeluar model) {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("accountant/zakat/form_zakat.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            EditPenerimaZakat controller = loader.getController();
+            controller.setMainApp(this, model);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+            e.getCause();
         }
     }
 
@@ -646,6 +845,76 @@ public class MainApp extends Application {
             System.err.println(e.getMessage());
         }
     }
+    public void showDonaturPembangunan() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("accountant/pembangunan/list_donatur_pembangunan.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            DonaturZakat controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+    public void showAlokasiPembangunan() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("accountant/pembangunan/list_pembangunan.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            PembayaranPembangunan controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+    public void editDonaturPembangunan(DonasiPembangunan model) {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("accountant/pembangunan/form_donatur_pembangunan.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            EditDonaturPembangunan controller = loader.getController();
+            controller.setMainApp(this, model);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+            e.getCause();
+        }
+    }
+    public void editAlokasiPembangunan(Pembangunan model) {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("accountant/pembangunan/form_pembangunan.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            EditPembayaranPembangunan controller = loader.getController();
+            controller.setMainApp(this, model);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+            e.getCause();
+        }
+    }
 
     /**
      * show operational
@@ -665,6 +934,76 @@ public class MainApp extends Application {
             controller.setMainApp(this);
         } catch (IOException e) {
             System.err.println(e.getMessage());
+        }
+    }
+    public void showDonaturOperasional() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("accountant/operasional/list_donatur_operasional.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            DonaturOperasional controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+    public void showAlokasiOperasional() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("accountant/operasional/list_operasional.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            PembayaranOperasional controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+    public void editDonaturOperasional(DonasiOperasional model) {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("accountant/operasional/form_donatur_operasional.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            EditDonaturOperasional controller = loader.getController();
+            controller.setMainApp(this, model);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+            e.getCause();
+        }
+    }
+    public void editAlokasiOperasional(Operasional model) {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("accountant/operasional/form_operasional.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            EditPembayaranOperasional controller = loader.getController();
+            controller.setMainApp(this, model);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+            e.getCause();
         }
     }
 
@@ -688,6 +1027,76 @@ public class MainApp extends Application {
             System.err.println(e.getMessage());
         }
     }
+    public void showDonaturTpa() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("accountant/tpa/list_donatur_tpa.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            DonaturTpa controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+    public void showAlokasiTpa() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("accountant/tpa/list_tpa.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            PembayaranTpa controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+    public void editDonaturTpa(TpaMasuk model) {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("accountant/tpa/form_donatur_tpa.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            EditDonaturTpa controller = loader.getController();
+            controller.setMainApp(this, model);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+            e.getCause();
+        }
+    }
+    public void editAlokasiTpa(TpaKeluar model) {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("accountant/tpa/form_tpa.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            EditPembayaranTpa controller = loader.getController();
+            controller.setMainApp(this, model);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+            e.getCause();
+        }
+    }
 
     /**
      * Logout
@@ -696,6 +1105,7 @@ public class MainApp extends Application {
         try {
             session.logout();
             session.updateUserSession(userSession.getSession_id());
+            session = null;
             user = null;
 
             // load root layout from fxml file
@@ -724,11 +1134,5 @@ public class MainApp extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-    }
-
-    public void showDonasiAYatim() {
-    }
-
-    public void showDaftarAnakYatim() {
     }
 }

@@ -15,7 +15,7 @@
 
 package org.masjidku.model.kegiatan;
 
-public class Kegiatan implements KegiatanInt {
+public class Kegiatan {
     private String idKegiatan;
     private String nama;
     private String waktu;
@@ -23,8 +23,7 @@ public class Kegiatan implements KegiatanInt {
     private String tempat;
     private String operator;
 
-    public Kegiatan() {
-    }
+    public Kegiatan() { this(null, null, null, null, null); }
 
     public Kegiatan(String nama, String waktu, String tanggal, String tempat, String operator) {
         setIdKegiatan(null);

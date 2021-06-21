@@ -15,12 +15,15 @@
 
 package org.masjidku.principal;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
 import org.masjidku.MainApp;
 
-public class PrincipalReadDataTamu {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class PrincipalReadDataTamu implements Initializable {
     @FXML
     public Text greeting;
     private MainApp mainApp;
@@ -33,12 +36,17 @@ public class PrincipalReadDataTamu {
     @FXML
     public void onLogoutClick() { mainApp.onLogoutAction(); }
 
-    public void editListener(ActionEvent actionEvent) {
-    }
+    @FXML
+    public void editListener() { }
 
-    public void onResetListener(ActionEvent actionEvent) {
-    }
+    @FXML
+    public void onResetListener() { }
 
-    public void onRemoveListener(ActionEvent actionEvent) {
+    @FXML
+    public void onRemoveListener() { }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 }

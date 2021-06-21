@@ -17,9 +17,6 @@ package org.masjidku.model.kegiatan;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.masjidku.model.Dao;
-import org.masjidku.model.DaoFactory;
-import org.masjidku.model.user.UserDaoFactory;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,7 +28,17 @@ public class TamuKegiatanDao extends TamuKegiatanDaoFactory<TamuKegiatan> {
 
     @Override
     public TamuKegiatan get(String id) throws SQLException {
-        String query = "SELECT * FROM "+TABLE+" WHERE id_undangan=?";
+        query =  "SELECT " +
+                "g.tamuNama, " +
+                "g.tamuAlamat, " +
+                "k.kegiatanNama, " +
+                "keterangan " +
+                "FROM " + TABLE +
+                " INNER JOIN " + GUEST +" g "+
+                " ON tamukegiatan.id_tamu = g.tamuID " +
+                "INNER JOIN "+ACTIVITY+" k "+
+                "ON tamukegiatan.id_kegiatan = k.kegiatanID " +
+                "WHERE id_kegiatan=?";
 
         ps = con.prepareStatement(query);
         ps.setString(1, id);
@@ -39,12 +46,11 @@ public class TamuKegiatanDao extends TamuKegiatanDaoFactory<TamuKegiatan> {
 
         TamuKegiatan model = null;
         if(rs.next()){
-            model = new TamuKegiatan(
-                    rs.getString(1),
-                    rs.getString(2),
-                    rs.getString(3),
-                    rs.getString(4)
-            );
+            model = new TamuKegiatan();
+            model.setIdUndangan(rs.getString(1));
+            model.setIdTamu(rs.getString(2));
+            model.setIdTamu(rs.getString(3));
+            model.setKeterangan(rs.getString(4));
         }
         return model;
     }
@@ -52,41 +58,54 @@ public class TamuKegiatanDao extends TamuKegiatanDaoFactory<TamuKegiatan> {
     @Override
     public ObservableList<TamuKegiatan> getAll() throws SQLException {
         ObservableList<TamuKegiatan> items = FXCollections.observableArrayList();
-        query = "SELECT * FROM "+TABLE;
+        query = "SELECT " +
+                "g.tamuNama, " +
+                "g.tamuAlamat, " +
+                "k.kegiatanNama, " +
+                "keterangan " +
+                "FROM " + TABLE +
+                " INNER JOIN " + GUEST +" g "+
+                " ON tamukegiatan.id_tamu = g.tamuID " +
+                "INNER JOIN "+ACTIVITY+" k "+
+                "ON tamukegiatan.id_kegiatan = k.kegiatanID";
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
 
-        TamuKegiatan tg;
+        TamuKegiatan model;
         while (rs.next()){
-            tg = new TamuKegiatan(
-                    rs.getString(1),
-                    rs.getString(2),
-                    rs.getString(3),
-                    rs.getString(4)
-            );
-            items.add(tg);
+            model = new TamuKegiatan();
+            model.setIdUndangan(rs.getString(1));
+            model.setIdTamu(rs.getString(2));
+            model.setIdTamu(rs.getString(3));
+            model.setKeterangan(rs.getString(4));
+            items.add(model);
         }
         return items;
     }
 
     @Override
-    public void save(TamuKegiatan tamuKegiatan) throws SQLException {
-        String query = "INSERT INTO "+TABLE+"(id_undangan, id_kegiatan, id_tamu, keterangan) VALUES(?,?,?,?)";
+    protected void save(TamuKegiatan tamuKegiatan) throws SQLException { }
+
+    @Override
+    public void save(String idKegiatan, String idTamu, String keterangan) throws SQLException {
+        String query = "INSERT INTO "+TABLE+"(id_kegiatan, id_tamu, keterangan) VALUES(?,?,?)";
 
         ps = con.prepareStatement(query);
-        ps.setString(1, tamuKegiatan.getId_undangan());
-        ps.setString(2, tamuKegiatan.getIdKegiatan());
-        ps.setString(3, tamuKegiatan.getIdTamu());
-        ps.setString(4, tamuKegiatan.getKeterangan());
+        ps.setString(1, idKegiatan);
+        ps.setString(2, idTamu);
+        ps.setString(3, keterangan);
         ps.executeUpdate();
     }
 
     @Override
     public void update(String[] params) throws SQLException {
-        String query = "UPDATE "+TABLE+" SET keterangan=? WHERE id_undangan=? and id_tamu=? and id_kegiatan=?";
+        String query = "UPDATE "+TABLE+" SET keterangan=? WHERE id_tamu=? and id_kegiatan=? and id_undangan=?";
 
         ps = con.prepareStatement(query);
         ps.setString(1, params[0]);
+        ps.setString(2, params[1]);
+        ps.setString(3, params[2]);
+        ps.setString(4, params[3]);
         ps.executeUpdate();
     }
 
@@ -104,7 +123,6 @@ public class TamuKegiatanDao extends TamuKegiatanDaoFactory<TamuKegiatan> {
         ps = con.prepareStatement(query);
         ps.setString(1, id);
         ResultSet rs = ps.executeQuery();
-
         return rs.next();
     }
 }

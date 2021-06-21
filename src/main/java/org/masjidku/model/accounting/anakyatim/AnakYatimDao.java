@@ -38,7 +38,7 @@ public class AnakYatimDao extends Dao<AnakYatim> {
                     rs.getString(1),
                     rs.getString(2),
                     Integer.parseInt(rs.getString(3)),
-                    Double.parseDouble(rs.getString(4)),
+                    rs.getString(4),
                     rs.getString(5),
                     rs.getString(6)
             );
@@ -60,7 +60,7 @@ public class AnakYatimDao extends Dao<AnakYatim> {
                     rs.getString(1),
                     rs.getString(2),
                     Integer.parseInt(rs.getString(3)),
-                    Double.parseDouble(rs.getString(4)),
+                    rs.getString(4),
                     rs.getString(5),
                     rs.getString(6)
             );
@@ -115,7 +115,7 @@ public class AnakYatimDao extends Dao<AnakYatim> {
                     rs.getString(1),
                     rs.getString(2),
                     Integer.parseInt(rs.getString(3)),
-                    Double.parseDouble(rs.getString(4)),
+                    rs.getString(4),
                     rs.getString(5),
                     rs.getString(6)
             );
@@ -124,7 +124,7 @@ public class AnakYatimDao extends Dao<AnakYatim> {
     }
 
     public String getTotalOutcome() throws SQLException {
-        query = "SELECT SUM(jumlah) FROM "+TABLE;
+        query = "SELECT IFNULL(0, SUM(jumlah)) FROM "+TABLE;
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
 

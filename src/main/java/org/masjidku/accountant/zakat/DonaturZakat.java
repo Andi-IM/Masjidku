@@ -13,19 +13,11 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model.kegiatan;
+package org.masjidku.accountant.zakat;
 
-interface KegiatanInt {
-    String getIdKegiatan();
-    void setIdKegiatan(String idKegiatan);
-}
+import org.masjidku.MainApp;
 
-interface TamuInt {
-    String getIdTamu();
-    void setIdTamu(String idTamu);
-}
-
-interface TamuAndKegiatan extends KegiatanInt, TamuInt {
-    String getKeterangan();
-    void setKeterangan(String keterangan);
+public class DonaturZakat {
+    public void setMainApp(MainApp mainApp) {
+    }
 }

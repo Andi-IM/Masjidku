@@ -15,25 +15,65 @@
 
 package org.masjidku.accountant;
 
-import javafx.event.ActionEvent;
-import javafx.scene.input.MouseEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
 import org.masjidku.MainApp;
 
-public class AccountantTpa {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class AccountantTpa implements Initializable {
+    @FXML
     public Text txtPemasukanTerakhir;
+    @FXML
     public Text txtPengeluaranTerakhir;
-    public Text txtTerakhirDiubah;
+    @FXML
+    public Text txtTglPemasukkan;
+    @FXML
+    public Text txtTotalPemasukkan;
+    @FXML
+    public Text txtTotalPengeluaran;
+    @FXML
+    public Text txtTglPengeluaran;
+    @FXML
+    public Text txtSaldo;
 
-    public void setMainApp(MainApp mainApp) {
-    }
+    private MainApp mainApp;
 
-    public void onLogoutClick(MouseEvent mouseEvent) {
-    }
+    public void setMainApp(MainApp mainApp) { this.mainApp = mainApp; }
 
-    public void onKelolaDonasiTpa(ActionEvent actionEvent) {
-    }
+    @FXML
+    public void onLogoutClick() { mainApp.onLogoutAction(); }
 
-    public void onKelolaTpa(ActionEvent actionEvent) {
+    @FXML
+    public void onKelolaDonasiTpa() { }
+
+    @FXML
+    public void onKelolaTpa() { }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+       //  opDao = new OperationalDao();
+       // DonasiOperationalDao doDao = new DonasiOperationalDao();
+       // DaoFunctions df = new DaoFunctions();
+
+//        try {
+//            if (opDao.getConnection() && doDao.getConnection() && df.getConnection()) {
+//                Operasional penerima = opDao.getLastRecord();
+//                DonasiOperasional pemberi = doDao.getLastRecord();
+//
+//                txtPemasukanTerakhir.setText("Rp. " + penerima.getJumlah());
+//                txtPengeluaranTerakhir.setText("Rp. " + pemberi.getJumlah());
+//                txtTotalPemasukkan.setText("Rp. " + opDao.getTotalIncome());
+//                txtTotalPengeluaran.setText("Rp. " + doDao.getTotalOutcome());
+//                txtSaldo.setText("Rp. " + df.getInfakYatimBalance());
+//                txtTglPemasukkan.setText(pemberi.getTanggal());
+//                txtTglPengeluaran.setText(penerima.getTanggal());
+//
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
     }
 }
