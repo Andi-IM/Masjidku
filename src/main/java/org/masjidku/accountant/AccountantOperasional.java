@@ -53,10 +53,10 @@ public class AccountantOperasional implements Initializable {
     public void onLogoutClick() { mainApp.onLogoutAction(); }
 
     @FXML
-    public void onKelolaDonaturClick() { }
+    public void onKelolaDonaturClick() { mainApp.showDonaturOperasional(); }
 
     @FXML
-    public void onKelolaOperasionalClick() { }
+    public void onKelolaOperasionalClick() { mainApp.showAlokasiOperasional(); }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

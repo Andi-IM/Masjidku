@@ -19,7 +19,7 @@ import org.masjidku.model.accounting.DataDonasi;
 
 public class DonasiAYatim extends DataDonasi {
 
-    public DonasiAYatim(){}
+    public DonasiAYatim(){ this(null, null, "0", null, null); }
 
     public DonasiAYatim(String id, String donatur, String jumlah, String tanggal, String operator) {
         super(id, donatur, jumlah, tanggal, operator);

@@ -32,6 +32,7 @@ import org.masjidku.accountant.operasional.DonaturOperasional;
 import org.masjidku.accountant.operasional.EditDonaturOperasional;
 import org.masjidku.accountant.operasional.EditPembayaranOperasional;
 import org.masjidku.accountant.operasional.PembayaranOperasional;
+import org.masjidku.accountant.pembangunan.DonaturPembangunan;
 import org.masjidku.accountant.pembangunan.EditDonaturPembangunan;
 import org.masjidku.accountant.pembangunan.EditPembayaranPembangunan;
 import org.masjidku.accountant.pembangunan.PembayaranPembangunan;
@@ -709,7 +710,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             EditDonaturAnakYatim controller = loader.getController();
-            controller.setMainApp(this, model);
+            controller.setMainApp(this, model, user.getUsername());
         } catch (IOException e) {
             System.err.println(e.getMessage());
             e.getCause();
@@ -727,7 +728,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             EditPenerimaAnakYatim controller = loader.getController();
-            controller.setMainApp(this, model);
+            controller.setMainApp(this, model, user.getUsername());
         } catch (IOException e) {
             System.err.println(e.getMessage());
             e.getCause();
@@ -856,7 +857,7 @@ public class MainApp extends Application {
             rootLayout.getItems().set(1, overview);
 
             // Give the controller access to the main app.
-            DonaturZakat controller = loader.getController();
+            DonaturPembangunan controller = loader.getController();
             controller.setMainApp(this);
         } catch (IOException e) {
             System.err.println(e.getMessage());
@@ -1024,7 +1025,7 @@ public class MainApp extends Application {
             AccountantTpa controller = loader.getController();
             controller.setMainApp(this);
         } catch (IOException e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
         }
     }
     public void showDonaturTpa() {

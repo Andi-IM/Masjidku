@@ -21,4 +21,8 @@ public class DonasiOperasional extends DataDonasi {
     public DonasiOperasional(String id, String donatur, String jumlah, String tanggal, String operator) {
         super(id, donatur, jumlah, tanggal, operator);
     }
+
+    public DonasiOperasional() {
+        this(null, null, "0", null, null);
+    }
 }

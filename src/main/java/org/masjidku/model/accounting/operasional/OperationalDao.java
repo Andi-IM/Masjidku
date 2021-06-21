@@ -47,7 +47,7 @@ public class OperationalDao extends Dao<Operasional> {
     }
 
     @Override
-    protected ObservableList<Operasional> getAll() throws SQLException {
+    public ObservableList<Operasional> getAll() throws SQLException {
         ObservableList<Operasional> item = FXCollections.observableArrayList();
 
         query = "SELECT * FROM "+TABLE;
@@ -97,7 +97,7 @@ public class OperationalDao extends Dao<Operasional> {
     }
 
     @Override
-    protected void delete(String id) throws SQLException {
+    public void delete(String id) throws SQLException {
         query = "DELETE FROM "+TABLE+" WHERE id=?";
         ps = con.prepareStatement(query);
         ps.setString(1, id);
@@ -133,7 +133,7 @@ public class OperationalDao extends Dao<Operasional> {
     }
 
     public String getTotalIncome() throws SQLException {
-        query = "SELECT IFNULL(0, SUM(jumlah)) FROM "+TABLE;
+        query = "SELECT IFNULL(SUM(jumlah),0) FROM "+TABLE;
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
 

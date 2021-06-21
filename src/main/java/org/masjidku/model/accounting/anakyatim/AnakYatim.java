@@ -20,11 +20,11 @@ import org.masjidku.model.accounting.UangKeluar;
 public class AnakYatim extends UangKeluar {
     private int usia;
 
-    public AnakYatim(){}
+    public AnakYatim(){ this(null, null, 0, "0", null, null); }
 
     public AnakYatim(String id, String tujuan, int usia, String jumlah, String tanggal, String operator) {
         super(id, tujuan, jumlah, tanggal, operator);
-        this.usia = usia;
+        setUsia(usia);
     }
 
     public int getUsia() {

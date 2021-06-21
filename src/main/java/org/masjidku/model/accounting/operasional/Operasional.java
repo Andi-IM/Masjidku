@@ -15,11 +15,10 @@
 
 package org.masjidku.model.accounting.operasional;
 
-import org.masjidku.model.accounting.DataDonasi;
 import org.masjidku.model.accounting.UangKeluar;
 
 public class Operasional extends UangKeluar {
-    public Operasional(){ }
+    public Operasional(){ this(null, null, null, "0", null, null); }
 
     public Operasional(String id, String tujuan, String keterangan, String jumlah, String tanggal, String operator) {
         super(id, tujuan, keterangan, jumlah, tanggal, operator);
