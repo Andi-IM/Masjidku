@@ -26,7 +26,7 @@ public class DonasiAYatimDao extends Dao<DonasiAYatim> {
     private final String TABLE = "infak_anakyatim";
 
     @Override
-    protected DonasiAYatim get(String id) throws SQLException {
+    public DonasiAYatim get(String id) throws SQLException {
         query = "SELECT * FROM "+TABLE+" WHERE id=?";
         ps = con.prepareStatement(query);
         ps.setString(1, id);
@@ -68,7 +68,7 @@ public class DonasiAYatimDao extends Dao<DonasiAYatim> {
     }
 
     @Override
-    protected void save(DonasiAYatim donasiAYatim) throws SQLException {
+    public void save(DonasiAYatim donasiAYatim) throws SQLException {
         query = "INSERT INTO "+TABLE+"(id, donatur, jumlah, tanggal, operator) VALUES (?,?,?,?,?)";
 
         ps = con.prepareStatement(query);
@@ -81,7 +81,7 @@ public class DonasiAYatimDao extends Dao<DonasiAYatim> {
     }
 
     @Override
-    protected void update(String[] params) throws SQLException {
+    public void update(String[] params) throws SQLException {
         query = "UPDATE "+TABLE+" SET donatur=?, jumlah=?, tanggal=?, operator=? WHERE id=?";
         ps = con.prepareStatement(query);
         ps.setString(1, params[1]);

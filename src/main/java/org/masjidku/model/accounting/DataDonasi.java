@@ -39,6 +39,12 @@ public abstract class DataDonasi {
         setOperator(operator);
     }
 
+    public DataDonasi(String jumlah, String tanggal, String operator) {
+        setJumlah(jumlah);
+        setTanggal(tanggal);
+        setOperator(operator);
+    }
+
     public String getId() {
         return id;
     }

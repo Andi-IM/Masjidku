@@ -84,7 +84,7 @@ public class TamuKegiatanDao extends TamuKegiatanDaoFactory<TamuKegiatan> {
     }
 
     @Override
-    protected void save(TamuKegiatan tamuKegiatan) throws SQLException { }
+    public void save(TamuKegiatan tamuKegiatan) throws SQLException { }
 
     @Override
     public void save(String idKegiatan, String idTamu, String keterangan) throws SQLException {

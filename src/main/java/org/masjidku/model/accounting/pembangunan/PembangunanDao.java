@@ -26,7 +26,7 @@ public class PembangunanDao extends Dao<Pembangunan> {
     private final String TABLE = "pembangunan_keluar";
 
     @Override
-    protected Pembangunan get(String id) throws SQLException {
+    public Pembangunan get(String id) throws SQLException {
         query = "SELECT * FROM "+TABLE+" WHERE id=?";
         ps = con.prepareStatement(query);
         ps.setString(1, id);
@@ -70,7 +70,7 @@ public class PembangunanDao extends Dao<Pembangunan> {
     }
 
     @Override
-    protected void save(Pembangunan pembangunan) throws SQLException {
+    public void save(Pembangunan pembangunan) throws SQLException {
         query = "INSERT INTO "+TABLE+"(id, nama, keterangan, jumlah, tanggal, operator) VALUES (?,?,?,?,?,?)";
 
         ps = con.prepareStatement(query);
@@ -84,7 +84,7 @@ public class PembangunanDao extends Dao<Pembangunan> {
     }
 
     @Override
-    protected void update(String[] params) throws SQLException {
+    public void update(String[] params) throws SQLException {
         query = "UPDATE "+TABLE+" SET nama=?, keterangan=?, jumlah=?, tanggal=?, operator=? WHERE id=?";
         ps = con.prepareStatement(query);
         ps.setString(1, params[1]);

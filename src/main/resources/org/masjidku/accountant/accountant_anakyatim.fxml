@@ -52,7 +52,7 @@
                     <graphic>
                         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../icon/kelola_pengguna.png" />
+                                <Image url="@../icon/uang_masuk.png" />
                             </image>
                         </ImageView>
                     </graphic>
@@ -61,7 +61,7 @@
                     <graphic>
                         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../icon/kelola_pengguna.png" />
+                                <Image url="@../icon/uang_keluar.png" />
                             </image>
                         </ImageView>
                     </graphic>

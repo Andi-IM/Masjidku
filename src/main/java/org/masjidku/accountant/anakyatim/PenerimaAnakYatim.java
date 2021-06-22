@@ -28,7 +28,6 @@ import javafx.stage.Stage;
 import org.masjidku.MainApp;
 import org.masjidku.model.accounting.anakyatim.AnakYatim;
 import org.masjidku.model.accounting.anakyatim.AnakYatimDao;
-import org.masjidku.model.user.UserDao;
 
 import java.net.URL;
 import java.sql.SQLException;

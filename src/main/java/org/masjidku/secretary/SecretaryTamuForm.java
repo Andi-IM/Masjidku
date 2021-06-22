@@ -102,11 +102,11 @@ public class SecretaryTamuForm {
                     e.printStackTrace();
                 }
             } else {
-                alertError("Error", "Database belum ditanyakan!");
-            }
-        } else {
-            alertError("Error", "Data belum lengkap!");
+            alertError("Error", "Database belum ditanyakan!");
         }
+    } else {
+        alertError("Error", "Data belum lengkap!");
+    }
     }
 
     private boolean formValidation() {

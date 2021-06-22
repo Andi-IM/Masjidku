@@ -23,8 +23,11 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
 import org.masjidku.model.accounting.anakyatim.DonasiAYatim;
+import org.masjidku.model.accounting.anakyatim.DonasiAYatimDao;
 
 import java.net.URL;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class EditDonaturAnakYatim implements Initializable {
@@ -37,7 +40,7 @@ public class EditDonaturAnakYatim implements Initializable {
     private DonasiAYatim donatur;
     private MainApp mainApp;
     private String operator;
-
+    private LocalDate localDate;
 
     // create some stage
     @SuppressWarnings("unused")
@@ -47,28 +50,97 @@ public class EditDonaturAnakYatim implements Initializable {
         this.mainApp = mainApp;
         this.donatur = model;
         this.operator = operator;
+
+        if (model.getId() != null && model.getTanggal() != null) {
+            setDonasi(model);
+        }
+    }
+
+    private void setDonasi(DonasiAYatim model) {
+        txtNama.setText(model.getDonatur());
+        txtJumlah.setText(model.getJumlah());
+        localDate = LocalDate.parse(model.getTanggal());
+        date.setValue(localDate);
     }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        txtNama.setText("");
+        txtJumlah.setText("");
+        localDate = LocalDate.parse("2000-01-01");
+        date.setValue(localDate);
     }
 
     @FXML
     public void clearForm() {
         txtNama.clear();
         txtJumlah.clear();
-        date.setValue(null);
+        localDate = LocalDate.parse("2000-01-01");
+        date.setValue(localDate);
     }
 
     @FXML
-    public void onSubmitted() { }
+    public void onSubmitted() {
+        if (formValidation()) {
+            String nama = txtNama.getText();
+            String jumlah = txtJumlah.getText();
+            String tanggal = date.getValue().toString();
+
+            if (donatur == null) {
+                donatur = new DonasiAYatim(nama, jumlah, tanggal, operator);
+            }
+
+            DonasiAYatimDao dao = new DonasiAYatimDao();
+            if (dao.getConnection()) {
+                try {
+                    if (dao.isDonaturExist(donatur.getId())) {
+                        dao.update(new String[]{
+                                donatur.getId(),
+                                donatur.getDonatur(),
+                                donatur.getJumlah(),
+                                donatur.getTanggal(),
+                                operator
+                        });
+                        alertInfo("Success", "Data telah diupdate");
+                    } else {
+                        dao.save(donatur);
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                alertError("Error", "Database belum ditanyakan!");
+            }
+        } else {
+            alertError("Error", "Data belum lengkap!");
+        }
+    }
+
+    /**
+     * Validating form
+     *
+     * @return fieldStatus
+     */
+    private boolean formValidation() {
+        if (!txtNama.getText().isBlank()) {
+            if (!txtJumlah.getText().isBlank()){
+                // Parses the first date
+                LocalDate dt1 = LocalDate.parse("2000-01-01");
+                return date.getValue().isAfter(dt1);
+            }
+        }
+        return false;
+    }
 
     @FXML
-    public void gotoList() { mainApp.showDonasiAYatim(); }
+    public void gotoList() {
+        mainApp.showDonasiAYatim();
+    }
 
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
 
     /**
      * Alert Error Builder
