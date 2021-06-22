@@ -799,7 +799,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             EditDonaturZakat controller = loader.getController();
-            controller.setMainApp(this, model);
+            controller.setMainApp(this, model, user.getUsername());
         } catch (IOException e) {
             System.err.println(e.getMessage());
             e.getCause();
@@ -817,7 +817,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             EditPenerimaZakat controller = loader.getController();
-            controller.setMainApp(this, model);
+            controller.setMainApp(this, model, user.getUsername());
         } catch (IOException e) {
             System.err.println(e.getMessage());
             e.getCause();
@@ -890,7 +890,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             EditDonaturPembangunan controller = loader.getController();
-            controller.setMainApp(this, model);
+            controller.setMainApp(this, model, user.getUsername());
         } catch (IOException e) {
             System.err.println(e.getMessage());
             e.getCause();
@@ -908,7 +908,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             EditPembayaranPembangunan controller = loader.getController();
-            controller.setMainApp(this, model);
+            controller.setMainApp(this, model, user.getUsername());
         } catch (IOException e) {
             System.err.println(e.getMessage());
             e.getCause();
@@ -981,7 +981,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             EditDonaturOperasional controller = loader.getController();
-            controller.setMainApp(this, model);
+            controller.setMainApp(this, model, user.getUsername());
         } catch (IOException e) {
             System.err.println(e.getMessage());
             e.getCause();
@@ -999,7 +999,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             EditPembayaranOperasional controller = loader.getController();
-            controller.setMainApp(this, model);
+            controller.setMainApp(this, model, user.getUsername());
         } catch (IOException e) {
             System.err.println(e.getMessage());
             e.getCause();
@@ -1072,7 +1072,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             EditDonaturTpa controller = loader.getController();
-            controller.setMainApp(this, model);
+            controller.setMainApp(this, model, user.getUsername());
         } catch (IOException e) {
             System.err.println(e.getMessage());
             e.getCause();
@@ -1090,7 +1090,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             EditPembayaranTpa controller = loader.getController();
-            controller.setMainApp(this, model);
+            controller.setMainApp(this, model, user.getUsername());
         } catch (IOException e) {
             System.err.println(e.getMessage());
             e.getCause();

@@ -65,16 +65,8 @@
             <TextField fx:id="txtNama" promptText="Masukkan Nama" styleClass="formField" GridPane.rowIndex="0" GridPane.columnIndex="1" />
             <TextField fx:id="txtJumlah" promptText="Masukkan jumlah" styleClass="formField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
             <DatePicker fx:id="date" promptText="yyyy/mm/dd" styleClass="formField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
-            <Button mnemonicParsing="false" onAction="#clearForm" styleClass="generalButton" text="Bersihkan" GridPane.rowIndex="4">
-               <GridPane.margin>
-                  <Insets right="10.0" />
-               </GridPane.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#onSubmitted" styleClass="generalButton" text="OK" GridPane.columnIndex="1" GridPane.rowIndex="4">
-               <GridPane.margin>
-                  <Insets left="10.0" right="10.0" />
-               </GridPane.margin>
-            </Button>
+            <Button mnemonicParsing="false" onAction="#clearForm" styleClass="generalButton" text="Bersihkan" GridPane.rowIndex="3"/>
+            <Button mnemonicParsing="false" onAction="#onSubmitted" styleClass="generalButton" text="OK" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
          </children>
       </GridPane>
       <Button layoutX="14.0" layoutY="441.0" mnemonicParsing="false" onAction="#gotoList" styleClass="generalButton" text="kembali" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" />

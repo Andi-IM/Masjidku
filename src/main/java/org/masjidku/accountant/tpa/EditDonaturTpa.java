@@ -36,6 +36,6 @@ public class EditDonaturTpa {
     public void clearForm() {
     }
 
-    public void setMainApp(MainApp mainApp, TpaMasuk model) {
+    public void setMainApp(MainApp mainApp, TpaMasuk model, String username) {
     }
 }

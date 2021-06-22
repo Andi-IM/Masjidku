@@ -21,6 +21,10 @@ import org.masjidku.MainApp;
 import org.masjidku.model.accounting.operasional.Operasional;
 
 public class EditPembayaranOperasional {
+
+    public void setMainApp(MainApp mainApp, Operasional model, String username) {
+    }
+
     @FXML
     public void onSubmitted() {
     }
@@ -37,12 +41,7 @@ public class EditPembayaranOperasional {
     public void clearForm() {
     }
 
-    public void onCheckboxAction(ActionEvent actionEvent) {
-    }
-
+    @FXML
     public void onUserSubmitted(ActionEvent actionEvent) {
-    }
-
-    public void setMainApp(MainApp mainApp, Operasional model) {
     }
 }
