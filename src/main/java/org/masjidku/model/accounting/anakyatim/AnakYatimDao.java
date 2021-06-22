@@ -76,8 +76,8 @@ public class AnakYatimDao extends Dao<AnakYatim> {
         ps = con.prepareStatement(query);
         ps.setString(1, anakYatim.getId());
         ps.setString(2, anakYatim.getTujuan());
-        ps.setString(3, String.valueOf(anakYatim.getUsia()));
-        ps.setString(4, String.valueOf(anakYatim.getJumlah()));
+        ps.setInt(3, anakYatim.getUsia());
+        ps.setString(4, anakYatim.getJumlah());
         ps.setString(5, anakYatim.getTanggal());
         ps.setString(6, anakYatim.getOperator());
         ps.executeUpdate();

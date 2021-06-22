@@ -21,6 +21,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -63,14 +64,14 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label styleClass="labelForm" text="nama" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-            <Label styleClass="labelForm" text="usia" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-            <Label styleClass="labelForm" text="jumlah" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-            <Label styleClass="labelForm" text="tanggal" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-            <TextField fx:id="txtNama" promptText="masukkan nama" styleClass="formField" GridPane.rowIndex="0" GridPane.columnIndex="1" />
-            <TextField fx:id="txtUsia" promptText="masukkan usia" styleClass="formField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-            <TextField fx:id="txtJumlah" promptText="masukkan jumlah" styleClass="formField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
-            <DatePicker fx:id="date" promptText="yyyy/mm/dd" styleClass="formField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+            <Label styleClass="labelForm" text="nama" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <Label styleClass="labelForm" text="usia" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <Label styleClass="labelForm" text="jumlah" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <Label styleClass="labelForm" text="tanggal" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <TextField fx:id="txtNama" promptText="masukkan nama" styleClass="formField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <TextField fx:id="txtJumlah" promptText="masukkan jumlah" styleClass="formField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+             <Spinner fx:id="spnUsia" promptText="masukkan usia" editable="true" styleClass="formField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+             <DatePicker fx:id="date" promptText="yyyy/mm/dd" styleClass="formField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Button mnemonicParsing="false" onAction="#clearForm" styleClass="generalButton" text="Bersihkan" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets right="10.0" />

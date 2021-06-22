@@ -26,7 +26,7 @@ public class OperationalDao extends Dao<Operasional> {
     private final String TABLE = "operasional_keluar";
 
     @Override
-    protected Operasional get(String id) throws SQLException {
+    public Operasional get(String id) throws SQLException {
         query = "SELECT * FROM "+TABLE+" WHERE id=?";
         ps = con.prepareStatement(query);
         ps.setString(1, id);
@@ -70,7 +70,7 @@ public class OperationalDao extends Dao<Operasional> {
     }
 
     @Override
-    protected void save(Operasional operasional) throws SQLException {
+    public void save(Operasional operasional) throws SQLException {
         query = "INSERT INTO "+TABLE+"(id, nama, keterangan, jumlah, tanggal, operator) VALUES (?,?,?,?,?,?)";
 
         ps = con.prepareStatement(query);
@@ -84,7 +84,7 @@ public class OperationalDao extends Dao<Operasional> {
     }
 
     @Override
-    protected void update(String[] params) throws SQLException {
+    public void update(String[] params) throws SQLException {
         query = "UPDATE "+TABLE+" SET nama=?, keterangan=?, jumlah=?, tanggal=?, operator=? WHERE id=?";
         ps = con.prepareStatement(query);
         ps.setString(1, params[1]);

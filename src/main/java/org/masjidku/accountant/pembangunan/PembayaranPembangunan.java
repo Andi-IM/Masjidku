@@ -25,11 +25,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.accounting.operasional.Operasional;
-import org.masjidku.model.accounting.operasional.OperationalDao;
 import org.masjidku.model.accounting.pembangunan.Pembangunan;
 import org.masjidku.model.accounting.pembangunan.PembangunanDao;
 

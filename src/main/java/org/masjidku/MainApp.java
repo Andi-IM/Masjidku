@@ -650,7 +650,7 @@ public class MainApp extends Application {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("accountant/anakyatim.fxml"));
+            loader.setLocation(getClass().getResource("accountant/accountant_anakyatim.fxml"));
             AnchorPane overview = loader.load();
 
             // set the item into the right divider.
@@ -712,8 +712,7 @@ public class MainApp extends Application {
             EditDonaturAnakYatim controller = loader.getController();
             controller.setMainApp(this, model, user.getUsername());
         } catch (IOException e) {
-            System.err.println(e.getMessage());
-            e.getCause();
+           e.printStackTrace();
         }
     }
     public void editAnakYatim(AnakYatim model){
@@ -730,8 +729,7 @@ public class MainApp extends Application {
             EditPenerimaAnakYatim controller = loader.getController();
             controller.setMainApp(this, model, user.getUsername());
         } catch (IOException e) {
-            System.err.println(e.getMessage());
-            e.getCause();
+            e.printStackTrace();
         }
     }
 
@@ -742,7 +740,7 @@ public class MainApp extends Application {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("accountant/zakat.fxml"));
+            loader.setLocation(getClass().getResource("accountant/accountant_zakat.fxml"));
             AnchorPane overview = loader.load();
 
             // set the item into the right divider.

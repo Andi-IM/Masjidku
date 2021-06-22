@@ -26,7 +26,7 @@ public class TpaMasukDao extends Dao<TpaMasuk> {
     private final String TABLE = "infak_tpa";
 
     @Override
-    protected TpaMasuk get(String id) throws SQLException {
+    public TpaMasuk get(String id) throws SQLException {
         query = "SELECT * FROM "+TABLE+" WHERE id=?";
         ps = con.prepareStatement(query);
         ps.setString(1, id);
@@ -68,7 +68,7 @@ public class TpaMasukDao extends Dao<TpaMasuk> {
     }
 
     @Override
-    protected void save(TpaMasuk tpaMasuk) throws SQLException {
+    public void save(TpaMasuk tpaMasuk) throws SQLException {
         query = "INSERT INTO " + TABLE + "(id, donatur, jumlah, tanggal, operator) VALUES (?,?,?,?,?)";
 
         ps = con.prepareStatement(query);
@@ -81,7 +81,7 @@ public class TpaMasukDao extends Dao<TpaMasuk> {
     }
 
     @Override
-    protected void update(String[] params) throws SQLException {
+    public void update(String[] params) throws SQLException {
         query = "UPDATE " + TABLE + " SET donatur=?, jumlah=?, tanggal=?, operator=? WHERE id=?";
         ps = con.prepareStatement(query);
         ps.setString(1, params[1]);

@@ -26,7 +26,7 @@ public class ZakatMasukDao extends Dao<ZakatMasuk> {
     private final String TABLE = "pemberi_zakat";
 
     @Override
-    protected ZakatMasuk get(String id) throws SQLException {
+    public ZakatMasuk get(String id) throws SQLException {
         query = "SELECT * FROM " + TABLE + " WHERE id=?";
         ps = con.prepareStatement(query);
         ps.setString(1, id);
@@ -68,7 +68,7 @@ public class ZakatMasukDao extends Dao<ZakatMasuk> {
     }
 
     @Override
-    protected void save(ZakatMasuk zakatMasuk) throws SQLException {
+    public void save(ZakatMasuk zakatMasuk) throws SQLException {
         query = "INSERT INTO " + TABLE + "(id, nama, jumlah, tanggal, operator) VALUES (?,?,?,?,?)";
 
         ps = con.prepareStatement(query);
@@ -81,7 +81,7 @@ public class ZakatMasukDao extends Dao<ZakatMasuk> {
     }
 
     @Override
-    protected void update(String[] params) throws SQLException {
+    public void update(String[] params) throws SQLException {
         query = "UPDATE " + TABLE + " SET nama=?, jumlah=?, tanggal=?, operator=? WHERE id=?";
         ps = con.prepareStatement(query);
         ps.setString(1, params[1]);

@@ -18,9 +18,6 @@ package org.masjidku.model.accounting.operasional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.masjidku.model.Dao;
-import org.masjidku.model.DaoFactory;
-import org.masjidku.model.accounting.anakyatim.AnakYatim;
-import org.masjidku.model.accounting.anakyatim.DonasiAYatim;
 
 import java.sql.SQLException;
 
@@ -29,7 +26,7 @@ public class DonasiOperationalDao extends Dao<DonasiOperasional> {
     private final String TABLE = "infak_operasional";
 
     @Override
-    protected DonasiOperasional get(String id) throws SQLException {
+    public DonasiOperasional get(String id) throws SQLException {
         query = "SELECT * FROM "+TABLE+" WHERE id=?";
         ps = con.prepareStatement(query);
         ps.setString(1, id);
@@ -71,7 +68,7 @@ public class DonasiOperationalDao extends Dao<DonasiOperasional> {
     }
 
     @Override
-    protected void save(DonasiOperasional donasiOperasional) throws SQLException {
+    public void save(DonasiOperasional donasiOperasional) throws SQLException {
         query = "INSERT INTO "+TABLE+"(id, donatur, jumlah, tanggal, operator) VALUES (?,?,?,?,?)";
 
         ps = con.prepareStatement(query);
@@ -84,7 +81,7 @@ public class DonasiOperationalDao extends Dao<DonasiOperasional> {
     }
 
     @Override
-    protected void update(String[] params) throws SQLException {
+    public void update(String[] params) throws SQLException {
         query = "UPDATE "+TABLE+" SET donatur=?, jumlah=?, tanggal=?, operator=? WHERE id=?";
         ps = con.prepareStatement(query);
         ps.setString(1, params[1]);

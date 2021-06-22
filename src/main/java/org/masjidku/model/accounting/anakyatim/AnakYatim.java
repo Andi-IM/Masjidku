@@ -27,8 +27,27 @@ public class AnakYatim extends UangKeluar {
         setUsia(usia);
     }
 
+    public AnakYatim(String tujuan, int usia, String jumlah, String tanggal, String operator) {
+        super(tujuan, jumlah, tanggal, operator);
+        setUsia(usia);
+    }
+
+    public String getNama() {
+        return super.getTujuan();
+    }
+
     public int getUsia() {
         return usia;
+    }
+
+    @Override
+    public String getKeterangan() {
+        return super.getKeterangan();
+    }
+
+    @Override
+    public String getJumlah() {
+        return super.getJumlah();
     }
 
     public void setUsia(int usia) {
