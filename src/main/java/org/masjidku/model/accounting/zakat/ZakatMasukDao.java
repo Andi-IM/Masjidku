@@ -26,7 +26,7 @@ public class ZakatMasukDao extends Dao<ZakatMasuk> {
     private final String TABLE = "pemberi_zakat";
 
     @Override
-    protected ZakatMasuk get(String id) throws SQLException {
+    public ZakatMasuk get(String id) throws SQLException {
         query = "SELECT * FROM " + TABLE + " WHERE id=?";
         ps = con.prepareStatement(query);
         ps.setString(1, id);
@@ -46,7 +46,7 @@ public class ZakatMasukDao extends Dao<ZakatMasuk> {
     }
 
     @Override
-    protected ObservableList<ZakatMasuk> getAll() throws SQLException {
+    public ObservableList<ZakatMasuk> getAll() throws SQLException {
         ObservableList<ZakatMasuk> donatur = FXCollections.observableArrayList();
 
         query = "SELECT * FROM " + TABLE;
@@ -68,7 +68,7 @@ public class ZakatMasukDao extends Dao<ZakatMasuk> {
     }
 
     @Override
-    protected void save(ZakatMasuk zakatMasuk) throws SQLException {
+    public void save(ZakatMasuk zakatMasuk) throws SQLException {
         query = "INSERT INTO " + TABLE + "(id, nama, jumlah, tanggal, operator) VALUES (?,?,?,?,?)";
 
         ps = con.prepareStatement(query);
@@ -81,7 +81,7 @@ public class ZakatMasukDao extends Dao<ZakatMasuk> {
     }
 
     @Override
-    protected void update(String[] params) throws SQLException {
+    public void update(String[] params) throws SQLException {
         query = "UPDATE " + TABLE + " SET nama=?, jumlah=?, tanggal=?, operator=? WHERE id=?";
         ps = con.prepareStatement(query);
         ps.setString(1, params[1]);
@@ -93,7 +93,7 @@ public class ZakatMasukDao extends Dao<ZakatMasuk> {
     }
 
     @Override
-    protected void delete(String id) throws SQLException {
+    public void delete(String id) throws SQLException {
         query = "DELETE FROM " + TABLE + " WHERE id=?";
         ps = con.prepareStatement(query);
         ps.setString(1, id);
@@ -117,7 +117,7 @@ public class ZakatMasukDao extends Dao<ZakatMasuk> {
     }
 
     public String getTotalIncome() throws SQLException {
-        query = "SELECT IFNULL(0, SUM(jumlah)) FROM " + TABLE;
+        query = "SELECT IFNULL(SUM(jumlah),0) FROM " + TABLE;
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
 

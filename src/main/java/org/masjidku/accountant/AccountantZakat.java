@@ -50,10 +50,10 @@ public class AccountantZakat implements Initializable {
     public void setMainApp(MainApp mainApp) { this.mainApp = mainApp; }
 
     @FXML
-    public void onKelolaDonasiZakat() { }
+    public void onKelolaDonasiZakat() { mainApp.showDonaturZakat(); }
 
     @FXML
-    public void onKelolaPenerimaZakat() { }
+    public void onKelolaPenerimaZakat() { mainApp.showDaftarPenerimaZakat(); }
 
     @FXML
     public void onLogoutClick() { mainApp.onLogoutAction(); }

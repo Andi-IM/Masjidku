@@ -33,6 +33,12 @@ public abstract class UangKeluar extends DataDonasi {
         this.keterangan = keterangan;
     }
 
+    public UangKeluar(String tujuan, String jumlah, String tanggal, String operator) {
+        super(jumlah, tanggal, operator);
+        this.tujuan = tujuan;
+        this.keterangan = keterangan;
+    }
+
     public String getTujuan() {
         return tujuan;
     }

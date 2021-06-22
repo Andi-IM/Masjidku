@@ -32,6 +32,7 @@ import org.masjidku.accountant.operasional.DonaturOperasional;
 import org.masjidku.accountant.operasional.EditDonaturOperasional;
 import org.masjidku.accountant.operasional.EditPembayaranOperasional;
 import org.masjidku.accountant.operasional.PembayaranOperasional;
+import org.masjidku.accountant.pembangunan.DonaturPembangunan;
 import org.masjidku.accountant.pembangunan.EditDonaturPembangunan;
 import org.masjidku.accountant.pembangunan.EditPembayaranPembangunan;
 import org.masjidku.accountant.pembangunan.PembayaranPembangunan;
@@ -649,7 +650,7 @@ public class MainApp extends Application {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("accountant/anakyatim.fxml"));
+            loader.setLocation(getClass().getResource("accountant/accountant_anakyatim.fxml"));
             AnchorPane overview = loader.load();
 
             // set the item into the right divider.
@@ -709,10 +710,9 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             EditDonaturAnakYatim controller = loader.getController();
-            controller.setMainApp(this, model);
+            controller.setMainApp(this, model, user.getUsername());
         } catch (IOException e) {
-            System.err.println(e.getMessage());
-            e.getCause();
+           e.printStackTrace();
         }
     }
     public void editAnakYatim(AnakYatim model){
@@ -727,10 +727,9 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             EditPenerimaAnakYatim controller = loader.getController();
-            controller.setMainApp(this, model);
+            controller.setMainApp(this, model, user.getUsername());
         } catch (IOException e) {
-            System.err.println(e.getMessage());
-            e.getCause();
+            e.printStackTrace();
         }
     }
 
@@ -741,7 +740,7 @@ public class MainApp extends Application {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("accountant/zakat.fxml"));
+            loader.setLocation(getClass().getResource("accountant/accountant_zakat.fxml"));
             AnchorPane overview = loader.load();
 
             // set the item into the right divider.
@@ -800,7 +799,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             EditDonaturZakat controller = loader.getController();
-            controller.setMainApp(this, model);
+            controller.setMainApp(this, model, user.getUsername());
         } catch (IOException e) {
             System.err.println(e.getMessage());
             e.getCause();
@@ -818,7 +817,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             EditPenerimaZakat controller = loader.getController();
-            controller.setMainApp(this, model);
+            controller.setMainApp(this, model, user.getUsername());
         } catch (IOException e) {
             System.err.println(e.getMessage());
             e.getCause();
@@ -856,7 +855,7 @@ public class MainApp extends Application {
             rootLayout.getItems().set(1, overview);
 
             // Give the controller access to the main app.
-            DonaturZakat controller = loader.getController();
+            DonaturPembangunan controller = loader.getController();
             controller.setMainApp(this);
         } catch (IOException e) {
             System.err.println(e.getMessage());
@@ -891,7 +890,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             EditDonaturPembangunan controller = loader.getController();
-            controller.setMainApp(this, model);
+            controller.setMainApp(this, model, user.getUsername());
         } catch (IOException e) {
             System.err.println(e.getMessage());
             e.getCause();
@@ -909,7 +908,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             EditPembayaranPembangunan controller = loader.getController();
-            controller.setMainApp(this, model);
+            controller.setMainApp(this, model, user.getUsername());
         } catch (IOException e) {
             System.err.println(e.getMessage());
             e.getCause();
@@ -982,7 +981,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             EditDonaturOperasional controller = loader.getController();
-            controller.setMainApp(this, model);
+            controller.setMainApp(this, model, user.getUsername());
         } catch (IOException e) {
             System.err.println(e.getMessage());
             e.getCause();
@@ -1000,7 +999,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             EditPembayaranOperasional controller = loader.getController();
-            controller.setMainApp(this, model);
+            controller.setMainApp(this, model, user.getUsername());
         } catch (IOException e) {
             System.err.println(e.getMessage());
             e.getCause();
@@ -1024,7 +1023,7 @@ public class MainApp extends Application {
             AccountantTpa controller = loader.getController();
             controller.setMainApp(this);
         } catch (IOException e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
         }
     }
     public void showDonaturTpa() {
@@ -1073,7 +1072,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             EditDonaturTpa controller = loader.getController();
-            controller.setMainApp(this, model);
+            controller.setMainApp(this, model, user.getUsername());
         } catch (IOException e) {
             System.err.println(e.getMessage());
             e.getCause();
@@ -1091,7 +1090,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             EditPembayaranTpa controller = loader.getController();
-            controller.setMainApp(this, model);
+            controller.setMainApp(this, model, user.getUsername());
         } catch (IOException e) {
             System.err.println(e.getMessage());
             e.getCause();

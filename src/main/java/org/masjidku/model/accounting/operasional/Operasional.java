@@ -15,13 +15,44 @@
 
 package org.masjidku.model.accounting.operasional;
 
-import org.masjidku.model.accounting.DataDonasi;
 import org.masjidku.model.accounting.UangKeluar;
 
 public class Operasional extends UangKeluar {
-    public Operasional(){ }
+    public Operasional(){ this(null, null, null, "0", null, null); }
 
     public Operasional(String id, String tujuan, String keterangan, String jumlah, String tanggal, String operator) {
         super(id, tujuan, keterangan, jumlah, tanggal, operator);
+    }
+
+    public Operasional(String nama, String keterangan, String jumlah, String tanggal, String operator) {
+        super.setTujuan(nama);
+        super.setKeterangan(keterangan);
+        super.setJumlah(jumlah);
+        super.setTanggal(tanggal);
+        super.setOperator(operator);
+    }
+
+    @Override
+    public String getId() {
+        return super.getId();
+    }
+
+    public String getNama() {
+        return super.getTujuan();
+    }
+
+    @Override
+    public String getKeterangan() {
+        return super.getKeterangan();
+    }
+
+    @Override
+    public String getJumlah() {
+        return super.getJumlah();
+    }
+
+    @Override
+    public String getOperator() {
+        return super.getOperator();
     }
 }

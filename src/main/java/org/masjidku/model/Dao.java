@@ -21,9 +21,9 @@ import java.sql.SQLException;
 
 public abstract class Dao<T> extends DaoFactory {
 
-    protected abstract T get(String id) throws SQLException;
-    protected abstract ObservableList<T> getAll() throws SQLException;
-    protected abstract void save(T t) throws SQLException;
-    protected abstract void update(String[] params) throws SQLException;
-    protected abstract void delete(String id) throws SQLException;
+    public abstract T get(String id) throws SQLException;
+    public abstract ObservableList<T> getAll() throws SQLException;
+    public abstract void save(T t) throws SQLException;
+    public abstract void update(String[] params) throws SQLException;
+    public abstract void delete(String id) throws SQLException;
 }

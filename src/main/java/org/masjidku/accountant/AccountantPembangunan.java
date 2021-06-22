@@ -15,17 +15,11 @@
 
 package org.masjidku.accountant;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import org.masjidku.MainApp;
 import org.masjidku.model.accounting.DaoFunctions;
-import org.masjidku.model.accounting.operasional.DonasiOperasional;
-import org.masjidku.model.accounting.operasional.DonasiOperationalDao;
-import org.masjidku.model.accounting.operasional.Operasional;
-import org.masjidku.model.accounting.operasional.OperationalDao;
 import org.masjidku.model.accounting.pembangunan.DonasiPembangunan;
 import org.masjidku.model.accounting.pembangunan.DonasiPembangunanDao;
 import org.masjidku.model.accounting.pembangunan.Pembangunan;
@@ -56,12 +50,10 @@ public class AccountantPembangunan implements Initializable {
     public void setMainApp(MainApp mainApp) { this.mainApp = mainApp; }
 
     @FXML
-    public void onKelolaUangPembangunan() {
-    }
+    public void onKelolaUangPembangunan() { mainApp.showAlokasiPembangunan(); }
 
     @FXML
-    public void onKelolaDonasiPembangunan() {
-    }
+    public void onKelolaDonasiPembangunan() { mainApp.showDonaturPembangunan(); }
 
     @FXML
     public void onLogoutClick() { mainApp.onLogoutAction(); }

@@ -46,7 +46,6 @@
         <Button layoutX="30.0" layoutY="191.0" mnemonicParsing="false" onAction="#onCreateListener" styleClass="generalButton" text="Tambah Donatur" />
         <TableView fx:id="tblAYMasuk" layoutX="30.0" layoutY="224.0" onMouseClicked="#onMouseClicked" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
             <columns>
-                <TableColumn fx:id="nomor" prefWidth="75.0" text="No." />
                 <TableColumn fx:id="donatur" prefWidth="75.0" text="donatur" />
                 <TableColumn fx:id="jumlah" prefWidth="75.0" text="jumlah" />
                 <TableColumn fx:id="tanggal" prefWidth="75.0" text="tanggal" />
@@ -58,7 +57,6 @@
       <HBox layoutX="481.0" layoutY="431.0" prefHeight="20.0" spacing="10.0" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0">
          <children>
             <Button fx:id="btnEdit" disable="true" mnemonicParsing="false" onAction="#onEditListener" styleClass="generalButton" text="Edit" />
-            <Button fx:id="btnReset" disable="true" mnemonicParsing="false" onAction="#onResetListener" styleClass="generalButton" text="Reset" />
             <Button fx:id="btnRemove" disable="true" mnemonicParsing="false" onAction="#onRemoveListener" styleClass="generalButton">
                <graphic>
                   <ImageView cache="true" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">

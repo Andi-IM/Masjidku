@@ -26,7 +26,7 @@ public class DonasiPembangunanDao extends Dao<DonasiPembangunan> {
     private final String TABLE = "infak_pembangunan";
 
     @Override
-    protected DonasiPembangunan get(String id) throws SQLException {
+    public DonasiPembangunan get(String id) throws SQLException {
         query = "SELECT * FROM "+TABLE+" WHERE id=?";
         ps = con.prepareStatement(query);
         ps.setString(1, id);
@@ -46,7 +46,7 @@ public class DonasiPembangunanDao extends Dao<DonasiPembangunan> {
     }
 
     @Override
-    protected ObservableList<DonasiPembangunan> getAll() throws SQLException {
+    public ObservableList<DonasiPembangunan> getAll() throws SQLException {
         ObservableList<DonasiPembangunan> donatur = FXCollections.observableArrayList();
 
         query = "SELECT * FROM "+TABLE;
@@ -68,7 +68,7 @@ public class DonasiPembangunanDao extends Dao<DonasiPembangunan> {
     }
 
     @Override
-    protected void save(DonasiPembangunan donasiPembangunan) throws SQLException {
+    public void save(DonasiPembangunan donasiPembangunan) throws SQLException {
         query = "INSERT INTO "+TABLE+"(id, donatur, jumlah, tanggal, operator) VALUES (?,?,?,?,?)";
 
         ps = con.prepareStatement(query);
@@ -81,7 +81,7 @@ public class DonasiPembangunanDao extends Dao<DonasiPembangunan> {
     }
 
     @Override
-    protected void update(String[] params) throws SQLException {
+    public void update(String[] params) throws SQLException {
         query = "UPDATE "+TABLE+" SET donatur=?, jumlah=?, tanggal=?, operator=? WHERE id=?";
         ps = con.prepareStatement(query);
         ps.setString(1, params[1]);
@@ -93,7 +93,7 @@ public class DonasiPembangunanDao extends Dao<DonasiPembangunan> {
     }
 
     @Override
-    protected void delete(String id) throws SQLException {
+    public void delete(String id) throws SQLException {
         query = "DELETE FROM "+TABLE+" WHERE id=?";
         ps = con.prepareStatement(query);
         ps.setString(1, id);
@@ -105,7 +105,7 @@ public class DonasiPembangunanDao extends Dao<DonasiPembangunan> {
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
 
-        DonasiPembangunan model = null;
+        DonasiPembangunan model = new DonasiPembangunan();
         if (rs.next()){
             model = new DonasiPembangunan(
                     rs.getString(1),
@@ -119,7 +119,7 @@ public class DonasiPembangunanDao extends Dao<DonasiPembangunan> {
     }
 
     public String getTotalOutcome() throws SQLException {
-        query = "SELECT IFNULL(0, SUM(jumlah)) FROM "+TABLE;
+        query = "SELECT IFNULL(SUM(jumlah),0) FROM "+TABLE;
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
 

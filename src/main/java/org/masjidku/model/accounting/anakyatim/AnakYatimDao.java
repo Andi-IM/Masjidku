@@ -76,8 +76,8 @@ public class AnakYatimDao extends Dao<AnakYatim> {
         ps = con.prepareStatement(query);
         ps.setString(1, anakYatim.getId());
         ps.setString(2, anakYatim.getTujuan());
-        ps.setString(3, String.valueOf(anakYatim.getUsia()));
-        ps.setString(4, String.valueOf(anakYatim.getJumlah()));
+        ps.setInt(3, anakYatim.getUsia());
+        ps.setString(4, anakYatim.getJumlah());
         ps.setString(5, anakYatim.getTanggal());
         ps.setString(6, anakYatim.getOperator());
         ps.executeUpdate();
@@ -109,7 +109,7 @@ public class AnakYatimDao extends Dao<AnakYatim> {
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
 
-        AnakYatim model = null;
+        AnakYatim model = new AnakYatim();
         if (rs.next()){
             model = new AnakYatim(
                     rs.getString(1),
@@ -124,7 +124,7 @@ public class AnakYatimDao extends Dao<AnakYatim> {
     }
 
     public String getTotalOutcome() throws SQLException {
-        query = "SELECT IFNULL(0, SUM(jumlah)) FROM "+TABLE;
+        query = "SELECT IFNULL(SUM(jumlah),0) FROM "+TABLE;
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
 
