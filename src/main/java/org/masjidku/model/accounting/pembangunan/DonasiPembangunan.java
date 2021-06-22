@@ -25,4 +25,8 @@ public class DonasiPembangunan extends DataDonasi {
     public DonasiPembangunan() {
         this(null,null,null,null,null);
     }
+
+    public DonasiPembangunan(String nama, String jumlah, String tanggal, String operator) {
+        super(nama, jumlah, tanggal, operator);
+    }
 }

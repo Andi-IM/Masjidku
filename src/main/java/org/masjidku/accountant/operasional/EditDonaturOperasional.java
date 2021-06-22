@@ -43,6 +43,6 @@ public class EditDonaturOperasional {
     public void onCheckboxAction(ActionEvent actionEvent) {
     }
 
-    public void setMainApp(MainApp mainApp, DonasiOperasional model) {
+    public void setMainApp(MainApp mainApp, DonasiOperasional model, String username) {
     }
 }

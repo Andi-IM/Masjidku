@@ -15,13 +15,39 @@
 
 package org.masjidku.model.accounting.pembangunan;
 
-import org.masjidku.model.accounting.DataDonasi;
 import org.masjidku.model.accounting.UangKeluar;
 
 public class Pembangunan extends UangKeluar {
     public Pembangunan() { this(null, null, null, "0", null, null); }
 
-    public Pembangunan(String id, String tujuan, String keterangan, String jumlah, String tanggal, String operator) {
-        super(id, tujuan, keterangan, jumlah, tanggal, operator);
+    public Pembangunan(String id, String nama, String keterangan, String jumlah, String tanggal, String operator) {
+        super(id, nama, keterangan, jumlah, tanggal, operator);
+    }
+
+    public Pembangunan(String nama, String keterangan, String jumlah, String tanggal, String operator) {
+        super.setTujuan(nama);
+        super.setKeterangan(keterangan);
+        super.setJumlah(jumlah);
+        super.setTanggal(tanggal);
+        super.setOperator(operator);
+    }
+
+    public String getNama() {
+        return super.getTujuan();
+    }
+
+    @Override
+    public String getKeterangan() {
+        return super.getKeterangan();
+    }
+
+    @Override
+    public String getJumlah() {
+        return super.getJumlah();
+    }
+
+    @Override
+    public String getOperator() {
+        return super.getOperator();
     }
 }

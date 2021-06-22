@@ -36,6 +36,6 @@ public class EditPembayaranTpa {
     public void clearForm() {
     }
 
-    public void setMainApp(MainApp mainApp, TpaKeluar model) {
+    public void setMainApp(MainApp mainApp, TpaKeluar model, String username) {
     }
 }

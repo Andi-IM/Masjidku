@@ -16,7 +16,6 @@
 package org.masjidku.accountant.anakyatim;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -25,12 +24,11 @@ import org.masjidku.MainApp;
 import org.masjidku.model.accounting.anakyatim.DonasiAYatim;
 import org.masjidku.model.accounting.anakyatim.DonasiAYatimDao;
 
-import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ResourceBundle;
+import java.time.format.DateTimeFormatter;
 
-public class EditDonaturAnakYatim implements Initializable {
+public class EditDonaturAnakYatim {
     @FXML
     private TextField txtNama;
     @FXML
@@ -40,7 +38,6 @@ public class EditDonaturAnakYatim implements Initializable {
     private DonasiAYatim donatur;
     private MainApp mainApp;
     private String operator;
-    private LocalDate localDate;
 
     // create some stage
     @SuppressWarnings("unused")
@@ -51,7 +48,7 @@ public class EditDonaturAnakYatim implements Initializable {
         this.donatur = model;
         this.operator = operator;
 
-        if (model.getId() != null && model.getTanggal() != null) {
+        if (model.getId() != null) {
             setDonasi(model);
         }
     }
@@ -59,16 +56,7 @@ public class EditDonaturAnakYatim implements Initializable {
     private void setDonasi(DonasiAYatim model) {
         txtNama.setText(model.getDonatur());
         txtJumlah.setText(model.getJumlah());
-        localDate = LocalDate.parse(model.getTanggal());
-        date.setValue(localDate);
-    }
-
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        txtNama.setText("");
-        txtJumlah.setText("");
-        localDate = LocalDate.parse("2000-01-01");
+        LocalDate localDate = LocalDate.parse(model.getTanggal());
         date.setValue(localDate);
     }
 
@@ -76,8 +64,7 @@ public class EditDonaturAnakYatim implements Initializable {
     public void clearForm() {
         txtNama.clear();
         txtJumlah.clear();
-        localDate = LocalDate.parse("2000-01-01");
-        date.setValue(localDate);
+        date.getEditor().clear();
     }
 
     @FXML
@@ -85,9 +72,9 @@ public class EditDonaturAnakYatim implements Initializable {
         if (formValidation()) {
             String nama = txtNama.getText();
             String jumlah = txtJumlah.getText();
-            String tanggal = date.getValue().toString();
+            String tanggal = date.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-            if (donatur == null) {
+            if (donatur.getId() == null) {
                 donatur = new DonasiAYatim(nama, jumlah, tanggal, operator);
             }
 
@@ -125,9 +112,9 @@ public class EditDonaturAnakYatim implements Initializable {
     private boolean formValidation() {
         if (!txtNama.getText().isBlank()) {
             if (!txtJumlah.getText().isBlank()){
-                // Parses the first date
-                LocalDate dt1 = LocalDate.parse("2000-01-01");
-                return date.getValue().isAfter(dt1);
+                if (txtJumlah.getText().matches("[0-9]")){
+                    return date.getEditor().getText().isBlank();
+                }
             }
         }
         return false;
@@ -169,5 +156,4 @@ public class EditDonaturAnakYatim implements Initializable {
 
         alert.showAndWait();
     }
-
 }

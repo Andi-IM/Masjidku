@@ -23,4 +23,8 @@ public class ZakatMasuk extends DataDonasi {
     }
 
     public ZakatMasuk() { this(null, null, "0", null, null); }
+
+    public ZakatMasuk(String donatur, String jumlah, String tanggal, String operator) {
+        super(donatur, jumlah, tanggal, operator);
+    }
 }

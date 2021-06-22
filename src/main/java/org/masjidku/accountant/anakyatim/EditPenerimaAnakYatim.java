@@ -16,19 +16,20 @@
 package org.masjidku.accountant.anakyatim;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
 import org.masjidku.model.accounting.anakyatim.AnakYatim;
 import org.masjidku.model.accounting.anakyatim.AnakYatimDao;
 
-import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ResourceBundle;
+import java.time.format.DateTimeFormatter;
 
-public class EditPenerimaAnakYatim implements Initializable {
+public class EditPenerimaAnakYatim {
 
     @FXML
     private TextField txtNama;
@@ -41,7 +42,6 @@ public class EditPenerimaAnakYatim implements Initializable {
     private AnakYatim anakYatim;
     private MainApp mainApp;
     private String operator;
-    private LocalDate localDate;
 
     // create some stage
     @SuppressWarnings("unused")
@@ -62,16 +62,7 @@ public class EditPenerimaAnakYatim implements Initializable {
         txtNama.setText(model.getNama());
         txtJumlah.setText(model.getJumlah());
         spnUsia.getValueFactory().setValue(model.getUsia());
-        localDate = LocalDate.parse(model.getTanggal());
-        date.setValue(localDate);
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        txtNama.setText("");
-        txtJumlah.setText("");
-        spnUsia.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(5, 18, 5));
-        localDate = LocalDate.parse("2000-01-01");
+        LocalDate localDate = LocalDate.parse(model.getTanggal());
         date.setValue(localDate);
     }
 
@@ -84,8 +75,10 @@ public class EditPenerimaAnakYatim implements Initializable {
         if (!txtNama.getText().isBlank()) {
             if (!txtJumlah.getText().isBlank()) {
                 if (txtJumlah.getText().matches("[0-9]")) {
-                    return spnUsia.getValueFactory().getValue() > 5 &&
-                            spnUsia.getValueFactory().getValue() < 19;
+                    if (date.getEditor().getText().isBlank()){
+                        return spnUsia.getValueFactory().getValue() > 5 &&
+                                spnUsia.getValueFactory().getValue() < 19;
+                    }
                 }
             }
         }
@@ -98,9 +91,9 @@ public class EditPenerimaAnakYatim implements Initializable {
             String nama = txtNama.getText();
             int usia = spnUsia.getValue();
             String jumlah = txtJumlah.getText();
-            String tanggal = date.getValue().toString();
+            String tanggal = date.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-            if (anakYatim == null) {
+            if (anakYatim.getId() == null) {
                 anakYatim = new AnakYatim(nama, usia, jumlah, tanggal, operator);
             }
 
@@ -110,7 +103,7 @@ public class EditPenerimaAnakYatim implements Initializable {
                     if (dao.isAnakYatimExist(anakYatim.getId())) {
                         dao.update(new String[]{
                                 anakYatim.getId(),
-                                anakYatim.getDonatur(),
+                                anakYatim.getNama(),
                                 String.valueOf(anakYatim.getUsia()),
                                 anakYatim.getJumlah(),
                                 anakYatim.getTanggal(),
@@ -146,7 +139,7 @@ public class EditPenerimaAnakYatim implements Initializable {
         txtNama.clear();
         spnUsia.getValueFactory().setValue(6);
         txtJumlah.clear();
-        date.setValue(null);
+        date.getEditor().clear();
     }
 
     /**
