@@ -20,7 +20,40 @@ import org.masjidku.model.accounting.UangKeluar;
 public class TpaKeluar extends UangKeluar {
     public TpaKeluar() { this(null,null,"0",null,null);}
 
-    public TpaKeluar(String id, String tujuan, String jumlah, String tanggal, String operator) {
-        super(id, tujuan, jumlah, tanggal, operator);
+    public TpaKeluar(String id, String nama, String keterangan, String jumlah, String tanggal, String operator) {
+        super(id, nama, keterangan, jumlah, tanggal, operator);
     }
+
+    public TpaKeluar(String nama, String keterangan, String jumlah, String tanggal, String operator) {
+        super.setTujuan(nama);
+        super.setKeterangan(keterangan);
+        super.setJumlah(jumlah);
+        super.setTanggal(tanggal);
+        super.setOperator(operator);
+    }
+
+    @Override
+    public String getId() {
+        return super.getId();
+    }
+
+    public String getNama() {
+        return super.getTujuan();
+    }
+
+    @Override
+    public String getKeterangan() {
+        return super.getKeterangan();
+    }
+
+    @Override
+    public String getJumlah() {
+        return super.getJumlah();
+    }
+
+    @Override
+    public String getOperator() {
+        return super.getOperator();
+    }
+
 }

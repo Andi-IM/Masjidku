@@ -134,6 +134,7 @@ public class EditPembayaranPembangunan {
     @FXML
     public void clearForm() {
         txtNama.clear();
+        txtKeterangan.clear();
         txtJumlah.clear();
         date.getEditor().clear();
     }

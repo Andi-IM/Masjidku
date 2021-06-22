@@ -25,4 +25,27 @@ public class DonasiOperasional extends DataDonasi {
     public DonasiOperasional() {
         this(null, null, "0", null, null);
     }
+
+    public DonasiOperasional(String nama, String jumlah, String tanggal, String operator) {
+        super(nama, jumlah, tanggal, operator);
+    }
+
+    public String getNama() {
+        return super.getDonatur();
+    }
+
+    @Override
+    public String getJumlah() {
+        return super.getJumlah();
+    }
+
+    @Override
+    public String getTanggal() {
+        return super.getTanggal();
+    }
+
+    @Override
+    public String getOperator() {
+        return super.getOperator();
+    }
 }

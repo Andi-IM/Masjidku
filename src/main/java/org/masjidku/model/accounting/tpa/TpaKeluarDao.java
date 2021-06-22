@@ -18,6 +18,7 @@ package org.masjidku.model.accounting.tpa;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.masjidku.model.Dao;
+import org.masjidku.model.accounting.pembangunan.Pembangunan;
 
 import java.sql.SQLException;
 
@@ -69,7 +70,7 @@ public class TpaKeluarDao extends Dao<TpaKeluar> {
 
     @Override
     public void save(TpaKeluar tpaKeluar) throws SQLException {
-        query = "INSERT INTO "+TABLE+"(id, nama, jumlah, tanggal, operator) VALUES (?,?,?,?,?)";
+        query = "INSERT INTO "+TABLE+"(id, nama, keterangan, jumlah, tanggal, operator) VALUES (?,?,?,?,?,?)";
 
         ps = con.prepareStatement(query);
         ps.setString(1, tpaKeluar.getId());
@@ -83,12 +84,13 @@ public class TpaKeluarDao extends Dao<TpaKeluar> {
 
     @Override
     public void update(String[] params) throws SQLException {
-        query = "UPDATE "+TABLE+" SET nama=?, jumlah=?, tanggal=?, operator=? WHERE id=?";
+        query = "UPDATE "+TABLE+" SET nama=?, keterangan=?, jumlah=?, tanggal=?, operator=? WHERE id=?";
         ps = con.prepareStatement(query);
         ps.setString(1, params[1]);
         ps.setString(2, params[2]);
         ps.setString(3, params[3]);
         ps.setString(4, params[4]);
+        ps.setString(5, params[5]);
         ps.setString(5, params[0]);
         ps.executeUpdate();
     }
@@ -113,7 +115,8 @@ public class TpaKeluarDao extends Dao<TpaKeluar> {
                     rs.getString(2),
                     rs.getString(3),
                     rs.getString(4),
-                    rs.getString(5)
+                    rs.getString(5),
+                    rs.getString(6)
             );
         }
         return model;

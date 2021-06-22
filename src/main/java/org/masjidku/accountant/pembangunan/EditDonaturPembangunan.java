@@ -94,7 +94,7 @@ public class EditDonaturPembangunan {
                     if (dao.isDonaturExist(donatur.getId())) {
                         dao.update(new String[]{
                                 donatur.getId(),
-                                donatur.getDonatur(),
+                                donatur.getNama(),
                                 donatur.getJumlah(),
                                 donatur.getTanggal(),
                                 operator
