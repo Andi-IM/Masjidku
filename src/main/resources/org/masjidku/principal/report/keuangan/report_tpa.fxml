@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2021. Creative Commons Legal Code
+  ~                            
+  ~                            CC0 1.0 Universal
+  ~                            
+  ~                                CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
+  ~                                LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN
+  ~                                ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
+  ~                                INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
+  ~                                REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS
+  ~                                PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
+  ~                                THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
+  ~                                HEREUNDER.
+  -->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.*?>
+<?import java.net.URL?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.masjidku.principal.report.accountant.TpaReport"
+            prefHeight="480.0" prefWidth="665.0">
+    <stylesheets>
+        <URL value="@../../../styles/styles.css"/>
+        <URL value="@../../../styles/fontstyles.css"/>
+    </stylesheets>
+    <children>
+        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="24.0" layoutY="24.0" pickOnBounds="true"
+                   preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <image>
+                <Image url="@../../../icon/app_icon.png"/>
+            </image>
+        </ImageView>
+        <Text fill="#3AAFA9" layoutX="125.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              styleClass="app-title" text="Aplikasi Desktop MasjidKu "/>
+        <Text fill="#3AAFA9" layoutX="54.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="headline"
+              text="Kelola Dana TPA" wrappingWidth="350.0"/>
+        <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="398.0" layoutY="42.0" onMouseClicked="#onLogoutClick"
+                   pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <image>
+                <Image url="@../../../icon/logout.png"/>
+            </image>
+        </ImageView>
+        <Rectangle arcWidth="5.0" fill="#3aafa9" height="5.0" layoutX="101.0" layoutY="-5.0" smooth="false"
+                   stroke="BLACK" strokeLineCap="BUTT" strokeLineJoin="BEVEL" strokeMiterLimit="0.0" strokeType="INSIDE"
+                   strokeWidth="0.0" width="665.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+        <HBox layoutX="291.0" layoutY="216.0" prefHeight="100.0" prefWidth="200.0" spacing="8.0"
+              AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="230.0">
+            <children>
+                <Button mnemonicParsing="false" onAction="#uangMasuk" prefHeight="208.0" prefWidth="146.0"
+                        styleClass="generalButton">
+                    <graphic>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../icon/uang_masuk.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#uangKeluar" prefHeight="208.0" prefWidth="146.0"
+                        styleClass="generalButton">
+                    <graphic>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../icon/uang_keluar.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </children>
+        </HBox>
+        <GridPane hgap="20.0" layoutX="40.0" layoutY="256.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="230.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pemasukan Terakhir :"/>
+                <Text fx:id="txtPemasukanTerakhir" strokeType="OUTSIDE" strokeWidth="0.0" text="Rp. &lt;Text&gt;"
+                      GridPane.columnIndex="1"/>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pengeluaran Terakhir :" GridPane.rowIndex="1"/>
+                <Text fx:id="txtPengeluaranTerakhir" strokeType="OUTSIDE" strokeWidth="0.0" text="Rp. &lt;text&gt;"
+                      GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tanggal pemasukkan: " GridPane.rowIndex="5"/>
+                <Text fx:id="txtTglPemasukkan" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;date&gt;"
+                      GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Pemasukkan :" GridPane.rowIndex="2"/>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Pengeluaran :" GridPane.rowIndex="3"/>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Saldo :" GridPane.rowIndex="4"/>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" GridPane.rowIndex="6"/>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tanggal Pengeluaran:" GridPane.rowIndex="6"/>
+                <Text fx:id="txtTotalPemasukkan" strokeType="OUTSIDE" strokeWidth="0.0" text="Rp. &lt;text&gt;"
+                      GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                <Text fx:id="txtTotalPengeluaran" strokeType="OUTSIDE" strokeWidth="0.0" text="Rp. &lt;text&gt;"
+                      GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                <Text fx:id="txtSaldo" strokeType="OUTSIDE" strokeWidth="0.0" text="Rp. &lt;text&gt;"
+                      GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                <Text fx:id="txtTglPengeluaran" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;date&gt;"
+                      GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+            </children>
+        </GridPane>
+    </children>
+</AnchorPane>

@@ -25,18 +25,20 @@ public class TamuKegiatan  {
     private String alamat;
     private String notelp;
     private String keterangan;
+    private String operator;
 
-    public TamuKegiatan() { this(null,null,null,null,null,null,null,null); }
+    public TamuKegiatan() { this(null,null,null,null,null,null,null,null,null); }
 
-    public TamuKegiatan(String idUndangan, String idKegiatan, String idTamu, String nama, String kegiatan, String alamat, String notelp, String keterangan) {
+    public TamuKegiatan(String idUndangan, String idKegiatan, String idTamu, String nama, String kegiatan, String alamat, String notelp, String keterangan, String operator) {
         setIdUndangan(idUndangan);
-        setIdKegiatan(kegiatan);
+        setIdKegiatan(idKegiatan);
         setIdTamu(idTamu);
         setNama(nama);
-        setIdKegiatan(kegiatan);
         setAlamat(alamat);
         setNotelp(notelp);
+        setKegiatan(kegiatan);
         setKeterangan(keterangan);
+        setOperator(operator);
     }
 
     public String getIdUndangan() {
@@ -51,6 +53,10 @@ public class TamuKegiatan  {
         return idKegiatan;
     }
 
+    public void setIdKegiatan(String idKegiatan) {
+        this.idKegiatan = idKegiatan;
+    }
+
     public String getIdTamu() {
         return idTamu;
     }
@@ -59,38 +65,51 @@ public class TamuKegiatan  {
         this.idTamu = idTamu;
     }
 
-    public void setKegiatan(String kegiatan) {
-        this.kegiatan = kegiatan;
-    }
-
     public String getNama() {
         return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 
     public String getKegiatan() {
         return kegiatan;
     }
 
+    public void setKegiatan(String kegiatan) {
+        this.kegiatan = kegiatan;
+    }
+
     public String getAlamat() {
         return alamat;
+    }
+
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
     }
 
     public String getNotelp() {
         return notelp;
     }
 
+    public void setNotelp(String notelp) {
+        this.notelp = notelp;
+    }
+
     public String getKeterangan() {
         return keterangan;
     }
 
-    public void setKeterangan(String keterangan) { this.keterangan = keterangan; }
+    public void setKeterangan(String keterangan) {
+        this.keterangan = keterangan;
+    }
 
-    private void setNotelp(String notelp) { this.notelp = notelp; }
+    public String getOperator() {
+        return operator;
+    }
 
-    private void setAlamat(String alamat) { this.alamat = alamat; }
-
-    private void setNama(String nama) { this.nama = nama; }
-
-    private void setIdKegiatan(String kegiatan) { this.kegiatan = kegiatan; }
-
+    public void setOperator(String operator) {
+        this.operator = operator;
+    }
 }

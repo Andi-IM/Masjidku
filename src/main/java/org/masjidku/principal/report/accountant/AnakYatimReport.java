@@ -13,7 +13,7 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.accountant;
+package org.masjidku.principal.report.accountant;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,8 +30,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class AccountantAnakyatim implements Initializable {
-
+public class AnakYatimReport implements Initializable {
     @FXML
     public Text txtPemasukanTerakhir;
     @FXML
@@ -83,8 +82,8 @@ public class AccountantAnakyatim implements Initializable {
     public void onLogoutClick() { mainApp.onLogoutAction(); }
 
     @FXML
-    public void onKelolaDonasiAYatim() {  mainApp.showDonasiAYatim(); }
+    public void laporanDonasiAnakYatim() {   }
 
     @FXML
-    public void onKelolaDanaAYatim() { mainApp.showDaftarAnakYatim(); }
+    public void laporanDanaAnakYatim() {  }
 }

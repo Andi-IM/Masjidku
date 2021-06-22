@@ -401,9 +401,7 @@ public class MainApp extends Application {
             System.err.println(e.getMessage());
         }
     }
-    public void showKegiatanReport(){}
-    public void showTamuReport(){}
-    public void showAnakYatimReport(){}
+
     public void setLaporan() {
         try {
             // Load Content
@@ -475,7 +473,7 @@ public class MainApp extends Application {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("secretary/secretary_kegiatan.fxml"));
+            loader.setLocation(getClass().getResource("secretary/list_kegiatan.fxml"));
             AnchorPane overview = loader.load();
 
             // set the item into the right divider.
@@ -496,7 +494,7 @@ public class MainApp extends Application {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("secretary/secretary_kegiatan_form.fxml"));
+            loader.setLocation(getClass().getResource("secretary/form_kegiatan.fxml"));
             AnchorPane overview = loader.load();
 
             // set the item into the right divider.
@@ -517,7 +515,7 @@ public class MainApp extends Application {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("secretary/secretary_tamu.fxml"));
+            loader.setLocation(getClass().getResource("secretary/list_tamu.fxml"));
             AnchorPane overview = loader.load();
 
             // set the item into the right divider.
@@ -539,7 +537,7 @@ public class MainApp extends Application {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("secretary/secretary_tamu_form.fxml"));
+            loader.setLocation(getClass().getResource("secretary/form_tamu.fxml"));
             AnchorPane overview = loader.load();
 
             // set the item into the right divider.
@@ -560,7 +558,7 @@ public class MainApp extends Application {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("secretary/secretary_undangan.fxml"));
+            loader.setLocation(getClass().getResource("secretary/list_undangan.fxml"));
             AnchorPane overview = loader.load();
 
             // set the item into the right divider.
@@ -582,7 +580,7 @@ public class MainApp extends Application {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("secretary/secretary_undangan_form.fxml"));
+            loader.setLocation(getClass().getResource("secretary/form_undangan.fxml"));
             AnchorPane overview = loader.load();
 
             // set the item into the right divider.
@@ -650,7 +648,7 @@ public class MainApp extends Application {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("accountant/accountant_anakyatim.fxml"));
+            loader.setLocation(getClass().getResource("accountant/report_anakyatim.fxml"));
             AnchorPane overview = loader.load();
 
             // set the item into the right divider.
@@ -740,7 +738,7 @@ public class MainApp extends Application {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("accountant/accountant_zakat.fxml"));
+            loader.setLocation(getClass().getResource("accountant/report_zakat.fxml"));
             AnchorPane overview = loader.load();
 
             // set the item into the right divider.
@@ -831,7 +829,7 @@ public class MainApp extends Application {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("accountant/accountant_pembangunan.fxml"));
+            loader.setLocation(getClass().getResource("accountant/report_pembangunan.fxml"));
             AnchorPane overview = loader.load();
 
             // set the item into the right divider.
@@ -922,7 +920,7 @@ public class MainApp extends Application {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("accountant/accountant_operasional.fxml"));
+            loader.setLocation(getClass().getResource("accountant/report_operasional.fxml"));
             AnchorPane overview = loader.load();
 
             // set the item into the right divider.
@@ -1013,7 +1011,7 @@ public class MainApp extends Application {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("accountant/accountant_tpa.fxml"));
+            loader.setLocation(getClass().getResource("accountant/report_tpa.fxml"));
             AnchorPane overview = loader.load();
 
             // set the item into the right divider.
