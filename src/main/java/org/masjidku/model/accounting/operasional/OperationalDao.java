@@ -26,7 +26,7 @@ public class OperationalDao extends Dao<Operasional> {
     private final String TABLE = "operasional_keluar";
 
     @Override
-    protected Operasional get(String id) throws SQLException {
+    public Operasional get(String id) throws SQLException {
         query = "SELECT * FROM "+TABLE+" WHERE id=?";
         ps = con.prepareStatement(query);
         ps.setString(1, id);
@@ -47,7 +47,7 @@ public class OperationalDao extends Dao<Operasional> {
     }
 
     @Override
-    protected ObservableList<Operasional> getAll() throws SQLException {
+    public ObservableList<Operasional> getAll() throws SQLException {
         ObservableList<Operasional> item = FXCollections.observableArrayList();
 
         query = "SELECT * FROM "+TABLE;
@@ -70,7 +70,7 @@ public class OperationalDao extends Dao<Operasional> {
     }
 
     @Override
-    protected void save(Operasional operasional) throws SQLException {
+    public void save(Operasional operasional) throws SQLException {
         query = "INSERT INTO "+TABLE+"(id, nama, keterangan, jumlah, tanggal, operator) VALUES (?,?,?,?,?,?)";
 
         ps = con.prepareStatement(query);
@@ -84,7 +84,7 @@ public class OperationalDao extends Dao<Operasional> {
     }
 
     @Override
-    protected void update(String[] params) throws SQLException {
+    public void update(String[] params) throws SQLException {
         query = "UPDATE "+TABLE+" SET nama=?, keterangan=?, jumlah=?, tanggal=?, operator=? WHERE id=?";
         ps = con.prepareStatement(query);
         ps.setString(1, params[1]);
@@ -97,7 +97,7 @@ public class OperationalDao extends Dao<Operasional> {
     }
 
     @Override
-    protected void delete(String id) throws SQLException {
+    public void delete(String id) throws SQLException {
         query = "DELETE FROM "+TABLE+" WHERE id=?";
         ps = con.prepareStatement(query);
         ps.setString(1, id);
@@ -133,7 +133,7 @@ public class OperationalDao extends Dao<Operasional> {
     }
 
     public String getTotalIncome() throws SQLException {
-        query = "SELECT IFNULL(0, SUM(jumlah)) FROM "+TABLE;
+        query = "SELECT IFNULL(SUM(jumlah),0) FROM "+TABLE;
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
 

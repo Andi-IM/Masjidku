@@ -18,9 +18,27 @@ package org.masjidku.model.accounting.zakat;
 import org.masjidku.model.accounting.UangKeluar;
 
 public class ZakatKeluar extends UangKeluar {
-    public ZakatKeluar() { }
+    public ZakatKeluar() { this(null,null,"0",null,null); }
 
     public ZakatKeluar(String id, String tujuan, String jumlah, String tanggal, String operator) {
         super(id, tujuan, jumlah, tanggal, operator);
+    }
+
+    public ZakatKeluar(String nama, String jumlah, String tanggal, String operator) {
+        super(nama,jumlah,tanggal,operator);
+    }
+
+    public String getNama() {
+        return super.getTujuan();
+    }
+
+    @Override
+    public String getJumlah() {
+        return super.getJumlah();
+    }
+
+    @Override
+    public String getTanggal() {
+        return super.getTanggal();
     }
 }

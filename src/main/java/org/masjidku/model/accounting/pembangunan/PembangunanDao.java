@@ -26,7 +26,7 @@ public class PembangunanDao extends Dao<Pembangunan> {
     private final String TABLE = "pembangunan_keluar";
 
     @Override
-    protected Pembangunan get(String id) throws SQLException {
+    public Pembangunan get(String id) throws SQLException {
         query = "SELECT * FROM "+TABLE+" WHERE id=?";
         ps = con.prepareStatement(query);
         ps.setString(1, id);
@@ -47,7 +47,7 @@ public class PembangunanDao extends Dao<Pembangunan> {
     }
 
     @Override
-    protected ObservableList<Pembangunan> getAll() throws SQLException {
+    public ObservableList<Pembangunan> getAll() throws SQLException {
         ObservableList<Pembangunan> item = FXCollections.observableArrayList();
 
         query = "SELECT * FROM "+TABLE;
@@ -70,7 +70,7 @@ public class PembangunanDao extends Dao<Pembangunan> {
     }
 
     @Override
-    protected void save(Pembangunan pembangunan) throws SQLException {
+    public void save(Pembangunan pembangunan) throws SQLException {
         query = "INSERT INTO "+TABLE+"(id, nama, keterangan, jumlah, tanggal, operator) VALUES (?,?,?,?,?,?)";
 
         ps = con.prepareStatement(query);
@@ -84,7 +84,7 @@ public class PembangunanDao extends Dao<Pembangunan> {
     }
 
     @Override
-    protected void update(String[] params) throws SQLException {
+    public void update(String[] params) throws SQLException {
         query = "UPDATE "+TABLE+" SET nama=?, keterangan=?, jumlah=?, tanggal=?, operator=? WHERE id=?";
         ps = con.prepareStatement(query);
         ps.setString(1, params[1]);
@@ -97,7 +97,7 @@ public class PembangunanDao extends Dao<Pembangunan> {
     }
 
     @Override
-    protected void delete(String id) throws SQLException {
+    public void delete(String id) throws SQLException {
         query = "DELETE FROM "+TABLE+" WHERE id=?";
         ps = con.prepareStatement(query);
         ps.setString(1, id);
@@ -109,7 +109,7 @@ public class PembangunanDao extends Dao<Pembangunan> {
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
 
-        Pembangunan model = null;
+        Pembangunan model = new Pembangunan();
         if (rs.next()){
             model = new Pembangunan(
                     rs.getString(1),
@@ -124,7 +124,7 @@ public class PembangunanDao extends Dao<Pembangunan> {
     }
 
     public String getTotalIncome() throws SQLException {
-        query = "SELECT IFNULL(0, SUM(jumlah)) FROM "+TABLE;
+        query = "SELECT IFNULL(SUM(jumlah),0) FROM "+TABLE;
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
 

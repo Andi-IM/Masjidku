@@ -18,7 +18,6 @@ package org.masjidku.model.user;
 import com.google.common.hash.Hashing;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.masjidku.model.Dao;
 
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;

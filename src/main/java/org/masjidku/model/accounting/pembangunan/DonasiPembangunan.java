@@ -21,4 +21,36 @@ public class DonasiPembangunan extends DataDonasi {
     public DonasiPembangunan(String id, String donatur, String jumlah, String tanggal, String operator) {
         super(id, donatur, jumlah, tanggal, operator);
     }
+
+    public DonasiPembangunan() {
+        this(null,null,null,null,null);
+    }
+
+    public DonasiPembangunan(String nama, String jumlah, String tanggal, String operator) {
+        super(nama, jumlah, tanggal, operator);
+    }
+
+    @Override
+    public String getId() {
+        return super.getId();
+    }
+
+    public String getNama() {
+        return super.getDonatur();
+    }
+
+    @Override
+    public String getJumlah() {
+        return super.getJumlah();
+    }
+
+    @Override
+    public String getTanggal() {
+        return super.getTanggal();
+    }
+
+    @Override
+    public String getOperator() {
+        return super.getOperator();
+    }
 }

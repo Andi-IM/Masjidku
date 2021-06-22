@@ -15,35 +15,38 @@
 
 package org.masjidku.accountant.anakyatim;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
 import org.masjidku.model.accounting.anakyatim.AnakYatim;
+import org.masjidku.model.accounting.anakyatim.AnakYatimDao;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class PenerimaAnakYatim implements Initializable {
 
     @FXML
-    private TableView<AnakYatim> tblAYKeluar;
+    private TableView<AnakYatim> tableAnakyatim;
     @FXML
-    private TableColumn<String, String> nomor;
-    @FXML
-    private TableColumn<AnakYatim, String> donatur;
+    private TableColumn<AnakYatim, String> nama;
     @FXML
     private TableColumn<AnakYatim, String> jumlah;
+    @FXML
+    private TableColumn<AnakYatim, String> usia;
     @FXML
     private TableColumn<AnakYatim, String> tanggal;
     @FXML
     private Button btnEdit;
-    @FXML
-    private Button btnReset;
     @FXML
     private Button btnRemove;
 
@@ -53,41 +56,69 @@ public class PenerimaAnakYatim implements Initializable {
     @SuppressWarnings("unused")
     private Stage dialogStage;
 
+    /**
+     * The data as an observable list of Anak Yatim.
+     */
+    private final ObservableList<AnakYatim> dataAnak =
+            FXCollections.observableArrayList();
+
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
+    /**
+     * get User Data from DAO.
+     *
+     * @return Observable List
+     */
+    private ObservableList<AnakYatim> getDataAnak() {
+        AnakYatimDao dao = new AnakYatimDao();
+        if (dao.getConnection()) {
+            try {
+                dataAnak.addAll(dao.getAll());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return dataAnak;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        tableAnakyatim.setItems(getDataAnak());
 
+        nama.setCellValueFactory(new PropertyValueFactory<>("tujuan"));
+        usia.setCellValueFactory(new PropertyValueFactory<>("usia"));
+        jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));
+        tanggal.setCellValueFactory(new PropertyValueFactory<>("tanggal"));
     }
 
     @FXML
-    public void onLogoutClick(){ mainApp.onLogoutAction(); }
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
 
     @FXML
-    public void onMouseClicked(){
-        if(tblAYKeluar.getSelectionModel().isEmpty()){
+    public void onMouseClicked() {
+        if (tableAnakyatim.getSelectionModel().isEmpty()) {
             btnEdit.setDisable(true);
             btnRemove.setDisable(true);
-            btnReset.setDisable(true);
         } else {
             btnEdit.setDisable(false);
             btnRemove.setDisable(false);
-            btnReset.setDisable(false);
         }
     }
 
     @FXML
-    public void onCreateListener(){
+    public void onCreateListener() {
         AnakYatim temp = new AnakYatim();
         mainApp.editAnakYatim(temp);
     }
 
     @FXML
-    public void onEditListener(){
-        AnakYatim selectedItem = tblAYKeluar.getSelectionModel().getSelectedItem();
-        if (selectedItem != null){
+    public void onEditListener() {
+        AnakYatim selectedItem = tableAnakyatim.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
             mainApp.editAnakYatim(selectedItem);
         } else {
             alertError("Null Error", "Data tidak ditemukan!");
@@ -95,21 +126,37 @@ public class PenerimaAnakYatim implements Initializable {
     }
 
     @FXML
-    public void onRemoveListener(){
-
+    public void onRemoveListener() {
+        AnakYatim selectedItem = tableAnakyatim.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            AnakYatimDao dao = new AnakYatimDao();
+            if (dao.getConnection()) {
+                try {
+                    if (dao.isAnakYatimExist(selectedItem.getId())) {
+                        tableAnakyatim.getItems().remove(selectedItem);
+                        dao.delete(selectedItem.getId());
+                        alertInfo("Success", "User dihapus!");
+                    } else {
+                        alertError("SQL Error", "User tidak ditemukan!");
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                alertError("Offline", "Database tidak terhubung!");
+            }
+        }
     }
 
     @FXML
-    public void onResetListener(){
-
+    public void gotoHome() {
+        mainApp.showAnakYatim();
     }
-
-    @FXML
-    public void gotoHome() { mainApp.showAnakYatim(); }
 
     /**
      * Alert Error Builder
-     * @param header header message
+     *
+     * @param header  header message
      * @param content content message
      */
     @SuppressWarnings("SameParameterValue")
@@ -125,7 +172,8 @@ public class PenerimaAnakYatim implements Initializable {
 
     /**
      * Alert Info Builder
-     * @param header header message
+     *
+     * @param header  header message
      * @param content content message
      */
     @SuppressWarnings("SameParameterValue")
