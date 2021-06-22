@@ -13,25 +13,23 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.accountant;
+package org.masjidku.principal.report.accountant;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import org.masjidku.MainApp;
 import org.masjidku.model.accounting.DaoFunctions;
-import org.masjidku.model.accounting.anakyatim.AnakYatim;
-import org.masjidku.model.accounting.anakyatim.AnakYatimDao;
-import org.masjidku.model.accounting.anakyatim.DonasiAYatim;
-import org.masjidku.model.accounting.anakyatim.DonasiAYatimDao;
+import org.masjidku.model.accounting.zakat.ZakatKeluar;
+import org.masjidku.model.accounting.zakat.ZakatKeluarDao;
+import org.masjidku.model.accounting.zakat.ZakatMasuk;
+import org.masjidku.model.accounting.zakat.ZakatMasukDao;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class AccountantAnakyatim implements Initializable {
-
+public class ZakatReport implements Initializable {
     @FXML
     public Text txtPemasukanTerakhir;
     @FXML
@@ -53,38 +51,40 @@ public class AccountantAnakyatim implements Initializable {
         this.mainApp = mainApp;
     }
 
+    @FXML
+    public void uangMasuk() {
+    }
+
+    @FXML
+    public void uangKeluar() {
+    }
+
+    @FXML
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        AnakYatimDao ayDao = new AnakYatimDao();
-        DonasiAYatimDao dayDao = new DonasiAYatimDao();
+        ZakatKeluarDao zkDao = new ZakatKeluarDao();
+        ZakatMasukDao zmDao = new ZakatMasukDao();
         DaoFunctions df = new DaoFunctions();
 
         try {
-            if (ayDao.getConnection() && dayDao.getConnection() && df.getConnection()) {
-                AnakYatim penerima = ayDao.getLastRecord();
-                DonasiAYatim pemberi = dayDao.getLastRecord();
+            if (zkDao.getConnection() && zmDao.getConnection() && df.getConnection()) {
+                ZakatKeluar penerima = zkDao.getLastRecord();
+                ZakatMasuk pemberi = zmDao.getLastRecord();
 
-                txtPemasukanTerakhir.setText("Rp. " + penerima.getJumlah());
-                txtPengeluaranTerakhir.setText("Rp. " + pemberi.getJumlah());
-                txtTotalPemasukkan.setText("Rp. " + dayDao.getTotalIncome());
-                txtTotalPengeluaran.setText("Rp. " + ayDao.getTotalOutcome());
+                txtPemasukanTerakhir.setText("Rp. " + pemberi.getJumlah());
+                txtPengeluaranTerakhir.setText("Rp. " + penerima.getJumlah());
+                txtTotalPemasukkan.setText("Rp. " + zmDao.getTotalIncome());
+                txtTotalPengeluaran.setText("Rp. " + zkDao.gettotalOutcome());
                 txtSaldo.setText("Rp. " + df.getInfakYatimBalance());
                 txtTglPemasukkan.setText(pemberi.getTanggal());
                 txtTglPengeluaran.setText(penerima.getTanggal());
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
-
-    @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
-
-    @FXML
-    public void onKelolaDonasiAYatim() {  mainApp.showDonasiAYatim(); }
-
-    @FXML
-    public void onKelolaDanaAYatim() { mainApp.showDaftarAnakYatim(); }
 }
