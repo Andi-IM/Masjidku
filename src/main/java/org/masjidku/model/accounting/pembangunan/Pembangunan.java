@@ -32,6 +32,11 @@ public class Pembangunan extends UangKeluar {
         super.setOperator(operator);
     }
 
+    @Override
+    public String getId() {
+        return super.getId();
+    }
+
     public String getNama() {
         return super.getTujuan();
     }

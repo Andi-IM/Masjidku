@@ -128,7 +128,6 @@ public class EditDonaturZakat {
     @FXML
     public void onLogoutClick() { mainApp.onLogoutAction(); }
 
-
     /**
      * Alert Error Builder
      *
