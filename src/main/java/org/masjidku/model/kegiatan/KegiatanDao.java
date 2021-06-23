@@ -149,13 +149,13 @@ public class KegiatanDao extends Dao<Kegiatan> {
 
         Kegiatan model = new Kegiatan();
         if (rs.next()){
-            model = new Kegiatan(
-                    rs.getString(1),
-                    rs.getString(2),
-                    rs.getString(4),
-                    rs.getString(5),
-                    rs.getString(6)
-            );
+            model = new Kegiatan();
+            model.setIdKegiatan(rs.getString(1));
+            model.setNama(rs.getString(2));
+            model.setWaktu(rs.getString(3));
+            model.setTanggal(rs.getString(4));
+            model.setTanggal(rs.getString(5));
+            model.setOperator(rs.getString(6));
         }
         return model;
     }

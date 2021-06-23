@@ -17,7 +17,6 @@ package org.masjidku.accountant.pembangunan;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -127,7 +126,7 @@ public class PembayaranPembangunan implements Initializable {
     }
 
     @FXML
-    public void onRemoveListener(ActionEvent actionEvent) {
+    public void onRemoveListener() {
         Pembangunan selectedItem = tablePembangunan.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
             PembangunanDao dao = new PembangunanDao();

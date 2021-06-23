@@ -50,10 +50,10 @@ public class PembangunanReport implements Initializable {
     public void setMainApp(MainApp mainApp) { this.mainApp = mainApp; }
 
     @FXML
-    public void uangMasuk() {  }
+    public void uangMasuk() { mainApp.showPembangunanMasuk(); }
 
     @FXML
-    public void uangKeluar() {  }
+    public void uangKeluar() { mainApp.showPembangunanKeluar(); }
 
     @FXML
     public void onLogoutClick() { mainApp.onLogoutAction(); }

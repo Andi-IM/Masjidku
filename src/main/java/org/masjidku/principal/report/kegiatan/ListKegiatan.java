@@ -46,10 +46,14 @@ public class ListKegiatan implements Initializable {
     @FXML
     public TableColumn<Kegiatan, String> colOperator;
     public MainApp mainApp;
-    KegiatanDao dao;
+    private final KegiatanDao dao;
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
+    }
+
+    public ListKegiatan(){
+        dao = new KegiatanDao();
     }
 
     /**
@@ -57,17 +61,6 @@ public class ListKegiatan implements Initializable {
      */
     private final ObservableList<Kegiatan> kegiatanData =
             FXCollections.observableArrayList();
-
-    private ObservableList<Kegiatan> getKegiatanData() {
-        if (dao.getConnection()) {
-            try {
-                kegiatanData.addAll(dao.getAll());
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return kegiatanData;
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -80,6 +73,17 @@ public class ListKegiatan implements Initializable {
         colOperator.setCellValueFactory(new PropertyValueFactory<>("operator"));
     }
 
+    private ObservableList<Kegiatan> getKegiatanData() {
+        if (dao.getConnection()) {
+            try {
+                kegiatanData.addAll(dao.getAll());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return kegiatanData;
+    }
+
     @FXML
     public void printReport() {
     }
@@ -88,4 +92,7 @@ public class ListKegiatan implements Initializable {
     public void onLogoutClick() {
         mainApp.onLogoutAction();
     }
+
+    @FXML
+    public void gotoHome() { mainApp.showKegiatanOverview(); }
 }

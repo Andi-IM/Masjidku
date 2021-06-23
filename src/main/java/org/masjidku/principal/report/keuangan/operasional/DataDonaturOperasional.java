@@ -13,7 +13,7 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.principal.report.kegiatan;
+package org.masjidku.principal.report.keuangan.operasional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,79 +22,75 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.kegiatan.Tamu;
-import org.masjidku.model.kegiatan.TamuDao;
+import org.masjidku.model.accounting.operasional.DonasiOperasional;
+import org.masjidku.model.accounting.operasional.DonasiOperationalDao;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class ListTamu implements Initializable {
+public class DataDonaturOperasional implements Initializable {
     @FXML
-    public TableView<Tamu> tblTamu;
+    private TableView<DonasiOperasional> tableOperasional;
     @FXML
-    public TableColumn<Tamu, String> colNama;
+    private TableColumn<DonasiOperasional, String> donatur;
     @FXML
-    public TableColumn<Tamu, String> colAlamat;
+    private TableColumn<DonasiOperasional, String> jumlah;
     @FXML
-    public TableColumn<Tamu, String> colNotelp;
+    private TableColumn<DonasiOperasional, String> tanggal;
     @FXML
-    public TableColumn<Tamu, String> colNomor;
-    @FXML
-    public TableColumn<Tamu, String> colOperator;
+    private TableColumn<DonasiOperasional, String> operator;
 
     private MainApp mainApp;
-    private final TamuDao dao;
 
-    // create some stage
-    @SuppressWarnings("unused")
-    private Stage dialogStage;
+    /**
+     * The data as an observable list of Donatur.
+     */
+    private final ObservableList<DonasiOperasional> donaturData =
+            FXCollections.observableArrayList();
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
     /**
-     * The Constructor
-     * The Constructor is called before the initialize() method.
+     * get AnakYatim Data from DAO.
+     *
+     * @return Observable List
      */
-    public ListTamu() { dao = new TamuDao(); }
-
-    private ObservableList<Tamu> getTamuData() {
-        if (dao.getConnection()){
+    private ObservableList<DonasiOperasional> getDonaturData() {
+        DonasiOperationalDao dao = new DonasiOperationalDao();
+        if (dao.getConnection()) {
             try {
-                tamuData.addAll(dao.getAll());
+                donaturData.addAll(dao.getAll());
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-        return tamuData;
+        return donaturData;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tblTamu.setItems(getTamuData());
-        colNama.setCellValueFactory(new PropertyValueFactory<>("nama"));
-        colAlamat.setCellValueFactory(new PropertyValueFactory<>("alamat"));
-        colNotelp.setCellValueFactory(new PropertyValueFactory<>("notelp"));
-        colOperator.setCellValueFactory(new PropertyValueFactory<>("operator"));
-    }
+        tableOperasional.setItems(getDonaturData());
 
-    /**
-     * The data as an observable list of Users.
-     */
-    private final ObservableList<Tamu> tamuData =
-            FXCollections.observableArrayList();
-
-    @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
-
-    @FXML
-    public void showReport() {
+        donatur.setCellValueFactory(new PropertyValueFactory<>("donatur"));
+        jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));
+        tanggal.setCellValueFactory(new PropertyValueFactory<>("tanggal"));
+        operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
     }
 
     @FXML
-    public void gotoHome() { mainApp.showKegiatanOverview(); }
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
+
+    @FXML
+    public void gotoHome() {
+        mainApp.showOperasionalData();
+    }
+
+    @FXML
+    public void showReport() { }
 }
