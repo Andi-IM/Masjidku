@@ -26,7 +26,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.shape.Rectangle?>
-<AnchorPane prefHeight="480.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.masjidku.accountant.AccountantAnakyatim">
+<AnchorPane styleClass="main" prefHeight="480.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.masjidku.accountant.AccountantAnakyatim">
     <stylesheets>
         <URL value="@../styles/styles.css" />
         <URL value="@../styles/fontstyles.css" />
@@ -57,7 +57,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button fx:id="btnDaftarAnakYatim" mnemonicParsing="false" onAction="#onKelolaDanaAYatim" prefHeight="208.0" prefWidth="146.0" styleClass="generalButton">
+                <Button mnemonicParsing="false" onAction="#onKelolaDanaAYatim" prefHeight="208.0" prefWidth="146.0" styleClass="generalButton">
                     <graphic>
                         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                             <image>

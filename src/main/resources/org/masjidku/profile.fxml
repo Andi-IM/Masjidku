@@ -27,6 +27,7 @@
   ~                                HEREUNDER.
   -->
 
+<?import javafx.scene.shape.Rectangle?>
 <AnchorPane prefHeight="480.0" prefWidth="665.0" styleClass="main" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.masjidku.controller.ProfileController">
     <stylesheets>
         <URL value="@styles/styles.css" />
@@ -38,6 +39,7 @@
                 <Image url="@icon/app_icon.png" />
             </image>
         </ImageView>
+        <Rectangle arcWidth="5.0" fill="#3aafa9" height="5.0" layoutX="101.0" layoutY="-5.0" smooth="false" stroke="BLACK" strokeLineCap="BUTT" strokeLineJoin="BEVEL" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" width="665.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
         <Text layoutX="125.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="app-title" text="Aplikasi Desktop MasjidKu " />
         <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="398.0" layoutY="42.0" onMouseClicked="#onLogoutClick" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
             <image>

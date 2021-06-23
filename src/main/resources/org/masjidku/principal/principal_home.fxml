@@ -15,16 +15,14 @@
   ~                                HEREUNDER.
   -->
 
-<?import java.net.URL?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="480.0" prefWidth="665.0" styleClass="main" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.masjidku.principal.PrincipalHome">
+<AnchorPane prefHeight="480.0" prefWidth="665.0" styleClass="main" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.masjidku.principal.PrincipalHome">
     <stylesheets>
         <URL value="@../styles/styles.css" />
         <URL value="@../styles/fontstyles.css" />
@@ -65,15 +63,5 @@
             </ImageView>
          </graphic>
       </Button>
-      <Text fill="WHITE" layoutX="321.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Baca Laporan" textAlignment="CENTER" wrappingWidth="164.66666666666663">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Text fill="WHITE" layoutX="497.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Baca Data" textAlignment="CENTER" wrappingWidth="153.9999999999999">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
     </children>
 </AnchorPane>

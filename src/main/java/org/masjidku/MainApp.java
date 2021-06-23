@@ -65,7 +65,13 @@ import org.masjidku.model.user.User;
 import org.masjidku.model.user.UserProfile;
 import org.masjidku.principal.PrincipalHome;
 import org.masjidku.principal.PrincipalLaporan;
+import org.masjidku.principal.PrincipalReadData;
 import org.masjidku.principal.PrincipalRoot;
+import org.masjidku.principal.report.kegiatan.KegiatanOverview;
+import org.masjidku.principal.report.kegiatan.ListKegiatan;
+import org.masjidku.principal.report.kegiatan.ListTamu;
+import org.masjidku.principal.report.kegiatan.ListUndangan;
+import org.masjidku.principal.report.keuangan.*;
 import org.masjidku.secretary.*;
 
 import java.io.IOException;
@@ -83,7 +89,8 @@ public class MainApp extends Application {
     /**
      * Constructor
      */
-    public MainApp(){ }
+    public MainApp() {
+    }
 
 
     @Override
@@ -101,7 +108,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() throws Exception {
-        if (session != null){
+        if (session != null) {
             session.logout();
             session.updateUserSession(userSession.getSession_id());
         }
@@ -109,9 +116,9 @@ public class MainApp extends Application {
     }
 
     /**
-     *  Initializes the root layout
+     * Initializes the root layout
      */
-    public void initRootLayout(){
+    public void initRootLayout() {
         try {
             // load root layout from fxml file
             FXMLLoader loader = new FXMLLoader();
@@ -129,15 +136,15 @@ public class MainApp extends Application {
             controller.btn_home.setSelected(true);
 
             primaryStage.show();
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     /**
-     *  Show the content inside the root layout
+     * Show the content inside the root layout
      */
-    public void showContent(){
+    public void showContent() {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
@@ -159,7 +166,7 @@ public class MainApp extends Application {
     /**
      * Show User Login
      */
-    public void showLogin(){
+    public void showLogin() {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
@@ -173,7 +180,7 @@ public class MainApp extends Application {
             // Give the controller access to the main app.
             LoginController controller = loader.getController();
             controller.setMainApp(this);
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -181,7 +188,7 @@ public class MainApp extends Application {
     /**
      * Show App About
      */
-    public void showAbout(){
+    public void showAbout() {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
@@ -196,7 +203,11 @@ public class MainApp extends Application {
         }
     }
 
-    public void recordSession(User user){
+    /**
+     * record user sessions
+     * @param user user
+     */
+    public void recordSession(User user) {
         this.user = user;
         session = new Session();
         session.getConnection();
@@ -204,7 +215,10 @@ public class MainApp extends Application {
         userSession = session.getSessionData(user.getUserId());
     }
 
-    public void showProfile(){
+    /**
+     * show user's profile
+     */
+    public void showProfile() {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
@@ -223,6 +237,10 @@ public class MainApp extends Application {
         }
     }
 
+    /**
+     * User profile edit
+     * @param profile the user profile
+     */
     public void editProfile(UserProfile profile) {
         try {
             // Load Content
@@ -245,7 +263,7 @@ public class MainApp extends Application {
     /**
      * Admin Privilege
      */
-    public void setAdminView(){
+    public void setAdminView() {
         try {
             // load root layout from fxml file
             FXMLLoader loader = new FXMLLoader();
@@ -260,7 +278,7 @@ public class MainApp extends Application {
             AdminRoot controller = loader.getController();
             controller.setMainApp(this);
             showAdminHome();
-        } catch (IOException e){
+        } catch (IOException e) {
             System.err.println(e.getMessage());
             e.getCause();
         }
@@ -290,7 +308,7 @@ public class MainApp extends Application {
     /**
      * show list of user
      */
-    public void showUser(){
+    public void showUser() {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
@@ -314,7 +332,7 @@ public class MainApp extends Application {
      *
      * @param user the user object to be edited.
      */
-    public void showUserEditScene(User user){
+    public void showUserEditScene(User user) {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
@@ -357,7 +375,7 @@ public class MainApp extends Application {
     /**
      * Principal Privilege
      */
-    public void setPrincipalView(){
+    public void setPrincipalView() {
         try {
             // load root layout from fxml file
             FXMLLoader loader = new FXMLLoader();
@@ -374,7 +392,7 @@ public class MainApp extends Application {
 
             // set initialize home
             showPrincipalHome();
-        } catch (IOException e){
+        } catch (IOException e) {
             System.err.println(e.getMessage());
             e.getCause();
         }
@@ -383,7 +401,7 @@ public class MainApp extends Application {
     /**
      * Showing principal home
      */
-    public void showPrincipalHome(){
+    public void showPrincipalHome() {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
@@ -401,10 +419,11 @@ public class MainApp extends Application {
             System.err.println(e.getMessage());
         }
     }
-    public void showKegiatanReport(){}
-    public void showTamuReport(){}
-    public void showAnakYatimReport(){}
-    public void setLaporan() {
+
+    /**
+     * Show laporan
+     */
+    public void showLaporan() {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
@@ -416,6 +435,189 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             PrincipalLaporan controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+    public void showKegiatanReport() { }
+    public void showAnakYatimReport() { }
+    public void showPembangunanReport() { }
+    public void showOperasionalReport() { }
+    public void showZakatReport() { }
+    public void showTpaReport() { }
+
+    /**
+     * Show data
+     */
+    public void showData() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("principal/principal_read_data.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            PrincipalReadData controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+    public void showKegiatanOverview() {
+        try {
+        // Load Content
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("principal/report/kegiatan/report_kegiatan.fxml"));
+        AnchorPane overview = loader.load();
+
+        // set the item into the right divider.
+        rootLayout.getItems().set(1, overview);
+
+        // Give the controller access to the main app.
+        KegiatanOverview controller = loader.getController();
+        controller.setMainApp(this);
+    } catch (IOException e) {
+        System.err.println(e.getMessage());
+    } }
+    public void showKegiatanData(){
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("principal/report/kegiatan/list_kegiatan.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            ListKegiatan controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+    public void showTamuData(){
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("principal/report/keuangan/report_anakyatim.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            ListTamu controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+    public void showUndanganData(){
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("principal/report/keuangan/report_anakyatim.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            ListUndangan controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    /**
+     * Keuangan Data
+     */
+    public void showAnakYatimData() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("principal/report/keuangan/report_anakyatim.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            AnakYatimReport controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+    public void showPembangunanData() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("principal/report/keuangan/report_pembangunan.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            PembangunanReport controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+    public void showOperasionalData() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("principal/report/keuangan/report_operasional.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            OperasionalReport controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+    public void showZakatData() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("principal/report/keuangan/report_zakat.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            ZakatReport controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+    public void showTpaData() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("principal/report/keuangan/report_tpa.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            TpaReport controller = loader.getController();
             controller.setMainApp(this);
         } catch (IOException e) {
             System.err.println(e.getMessage());
@@ -442,7 +644,7 @@ public class MainApp extends Application {
 
             // set initialize home
             setSecretaryHome();
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -471,11 +673,11 @@ public class MainApp extends Application {
     /**
      * Showing secretary kegiatan
      */
-    public void showKegiatan(){
+    public void showKegiatan() {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("secretary/secretary_kegiatan.fxml"));
+            loader.setLocation(getClass().getResource("secretary/list_kegiatan.fxml"));
             AnchorPane overview = loader.load();
 
             // set the item into the right divider.
@@ -492,11 +694,11 @@ public class MainApp extends Application {
     /**
      * Showing secretary edit kegiatan
      */
-    public void showKegiatanEditform(Kegiatan kegiatan){
+    public void showKegiatanEditform(Kegiatan kegiatan) {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("secretary/secretary_kegiatan_form.fxml"));
+            loader.setLocation(getClass().getResource("secretary/form_kegiatan.fxml"));
             AnchorPane overview = loader.load();
 
             // set the item into the right divider.
@@ -513,11 +715,11 @@ public class MainApp extends Application {
     /**
      * Showing secretary tamu
      */
-    public void showTamu(){
+    public void showTamu() {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("secretary/secretary_tamu.fxml"));
+            loader.setLocation(getClass().getResource("secretary/list_tamu.fxml"));
             AnchorPane overview = loader.load();
 
             // set the item into the right divider.
@@ -533,13 +735,14 @@ public class MainApp extends Application {
 
     /**
      * Showing secretary tamu edit
+     *
      * @param tamu tamu
      */
-    public void showTamuEditForm(Tamu tamu){
+    public void showTamuEditForm(Tamu tamu) {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("secretary/secretary_tamu_form.fxml"));
+            loader.setLocation(getClass().getResource("secretary/form_tamu.fxml"));
             AnchorPane overview = loader.load();
 
             // set the item into the right divider.
@@ -556,11 +759,11 @@ public class MainApp extends Application {
     /**
      * showing undangan
      */
-    public void showUndangan(){
+    public void showUndangan() {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("secretary/secretary_undangan.fxml"));
+            loader.setLocation(getClass().getResource("secretary/list_undangan.fxml"));
             AnchorPane overview = loader.load();
 
             // set the item into the right divider.
@@ -576,13 +779,14 @@ public class MainApp extends Application {
 
     /**
      * Showing undangan edit form
+     *
      * @param undangan undangan
      */
-    public void showUndanganEditForm(TamuKegiatan undangan){
+    public void showUndanganEditForm(TamuKegiatan undangan) {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("secretary/secretary_undangan_form.fxml"));
+            loader.setLocation(getClass().getResource("secretary/form_undangan.fxml"));
             AnchorPane overview = loader.load();
 
             // set the item into the right divider.
@@ -616,7 +820,7 @@ public class MainApp extends Application {
 
             // set initialize home
             setAccountantHome();
-        } catch (IOException e){
+        } catch (IOException e) {
             System.err.println(e.getMessage());
             e.getCause();
         }
@@ -698,7 +902,7 @@ public class MainApp extends Application {
             System.err.println(e.getMessage());
         }
     }
-    public void editDonaturAnakYatim(DonasiAYatim model){
+    public void editDonaturAnakYatim(DonasiAYatim model) {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
@@ -712,10 +916,10 @@ public class MainApp extends Application {
             EditDonaturAnakYatim controller = loader.getController();
             controller.setMainApp(this, model, user.getUsername());
         } catch (IOException e) {
-           e.printStackTrace();
+            e.printStackTrace();
         }
     }
-    public void editAnakYatim(AnakYatim model){
+    public void editAnakYatim(AnakYatim model) {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
@@ -1122,13 +1326,14 @@ public class MainApp extends Application {
             controller.btn_home.setSelected(true);
             showContent();
 
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     /**
      * Returns the main stage
+     *
      * @param args arguments
      */
     public static void main(String[] args) {

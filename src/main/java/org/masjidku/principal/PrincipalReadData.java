@@ -13,14 +13,37 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model.kegiatan;
+package org.masjidku.principal;
 
-import javafx.collections.ObservableList;
-import org.masjidku.model.Dao;
+import javafx.fxml.FXML;
+import org.masjidku.MainApp;
 
-import java.sql.SQLException;
+public class PrincipalReadData {
 
-public abstract class TamuKegiatanDaoFactory<T> extends Dao<T> {
-    public abstract boolean isUndanganExist(String id) throws SQLException;
-    public abstract void save(String idKegiatan, String idTamu, String keterangan, String operator) throws SQLException;
+    private MainApp mainApp;
+
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+    }
+
+    @FXML
+    public void onLogoutClick() { mainApp.onLogoutAction(); }
+
+    @FXML
+    public void readKegiatan() { mainApp.showKegiatanOverview(); }
+
+    @FXML
+    public void readAnakYatim() { mainApp.showAnakYatimData(); }
+
+    @FXML
+    public void readPembangunan() { mainApp.showPembangunanData(); }
+
+    @FXML
+    public void readOperasional() { mainApp.showOperasionalData(); }
+
+    @FXML
+    public void readZakat() { mainApp.showZakatData(); }
+
+    @FXML
+    public void readTpa() { mainApp.showTpaData(); }
 }
