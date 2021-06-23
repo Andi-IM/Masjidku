@@ -15,11 +15,9 @@
 
 package org.masjidku.accountant;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleGroup;
 import org.masjidku.MainApp;
-import org.masjidku.model.user.User;
 
 public class AccountantRoot {
 

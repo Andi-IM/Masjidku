@@ -25,7 +25,7 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="480.0" prefWidth="665.0" styleClass="main" xmlns="http://javafx.com/javafx/8.0.171"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.masjidku.principal.PrincipalLaporan">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.masjidku.principal.PrincipalReadData">
     <stylesheets>
         <URL value="@../styles/styles.css"/>
         <URL value="@../styles/fontstyles.css"/>
@@ -51,12 +51,12 @@
         <VBox layoutX="75.0" layoutY="223.0" prefHeight="200.0" prefWidth="250.0" AnchorPane.bottomAnchor="25.0"
               AnchorPane.leftAnchor="20.0">
             <children>
-                <Button mnemonicParsing="false" onAction="#printKegiatan" text="Cetak Report Kegiatan"/>
-                <Button mnemonicParsing="false" onAction="#printAnakYatim" text="Cetak Report Anak Yatim"/>
-                <Button mnemonicParsing="false" onAction="#printPembangunan" text="Cetak Report Pembangunan"/>
-                <Button mnemonicParsing="false" onAction="#printOperasinal" text="Cetak Report Operasional"/>
-                <Button mnemonicParsing="false" onAction="#printZakat" text="Cetak Report Zakat"/>
-                <Button mnemonicParsing="false" onAction="#printTpa" text="Cetak Report TPA"/>
+                <Button mnemonicParsing="false" onAction="#readKegiatan" text="kegiatan"/>
+                <Button mnemonicParsing="false" onAction="#readAnakYatim" text="Data Anak Yatim"/>
+                <Button mnemonicParsing="false" onAction="#readPembangunan" text="Data Pembangunan"/>
+                <Button mnemonicParsing="false" onAction="#readOperasional" text="Data Operasional"/>
+                <Button mnemonicParsing="false" onAction="#readTpa" text="Data TPA"/>
+                <Button mnemonicParsing="false" onAction="#readZakat" text="Data Zakat"/>
             </children>
         </VBox>
     </children>

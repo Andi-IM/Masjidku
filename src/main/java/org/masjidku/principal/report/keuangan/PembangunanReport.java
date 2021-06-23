@@ -13,25 +13,23 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.accountant;
+package org.masjidku.principal.report.keuangan;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import org.masjidku.MainApp;
 import org.masjidku.model.accounting.DaoFunctions;
-import org.masjidku.model.accounting.anakyatim.AnakYatim;
-import org.masjidku.model.accounting.anakyatim.AnakYatimDao;
-import org.masjidku.model.accounting.anakyatim.DonasiAYatim;
-import org.masjidku.model.accounting.anakyatim.DonasiAYatimDao;
+import org.masjidku.model.accounting.pembangunan.DonasiPembangunan;
+import org.masjidku.model.accounting.pembangunan.DonasiPembangunanDao;
+import org.masjidku.model.accounting.pembangunan.Pembangunan;
+import org.masjidku.model.accounting.pembangunan.PembangunanDao;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class AccountantAnakyatim implements Initializable {
-
+public class PembangunanReport implements Initializable {
     @FXML
     public Text txtPemasukanTerakhir;
     @FXML
@@ -49,25 +47,32 @@ public class AccountantAnakyatim implements Initializable {
 
     private MainApp mainApp;
 
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
-    }
+    public void setMainApp(MainApp mainApp) { this.mainApp = mainApp; }
+
+    @FXML
+    public void uangMasuk() {  }
+
+    @FXML
+    public void uangKeluar() {  }
+
+    @FXML
+    public void onLogoutClick() { mainApp.onLogoutAction(); }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        AnakYatimDao ayDao = new AnakYatimDao();
-        DonasiAYatimDao dayDao = new DonasiAYatimDao();
+        PembangunanDao pbDao = new PembangunanDao();
+        DonasiPembangunanDao dpDao = new DonasiPembangunanDao();
         DaoFunctions df = new DaoFunctions();
 
         try {
-            if (ayDao.getConnection() && dayDao.getConnection() && df.getConnection()) {
-                AnakYatim penerima = ayDao.getLastRecord();
-                DonasiAYatim pemberi = dayDao.getLastRecord();
+            if (pbDao.getConnection() && dpDao.getConnection() && df.getConnection()) {
+                Pembangunan penerima = pbDao.getLastRecord();
+                DonasiPembangunan pemberi = dpDao.getLastRecord();
 
                 txtPemasukanTerakhir.setText("Rp. " + penerima.getJumlah());
                 txtPengeluaranTerakhir.setText("Rp. " + pemberi.getJumlah());
-                txtTotalPemasukkan.setText("Rp. " + dayDao.getTotalIncome());
-                txtTotalPengeluaran.setText("Rp. " + ayDao.getTotalOutcome());
+                txtTotalPemasukkan.setText("Rp. " + pbDao.getTotalIncome());
+                txtTotalPengeluaran.setText("Rp. " + dpDao.getTotalOutcome());
                 txtSaldo.setText("Rp. " + df.getInfakYatimBalance());
                 txtTglPemasukkan.setText(pemberi.getTanggal());
                 txtTglPengeluaran.setText(penerima.getTanggal());
@@ -76,15 +81,8 @@ public class AccountantAnakyatim implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
-
-    @FXML
-    public void onKelolaDonasiAYatim() {  mainApp.showDonasiAYatim(); }
-
-    @FXML
-    public void onKelolaDanaAYatim() { mainApp.showDaftarAnakYatim(); }
+    public void gotoHome() { mainApp.showData(); }
 }

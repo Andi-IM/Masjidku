@@ -120,7 +120,7 @@ public class SecretaryUndanganForm implements Initializable {
                     tamuKegiatanDao.update(new String[]{model.getKeterangan(), model.getIdTamu(), model.getKegiatan(), model.getIdUndangan()});
                     alertInfo("Success", "Data telah diubah!");
                 } else {
-                    tamuKegiatanDao.save(kegiatanDao.getIdByName(kegiatanform), tamuDao.getIdByName(namaform), model.getKeterangan());
+                    tamuKegiatanDao.save(kegiatanDao.getIdByName(kegiatanform), tamuDao.getIdByName(namaform), model.getKeterangan(), operator);
                     alertInfo("Success","Data telah ditambahkan!");
                 }
             } catch (SQLException throwables) {
