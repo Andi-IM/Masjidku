@@ -13,7 +13,7 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.principal.report.kegiatan;
+package org.masjidku.principal.report.keuangan.anakyatim;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,79 +22,77 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.kegiatan.Tamu;
-import org.masjidku.model.kegiatan.TamuDao;
+import org.masjidku.model.accounting.anakyatim.AnakYatim;
+import org.masjidku.model.accounting.anakyatim.AnakYatimDao;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class ListTamu implements Initializable {
+public class DataPenerimaAnakYatim implements Initializable {
+
     @FXML
-    public TableView<Tamu> tblTamu;
+    private TableView<AnakYatim> tableAnakyatim;
     @FXML
-    public TableColumn<Tamu, String> colNama;
+    private TableColumn<AnakYatim, String> nama;
     @FXML
-    public TableColumn<Tamu, String> colAlamat;
+    private TableColumn<AnakYatim, String> jumlah;
     @FXML
-    public TableColumn<Tamu, String> colNotelp;
+    private TableColumn<AnakYatim, String> usia;
     @FXML
-    public TableColumn<Tamu, String> colNomor;
+    private TableColumn<AnakYatim, String> tanggal;
     @FXML
-    public TableColumn<Tamu, String> colOperator;
+    private TableColumn<AnakYatim, String> operator;
 
     private MainApp mainApp;
-    private final TamuDao dao;
 
-    // create some stage
-    @SuppressWarnings("unused")
-    private Stage dialogStage;
+    /**
+     * The data as an observable list of Anak Yatim.
+     */
+    private final ObservableList<AnakYatim> dataAnak =
+            FXCollections.observableArrayList();
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
     /**
-     * The Constructor
-     * The Constructor is called before the initialize() method.
+     * get User Data from DAO.
+     *
+     * @return Observable List
      */
-    public ListTamu() { dao = new TamuDao(); }
-
-    private ObservableList<Tamu> getTamuData() {
-        if (dao.getConnection()){
+    private ObservableList<AnakYatim> getDataAnak() {
+        AnakYatimDao dao = new AnakYatimDao();
+        if (dao.getConnection()) {
             try {
-                tamuData.addAll(dao.getAll());
+                dataAnak.addAll(dao.getAll());
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-        return tamuData;
+        return dataAnak;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tblTamu.setItems(getTamuData());
-        colNama.setCellValueFactory(new PropertyValueFactory<>("nama"));
-        colAlamat.setCellValueFactory(new PropertyValueFactory<>("alamat"));
-        colNotelp.setCellValueFactory(new PropertyValueFactory<>("notelp"));
-        colOperator.setCellValueFactory(new PropertyValueFactory<>("operator"));
-    }
+        tableAnakyatim.setItems(getDataAnak());
 
-    /**
-     * The data as an observable list of Users.
-     */
-    private final ObservableList<Tamu> tamuData =
-            FXCollections.observableArrayList();
-
-    @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
-
-    @FXML
-    public void showReport() {
+        nama.setCellValueFactory(new PropertyValueFactory<>("tujuan"));
+        usia.setCellValueFactory(new PropertyValueFactory<>("usia"));
+        jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));
+        tanggal.setCellValueFactory(new PropertyValueFactory<>("tanggal"));
+        operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
     }
 
     @FXML
-    public void gotoHome() { mainApp.showKegiatanOverview(); }
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
+
+    @FXML
+    public void gotoHome() { mainApp.showAnakYatimData(); }
+
+    @FXML
+    public void printReport() { }
 }

@@ -13,7 +13,7 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.principal.report.kegiatan;
+package org.masjidku.principal.report.keuangan.pembangunan;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,73 +23,75 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.MainApp;
-import org.masjidku.model.kegiatan.TamuKegiatan;
-import org.masjidku.model.kegiatan.TamuKegiatanDao;
+import org.masjidku.model.accounting.pembangunan.Pembangunan;
+import org.masjidku.model.accounting.pembangunan.PembangunanDao;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class ListUndangan implements Initializable {
-
+public class DataPembayaranPembangunan implements Initializable {
     @FXML
-    public TableView<TamuKegiatan> tblUndangan;
+    private TableView<Pembangunan> tablePembangunan;
     @FXML
-    public TableColumn<String, String> colNomor;
+    private TableColumn<Pembangunan, String> nama;
     @FXML
-    public TableColumn<TamuKegiatan, String> colNama;
+    private TableColumn<Pembangunan, String> keterangan;
     @FXML
-
-    public TableColumn<TamuKegiatan, String> colAlamat;
+    private TableColumn<Pembangunan, String> jumlah;
     @FXML
-    public TableColumn<TamuKegiatan, String> colKeterangan;
+    private TableColumn<Pembangunan, String> tanggal;
     @FXML
-    public TableColumn<TamuKegiatan, String> colKegiatan;
-    @FXML
-    public TableColumn<TamuKegiatan, String> colNotelp;
-    @FXML
-    public TableColumn<TamuKegiatan, String> colOperator;
+    private TableColumn<Pembangunan, String> operator;
 
     private MainApp mainApp;
-    private final TamuKegiatanDao dao;
+
+    /**
+     * The data as an observable list of Data Operasional.
+     */
+    private final ObservableList<Pembangunan> dataPembangunan =
+            FXCollections.observableArrayList();
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
-    public ListUndangan() { dao = new TamuKegiatanDao(); }
-
-    private final ObservableList<TamuKegiatan> undanganData =
-            FXCollections.observableArrayList();
-
-    private ObservableList<TamuKegiatan> getUndanganData(){
-        if (dao.getConnection()){
+    /**
+     * get User Data from DAO.
+     *
+     * @return Observable List
+     */
+    private ObservableList<Pembangunan> getDataPembangunan() {
+        PembangunanDao dao = new PembangunanDao();
+        if (dao.getConnection()) {
             try {
-                undanganData.addAll(dao.getAll());
+                dataPembangunan.addAll(dao.getAll());
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-        return undanganData;
+        return dataPembangunan;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tblUndangan.setItems(getUndanganData());
-        colNama.setCellValueFactory(new PropertyValueFactory<>("nama"));
-        colAlamat.setCellValueFactory(new PropertyValueFactory<>("alamat"));
-        colKeterangan.setCellValueFactory(new PropertyValueFactory<>("keterangan"));
-        colKegiatan.setCellValueFactory(new PropertyValueFactory<>("kegiatan"));
-        colNotelp.setCellValueFactory(new PropertyValueFactory<>("notelp"));
-        colOperator.setCellValueFactory(new PropertyValueFactory<>("operator"));
+        tablePembangunan.setItems(getDataPembangunan());
+
+        nama.setCellValueFactory(new PropertyValueFactory<>("tujuan"));
+        keterangan.setCellValueFactory(new PropertyValueFactory<>("keterangan"));
+        jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));
+        tanggal.setCellValueFactory(new PropertyValueFactory<>("tanggal"));
+        operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
     }
 
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
 
     @FXML
     public void showReport() { }
 
     @FXML
-    public void gotoHome() { mainApp.showKegiatanOverview(); }
+    public void gotoHome() { mainApp.showPembangunanData(); }
 }

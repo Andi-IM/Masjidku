@@ -53,10 +53,10 @@ public class OperasionalReport implements Initializable {
     public void onLogoutClick() { mainApp.onLogoutAction(); }
 
     @FXML
-    public void laporanMasuk() {  }
+    public void laporanMasuk() { mainApp.showOperasionalMasuk(); }
 
     @FXML
-    public void laporanKeluar() {  }
+    public void laporanKeluar() { mainApp.showOperasionalKeluar(); }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

@@ -53,10 +53,10 @@ public class TpaReport implements Initializable {
     public void onLogoutClick() { mainApp.onLogoutAction(); }
 
     @FXML
-    public void uangKeluar() {  }
+    public void uangKeluar() { mainApp.showTpaKeluar(); }
 
     @FXML
-    public void uangMasuk() {  }
+    public void uangMasuk() { mainApp.showTpaMasuk(); }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

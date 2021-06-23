@@ -13,7 +13,7 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.principal.report.kegiatan;
+package org.masjidku.principal.report.keuangan.pembangunan;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,65 +23,63 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.MainApp;
-import org.masjidku.model.kegiatan.TamuKegiatan;
-import org.masjidku.model.kegiatan.TamuKegiatanDao;
+import org.masjidku.model.accounting.pembangunan.DonasiPembangunan;
+import org.masjidku.model.accounting.pembangunan.DonasiPembangunanDao;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class ListUndangan implements Initializable {
-
+public class DataDonaturPembangunan implements Initializable {
     @FXML
-    public TableView<TamuKegiatan> tblUndangan;
+    private TableView<DonasiPembangunan> tablePembangunan;
     @FXML
-    public TableColumn<String, String> colNomor;
+    private TableColumn<DonasiPembangunan, String> donatur;
     @FXML
-    public TableColumn<TamuKegiatan, String> colNama;
+    private TableColumn<DonasiPembangunan, String> jumlah;
     @FXML
-
-    public TableColumn<TamuKegiatan, String> colAlamat;
+    private TableColumn<DonasiPembangunan, String> tanggal;
     @FXML
-    public TableColumn<TamuKegiatan, String> colKeterangan;
-    @FXML
-    public TableColumn<TamuKegiatan, String> colKegiatan;
-    @FXML
-    public TableColumn<TamuKegiatan, String> colNotelp;
-    @FXML
-    public TableColumn<TamuKegiatan, String> colOperator;
+    private TableColumn<DonasiPembangunan, String> operator;
 
     private MainApp mainApp;
-    private final TamuKegiatanDao dao;
+
+    /**
+     * The data as an observable list of Donatur.
+     */
+    private final ObservableList<DonasiPembangunan> donaturData =
+            FXCollections.observableArrayList();
+
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
-    public ListUndangan() { dao = new TamuKegiatanDao(); }
-
-    private final ObservableList<TamuKegiatan> undanganData =
-            FXCollections.observableArrayList();
-
-    private ObservableList<TamuKegiatan> getUndanganData(){
-        if (dao.getConnection()){
+    /**
+     * get AnakYatim Data from DAO.
+     *
+     * @return Observable List
+     */
+    private ObservableList<DonasiPembangunan> getDonaturData() {
+        DonasiPembangunanDao dao = new DonasiPembangunanDao();
+        if (dao.getConnection()) {
             try {
-                undanganData.addAll(dao.getAll());
+                donaturData.addAll(dao.getAll());
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-        return undanganData;
+        return donaturData;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tblUndangan.setItems(getUndanganData());
-        colNama.setCellValueFactory(new PropertyValueFactory<>("nama"));
-        colAlamat.setCellValueFactory(new PropertyValueFactory<>("alamat"));
-        colKeterangan.setCellValueFactory(new PropertyValueFactory<>("keterangan"));
-        colKegiatan.setCellValueFactory(new PropertyValueFactory<>("kegiatan"));
-        colNotelp.setCellValueFactory(new PropertyValueFactory<>("notelp"));
-        colOperator.setCellValueFactory(new PropertyValueFactory<>("operator"));
+        tablePembangunan.setItems(getDonaturData());
+
+        donatur.setCellValueFactory(new PropertyValueFactory<>("donatur"));
+        jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));
+        tanggal.setCellValueFactory(new PropertyValueFactory<>("tanggal"));
+        operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
     }
 
     @FXML
@@ -91,5 +89,5 @@ public class ListUndangan implements Initializable {
     public void showReport() { }
 
     @FXML
-    public void gotoHome() { mainApp.showKegiatanOverview(); }
+    public void gotoHome() { mainApp.showPembangunanData(); }
 }

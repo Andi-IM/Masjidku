@@ -24,54 +24,29 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.masjidku.accountant.*;
-import org.masjidku.accountant.anakyatim.DonaturAnakYatim;
-import org.masjidku.accountant.anakyatim.EditDonaturAnakYatim;
-import org.masjidku.accountant.anakyatim.EditPenerimaAnakYatim;
-import org.masjidku.accountant.anakyatim.PenerimaAnakYatim;
-import org.masjidku.accountant.operasional.DonaturOperasional;
-import org.masjidku.accountant.operasional.EditDonaturOperasional;
-import org.masjidku.accountant.operasional.EditPembayaranOperasional;
-import org.masjidku.accountant.operasional.PembayaranOperasional;
-import org.masjidku.accountant.pembangunan.DonaturPembangunan;
-import org.masjidku.accountant.pembangunan.EditDonaturPembangunan;
-import org.masjidku.accountant.pembangunan.EditPembayaranPembangunan;
-import org.masjidku.accountant.pembangunan.PembayaranPembangunan;
-import org.masjidku.accountant.tpa.DonaturTpa;
-import org.masjidku.accountant.tpa.EditDonaturTpa;
-import org.masjidku.accountant.tpa.EditPembayaranTpa;
-import org.masjidku.accountant.tpa.PembayaranTpa;
-import org.masjidku.accountant.zakat.DonaturZakat;
-import org.masjidku.accountant.zakat.EditDonaturZakat;
-import org.masjidku.accountant.zakat.EditPenerimaZakat;
-import org.masjidku.accountant.zakat.PenerimaZakat;
+import org.masjidku.accountant.anakyatim.*;
+import org.masjidku.accountant.operasional.*;
+import org.masjidku.accountant.pembangunan.*;
+import org.masjidku.accountant.tpa.*;
+import org.masjidku.accountant.zakat.*;
 import org.masjidku.admin.*;
 import org.masjidku.controller.*;
-import org.masjidku.model.accounting.anakyatim.AnakYatim;
-import org.masjidku.model.accounting.anakyatim.DonasiAYatim;
-import org.masjidku.model.accounting.operasional.DonasiOperasional;
-import org.masjidku.model.accounting.operasional.Operasional;
-import org.masjidku.model.accounting.pembangunan.DonasiPembangunan;
-import org.masjidku.model.accounting.pembangunan.Pembangunan;
-import org.masjidku.model.accounting.tpa.TpaKeluar;
-import org.masjidku.model.accounting.tpa.TpaMasuk;
-import org.masjidku.model.accounting.zakat.ZakatKeluar;
-import org.masjidku.model.accounting.zakat.ZakatMasuk;
-import org.masjidku.model.kegiatan.Kegiatan;
-import org.masjidku.model.kegiatan.Tamu;
-import org.masjidku.model.kegiatan.TamuKegiatan;
-import org.masjidku.model.session.Session;
-import org.masjidku.model.session.UserSession;
-import org.masjidku.model.user.User;
-import org.masjidku.model.user.UserProfile;
-import org.masjidku.principal.PrincipalHome;
-import org.masjidku.principal.PrincipalLaporan;
-import org.masjidku.principal.PrincipalReadData;
-import org.masjidku.principal.PrincipalRoot;
-import org.masjidku.principal.report.kegiatan.KegiatanOverview;
-import org.masjidku.principal.report.kegiatan.ListKegiatan;
-import org.masjidku.principal.report.kegiatan.ListTamu;
-import org.masjidku.principal.report.kegiatan.ListUndangan;
+import org.masjidku.model.accounting.anakyatim.*;
+import org.masjidku.model.accounting.operasional.*;
+import org.masjidku.model.accounting.pembangunan.*;
+import org.masjidku.model.accounting.tpa.*;
+import org.masjidku.model.accounting.zakat.*;
+import org.masjidku.model.kegiatan.*;
+import org.masjidku.model.session.*;
+import org.masjidku.model.user.*;
+import org.masjidku.principal.*;
+import org.masjidku.principal.report.kegiatan.*;
 import org.masjidku.principal.report.keuangan.*;
+import org.masjidku.principal.report.keuangan.anakyatim.*;
+import org.masjidku.principal.report.keuangan.operasional.*;
+import org.masjidku.principal.report.keuangan.pembangunan.*;
+import org.masjidku.principal.report.keuangan.tpa.*;
+import org.masjidku.principal.report.keuangan.zakat.*;
 import org.masjidku.secretary.*;
 
 import java.io.IOException;
@@ -205,6 +180,7 @@ public class MainApp extends Application {
 
     /**
      * record user sessions
+     *
      * @param user user
      */
     public void recordSession(User user) {
@@ -239,6 +215,7 @@ public class MainApp extends Application {
 
     /**
      * User profile edit
+     *
      * @param profile the user profile
      */
     public void editProfile(UserProfile profile) {
@@ -440,12 +417,30 @@ public class MainApp extends Application {
             System.err.println(e.getMessage());
         }
     }
-    public void showKegiatanReport() { }
-    public void showAnakYatimReport() { }
-    public void showPembangunanReport() { }
-    public void showOperasionalReport() { }
-    public void showZakatReport() { }
-    public void showTpaReport() { }
+
+    public void showKegiatanReport() {
+
+    }
+
+    public void showAnakYatimReport() {
+
+    }
+
+    public void showPembangunanReport() {
+
+    }
+
+    public void showOperasionalReport() {
+
+    }
+
+    public void showZakatReport() {
+
+    }
+
+    public void showTpaReport() {
+
+    }
 
     /**
      * Show data
@@ -467,23 +462,26 @@ public class MainApp extends Application {
             System.err.println(e.getMessage());
         }
     }
+
     public void showKegiatanOverview() {
         try {
-        // Load Content
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("principal/report/kegiatan/report_kegiatan.fxml"));
-        AnchorPane overview = loader.load();
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("principal/report/kegiatan/report_kegiatan.fxml"));
+            AnchorPane overview = loader.load();
 
-        // set the item into the right divider.
-        rootLayout.getItems().set(1, overview);
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
 
-        // Give the controller access to the main app.
-        KegiatanOverview controller = loader.getController();
-        controller.setMainApp(this);
-    } catch (IOException e) {
-        System.err.println(e.getMessage());
-    } }
-    public void showKegiatanData(){
+            // Give the controller access to the main app.
+            KegiatanOverview controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public void showKegiatanData() {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
@@ -497,14 +495,15 @@ public class MainApp extends Application {
             ListKegiatan controller = loader.getController();
             controller.setMainApp(this);
         } catch (IOException e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
         }
     }
-    public void showTamuData(){
+
+    public void showTamuData() {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("principal/report/keuangan/report_anakyatim.fxml"));
+            loader.setLocation(getClass().getResource("principal/report/kegiatan/list_tamu.fxml"));
             AnchorPane overview = loader.load();
 
             // set the item into the right divider.
@@ -517,11 +516,12 @@ public class MainApp extends Application {
             System.err.println(e.getMessage());
         }
     }
-    public void showUndanganData(){
+
+    public void showUndanganData() {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("principal/report/keuangan/report_anakyatim.fxml"));
+            loader.setLocation(getClass().getResource("principal/report/kegiatan/list_undangan.fxml"));
             AnchorPane overview = loader.load();
 
             // set the item into the right divider.
@@ -538,6 +538,7 @@ public class MainApp extends Application {
     /**
      * Keuangan Data
      */
+    // Anak Yatim
     public void showAnakYatimData() {
         try {
             // Load Content
@@ -555,6 +556,44 @@ public class MainApp extends Application {
             System.err.println(e.getMessage());
         }
     }
+
+    public void showAnakYatimMasuk() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("principal/report/keuangan/anakyatim/list_donatur_anakyatim.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            DataDonaturAnakYatim controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public void showAnakYatimKeluar() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("principal/report/keuangan/anakyatim/list_anakyatim.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            DataPenerimaAnakYatim controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    // Pembangunan
     public void showPembangunanData() {
         try {
             // Load Content
@@ -572,6 +611,44 @@ public class MainApp extends Application {
             System.err.println(e.getMessage());
         }
     }
+
+    public void showPembangunanMasuk() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("principal/report/keuangan/pembangunan/list_donatur_pembangunan.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            DataDonaturPembangunan controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public void showPembangunanKeluar() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("principal/report/keuangan/pembangunan/list_pembangunan.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            DataPembayaranPembangunan controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    // Operasional
     public void showOperasionalData() {
         try {
             // Load Content
@@ -589,6 +666,44 @@ public class MainApp extends Application {
             System.err.println(e.getMessage());
         }
     }
+
+    public void showOperasionalMasuk() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("principal/report/keuangan/operasional/list_donatur_operasional.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            DataDonaturOperasional controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public void showOperasionalKeluar() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("principal/report/keuangan/operasional/list_operasional.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            DataPembayaranOperasional controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    // Zakat
     public void showZakatData() {
         try {
             // Load Content
@@ -606,6 +721,44 @@ public class MainApp extends Application {
             System.err.println(e.getMessage());
         }
     }
+
+    public void showZakatMasuk() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("principal/report/keuangan/zakat/list_donatur_zakat.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            DataDonaturZakat controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public void showZakatKeluar() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("principal/report/keuangan/zakat/list_zakat.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            DataPenerimaZakat controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    // TPA
     public void showTpaData() {
         try {
             // Load Content
@@ -618,6 +771,42 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             TpaReport controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public void showTpaMasuk() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("principal/report/keuangan/tpa/list_donatur_tpa.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            DataDonaturTpa controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public void showTpaKeluar() {
+        try {
+            // Load Content
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("principal/report/keuangan/tpa/list_tpa.fxml"));
+            AnchorPane overview = loader.load();
+
+            // set the item into the right divider.
+            rootLayout.getItems().set(1, overview);
+
+            // Give the controller access to the main app.
+            DataPembayaranTpa controller = loader.getController();
             controller.setMainApp(this);
         } catch (IOException e) {
             System.err.println(e.getMessage());
@@ -868,6 +1057,7 @@ public class MainApp extends Application {
             e.getCause();
         }
     }
+
     public void showDonasiAYatim() {
         try {
             // Load Content
@@ -885,6 +1075,7 @@ public class MainApp extends Application {
             System.err.println(e.getMessage());
         }
     }
+
     public void showDaftarAnakYatim() {
         try {
             // Load Content
@@ -902,6 +1093,7 @@ public class MainApp extends Application {
             System.err.println(e.getMessage());
         }
     }
+
     public void editDonaturAnakYatim(DonasiAYatim model) {
         try {
             // Load Content
@@ -919,6 +1111,7 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
     }
+
     public void editAnakYatim(AnakYatim model) {
         try {
             // Load Content
@@ -957,6 +1150,7 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
     }
+
     public void showDonaturZakat() {
         try {
             // Load Content
@@ -974,6 +1168,7 @@ public class MainApp extends Application {
             System.err.println(e.getMessage());
         }
     }
+
     public void showDaftarPenerimaZakat() {
         try {
             // Load Content
@@ -991,6 +1186,7 @@ public class MainApp extends Application {
             System.err.println(e.getMessage());
         }
     }
+
     public void editDonaturZakat(ZakatMasuk model) {
         try {
             // Load Content
@@ -1009,6 +1205,7 @@ public class MainApp extends Application {
             e.getCause();
         }
     }
+
     public void editPenerimaZakat(ZakatKeluar model) {
         try {
             // Load Content
@@ -1048,6 +1245,7 @@ public class MainApp extends Application {
             System.err.println(e.getMessage());
         }
     }
+
     public void showDonaturPembangunan() {
         try {
             // Load Content
@@ -1065,6 +1263,7 @@ public class MainApp extends Application {
             System.err.println(e.getMessage());
         }
     }
+
     public void showAlokasiPembangunan() {
         try {
             // Load Content
@@ -1082,6 +1281,7 @@ public class MainApp extends Application {
             System.err.println(e.getMessage());
         }
     }
+
     public void editDonaturPembangunan(DonasiPembangunan model) {
         try {
             // Load Content
@@ -1100,6 +1300,7 @@ public class MainApp extends Application {
             e.getCause();
         }
     }
+
     public void editAlokasiPembangunan(Pembangunan model) {
         try {
             // Load Content
@@ -1139,6 +1340,7 @@ public class MainApp extends Application {
             System.err.println(e.getMessage());
         }
     }
+
     public void showDonaturOperasional() {
         try {
             // Load Content
@@ -1156,6 +1358,7 @@ public class MainApp extends Application {
             System.err.println(e.getMessage());
         }
     }
+
     public void showAlokasiOperasional() {
         try {
             // Load Content
@@ -1173,6 +1376,7 @@ public class MainApp extends Application {
             System.err.println(e.getMessage());
         }
     }
+
     public void editDonaturOperasional(DonasiOperasional model) {
         try {
             // Load Content
@@ -1191,6 +1395,7 @@ public class MainApp extends Application {
             e.getCause();
         }
     }
+
     public void editAlokasiOperasional(Operasional model) {
         try {
             // Load Content
@@ -1230,6 +1435,7 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
     }
+
     public void showDonaturTpa() {
         try {
             // Load Content
@@ -1247,6 +1453,7 @@ public class MainApp extends Application {
             System.err.println(e.getMessage());
         }
     }
+
     public void showAlokasiTpa() {
         try {
             // Load Content
@@ -1264,6 +1471,7 @@ public class MainApp extends Application {
             System.err.println(e.getMessage());
         }
     }
+
     public void editDonaturTpa(TpaMasuk model) {
         try {
             // Load Content
@@ -1282,6 +1490,7 @@ public class MainApp extends Application {
             e.getCause();
         }
     }
+
     public void editAlokasiTpa(TpaKeluar model) {
         try {
             // Load Content

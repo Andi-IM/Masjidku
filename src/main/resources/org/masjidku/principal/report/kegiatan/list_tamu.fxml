@@ -27,7 +27,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="480.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.masjidku.principal.report.secretarty.ListTamu">
+<AnchorPane prefHeight="480.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.masjidku.principal.report.kegiatan.ListTamu">
     <stylesheets>
         <URL value="@../../../styles/styles.css" />
         <URL value="@../../../styles/fontstyles.css" />
@@ -64,5 +64,7 @@
                 </Button>
             </children>
         </HBox>
+        <Button layoutX="14.0" layoutY="441.0" mnemonicParsing="false" onAction="#gotoHome" styleClass="generalButton"
+                text="kembali" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0"/>
     </children>
 </AnchorPane>
