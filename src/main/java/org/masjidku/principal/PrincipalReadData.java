@@ -13,15 +13,13 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.accountant;
+package org.masjidku.principal;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.ToggleGroup;
 import org.masjidku.MainApp;
 
-public class AccountantRoot {
+public class PrincipalReadData {
 
-    public ToggleGroup groupButton;
     private MainApp mainApp;
 
     public void setMainApp(MainApp mainApp) {
@@ -29,26 +27,23 @@ public class AccountantRoot {
     }
 
     @FXML
-    public void homeAction() { mainApp.setAccountantView(); }
+    public void onLogoutClick() { mainApp.onLogoutAction(); }
 
     @FXML
-    public void profileAction() { mainApp.showProfile(); }
+    public void readKegiatan() { mainApp.showKegiatanOverview(); }
 
     @FXML
-    public void aboutAction() { mainApp.showAbout(); }
+    public void readAnakYatim() { mainApp.showAnakYatimData(); }
 
     @FXML
-    public void ayatimAction() { mainApp.showAnakYatim(); }
+    public void readPembangunan() { mainApp.showPembangunanData(); }
 
     @FXML
-    public void zakatAction() { mainApp.showZakat(); }
+    public void readOperasional() { mainApp.showOperasionalData(); }
 
     @FXML
-    public void pembangunanAction() { mainApp.showPembangunan(); }
+    public void readZakat() { mainApp.showZakatData(); }
 
     @FXML
-    public void operasionalAction() { mainApp.showOperasional(); }
-
-    @FXML
-    public void tpaAction() { mainApp.showTpa(); }
+    public void readTpa() { mainApp.showTpaData(); }
 }

@@ -17,6 +17,7 @@ package org.masjidku.principal;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.MouseEvent;
 import org.masjidku.MainApp;
 
 public class PrincipalRoot {
@@ -32,7 +33,10 @@ public class PrincipalRoot {
     public void homeAction() { mainApp.setPrincipalView(); }
 
     @FXML
-    public void laporanManage() { mainApp.setLaporan(); }
+    public void laporanManage() { mainApp.showLaporan(); }
+
+    @FXML
+    public void readData() { mainApp.showData(); }
 
     @FXML
     public void aboutAction() { mainApp.showAbout(); }

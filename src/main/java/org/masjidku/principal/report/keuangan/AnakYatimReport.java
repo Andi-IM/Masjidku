@@ -13,23 +13,24 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.principal.report.accountant;
+package org.masjidku.principal.report.keuangan;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
 import org.masjidku.MainApp;
 import org.masjidku.model.accounting.DaoFunctions;
-import org.masjidku.model.accounting.tpa.TpaKeluar;
-import org.masjidku.model.accounting.tpa.TpaKeluarDao;
-import org.masjidku.model.accounting.tpa.TpaMasuk;
-import org.masjidku.model.accounting.tpa.TpaMasukDao;
+import org.masjidku.model.accounting.anakyatim.AnakYatim;
+import org.masjidku.model.accounting.anakyatim.AnakYatimDao;
+import org.masjidku.model.accounting.anakyatim.DonasiAYatim;
+import org.masjidku.model.accounting.anakyatim.DonasiAYatimDao;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class TpaReport implements Initializable {
+public class AnakYatimReport implements Initializable {
     @FXML
     public Text txtPemasukanTerakhir;
     @FXML
@@ -41,39 +42,32 @@ public class TpaReport implements Initializable {
     @FXML
     public Text txtTotalPengeluaran;
     @FXML
-    public Text txtTglPengeluaran;
-    @FXML
     public Text txtSaldo;
+    @FXML
+    public Text txtTglPengeluaran;
 
     private MainApp mainApp;
 
-    public void setMainApp(MainApp mainApp) { this.mainApp = mainApp; }
-
-    @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
-
-    @FXML
-    public void uangKeluar() {  }
-
-    @FXML
-    public void uangMasuk() {  }
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        TpaMasukDao tpamdao= new TpaMasukDao();
-        TpaKeluarDao tpakdao = new TpaKeluarDao();
+        AnakYatimDao ayDao = new AnakYatimDao();
+        DonasiAYatimDao dayDao = new DonasiAYatimDao();
         DaoFunctions df = new DaoFunctions();
 
         try {
-            if (tpamdao.getConnection() && tpakdao.getConnection() && df.getConnection()) {
-                TpaKeluar penerima = tpakdao.getLastRecord();
-                TpaMasuk pemberi = tpamdao.getLastRecord();
+            if (ayDao.getConnection() && dayDao.getConnection() && df.getConnection()) {
+                AnakYatim penerima = ayDao.getLastRecord();
+                DonasiAYatim pemberi = dayDao.getLastRecord();
 
-                txtPemasukanTerakhir.setText("Rp. " + pemberi.getJumlah());
-                txtPengeluaranTerakhir.setText("Rp. " + penerima.getJumlah());
-                txtTotalPemasukkan.setText("Rp. " + tpamdao.getTotalIncome());
-                txtTotalPengeluaran.setText("Rp. " + tpakdao.getTotalOutcome());
-                txtSaldo.setText("Rp. " + df.getTpaBalance());
+                txtPemasukanTerakhir.setText("Rp. " + penerima.getJumlah());
+                txtPengeluaranTerakhir.setText("Rp. " + pemberi.getJumlah());
+                txtTotalPemasukkan.setText("Rp. " + dayDao.getTotalIncome());
+                txtTotalPengeluaran.setText("Rp. " + ayDao.getTotalOutcome());
+                txtSaldo.setText("Rp. " + df.getInfakYatimBalance());
                 txtTglPemasukkan.setText(pemberi.getTanggal());
                 txtTglPengeluaran.setText(penerima.getTanggal());
 
@@ -81,5 +75,18 @@ public class TpaReport implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
     }
+
+    @FXML
+    public void onLogoutClick() { mainApp.onLogoutAction(); }
+
+    @FXML
+    public void laporanDonasiAnakYatim() {   }
+
+    @FXML
+    public void laporanDanaAnakYatim() {  }
+
+    @FXML
+    public void gotoHome() { mainApp.showData(); }
 }
