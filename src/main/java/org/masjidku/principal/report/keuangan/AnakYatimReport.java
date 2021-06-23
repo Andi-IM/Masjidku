@@ -15,7 +15,6 @@
 
 package org.masjidku.principal.report.keuangan;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
@@ -82,10 +81,10 @@ public class AnakYatimReport implements Initializable {
     public void onLogoutClick() { mainApp.onLogoutAction(); }
 
     @FXML
-    public void laporanDonasiAnakYatim() {   }
+    public void laporanDonasiAnakYatim() { mainApp.showAnakYatimMasuk();  }
 
     @FXML
-    public void laporanDanaAnakYatim() {  }
+    public void laporanDanaAnakYatim() { mainApp.showAnakYatimKeluar(); }
 
     @FXML
     public void gotoHome() { mainApp.showData(); }
