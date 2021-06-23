@@ -18,6 +18,7 @@ package org.masjidku.model.kegiatan;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.masjidku.model.Dao;
+import org.masjidku.model.accounting.anakyatim.AnakYatim;
 
 import java.sql.SQLException;
 
@@ -140,4 +141,34 @@ public class KegiatanDao extends Dao<Kegiatan> {
         }
         return "";
     }
+
+    public Kegiatan getLastRecord() throws SQLException {
+        query = "SELECT * FROM "+TABLE+" ORDER BY kegiatanID DESC LIMIT 1";
+        ps = con.prepareStatement(query);
+        rs = ps.executeQuery();
+
+        Kegiatan model = new Kegiatan();
+        if (rs.next()){
+            model = new Kegiatan(
+                    rs.getString(1),
+                    rs.getString(2),
+                    rs.getString(4),
+                    rs.getString(5),
+                    rs.getString(6)
+            );
+        }
+        return model;
+    }
+
+    public String getTotalKegiatan() throws SQLException {
+        query = "SELECT IFNULL(COUNT(kegiatanID),0) FROM "+TABLE;
+        ps = con.prepareStatement(query);
+        rs = ps.executeQuery();
+
+        if (rs.next()){
+            return rs.getString(1);
+        }
+        return null;
+    }
+
 }

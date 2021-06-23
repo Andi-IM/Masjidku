@@ -26,4 +26,22 @@ public class PrincipalLaporan {
 
     @FXML
     public void onLogoutClick() { mainApp.onLogoutAction(); }
+
+    @FXML
+    public void printKegiatan() { mainApp.showKegiatanReport(); }
+
+    @FXML
+    public void printAnakYatim() { mainApp.showAnakYatimReport(); }
+
+    @FXML
+    public void printPembangunan() { mainApp.showPembangunanReport(); }
+
+    @FXML
+    public void printOperasinal() { mainApp.showOperasionalReport(); }
+
+    @FXML
+    public void printZakat() { mainApp.showZakatReport(); }
+
+    @FXML
+    public void printTpa() { mainApp.showTpaReport(); }
 }

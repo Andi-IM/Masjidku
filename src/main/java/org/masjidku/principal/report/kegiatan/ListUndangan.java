@@ -13,7 +13,7 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.principal.report.secretarty;
+package org.masjidku.principal.report.kegiatan;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

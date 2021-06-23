@@ -23,7 +23,7 @@
 <?import java.net.URL?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.masjidku.principal.report.accountant.TpaReport"
+            fx:controller="org.masjidku.principal.report.keuangan.TpaReport"
             prefHeight="480.0" prefWidth="665.0">
     <stylesheets>
         <URL value="@../../../styles/styles.css"/>
@@ -113,5 +113,6 @@
                       GridPane.columnIndex="1" GridPane.rowIndex="6"/>
             </children>
         </GridPane>
+        <Button layoutX="14.0" layoutY="441.0" mnemonicParsing="false" onAction="#gotoHome" styleClass="generalButton" text="kembali" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" />
     </children>
 </AnchorPane>

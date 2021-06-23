@@ -13,7 +13,7 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.principal.report.secretarty;
+package org.masjidku.principal.report.kegiatan;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,76 +22,70 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.kegiatan.Tamu;
-import org.masjidku.model.kegiatan.TamuDao;
+import org.masjidku.model.kegiatan.Kegiatan;
+import org.masjidku.model.kegiatan.KegiatanDao;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class ListTamu implements Initializable {
+public class ListKegiatan implements Initializable {
     @FXML
-    public TableView<Tamu> tblTamu;
+    public TableView<Kegiatan> tblKegiatan;
     @FXML
-    public TableColumn<Tamu, String> colNama;
+    public TableColumn<Kegiatan, String> colNomor;
     @FXML
-    public TableColumn<Tamu, String> colAlamat;
+    public TableColumn<Kegiatan, String> colNmKegiatan;
     @FXML
-    public TableColumn<Tamu, String> colNotelp;
+    public TableColumn<Kegiatan, String> colTanggalKegiatan;
     @FXML
-    public TableColumn<Tamu, String> colNomor;
+    public TableColumn<Kegiatan, String> colTempatKegiatan;
     @FXML
-    public TableColumn<Tamu, String> colOperator;
-
-    private MainApp mainApp;
-    TamuDao dao;
-
-    // create some stage
-    @SuppressWarnings("unused")
-    private Stage dialogStage;
+    public TableColumn<Kegiatan, String> colWaktuKegiatan;
+    @FXML
+    public TableColumn<Kegiatan, String> colOperator;
+    public MainApp mainApp;
+    KegiatanDao dao;
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
     /**
-     * The Constructor
-     * The Constructor is called before the initialize() method.
+     * The data as an observable list of Users.
      */
-    public ListTamu() { dao = new TamuDao(); }
+    private final ObservableList<Kegiatan> kegiatanData =
+            FXCollections.observableArrayList();
 
-    private ObservableList<Tamu> getTamuData() {
-        if (dao.getConnection()){
+    private ObservableList<Kegiatan> getKegiatanData() {
+        if (dao.getConnection()) {
             try {
-                tamuData.addAll(dao.getAll());
+                kegiatanData.addAll(dao.getAll());
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-        return tamuData;
+        return kegiatanData;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tblTamu.setItems(getTamuData());
-        colNama.setCellValueFactory(new PropertyValueFactory<>("nama"));
-        colAlamat.setCellValueFactory(new PropertyValueFactory<>("alamat"));
-        colNotelp.setCellValueFactory(new PropertyValueFactory<>("notelp"));
+        tblKegiatan.setItems(getKegiatanData());
+        colNomor.setCellValueFactory(new PropertyValueFactory<>(""));
+        colNmKegiatan.setCellValueFactory(new PropertyValueFactory<>("nama"));
+        colTempatKegiatan.setCellValueFactory(new PropertyValueFactory<>("tempat"));
+        colWaktuKegiatan.setCellValueFactory(new PropertyValueFactory<>("waktu"));
+        colTanggalKegiatan.setCellValueFactory(new PropertyValueFactory<>("tanggal"));
         colOperator.setCellValueFactory(new PropertyValueFactory<>("operator"));
     }
 
-    /**
-     * The data as an observable list of Users.
-     */
-    private final ObservableList<Tamu> tamuData =
-            FXCollections.observableArrayList();
+    @FXML
+    public void printReport() {
+    }
 
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
-
-    @FXML
-    public void showReport() {
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
     }
 }
