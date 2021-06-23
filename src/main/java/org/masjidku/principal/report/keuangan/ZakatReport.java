@@ -52,12 +52,10 @@ public class ZakatReport implements Initializable {
     }
 
     @FXML
-    public void uangMasuk() {
-    }
+    public void uangMasuk() { mainApp.showZakatMasuk(); }
 
     @FXML
-    public void uangKeluar() {
-    }
+    public void uangKeluar() { mainApp.showZakatKeluar(); }
 
     @FXML
     public void onLogoutClick() {

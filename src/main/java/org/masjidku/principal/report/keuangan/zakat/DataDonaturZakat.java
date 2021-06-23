@@ -13,40 +13,45 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.principal.report.kegiatan;
+package org.masjidku.principal.report.keuangan.zakat;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.kegiatan.Tamu;
-import org.masjidku.model.kegiatan.TamuDao;
+import org.masjidku.model.accounting.zakat.ZakatMasuk;
+import org.masjidku.model.accounting.zakat.ZakatMasukDao;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class ListTamu implements Initializable {
+public class DataDonaturZakat implements Initializable {
     @FXML
-    public TableView<Tamu> tblTamu;
+    private TableView<ZakatMasuk> zakatTable;
     @FXML
-    public TableColumn<Tamu, String> colNama;
+    private TableColumn<ZakatMasuk, String> donatur;
     @FXML
-    public TableColumn<Tamu, String> colAlamat;
+    private TableColumn<ZakatMasuk, String> jumlah;
     @FXML
-    public TableColumn<Tamu, String> colNotelp;
+    private TableColumn<ZakatMasuk, String> tanggal;
     @FXML
-    public TableColumn<Tamu, String> colNomor;
-    @FXML
-    public TableColumn<Tamu, String> colOperator;
+    private TableColumn<ZakatMasuk, String> operator;
 
     private MainApp mainApp;
-    private final TamuDao dao;
+
+    /**
+     * The data as an observable list of Users.
+     */
+    private final ObservableList<ZakatMasuk> donaturData =
+            FXCollections.observableArrayList();
 
     // create some stage
     @SuppressWarnings("unused")
@@ -56,45 +61,39 @@ public class ListTamu implements Initializable {
         this.mainApp = mainApp;
     }
 
-    /**
-     * The Constructor
-     * The Constructor is called before the initialize() method.
-     */
-    public ListTamu() { dao = new TamuDao(); }
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        zakatTable.setItems(getDonaturData());
 
-    private ObservableList<Tamu> getTamuData() {
-        if (dao.getConnection()){
+        donatur.setCellValueFactory(new PropertyValueFactory<>("donatur"));
+        jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));
+        tanggal.setCellValueFactory(new PropertyValueFactory<>("tanggal"));
+        operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
+    }
+
+    /**
+     * get User Data from DAO.
+     *
+     * @return Observable List
+     */
+    private ObservableList<ZakatMasuk> getDonaturData() {
+        ZakatMasukDao dao = new ZakatMasukDao();
+        if (dao.getConnection()) {
             try {
-                tamuData.addAll(dao.getAll());
+                donaturData.addAll(dao.getAll());
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-        return tamuData;
+        return donaturData;
     }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        tblTamu.setItems(getTamuData());
-        colNama.setCellValueFactory(new PropertyValueFactory<>("nama"));
-        colAlamat.setCellValueFactory(new PropertyValueFactory<>("alamat"));
-        colNotelp.setCellValueFactory(new PropertyValueFactory<>("notelp"));
-        colOperator.setCellValueFactory(new PropertyValueFactory<>("operator"));
-    }
-
-    /**
-     * The data as an observable list of Users.
-     */
-    private final ObservableList<Tamu> tamuData =
-            FXCollections.observableArrayList();
 
     @FXML
     public void onLogoutClick() { mainApp.onLogoutAction(); }
 
     @FXML
-    public void showReport() {
-    }
+    public void showReport() { }
 
     @FXML
-    public void gotoHome() { mainApp.showKegiatanOverview(); }
+    public void gotoHome() { mainApp.showZakatData(); }
 }

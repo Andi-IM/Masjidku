@@ -13,7 +13,7 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.principal.report.kegiatan;
+package org.masjidku.principal.report.keuangan.zakat;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,73 +23,69 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.MainApp;
-import org.masjidku.model.kegiatan.TamuKegiatan;
-import org.masjidku.model.kegiatan.TamuKegiatanDao;
+import org.masjidku.model.accounting.zakat.ZakatKeluar;
+import org.masjidku.model.accounting.zakat.ZakatKeluarDao;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class ListUndangan implements Initializable {
-
+public class DataPenerimaZakat implements Initializable {
     @FXML
-    public TableView<TamuKegiatan> tblUndangan;
+    private TableView<ZakatKeluar> tableZakat;
     @FXML
-    public TableColumn<String, String> colNomor;
+    private TableColumn<ZakatKeluar, String> nama;
     @FXML
-    public TableColumn<TamuKegiatan, String> colNama;
+    private TableColumn<ZakatKeluar, String> jumlah;
     @FXML
-
-    public TableColumn<TamuKegiatan, String> colAlamat;
+    private TableColumn<ZakatKeluar, String> tanggal;
     @FXML
-    public TableColumn<TamuKegiatan, String> colKeterangan;
-    @FXML
-    public TableColumn<TamuKegiatan, String> colKegiatan;
-    @FXML
-    public TableColumn<TamuKegiatan, String> colNotelp;
-    @FXML
-    public TableColumn<TamuKegiatan, String> colOperator;
-
+    private TableColumn<ZakatKeluar, String> operator;
     private MainApp mainApp;
-    private final TamuKegiatanDao dao;
+
+    /**
+     * The data as an observable list of Penerima Zakat.
+     */
+    private final ObservableList<ZakatKeluar> dataZakat =
+            FXCollections.observableArrayList();
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
-    public ListUndangan() { dao = new TamuKegiatanDao(); }
-
-    private final ObservableList<TamuKegiatan> undanganData =
-            FXCollections.observableArrayList();
-
-    private ObservableList<TamuKegiatan> getUndanganData(){
-        if (dao.getConnection()){
+    /**
+     * get User Data from DAO.
+     *
+     * @return Observable List
+     */
+    private ObservableList<ZakatKeluar> getDataZakat() {
+        ZakatKeluarDao dao = new ZakatKeluarDao();
+        if (dao.getConnection()) {
             try {
-                undanganData.addAll(dao.getAll());
+                dataZakat.addAll(dao.getAll());
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-        return undanganData;
+        return dataZakat;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tblUndangan.setItems(getUndanganData());
-        colNama.setCellValueFactory(new PropertyValueFactory<>("nama"));
-        colAlamat.setCellValueFactory(new PropertyValueFactory<>("alamat"));
-        colKeterangan.setCellValueFactory(new PropertyValueFactory<>("keterangan"));
-        colKegiatan.setCellValueFactory(new PropertyValueFactory<>("kegiatan"));
-        colNotelp.setCellValueFactory(new PropertyValueFactory<>("notelp"));
-        colOperator.setCellValueFactory(new PropertyValueFactory<>("operator"));
+        tableZakat.setItems(getDataZakat());
+
+        nama.setCellValueFactory(new PropertyValueFactory<>("tujuan"));
+        jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));
+        tanggal.setCellValueFactory(new PropertyValueFactory<>("tanggal"));
+        operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
     }
 
     @FXML
     public void onLogoutClick() { mainApp.onLogoutAction(); }
 
     @FXML
-    public void showReport() { }
+    public void showReport() {  }
 
     @FXML
-    public void gotoHome() { mainApp.showKegiatanOverview(); }
+    public void gotoHome() { mainApp.showZakatData(); }
 }
