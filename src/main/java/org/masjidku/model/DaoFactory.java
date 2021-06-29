@@ -15,13 +15,11 @@
 
 package org.masjidku.model;
 
-import javafx.collections.ObservableList;
-import org.masjidku.util.DatabaseConnection;
+import org.masjidku.util.db.DatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public abstract class DaoFactory {
 

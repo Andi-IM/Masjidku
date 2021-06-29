@@ -13,7 +13,7 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.util;
+package org.masjidku.util.db;
 
 import java.sql.Connection;
 import java.sql.SQLException;

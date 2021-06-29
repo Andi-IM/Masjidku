@@ -13,38 +13,18 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model;
+package org.masjidku.principal;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.masjidku.model.user.User;
-import org.masjidku.model.user.UserProfile;
+import javafx.fxml.FXML;
+import org.masjidku.MainApp;
 
-import static org.junit.Assert.assertEquals;
+public class PrincipalUnderDev {
+    private MainApp mainApp;
 
-public class UserProfileTest extends User {
-    private UserProfile profile;
-
-    @Before
-    public void setUp() {
-        User user = new User(
-                "ucok",
-                "Ucok",
-                "Sekretaris",
-                "Aktif",
-                "null",
-                "null"
-        );
-        profile = new UserProfile(user);
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
     }
 
-    @Test
-    public void testGetId() {
-        assertEquals("ucok", profile.getUser().getUserId());
-    }
-
-    @Test
-    public void testGetJabatan() {
-        assertEquals("sekretaris", profile.getUser().getJabatan().toString);
-    }
+    @FXML
+    public void onLogoutClick() { mainApp.onLogoutAction(); }
 }
