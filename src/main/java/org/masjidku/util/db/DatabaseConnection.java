@@ -13,38 +13,33 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model;
+package org.masjidku.util.db;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.masjidku.model.user.User;
-import org.masjidku.model.user.UserProfile;
+import java.sql.Connection;
+import java.sql.SQLException;
 
-import static org.junit.Assert.assertEquals;
+/**
+ *  The MySQL Connection
+ *  using connection with http://localhost:3306
+ *
+ * @author Andi Irham
+ */
+public class DatabaseConnection {
+    public Connection dbLink;
 
-public class UserProfileTest extends User {
-    private UserProfile profile;
+    public Connection getConnection(){
+        String dbName = "masjidku";
+        String url = "jdbc:mysql://127.0.0.1:3306/"+dbName;
+        String username = "root";
+        String password = ""; // using default password=root in github
 
-    @Before
-    public void setUp() {
-        User user = new User(
-                "ucok",
-                "Ucok",
-                "Sekretaris",
-                "Aktif",
-                "null",
-                "null"
-        );
-        profile = new UserProfile(user);
-    }
-
-    @Test
-    public void testGetId() {
-        assertEquals("ucok", profile.getUser().getUserId());
-    }
-
-    @Test
-    public void testGetJabatan() {
-        assertEquals("sekretaris", profile.getUser().getJabatan().toString);
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            dbLink = java.sql.DriverManager.getConnection(url, username, password);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+        return dbLink;
     }
 }
