@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<!--
+  ~ Copyright (c) 2021. Creative Commons Legal Code
+  ~
+  ~                            CC0 1.0 Universal
+  ~
+  ~                                CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
+  ~                                LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN
+  ~                                ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
+  ~                                INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
+  ~                                REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS
+  ~                                PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
+  ~                                THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
+  ~                                HEREUNDER.
+  -->
+
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<AnchorPane prefHeight="480.0" prefWidth="665.0" styleClass="main" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.masjidku.principal.PrincipalUnderDev">
+   <children>
+      <Text fill="#39d02b" layoutX="158.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DALAM PENGEMBANGAN" textAlignment="CENTER" x="50.0" y="50.0" AnchorPane.bottomAnchor="231.796875" AnchorPane.leftAnchor="208.0" AnchorPane.rightAnchor="318.00390625" AnchorPane.topAnchor="231.203125">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="398.0" layoutY="42.0" onMouseClicked="#onLogoutClick" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <image>
+            <Image url="@../icon/logout.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

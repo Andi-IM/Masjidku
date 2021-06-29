@@ -404,14 +404,14 @@ public class MainApp extends Application {
         try {
             // Load Content
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("principal/principal_laporan.fxml"));
+            loader.setLocation(getClass().getResource("principal/principal_under_dev.fxml"));
             AnchorPane overview = loader.load();
 
             // set the item into the right divider.
             rootLayout.getItems().set(1, overview);
 
             // Give the controller access to the main app.
-            PrincipalLaporan controller = loader.getController();
+            PrincipalUnderDev controller = loader.getController();
             controller.setMainApp(this);
         } catch (IOException e) {
             System.err.println(e.getMessage());
