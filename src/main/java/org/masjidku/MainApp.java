@@ -16,7 +16,7 @@
 
 package org.masjidku;
 
-import javafx.application.Application;
+import  javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
@@ -75,7 +75,7 @@ public class MainApp extends Application {
         this.primaryStage.resizableProperty().setValue(Boolean.FALSE);
         // App icon
         this.primaryStage.getIcons()
-                .add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("./icon/favicon.png"))));
+                .add(new Image("file:src/main/resources/org/masjidku/icon/favicon.png"));
 
         initRootLayout();
         showContent();
@@ -1546,6 +1546,6 @@ public class MainApp extends Application {
      * @param args arguments
      */
     public static void main(String[] args) {
-        launch(args);
+        launch(MainApp.class);
     }
 }
