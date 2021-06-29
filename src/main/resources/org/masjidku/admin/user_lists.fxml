@@ -42,7 +42,7 @@
             </image>
         </ImageView>
 
-        <Text fill="#3AAFA9" layoutX="14.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="headline" text="KELOLA PENGGUNA">
+        <Text fill="#3AAFA9" layoutX="14.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="headline" text="KELOLA USER">
             <font>
                 <Font size="22.0" />
             </font>

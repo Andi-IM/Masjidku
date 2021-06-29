@@ -13,7 +13,7 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.util;
+package org.masjidku.util.date;
 
 import javax.swing.*;
 import java.text.ParseException;
