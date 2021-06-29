@@ -15,3 +15,6 @@
 
 rootProject.name = 'Masjidku'
 
+include 'main'
+include 'test'
+
