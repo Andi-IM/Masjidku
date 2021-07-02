@@ -69,14 +69,13 @@ public class DonasiAYatimDao extends Dao<DonasiAYatim> {
 
     @Override
     public void save(DonasiAYatim donasiAYatim) throws SQLException {
-        query = "INSERT INTO "+TABLE+"(id, donatur, jumlah, tanggal, operator) VALUES (?,?,?,?,?)";
+        query = "INSERT INTO "+TABLE+"(donatur, jumlah, tanggal, operator) VALUES (?,?,?,?)";
 
         ps = con.prepareStatement(query);
-        ps.setString(1, donasiAYatim.getId());
-        ps.setString(2, donasiAYatim.getDonatur());
-        ps.setString(3, donasiAYatim.getJumlah());
-        ps.setString(4, donasiAYatim.getTanggal());
-        ps.setString(5, donasiAYatim.getOperator());
+        ps.setString(1, donasiAYatim.getDonatur());
+        ps.setString(2, donasiAYatim.getJumlah());
+        ps.setString(3, donasiAYatim.getTanggal());
+        ps.setString(4, donasiAYatim.getOperator());
         ps.executeUpdate();
     }
 

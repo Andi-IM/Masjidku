@@ -99,15 +99,18 @@ public class EditPembayaranOperasional {
                     if (dao.isDataExist(model.getId())) {
                         dao.update(new String[]{
                                 model.getId(),
-                                model.getNama(),
-                                model.getKeterangan(),
-                                model.getJumlah(),
-                                model.getTanggal(),
+                                nama,
+                                keterangan,
+                                jumlah,
+                                tanggal,
                                 operator
                         });
                         alertInfo("Success", "Data telah diupdate");
+                        mainApp.showOperasional();
                     } else {
                         dao.save(model);
+                        alertInfo("Success", "Data telah ditambahkan");
+                        mainApp.showOperasional();
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();

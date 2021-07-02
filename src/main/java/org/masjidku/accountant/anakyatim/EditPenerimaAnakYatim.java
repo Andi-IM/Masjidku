@@ -76,8 +76,7 @@ public class EditPenerimaAnakYatim {
             if (!txtJumlah.getText().isBlank()) {
                 if (txtJumlah.getText().matches("[0-9]")) {
                     if (date.getEditor().getText().isBlank()){
-                        return spnUsia.getValueFactory().getValue() > 5 &&
-                                spnUsia.getValueFactory().getValue() < 19;
+                        return true;
                     }
                 }
             }
@@ -87,7 +86,7 @@ public class EditPenerimaAnakYatim {
 
     @FXML
     public void onSubmitted() {
-        if (formValidation()) {
+        if (true) {
             String nama = txtNama.getText();
             int usia = spnUsia.getValue();
             String jumlah = txtJumlah.getText();
@@ -100,18 +99,24 @@ public class EditPenerimaAnakYatim {
             AnakYatimDao dao = new AnakYatimDao();
             if (dao.getConnection()) {
                 try {
-                    if (dao.isAnakYatimExist(anakYatim.getId())) {
-                        dao.update(new String[]{
-                                anakYatim.getId(),
-                                anakYatim.getNama(),
-                                String.valueOf(anakYatim.getUsia()),
-                                anakYatim.getJumlah(),
-                                anakYatim.getTanggal(),
-                                operator
-                        });
-                        alertInfo("Success", "Data telah diupdate");
-                    } else {
+                    if (anakYatim.getId() != null){
+                        if (dao.isAnakYatimExist(anakYatim.getId())) {
+                            dao.update(new String[]{
+                                    anakYatim.getId(),
+                                    nama,
+                                    String.valueOf(usia),
+                                    jumlah,
+                                    tanggal,
+                                    operator
+                            });
+                            alertInfo("Success", "Data telah diupdate");
+                            mainApp.showAnakYatim();
+                        }
+                    }
+                    else {
                         dao.save(anakYatim);
+                        alertInfo("Success", "Data telah ditambahkan");
+                        mainApp.showAnakYatim();
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();

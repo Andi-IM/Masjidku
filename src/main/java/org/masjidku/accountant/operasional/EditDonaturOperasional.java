@@ -94,14 +94,17 @@ public class EditDonaturOperasional {
                     if (dao.isDonaturExist(donatur.getId())) {
                         dao.update(new String[]{
                                 donatur.getId(),
-                                donatur.getDonatur(),
-                                donatur.getJumlah(),
-                                donatur.getTanggal(),
+                                nama,
+                                jumlah,
+                                tanggal,
                                 operator
                         });
                         alertInfo("Success", "Data telah diupdate");
+                        mainApp.showDonaturOperasional();
                     } else {
                         dao.save(donatur);
+                        alertInfo("Success", "Data telah ditambahkan");
+                        mainApp.showDonaturOperasional();
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();

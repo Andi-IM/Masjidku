@@ -70,29 +70,35 @@ public class EditDonaturAnakYatim {
 
     @FXML
     public void onSubmitted() {
-        if (formValidation()) {
+        boolean a = true;
+        if (a) {
             String nama = txtNama.getText();
             String jumlah = txtJumlah.getText();
             String tanggal = date.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
             if (donatur.getId() == null) {
-                donatur = new DonasiAYatim(nama, jumlah, tanggal, operator);
+                donatur = new DonasiAYatim(null, nama, jumlah, tanggal, operator);
             }
 
             DonasiAYatimDao dao = new DonasiAYatimDao();
             if (dao.getConnection()) {
                 try {
-                    if (dao.isDonaturExist(donatur.getId())) {
-                        dao.update(new String[]{
-                                donatur.getId(),
-                                donatur.getDonatur(),
-                                donatur.getJumlah(),
-                                donatur.getTanggal(),
-                                operator
-                        });
-                        alertInfo("Success", "Data telah diupdate");
+                    if (donatur.getId() != null){
+                        if (dao.isDonaturExist(donatur.getId())) {
+                            dao.update(new String[]{
+                                    donatur.getId(),
+                                    nama,
+                                    jumlah,
+                                    tanggal,
+                                    operator
+                            });
+                            alertInfo("Success", "Data telah diupdate");
+                            mainApp.showDonasiAYatim();
+                        }
                     } else {
                         dao.save(donatur);
+                        alertInfo("Success", "Data telah ditambahkan");
+                        mainApp.showDonasiAYatim();
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -114,7 +120,7 @@ public class EditDonaturAnakYatim {
         if (!txtNama.getText().isBlank()) {
             if (!txtJumlah.getText().isBlank()){
                 if (txtJumlah.getText().matches("[0-9]")){
-                    return date.getEditor().getText().isBlank();
+                    return true;
                 }
             }
         }
