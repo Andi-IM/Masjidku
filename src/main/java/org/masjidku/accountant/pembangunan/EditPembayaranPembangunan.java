@@ -100,10 +100,10 @@ public class EditPembayaranPembangunan {
                     if (dao.isDataExist(model.getId())) {
                         dao.update(new String[]{
                                 model.getId(),
-                                model.getNama(),
-                                model.getKeterangan(),
-                                model.getJumlah(),
-                                model.getTanggal(),
+                                nama,
+                                keterangan,
+                                jumlah,
+                                tanggal,
                                 operator
                         });
                         alertInfo("Success", "Data telah diupdate");

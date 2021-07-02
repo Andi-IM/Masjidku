@@ -101,9 +101,9 @@ public class EditPenerimaZakat {
                     if (dao.isDataExist(penerima.getId())) {
                         dao.update(new String[]{
                                 penerima.getId(),
-                                penerima.getNama(),
-                                penerima.getJumlah(),
-                                penerima.getTanggal(),
+                                nama,
+                                jumlah,
+                                tanggal,
                                 operator
                         });
                         alertInfo("Success", "Data telah diupdate");

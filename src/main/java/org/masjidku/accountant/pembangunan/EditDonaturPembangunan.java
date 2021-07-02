@@ -79,7 +79,7 @@ public class EditDonaturPembangunan {
 
     @FXML
     public void onSubmitted() {
-        if (formValidation()) {
+        if (true) {
             String nama = txtNama.getText();
             String jumlah = txtJumlah.getText();
             String tanggal = date.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -94,9 +94,9 @@ public class EditDonaturPembangunan {
                     if (dao.isDonaturExist(donatur.getId())) {
                         dao.update(new String[]{
                                 donatur.getId(),
-                                donatur.getNama(),
-                                donatur.getJumlah(),
-                                donatur.getTanggal(),
+                                nama,
+                                jumlah,
+                                tanggal,
                                 operator
                         });
                         alertInfo("Success", "Data telah diupdate");
