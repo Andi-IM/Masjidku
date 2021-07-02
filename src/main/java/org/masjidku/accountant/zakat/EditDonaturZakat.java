@@ -85,9 +85,9 @@ public class EditDonaturZakat {
                     if (dao.isDonaturExist(donatur.getId())) {
                         dao.update(new String[]{
                                 donatur.getId(),
-                                donatur.getDonatur(),
-                                donatur.getJumlah(),
-                                donatur.getTanggal(),
+                                nama,
+                                jumlah,
+                                tanggal,
                                 operator
                         });
                         alertInfo("Success", "Data telah diupdate");

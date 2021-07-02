@@ -95,9 +95,9 @@ public class EditDonaturTpa {
                     if (dao.isDonaturExist(donatur.getId())) {
                         dao.update(new String[]{
                                 donatur.getId(),
-                                donatur.getNama(),
-                                donatur.getJumlah(),
-                                donatur.getTanggal(),
+                                nama,
+                                jumlah,
+                                tanggal,
                                 operator
                         });
                         alertInfo("Success", "Data telah diupdate");
