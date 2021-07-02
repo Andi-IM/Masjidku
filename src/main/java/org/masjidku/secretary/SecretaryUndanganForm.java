@@ -113,14 +113,22 @@ public class SecretaryUndanganForm implements Initializable {
         kegiatanDao = new KegiatanDao();
         tamuKegiatanDao = new TamuKegiatanDao();
 
-        TamuKegiatan model = new TamuKegiatan();
+        if (undangan.getIdUndangan() == null){
+            undangan = new TamuKegiatan();
+        }
+
         if (tamuDao.getConnection() && kegiatanDao.getConnection()){
             try {
-                if (tamuKegiatanDao.isUndanganExist(model.getIdKegiatan())){
-                    tamuKegiatanDao.update(new String[]{model.getKeterangan(), model.getIdTamu(), model.getKegiatan(), model.getIdUndangan()});
-                    alertInfo("Success", "Data telah diubah!");
+                String activity = kegiatanDao.getIdByName(kegiatanform);
+                String name = tamuDao.getIdByName(namaform);
+
+                if (undangan.getIdUndangan() != null){
+                    if (tamuKegiatanDao.isUndanganExist(undangan.getIdKegiatan())){
+                        tamuKegiatanDao.update(new String[]{keterangan, name, activity, undangan.getIdUndangan()});
+                        alertInfo("Success", "Data telah diubah!");
+                    }
                 } else {
-                    tamuKegiatanDao.save(kegiatanDao.getIdByName(kegiatanform), tamuDao.getIdByName(namaform), model.getKeterangan(), operator);
+                    tamuKegiatanDao.save(activity, name, keterangan, operator);
                     alertInfo("Success","Data telah ditambahkan!");
                 }
             } catch (SQLException throwables) {
