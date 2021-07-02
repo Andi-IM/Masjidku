@@ -81,6 +81,6 @@
             <TextArea fx:id="txtAlamat" prefHeight="200.0" prefWidth="200.0" promptText="Alamatnya..." styleClass="formField" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2" />
             </children>
         </GridPane>
-      <Button layoutX="21.0" layoutY="354.0" mnemonicParsing="false" onAction="#onBackAction" styleClass="generalButton" text="kembali" />
+      <Button layoutX="21.0" layoutY="354.0" mnemonicParsing="false" onAction="#onBackAction" styleClass="generalButton" text="kembali" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0" />
     </children>
 </AnchorPane>

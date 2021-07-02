@@ -79,7 +79,7 @@ public class SecretaryTamuForm {
             String alamat = txtAlamat.getText();
             String noTelp = txtNomorTelp.getText();
 
-            if (tamu == null){
+            if (tamu.getIdTamu() == null){
                 tamu = new Tamu(namaTamu, alamat, noTelp, operator);
             }
             TamuDao dao = new TamuDao();
@@ -88,18 +88,20 @@ public class SecretaryTamuForm {
                 try {
                     if (dao.isTamuExist(tamu.getIdTamu())){
                         dao.update(new String[]{
-                                tamu.getNama(),
-                                tamu.getAlamat(),
-                                tamu.getNotelp(),
+                                namaTamu,
+                                alamat,
+                                noTelp,
                                 operator,
                                 tamu.getIdTamu()
                         });
                         alertInfo("Success","Tamu telah diupdate");
                     } else {
                         dao.save(tamu);
+                        alertInfo("Success","Tamu telah disimpan!");
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();
+                    alertError("Error", "Database belum ditanyakan!");
                 }
             } else {
             alertError("Error", "Database belum ditanyakan!");
