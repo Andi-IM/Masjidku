@@ -1,112 +1,19 @@
-/*
- * Copyright (c) 2021. Creative Commons Legal Code
- *
- *                            CC0 1.0 Universal
- *
- *                                CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
- *                                LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN
- *                                ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
- *                                INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
- *                                REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS
- *                                PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
- *                                THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
- *                                HEREUNDER.
- */
-
 plugins {
-    id 'java'
-    id 'application'
-    alias(libs.plugins.javafx)
-    alias(libs.plugins.jlink)
+    alias(libs.plugins.javafx) apply false
+    alias(libs.plugins.jlink) apply false
 }
 
-
-
 allprojects {
-    group 'org.masjidku'
-    version '1.0'
+    group = 'org.masjidku'
+    version = '1.0'
 
     apply plugin: 'java'
     java {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
     }
-}
 
-allprojects {
     repositories {
         mavenCentral()
-    }
-}
-
-repositories {
-    mavenCentral()
-}
-
-// Move all classpath JARs onto the module path so module-info.java can see
-// automatic modules (jasperreports, mysql-connector-java, openpdf, guava).
-tasks.withType(JavaCompile).configureEach {
-    doFirst {
-        options.compilerArgs += ['--module-path', classpath.asPath]
-        classpath = files()
-    }
-}
-
-
-dependencies {
-    // Database
-    implementation libs.mysql.connector
-
-    // Submodules
-    runtimeOnly project(':masjidku-accounting')
-    implementation project(':masjidku-accounting-client')
-    implementation project(':masjidku-events')
-    implementation project(':masjidku-events-client')
-    implementation project(':masjidku-reporting')
-    implementation project(':masjidku-reporting-client')
-    
-
-
-
-
-    // XML Bind
-    implementation libs.jaxb.api
-    implementation libs.jetbrains.annotations
-
-    // Hash Security and other tools
-    implementation libs.guava
-
-    // Unit Test
-    testImplementation libs.junit
-}
-
-javafx {
-    version = libs.versions.javafx.get()
-    modules = ['javafx.controls', 'javafx.fxml']
-}
-
-application {
-    mainClass = 'org.masjidku.MainApp'
-    // Suppress JDK 24+ warnings caused by JavaFX 21 internals:
-    // 1. javafx.graphics uses System::load (native library loading)
-    // 2. Marlin renderer uses sun.misc.Unsafe::allocateMemory
-    applicationDefaultJvmArgs = [
-        '--enable-native-access=javafx.graphics',
-        '--sun-misc-unsafe-memory-access=allow'
-    ]
-}
-
-jlink {
-    launcher {
-        name = 'JPackage Demo'
-    }
-
-    jpackage {
-        installerOutputDir = file("$buildDir/installers")
-        installerOptions = [
-                '--vendor', 'Group 5',
-                '--win-per-user-install', '--win-dir-chooser',
-                '--win-menu', '--win-shortcut'
-        ]
     }
 }
