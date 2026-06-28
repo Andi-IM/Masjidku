@@ -15,6 +15,8 @@
 
 package org.masjidku.principal.report.keuangan.zakat;
 
+import java.util.ServiceLoader;
+import org.masjidku.accounting.client.service.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,8 +28,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.accounting.zakat.ZakatMasuk;
-import org.masjidku.model.accounting.zakat.ZakatMasukDao;
+import org.masjidku.accounting.client.model.zakat.ZakatMasuk;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -77,7 +78,7 @@ public class DataDonaturZakat implements Initializable {
      * @return Observable List
      */
     private ObservableList<ZakatMasuk> getDonaturData() {
-        ZakatMasukDao dao = new ZakatMasukDao();
+        ZakatMasukService dao = ServiceLoader.load(ZakatMasukService.class).findFirst().orElseThrow();
         if (dao.getConnection()) {
             try {
                 donaturData.addAll(dao.getAll());

@@ -15,6 +15,8 @@
 
 package org.masjidku.accountant.operasional;
 
+import java.util.ServiceLoader;
+import org.masjidku.accounting.client.service.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -26,8 +28,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.accounting.operasional.DonasiOperasional;
-import org.masjidku.model.accounting.operasional.DonasiOperationalDao;
+import org.masjidku.accounting.client.model.operasional.DonasiOperasional;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -70,7 +71,7 @@ public class DonaturOperasional implements Initializable {
      * @return Observable List
      */
     private ObservableList<DonasiOperasional> getDonaturData() {
-        DonasiOperationalDao dao = new DonasiOperationalDao();
+        DonasiOperationalService dao = ServiceLoader.load(DonasiOperationalService.class).findFirst().orElseThrow();
         if (dao.getConnection()) {
             try {
                 donaturData.addAll(dao.getAll());
@@ -115,7 +116,7 @@ public class DonaturOperasional implements Initializable {
     public void onRemoveListener() {
         DonasiOperasional selectedItem = tableOperasional.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
-            DonasiOperationalDao dao = new DonasiOperationalDao();
+            DonasiOperationalService dao = ServiceLoader.load(DonasiOperationalService.class).findFirst().orElseThrow();
             if (dao.getConnection()) {
                 try {
                     if (dao.isDonaturExist(selectedItem.getId())) {

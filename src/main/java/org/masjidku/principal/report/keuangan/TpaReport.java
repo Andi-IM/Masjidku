@@ -15,15 +15,14 @@
 
 package org.masjidku.principal.report.keuangan;
 
+import java.util.ServiceLoader;
+import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
 import org.masjidku.MainApp;
-import org.masjidku.model.accounting.DaoFunctions;
-import org.masjidku.model.accounting.tpa.TpaKeluar;
-import org.masjidku.model.accounting.tpa.TpaKeluarDao;
-import org.masjidku.model.accounting.tpa.TpaMasuk;
-import org.masjidku.model.accounting.tpa.TpaMasukDao;
+import org.masjidku.accounting.client.model.tpa.TpaKeluar;
+import org.masjidku.accounting.client.model.tpa.TpaMasuk;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -60,9 +59,9 @@ public class TpaReport implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        TpaMasukDao tpamdao= new TpaMasukDao();
-        TpaKeluarDao tpakdao = new TpaKeluarDao();
-        DaoFunctions df = new DaoFunctions();
+        TpaMasukService tpamdao = ServiceLoader.load(TpaMasukService.class).findFirst().orElseThrow();
+        TpaKeluarService tpakdao = ServiceLoader.load(TpaKeluarService.class).findFirst().orElseThrow();
+        AccountingFunctionsService df = ServiceLoader.load(AccountingFunctionsService.class).findFirst().orElseThrow();
 
         try {
             if (tpamdao.getConnection() && tpakdao.getConnection() && df.getConnection()) {

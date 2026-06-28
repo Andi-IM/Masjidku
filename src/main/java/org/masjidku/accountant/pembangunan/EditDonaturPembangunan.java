@@ -15,14 +15,15 @@
 
 package org.masjidku.accountant.pembangunan;
 
+import java.util.ServiceLoader;
+import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.accounting.pembangunan.DonasiPembangunan;
-import org.masjidku.model.accounting.pembangunan.DonasiPembangunanDao;
+import org.masjidku.accounting.client.model.pembangunan.DonasiPembangunan;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -88,7 +89,7 @@ public class EditDonaturPembangunan {
                 donatur = new DonasiPembangunan(nama, jumlah, tanggal, operator);
             }
 
-            DonasiPembangunanDao dao = new DonasiPembangunanDao();
+            DonasiPembangunanService dao = ServiceLoader.load(DonasiPembangunanService.class).findFirst().orElseThrow();
             if (dao.getConnection()) {
                 try {
                     if (dao.isDonaturExist(donatur.getId())) {

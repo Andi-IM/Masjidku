@@ -15,15 +15,14 @@
 
 package org.masjidku.accountant;
 
+import java.util.ServiceLoader;
+import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
 import org.masjidku.MainApp;
-import org.masjidku.model.accounting.DaoFunctions;
-import org.masjidku.model.accounting.pembangunan.DonasiPembangunan;
-import org.masjidku.model.accounting.pembangunan.DonasiPembangunanDao;
-import org.masjidku.model.accounting.pembangunan.Pembangunan;
-import org.masjidku.model.accounting.pembangunan.PembangunanDao;
+import org.masjidku.accounting.client.model.pembangunan.DonasiPembangunan;
+import org.masjidku.accounting.client.model.pembangunan.Pembangunan;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -60,9 +59,9 @@ public class AccountantPembangunan implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        PembangunanDao pbDao = new PembangunanDao();
-        DonasiPembangunanDao dpDao = new DonasiPembangunanDao();
-        DaoFunctions df = new DaoFunctions();
+        PembangunanService pbDao = ServiceLoader.load(PembangunanService.class).findFirst().orElseThrow();
+        DonasiPembangunanService dpDao = ServiceLoader.load(DonasiPembangunanService.class).findFirst().orElseThrow();
+        AccountingFunctionsService df = ServiceLoader.load(AccountingFunctionsService.class).findFirst().orElseThrow();
 
         try {
             if (pbDao.getConnection() && dpDao.getConnection() && df.getConnection()) {

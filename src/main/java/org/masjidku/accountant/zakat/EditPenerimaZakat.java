@@ -15,14 +15,15 @@
 
 package org.masjidku.accountant.zakat;
 
+import java.util.ServiceLoader;
+import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.accounting.zakat.ZakatKeluar;
-import org.masjidku.model.accounting.zakat.ZakatKeluarDao;
+import org.masjidku.accounting.client.model.zakat.ZakatKeluar;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -95,7 +96,7 @@ public class EditPenerimaZakat {
                 penerima = new ZakatKeluar(nama, jumlah, tanggal, operator);
             }
 
-            ZakatKeluarDao dao = new ZakatKeluarDao();
+            ZakatKeluarService dao = ServiceLoader.load(ZakatKeluarService.class).findFirst().orElseThrow();
             if (dao.getConnection()) {
                 try {
                     if (dao.isDataExist(penerima.getId())) {

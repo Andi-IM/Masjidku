@@ -15,6 +15,8 @@
 
 package org.masjidku.principal.report.keuangan.tpa;
 
+import java.util.ServiceLoader;
+import org.masjidku.accounting.client.service.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,8 +25,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.MainApp;
-import org.masjidku.model.accounting.tpa.TpaKeluar;
-import org.masjidku.model.accounting.tpa.TpaKeluarDao;
+import org.masjidku.accounting.client.model.tpa.TpaKeluar;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -60,7 +61,7 @@ public class DataPembayaranTpa implements Initializable {
      * @return Observable List
      */
     private ObservableList<TpaKeluar> getDataTpa() {
-        TpaKeluarDao dao = new TpaKeluarDao();
+        TpaKeluarService dao = ServiceLoader.load(TpaKeluarService.class).findFirst().orElseThrow();
         if (dao.getConnection()) {
             try {
                 dataTpa.addAll(dao.getAll());

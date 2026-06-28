@@ -15,15 +15,14 @@
 
 package org.masjidku.principal.report.keuangan;
 
+import java.util.ServiceLoader;
+import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
 import org.masjidku.MainApp;
-import org.masjidku.model.accounting.DaoFunctions;
-import org.masjidku.model.accounting.operasional.DonasiOperasional;
-import org.masjidku.model.accounting.operasional.DonasiOperationalDao;
-import org.masjidku.model.accounting.operasional.Operasional;
-import org.masjidku.model.accounting.operasional.OperationalDao;
+import org.masjidku.accounting.client.model.operasional.DonasiOperasional;
+import org.masjidku.accounting.client.model.operasional.Operasional;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -60,9 +59,9 @@ public class OperasionalReport implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        OperationalDao opDao = new OperationalDao();
-        DonasiOperationalDao doDao = new DonasiOperationalDao();
-        DaoFunctions df = new DaoFunctions();
+        OperationalService opDao = ServiceLoader.load(OperationalService.class).findFirst().orElseThrow();
+        DonasiOperationalService doDao = ServiceLoader.load(DonasiOperationalService.class).findFirst().orElseThrow();
+        AccountingFunctionsService df = ServiceLoader.load(AccountingFunctionsService.class).findFirst().orElseThrow();
 
         try {
             if (opDao.getConnection() && doDao.getConnection() && df.getConnection()) {

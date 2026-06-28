@@ -15,6 +15,8 @@
 
 package org.masjidku.principal.report.keuangan.anakyatim;
 
+import java.util.ServiceLoader;
+import org.masjidku.accounting.client.service.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,8 +25,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.MainApp;
-import org.masjidku.model.accounting.anakyatim.AnakYatim;
-import org.masjidku.model.accounting.anakyatim.AnakYatimDao;
+import org.masjidku.accounting.client.model.anakyatim.AnakYatim;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -63,7 +64,7 @@ public class DataPenerimaAnakYatim implements Initializable {
      * @return Observable List
      */
     private ObservableList<AnakYatim> getDataAnak() {
-        AnakYatimDao dao = new AnakYatimDao();
+        AnakYatimService dao = ServiceLoader.load(AnakYatimService.class).findFirst().orElseThrow();
         if (dao.getConnection()) {
             try {
                 dataAnak.addAll(dao.getAll());

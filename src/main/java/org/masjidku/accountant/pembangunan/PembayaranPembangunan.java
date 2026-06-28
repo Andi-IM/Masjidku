@@ -15,6 +15,8 @@
 
 package org.masjidku.accountant.pembangunan;
 
+import java.util.ServiceLoader;
+import org.masjidku.accounting.client.service.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -26,8 +28,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.accounting.pembangunan.Pembangunan;
-import org.masjidku.model.accounting.pembangunan.PembangunanDao;
+import org.masjidku.accounting.client.model.pembangunan.Pembangunan;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -72,7 +73,7 @@ public class PembayaranPembangunan implements Initializable {
      * @return Observable List
      */
     private ObservableList<Pembangunan> getDataPembangunan() {
-        PembangunanDao dao = new PembangunanDao();
+        PembangunanService dao = ServiceLoader.load(PembangunanService.class).findFirst().orElseThrow();
         if (dao.getConnection()) {
             try {
                 dataPembangunan.addAll(dao.getAll());
@@ -129,7 +130,7 @@ public class PembayaranPembangunan implements Initializable {
     public void onRemoveListener() {
         Pembangunan selectedItem = tablePembangunan.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
-            PembangunanDao dao = new PembangunanDao();
+            PembangunanService dao = ServiceLoader.load(PembangunanService.class).findFirst().orElseThrow();
             if (dao.getConnection()) {
                 try {
                     if (dao.isDataExist(selectedItem.getId())) {

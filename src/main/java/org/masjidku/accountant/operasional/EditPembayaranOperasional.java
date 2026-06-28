@@ -15,14 +15,15 @@
 
 package org.masjidku.accountant.operasional;
 
+import java.util.ServiceLoader;
+import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.accounting.operasional.Operasional;
-import org.masjidku.model.accounting.operasional.OperationalDao;
+import org.masjidku.accounting.client.model.operasional.Operasional;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -93,7 +94,7 @@ public class EditPembayaranOperasional {
                 model = new Operasional(nama, keterangan, jumlah, tanggal, operator);
             }
 
-            OperationalDao dao = new OperationalDao();
+            OperationalService dao = ServiceLoader.load(OperationalService.class).findFirst().orElseThrow();
             if (dao.getConnection()) {
                 try {
                     if (dao.isDataExist(model.getId())) {

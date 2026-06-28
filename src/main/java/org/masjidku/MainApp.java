@@ -17,6 +17,8 @@
 package org.masjidku;
 
 import  javafx.application.Application;
+import java.util.ServiceLoader;
+import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
@@ -31,11 +33,11 @@ import org.masjidku.accountant.tpa.*;
 import org.masjidku.accountant.zakat.*;
 import org.masjidku.admin.*;
 import org.masjidku.controller.*;
-import org.masjidku.model.accounting.anakyatim.*;
-import org.masjidku.model.accounting.operasional.*;
-import org.masjidku.model.accounting.pembangunan.*;
-import org.masjidku.model.accounting.tpa.*;
-import org.masjidku.model.accounting.zakat.*;
+import org.masjidku.accounting.client.model.anakyatim.*;
+import org.masjidku.accounting.client.model.operasional.*;
+import org.masjidku.accounting.client.model.pembangunan.*;
+import org.masjidku.accounting.client.model.tpa.*;
+import org.masjidku.accounting.client.model.zakat.*;
 import org.masjidku.model.kegiatan.*;
 import org.masjidku.model.session.*;
 import org.masjidku.model.user.*;

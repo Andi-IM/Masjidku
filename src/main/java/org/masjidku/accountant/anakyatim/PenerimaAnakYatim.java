@@ -15,6 +15,8 @@
 
 package org.masjidku.accountant.anakyatim;
 
+import java.util.ServiceLoader;
+import org.masjidku.accounting.client.service.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -26,8 +28,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.accounting.anakyatim.AnakYatim;
-import org.masjidku.model.accounting.anakyatim.AnakYatimDao;
+import org.masjidku.accounting.client.model.anakyatim.AnakYatim;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -72,7 +73,7 @@ public class PenerimaAnakYatim implements Initializable {
      * @return Observable List
      */
     private ObservableList<AnakYatim> getDataAnak() {
-        AnakYatimDao dao = new AnakYatimDao();
+        AnakYatimService dao = ServiceLoader.load(AnakYatimService.class).findFirst().orElseThrow();
         if (dao.getConnection()) {
             try {
                 dataAnak.addAll(dao.getAll());
@@ -129,7 +130,7 @@ public class PenerimaAnakYatim implements Initializable {
     public void onRemoveListener() {
         AnakYatim selectedItem = tableAnakyatim.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
-            AnakYatimDao dao = new AnakYatimDao();
+            AnakYatimService dao = ServiceLoader.load(AnakYatimService.class).findFirst().orElseThrow();
             if (dao.getConnection()) {
                 try {
                     if (dao.isAnakYatimExist(selectedItem.getId())) {

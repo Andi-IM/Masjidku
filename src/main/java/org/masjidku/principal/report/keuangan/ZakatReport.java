@@ -15,15 +15,14 @@
 
 package org.masjidku.principal.report.keuangan;
 
+import java.util.ServiceLoader;
+import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
 import org.masjidku.MainApp;
-import org.masjidku.model.accounting.DaoFunctions;
-import org.masjidku.model.accounting.zakat.ZakatKeluar;
-import org.masjidku.model.accounting.zakat.ZakatKeluarDao;
-import org.masjidku.model.accounting.zakat.ZakatMasuk;
-import org.masjidku.model.accounting.zakat.ZakatMasukDao;
+import org.masjidku.accounting.client.model.zakat.ZakatKeluar;
+import org.masjidku.accounting.client.model.zakat.ZakatMasuk;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -64,9 +63,9 @@ public class ZakatReport implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ZakatKeluarDao zkDao = new ZakatKeluarDao();
-        ZakatMasukDao zmDao = new ZakatMasukDao();
-        DaoFunctions df = new DaoFunctions();
+        ZakatKeluarService zkDao = ServiceLoader.load(ZakatKeluarService.class).findFirst().orElseThrow();
+        ZakatMasukService zmDao = ServiceLoader.load(ZakatMasukService.class).findFirst().orElseThrow();
+        AccountingFunctionsService df = ServiceLoader.load(AccountingFunctionsService.class).findFirst().orElseThrow();
 
         try {
             if (zkDao.getConnection() && zmDao.getConnection() && df.getConnection()) {

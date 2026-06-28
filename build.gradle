@@ -20,14 +20,23 @@ plugins {
     alias(libs.plugins.jlink)
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
-}
+
 
 allprojects {
     group 'org.masjidku'
     version '1.0'
+
+    apply plugin: 'java'
+    java {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+    }
 }
 
 repositories {
@@ -48,6 +57,14 @@ dependencies {
     // Database
     implementation libs.mysql.connector
 
+    // Submodules
+    runtimeOnly project(':masjidku-accounting')
+    implementation project(':masjidku-accounting-client')
+    implementation project(':masjidku-events')
+    implementation project(':masjidku-events-client')
+    implementation project(':masjidku-reporting')
+    implementation project(':masjidku-reporting-client')
+    
     // Reporting
     implementation libs.openpdf
     implementation(libs.jasperreports) {

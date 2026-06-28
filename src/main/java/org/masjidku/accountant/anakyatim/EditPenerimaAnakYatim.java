@@ -15,6 +15,8 @@
 
 package org.masjidku.accountant.anakyatim;
 
+import java.util.ServiceLoader;
+import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
@@ -22,8 +24,7 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.accounting.anakyatim.AnakYatim;
-import org.masjidku.model.accounting.anakyatim.AnakYatimDao;
+import org.masjidku.accounting.client.model.anakyatim.AnakYatim;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -97,7 +98,7 @@ public class EditPenerimaAnakYatim {
                 anakYatim = new AnakYatim(nama, usia, jumlah, tanggal, operator);
             }
 
-            AnakYatimDao dao = new AnakYatimDao();
+            AnakYatimService dao = ServiceLoader.load(AnakYatimService.class).findFirst().orElseThrow();
             if (dao.getConnection()) {
                 try {
                     if (dao.isAnakYatimExist(anakYatim.getId())) {

@@ -15,14 +15,15 @@
 
 package org.masjidku.accountant.operasional;
 
+import java.util.ServiceLoader;
+import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.accounting.operasional.DonasiOperasional;
-import org.masjidku.model.accounting.operasional.DonasiOperationalDao;
+import org.masjidku.accounting.client.model.operasional.DonasiOperasional;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -88,7 +89,7 @@ public class EditDonaturOperasional {
                 donatur = new DonasiOperasional(nama, jumlah, tanggal, operator);
             }
 
-            DonasiOperationalDao dao = new DonasiOperationalDao();
+            DonasiOperationalService dao = ServiceLoader.load(DonasiOperationalService.class).findFirst().orElseThrow();
             if (dao.getConnection()) {
                 try {
                     if (dao.isDonaturExist(donatur.getId())) {

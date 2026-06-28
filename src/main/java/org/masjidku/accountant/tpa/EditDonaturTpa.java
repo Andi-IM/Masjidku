@@ -15,14 +15,15 @@
 
 package org.masjidku.accountant.tpa;
 
+import java.util.ServiceLoader;
+import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.accounting.tpa.TpaMasuk;
-import org.masjidku.model.accounting.tpa.TpaMasukDao;
+import org.masjidku.accounting.client.model.tpa.TpaMasuk;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -89,7 +90,7 @@ public class EditDonaturTpa {
                 donatur = new TpaMasuk(nama, jumlah, tanggal, operator);
             }
 
-            TpaMasukDao dao = new TpaMasukDao();
+            TpaMasukService dao = ServiceLoader.load(TpaMasukService.class).findFirst().orElseThrow();
             if (dao.getConnection()) {
                 try {
                     if (dao.isDonaturExist(donatur.getId())) {

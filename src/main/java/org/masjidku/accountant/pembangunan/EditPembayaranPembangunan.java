@@ -15,14 +15,15 @@
 
 package org.masjidku.accountant.pembangunan;
 
+import java.util.ServiceLoader;
+import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.accounting.pembangunan.Pembangunan;
-import org.masjidku.model.accounting.pembangunan.PembangunanDao;
+import org.masjidku.accounting.client.model.pembangunan.Pembangunan;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -94,7 +95,7 @@ public class EditPembayaranPembangunan {
                 model = new Pembangunan(nama, keterangan, jumlah, tanggal, operator);
             }
 
-            PembangunanDao dao = new PembangunanDao();
+            PembangunanService dao = ServiceLoader.load(PembangunanService.class).findFirst().orElseThrow();
             if (dao.getConnection()) {
                 try {
                     if (dao.isDataExist(model.getId())) {

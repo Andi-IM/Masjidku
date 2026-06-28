@@ -15,6 +15,8 @@
 
 package org.masjidku.principal.report.keuangan.tpa;
 
+import java.util.ServiceLoader;
+import org.masjidku.accounting.client.service.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,8 +26,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.MainApp;
-import org.masjidku.model.accounting.tpa.TpaMasuk;
-import org.masjidku.model.accounting.tpa.TpaMasukDao;
+import org.masjidku.accounting.client.model.tpa.TpaMasuk;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -60,7 +61,7 @@ public class DataDonaturTpa implements Initializable {
      * @return Observable List
      */
     private ObservableList<TpaMasuk> getDonaturData() {
-        TpaMasukDao dao = new TpaMasukDao();
+        TpaMasukService dao = ServiceLoader.load(TpaMasukService.class).findFirst().orElseThrow();
         if (dao.getConnection()) {
             try {
                 donaturData.addAll(dao.getAll());

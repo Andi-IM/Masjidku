@@ -15,6 +15,8 @@
 
 package org.masjidku.accountant.tpa;
 
+import java.util.ServiceLoader;
+import org.masjidku.accounting.client.service.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -26,8 +28,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.accounting.tpa.TpaMasuk;
-import org.masjidku.model.accounting.tpa.TpaMasukDao;
+import org.masjidku.accounting.client.model.tpa.TpaMasuk;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -70,7 +71,7 @@ public class DonaturTpa implements Initializable {
      * @return Observable List
      */
     private ObservableList<TpaMasuk> getDonaturData() {
-        TpaMasukDao dao = new TpaMasukDao();
+        TpaMasukService dao = ServiceLoader.load(TpaMasukService.class).findFirst().orElseThrow();
         if (dao.getConnection()) {
             try {
                 donaturData.addAll(dao.getAll());
@@ -113,7 +114,7 @@ public class DonaturTpa implements Initializable {
     public void onRemoveListener() {
         TpaMasuk selectedItem = tableTpa.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
-            TpaMasukDao dao = new TpaMasukDao();
+            TpaMasukService dao = ServiceLoader.load(TpaMasukService.class).findFirst().orElseThrow();
             if (dao.getConnection()) {
                 try {
                     if (dao.isDonaturExist(selectedItem.getId())) {

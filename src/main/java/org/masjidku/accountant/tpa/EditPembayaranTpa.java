@@ -15,14 +15,15 @@
 
 package org.masjidku.accountant.tpa;
 
+import java.util.ServiceLoader;
+import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.accounting.tpa.TpaKeluar;
-import org.masjidku.model.accounting.tpa.TpaKeluarDao;
+import org.masjidku.accounting.client.model.tpa.TpaKeluar;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -94,7 +95,7 @@ public class EditPembayaranTpa {
                 model = new TpaKeluar(nama, keterangan, jumlah, tanggal, operator);
             }
 
-            TpaKeluarDao dao = new TpaKeluarDao();
+            TpaKeluarService dao = ServiceLoader.load(TpaKeluarService.class).findFirst().orElseThrow();
             if (dao.getConnection()) {
                 try {
                     if (dao.isDataExist(model.getId())) {

@@ -15,6 +15,8 @@
 
 package org.masjidku.principal.report.keuangan.anakyatim;
 
+import java.util.ServiceLoader;
+import org.masjidku.accounting.client.service.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,8 +25,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.MainApp;
-import org.masjidku.model.accounting.anakyatim.DonasiAYatim;
-import org.masjidku.model.accounting.anakyatim.DonasiAYatimDao;
+import org.masjidku.accounting.client.model.anakyatim.DonasiAYatim;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -60,7 +61,7 @@ public class DataDonaturAnakYatim implements Initializable {
      * @return Observable List
      */
     private ObservableList<DonasiAYatim> getDonaturData() {
-        DonasiAYatimDao dao = new DonasiAYatimDao();
+        DonasiAYatimService dao = ServiceLoader.load(DonasiAYatimService.class).findFirst().orElseThrow();
         if (dao.getConnection()) {
             try {
                 donaturData.addAll(dao.getAll());

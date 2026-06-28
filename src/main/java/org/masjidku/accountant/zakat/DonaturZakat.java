@@ -15,6 +15,8 @@
 
 package org.masjidku.accountant.zakat;
 
+import java.util.ServiceLoader;
+import org.masjidku.accounting.client.service.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -26,8 +28,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.accounting.zakat.ZakatMasuk;
-import org.masjidku.model.accounting.zakat.ZakatMasukDao;
+import org.masjidku.accounting.client.model.zakat.ZakatMasuk;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -79,7 +80,7 @@ public class DonaturZakat implements Initializable {
      * @return Observable List
      */
     private ObservableList<ZakatMasuk> getDonaturData() {
-        ZakatMasukDao dao = new ZakatMasukDao();
+        ZakatMasukService dao = ServiceLoader.load(ZakatMasukService.class).findFirst().orElseThrow();
         if (dao.getConnection()) {
             try {
                 donaturData.addAll(dao.getAll());
@@ -113,7 +114,7 @@ public class DonaturZakat implements Initializable {
     public void onRemoveListener() {
         ZakatMasuk selectedItem = zakatTable.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
-            ZakatMasukDao dao = new ZakatMasukDao();
+            ZakatMasukService dao = ServiceLoader.load(ZakatMasukService.class).findFirst().orElseThrow();
             if (dao.getConnection()) {
                 try {
                     if (dao.isDonaturExist(selectedItem.getId())) {

@@ -27,7 +27,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
 import org.masjidku.model.user.User;
-import org.masjidku.model.user.UserDao;
+import org.masjidku.service.UserService;
+import org.masjidku.service.impl.UserServiceImpl;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -123,7 +124,7 @@ public class UserLists implements Initializable {
      * @return Observable List
      */
     private ObservableList<User> getUserData() {
-        UserDao dao = new UserDao();
+        UserService dao = new UserServiceImpl();
         if (dao.getConnection()){
             try {
                 userData.addAll(dao.getAll());
@@ -141,7 +142,7 @@ public class UserLists implements Initializable {
     public void onRemoveListener() {
         User selectedUser = userTable.getSelectionModel().getSelectedItem();
         if (selectedUser != null){
-            UserDao dao = new UserDao();
+            UserService dao = new UserServiceImpl();
             if (dao.getConnection()){
                 try {
                     if (dao.isUserExist(selectedUser.getUserId())){
@@ -167,7 +168,7 @@ public class UserLists implements Initializable {
     public void onResetListener() {
         User selectedUser = userTable.getSelectionModel().getSelectedItem();
         if (selectedUser != null){
-            UserDao dao = new UserDao();
+            UserService dao = new UserServiceImpl();
             if (dao.getConnection()){
                 try{
                     if (dao.isUserExist(selectedUser.getUserId())) {

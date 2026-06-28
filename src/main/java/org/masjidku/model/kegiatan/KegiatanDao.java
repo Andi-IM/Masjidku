@@ -15,10 +15,12 @@
 
 package org.masjidku.model.kegiatan;
 
+import java.util.ServiceLoader;
+import org.masjidku.accounting.client.service.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.masjidku.model.Dao;
-import org.masjidku.model.accounting.anakyatim.AnakYatim;
+import org.masjidku.accounting.client.model.anakyatim.AnakYatim;
 
 import java.sql.SQLException;
 

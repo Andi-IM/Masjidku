@@ -15,14 +15,15 @@
 
 package org.masjidku.accountant.anakyatim;
 
+import java.util.ServiceLoader;
+import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.accounting.anakyatim.DonasiAYatim;
-import org.masjidku.model.accounting.anakyatim.DonasiAYatimDao;
+import org.masjidku.accounting.client.model.anakyatim.DonasiAYatim;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -79,7 +80,7 @@ public class EditDonaturAnakYatim {
                 donatur = new DonasiAYatim(nama, jumlah, tanggal, operator);
             }
 
-            DonasiAYatimDao dao = new DonasiAYatimDao();
+            DonasiAYatimService dao = ServiceLoader.load(DonasiAYatimService.class).findFirst().orElseThrow();
             if (dao.getConnection()) {
                 try {
                     if (dao.isDonaturExist(donatur.getId())) {

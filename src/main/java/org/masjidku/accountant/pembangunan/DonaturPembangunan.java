@@ -15,6 +15,8 @@
 
 package org.masjidku.accountant.pembangunan;
 
+import java.util.ServiceLoader;
+import org.masjidku.accounting.client.service.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -26,8 +28,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.accounting.pembangunan.DonasiPembangunan;
-import org.masjidku.model.accounting.pembangunan.DonasiPembangunanDao;
+import org.masjidku.accounting.client.model.pembangunan.DonasiPembangunan;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -71,7 +72,7 @@ public class DonaturPembangunan implements Initializable {
      * @return Observable List
      */
     private ObservableList<DonasiPembangunan> getDonaturData() {
-        DonasiPembangunanDao dao = new DonasiPembangunanDao();
+        DonasiPembangunanService dao = ServiceLoader.load(DonasiPembangunanService.class).findFirst().orElseThrow();
         if (dao.getConnection()) {
             try {
                 donaturData.addAll(dao.getAll());
@@ -122,7 +123,7 @@ public class DonaturPembangunan implements Initializable {
     public void onRemoveListener() {
         DonasiPembangunan selectedItem = tablePembangunan.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
-            DonasiPembangunanDao dao = new DonasiPembangunanDao();
+            DonasiPembangunanService dao = ServiceLoader.load(DonasiPembangunanService.class).findFirst().orElseThrow();
             if (dao.getConnection()) {
                 try {
                     if (dao.isDonaturExist(selectedItem.getId())) {

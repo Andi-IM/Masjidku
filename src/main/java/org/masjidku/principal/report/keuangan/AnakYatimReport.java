@@ -15,15 +15,14 @@
 
 package org.masjidku.principal.report.keuangan;
 
+import java.util.ServiceLoader;
+import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
 import org.masjidku.MainApp;
-import org.masjidku.model.accounting.DaoFunctions;
-import org.masjidku.model.accounting.anakyatim.AnakYatim;
-import org.masjidku.model.accounting.anakyatim.AnakYatimDao;
-import org.masjidku.model.accounting.anakyatim.DonasiAYatim;
-import org.masjidku.model.accounting.anakyatim.DonasiAYatimDao;
+import org.masjidku.accounting.client.model.anakyatim.AnakYatim;
+import org.masjidku.accounting.client.model.anakyatim.DonasiAYatim;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -53,9 +52,9 @@ public class AnakYatimReport implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        AnakYatimDao ayDao = new AnakYatimDao();
-        DonasiAYatimDao dayDao = new DonasiAYatimDao();
-        DaoFunctions df = new DaoFunctions();
+        AnakYatimService ayDao = ServiceLoader.load(AnakYatimService.class).findFirst().orElseThrow();
+        DonasiAYatimService dayDao = ServiceLoader.load(DonasiAYatimService.class).findFirst().orElseThrow();
+        AccountingFunctionsService df = ServiceLoader.load(AccountingFunctionsService.class).findFirst().orElseThrow();
 
         try {
             if (ayDao.getConnection() && dayDao.getConnection() && df.getConnection()) {
