@@ -19,6 +19,7 @@ tasks.withType<JavaCompile> {
 }
 
 dependencies {
+    implementation(project(":masjidku-common"))
     implementation(project(":masjidku-reporting-client"))
     implementation(libs.openpdf)
     implementation(libs.jasperreports) {

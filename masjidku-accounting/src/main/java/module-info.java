@@ -1,5 +1,6 @@
 module org.masjidku.accounting {
     requires java.sql;
+    requires org.masjidku.common;
     requires javafx.base;
     requires org.masjidku.accounting.client;
 

@@ -17,6 +17,7 @@ package org.masjidku.accounting.dao.base;
 
 
 
+import org.masjidku.util.db.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

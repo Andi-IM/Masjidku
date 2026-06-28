@@ -17,5 +17,6 @@ javafx {
 }
 
 dependencies {
+    implementation(project(":masjidku-common"))
     implementation(project(":masjidku-accounting-client"))
 }

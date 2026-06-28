@@ -8,7 +8,7 @@ import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
 import org.masjidku.reporting.client.service.ReportService;
-import org.masjidku.reporting.util.DatabaseConnection;
+import org.masjidku.util.db.DatabaseConnection;
 
 import java.io.InputStream;
 import java.sql.Connection;

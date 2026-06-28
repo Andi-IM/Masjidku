@@ -3,6 +3,7 @@ open module main {
     requires javafx.fxml;
     requires javafx.base;
     requires java.sql;
+    requires org.masjidku.common;
     requires java.desktop;
     requires java.xml.bind;
 
@@ -15,7 +16,7 @@ open module main {
     exports org.masjidku.model;
     exports org.masjidku.model.user;
     
-    exports org.masjidku.util.db;
+    
     uses org.masjidku.accounting.client.service.AnakYatimService;
     uses org.masjidku.accounting.client.service.DonasiAYatimService;
     uses org.masjidku.accounting.client.service.DonasiOperationalService;

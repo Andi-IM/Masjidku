@@ -22,6 +22,7 @@ tasks.named<JavaCompile>("compileTestJava") {
 }
 
 dependencies {
+    implementation(project(":masjidku-common"))
     // Database
     implementation(libs.mysql.connector)
     implementation(libs.sqlite.jdbc)
