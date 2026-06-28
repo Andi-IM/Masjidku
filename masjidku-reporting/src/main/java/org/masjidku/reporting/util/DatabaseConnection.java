@@ -13,35 +13,34 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.util;
+package org.masjidku.reporting.util;
 
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.view.JasperViewer;
-
-import java.io.InputStream;
 import java.sql.Connection;
-import java.util.Map;
+import java.sql.SQLException;
 
-public abstract class ReportUtil {
-    private static JasperReport jreport;
-    private static JasperViewer jviewer;
-    private static JasperPrint jprint;
+/**
+ *  The MySQL Connection
+ *  using connection with http://localhost:3306
+ *
+ * @author Andi Irham
+ */
+public class DatabaseConnection {
+    public Connection dbLink;
 
-    public static void createReport(Connection connect, Map<String, Object> map, InputStream by){
+    public Connection getConnection(){
+        String dbName = "masjidku";
+        String url = "jdbc:mysql://127.0.0.1:3306/"+dbName;
+        String username = "root";
+        String password = ""; // using default password=root in github
+
         try {
-            jreport = (JasperReport) JRLoader.loadObject(by);
-            jprint = JasperFillManager.fillReport(jreport, map, connect);
-        } catch (JRException e) {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            dbLink = java.sql.DriverManager.getConnection(url, username, password);
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
+            e.getCause();
         }
-    }
-
-    public static void showReport(){
-        jviewer = new JasperViewer(jprint);
-        jviewer.setVisible(true);
+        return dbLink;
     }
 }
+

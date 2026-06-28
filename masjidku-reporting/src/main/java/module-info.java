@@ -1,13 +1,10 @@
-module org.masjidku.reporting.masjidkureporting {
-    requires javafx.controls;
-    requires javafx.fxml;
+module org.masjidku.reporting {
+    requires transitive org.masjidku.reporting.client;
+    requires java.sql;
+    requires jasperreports;
+    requires com.github.librepdf.openpdf;
+    requires java.desktop; // For JasperViewer (Swing)
 
-    requires org.controlsfx.controls;
-    requires com.dlsc.formsfx;
-    requires net.synedra.validatorfx;
-    requires org.kordamp.ikonli.javafx;
-    requires org.kordamp.bootstrapfx.core;
-
-    opens org.masjidku.reporting.masjidkureporting to javafx.fxml;
-    exports org.masjidku.reporting.masjidkureporting;
+    provides org.masjidku.reporting.client.service.ReportService 
+        with org.masjidku.reporting.service.impl.ReportServiceImpl;
 }

@@ -1,4 +1,4 @@
-module org.masjidku.events.masjidkuevents {
+module org.masjidku.events {
     requires javafx.controls;
     requires javafx.fxml;
 

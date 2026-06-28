@@ -65,11 +65,9 @@ dependencies {
     implementation project(':masjidku-reporting')
     implementation project(':masjidku-reporting-client')
     
-    // Reporting
-    implementation libs.openpdf
-    implementation(libs.jasperreports) {
-        exclude group: 'com.lowagie', module: 'itext'
-    }
+
+
+
 
     // XML Bind
     implementation libs.jaxb.api

@@ -5,10 +5,10 @@ open module main {
     requires java.sql;
     requires java.desktop;
     requires java.xml.bind;
-    requires jasperreports;
+
     requires mysql.connector.java;
     requires com.google.common;
-    requires com.github.librepdf.openpdf;
+
     requires org.masjidku.accounting.client;
 
     exports org.masjidku.model;
