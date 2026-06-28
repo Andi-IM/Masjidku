@@ -1,41 +1,22 @@
-/*
- * Copyright (c) 2021. Creative Commons Legal Code
- *
- *                            CC0 1.0 Universal
- *
- *                                CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
- *                                LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN
- *                                ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
- *                                INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
- *                                REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS
- *                                PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
- *                                THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
- *                                HEREUNDER.
- */
-
 package org.masjidku.accountant.anakyatim;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import org.masjidku.MainApp;
+import org.masjidku.accountant.BaseTableController;
 import org.masjidku.accounting.client.model.anakyatim.DonasiAYatim;
 import org.masjidku.accounting.client.service.DonasiAYatimService;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.net.URL;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
+import java.util.List;
 
-public class DonaturAnakYatim implements Initializable {
+public class DonaturAnakYatim extends BaseTableController<DonasiAYatim> {
     private static final Logger log = LoggerFactory.getLogger(DonaturAnakYatim.class);
     private final DonasiAYatimService dao = ServiceProvider.get(DonasiAYatimService.class);
 
@@ -54,39 +35,47 @@ public class DonaturAnakYatim implements Initializable {
 
     private MainApp mainApp;
 
-    // create some stage
-    @SuppressWarnings("unused")
-    private Stage dialogStage;
-
-    /**
-     * The data as an observable list of Donatur.
-     */
-    private final ObservableList<DonasiAYatim> donaturData =
-            FXCollections.observableArrayList();
-
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
-    
+    @Override
+    protected Logger getLogger() { return log; }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        tblAYMasuk.setItems(org.masjidku.util.AlertHelper.loadTableData(donaturData, dao::getAll, log));
+    protected TableView<DonasiAYatim> getTableView() { return tblAYMasuk; }
 
+    @Override
+    protected Button getBtnEdit() { return btnEdit; }
+
+    @Override
+    protected Button getBtnRemove() { return btnRemove; }
+
+    @Override
+    protected List<DonasiAYatim> fetchAllData() throws SQLException { return dao.getAll(); }
+
+    @Override
+    protected boolean checkIfExist(DonasiAYatim item) throws SQLException { return dao.isDonaturExist(item.getId()); }
+
+    @Override
+    protected void deleteItem(DonasiAYatim item) throws SQLException { dao.delete(item.getId()); }
+
+    @Override
+    protected void setupTableColumns() {
         donatur.setCellValueFactory(new PropertyValueFactory<>("donatur"));
         jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));
         tanggal.setCellValueFactory(new PropertyValueFactory<>("tanggal"));
     }
 
+    @Override
+    protected void handleEdit(DonasiAYatim item) {
+        mainApp.editDonaturAnakYatim(item);
+    }
 
     @FXML
     public void onLogoutClick() {
         mainApp.onLogoutAction();
     }
-
-    @FXML
-    public void onMouseClicked() { org.masjidku.util.AlertHelper.handleTableSelection(tblAYMasuk, btnEdit, btnRemove); }
 
     @FXML
     public void onCreateListener() {
@@ -96,39 +85,11 @@ public class DonaturAnakYatim implements Initializable {
 
     @FXML
     public void onEditListener() {
-        DonasiAYatim selectedItem = tblAYMasuk.getSelectionModel().getSelectedItem();
-        if (selectedItem != null) {
-            mainApp.editDonaturAnakYatim(selectedItem);
-        } else {
-            org.masjidku.util.AlertHelper.alertError(dialogStage, "Null Error", "Data tidak ditemukan!");
-        }
+        super.onEditAction();
     }
 
-    @FXML
-    public void onRemoveListener() {
-        DonasiAYatim selectedItem = tblAYMasuk.getSelectionModel().getSelectedItem();
-        if (selectedItem != null) {
-            try {
-                if (dao.isDonaturExist(selectedItem.getId())) {
-                    tblAYMasuk.getItems().remove(selectedItem);
-                    dao.delete(selectedItem.getId());
-                    org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "User dihapus!");
-                } else {
-                    org.masjidku.util.AlertHelper.alertError(dialogStage, "SQL Error", "User tidak ditemukan!");
-                }
-            } catch (SQLException e) {
-                log.error("An error occurred", e);
-            }
-        }
-    }
-
-    /**
-     * Navigate back to home.
-     */
     @FXML
     public void gotoHome() {
         mainApp.showAnakYatim();
     }
-
-
 }
