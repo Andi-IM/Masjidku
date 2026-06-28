@@ -16,7 +16,6 @@ open module main {
     exports org.masjidku.model.user;
     
     exports org.masjidku.util.db;
-    exports org.masjidku.util.date;
     uses org.masjidku.accounting.client.service.AnakYatimService;
     uses org.masjidku.accounting.client.service.DonasiAYatimService;
     uses org.masjidku.accounting.client.service.DonasiOperationalService;
