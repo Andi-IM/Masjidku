@@ -121,3 +121,4 @@ public class DonaturZakat extends org.masjidku.accountant.BaseTableController<Za
         super.onEditAction();
     }
 }
+

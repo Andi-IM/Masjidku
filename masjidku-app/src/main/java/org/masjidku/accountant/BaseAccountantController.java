@@ -39,3 +39,4 @@ public abstract class BaseAccountantController implements Initializable {
         txtTglPengeluaran.setText(tglPengeluaran);
     }
 }
+

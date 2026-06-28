@@ -122,3 +122,4 @@ public class PenerimaZakat extends org.masjidku.accountant.BaseTableController<Z
         super.onEditAction();
     }
 }
+

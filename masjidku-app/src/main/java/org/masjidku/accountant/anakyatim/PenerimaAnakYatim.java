@@ -126,3 +126,4 @@ usia.setCellValueFactory(new PropertyValueFactory<>("usia"));
         super.onEditAction();
     }
 }
+

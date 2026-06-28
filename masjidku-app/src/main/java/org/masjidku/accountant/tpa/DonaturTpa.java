@@ -97,3 +97,4 @@ public class DonaturTpa extends org.masjidku.accountant.BaseTableController<TpaM
 
     @FXML public void onEditListener() { super.onEditAction(); }
 }
+

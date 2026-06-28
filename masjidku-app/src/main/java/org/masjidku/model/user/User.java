@@ -35,7 +35,7 @@ public class User {
     /**
      * Filled Constructor
      * @param userId an user id
-     * @param username an user name
+     * @param username an username
      * @param jabatan user role
      * @param status user status
      * @param created_at first time create

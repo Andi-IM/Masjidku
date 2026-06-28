@@ -123,3 +123,4 @@ public class PembayaranTpa extends org.masjidku.accountant.BaseTableController<T
         super.onEditAction();
     }
 }
+

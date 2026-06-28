@@ -78,3 +78,4 @@ public abstract class BaseTableController<T> implements Initializable {
         }
     }
 }
+

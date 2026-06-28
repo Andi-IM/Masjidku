@@ -126,3 +126,4 @@ keterangan.setCellValueFactory(new PropertyValueFactory<>("keterangan"));
         super.onEditAction();
     }
 }
+
