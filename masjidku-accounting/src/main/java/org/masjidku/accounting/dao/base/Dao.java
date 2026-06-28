@@ -26,4 +26,35 @@ public abstract class Dao<T> extends DaoFactory {
     public abstract void save(T t) throws SQLException;
     public abstract void update(String[] params) throws SQLException;
     public abstract void delete(String id) throws SQLException;
+
+
+    protected void executeDelete(String query, String id) throws SQLException {
+        ps = con.prepareStatement(query);
+        ps.setString(1, id);
+        ps.executeUpdate();
+    }
+
+    protected boolean executeCheckExists(String query, String id) throws SQLException {
+        ps = con.prepareStatement(query);
+        ps.setString(1, id);
+        rs = ps.executeQuery();
+        return rs.next();
+    }
+
+    protected String executeGetTotal(String query) throws SQLException {
+        ps = con.prepareStatement(query);
+        rs = ps.executeQuery();
+        if (rs.next()) {
+            return rs.getString(1);
+        }
+        return null;
+    }
+
+    protected void executeUpdateQuery(String query, String... params) throws SQLException {
+        ps = con.prepareStatement(query);
+        for (int i = 0; i < params.length; i++) {
+            ps.setString(i + 1, params[i]);
+        }
+        ps.executeUpdate();
+    }
 }

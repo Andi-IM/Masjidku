@@ -23,7 +23,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
@@ -122,10 +121,10 @@ public class SecretaryUndanganForm implements Initializable {
             try {
                 if (tamuKegiatanService.isUndanganExist(model.getIdKegiatan())){
                     tamuKegiatanService.update(new String[]{model.getKeterangan(), model.getIdTamu(), model.getKegiatan(), model.getIdUndangan()});
-                    alertInfo("Success", "Data telah diubah!");
+                    org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "Data telah diubah!");
                 } else {
                     tamuKegiatanService.save(kegiatanDao.getIdByName(kegiatanform), tamuDao.getIdByName(namaform), model.getKeterangan(), operator);
-                    alertInfo("Success","Data telah ditambahkan!");
+                    org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success","Data telah ditambahkan!");
                 }
             } catch (SQLException throwables) {
                 log.error("An error occurred", throwables);
@@ -137,31 +136,5 @@ public class SecretaryUndanganForm implements Initializable {
     @FXML
     public void onLogoutClick() { mainApp.onLogoutAction(); }
 
-    /**
-     * Alert Error Builder
-     *
-     * @param header  header message
-     * @param content content message
-     */
-    @SuppressWarnings("SameParameterValue")
-    private void alertInfo(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.initOwner(dialogStage);
-        alert.setTitle("Prompt");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
 
-        alert.showAndWait();
-    }
-
-    @SuppressWarnings("SameParameterValue")
-    private void alertError(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.initOwner(dialogStage);
-        alert.setTitle("Prompt");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-
-        alert.showAndWait();
-    }
 }

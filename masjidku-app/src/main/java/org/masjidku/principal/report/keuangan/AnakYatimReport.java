@@ -15,18 +15,18 @@
 
 package org.masjidku.principal.report.keuangan;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.masjidku.util.ServiceProvider;
-import java.util.ServiceLoader;
-import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
 import org.masjidku.MainApp;
 import org.masjidku.accounting.client.model.anakyatim.AnakYatim;
 import org.masjidku.accounting.client.model.anakyatim.DonasiAYatim;
+import org.masjidku.accounting.client.service.AccountingFunctionsService;
+import org.masjidku.accounting.client.service.AnakYatimService;
+import org.masjidku.accounting.client.service.DonasiAYatimService;
+import org.masjidku.util.ServiceProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -80,14 +80,22 @@ public class AnakYatimReport implements Initializable {
     }
 
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
 
     @FXML
-    public void laporanDonasiAnakYatim() { mainApp.showAnakYatimMasuk();  }
+    public void laporanDonasiAnakYatim() {
+        mainApp.showAnakYatimMasuk();
+    }
 
     @FXML
-    public void laporanDanaAnakYatim() { mainApp.showAnakYatimKeluar(); }
+    public void laporanDanaAnakYatim() {
+        mainApp.showAnakYatimKeluar();
+    }
 
     @FXML
-    public void gotoHome() { mainApp.showData(); }
+    public void gotoHome() {
+        mainApp.showData();
+    }
 }

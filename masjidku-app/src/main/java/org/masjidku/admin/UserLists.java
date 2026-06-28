@@ -22,7 +22,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -149,9 +148,9 @@ public class UserLists implements Initializable {
                 if (dao.isUserExist(selectedUser.getUserId())){
                     userTable.getItems().remove(selectedUser);
                     dao.delete(selectedUser.getUserId());
-                    alertInfo("Success", "User dihapus!");
+                    org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "User dihapus!");
                 } else {
-                    alertError("SQL Error", "User tidak ditemukan!");
+                    org.masjidku.util.AlertHelper.alertError(dialogStage, "SQL Error", "User tidak ditemukan!");
                 }
             } catch (SQLException e) {
                 log.error("An error occurred", e);
@@ -172,16 +171,16 @@ public class UserLists implements Initializable {
                     if (dao.isReset(selectedUser.getUserId())) {
                         dao.reset(selectedUser.getUserId());
                     } else {
-                        alertError("User Error", "User telah melakukan reset password!");
+                        org.masjidku.util.AlertHelper.alertError(dialogStage, "User Error", "User telah melakukan reset password!");
                     }
                 } else {
-                    alertError("SQL Error","User tidak ditemukan!");
+                    org.masjidku.util.AlertHelper.alertError(dialogStage, "SQL Error","User tidak ditemukan!");
                 }
             } catch (SQLException e) {
                 log.error("An error occurred", e);
             }
         } else {
-            alertError("Offline","Database tidak terhubung!");
+            org.masjidku.util.AlertHelper.alertError(dialogStage, "Offline","Database tidak terhubung!");
         }
     }
 
@@ -194,41 +193,13 @@ public class UserLists implements Initializable {
         if (selectedUser != null){
             mainApp.showUserEditScene(selectedUser);
         } else {
-            alertError("Null Error", "User tidak ditemukan!");
+            org.masjidku.util.AlertHelper.alertError(dialogStage, "Null Error", "User tidak ditemukan!");
         }
     }
 
-    /**
-     * Alert Error Builder
-     * @param header header message
-     * @param content content message
-     */
-    @SuppressWarnings("SameParameterValue")
-    private void alertError(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.initOwner(dialogStage);
-        alert.setTitle("Prompt");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
+    
 
-        alert.showAndWait();
-    }
-
-    /**
-     * Alert Info Builder
-     * @param header header message
-     * @param content content message
-     */
-    @SuppressWarnings("SameParameterValue")
-    private void alertInfo(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.initOwner(dialogStage);
-        alert.setTitle("Prompt");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-
-        alert.showAndWait();
-    }
+    
 
     @FXML
     public void onMouseClicked() {

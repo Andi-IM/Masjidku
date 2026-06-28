@@ -82,42 +82,18 @@ public class TamuDao extends Dao<Tamu> implements TamuService {
 
     @Override
     public void save(Tamu tamu) throws SQLException {
-        ps = con.prepareStatement(QUERY_3);
-
-        ps.setString(1, tamu.getIdTamu());
-        ps.setString(2, tamu.getNama());
-        ps.setString(3, tamu.getAlamat());
-        ps.setString(4, tamu.getNotelp());
-        ps.setString(5, tamu.getOperator());
-        ps.executeUpdate();
+        executeUpdateQuery(QUERY_3, tamu.getIdTamu(), tamu.getNama(), tamu.getAlamat(), tamu.getNotelp(), tamu.getOperator());
     }
 
     @Override
     public void update(String[] params) throws SQLException {
-        ps = con.prepareStatement(QUERY_4);
-
-        ps.setString(1, params[0]);
-        ps.setString(2, params[1]);
-        ps.setString(3, params[2]);
-        ps.setString(4, params[3]);
-        ps.setString(5, params[4]);
-        ps.executeUpdate();
+        executeUpdateQuery(QUERY_4, params[0], params[1], params[2], params[3], params[4]);
     }
 
     @Override
-    public void delete(String id) throws SQLException {
-        ps = con.prepareStatement(QUERY_5);
-        ps.setString(1, id);
-        ps.executeUpdate();
-    }
+    public void delete(String id) throws SQLException { executeDelete(QUERY_5, id); }
 
-    public boolean isTamuExist(String id) throws SQLException {
-        ps = con.prepareStatement(QUERY_6);
-        ps.setString(1, id);
-        rs = ps.executeQuery();
-
-        return rs.next();
-    }
+    public boolean isTamuExist(String id) throws SQLException { return executeCheckExists(QUERY_6, id); }
 
     public ObservableList<String> getAllTamuName() throws SQLException {
         ObservableList<String> namaTamu = FXCollections.observableArrayList();

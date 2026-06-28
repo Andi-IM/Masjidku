@@ -15,12 +15,6 @@
 
 package org.masjidku.principal.report.keuangan.zakat;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.masjidku.util.ServiceProvider;
-import java.util.ServiceLoader;
-import org.masjidku.accounting.client.service.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -30,6 +24,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.MainApp;
 import org.masjidku.accounting.client.model.zakat.ZakatKeluar;
+import org.masjidku.accounting.client.service.ZakatKeluarService;
+import org.masjidku.util.ServiceProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -85,11 +83,16 @@ public class DataPenerimaZakat implements Initializable {
     }
 
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
 
     @FXML
-    public void showReport() {  }
+    public void showReport() {
+    }
 
     @FXML
-    public void gotoHome() { mainApp.showZakatData(); }
+    public void gotoHome() {
+        mainApp.showZakatData();
+    }
 }

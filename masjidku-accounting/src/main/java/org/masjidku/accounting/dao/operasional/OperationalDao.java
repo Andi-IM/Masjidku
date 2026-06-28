@@ -80,43 +80,18 @@ public class OperationalDao extends Dao<Operasional> {
 
     @Override
     public void save(Operasional operasional) throws SQLException {
-        ps = con.prepareStatement(QUERY_3);
-
-        ps.setString(1, operasional.getId());
-        ps.setString(2, operasional.getTujuan());
-        ps.setString(3, operasional.getKeterangan());
-        ps.setString(4, operasional.getJumlah());
-        ps.setString(5, operasional.getTanggal());
-        ps.setString(6, operasional.getOperator());
-        ps.executeUpdate();
+        executeUpdateQuery(QUERY_3, operasional.getId(), operasional.getTujuan(), operasional.getKeterangan(), operasional.getJumlah(), operasional.getTanggal(), operasional.getOperator());
     }
 
     @Override
     public void update(String[] params) throws SQLException {
-        ps = con.prepareStatement(QUERY_4);
-        ps.setString(1, params[1]);
-        ps.setString(2, params[2]);
-        ps.setString(3, params[3]);
-        ps.setString(4, params[4]);
-        ps.setString(5, params[5]);
-        ps.setString(6, params[0]);
-        ps.executeUpdate();
+        executeUpdateQuery(QUERY_4, params[1], params[2], params[3], params[4], params[5], params[0]);
     }
 
     @Override
-    public void delete(String id) throws SQLException {
-        ps = con.prepareStatement(QUERY_5);
-        ps.setString(1, id);
-        ps.executeUpdate();
-    }
+    public void delete(String id) throws SQLException { executeDelete(QUERY_5, id); }
 
-    public boolean isDataExist(String id) throws SQLException {
-        ps = con.prepareStatement(QUERY_6);
-        ps.setString(1, id);
-        rs = ps.executeQuery();
-
-        return rs.next();
-    }
+    public boolean isDataExist(String id) throws SQLException { return executeCheckExists(QUERY_6, id); }
 
     public Operasional getLastRecord() throws SQLException {
         ps = con.prepareStatement(QUERY_7);
@@ -136,13 +111,5 @@ public class OperationalDao extends Dao<Operasional> {
         return model;
     }
 
-    public String getTotalIncome() throws SQLException {
-        ps = con.prepareStatement(QUERY_8);
-        rs = ps.executeQuery();
-
-        if (rs.next()){
-            return rs.getString(1);
-        }
-        return null;
-    }
+    public String getTotalIncome() throws SQLException { return executeGetTotal(QUERY_8); }
 }

@@ -14,11 +14,6 @@
  */
 package org.masjidku.principal.report.keuangan.zakat;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.masjidku.util.ServiceProvider;
-import java.util.ServiceLoader;
-import org.masjidku.accounting.client.service.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -29,9 +24,15 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
 import org.masjidku.accounting.client.model.zakat.ZakatMasuk;
+import org.masjidku.accounting.client.service.ZakatMasukService;
+import org.masjidku.util.ServiceProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+
 public class DataDonaturZakat implements Initializable {
     private static final Logger log = LoggerFactory.getLogger(DataDonaturZakat.class);
     private final ZakatMasukService dao = ServiceProvider.get(ZakatMasukService.class);
@@ -54,9 +55,11 @@ public class DataDonaturZakat implements Initializable {
     // create some stage
     @SuppressWarnings("unused")
     private Stage dialogStage;
+
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         zakatTable.setItems(getDonaturData());
@@ -65,6 +68,7 @@ public class DataDonaturZakat implements Initializable {
         tanggal.setCellValueFactory(new PropertyValueFactory<>("tanggal"));
         operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
     }
+
     /**
      * get User Data from DAO.
      *
@@ -78,10 +82,18 @@ public class DataDonaturZakat implements Initializable {
         }
         return donaturData;
     }
+
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
+
     @FXML
-    public void showReport() { }
+    public void showReport() {
+    }
+
     @FXML
-    public void gotoHome() { mainApp.showZakatData(); }
+    public void gotoHome() {
+        mainApp.showZakatData();
+    }
 }

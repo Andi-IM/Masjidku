@@ -3,12 +3,9 @@ import org.masjidku.accounting.client.service.OperationalService;
 import org.masjidku.accounting.dao.operasional.OperationalDao;
 import javafx.collections.ObservableList;
 import java.sql.SQLException;
-import org.masjidku.accounting.client.model.*;
-import org.masjidku.accounting.client.model.anakyatim.*;
+
 import org.masjidku.accounting.client.model.operasional.*;
-import org.masjidku.accounting.client.model.pembangunan.*;
-import org.masjidku.accounting.client.model.tpa.*;
-import org.masjidku.accounting.client.model.zakat.*;
+
 public class OperationalServiceImpl implements OperationalService {
     private final OperationalDao dao = new OperationalDao();
     @Override

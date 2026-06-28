@@ -20,7 +20,6 @@ import org.slf4j.LoggerFactory;
 
 import org.masjidku.util.ServiceProvider;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -93,10 +92,10 @@ public class SecretaryKegiatanForm {
                                 operator,
                                 kegiatan.getIdKegiatan()
                         });
-                        alertInfo("Success", "Kegiatan telah diperbarui!");
+                        org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "Kegiatan telah diperbarui!");
                     } else {
                         dao.save(kegiatan);
-                        alertInfo("Success", "Kegiatan telah ditambahkan!");
+                        org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "Kegiatan telah ditambahkan!");
                     }
                     mainApp.showKegiatan();
                 } catch (SQLException e) {
@@ -104,7 +103,7 @@ public class SecretaryKegiatanForm {
                 }
             
         } else {
-            alertError("Error", "Data belum lengkap!");
+            org.masjidku.util.AlertHelper.alertError(dialogStage, "Error", "Data belum lengkap!");
         }
     }
 
@@ -129,31 +128,5 @@ public class SecretaryKegiatanForm {
         mainApp.onLogoutAction();
     }
 
-    /**
-     * Alert Error Builder
-     *
-     * @param header  header message
-     * @param content content message
-     */
-    @SuppressWarnings("SameParameterValue")
-    private void alertInfo(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.initOwner(dialogStage);
-        alert.setTitle("Prompt");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
 
-        alert.showAndWait();
-    }
-
-    @SuppressWarnings("SameParameterValue")
-    private void alertError(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.initOwner(dialogStage);
-        alert.setTitle("Prompt");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-
-        alert.showAndWait();
-    }
 }

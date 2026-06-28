@@ -78,33 +78,16 @@ public class TpaMasukDao extends Dao<TpaMasuk> {
 
     @Override
     public void save(TpaMasuk tpaMasuk) throws SQLException {
-        ps = con.prepareStatement(QUERY_3);
-
-        ps.setString(1, tpaMasuk.getId());
-        ps.setString(2, tpaMasuk.getDonatur());
-        ps.setString(3, tpaMasuk.getJumlah());
-        ps.setString(4, tpaMasuk.getTanggal());
-        ps.setString(5, tpaMasuk.getOperator());
-        ps.executeUpdate();
+        executeUpdateQuery(QUERY_3, tpaMasuk.getId(), tpaMasuk.getDonatur(), tpaMasuk.getJumlah(), tpaMasuk.getTanggal(), tpaMasuk.getOperator());
     }
 
     @Override
     public void update(String[] params) throws SQLException {
-        ps = con.prepareStatement(QUERY_4);
-        ps.setString(1, params[1]);
-        ps.setString(2, params[2]);
-        ps.setString(3, params[3]);
-        ps.setString(4, params[4]);
-        ps.setString(5, params[0]);
-        ps.executeUpdate();
+        executeUpdateQuery(QUERY_4, params[1], params[2], params[3], params[4], params[0]);
     }
 
     @Override
-    public void delete(String id) throws SQLException {
-        ps = con.prepareStatement(QUERY_5);
-        ps.setString(1, id);
-        ps.executeUpdate();
-    }
+    public void delete(String id) throws SQLException { executeDelete(QUERY_5, id); }
 
     public TpaMasuk getLastRecord() throws SQLException {
         ps = con.prepareStatement(QUERY_6);
@@ -131,11 +114,5 @@ public class TpaMasukDao extends Dao<TpaMasuk> {
         return "0";
     }
 
-    public boolean isDonaturExist(String id) throws SQLException {
-        ps = con.prepareStatement(QUERY_8);
-        ps.setString(1, id);
-        rs = ps.executeQuery();
-
-        return rs.next();
-    }
+    public boolean isDonaturExist(String id) throws SQLException { return executeCheckExists(QUERY_8, id); }
 }

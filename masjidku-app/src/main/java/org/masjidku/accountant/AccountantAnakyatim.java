@@ -35,32 +35,43 @@ public class AccountantAnakyatim extends BaseAccountantController {
     private final AnakYatimService ayDao = ServiceProvider.get(AnakYatimService.class);
     private final DonasiAYatimService dayDao = ServiceProvider.get(DonasiAYatimService.class);
     private MainApp mainApp;
+
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
             AnakYatim penerima = ayDao.getLastRecord();
             DonasiAYatim pemberi = dayDao.getLastRecord();
-            
+
             updateDashboardSummary(
-                pemberi.getJumlah(), // Pemasukan
-                penerima.getJumlah(), // Pengeluaran
-                dayDao.getTotalIncome(), // Total Pemasukan
-                ayDao.getTotalOutcome(), // Total Pengeluaran
-                df.getInfakYatimBalance(), // Saldo
-                pemberi.getTanggal(), // Tgl Pemasukan
-                penerima.getTanggal() // Tgl Pengeluaran
+                    pemberi.getJumlah(), // Pemasukan
+                    penerima.getJumlah(), // Pengeluaran
+                    dayDao.getTotalIncome(), // Total Pemasukan
+                    ayDao.getTotalOutcome(), // Total Pengeluaran
+                    df.getInfakYatimBalance(), // Saldo
+                    pemberi.getTanggal(), // Tgl Pemasukan
+                    penerima.getTanggal() // Tgl Pengeluaran
             );
         } catch (SQLException e) {
             log.error("An error occurred", e);
         }
     }
+
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
+
     @FXML
-    public void onKelolaDonasiAYatim() {  mainApp.showDonasiAYatim(); }
+    public void onKelolaDonasiAYatim() {
+        mainApp.showDonasiAYatim();
+    }
+
     @FXML
-    public void onKelolaDanaAYatim() { mainApp.showDaftarAnakYatim(); }
+    public void onKelolaDanaAYatim() {
+        mainApp.showDaftarAnakYatim();
+    }
 }

@@ -23,7 +23,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.MainApp;
 import org.masjidku.model.session.Session;
 import org.masjidku.model.session.UserSession;
-import org.masjidku.model.user.User;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 public class UserLogs implements Initializable {

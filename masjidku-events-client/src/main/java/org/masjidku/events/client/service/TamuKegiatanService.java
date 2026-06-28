@@ -8,7 +8,7 @@ public interface TamuKegiatanService {
 
     ObservableList<TamuKegiatan> getAll() throws java.sql.SQLException;
 
-    void save(TamuKegiatan model) throws java.sql.SQLException;
+    void save(TamuKegiatan model);
 
     void save(String idKegiatan, String idTamu, String keterangan, String opeartor) throws java.sql.SQLException;
 

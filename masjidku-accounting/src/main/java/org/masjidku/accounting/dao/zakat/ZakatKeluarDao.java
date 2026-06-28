@@ -78,34 +78,16 @@ public class ZakatKeluarDao extends Dao<ZakatKeluar> {
 
     @Override
     public void save(ZakatKeluar zakatKeluar) throws SQLException {
-        ps = con.prepareStatement(QUERY_3);
-
-        ps.setString(1, zakatKeluar.getId());
-        ps.setString(2, zakatKeluar.getTujuan());
-        ps.setString(2, zakatKeluar.getKeterangan());
-        ps.setString(3, zakatKeluar.getJumlah());
-        ps.setString(4, zakatKeluar.getTanggal());
-        ps.setString(5, zakatKeluar.getOperator());
-        ps.executeUpdate();
+        executeUpdateQuery(QUERY_3, zakatKeluar.getId(), zakatKeluar.getTujuan(), zakatKeluar.getKeterangan(), zakatKeluar.getJumlah(), zakatKeluar.getTanggal(), zakatKeluar.getOperator());
     }
 
     @Override
     public void update(String[] params) throws SQLException {
-        ps = con.prepareStatement(QUERY_4);
-        ps.setString(1, params[1]);
-        ps.setString(2, params[2]);
-        ps.setString(3, params[3]);
-        ps.setString(4, params[4]);
-        ps.setString(5, params[0]);
-        ps.executeUpdate();
+        executeUpdateQuery(QUERY_4, params[1], params[2], params[3], params[4], params[0]);
     }
 
     @Override
-    public void delete(String id) throws SQLException {
-        ps = con.prepareStatement(QUERY_5);
-        ps.setString(1, id);
-        ps.executeUpdate();
-    }
+    public void delete(String id) throws SQLException { executeDelete(QUERY_5, id); }
 
     public ZakatKeluar getLastRecord() throws SQLException {
         ps = con.prepareStatement(QUERY_6);
@@ -134,11 +116,5 @@ public class ZakatKeluarDao extends Dao<ZakatKeluar> {
         return "0";
     }
 
-    public boolean isDataExist(String id) throws SQLException {
-        ps = con.prepareStatement(QUERY_8);
-        ps.setString(1, id);
-        rs = ps.executeQuery();
-
-        return rs.next();
-    }
+    public boolean isDataExist(String id) throws SQLException { return executeCheckExists(QUERY_8, id); }
 }

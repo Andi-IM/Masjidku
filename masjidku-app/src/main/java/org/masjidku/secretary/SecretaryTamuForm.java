@@ -20,7 +20,6 @@ import org.slf4j.LoggerFactory;
 
 import org.masjidku.util.ServiceProvider;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -103,7 +102,7 @@ public class SecretaryTamuForm {
                                 operator,
                                 tamu.getIdTamu()
                         });
-                        alertInfo("Success","Tamu telah diupdate");
+                        org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success","Tamu telah diupdate");
                     } else {
                         dao.save(tamu);
                     }
@@ -112,7 +111,7 @@ public class SecretaryTamuForm {
                 }
             
     } else {
-        alertError("Error", "Data belum lengkap!");
+        org.masjidku.util.AlertHelper.alertError(dialogStage, "Error", "Data belum lengkap!");
     }
     }
 
@@ -125,31 +124,5 @@ public class SecretaryTamuForm {
         return false;
     }
 
-    /**
-     * Alert Error Builder
-     *
-     * @param header  header message
-     * @param content content message
-     */
-    @SuppressWarnings("SameParameterValue")
-    private void alertInfo(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.initOwner(dialogStage);
-        alert.setTitle("Prompt");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
 
-        alert.showAndWait();
-    }
-
-    @SuppressWarnings("SameParameterValue")
-    private void alertError(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.initOwner(dialogStage);
-        alert.setTitle("Prompt");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-
-        alert.showAndWait();
-    }
 }

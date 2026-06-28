@@ -75,18 +75,13 @@ public class User {
     }
 
     public Jabatan getJabatan() {
-        switch (this.jabatan) {
-            case "admin":
-                return admin;
-            case "ketua":
-                return ketua;
-            case "sekretaris":
-                return sekretaris;
-            case "bendahara":
-                return bendahara;
-            default:
-                return none;
-        }
+        return switch (this.jabatan) {
+            case "admin" -> admin;
+            case "ketua" -> ketua;
+            case "sekretaris" -> sekretaris;
+            case "bendahara" -> bendahara;
+            default -> none;
+        };
     }
 
     public void setJabatan(String jabatan) {

@@ -4,7 +4,6 @@ module org.masjidku.reporting {
     requires org.masjidku.common;
     requires jasperreports;
     requires org.slf4j;
-    requires java.desktop;
 
     provides org.masjidku.reporting.client.service.ReportService 
         with org.masjidku.reporting.service.impl.ReportServiceImpl;

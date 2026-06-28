@@ -23,7 +23,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -58,7 +57,7 @@ public class SecretaryKegiatan implements Initializable {
     public TableColumn<Kegiatan, String> colTanggalKegiatan;
 
     private MainApp mainApp;
-    KegiatanService dao;
+    final KegiatanService dao;
 
     // create some stage
     @SuppressWarnings("unused")
@@ -105,7 +104,7 @@ public class SecretaryKegiatan implements Initializable {
         if (selectedKegiatan != null){
             mainApp.showKegiatanEditform(selectedKegiatan);
         } else {
-            alertError("Null Error", "Kegiatan tidak ditemukan!");
+            org.masjidku.util.AlertHelper.alertError(dialogStage, "Null Error", "Kegiatan tidak ditemukan!");
         }
     }
 
@@ -120,9 +119,9 @@ public class SecretaryKegiatan implements Initializable {
                     if (dao.isKegiatanExist(selectedKegiatan.getIdKegiatan())){
                         tblKegiatan.getItems().remove(selectedKegiatan);
                         dao.delete(selectedKegiatan.getIdKegiatan());
-                        alertInfo("Success", "Kegiatan Dihapus!");
+                        org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "Kegiatan Dihapus!");
                     } else {
-                        alertError("SQL Error", "Kegiatan tidak ditemukan!");
+                        org.masjidku.util.AlertHelper.alertError(dialogStage, "SQL Error", "Kegiatan tidak ditemukan!");
                     }
                 } catch (SQLException e) {
                     log.error("An error occurred", e);
@@ -132,47 +131,11 @@ public class SecretaryKegiatan implements Initializable {
     }
 
     @FXML
-    public void onMouseClicked() {
-        if(tblKegiatan.getSelectionModel().isEmpty()){
-            btnEdit.setDisable(true);
-            btnRemove.setDisable(true);
-        } else {
-            btnEdit.setDisable(false);
-            btnRemove.setDisable(false);
-        }
-    }
+    public void onMouseClicked() { org.masjidku.util.AlertHelper.handleTableSelection(tblKegiatan, btnEdit, btnRemove); }
 
-    /**
-     * Alert Error Builder
-     * @param header header message
-     * @param content content message
-     */
-    @SuppressWarnings("SameParameterValue")
-    private void alertError(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.initOwner(dialogStage);
-        alert.setTitle("Prompt");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
+    
 
-        alert.showAndWait();
-    }
-
-    /**
-     * Alert Info Builder
-     * @param header header message
-     * @param content content message
-     */
-    @SuppressWarnings("SameParameterValue")
-    private void alertInfo(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.initOwner(dialogStage);
-        alert.setTitle("Prompt");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-
-        alert.showAndWait();
-    }
+    
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

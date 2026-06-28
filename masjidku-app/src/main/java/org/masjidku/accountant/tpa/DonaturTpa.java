@@ -15,17 +15,10 @@
 
 package org.masjidku.accountant.tpa;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.masjidku.util.ServiceProvider;
-import java.util.ServiceLoader;
-import org.masjidku.accounting.client.service.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -33,6 +26,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
 import org.masjidku.accounting.client.model.tpa.TpaMasuk;
+import org.masjidku.accounting.client.service.TpaMasukService;
+import org.masjidku.util.ServiceProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -95,7 +92,9 @@ public class DonaturTpa implements Initializable {
     }
 
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
 
     @FXML
     public void addListener() {
@@ -109,7 +108,7 @@ public class DonaturTpa implements Initializable {
         if (selectedItem != null) {
             mainApp.editDonaturTpa(selectedItem);
         } else {
-            alertError("Null Error", "Data tidak ditemukan!");
+            org.masjidku.util.AlertHelper.alertError(dialogStage, "Null Error", "Data tidak ditemukan!");
         }
     }
 
@@ -121,9 +120,9 @@ public class DonaturTpa implements Initializable {
                 if (dao.isDonaturExist(selectedItem.getId())) {
                     tableTpa.getItems().remove(selectedItem);
                     dao.delete(selectedItem.getId());
-                    alertInfo("Success", "User dihapus!");
+                    org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "User dihapus!");
                 } else {
-                    alertError("SQL Error", "User tidak ditemukan!");
+                    org.masjidku.util.AlertHelper.alertError(dialogStage, "SQL Error", "User tidak ditemukan!");
                 }
             } catch (SQLException e) {
                 log.error("An error occurred", e);
@@ -132,48 +131,12 @@ public class DonaturTpa implements Initializable {
     }
 
     @FXML
-    public void onMouseClicked() {
-        if(tableTpa.getSelectionModel().isEmpty()){
-            btnEdit.setDisable(true);
-            btnRemove.setDisable(true);
-        } else {
-            btnEdit.setDisable(false);
-            btnRemove.setDisable(false);
-        }
-    }
+    public void onMouseClicked() { org.masjidku.util.AlertHelper.handleTableSelection(tableTpa, btnEdit, btnRemove); }
 
     @FXML
-    public void gotoHome() { mainApp.showTpa(); }
-
-    /**
-     * Alert Error Builder
-     * @param header header message
-     * @param content content message
-     */
-    @SuppressWarnings("SameParameterValue")
-    private void alertError(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.initOwner(dialogStage);
-        alert.setTitle("Prompt");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-
-        alert.showAndWait();
+    public void gotoHome() {
+        mainApp.showTpa();
     }
 
-    /**
-     * Alert Info Builder
-     * @param header header message
-     * @param content content message
-     */
-    @SuppressWarnings("SameParameterValue")
-    private void alertInfo(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.initOwner(dialogStage);
-        alert.setTitle("Prompt");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
 
-        alert.showAndWait();
-    }
 }

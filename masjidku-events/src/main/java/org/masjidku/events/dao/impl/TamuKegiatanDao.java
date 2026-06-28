@@ -97,29 +97,15 @@ public class TamuKegiatanDao extends Dao<TamuKegiatan> implements org.masjidku.e
         }
         return items;
     }
-    public void save(TamuKegiatan tamuKegiatan) throws SQLException {
+    public void save(TamuKegiatan tamuKegiatan) {
     }
     public void save(String idKegiatan, String idTamu, String keterangan, String opeartor) throws SQLException {
-        ps = con.prepareStatement(QUERY_3);
-        ps.setString(1, idKegiatan);
-        ps.setString(2, idTamu);
-        ps.setString(3, keterangan);
-        ps.setString(4, opeartor);
-        ps.executeUpdate();
+        executeUpdateQuery(QUERY_3, idKegiatan, idTamu, keterangan, opeartor);
     }
     public void update(String[] params) throws SQLException {
-        ps = con.prepareStatement(QUERY_4);
-        ps.setString(1, params[0]);
-        ps.setString(2, params[1]);
-        ps.setString(3, params[2]);
-        ps.setString(4, params[3]);
-        ps.executeUpdate();
+        executeUpdateQuery(QUERY_4, params[0], params[1], params[2], params[3]);
     }
-    public void delete(String id) throws SQLException {
-        ps = con.prepareStatement(QUERY_5);
-        ps.setString(1, id);
-        ps.executeUpdate();
-    }
+    public void delete(String id) throws SQLException { executeDelete(QUERY_5, id); }
     public boolean isUndanganExist(String id) throws SQLException {
         ps = con.prepareStatement(QUERY_6);
         ps.setString(1, id);

@@ -74,36 +74,15 @@ public class KegiatanDao extends Dao<Kegiatan> implements KegiatanService {
     }
     @Override
     public void save(Kegiatan kegiatan) throws SQLException {
-        ps = con.prepareStatement(QUERY_3);
-        ps.setString(1, kegiatan.getNama());
-        ps.setString(2, kegiatan.getWaktu());
-        ps.setString(3, kegiatan.getTanggal());
-        ps.setString(4, kegiatan.getTempat());
-        ps.setString(5, kegiatan.getOperator());
-        ps.executeUpdate();
+        executeUpdateQuery(QUERY_3, kegiatan.getNama(), kegiatan.getWaktu(), kegiatan.getTanggal(), kegiatan.getTempat(), kegiatan.getOperator());
     }
     @Override
     public void update(String[] params) throws SQLException {
-        ps = con.prepareStatement(QUERY_4);
-        ps.setString(1, params[0]);
-        ps.setString(2, params[1]);
-        ps.setString(3, params[2]);
-        ps.setString(4, params[3]);
-        ps.setString(5, params[4]);
-        ps.executeUpdate();
+        executeUpdateQuery(QUERY_4, params[0], params[1], params[2], params[3], params[4]);
     }
     @Override
-    public void delete(String id) throws SQLException {
-        ps = con.prepareStatement(QUERY_5);
-        ps.setString(1, id);
-        ps.executeUpdate();
-    }
-    public boolean isKegiatanExist(String id) throws SQLException {
-        ps = con.prepareStatement(QUERY_6);
-        ps.setString(1, id);
-        rs = ps.executeQuery();
-        return rs.next();
-    }
+    public void delete(String id) throws SQLException { executeDelete(QUERY_5, id); }
+    public boolean isKegiatanExist(String id) throws SQLException { return executeCheckExists(QUERY_6, id); }
     public ObservableList<String> getAllKegiatanName() throws SQLException {
         ObservableList<String> items = FXCollections.observableArrayList();
         ps = con.prepareStatement(QUERY_7);
@@ -139,12 +118,5 @@ public class KegiatanDao extends Dao<Kegiatan> implements KegiatanService {
         }
         return model;
     }
-    public String getTotalKegiatan() throws SQLException {
-        ps = con.prepareStatement(QUERY_10);
-        rs = ps.executeQuery();
-        if (rs.next()){
-            return rs.getString(1);
-        }
-        return null;
-    }
+    public String getTotalKegiatan() throws SQLException { return executeGetTotal(QUERY_10); }
 }

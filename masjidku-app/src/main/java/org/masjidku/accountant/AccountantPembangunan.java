@@ -15,18 +15,16 @@
 
 package org.masjidku.accountant;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.masjidku.util.ServiceProvider;
-import java.util.ServiceLoader;
-import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.text.Text;
 import org.masjidku.MainApp;
 import org.masjidku.accounting.client.model.pembangunan.DonasiPembangunan;
 import org.masjidku.accounting.client.model.pembangunan.Pembangunan;
+import org.masjidku.accounting.client.service.AccountingFunctionsService;
+import org.masjidku.accounting.client.service.DonasiPembangunanService;
+import org.masjidku.accounting.client.service.PembangunanService;
+import org.masjidku.util.ServiceProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -39,16 +37,24 @@ public class AccountantPembangunan extends BaseAccountantController {
     private final PembangunanService pbDao = ServiceProvider.get(PembangunanService.class);
     private MainApp mainApp;
 
-    public void setMainApp(MainApp mainApp) { this.mainApp = mainApp; }
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+    }
 
     @FXML
-    public void onKelolaUangPembangunan() { mainApp.showAlokasiPembangunan(); }
+    public void onKelolaUangPembangunan() {
+        mainApp.showAlokasiPembangunan();
+    }
 
     @FXML
-    public void onKelolaDonasiPembangunan() { mainApp.showDonaturPembangunan(); }
+    public void onKelolaDonasiPembangunan() {
+        mainApp.showDonaturPembangunan();
+    }
 
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -58,13 +64,13 @@ public class AccountantPembangunan extends BaseAccountantController {
             DonasiPembangunan pemberi = dpDao.getLastRecord();
 
             updateDashboardSummary(
-                pemberi.getJumlah(), // Pemasukan
-                penerima.getJumlah(), // Pengeluaran
-                pbDao.getTotalIncome(), // Total Pemasukan
-                dpDao.getTotalOutcome(), // Total Pengeluaran
-                df.getPembangunanBalance(), // Saldo
-                pemberi.getTanggal(), // Tgl Pemasukan
-                penerima.getTanggal() // Tgl Pengeluaran
+                    pemberi.getJumlah(), // Pemasukan
+                    penerima.getJumlah(), // Pengeluaran
+                    pbDao.getTotalIncome(), // Total Pemasukan
+                    dpDao.getTotalOutcome(), // Total Pengeluaran
+                    df.getPembangunanBalance(), // Saldo
+                    pemberi.getTanggal(), // Tgl Pemasukan
+                    penerima.getTanggal() // Tgl Pengeluaran
             );
 
         } catch (SQLException e) {

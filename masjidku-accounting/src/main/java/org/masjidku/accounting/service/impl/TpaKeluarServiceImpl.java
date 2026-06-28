@@ -3,12 +3,9 @@ import org.masjidku.accounting.client.service.TpaKeluarService;
 import org.masjidku.accounting.dao.tpa.TpaKeluarDao;
 import javafx.collections.ObservableList;
 import java.sql.SQLException;
-import org.masjidku.accounting.client.model.*;
-import org.masjidku.accounting.client.model.anakyatim.*;
-import org.masjidku.accounting.client.model.operasional.*;
-import org.masjidku.accounting.client.model.pembangunan.*;
+
 import org.masjidku.accounting.client.model.tpa.*;
-import org.masjidku.accounting.client.model.zakat.*;
+
 public class TpaKeluarServiceImpl implements TpaKeluarService {
     private final TpaKeluarDao dao = new TpaKeluarDao();
     @Override

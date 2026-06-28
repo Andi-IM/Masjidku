@@ -78,33 +78,16 @@ public class DonasiAYatimDao extends Dao<DonasiAYatim> {
 
     @Override
     public void save(DonasiAYatim donasiAYatim) throws SQLException {
-        ps = con.prepareStatement(QUERY_3);
-
-        ps.setString(1, donasiAYatim.getId());
-        ps.setString(2, donasiAYatim.getDonatur());
-        ps.setString(3, donasiAYatim.getJumlah());
-        ps.setString(4, donasiAYatim.getTanggal());
-        ps.setString(5, donasiAYatim.getOperator());
-        ps.executeUpdate();
+        executeUpdateQuery(QUERY_3, donasiAYatim.getId(), donasiAYatim.getDonatur(), donasiAYatim.getJumlah(), donasiAYatim.getTanggal(), donasiAYatim.getOperator());
     }
 
     @Override
     public void update(String[] params) throws SQLException {
-        ps = con.prepareStatement(QUERY_4);
-        ps.setString(1, params[1]);
-        ps.setString(2, params[2]);
-        ps.setString(3, params[3]);
-        ps.setString(4, params[4]);
-        ps.setString(5, params[0]);
-        ps.executeUpdate();
+        executeUpdateQuery(QUERY_4, params[1], params[2], params[3], params[4], params[0]);
     }
 
     @Override
-    public void delete(String id) throws SQLException {
-        ps = con.prepareStatement(QUERY_5);
-        ps.setString(1, id);
-        ps.executeUpdate();
-    }
+    public void delete(String id) throws SQLException { executeDelete(QUERY_5, id); }
 
     public DonasiAYatim getLastRecord() throws SQLException {
         ps = con.prepareStatement(QUERY_6);
@@ -123,21 +106,7 @@ public class DonasiAYatimDao extends Dao<DonasiAYatim> {
         return model;
     }
 
-    public String getTotalIncome() throws SQLException {
-        ps = con.prepareStatement(QUERY_7);
-        rs = ps.executeQuery();
+    public String getTotalIncome() throws SQLException { return executeGetTotal(QUERY_7); }
 
-        if (rs.next()){
-            return rs.getString(1);
-        }
-        return null;
-    }
-
-    public boolean isDonaturExist(String id) throws SQLException {
-        ps = con.prepareStatement(QUERY_8);
-        ps.setString(1, id);
-        rs = ps.executeQuery();
-
-        return rs.next();
-    }
+    public boolean isDonaturExist(String id) throws SQLException { return executeCheckExists(QUERY_8, id); }
 }

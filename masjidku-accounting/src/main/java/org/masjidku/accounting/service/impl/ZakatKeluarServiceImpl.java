@@ -3,11 +3,7 @@ import org.masjidku.accounting.client.service.ZakatKeluarService;
 import org.masjidku.accounting.dao.zakat.ZakatKeluarDao;
 import javafx.collections.ObservableList;
 import java.sql.SQLException;
-import org.masjidku.accounting.client.model.*;
-import org.masjidku.accounting.client.model.anakyatim.*;
-import org.masjidku.accounting.client.model.operasional.*;
-import org.masjidku.accounting.client.model.pembangunan.*;
-import org.masjidku.accounting.client.model.tpa.*;
+
 import org.masjidku.accounting.client.model.zakat.*;
 public class ZakatKeluarServiceImpl implements ZakatKeluarService {
     private final ZakatKeluarDao dao = new ZakatKeluarDao();

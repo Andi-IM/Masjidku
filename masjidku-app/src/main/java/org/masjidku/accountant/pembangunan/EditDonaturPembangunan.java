@@ -15,19 +15,16 @@
 
 package org.masjidku.accountant.pembangunan;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.masjidku.util.ServiceProvider;
-import java.util.ServiceLoader;
-import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
 import org.masjidku.accounting.client.model.pembangunan.DonasiPembangunan;
+import org.masjidku.accounting.client.service.DonasiPembangunanService;
+import org.masjidku.util.ServiceProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -57,12 +54,12 @@ public class EditDonaturPembangunan {
         this.donatur = model;
         this.operator = operator;
 
-        if (model.getId() != null){
+        if (model.getId() != null) {
             setDonatur(model);
         }
     }
 
-    private void setDonatur(DonasiPembangunan model){
+    private void setDonatur(DonasiPembangunan model) {
         txtNama.setText(model.getDonatur());
         txtJumlah.setText(model.getJumlah());
         LocalDate localDate = LocalDate.parse(model.getTanggal());
@@ -76,8 +73,8 @@ public class EditDonaturPembangunan {
      */
     private boolean formValidation() {
         if (!txtNama.getText().isBlank()) {
-            if (!txtJumlah.getText().isBlank()){
-                if (txtJumlah.getText().matches("[0-9]")){
+            if (!txtJumlah.getText().isBlank()) {
+                if (txtJumlah.getText().matches("[0-9]")) {
                     return date.getEditor().getText().isBlank();
                 }
             }
@@ -105,7 +102,7 @@ public class EditDonaturPembangunan {
                             donatur.getTanggal(),
                             operator
                     });
-                    alertInfo("Success", "Data telah diupdate");
+                    org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "Data telah diupdate");
                 } else {
                     dao.save(donatur);
                 }
@@ -113,15 +110,19 @@ public class EditDonaturPembangunan {
                 log.error("An error occurred", e);
             }
         } else {
-            alertError("Error", "Data belum lengkap!");
+            org.masjidku.util.AlertHelper.alertError(dialogStage, "Error", "Data belum lengkap!");
         }
     }
 
     @FXML
-    public void gotoList() { mainApp.showDonaturPembangunan(); }
+    public void gotoList() {
+        mainApp.showDonaturPembangunan();
+    }
 
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
 
     @FXML
     public void clearForm() {
@@ -130,31 +131,5 @@ public class EditDonaturPembangunan {
         date.getEditor().clear();
     }
 
-    /**
-     * Alert Error Builder
-     *
-     * @param header  header message
-     * @param content content message
-     */
-    @SuppressWarnings("SameParameterValue")
-    private void alertInfo(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.initOwner(dialogStage);
-        alert.setTitle("Prompt");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
 
-        alert.showAndWait();
-    }
-
-    @SuppressWarnings("SameParameterValue")
-    private void alertError(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.initOwner(dialogStage);
-        alert.setTitle("Prompt");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-
-        alert.showAndWait();
-    }
 }
