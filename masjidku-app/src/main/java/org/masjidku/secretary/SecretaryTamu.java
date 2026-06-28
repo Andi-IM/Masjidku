@@ -85,15 +85,7 @@ public class SecretaryTamu implements Initializable {
         mainApp.showTamuEditForm(temp);
     }
 
-    private ObservableList<Tamu> getTamuData() {
-                try {
-                    tamuData.addAll(dao.getAll());
-                } catch (SQLException e) {
-                    log.error("An error occurred", e);
-                }
-            
-            return tamuData;
-    }
+    
 
     @FXML
     public void editListener() {
@@ -137,7 +129,7 @@ public class SecretaryTamu implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        tblTamu.setItems(getTamuData());
+        tblTamu.setItems(org.masjidku.util.AlertHelper.loadTableData(tamuData, dao::getAll, log));
         colNama.setCellValueFactory(new PropertyValueFactory<>("nama"));
         colAlamat.setCellValueFactory(new PropertyValueFactory<>("alamat"));
         colNotelp.setCellValueFactory(new PropertyValueFactory<>("notelp"));

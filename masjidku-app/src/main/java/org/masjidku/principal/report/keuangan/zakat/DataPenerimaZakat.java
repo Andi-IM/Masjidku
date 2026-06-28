@@ -58,23 +58,11 @@ public class DataPenerimaZakat implements Initializable {
         this.mainApp = mainApp;
     }
 
-    /**
-     * get User Data from DAO.
-     *
-     * @return Observable List
-     */
-    private ObservableList<ZakatKeluar> getDataZakat() {
-        try {
-            dataZakat.addAll(dao.getAll());
-        } catch (SQLException e) {
-            log.error("An error occurred", e);
-        }
-        return dataZakat;
-    }
+    
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tableZakat.setItems(getDataZakat());
+        tableZakat.setItems(org.masjidku.util.AlertHelper.loadTableData(dataZakat, dao::getAll, log));
 
         nama.setCellValueFactory(new PropertyValueFactory<>("tujuan"));
         jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));

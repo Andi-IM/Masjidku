@@ -62,26 +62,14 @@ public class DataDonaturZakat implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        zakatTable.setItems(getDonaturData());
+        zakatTable.setItems(org.masjidku.util.AlertHelper.loadTableData(donaturData, dao::getAll, log));
         donatur.setCellValueFactory(new PropertyValueFactory<>("donatur"));
         jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));
         tanggal.setCellValueFactory(new PropertyValueFactory<>("tanggal"));
         operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
     }
 
-    /**
-     * get User Data from DAO.
-     *
-     * @return Observable List
-     */
-    private ObservableList<ZakatMasuk> getDonaturData() {
-        try {
-            donaturData.addAll(dao.getAll());
-        } catch (SQLException e) {
-            log.error("An error occurred", e);
-        }
-        return donaturData;
-    }
+    
 
     @FXML
     public void onLogoutClick() {

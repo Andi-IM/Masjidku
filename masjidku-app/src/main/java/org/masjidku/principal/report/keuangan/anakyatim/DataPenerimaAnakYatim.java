@@ -62,23 +62,11 @@ public class DataPenerimaAnakYatim implements Initializable {
         this.mainApp = mainApp;
     }
 
-    /**
-     * get User Data from DAO.
-     *
-     * @return Observable List
-     */
-    private ObservableList<AnakYatim> getDataAnak() {
-        try {
-            dataAnak.addAll(dao.getAll());
-        } catch (SQLException e) {
-            log.error("An error occurred", e);
-        }
-        return dataAnak;
-    }
+    
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tableAnakyatim.setItems(getDataAnak());
+        tableAnakyatim.setItems(org.masjidku.util.AlertHelper.loadTableData(dataAnak, dao::getAll, log));
 
         nama.setCellValueFactory(new PropertyValueFactory<>("tujuan"));
         usia.setCellValueFactory(new PropertyValueFactory<>("usia"));

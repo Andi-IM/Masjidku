@@ -75,19 +75,11 @@ public class SecretaryUndangan implements Initializable {
     private final ObservableList<TamuKegiatan> undanganData =
             FXCollections.observableArrayList();
 
-    private ObservableList<TamuKegiatan> getUndanganData(){
-            try {
-                undanganData.addAll(dao.getAll());
-            } catch (SQLException e) {
-                log.error("An error occurred", e);
-            }
-        
-        return undanganData;
-    }
+    
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tblUndangan.setItems(getUndanganData());
+        tblUndangan.setItems(org.masjidku.util.AlertHelper.loadTableData(undanganData, dao::getAll, log));
         colNama.setCellValueFactory(new PropertyValueFactory<>("nama"));
         colAlamat.setCellValueFactory(new PropertyValueFactory<>("alamat"));
         colKeterangan.setCellValueFactory(new PropertyValueFactory<>("keterangan"));

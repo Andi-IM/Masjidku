@@ -46,11 +46,9 @@ public class SecretaryUndanganForm implements Initializable {
     @FXML
     public TextArea txtKeterangan;
 
-    private TamuKegiatan undangan;
     private MainApp mainApp;
     private TamuService tamuDao;
     private KegiatanService kegiatanDao;
-    private TamuKegiatanService tamuKegiatanService;
 
     private final ObservableList<String> listTamu = FXCollections.observableArrayList();
     private final ObservableList<String> listKegiatan = FXCollections.observableArrayList();
@@ -63,7 +61,6 @@ public class SecretaryUndanganForm implements Initializable {
     public void setMainApp(MainApp mainApp, TamuKegiatan undangan) {
         String operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
         this.mainApp = mainApp;
-        this.undangan = undangan;
         this.operator = operator;
 
         if (undangan != null){
@@ -115,7 +112,7 @@ public class SecretaryUndanganForm implements Initializable {
 
         tamuDao = ServiceProvider.get(TamuService.class);
         kegiatanDao = ServiceProvider.get(KegiatanService.class);
-        tamuKegiatanService = ServiceProvider.get(TamuKegiatanService.class);
+        TamuKegiatanService tamuKegiatanService = ServiceProvider.get(TamuKegiatanService.class);
 
         TamuKegiatan model = new TamuKegiatan();
             try {

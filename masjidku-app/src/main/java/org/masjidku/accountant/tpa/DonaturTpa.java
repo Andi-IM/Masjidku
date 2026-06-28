@@ -68,23 +68,11 @@ public class DonaturTpa implements Initializable {
         this.mainApp = mainApp;
     }
 
-    /**
-     * get Tpa Data from DAO.
-     *
-     * @return Observable List
-     */
-    private ObservableList<TpaMasuk> getDonaturData() {
-        try {
-            donaturData.addAll(dao.getAll());
-        } catch (SQLException e) {
-            log.error("An error occurred", e);
-        }
-        return donaturData;
-    }
+    
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tableTpa.setItems(getDonaturData());
+        tableTpa.setItems(org.masjidku.util.AlertHelper.loadTableData(donaturData, dao::getAll, log));
 
         donatur.setCellValueFactory(new PropertyValueFactory<>("donatur"));
         jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));

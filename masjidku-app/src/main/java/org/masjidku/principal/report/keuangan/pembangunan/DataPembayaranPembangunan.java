@@ -61,23 +61,11 @@ public class DataPembayaranPembangunan implements Initializable {
         this.mainApp = mainApp;
     }
 
-    /**
-     * get User Data from DAO.
-     *
-     * @return Observable List
-     */
-    private ObservableList<Pembangunan> getDataPembangunan() {
-        try {
-            dataPembangunan.addAll(dao.getAll());
-        } catch (SQLException e) {
-            log.error("An error occurred", e);
-        }
-        return dataPembangunan;
-    }
+    
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tablePembangunan.setItems(getDataPembangunan());
+        tablePembangunan.setItems(org.masjidku.util.AlertHelper.loadTableData(dataPembangunan, dao::getAll, log));
 
         nama.setCellValueFactory(new PropertyValueFactory<>("tujuan"));
         keterangan.setCellValueFactory(new PropertyValueFactory<>("keterangan"));

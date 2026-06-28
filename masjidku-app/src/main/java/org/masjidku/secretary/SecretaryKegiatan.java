@@ -88,15 +88,7 @@ public class SecretaryKegiatan implements Initializable {
         mainApp.showKegiatanEditform(temp);
     }
 
-    private ObservableList<Kegiatan> getKegiatanData() {
-            try {
-                kegiatanData.addAll(dao.getAll());
-            } catch (SQLException e) {
-                log.error("An error occurred", e);
-            }
-        
-        return kegiatanData;
-    }
+    
 
     @FXML
     public void editListener() {
@@ -140,7 +132,7 @@ public class SecretaryKegiatan implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        tblKegiatan.setItems(getKegiatanData());
+        tblKegiatan.setItems(org.masjidku.util.AlertHelper.loadTableData(kegiatanData, dao::getAll, log));
         colNomor.setCellValueFactory(new PropertyValueFactory<>(""));
         colNmKegiatan.setCellValueFactory(new PropertyValueFactory<>("nama"));
         colTempatKegiatan.setCellValueFactory(new PropertyValueFactory<>("tempat"));

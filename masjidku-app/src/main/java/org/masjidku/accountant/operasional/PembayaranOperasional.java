@@ -71,23 +71,11 @@ public class PembayaranOperasional implements Initializable {
         this.mainApp = mainApp;
     }
 
-    /**
-     * get User Data from DAO.
-     *
-     * @return Observable List
-     */
-    private ObservableList<Operasional> getDataOperasional() {
-        try {
-            dataOperasional.addAll(dao.getAll());
-        } catch (SQLException e) {
-            log.error("An error occurred", e);
-        }
-        return dataOperasional;
-    }
+    
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tableOperasional.setItems(getDataOperasional());
+        tableOperasional.setItems(org.masjidku.util.AlertHelper.loadTableData(dataOperasional, dao::getAll, log));
 
         nama.setCellValueFactory(new PropertyValueFactory<>("tujuan"));
         keterangan.setCellValueFactory(new PropertyValueFactory<>("keterangan"));

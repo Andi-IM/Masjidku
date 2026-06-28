@@ -59,23 +59,11 @@ public class DataDonaturOperasional implements Initializable {
         this.mainApp = mainApp;
     }
 
-    /**
-     * get AnakYatim Data from DAO.
-     *
-     * @return Observable List
-     */
-    private ObservableList<DonasiOperasional> getDonaturData() {
-        try {
-            donaturData.addAll(dao.getAll());
-        } catch (SQLException e) {
-            log.error("An error occurred", e);
-        }
-        return donaturData;
-    }
+    
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tableOperasional.setItems(getDonaturData());
+        tableOperasional.setItems(org.masjidku.util.AlertHelper.loadTableData(donaturData, dao::getAll, log));
 
         donatur.setCellValueFactory(new PropertyValueFactory<>("donatur"));
         jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));

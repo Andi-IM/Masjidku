@@ -59,23 +59,11 @@ public class DataPembayaranTpa implements Initializable {
         this.mainApp = mainApp;
     }
 
-    /**
-     * get User Data from DAO.
-     *
-     * @return Observable List
-     */
-    private ObservableList<TpaKeluar> getDataTpa() {
-        try {
-            dataTpa.addAll(dao.getAll());
-        } catch (SQLException e) {
-            log.error("An error occurred", e);
-        }
-        return dataTpa;
-    }
+    
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tableTpa.setItems(getDataTpa());
+        tableTpa.setItems(org.masjidku.util.AlertHelper.loadTableData(dataTpa, dao::getAll, log));
 
         nama.setCellValueFactory(new PropertyValueFactory<>("tujuan"));
         jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));

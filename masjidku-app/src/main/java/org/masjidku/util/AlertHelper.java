@@ -32,4 +32,20 @@ public class AlertHelper {
             btnRemove.setDisable(false);
         }
     }
+
+    public interface SQLDataSupplier<T> {
+        java.util.List<T> get() throws java.sql.SQLException;
+    }
+
+    public static <T> javafx.collections.ObservableList<T> loadTableData(
+            javafx.collections.ObservableList<T> targetList, 
+            SQLDataSupplier<T> supplier, 
+            org.slf4j.Logger log) {
+        try {
+            targetList.addAll(supplier.get());
+        } catch (java.sql.SQLException e) {
+            if (log != null) log.error("An error occurred", e);
+        }
+        return targetList;
+    }
 }
