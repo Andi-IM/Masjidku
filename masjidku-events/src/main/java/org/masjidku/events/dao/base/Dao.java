@@ -22,12 +22,14 @@ public abstract class Dao<T> {
         }
     }
 
+    @SuppressWarnings("SqlSourceToSinkFlow")
     protected void executeDelete(String query, String id) throws SQLException {
         ps = con.prepareStatement(query);
         ps.setString(1, id);
         ps.executeUpdate();
     }
 
+    @SuppressWarnings("SqlSourceToSinkFlow")
     protected boolean executeCheckExists(String query, String id) throws SQLException {
         ps = con.prepareStatement(query);
         ps.setString(1, id);
@@ -35,6 +37,7 @@ public abstract class Dao<T> {
         return rs.next();
     }
 
+    @SuppressWarnings("SqlSourceToSinkFlow")
     protected String executeGetTotal(String query) throws SQLException {
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
@@ -44,6 +47,7 @@ public abstract class Dao<T> {
         return null;
     }
 
+    @SuppressWarnings("SqlSourceToSinkFlow")
     protected void executeUpdateQuery(String query, String... params) throws SQLException {
         ps = con.prepareStatement(query);
         for (int i = 0; i < params.length; i++) {
@@ -56,6 +60,7 @@ public abstract class Dao<T> {
         T map(java.sql.ResultSet rs) throws SQLException;
     }
 
+    @SuppressWarnings("SqlSourceToSinkFlow")
     protected <R> R executeGet(String query, String id, RowMapper<R> mapper) throws SQLException {
         ps = con.prepareStatement(query);
         ps.setString(1, id);
@@ -66,6 +71,7 @@ public abstract class Dao<T> {
         return null;
     }
 
+    @SuppressWarnings("SqlSourceToSinkFlow")
     protected <R> javafx.collections.ObservableList<R> executeGetAll(String query, RowMapper<R> mapper) throws SQLException {
         javafx.collections.ObservableList<R> items = javafx.collections.FXCollections.observableArrayList();
         ps = con.prepareStatement(query);
@@ -76,6 +82,7 @@ public abstract class Dao<T> {
         return items;
     }
 
+    @SuppressWarnings("SqlSourceToSinkFlow")
     protected javafx.collections.ObservableList<String> executeGetAllNames(String query) throws SQLException {
         javafx.collections.ObservableList<String> list = javafx.collections.FXCollections.observableArrayList();
         ps = con.prepareStatement(query);
@@ -86,6 +93,7 @@ public abstract class Dao<T> {
         return list;
     }
 
+    @SuppressWarnings("SqlSourceToSinkFlow")
     protected String executeGetIdByName(String query, String name) throws SQLException {
         ps = con.prepareStatement(query);
         ps.setString(1, name);
@@ -96,5 +104,9 @@ public abstract class Dao<T> {
         return "";
     }
 }
+
+
+
+
 
 

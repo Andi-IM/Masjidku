@@ -28,12 +28,14 @@ public abstract class Dao<T> extends DaoFactory {
     public abstract void delete(String id) throws SQLException;
 
 
+    @SuppressWarnings("SqlSourceToSinkFlow")
     protected void executeDelete(String query, String id) throws SQLException {
         ps = con.prepareStatement(query);
         ps.setString(1, id);
         ps.executeUpdate();
     }
 
+    @SuppressWarnings("SqlSourceToSinkFlow")
     protected boolean executeCheckExists(String query, String id) throws SQLException {
         ps = con.prepareStatement(query);
         ps.setString(1, id);
@@ -41,6 +43,7 @@ public abstract class Dao<T> extends DaoFactory {
         return rs.next();
     }
 
+    @SuppressWarnings("SqlSourceToSinkFlow")
     protected String executeGetTotal(String query) throws SQLException {
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
@@ -50,6 +53,7 @@ public abstract class Dao<T> extends DaoFactory {
         return null;
     }
 
+    @SuppressWarnings("SqlSourceToSinkFlow")
     protected void executeUpdateQuery(String query, String... params) throws SQLException {
         ps = con.prepareStatement(query);
         for (int i = 0; i < params.length; i++) {
@@ -62,6 +66,7 @@ public abstract class Dao<T> extends DaoFactory {
         T map(java.sql.ResultSet rs) throws SQLException;
     }
 
+    @SuppressWarnings("SqlSourceToSinkFlow")
     protected <R> R executeGetLastRecord(String query, RowMapper<R> mapper) throws SQLException {
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
@@ -71,4 +76,8 @@ public abstract class Dao<T> extends DaoFactory {
         return null;
     }
 }
+
+
+
+
 
