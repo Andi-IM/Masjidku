@@ -159,6 +159,9 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        // Initialize SQLite Database schema if necessary
+        org.masjidku.util.db.SQLiteInitService.initializeDatabase();
+
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Masjidku");
         this.primaryStage.resizableProperty().setValue(Boolean.FALSE);
