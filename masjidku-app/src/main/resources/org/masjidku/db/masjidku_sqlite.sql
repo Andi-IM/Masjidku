@@ -29,12 +29,12 @@
 
 
 -- Dumping database structure for masjidku
-CREATE DATABASE IF NOT EXISTS `masjidku` 
+
 
 
 -- Dumping structure for table masjidku.infakanakyatim
 CREATE TABLE IF NOT EXISTS `infakanakyatim` (
-  `id` int(11) DEFAULT NULL,
+  `id` INTEGER DEFAULT NULL,
   `donatur` varchar(255) DEFAULT 'HAMBA ALLAH',
   `jumlah` double DEFAULT NULL,
   `tanggal` date DEFAULT NULL,
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `infakanakyatim` (
 
 -- Dumping structure for table masjidku.infakoperasional
 CREATE TABLE IF NOT EXISTS `infakoperasional` (
-  `id` int(11) DEFAULT NULL,
+  `id` INTEGER DEFAULT NULL,
   `donatur` varchar(255) DEFAULT 'HAMBA ALLAH',
   `jumlah` double DEFAULT NULL,
   `tanggal` date DEFAULT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `infakoperasional` (
 
 -- Dumping structure for table masjidku.infakpembangunan
 CREATE TABLE IF NOT EXISTS `infakpembangunan` (
-  `id` int(11) DEFAULT NULL,
+  `id` INTEGER DEFAULT NULL,
   `donatur` varchar(255) DEFAULT 'HAMBA ALLAH',
   `jumlah` double DEFAULT NULL,
   `tanggal` date DEFAULT NULL,
@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `infakpembangunan` (
 
 -- Dumping structure for table masjidku.infaktpa
 CREATE TABLE IF NOT EXISTS `infaktpa` (
-  `id` int(11) DEFAULT NULL,
+  `id` INTEGER DEFAULT NULL,
   `donatur` varchar(255) DEFAULT 'HAMBA ALLAH',
   `jumlah` double DEFAULT NULL,
   `tanggal` date DEFAULT NULL,
@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `kegiatan` (
 
 -- Dumping structure for table masjidku.operasionalkeluar
 CREATE TABLE IF NOT EXISTS `operasionalkeluar` (
-  `id` int(11) DEFAULT NULL,
+  `id` INTEGER DEFAULT NULL,
   `nama` varchar(50) DEFAULT NULL,
   `jumlah` double DEFAULT NULL,
   `tanggal` date DEFAULT NULL,
@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `operasionalkeluar` (
 
 -- Dumping structure for table masjidku.pembangunankeluar
 CREATE TABLE IF NOT EXISTS `pembangunankeluar` (
-  `id` int(11) DEFAULT NULL,
+  `id` INTEGER DEFAULT NULL,
   `nama` varchar(50) DEFAULT NULL,
   `jumlah` double DEFAULT NULL,
   `tanggal` date DEFAULT NULL,
@@ -140,9 +140,9 @@ CREATE TABLE IF NOT EXISTS `pemberi_zakat` (
 
 -- Dumping structure for table masjidku.penerimaanakyatim
 CREATE TABLE IF NOT EXISTS `penerimaanakyatim` (
-  `id` int(11) DEFAULT NULL,
+  `id` INTEGER DEFAULT NULL,
   `nama` varchar(50) DEFAULT NULL,
-  `usia` int(11) DEFAULT NULL,
+  `usia` INTEGER DEFAULT NULL,
   `jumlah` double DEFAULT NULL,
   `tanggal` date DEFAULT NULL,
   `operator` varchar(50) DEFAULT NULL
@@ -170,13 +170,13 @@ CREATE TABLE IF NOT EXISTS `profil_user` (
   `userid` varchar(15) NOT NULL,
   `notelp` varchar(15) DEFAULT NULL,
   `alamat` varchar(50) DEFAULT NULL,
-  UNIQUE KEY `index_userid` (`userid`),
+  UNIQUE (`userid`),
   CONSTRAINT `foreign_userid` FOREIGN KEY (`userid`) REFERENCES `user` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ;
 
 -- Dumping data for table masjidku.profil_user: ~0 rows (approximately)
 
-INSERT INTO `profil_user` (`userid`, `notelp`, `alamat`) VALUES
+INSERT OR IGNORE INTO `profil_user` (`userid`, `notelp`, `alamat`) VALUES
 	('paijo', '12345678', 'jl. Kisanak');
 
 
@@ -211,8 +211,8 @@ CREATE TABLE IF NOT EXISTS `tamukegiatan` (
   `id_tamu` varchar(5) DEFAULT NULL,
   `keterangan` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_undangan`),
-  UNIQUE KEY `tamukegiatan_id_kegiatan_uindex` (`id_kegiatan`),
-  UNIQUE KEY `tamukegiatan_id_tamu_uindex` (`id_tamu`),
+  UNIQUE (`id_kegiatan`),
+  UNIQUE (`id_tamu`),
   CONSTRAINT `tamukegiatan_kegiatan_kegiatanID_fk` FOREIGN KEY (`id_kegiatan`) REFERENCES `kegiatan` (`kegiatanID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tamukegiatan_tamu_tamuID_fk` FOREIGN KEY (`id_tamu`) REFERENCES `tamu` (`tamuID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ;
@@ -223,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `tamukegiatan` (
 
 -- Dumping structure for table masjidku.tpakeluar
 CREATE TABLE IF NOT EXISTS `tpakeluar` (
-  `id` int(11) DEFAULT NULL,
+  `id` INTEGER DEFAULT NULL,
   `nama` varchar(50) DEFAULT NULL,
   `jumlah` double DEFAULT NULL,
   `tanggal` date DEFAULT NULL,
@@ -248,7 +248,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 -- Dumping data for table masjidku.user: ~2 rows (approximately)
 
-INSERT INTO `user` (`userid`, `password`, `username`, `jabatan`, `status`, `created_at`, `updated_at`) VALUES
+INSERT OR IGNORE INTO `user` (`userid`, `password`, `username`, `jabatan`, `status`, `created_at`, `updated_at`) VALUES
 	('paijo', '3c0becdf230ba5a952c9a499a2cf8aade19b56b9309dad1c0dc4cfc5a48a0824', NULL, 'ketua', 'Aktif', NULL, NULL),
 	('root', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'Admin', 'admin', 'Aktif', NULL, NULL);
 
