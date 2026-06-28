@@ -15,6 +15,7 @@
 package org.masjidku.events.dao.impl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.intellij.lang.annotations.Language;
 import org.masjidku.events.dao.base.Dao;
 import java.sql.SQLException;
 import org.masjidku.events.client.service.KegiatanService;
@@ -22,13 +23,20 @@ import org.masjidku.events.client.model.Kegiatan;
 public class KegiatanDao extends Dao<Kegiatan> implements KegiatanService {
     private static final String QUERY_1 = "SELECT * FROM kegiatan WHERE kegiatanID=?";
     private static final String QUERY_2 = "SELECT * FROM kegiatan";
+    @Language("SQL")
     private static final String QUERY_3 = "INSERT INTO kegiatan"+ "(kegiatanNama, kegiatanWaktu, kegiatanTanggal, kegiatanTempat, operator) VALUES(?,?,?,?,?)";
+    @Language("SQL")
     private static final String QUERY_4 = "UPDATE kegiatan SET kegiatanNama=?, kegiatanWaktu=?, kegiatanTanggal=?, kegiatanTempat=?, operator=? WHERE kegiatanID=?";
+    @Language("SQL")
     private static final String QUERY_5 = "DELETE FROM kegiatan WHERE kegiatanID=?";
+    @Language("SQL")
     private static final String QUERY_6 = "SELECT kegiatanID FROM kegiatan WHERE kegiatanID=?";
+    @Language("SQL")
     private static final String QUERY_7 = "SELECT * FROM kegiatan";
+    @Language("SQL")
     private static final String QUERY_8 = "SELECT kegiatanID FROM kegiatan WHERE kegiatanNama=?";
     private static final String QUERY_9 = "SELECT * FROM kegiatan ORDER BY kegiatanID DESC LIMIT 1";
+    @Language("SQL")
     private static final String QUERY_10 = "SELECT IFNULL(COUNT(kegiatanID),0) FROM kegiatan";
 
     public KegiatanDao() {

@@ -14,6 +14,7 @@
  */
 
 package org.masjidku.accounting.dao.zakat;
+import org.intellij.lang.annotations.Language;
 import org.masjidku.accounting.client.model.zakat.*;
 
 
@@ -26,11 +27,15 @@ import java.sql.SQLException;
 public class ZakatMasukDao extends Dao<ZakatMasuk> {
     private static final String QUERY_1 = "SELECT * FROM pemberi_zakat WHERE id=?";
     private static final String QUERY_2 = "SELECT * FROM pemberi_zakat";
+    @Language("SQL")
     private static final String QUERY_3 = "INSERT INTO pemberi_zakat(id, nama, jumlah, tanggal, operator) VALUES (?,?,?,?,?)";
+    @Language("SQL")
     private static final String QUERY_4 = "UPDATE pemberi_zakat SET nama=?, jumlah=?, tanggal=?, operator=? WHERE id=?";
     private static final String QUERY_5 = "DELETE FROM pemberi_zakat WHERE id=?";
+    @Language("SQL")
     private static final String QUERY_6 = "SELECT * FROM pemberi_zakat ORDER BY ID DESC LIMIT 1";
     private static final String QUERY_7 = "SELECT IFNULL(SUM(jumlah),0) FROM pemberi_zakat";
+    @Language("SQL")
     private static final String QUERY_8 = "SELECT id FROM pemberi_zakat WHERE id=?";
 
 

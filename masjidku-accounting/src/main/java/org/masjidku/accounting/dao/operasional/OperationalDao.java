@@ -14,6 +14,7 @@
  */
 
 package org.masjidku.accounting.dao.operasional;
+import org.intellij.lang.annotations.Language;
 import org.masjidku.accounting.client.model.operasional.*;
 
 
@@ -26,11 +27,16 @@ import java.sql.SQLException;
 public class OperationalDao extends Dao<Operasional> {
     private static final String QUERY_1 = "SELECT * FROM operasional_keluar WHERE id=?";
     private static final String QUERY_2 = "SELECT * FROM operasional_keluar";
+    @Language("SQL")
     private static final String QUERY_3 = "INSERT INTO operasional_keluar(id, nama, keterangan, jumlah, tanggal, operator) VALUES (?,?,?,?,?,?)";
+    @Language("SQL")
     private static final String QUERY_4 = "UPDATE operasional_keluar SET nama=?, keterangan=?, jumlah=?, tanggal=?, operator=? WHERE id=?";
     private static final String QUERY_5 = "DELETE FROM operasional_keluar WHERE id=?";
+    @Language("SQL")
     private static final String QUERY_6 = "SELECT id FROM operasional_keluar WHERE id=?";
+    @Language("SQL")
     private static final String QUERY_7 = "SELECT * FROM operasional_keluar ORDER BY ID DESC LIMIT 1";
+    @Language("SQL")
     private static final String QUERY_8 = "SELECT IFNULL(SUM(jumlah),0) FROM operasional_keluar";
 
 

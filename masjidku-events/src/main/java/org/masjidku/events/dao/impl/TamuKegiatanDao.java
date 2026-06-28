@@ -19,10 +19,12 @@ import javafx.collections.ObservableList;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.intellij.lang.annotations.Language;
 import org.masjidku.events.client.model.TamuKegiatan;
 import org.masjidku.events.dao.base.Dao;
 
 public class TamuKegiatanDao extends Dao<TamuKegiatan> implements org.masjidku.events.client.service.TamuKegiatanService {
+    @Language("SQL")
     private static final String QUERY_1 = "SELECT " +
             "id_undangan, " +
             "id_tamu, " +
@@ -38,6 +40,7 @@ public class TamuKegiatanDao extends Dao<TamuKegiatan> implements org.masjidku.e
             "INNER JOIN kegiatan k " +
             "ON tamukegiatan.id_kegiatan = k.kegiatanID " +
             "WHERE id_undangan=?";
+    @Language("SQL")
     private static final String QUERY_2 = "SELECT " +
             "id_undangan, " +
             "id_tamu, " +
@@ -52,8 +55,11 @@ public class TamuKegiatanDao extends Dao<TamuKegiatan> implements org.masjidku.e
             "ON tamukegiatan.id_tamu = g.tamuID " +
             "INNER JOIN kegiatan k " +
             "ON tamukegiatan.id_kegiatan = k.kegiatanID";
+    @Language("SQL")
     private static final String QUERY_3 = "INSERT INTO tamukegiatan(id_kegiatan, id_tamu, keterangan, operator) VALUES(?,?,?,?)";
+    @Language("SQL")
     private static final String QUERY_4 = "UPDATE tamukegiatan SET keterangan=? WHERE id_tamu=? and id_kegiatan=? and id_undangan=?";
+    @Language("SQL")
     private static final String QUERY_5 = "DELETE FROM tamukegiatan WHERE id_undangan=?";
     private static final String QUERY_6 = "SELECT id_undangan FROM tamukegiatan WHERE id_undangan=?";
 

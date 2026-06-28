@@ -14,6 +14,7 @@
  */
 
 package org.masjidku.accounting.dao.tpa;
+import org.intellij.lang.annotations.Language;
 import org.masjidku.accounting.client.model.tpa.*;
 
 
@@ -26,11 +27,15 @@ import java.sql.SQLException;
 public class TpaMasukDao extends Dao<TpaMasuk> {
     private static final String QUERY_1 = "SELECT * FROM infak_tpa WHERE id=?";
     private static final String QUERY_2 = "SELECT * FROM infak_tpa";
+    @Language("SQL")
     private static final String QUERY_3 = "INSERT INTO infak_tpa(id, donatur, jumlah, tanggal, operator) VALUES (?,?,?,?,?)";
+    @Language("SQL")
     private static final String QUERY_4 = "UPDATE infak_tpa SET donatur=?, jumlah=?, tanggal=?, operator=? WHERE id=?";
     private static final String QUERY_5 = "DELETE FROM infak_tpa WHERE id=?";
+    @Language("SQL")
     private static final String QUERY_6 = "SELECT * FROM infak_tpa ORDER BY ID DESC LIMIT 1";
     private static final String QUERY_7 = "SELECT IFNULL(SUM(jumlah), 0) FROM infak_tpa";
+    @Language("SQL")
     private static final String QUERY_8 = "SELECT id FROM infak_tpa WHERE id=?";
 
 

@@ -13,6 +13,7 @@
  *                                HEREUNDER.
  */
 package org.masjidku.accounting.dao.tpa;
+import org.intellij.lang.annotations.Language;
 import org.masjidku.accounting.client.model.tpa.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,11 +22,14 @@ import java.sql.SQLException;
 public class TpaKeluarDao extends Dao<TpaKeluar> {
     private static final String QUERY_1 = "SELECT * FROM tpa_keluar WHERE id=?";
     private static final String QUERY_2 = "SELECT * FROM tpa_keluar";
+    @Language("SQL")
     private static final String QUERY_3 = "INSERT INTO tpa_keluar(id, nama, keterangan, jumlah, tanggal, operator) VALUES (?,?,?,?,?,?)";
+    @Language("SQL")
     private static final String QUERY_4 = "UPDATE tpa_keluar SET nama=?, keterangan=?, jumlah=?, tanggal=?, operator=? WHERE id=?";
     private static final String QUERY_5 = "DELETE FROM tpa_keluar WHERE id=?";
     private static final String QUERY_6 = "SELECT * FROM tpa_keluar ORDER BY ID DESC LIMIT 1";
     private static final String QUERY_7 = "SELECT IFNULL(SUM(jumlah),0) FROM tpa_keluar";
+    @Language("SQL")
     private static final String QUERY_8 = "SELECT id FROM tpa_keluar WHERE id=?";
 
     

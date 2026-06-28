@@ -48,7 +48,7 @@
         <Rectangle arcWidth="5.0" fill="#3aafa9" height="5.0" layoutX="101.0" layoutY="-5.0" smooth="false" stroke="BLACK" strokeLineCap="BUTT" strokeLineJoin="BEVEL" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" width="665.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
         <HBox layoutX="481.0" layoutY="431.0" prefHeight="20.0" spacing="10.0" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0">
             <children>
-                <Button fx:id="btnEdit" disable="true" mnemonicParsing="false" onAction="#editListener" styleClass="generalButton" text="Edit" />
+                <Button fx:id="btnEdit" disable="true" mnemonicParsing="false" onAction="#onEditListener" styleClass="generalButton" text="Edit" />
                 <Button fx:id="btnRemove" disable="true" mnemonicParsing="false" onAction="#onRemoveListener" styleClass="generalButton">
                     <graphic>
                         <ImageView cache="true" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
@@ -84,3 +84,4 @@
         </HBox>
     </children>
 </AnchorPane>
+

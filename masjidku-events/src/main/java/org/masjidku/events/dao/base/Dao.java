@@ -3,8 +3,6 @@ package org.masjidku.events.dao.base;
 import org.intellij.lang.annotations.Language;
 import org.masjidku.util.db.DatabaseConnection;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public abstract class Dao<T> {

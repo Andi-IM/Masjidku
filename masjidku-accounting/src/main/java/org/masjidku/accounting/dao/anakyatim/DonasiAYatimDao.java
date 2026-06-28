@@ -14,6 +14,7 @@
  */
 
 package org.masjidku.accounting.dao.anakyatim;
+import org.intellij.lang.annotations.Language;
 import org.masjidku.accounting.client.model.anakyatim.*;
 
 
@@ -24,13 +25,21 @@ import org.masjidku.accounting.dao.base.Dao;
 import java.sql.SQLException;
 
 public class DonasiAYatimDao extends Dao<DonasiAYatim> {
+    @Language("SQL")
     private static final String QUERY_1 = "SELECT * FROM infak_anakyatim WHERE id=?";
+    @Language("SQL")
     private static final String QUERY_2 = "SELECT * FROM infak_anakyatim";
+    @Language("SQL")
     private static final String QUERY_3 = "INSERT INTO infak_anakyatim(id, donatur, jumlah, tanggal, operator) VALUES (?,?,?,?,?)";
+    @Language("SQL")
     private static final String QUERY_4 = "UPDATE infak_anakyatim SET donatur=?, jumlah=?, tanggal=?, operator=? WHERE id=?";
+    @Language("SQL")
     private static final String QUERY_5 = "DELETE FROM infak_anakyatim WHERE id=?";
+    @Language("SQL")
     private static final String QUERY_6 = "SELECT * FROM infak_anakyatim ORDER BY ID DESC LIMIT 1";
+    @Language("SQL")
     private static final String QUERY_7 = "SELECT IFNULL(SUM(jumlah),0) FROM infak_anakyatim";
+    @Language("SQL")
     private static final String QUERY_8 = "SELECT id FROM infak_anakyatim WHERE id=?";
 
 

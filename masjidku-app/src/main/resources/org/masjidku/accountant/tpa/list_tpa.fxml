@@ -56,7 +56,7 @@
         </TableView>
       <HBox layoutX="481.0" layoutY="431.0" prefHeight="20.0" spacing="10.0" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0">
          <children>
-            <Button fx:id="btnEdit" disable="true" mnemonicParsing="false" onAction="#editListener" styleClass="generalButton" text="Edit" />
+            <Button fx:id="btnEdit" disable="true" mnemonicParsing="false" onAction="#onEditListener" styleClass="generalButton" text="Edit" />
             <Button fx:id="btnRemove" disable="true" mnemonicParsing="false" onAction="#onRemoveListener" styleClass="generalButton">
                <graphic>
                   <ImageView cache="true" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
@@ -71,3 +71,4 @@
         <Button layoutX="14.0" layoutY="441.0" mnemonicParsing="false" onAction="#gotoHome" styleClass="generalButton" text="kembali" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" />
     </children>
 </AnchorPane>
+
