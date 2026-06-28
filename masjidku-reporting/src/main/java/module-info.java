@@ -9,3 +9,5 @@ module org.masjidku.reporting {
         with org.masjidku.reporting.service.impl.ReportServiceImpl;
 }
 
+
+
