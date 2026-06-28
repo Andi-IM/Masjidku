@@ -29,10 +29,10 @@ public class TamuKegiatanDao extends Dao<TamuKegiatan> implements org.masjidku.e
                 "g.tamuNotelp, " +
                 "k.kegiatanNama, " +
                 "keterangan " +
-                "FROM "tamukegiatan +
-                " INNER JOIN " + GUEST + " g " +
-                " ON tamukegiatan.id_tamu = g.tamuID " +
-                "INNER JOIN " + ACTIVITY + " k " +
+                "FROM tamukegiatan " +
+                "INNER JOIN tamu g " +
+                "ON tamukegiatan.id_tamu = g.tamuID " +
+                "INNER JOIN kegiatan k " +
                 "ON tamukegiatan.id_kegiatan = k.kegiatanID " +
                 "WHERE id_undangan=?";
     private static final String QUERY_2 = "SELECT " +
@@ -44,10 +44,10 @@ public class TamuKegiatanDao extends Dao<TamuKegiatan> implements org.masjidku.e
                 "g.tamuNotelp, " +
                 "k.kegiatanNama, " +
                 "keterangan " +
-                "FROM "tamukegiatan +
-                " INNER JOIN " + GUEST + " g " +
-                " ON tamukegiatan.id_tamu = g.tamuID " +
-                "INNER JOIN " + ACTIVITY + " k " +
+                "FROM tamukegiatan " +
+                "INNER JOIN tamu g " +
+                "ON tamukegiatan.id_tamu = g.tamuID " +
+                "INNER JOIN kegiatan k " +
                 "ON tamukegiatan.id_kegiatan = k.kegiatanID";
     private static final String QUERY_3 = "INSERT INTO tamukegiatan(id_kegiatan, id_tamu, keterangan, operator) VALUES(?,?,?,?)";
     private static final String QUERY_4 = "UPDATE tamukegiatan SET keterangan=? WHERE id_tamu=? and id_kegiatan=? and id_undangan=?";
