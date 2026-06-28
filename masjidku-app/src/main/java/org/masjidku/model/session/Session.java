@@ -71,6 +71,7 @@ public class Session extends DaoFactory implements SessionDao{
             ps.setString(1, userid);
             ps.setString(2, getTimeStamp());
             ps.executeUpdate();
+            ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -84,6 +85,7 @@ public class Session extends DaoFactory implements SessionDao{
             ps.setString(1, getUserDuration());
             ps.setString(2, sessionId);
             ps.executeUpdate();
+            ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -91,14 +93,13 @@ public class Session extends DaoFactory implements SessionDao{
 
     @Override
     public UserSession getSessionData(String userId){
-        query = "SELECT * FROM "+TABLE+" WHERE userid=?";
+        query = "SELECT * FROM "+TABLE+" WHERE userid=? ORDER BY session_id DESC LIMIT 1";
         UserSession model = null;
         try {
             ps = con.prepareStatement(query);
             ps.setString(1, userId);
             rs = ps.executeQuery();
 
-            // latestUserData
             while (rs.next()){
                 model = new UserSession();
                 model.setSession_id(rs.getString(1));
@@ -106,6 +107,8 @@ public class Session extends DaoFactory implements SessionDao{
                 model.setTimestamp(rs.getString(3));
                 model.setDuration(rs.getString(4));
             }
+            rs.close();
+            ps.close();
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
