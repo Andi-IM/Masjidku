@@ -16,4 +16,6 @@ out/
 /masjidku-app/logs/
 *.log
 logs/
+*.py
+
 
