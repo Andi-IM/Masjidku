@@ -40,25 +40,39 @@ public class DonaturAnakYatim extends BaseTableController<DonasiAYatim> {
     }
 
     @Override
-    protected Logger getLogger() { return log; }
+    protected Logger getLogger() {
+        return log;
+    }
 
     @Override
-    protected TableView<DonasiAYatim> getTableView() { return tblAYMasuk; }
+    protected TableView<DonasiAYatim> getTableView() {
+        return tblAYMasuk;
+    }
 
     @Override
-    protected Button getBtnEdit() { return btnEdit; }
+    protected Button getBtnEdit() {
+        return btnEdit;
+    }
 
     @Override
-    protected Button getBtnRemove() { return btnRemove; }
+    protected Button getBtnRemove() {
+        return btnRemove;
+    }
 
     @Override
-    protected List<DonasiAYatim> fetchAllData() throws SQLException { return dao.getAll(); }
+    protected List<DonasiAYatim> fetchAllData() throws SQLException {
+        return dao.getAll();
+    }
 
     @Override
-    protected boolean checkIfExist(DonasiAYatim item) throws SQLException { return dao.isDonaturExist(item.getId()); }
+    protected boolean checkIfExist(DonasiAYatim item) throws SQLException {
+        return dao.isDonaturExist(item.getId());
+    }
 
     @Override
-    protected void deleteItem(DonasiAYatim item) throws SQLException { dao.delete(item.getId()); }
+    protected void deleteItem(DonasiAYatim item) throws SQLException {
+        dao.delete(item.getId());
+    }
 
     @Override
     protected void setupTableColumns() {

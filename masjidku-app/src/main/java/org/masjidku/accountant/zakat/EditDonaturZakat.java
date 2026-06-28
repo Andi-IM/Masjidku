@@ -15,17 +15,16 @@
 
 package org.masjidku.accountant.zakat;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.masjidku.util.ServiceProvider;
-import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
 import org.masjidku.accounting.client.model.zakat.ZakatMasuk;
+import org.masjidku.accounting.client.service.ZakatMasukService;
+import org.masjidku.util.ServiceProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -55,12 +54,12 @@ public class EditDonaturZakat {
         this.donatur = model;
         this.operator = operator;
 
-        if (model.getId() != null){
+        if (model.getId() != null) {
             setDonatur(model);
         }
     }
 
-    public void setDonatur(ZakatMasuk model){
+    public void setDonatur(ZakatMasuk model) {
         txtNama.setText(model.getDonatur());
         txtJumlah.setText(model.getJumlah());
         LocalDate localDate = LocalDate.parse(model.getTanggal());
@@ -113,8 +112,8 @@ public class EditDonaturZakat {
      */
     private boolean formValidation() {
         if (!txtNama.getText().isBlank()) {
-            if (!txtJumlah.getText().isBlank()){
-                if (txtJumlah.getText().matches("[0-9]")){
+            if (!txtJumlah.getText().isBlank()) {
+                if (txtJumlah.getText().matches("[0-9]")) {
                     return date.getEditor().getText().isBlank();
                 }
             }
@@ -124,10 +123,14 @@ public class EditDonaturZakat {
 
 
     @FXML
-    public void gotoList() { mainApp.showDonaturZakat(); }
+    public void gotoList() {
+        mainApp.showDonaturZakat();
+    }
 
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
 
 
 }

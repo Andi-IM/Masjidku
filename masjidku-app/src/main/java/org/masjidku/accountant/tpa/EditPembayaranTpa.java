@@ -15,17 +15,16 @@
 
 package org.masjidku.accountant.tpa;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.masjidku.util.ServiceProvider;
-import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
 import org.masjidku.accounting.client.model.tpa.TpaKeluar;
+import org.masjidku.accounting.client.service.TpaKeluarService;
+import org.masjidku.util.ServiceProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -123,10 +122,14 @@ public class EditPembayaranTpa {
     }
 
     @FXML
-    public void gotoList() { mainApp.showAlokasiTpa(); }
+    public void gotoList() {
+        mainApp.showAlokasiTpa();
+    }
 
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
 
     @FXML
     public void clearForm() {

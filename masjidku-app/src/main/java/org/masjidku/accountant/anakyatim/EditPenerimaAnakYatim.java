@@ -15,11 +15,6 @@
 
 package org.masjidku.accountant.anakyatim;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.masjidku.util.ServiceProvider;
-import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Spinner;
@@ -27,6 +22,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
 import org.masjidku.accounting.client.model.anakyatim.AnakYatim;
+import org.masjidku.accounting.client.service.AnakYatimService;
+import org.masjidku.util.ServiceProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -81,7 +80,7 @@ public class EditPenerimaAnakYatim {
         if (!txtNama.getText().isBlank()) {
             if (!txtJumlah.getText().isBlank()) {
                 if (txtJumlah.getText().matches("[0-9]")) {
-                    if (date.getEditor().getText().isBlank()){
+                    if (date.getEditor().getText().isBlank()) {
                         return spnUsia.getValueFactory().getValue() > 5 &&
                                 spnUsia.getValueFactory().getValue() < 19;
                     }

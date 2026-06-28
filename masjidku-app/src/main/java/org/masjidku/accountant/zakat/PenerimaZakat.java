@@ -15,28 +15,19 @@
 
 package org.masjidku.accountant.zakat;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.masjidku.util.ServiceProvider;
-import org.masjidku.accounting.client.service.*;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import org.masjidku.accountant.BaseTableController;
-import java.util.List;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import org.masjidku.MainApp;
 import org.masjidku.accounting.client.model.zakat.ZakatKeluar;
+import org.masjidku.accounting.client.service.ZakatKeluarService;
+import org.masjidku.util.ServiceProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.ResourceBundle;
+import java.util.List;
 
 public class PenerimaZakat extends org.masjidku.accountant.BaseTableController<ZakatKeluar> {
     private static final Logger log = LoggerFactory.getLogger(PenerimaZakat.class);
@@ -57,15 +48,11 @@ public class PenerimaZakat extends org.masjidku.accountant.BaseTableController<Z
 
     private MainApp mainApp;
 
-    
-
-    
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
-    
 
     @Override
     protected void setupTableColumns() {
@@ -75,9 +62,10 @@ public class PenerimaZakat extends org.masjidku.accountant.BaseTableController<Z
     }
 
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
 
-    
 
     @FXML
     public void addListener() {
@@ -85,25 +73,55 @@ public class PenerimaZakat extends org.masjidku.accountant.BaseTableController<Z
         mainApp.editPenerimaZakat(temp);
     }
 
-    
-
-    
 
     @FXML
-    public void gotoHome() { mainApp.showZakat(); }
+    public void gotoHome() {
+        mainApp.showZakat();
+    }
 
-    
 
-    
+    @Override
+    protected org.slf4j.Logger getLogger() {
+        return log;
+    }
 
-    @Override protected org.slf4j.Logger getLogger() { return log; }
-    @Override protected TableView<ZakatKeluar> getTableView() { return tableZakat; }
-    @Override protected Button getBtnEdit() { return btnEdit; }
-    @Override protected Button getBtnRemove() { return btnRemove; }
-    @Override protected List<ZakatKeluar> fetchAllData() throws java.sql.SQLException { return dao.getAll(); }
-    @Override protected boolean checkIfExist(ZakatKeluar item) throws java.sql.SQLException { return dao.isDataExist(item.getId()); }
-    @Override protected void deleteItem(ZakatKeluar item) throws java.sql.SQLException { dao.delete(item.getId()); }
-    @Override protected void handleEdit(ZakatKeluar item) { mainApp.editPenerimaZakat(item); }
+    @Override
+    protected TableView<ZakatKeluar> getTableView() {
+        return tableZakat;
+    }
 
-    @FXML public void onEditListener() { super.onEditAction(); }
+    @Override
+    protected Button getBtnEdit() {
+        return btnEdit;
+    }
+
+    @Override
+    protected Button getBtnRemove() {
+        return btnRemove;
+    }
+
+    @Override
+    protected List<ZakatKeluar> fetchAllData() throws java.sql.SQLException {
+        return dao.getAll();
+    }
+
+    @Override
+    protected boolean checkIfExist(ZakatKeluar item) throws java.sql.SQLException {
+        return dao.isDataExist(item.getId());
+    }
+
+    @Override
+    protected void deleteItem(ZakatKeluar item) throws java.sql.SQLException {
+        dao.delete(item.getId());
+    }
+
+    @Override
+    protected void handleEdit(ZakatKeluar item) {
+        mainApp.editPenerimaZakat(item);
+    }
+
+    @FXML
+    public void onEditListener() {
+        super.onEditAction();
+    }
 }

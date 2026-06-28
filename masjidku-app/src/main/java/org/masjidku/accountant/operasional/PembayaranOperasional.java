@@ -15,28 +15,19 @@
 
 package org.masjidku.accountant.operasional;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.masjidku.util.ServiceProvider;
-import org.masjidku.accounting.client.service.*;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import org.masjidku.accountant.BaseTableController;
-import java.util.List;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import org.masjidku.MainApp;
 import org.masjidku.accounting.client.model.operasional.Operasional;
+import org.masjidku.accounting.client.service.OperationalService;
+import org.masjidku.util.ServiceProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.ResourceBundle;
+import java.util.List;
 
 public class PembayaranOperasional extends org.masjidku.accountant.BaseTableController<Operasional> {
     private static final Logger log = LoggerFactory.getLogger(PembayaranOperasional.class);
@@ -59,15 +50,11 @@ public class PembayaranOperasional extends org.masjidku.accountant.BaseTableCont
 
     private MainApp mainApp;
 
-    
-
-    
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
-    
 
     @Override
     protected void setupTableColumns() {
@@ -78,9 +65,10 @@ public class PembayaranOperasional extends org.masjidku.accountant.BaseTableCont
     }
 
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
 
-    
 
     @FXML
     public void addListener() {
@@ -88,27 +76,55 @@ public class PembayaranOperasional extends org.masjidku.accountant.BaseTableCont
         mainApp.editAlokasiOperasional(temp);
     }
 
-    
-
-    
 
     @FXML
     public void gotoHome() {
         mainApp.showOperasional();
     }
 
-    
 
-    
+    @Override
+    protected org.slf4j.Logger getLogger() {
+        return log;
+    }
 
-    @Override protected org.slf4j.Logger getLogger() { return log; }
-    @Override protected TableView<Operasional> getTableView() { return tableOperasional; }
-    @Override protected Button getBtnEdit() { return btnEdit; }
-    @Override protected Button getBtnRemove() { return btnRemove; }
-    @Override protected List<Operasional> fetchAllData() throws java.sql.SQLException { return dao.getAll(); }
-    @Override protected boolean checkIfExist(Operasional item) throws java.sql.SQLException { return dao.isDataExist(item.getId()); }
-    @Override protected void deleteItem(Operasional item) throws java.sql.SQLException { dao.delete(item.getId()); }
-    @Override protected void handleEdit(Operasional item) { mainApp.editAlokasiOperasional(item); }
+    @Override
+    protected TableView<Operasional> getTableView() {
+        return tableOperasional;
+    }
 
-    @FXML public void onEditListener() { super.onEditAction(); }
+    @Override
+    protected Button getBtnEdit() {
+        return btnEdit;
+    }
+
+    @Override
+    protected Button getBtnRemove() {
+        return btnRemove;
+    }
+
+    @Override
+    protected List<Operasional> fetchAllData() throws java.sql.SQLException {
+        return dao.getAll();
+    }
+
+    @Override
+    protected boolean checkIfExist(Operasional item) throws java.sql.SQLException {
+        return dao.isDataExist(item.getId());
+    }
+
+    @Override
+    protected void deleteItem(Operasional item) throws java.sql.SQLException {
+        dao.delete(item.getId());
+    }
+
+    @Override
+    protected void handleEdit(Operasional item) {
+        mainApp.editAlokasiOperasional(item);
+    }
+
+    @FXML
+    public void onEditListener() {
+        super.onEditAction();
+    }
 }

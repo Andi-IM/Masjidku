@@ -15,17 +15,16 @@
 
 package org.masjidku.accountant.operasional;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.masjidku.util.ServiceProvider;
-import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
 import org.masjidku.accounting.client.model.operasional.Operasional;
+import org.masjidku.accounting.client.service.OperationalService;
+import org.masjidku.util.ServiceProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -50,6 +49,7 @@ public class EditPembayaranOperasional {
     // create some stage
     @SuppressWarnings("unused")
     private Stage dialogStage;
+
     public void setMainApp(MainApp mainApp, Operasional model) {
         String operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
         this.mainApp = mainApp;
@@ -122,10 +122,14 @@ public class EditPembayaranOperasional {
     }
 
     @FXML
-    public void gotoList() { mainApp.showAlokasiOperasional(); }
+    public void gotoList() {
+        mainApp.showAlokasiOperasional();
+    }
 
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
 
     @FXML
     public void clearForm() {

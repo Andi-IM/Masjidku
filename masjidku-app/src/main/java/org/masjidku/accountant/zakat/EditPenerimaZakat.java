@@ -15,17 +15,16 @@
 
 package org.masjidku.accountant.zakat;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.masjidku.util.ServiceProvider;
-import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
 import org.masjidku.accounting.client.model.zakat.ZakatKeluar;
+import org.masjidku.accounting.client.service.ZakatKeluarService;
+import org.masjidku.util.ServiceProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -55,12 +54,12 @@ public class EditPenerimaZakat {
         this.penerima = model;
         this.operator = operator;
 
-        if (model.getId() != null){
+        if (model.getId() != null) {
             setModel(model);
         }
     }
 
-    private void setModel(ZakatKeluar model){
+    private void setModel(ZakatKeluar model) {
         txtNama.setText(model.getNama());
         txtJumlah.setText(model.getJumlah());
         LocalDate localDate = LocalDate.parse(model.getTanggal());
@@ -123,12 +122,15 @@ public class EditPenerimaZakat {
     }
 
 
+    @FXML
+    public void gotoList() {
+        mainApp.showDaftarPenerimaZakat();
+    }
 
     @FXML
-    public void gotoList() { mainApp.showDaftarPenerimaZakat(); }
-
-    @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
 
 
 }
