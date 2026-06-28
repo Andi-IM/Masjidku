@@ -33,9 +33,9 @@ dependencies {
     implementation(project(":masjidku-reporting-client"))
     
     // Service implementations (runtime)
-    runtimeOnly(project(":masjidku-accounting"))
-    runtimeOnly(project(":masjidku-events"))
-    runtimeOnly(project(":masjidku-reporting"))
+    implementation(project(":masjidku-accounting"))
+    implementation(project(":masjidku-events"))
+    implementation(project(":masjidku-reporting"))
     
     // XML Bind
     implementation(libs.jaxb.api)
@@ -88,4 +88,5 @@ tasks.withType<Test> {
 tasks.compileTestJava {
     modularity.inferModulePath.set(false)
 }
+
 
