@@ -24,6 +24,7 @@ tasks.named<JavaCompile>("compileTestJava") {
 dependencies {
     // Database
     implementation(libs.mysql.connector)
+    implementation(libs.sqlite.jdbc)
 
     // Submodules
     implementation(project(":masjidku-accounting-client"))

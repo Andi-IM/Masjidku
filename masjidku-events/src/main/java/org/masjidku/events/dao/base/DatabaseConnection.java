@@ -1,44 +1,58 @@
-/*
- * Copyright (c) 2021. Creative Commons Legal Code
- *
- *                            CC0 1.0 Universal
- *
- *                                CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
- *                                LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN
- *                                ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
- *                                INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
- *                                REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS
- *                                PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
- *                                THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
- *                                HEREUNDER.
- */
-
 package org.masjidku.events.dao.base;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 /**
- *  The MySQL Connection
- *  using connection with http://localhost:3306
- *
- * @author Andi Irham
+ * Database Connection Abstraction
+ * Supports switching between MySQL and SQLite
  */
 public class DatabaseConnection {
+    private static final Logger LOGGER = Logger.getLogger(DatabaseConnection.class.getName());
     public Connection dbLink;
 
-    public Connection getConnection(){
-        String dbName = "masjidku";
-        String url = "jdbc:mysql://127.0.0.1:3306/"+dbName;
-        String username = "root";
-        String password = ""; // using default password=root in github
+    public interface ConnectionProvider {
+        Connection getConnection() throws SQLException, ClassNotFoundException;
+    }
 
-        try {
+    public static class MySQLProvider implements ConnectionProvider {
+        @Override
+        public Connection getConnection() throws SQLException, ClassNotFoundException {
+            String dbName = "masjidku";
+            String url = "jdbc:mysql://127.0.0.1:3306/" + dbName;
+            String username = "root";
+            String password = ""; // using default password=root in github
+            
             Class.forName("com.mysql.cj.jdbc.Driver");
-            dbLink = java.sql.DriverManager.getConnection(url, username, password);
+            return DriverManager.getConnection(url, username, password);
+        }
+    }
+
+    public static class SQLiteProvider implements ConnectionProvider {
+        @Override
+        public Connection getConnection() throws SQLException, ClassNotFoundException {
+            // using SQLite
+            String url = "jdbc:sqlite:masjidku.db";
+            Class.forName("org.sqlite.JDBC");
+            return DriverManager.getConnection(url);
+        }
+    }
+
+    // Abstraction point: easily switch DBMS by changing this instance
+    private static ConnectionProvider activeProvider = new SQLiteProvider();
+
+    public static void setProvider(ConnectionProvider provider) {
+        activeProvider = provider;
+    }
+
+    public Connection getConnection() {
+        try {
+            dbLink = activeProvider.getConnection();
         } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-            e.getCause();
+            LOGGER.log(Level.SEVERE, "Failed to connect to database", e);
         }
         return dbLink;
     }
