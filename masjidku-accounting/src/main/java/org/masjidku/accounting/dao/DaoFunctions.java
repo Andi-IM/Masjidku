@@ -22,7 +22,7 @@ import java.sql.SQLException;
 public class DaoFunctions extends DaoFactory {
 
     public String getInfakYatimBalance() throws SQLException {
-        query = "SELECT getInfakYatimBalance()";
+        String query = "SELECT getInfakYatimBalance()";
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
 
@@ -34,7 +34,7 @@ public class DaoFunctions extends DaoFactory {
     }
 
     public String getOperationalBalance() throws SQLException{
-        query = "SELECT getInfakYatimBalance()";
+        String query = "SELECT getInfakYatimBalance()";
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
 
@@ -46,7 +46,7 @@ public class DaoFunctions extends DaoFactory {
     }
 
     public String getPembangunanBalance() throws SQLException {
-        query = "SELECT getInfakYatimBalance()";
+        String query = "SELECT getInfakYatimBalance()";
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
 
@@ -58,7 +58,7 @@ public class DaoFunctions extends DaoFactory {
     }
 
     public String getTpaBalance() throws SQLException {
-        query = "SELECT getInfakYatimBalance()";
+        String query = "SELECT getInfakYatimBalance()";
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
 
@@ -69,7 +69,7 @@ public class DaoFunctions extends DaoFactory {
     }
 
     public String getZakatBalance() throws SQLException {
-        query = "SELECT getInfakYatimBalance()";
+        String query = "SELECT getInfakYatimBalance()";
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
 
