@@ -30,34 +30,26 @@
         <URL value="@../styles/styles.css"/>
         <URL value="@../styles/fontstyles.css"/>
     </stylesheets>
-    <children>
-        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="24.0" layoutY="24.0" pickOnBounds="true"
-                   preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <image>
-                <Image url="@../icon/app_icon.png"/>
-            </image>
-        </ImageView>
-        <Text layoutX="125.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="app-title"
-              text="Aplikasi Desktop MasjidKu "/>
-        <Rectangle arcWidth="5.0" fill="#3aafa9" height="5.0" layoutX="101.0" layoutY="-5.0" smooth="false"
-                   stroke="BLACK" strokeLineCap="BUTT" strokeLineJoin="BEVEL" strokeMiterLimit="0.0" strokeType="INSIDE"
-                   strokeWidth="0.0" width="665.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
-        <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="398.0" layoutY="42.0" onMouseClicked="#onLogoutClick"
-                   pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-            <image>
-                <Image url="@../icon/logout.png"/>
-            </image>
-        </ImageView>
-        <VBox layoutX="75.0" layoutY="223.0" prefHeight="200.0" prefWidth="250.0" AnchorPane.bottomAnchor="25.0"
-              AnchorPane.leftAnchor="20.0">
-            <children>
-                <Button mnemonicParsing="false" onAction="#readKegiatan" text="kegiatan"/>
-                <Button mnemonicParsing="false" onAction="#readAnakYatim" text="Data Anak Yatim"/>
-                <Button mnemonicParsing="false" onAction="#readPembangunan" text="Data Pembangunan"/>
-                <Button mnemonicParsing="false" onAction="#readOperasional" text="Data Operasional"/>
-                <Button mnemonicParsing="false" onAction="#readTpa" text="Data TPA"/>
-                <Button mnemonicParsing="false" onAction="#readZakat" text="Data Zakat"/>
-            </children>
-        </VBox>
-    </children>
+    <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="24.0" layoutY="24.0" pickOnBounds="true"
+               preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <Image url="@../icon/app_icon.png"/>
+    </ImageView>
+    <Text layoutX="125.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="app-title"
+          text="Aplikasi Desktop MasjidKu "/>
+    <Rectangle arcWidth="5.0" fill="#3aafa9" height="5.0" layoutX="101.0" layoutY="-5.0" smooth="false"
+               stroke="BLACK" strokeLineCap="BUTT" strokeLineJoin="BEVEL" strokeMiterLimit="0.0" strokeType="INSIDE"
+               strokeWidth="0.0" width="665.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+    <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="398.0" layoutY="42.0" onMouseClicked="#onLogoutClick"
+               pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+        <Image url="@../icon/logout.png"/>
+    </ImageView>
+    <VBox layoutX="75.0" layoutY="223.0" prefHeight="200.0" prefWidth="250.0" AnchorPane.bottomAnchor="25.0"
+          AnchorPane.leftAnchor="20.0">
+        <Button mnemonicParsing="false" onAction="#readKegiatan" text="kegiatan"/>
+        <Button mnemonicParsing="false" onAction="#readAnakYatim" text="Data Anak Yatim"/>
+        <Button mnemonicParsing="false" onAction="#readPembangunan" text="Data Pembangunan"/>
+        <Button mnemonicParsing="false" onAction="#readOperasional" text="Data Operasional"/>
+        <Button mnemonicParsing="false" onAction="#readTpa" text="Data TPA"/>
+        <Button mnemonicParsing="false" onAction="#readZakat" text="Data Zakat"/>
+    </VBox>
 </AnchorPane>

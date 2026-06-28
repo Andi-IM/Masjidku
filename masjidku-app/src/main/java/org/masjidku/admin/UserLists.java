@@ -188,7 +188,7 @@ public class UserLists implements Initializable {
      * Edit User
      */
     @FXML
-    public void editListener() {
+    public void onEditListener() {
         User selectedUser = userTable.getSelectionModel().getSelectedItem();
         if (selectedUser != null){
             mainApp.showUserEditScene(selectedUser);
