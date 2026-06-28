@@ -15,10 +15,8 @@
 
 package org.masjidku.principal.report.keuangan.anakyatim;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -29,11 +27,9 @@ import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.ResourceBundle;
+import java.util.List;
 
-public class DataDonaturAnakYatim implements Initializable {
+public class DataDonaturAnakYatim extends org.masjidku.accountant.BaseTableController<DonasiAYatim> {
     private static final Logger log = LoggerFactory.getLogger(DataDonaturAnakYatim.class);
     private final DonasiAYatimService dao = ServiceProvider.get(DonasiAYatimService.class);
     @FXML
@@ -49,22 +45,14 @@ public class DataDonaturAnakYatim implements Initializable {
 
     private MainApp mainApp;
 
-    /**
-     * The data as an observable list of Donatur.
-     */
-    private final ObservableList<DonasiAYatim> donaturData =
-            FXCollections.observableArrayList();
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
-    
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        tblAYMasuk.setItems(org.masjidku.util.AlertHelper.loadTableData(donaturData, dao::getAll, log));
-
+    protected void setupTableColumns() {
         donatur.setCellValueFactory(new PropertyValueFactory<>("donatur"));
         jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));
         tanggal.setCellValueFactory(new PropertyValueFactory<>("tanggal"));
@@ -89,4 +77,43 @@ public class DataDonaturAnakYatim implements Initializable {
     @FXML
     public void printReport() {
     }
+
+    @Override
+    protected org.slf4j.Logger getLogger() {
+        return log;
+    }
+
+    @Override
+    protected TableView<DonasiAYatim> getTableView() {
+        return tblAYMasuk;
+    }
+
+    @Override
+    protected Button getBtnEdit() {
+        return null;
+    }
+
+    @Override
+    protected Button getBtnRemove() {
+        return null;
+    }
+
+    @Override
+    protected List<DonasiAYatim> fetchAllData() throws java.sql.SQLException {
+        return dao.getAll();
+    }
+
+    @Override
+    protected boolean checkIfExist(DonasiAYatim item) throws java.sql.SQLException {
+        return false;
+    }
+
+    @Override
+    protected void deleteItem(DonasiAYatim item) throws java.sql.SQLException {
+    }
+
+    @Override
+    protected void handleEdit(DonasiAYatim item) {
+    }
 }
+

@@ -22,9 +22,12 @@ import org.masjidku.util.ServiceProvider;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import org.masjidku.accountant.BaseTableController;
+import java.util.List;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
@@ -35,7 +38,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class ListTamu implements Initializable {
+public class ListTamu extends org.masjidku.accountant.BaseTableController<Tamu> {
     private static final Logger log = LoggerFactory.getLogger(ListTamu.class);
     @FXML
     public TableView<Tamu> tblTamu;
@@ -51,38 +54,16 @@ public class ListTamu implements Initializable {
     public TableColumn<Tamu, String> colOperator;
 
     private MainApp mainApp;
-    private final TamuService dao;
+    private final TamuService dao = org.masjidku.util.ServiceProvider.get(TamuService.class);
 
-    // create some stage
-    @SuppressWarnings("unused")
-    private Stage dialogStage;
+    
 
+    @Override protected void setupTableColumns() {}
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
-    /**
-     * The Constructor
-     * The Constructor is called before the initialize() method.
-     */
-    public ListTamu() { dao = ServiceProvider.get(TamuService.class); }
-
     
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        tblTamu.setItems(org.masjidku.util.AlertHelper.loadTableData(tamuData, dao::getAll, log));
-        colNama.setCellValueFactory(new PropertyValueFactory<>("nama"));
-        colAlamat.setCellValueFactory(new PropertyValueFactory<>("alamat"));
-        colNotelp.setCellValueFactory(new PropertyValueFactory<>("notelp"));
-        colOperator.setCellValueFactory(new PropertyValueFactory<>("operator"));
-    }
-
-    /**
-     * The data as an observable list of Users.
-     */
-    private final ObservableList<Tamu> tamuData =
-            FXCollections.observableArrayList();
 
     @FXML
     public void onLogoutClick() { mainApp.onLogoutAction(); }
@@ -93,4 +74,16 @@ public class ListTamu implements Initializable {
 
     @FXML
     public void gotoHome() { mainApp.showKegiatanOverview(); }
+
+    @Override protected org.slf4j.Logger getLogger() { return log; }
+    @Override protected TableView<Tamu> getTableView() { return tblTamu; }
+    @Override protected Button getBtnEdit() { return null; }
+    @Override protected Button getBtnRemove() { return null; }
+    @Override protected List<Tamu> fetchAllData() throws java.sql.SQLException { return dao.getAll(); }
+    @Override protected boolean checkIfExist(Tamu item) throws java.sql.SQLException { return false; }
+    @Override protected void deleteItem(Tamu item) throws java.sql.SQLException {  }
+    @Override protected void handleEdit(Tamu item) {  }
 }
+
+
+

@@ -17,18 +17,26 @@ import java.util.ResourceBundle;
 
 public abstract class BaseTableController<T> implements Initializable {
     protected final ObservableList<T> tableData = FXCollections.observableArrayList();
-    
+
     @SuppressWarnings("unused")
     protected Stage dialogStage;
 
     protected abstract Logger getLogger();
+
     protected abstract TableView<T> getTableView();
+
     protected abstract Button getBtnEdit();
+
     protected abstract Button getBtnRemove();
+
     protected abstract List<T> fetchAllData() throws SQLException;
+
     protected abstract boolean checkIfExist(T item) throws SQLException;
+
     protected abstract void deleteItem(T item) throws SQLException;
+
     protected abstract void setupTableColumns();
+
     protected abstract void handleEdit(T item);
 
     @Override

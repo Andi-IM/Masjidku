@@ -15,10 +15,8 @@
 
 package org.masjidku.principal.report.keuangan.pembangunan;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -29,11 +27,9 @@ import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.ResourceBundle;
+import java.util.List;
 
-public class DataPembayaranPembangunan implements Initializable {
+public class DataPembayaranPembangunan extends org.masjidku.accountant.BaseTableController<Pembangunan> {
     private static final Logger log = LoggerFactory.getLogger(DataPembayaranPembangunan.class);
     private final PembangunanService dao = ServiceProvider.get(PembangunanService.class);
     @FXML
@@ -51,22 +47,14 @@ public class DataPembayaranPembangunan implements Initializable {
 
     private MainApp mainApp;
 
-    /**
-     * The data as an observable list of Data Operasional.
-     */
-    private final ObservableList<Pembangunan> dataPembangunan =
-            FXCollections.observableArrayList();
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
-    
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        tablePembangunan.setItems(org.masjidku.util.AlertHelper.loadTableData(dataPembangunan, dao::getAll, log));
-
+    protected void setupTableColumns() {
         nama.setCellValueFactory(new PropertyValueFactory<>("tujuan"));
         keterangan.setCellValueFactory(new PropertyValueFactory<>("keterangan"));
         jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));
@@ -87,4 +75,43 @@ public class DataPembayaranPembangunan implements Initializable {
     public void gotoHome() {
         mainApp.showPembangunanData();
     }
+
+    @Override
+    protected org.slf4j.Logger getLogger() {
+        return log;
+    }
+
+    @Override
+    protected TableView<Pembangunan> getTableView() {
+        return tablePembangunan;
+    }
+
+    @Override
+    protected Button getBtnEdit() {
+        return null;
+    }
+
+    @Override
+    protected Button getBtnRemove() {
+        return null;
+    }
+
+    @Override
+    protected List<Pembangunan> fetchAllData() throws java.sql.SQLException {
+        return dao.getAll();
+    }
+
+    @Override
+    protected boolean checkIfExist(Pembangunan item) throws java.sql.SQLException {
+        return false;
+    }
+
+    @Override
+    protected void deleteItem(Pembangunan item) throws java.sql.SQLException {
+    }
+
+    @Override
+    protected void handleEdit(Pembangunan item) {
+    }
 }
+

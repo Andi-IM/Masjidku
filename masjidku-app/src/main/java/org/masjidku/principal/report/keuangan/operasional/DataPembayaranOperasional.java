@@ -14,10 +14,8 @@
  */
 package org.masjidku.principal.report.keuangan.operasional;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -28,11 +26,9 @@ import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.ResourceBundle;
+import java.util.List;
 
-public class DataPembayaranOperasional implements Initializable {
+public class DataPembayaranOperasional extends org.masjidku.accountant.BaseTableController<Operasional> {
     private static final Logger log = LoggerFactory.getLogger(DataPembayaranOperasional.class);
     private final OperationalService dao = ServiceProvider.get(OperationalService.class);
     @FXML
@@ -48,21 +44,15 @@ public class DataPembayaranOperasional implements Initializable {
     @FXML
     private TableColumn<Operasional, String> operator;
     private MainApp mainApp;
-    /**
-     * The data as an observable list of Data Operasional.
-     */
-    private final ObservableList<Operasional> dataOperasional =
-            FXCollections.observableArrayList();
+
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
-    
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        tableOperasional.setItems(org.masjidku.util.AlertHelper.loadTableData(dataOperasional, dao::getAll, log));
+    protected void setupTableColumns() {
         nama.setCellValueFactory(new PropertyValueFactory<>("tujuan"));
         keterangan.setCellValueFactory(new PropertyValueFactory<>("keterangan"));
         jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));
@@ -83,4 +73,43 @@ public class DataPembayaranOperasional implements Initializable {
     @FXML
     public void showReport() {
     }
+
+    @Override
+    protected org.slf4j.Logger getLogger() {
+        return log;
+    }
+
+    @Override
+    protected TableView<Operasional> getTableView() {
+        return tableOperasional;
+    }
+
+    @Override
+    protected Button getBtnEdit() {
+        return null;
+    }
+
+    @Override
+    protected Button getBtnRemove() {
+        return null;
+    }
+
+    @Override
+    protected List<Operasional> fetchAllData() throws java.sql.SQLException {
+        return dao.getAll();
+    }
+
+    @Override
+    protected boolean checkIfExist(Operasional item) throws java.sql.SQLException {
+        return false;
+    }
+
+    @Override
+    protected void deleteItem(Operasional item) throws java.sql.SQLException {
+    }
+
+    @Override
+    protected void handleEdit(Operasional item) {
+    }
 }
+

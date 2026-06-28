@@ -18,9 +18,12 @@ package org.masjidku.principal.report.keuangan.anakyatim;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import org.masjidku.accountant.BaseTableController;
+import java.util.List;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.MainApp;
 import org.masjidku.accounting.client.model.anakyatim.AnakYatim;
@@ -33,7 +36,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class DataPenerimaAnakYatim implements Initializable {
+public class DataPenerimaAnakYatim extends org.masjidku.accountant.BaseTableController<AnakYatim> {
     private static final Logger log = LoggerFactory.getLogger(DataPenerimaAnakYatim.class);
     private final AnakYatimService dao = ServiceProvider.get(AnakYatimService.class);
 
@@ -52,11 +55,7 @@ public class DataPenerimaAnakYatim implements Initializable {
 
     private MainApp mainApp;
 
-    /**
-     * The data as an observable list of Anak Yatim.
-     */
-    private final ObservableList<AnakYatim> dataAnak =
-            FXCollections.observableArrayList();
+    
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
@@ -65,9 +64,7 @@ public class DataPenerimaAnakYatim implements Initializable {
     
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        tableAnakyatim.setItems(org.masjidku.util.AlertHelper.loadTableData(dataAnak, dao::getAll, log));
-
+    protected void setupTableColumns() {
         nama.setCellValueFactory(new PropertyValueFactory<>("tujuan"));
         usia.setCellValueFactory(new PropertyValueFactory<>("usia"));
         jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));
@@ -88,4 +85,14 @@ public class DataPenerimaAnakYatim implements Initializable {
     @FXML
     public void printReport() {
     }
+
+    @Override protected org.slf4j.Logger getLogger() { return log; }
+    @Override protected TableView<AnakYatim> getTableView() { return tableAnakyatim; }
+    @Override protected Button getBtnEdit() { return null; }
+    @Override protected Button getBtnRemove() { return null; }
+    @Override protected List<AnakYatim> fetchAllData() throws java.sql.SQLException { return dao.getAll(); }
+    @Override protected boolean checkIfExist(AnakYatim item) throws java.sql.SQLException { return false; }
+    @Override protected void deleteItem(AnakYatim item) throws java.sql.SQLException {  }
+    @Override protected void handleEdit(AnakYatim item) {  }
 }
+

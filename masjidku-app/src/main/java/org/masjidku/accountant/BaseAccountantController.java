@@ -5,14 +5,21 @@ import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
 
 public abstract class BaseAccountantController implements Initializable {
-    
-    @FXML public Text txtPemasukanTerakhir;
-    @FXML public Text txtPengeluaranTerakhir;
-    @FXML public Text txtTglPemasukkan;
-    @FXML public Text txtTotalPemasukkan;
-    @FXML public Text txtTotalPengeluaran;
-    @FXML public Text txtSaldo;
-    @FXML public Text txtTglPengeluaran;
+
+    @FXML
+    public Text txtPemasukanTerakhir;
+    @FXML
+    public Text txtPengeluaranTerakhir;
+    @FXML
+    public Text txtTglPemasukkan;
+    @FXML
+    public Text txtTotalPemasukkan;
+    @FXML
+    public Text txtTotalPengeluaran;
+    @FXML
+    public Text txtSaldo;
+    @FXML
+    public Text txtTglPengeluaran;
 
     /**
      * Method reusable untuk mengupdate seluruh label dashboard

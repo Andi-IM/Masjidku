@@ -23,6 +23,8 @@ import org.masjidku.accounting.client.service.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import org.masjidku.accountant.BaseTableController;
+import java.util.List;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -36,7 +38,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class PenerimaAnakYatim implements Initializable {
+public class PenerimaAnakYatim extends org.masjidku.accountant.BaseTableController<AnakYatim> {
     private static final Logger log = LoggerFactory.getLogger(PenerimaAnakYatim.class);
     private final AnakYatimService dao = ServiceProvider.get(AnakYatimService.class);
 
@@ -57,15 +59,9 @@ public class PenerimaAnakYatim implements Initializable {
 
     private MainApp mainApp;
 
-    // create some stage
-    @SuppressWarnings("unused")
-    private Stage dialogStage;
+    
 
-    /**
-     * The data as an observable list of Anak Yatim.
-     */
-    private final ObservableList<AnakYatim> dataAnak =
-            FXCollections.observableArrayList();
+    
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
@@ -74,9 +70,7 @@ public class PenerimaAnakYatim implements Initializable {
     
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        tableAnakyatim.setItems(org.masjidku.util.AlertHelper.loadTableData(dataAnak, dao::getAll, log));
-
+    protected void setupTableColumns() {
         nama.setCellValueFactory(new PropertyValueFactory<>("tujuan"));
         usia.setCellValueFactory(new PropertyValueFactory<>("usia"));
         jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));
@@ -88,8 +82,7 @@ public class PenerimaAnakYatim implements Initializable {
         mainApp.onLogoutAction();
     }
 
-    @FXML
-    public void onMouseClicked() { org.masjidku.util.AlertHelper.handleTableSelection(tableAnakyatim, btnEdit, btnRemove); }
+    
 
     @FXML
     public void onCreateListener() {
@@ -97,33 +90,9 @@ public class PenerimaAnakYatim implements Initializable {
         mainApp.editAnakYatim(temp);
     }
 
-    @FXML
-    public void onEditListener() {
-        AnakYatim selectedItem = tableAnakyatim.getSelectionModel().getSelectedItem();
-        if (selectedItem != null) {
-            mainApp.editAnakYatim(selectedItem);
-        } else {
-            org.masjidku.util.AlertHelper.alertError(dialogStage, "Null Error", "Data tidak ditemukan!");
-        }
-    }
+    
 
-    @FXML
-    public void onRemoveListener() {
-        AnakYatim selectedItem = tableAnakyatim.getSelectionModel().getSelectedItem();
-        if (selectedItem != null) {
-            try {
-                if (dao.isAnakYatimExist(selectedItem.getId())) {
-                    tableAnakyatim.getItems().remove(selectedItem);
-                    dao.delete(selectedItem.getId());
-                    org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "User dihapus!");
-                } else {
-                    org.masjidku.util.AlertHelper.alertError(dialogStage, "SQL Error", "User tidak ditemukan!");
-                }
-            } catch (SQLException e) {
-                log.error("An error occurred", e);
-            }
-        }
-    }
+    
 
     @FXML
     public void gotoHome() {
@@ -133,4 +102,15 @@ public class PenerimaAnakYatim implements Initializable {
     
 
     
+
+    @Override protected org.slf4j.Logger getLogger() { return log; }
+    @Override protected TableView<AnakYatim> getTableView() { return tableAnakyatim; }
+    @Override protected Button getBtnEdit() { return btnEdit; }
+    @Override protected Button getBtnRemove() { return btnRemove; }
+    @Override protected List<AnakYatim> fetchAllData() throws java.sql.SQLException { return dao.getAll(); }
+    @Override protected boolean checkIfExist(AnakYatim item) throws java.sql.SQLException { return dao.isAnakYatimExist(item.getId()); }
+    @Override protected void deleteItem(AnakYatim item) throws java.sql.SQLException { dao.delete(item.getId()); }
+    @Override protected void handleEdit(AnakYatim item) { mainApp.editAnakYatim(item); }
+
+    @FXML public void onEditListener() { super.onEditAction(); }
 }

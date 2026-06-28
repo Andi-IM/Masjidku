@@ -23,6 +23,8 @@ import org.masjidku.accounting.client.service.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import org.masjidku.accountant.BaseTableController;
+import java.util.List;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -36,7 +38,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class PembayaranOperasional implements Initializable {
+public class PembayaranOperasional extends org.masjidku.accountant.BaseTableController<Operasional> {
     private static final Logger log = LoggerFactory.getLogger(PembayaranOperasional.class);
     private final OperationalService dao = ServiceProvider.get(OperationalService.class);
 
@@ -57,15 +59,9 @@ public class PembayaranOperasional implements Initializable {
 
     private MainApp mainApp;
 
-    // create some stage
-    @SuppressWarnings("unused")
-    private Stage dialogStage;
+    
 
-    /**
-     * The data as an observable list of Data Operasional.
-     */
-    private final ObservableList<Operasional> dataOperasional =
-            FXCollections.observableArrayList();
+    
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
@@ -74,9 +70,7 @@ public class PembayaranOperasional implements Initializable {
     
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        tableOperasional.setItems(org.masjidku.util.AlertHelper.loadTableData(dataOperasional, dao::getAll, log));
-
+    protected void setupTableColumns() {
         nama.setCellValueFactory(new PropertyValueFactory<>("tujuan"));
         keterangan.setCellValueFactory(new PropertyValueFactory<>("keterangan"));
         jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));
@@ -86,8 +80,7 @@ public class PembayaranOperasional implements Initializable {
     @FXML
     public void onLogoutClick() { mainApp.onLogoutAction(); }
 
-    @FXML
-    public void onMouseClicked() { org.masjidku.util.AlertHelper.handleTableSelection(tableOperasional, btnEdit, btnRemove); }
+    
 
     @FXML
     public void addListener() {
@@ -95,33 +88,9 @@ public class PembayaranOperasional implements Initializable {
         mainApp.editAlokasiOperasional(temp);
     }
 
-    @FXML
-    public void editListener() {
-        Operasional selectedItem = tableOperasional.getSelectionModel().getSelectedItem();
-        if (selectedItem != null) {
-            mainApp.editAlokasiOperasional(selectedItem);
-        } else {
-            org.masjidku.util.AlertHelper.alertError(dialogStage, "Null Error", "Data tidak ditemukan!");
-        }
-    }
+    
 
-    @FXML
-    public void onRemoveListener() {
-        Operasional selectedItem = tableOperasional.getSelectionModel().getSelectedItem();
-        if (selectedItem != null) {
-            try {
-                if (dao.isDataExist(selectedItem.getId())) {
-                    tableOperasional.getItems().remove(selectedItem);
-                    dao.delete(selectedItem.getId());
-                    org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "User dihapus!");
-                } else {
-                    org.masjidku.util.AlertHelper.alertError(dialogStage, "SQL Error", "User tidak ditemukan!");
-                }
-            } catch (SQLException e) {
-                log.error("An error occurred", e);
-            }
-        }
-    }
+    
 
     @FXML
     public void gotoHome() {
@@ -131,4 +100,15 @@ public class PembayaranOperasional implements Initializable {
     
 
     
+
+    @Override protected org.slf4j.Logger getLogger() { return log; }
+    @Override protected TableView<Operasional> getTableView() { return tableOperasional; }
+    @Override protected Button getBtnEdit() { return btnEdit; }
+    @Override protected Button getBtnRemove() { return btnRemove; }
+    @Override protected List<Operasional> fetchAllData() throws java.sql.SQLException { return dao.getAll(); }
+    @Override protected boolean checkIfExist(Operasional item) throws java.sql.SQLException { return dao.isDataExist(item.getId()); }
+    @Override protected void deleteItem(Operasional item) throws java.sql.SQLException { dao.delete(item.getId()); }
+    @Override protected void handleEdit(Operasional item) { mainApp.editAlokasiOperasional(item); }
+
+    @FXML public void onEditListener() { super.onEditAction(); }
 }

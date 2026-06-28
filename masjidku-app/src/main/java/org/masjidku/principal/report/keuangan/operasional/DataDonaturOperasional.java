@@ -18,9 +18,12 @@ package org.masjidku.principal.report.keuangan.operasional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import org.masjidku.accountant.BaseTableController;
+import java.util.List;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.MainApp;
 import org.masjidku.accounting.client.model.operasional.DonasiOperasional;
@@ -33,7 +36,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class DataDonaturOperasional implements Initializable {
+public class DataDonaturOperasional extends org.masjidku.accountant.BaseTableController<DonasiOperasional> {
     private static final Logger log = LoggerFactory.getLogger(DataDonaturOperasional.class);
     private final DonasiOperationalService dao = ServiceProvider.get(DonasiOperationalService.class);
     @FXML
@@ -49,11 +52,7 @@ public class DataDonaturOperasional implements Initializable {
 
     private MainApp mainApp;
 
-    /**
-     * The data as an observable list of Donatur.
-     */
-    private final ObservableList<DonasiOperasional> donaturData =
-            FXCollections.observableArrayList();
+    
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
@@ -62,9 +61,7 @@ public class DataDonaturOperasional implements Initializable {
     
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        tableOperasional.setItems(org.masjidku.util.AlertHelper.loadTableData(donaturData, dao::getAll, log));
-
+    protected void setupTableColumns() {
         donatur.setCellValueFactory(new PropertyValueFactory<>("donatur"));
         jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));
         tanggal.setCellValueFactory(new PropertyValueFactory<>("tanggal"));
@@ -84,4 +81,14 @@ public class DataDonaturOperasional implements Initializable {
     @FXML
     public void showReport() {
     }
+
+    @Override protected org.slf4j.Logger getLogger() { return log; }
+    @Override protected TableView<DonasiOperasional> getTableView() { return tableOperasional; }
+    @Override protected Button getBtnEdit() { return null; }
+    @Override protected Button getBtnRemove() { return null; }
+    @Override protected List<DonasiOperasional> fetchAllData() throws java.sql.SQLException { return dao.getAll(); }
+    @Override protected boolean checkIfExist(DonasiOperasional item) throws java.sql.SQLException { return false; }
+    @Override protected void deleteItem(DonasiOperasional item) throws java.sql.SQLException {  }
+    @Override protected void handleEdit(DonasiOperasional item) {  }
 }
+

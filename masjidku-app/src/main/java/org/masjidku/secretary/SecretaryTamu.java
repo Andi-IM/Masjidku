@@ -22,6 +22,8 @@ import org.masjidku.util.ServiceProvider;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import org.masjidku.accountant.BaseTableController;
+import java.util.List;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -36,7 +38,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class SecretaryTamu implements Initializable {
+public class SecretaryTamu extends org.masjidku.accountant.BaseTableController<Tamu> {
     private static final Logger log = LoggerFactory.getLogger(SecretaryTamu.class);
     @FXML
     public Button btnEdit;
@@ -54,27 +56,15 @@ public class SecretaryTamu implements Initializable {
     public TableColumn<Tamu, String> colNomor;
 
     private MainApp mainApp;
-    final TamuService dao;
+    final TamuService dao = org.masjidku.util.ServiceProvider.get(TamuService.class);
 
-    // create some stage
-    @SuppressWarnings("unused")
-    private Stage dialogStage;
+    
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
-    /**
-     * The Constructor
-     * The Constructor is called before the initialize() method.
-     */
-    public SecretaryTamu() { dao = ServiceProvider.get(TamuService.class); }
-
-    /**
-     * The data as an observable list of Users.
-     */
-    private final ObservableList<Tamu> tamuData =
-            FXCollections.observableArrayList();
+    
 
     @FXML
     public void onLogoutClick() { mainApp.onLogoutAction(); }
@@ -87,51 +77,36 @@ public class SecretaryTamu implements Initializable {
 
     
 
-    @FXML
-    public void editListener() {
-        Tamu selectedTamu = tblTamu.getSelectionModel().getSelectedItem();
-        if (selectedTamu != null){
-            mainApp.showTamuEditForm(selectedTamu);
-        } else {
-            org.masjidku.util.AlertHelper.alertError(dialogStage, "Null Error", "Kegiatan tidak ditemukan!");
-        }
-    }
+    
 
     /**
      * Remove the selected kegiatan.
      */
-    @FXML
-    public void onRemoveListener() {
-        Tamu selectedTamu = tblTamu.getSelectionModel().getSelectedItem();
-        if (selectedTamu != null){
-                try {
-                    if (dao.isTamuExist(selectedTamu.getIdTamu())){
-                        tblTamu.getItems().remove(selectedTamu);
-                        dao.delete(selectedTamu.getIdTamu());
-                        org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "Kegiatan Dihapus!");
-                    } else {
-                        org.masjidku.util.AlertHelper.alertError(dialogStage, "SQL Error", "Kegiatan tidak ditemukan!");
-                    }
-                } catch (SQLException e) {
-                    log.error("An error occurred", e);
-                }
-            
-        }
-    }
+    
 
-    @FXML
-    public void onMouseClicked() { org.masjidku.util.AlertHelper.handleTableSelection(tblTamu, btnEdit, btnRemove); }
+    
 
     
 
     
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    protected void setupTableColumns() {
 
-        tblTamu.setItems(org.masjidku.util.AlertHelper.loadTableData(tamuData, dao::getAll, log));
         colNama.setCellValueFactory(new PropertyValueFactory<>("nama"));
         colAlamat.setCellValueFactory(new PropertyValueFactory<>("alamat"));
         colNotelp.setCellValueFactory(new PropertyValueFactory<>("notelp"));
     }
+
+    @Override protected org.slf4j.Logger getLogger() { return log; }
+    @Override protected TableView<Tamu> getTableView() { return tblTamu; }
+    @Override protected Button getBtnEdit() { return btnEdit; }
+    @Override protected Button getBtnRemove() { return btnRemove; }
+    @Override protected List<Tamu> fetchAllData() throws java.sql.SQLException { return dao.getAll(); }
+    @Override protected boolean checkIfExist(Tamu item) throws java.sql.SQLException { return dao.isTamuExist(item.getIdTamu()); }
+    @Override protected void deleteItem(Tamu item) throws java.sql.SQLException { dao.delete(item.getIdTamu()); }
+    @Override protected void handleEdit(Tamu item) {  }
+
+    @FXML public void onEditListener() { super.onEditAction(); }
 }
+

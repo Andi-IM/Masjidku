@@ -18,9 +18,12 @@ package org.masjidku.principal.report.keuangan.zakat;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import org.masjidku.accountant.BaseTableController;
+import java.util.List;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.MainApp;
 import org.masjidku.accounting.client.model.zakat.ZakatKeluar;
@@ -33,7 +36,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class DataPenerimaZakat implements Initializable {
+public class DataPenerimaZakat extends org.masjidku.accountant.BaseTableController<ZakatKeluar> {
     private static final Logger log = LoggerFactory.getLogger(DataPenerimaZakat.class);
     private final ZakatKeluarService dao = ServiceProvider.get(ZakatKeluarService.class);
     @FXML
@@ -48,11 +51,7 @@ public class DataPenerimaZakat implements Initializable {
     private TableColumn<ZakatKeluar, String> operator;
     private MainApp mainApp;
 
-    /**
-     * The data as an observable list of Penerima Zakat.
-     */
-    private final ObservableList<ZakatKeluar> dataZakat =
-            FXCollections.observableArrayList();
+    
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
@@ -61,9 +60,7 @@ public class DataPenerimaZakat implements Initializable {
     
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        tableZakat.setItems(org.masjidku.util.AlertHelper.loadTableData(dataZakat, dao::getAll, log));
-
+    protected void setupTableColumns() {
         nama.setCellValueFactory(new PropertyValueFactory<>("tujuan"));
         jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));
         tanggal.setCellValueFactory(new PropertyValueFactory<>("tanggal"));
@@ -83,4 +80,14 @@ public class DataPenerimaZakat implements Initializable {
     public void gotoHome() {
         mainApp.showZakatData();
     }
+
+    @Override protected org.slf4j.Logger getLogger() { return log; }
+    @Override protected TableView<ZakatKeluar> getTableView() { return tableZakat; }
+    @Override protected Button getBtnEdit() { return null; }
+    @Override protected Button getBtnRemove() { return null; }
+    @Override protected List<ZakatKeluar> fetchAllData() throws java.sql.SQLException { return dao.getAll(); }
+    @Override protected boolean checkIfExist(ZakatKeluar item) throws java.sql.SQLException { return false; }
+    @Override protected void deleteItem(ZakatKeluar item) throws java.sql.SQLException {  }
+    @Override protected void handleEdit(ZakatKeluar item) {  }
 }
+

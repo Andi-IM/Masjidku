@@ -18,9 +18,12 @@ package org.masjidku.principal.report.keuangan.tpa;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import org.masjidku.accountant.BaseTableController;
+import java.util.List;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.MainApp;
 import org.masjidku.accounting.client.model.tpa.TpaKeluar;
@@ -33,7 +36,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class DataPembayaranTpa implements Initializable {
+public class DataPembayaranTpa extends org.masjidku.accountant.BaseTableController<TpaKeluar> {
     private static final Logger log = LoggerFactory.getLogger(DataPembayaranTpa.class);
     private final TpaKeluarService dao = ServiceProvider.get(TpaKeluarService.class);
     @FXML
@@ -47,11 +50,7 @@ public class DataPembayaranTpa implements Initializable {
     @FXML
     private TableColumn<TpaKeluar, String> operator;
 
-    /**
-     * The data as an observable list of Anak Yatim.
-     */
-    private final ObservableList<TpaKeluar> dataTpa =
-            FXCollections.observableArrayList();
+    
 
     private MainApp mainApp;
 
@@ -62,9 +61,7 @@ public class DataPembayaranTpa implements Initializable {
     
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        tableTpa.setItems(org.masjidku.util.AlertHelper.loadTableData(dataTpa, dao::getAll, log));
-
+    protected void setupTableColumns() {
         nama.setCellValueFactory(new PropertyValueFactory<>("tujuan"));
         jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));
         tanggal.setCellValueFactory(new PropertyValueFactory<>("tanggal"));
@@ -84,4 +81,14 @@ public class DataPembayaranTpa implements Initializable {
     public void gotoHome() {
         mainApp.showTpaData();
     }
+
+    @Override protected org.slf4j.Logger getLogger() { return log; }
+    @Override protected TableView<TpaKeluar> getTableView() { return tableTpa; }
+    @Override protected Button getBtnEdit() { return null; }
+    @Override protected Button getBtnRemove() { return null; }
+    @Override protected List<TpaKeluar> fetchAllData() throws java.sql.SQLException { return dao.getAll(); }
+    @Override protected boolean checkIfExist(TpaKeluar item) throws java.sql.SQLException { return false; }
+    @Override protected void deleteItem(TpaKeluar item) throws java.sql.SQLException {  }
+    @Override protected void handleEdit(TpaKeluar item) {  }
 }
+

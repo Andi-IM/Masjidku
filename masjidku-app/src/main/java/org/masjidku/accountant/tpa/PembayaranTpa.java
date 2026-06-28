@@ -23,6 +23,8 @@ import org.masjidku.accounting.client.service.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import org.masjidku.accountant.BaseTableController;
+import java.util.List;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -36,7 +38,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class PembayaranTpa implements Initializable {
+public class PembayaranTpa extends org.masjidku.accountant.BaseTableController<TpaKeluar> {
     private static final Logger log = LoggerFactory.getLogger(PembayaranTpa.class);
     private final TpaKeluarService dao = ServiceProvider.get(TpaKeluarService.class);
 
@@ -53,17 +55,11 @@ public class PembayaranTpa implements Initializable {
     @FXML
     private Button btnRemove;
 
-    /**
-     * The data as an observable list of Anak Yatim.
-     */
-    private final ObservableList<TpaKeluar> dataTpa =
-            FXCollections.observableArrayList();
+    
 
     private MainApp mainApp;
 
-    // create some stage
-    @SuppressWarnings("unused")
-    private Stage dialogStage;
+    
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
@@ -72,9 +68,7 @@ public class PembayaranTpa implements Initializable {
     
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        tableTpa.setItems(org.masjidku.util.AlertHelper.loadTableData(dataTpa, dao::getAll, log));
-
+    protected void setupTableColumns() {
         nama.setCellValueFactory(new PropertyValueFactory<>("tujuan"));
         jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));
         tanggal.setCellValueFactory(new PropertyValueFactory<>("tanggal"));
@@ -83,8 +77,7 @@ public class PembayaranTpa implements Initializable {
     @FXML
     public void onLogoutClick() { mainApp.onLogoutAction(); }
 
-    @FXML
-    public void onMouseClicked() { org.masjidku.util.AlertHelper.handleTableSelection(tableTpa, btnEdit, btnRemove); }
+    
 
     @FXML
     public void addListener() {
@@ -92,33 +85,9 @@ public class PembayaranTpa implements Initializable {
         mainApp.editAlokasiTpa(temp);
     }
 
-    @FXML
-    public void editListener() {
-        TpaKeluar selectedItem = tableTpa.getSelectionModel().getSelectedItem();
-        if (selectedItem != null) {
-            mainApp.editAlokasiTpa(selectedItem);
-        } else {
-            org.masjidku.util.AlertHelper.alertError(dialogStage, "Null Error", "Data tidak ditemukan!");
-        }
-    }
+    
 
-    @FXML
-    public void onRemoveListener() {
-        TpaKeluar selectedItem = tableTpa.getSelectionModel().getSelectedItem();
-        if (selectedItem != null) {
-            try {
-                if (dao.isDataExist(selectedItem.getId())) {
-                    tableTpa.getItems().remove(selectedItem);
-                    dao.delete(selectedItem.getId());
-                    org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "User dihapus!");
-                } else {
-                    org.masjidku.util.AlertHelper.alertError(dialogStage, "SQL Error", "User tidak ditemukan!");
-                }
-            } catch (SQLException e) {
-                log.error("An error occurred", e);
-            }
-        }
-    }
+    
 
     @FXML
     public void gotoHome() { mainApp.showTpa(); }
@@ -126,4 +95,15 @@ public class PembayaranTpa implements Initializable {
     
 
     
+
+    @Override protected org.slf4j.Logger getLogger() { return log; }
+    @Override protected TableView<TpaKeluar> getTableView() { return tableTpa; }
+    @Override protected Button getBtnEdit() { return btnEdit; }
+    @Override protected Button getBtnRemove() { return btnRemove; }
+    @Override protected List<TpaKeluar> fetchAllData() throws java.sql.SQLException { return dao.getAll(); }
+    @Override protected boolean checkIfExist(TpaKeluar item) throws java.sql.SQLException { return dao.isDataExist(item.getId()); }
+    @Override protected void deleteItem(TpaKeluar item) throws java.sql.SQLException { dao.delete(item.getId()); }
+    @Override protected void handleEdit(TpaKeluar item) { mainApp.editAlokasiTpa(item); }
+
+    @FXML public void onEditListener() { super.onEditAction(); }
 }

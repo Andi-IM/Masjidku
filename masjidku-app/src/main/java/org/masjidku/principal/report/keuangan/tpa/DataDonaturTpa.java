@@ -17,9 +17,12 @@ package org.masjidku.principal.report.keuangan.tpa;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import org.masjidku.accountant.BaseTableController;
+import java.util.List;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.MainApp;
 import org.masjidku.accounting.client.model.tpa.TpaMasuk;
@@ -32,7 +35,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class DataDonaturTpa implements Initializable {
+public class DataDonaturTpa extends org.masjidku.accountant.BaseTableController<TpaMasuk> {
     private static final Logger log = LoggerFactory.getLogger(DataDonaturTpa.class);
     private final TpaMasukService dao = ServiceProvider.get(TpaMasukService.class);
     @FXML
@@ -46,11 +49,7 @@ public class DataDonaturTpa implements Initializable {
     @FXML
     private TableColumn<TpaMasuk, String> operator;
     private MainApp mainApp;
-    /**
-     * The data as an observable list of Users.
-     */
-    private final ObservableList<TpaMasuk> donaturData =
-            FXCollections.observableArrayList();
+    
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
@@ -59,8 +58,7 @@ public class DataDonaturTpa implements Initializable {
     
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        tableTpa.setItems(org.masjidku.util.AlertHelper.loadTableData(donaturData, dao::getAll, log));
+    protected void setupTableColumns() {
         donatur.setCellValueFactory(new PropertyValueFactory<>("donatur"));
         jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));
         tanggal.setCellValueFactory(new PropertyValueFactory<>("tanggal"));
@@ -80,4 +78,14 @@ public class DataDonaturTpa implements Initializable {
     public void gotoHome() {
         mainApp.showTpaData();
     }
+
+    @Override protected org.slf4j.Logger getLogger() { return log; }
+    @Override protected TableView<TpaMasuk> getTableView() { return tableTpa; }
+    @Override protected Button getBtnEdit() { return null; }
+    @Override protected Button getBtnRemove() { return null; }
+    @Override protected List<TpaMasuk> fetchAllData() throws java.sql.SQLException { return dao.getAll(); }
+    @Override protected boolean checkIfExist(TpaMasuk item) throws java.sql.SQLException { return false; }
+    @Override protected void deleteItem(TpaMasuk item) throws java.sql.SQLException {  }
+    @Override protected void handleEdit(TpaMasuk item) {  }
 }
+

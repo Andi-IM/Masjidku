@@ -90,3 +90,4 @@ public class ZakatReport implements Initializable {
     @FXML
     public void gotoHome() { mainApp.showData(); }
 }
+

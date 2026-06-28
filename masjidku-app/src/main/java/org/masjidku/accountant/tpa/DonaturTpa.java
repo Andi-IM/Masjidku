@@ -18,6 +18,8 @@ package org.masjidku.accountant.tpa;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import org.masjidku.accountant.BaseTableController;
+import java.util.List;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -35,7 +37,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class DonaturTpa implements Initializable {
+public class DonaturTpa extends org.masjidku.accountant.BaseTableController<TpaMasuk> {
     private static final Logger log = LoggerFactory.getLogger(DonaturTpa.class);
     private final TpaMasukService dao = ServiceProvider.get(TpaMasukService.class);
 
@@ -54,15 +56,9 @@ public class DonaturTpa implements Initializable {
 
     private MainApp mainApp;
 
-    // create some stage
-    @SuppressWarnings("unused")
-    private Stage dialogStage;
+    
 
-    /**
-     * The data as an observable list of Users.
-     */
-    private final ObservableList<TpaMasuk> donaturData =
-            FXCollections.observableArrayList();
+    
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
@@ -71,9 +67,7 @@ public class DonaturTpa implements Initializable {
     
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        tableTpa.setItems(org.masjidku.util.AlertHelper.loadTableData(donaturData, dao::getAll, log));
-
+    protected void setupTableColumns() {
         donatur.setCellValueFactory(new PropertyValueFactory<>("donatur"));
         jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));
         tanggal.setCellValueFactory(new PropertyValueFactory<>("tanggal"));
@@ -90,36 +84,11 @@ public class DonaturTpa implements Initializable {
         mainApp.editDonaturTpa(temp);
     }
 
-    @FXML
-    public void editListener() {
-        TpaMasuk selectedItem = tableTpa.getSelectionModel().getSelectedItem();
-        if (selectedItem != null) {
-            mainApp.editDonaturTpa(selectedItem);
-        } else {
-            org.masjidku.util.AlertHelper.alertError(dialogStage, "Null Error", "Data tidak ditemukan!");
-        }
-    }
+    
 
-    @FXML
-    public void onRemoveListener() {
-        TpaMasuk selectedItem = tableTpa.getSelectionModel().getSelectedItem();
-        if (selectedItem != null) {
-            try {
-                if (dao.isDonaturExist(selectedItem.getId())) {
-                    tableTpa.getItems().remove(selectedItem);
-                    dao.delete(selectedItem.getId());
-                    org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "User dihapus!");
-                } else {
-                    org.masjidku.util.AlertHelper.alertError(dialogStage, "SQL Error", "User tidak ditemukan!");
-                }
-            } catch (SQLException e) {
-                log.error("An error occurred", e);
-            }
-        }
-    }
+    
 
-    @FXML
-    public void onMouseClicked() { org.masjidku.util.AlertHelper.handleTableSelection(tableTpa, btnEdit, btnRemove); }
+    
 
     @FXML
     public void gotoHome() {
@@ -127,4 +96,15 @@ public class DonaturTpa implements Initializable {
     }
 
 
+
+    @Override protected org.slf4j.Logger getLogger() { return log; }
+    @Override protected TableView<TpaMasuk> getTableView() { return tableTpa; }
+    @Override protected Button getBtnEdit() { return btnEdit; }
+    @Override protected Button getBtnRemove() { return btnRemove; }
+    @Override protected List<TpaMasuk> fetchAllData() throws java.sql.SQLException { return dao.getAll(); }
+    @Override protected boolean checkIfExist(TpaMasuk item) throws java.sql.SQLException { return dao.isDonaturExist(item.getId()); }
+    @Override protected void deleteItem(TpaMasuk item) throws java.sql.SQLException { dao.delete(item.getId()); }
+    @Override protected void handleEdit(TpaMasuk item) { mainApp.editDonaturTpa(item); }
+
+    @FXML public void onEditListener() { super.onEditAction(); }
 }

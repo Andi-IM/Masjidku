@@ -87,3 +87,4 @@ public class OperasionalReport implements Initializable {
     @FXML
     public void gotoHome() { mainApp.showData(); }
 }
+

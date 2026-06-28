@@ -22,9 +22,12 @@ import org.masjidku.util.ServiceProvider;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import org.masjidku.accountant.BaseTableController;
+import java.util.List;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.MainApp;
 import org.masjidku.events.client.model.Kegiatan;
@@ -34,7 +37,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class ListKegiatan implements Initializable {
+public class ListKegiatan extends org.masjidku.accountant.BaseTableController<Kegiatan> {
     private static final Logger log = LoggerFactory.getLogger(ListKegiatan.class);
     @FXML
     public TableView<Kegiatan> tblKegiatan;
@@ -61,15 +64,10 @@ public class ListKegiatan implements Initializable {
         dao = ServiceProvider.get(KegiatanService.class);
     }
 
-    /**
-     * The data as an observable list of Users.
-     */
-    private final ObservableList<Kegiatan> kegiatanData =
-            FXCollections.observableArrayList();
+    
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        tblKegiatan.setItems(org.masjidku.util.AlertHelper.loadTableData(kegiatanData, dao::getAll, log));
+    protected void setupTableColumns() {
         colNomor.setCellValueFactory(new PropertyValueFactory<>(""));
         colNmKegiatan.setCellValueFactory(new PropertyValueFactory<>("nama"));
         colTempatKegiatan.setCellValueFactory(new PropertyValueFactory<>("tempat"));
@@ -91,4 +89,14 @@ public class ListKegiatan implements Initializable {
 
     @FXML
     public void gotoHome() { mainApp.showKegiatanOverview(); }
+
+    @Override protected org.slf4j.Logger getLogger() { return log; }
+    @Override protected TableView<Kegiatan> getTableView() { return tblKegiatan; }
+    @Override protected Button getBtnEdit() { return null; }
+    @Override protected Button getBtnRemove() { return null; }
+    @Override protected List<Kegiatan> fetchAllData() throws java.sql.SQLException { return dao.getAll(); }
+    @Override protected boolean checkIfExist(Kegiatan item) throws java.sql.SQLException { return false; }
+    @Override protected void deleteItem(Kegiatan item) throws java.sql.SQLException {  }
+    @Override protected void handleEdit(Kegiatan item) {  }
 }
+

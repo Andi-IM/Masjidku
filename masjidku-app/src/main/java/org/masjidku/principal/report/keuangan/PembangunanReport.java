@@ -87,3 +87,4 @@ public class PembangunanReport implements Initializable {
     @FXML
     public void gotoHome() { mainApp.showData(); }
 }
+

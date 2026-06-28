@@ -22,6 +22,8 @@ import org.masjidku.util.ServiceProvider;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import org.masjidku.accountant.BaseTableController;
+import java.util.List;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -36,7 +38,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class SecretaryKegiatan implements Initializable {
+public class SecretaryKegiatan extends org.masjidku.accountant.BaseTableController<Kegiatan> {
     private static final Logger log = LoggerFactory.getLogger(SecretaryKegiatan.class);
 
     @FXML
@@ -57,27 +59,15 @@ public class SecretaryKegiatan implements Initializable {
     public TableColumn<Kegiatan, String> colTanggalKegiatan;
 
     private MainApp mainApp;
-    final KegiatanService dao;
+    final KegiatanService dao = org.masjidku.util.ServiceProvider.get(KegiatanService.class);
 
-    // create some stage
-    @SuppressWarnings("unused")
-    private Stage dialogStage;
+    
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
-    /**
-     * The Constructor
-     * The Constructor is called before the initialize() method.
-     */
-    public SecretaryKegiatan() { dao = ServiceProvider.get(KegiatanService.class); }
-
-    /**
-     * The data as an observable list of Users.
-     */
-    private final ObservableList<Kegiatan> kegiatanData =
-            FXCollections.observableArrayList();
+    
 
     @FXML
     public void onLogoutClick() { mainApp.onLogoutAction(); }
@@ -90,49 +80,22 @@ public class SecretaryKegiatan implements Initializable {
 
     
 
-    @FXML
-    public void editListener() {
-        Kegiatan selectedKegiatan = tblKegiatan.getSelectionModel().getSelectedItem();
-        if (selectedKegiatan != null){
-            mainApp.showKegiatanEditform(selectedKegiatan);
-        } else {
-            org.masjidku.util.AlertHelper.alertError(dialogStage, "Null Error", "Kegiatan tidak ditemukan!");
-        }
-    }
+    
 
     /**
      * Remove the selected kegiatan.
      */
-    @FXML
-    public void onRemoveListener() {
-        Kegiatan selectedKegiatan = tblKegiatan.getSelectionModel().getSelectedItem();
-        if (selectedKegiatan != null){
-                try {
-                    if (dao.isKegiatanExist(selectedKegiatan.getIdKegiatan())){
-                        tblKegiatan.getItems().remove(selectedKegiatan);
-                        dao.delete(selectedKegiatan.getIdKegiatan());
-                        org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "Kegiatan Dihapus!");
-                    } else {
-                        org.masjidku.util.AlertHelper.alertError(dialogStage, "SQL Error", "Kegiatan tidak ditemukan!");
-                    }
-                } catch (SQLException e) {
-                    log.error("An error occurred", e);
-                }
-            
-        }
-    }
+    
 
-    @FXML
-    public void onMouseClicked() { org.masjidku.util.AlertHelper.handleTableSelection(tblKegiatan, btnEdit, btnRemove); }
+    
 
     
 
     
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    protected void setupTableColumns() {
 
-        tblKegiatan.setItems(org.masjidku.util.AlertHelper.loadTableData(kegiatanData, dao::getAll, log));
         colNomor.setCellValueFactory(new PropertyValueFactory<>(""));
         colNmKegiatan.setCellValueFactory(new PropertyValueFactory<>("nama"));
         colTempatKegiatan.setCellValueFactory(new PropertyValueFactory<>("tempat"));
@@ -144,4 +107,16 @@ public class SecretaryKegiatan implements Initializable {
     public void tamuListener() {
         mainApp.showUndangan();
     }
+
+    @Override protected org.slf4j.Logger getLogger() { return log; }
+    @Override protected TableView<Kegiatan> getTableView() { return tblKegiatan; }
+    @Override protected Button getBtnEdit() { return btnEdit; }
+    @Override protected Button getBtnRemove() { return btnRemove; }
+    @Override protected List<Kegiatan> fetchAllData() throws java.sql.SQLException { return dao.getAll(); }
+    @Override protected boolean checkIfExist(Kegiatan item) throws java.sql.SQLException { return dao.isKegiatanExist(item.getIdKegiatan()); }
+    @Override protected void deleteItem(Kegiatan item) throws java.sql.SQLException { dao.delete(item.getIdKegiatan()); }
+    @Override protected void handleEdit(Kegiatan item) {  }
+
+    @FXML public void onEditListener() { super.onEditAction(); }
 }
+
