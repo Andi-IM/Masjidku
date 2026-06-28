@@ -35,3 +35,4 @@ public class TpaMasukServiceImpl implements TpaMasukService {
     @Override
     public boolean getConnection() { return dao.getConnection(); }
 }
+

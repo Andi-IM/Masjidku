@@ -103,3 +103,4 @@ public class KegiatanDao extends Dao<Kegiatan> implements KegiatanService {
     public String getTotalKegiatan() throws SQLException { return executeGetTotal(QUERY_10); }
 }
 
+

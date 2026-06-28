@@ -31,9 +31,7 @@ public class DonasiAYatimServiceImpl implements DonasiAYatimService {
     }
 
     @Override
-    public void delete(String id) {
-        dao.delete(id);
-    }
+    public void delete(String id) { try { dao.delete(id); } catch(java.sql.SQLException e) { throw new RuntimeException(e); } }
 
     @Override
     public DonasiAYatim getLastRecord() throws SQLException {
@@ -55,3 +53,6 @@ public class DonasiAYatimServiceImpl implements DonasiAYatimService {
         return dao.getConnection();
     }
 }
+
+
+

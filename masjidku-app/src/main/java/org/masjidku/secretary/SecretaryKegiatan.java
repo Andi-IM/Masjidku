@@ -15,6 +15,7 @@
 
 package org.masjidku.secretary;
 
+import org.masjidku.util.TableHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -53,46 +54,32 @@ public class SecretaryKegiatan extends org.masjidku.accountant.BaseTableControll
     private MainApp mainApp;
     final KegiatanService dao = org.masjidku.util.ServiceProvider.get(KegiatanService.class);
 
-    
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
-    
 
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
 
     @FXML
-    public void addListener(){
+    public void addListener() {
         Kegiatan temp = new Kegiatan();
         mainApp.showKegiatanEditform(temp);
     }
 
-    
-
-    
 
     /**
      * Remove the selected kegiatan.
      */
-    
 
-    
-
-    
-
-    
 
     @Override
     protected void setupTableColumns() {
-
-        colNomor.setCellValueFactory(new PropertyValueFactory<>(""));
-        colNmKegiatan.setCellValueFactory(new PropertyValueFactory<>("nama"));
-        colTempatKegiatan.setCellValueFactory(new PropertyValueFactory<>("tempat"));
-        colWaktuKegiatan.setCellValueFactory(new PropertyValueFactory<>("waktu"));
-        colTanggalKegiatan.setCellValueFactory(new PropertyValueFactory<>("tanggal"));
+        TableHelper.setupKegiatanColumns(colNomor, colNmKegiatan, colTempatKegiatan, colWaktuKegiatan, colTanggalKegiatan, null);
     }
 
     @FXML
@@ -100,15 +87,49 @@ public class SecretaryKegiatan extends org.masjidku.accountant.BaseTableControll
         mainApp.showUndangan();
     }
 
-    @Override protected org.slf4j.Logger getLogger() { return log; }
-    @Override protected TableView<Kegiatan> getTableView() { return tblKegiatan; }
-    @Override protected Button getBtnEdit() { return btnEdit; }
-    @Override protected Button getBtnRemove() { return btnRemove; }
-    @Override protected List<Kegiatan> fetchAllData() throws java.sql.SQLException { return dao.getAll(); }
-    @Override protected boolean checkIfExist(Kegiatan item) throws java.sql.SQLException { return dao.isKegiatanExist(item.getIdKegiatan()); }
-    @Override protected void deleteItem(Kegiatan item) throws java.sql.SQLException { dao.delete(item.getIdKegiatan()); }
-    @Override protected void handleEdit(Kegiatan item) {  }
+    @Override
+    protected org.slf4j.Logger getLogger() {
+        return log;
+    }
 
-    @FXML public void onEditListener() { super.onEditAction(); }
+    @Override
+    protected TableView<Kegiatan> getTableView() {
+        return tblKegiatan;
+    }
+
+    @Override
+    protected Button getBtnEdit() {
+        return btnEdit;
+    }
+
+    @Override
+    protected Button getBtnRemove() {
+        return btnRemove;
+    }
+
+    @Override
+    protected List<Kegiatan> fetchAllData() throws java.sql.SQLException {
+        return dao.getAll();
+    }
+
+    @Override
+    protected boolean checkIfExist(Kegiatan item) throws java.sql.SQLException {
+        return dao.isKegiatanExist(item.getIdKegiatan());
+    }
+
+    @Override
+    protected void deleteItem(Kegiatan item) throws java.sql.SQLException {
+        dao.delete(item.getIdKegiatan());
+    }
+
+    @Override
+    protected void handleEdit(Kegiatan item) {
+    }
+
+    @FXML
+    public void onEditListener() {
+        super.onEditAction();
+    }
 }
+
 

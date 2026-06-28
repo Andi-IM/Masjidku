@@ -38,3 +38,4 @@ public class AccountingFunctionsServiceImpl implements AccountingFunctionsServic
         return dao.getConnection();
     }
 }
+

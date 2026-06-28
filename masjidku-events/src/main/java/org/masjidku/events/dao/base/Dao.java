@@ -22,8 +22,6 @@ public abstract class Dao<T> {
         }
     }
 
-    // --- HELPER METHODS UNTUK DRY --- //
-
     protected void executeDelete(String query, String id) throws SQLException {
         ps = con.prepareStatement(query);
         ps.setString(1, id);
@@ -54,6 +52,30 @@ public abstract class Dao<T> {
         ps.executeUpdate();
     }
 
+    protected interface RowMapper<T> {
+        T map(java.sql.ResultSet rs) throws SQLException;
+    }
+
+    protected <R> R executeGet(String query, String id, RowMapper<R> mapper) throws SQLException {
+        ps = con.prepareStatement(query);
+        ps.setString(1, id);
+        rs = ps.executeQuery();
+        if (rs.next()) {
+            return mapper.map(rs);
+        }
+        return null;
+    }
+
+    protected <R> javafx.collections.ObservableList<R> executeGetAll(String query, RowMapper<R> mapper) throws SQLException {
+        javafx.collections.ObservableList<R> items = javafx.collections.FXCollections.observableArrayList();
+        ps = con.prepareStatement(query);
+        rs = ps.executeQuery();
+        while (rs.next()) {
+            items.add(mapper.map(rs));
+        }
+        return items;
+    }
+
     protected javafx.collections.ObservableList<String> executeGetAllNames(String query) throws SQLException {
         javafx.collections.ObservableList<String> list = javafx.collections.FXCollections.observableArrayList();
         ps = con.prepareStatement(query);
@@ -74,4 +96,5 @@ public abstract class Dao<T> {
         return "";
     }
 }
+
 

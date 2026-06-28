@@ -34,3 +34,4 @@ public class ZakatKeluarServiceImpl implements ZakatKeluarService {
     @Override
     public boolean getConnection() { return dao.getConnection(); }
 }
+

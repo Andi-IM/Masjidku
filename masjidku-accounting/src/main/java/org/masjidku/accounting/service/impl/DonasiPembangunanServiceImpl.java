@@ -11,9 +11,7 @@ public class DonasiPembangunanServiceImpl implements DonasiPembangunanService {
     private final DonasiPembangunanDao dao = new DonasiPembangunanDao();
 
     @Override
-    public DonasiPembangunan get(String id) {
-        return dao.get(id);
-    }
+    public DonasiPembangunan get(String id) { try { return dao.get(id); } catch(java.sql.SQLException e) { throw new RuntimeException(e); } }
 
     @Override
     public ObservableList<DonasiPembangunan> getAll() throws SQLException {
@@ -55,3 +53,4 @@ public class DonasiPembangunanServiceImpl implements DonasiPembangunanService {
         return dao.getConnection();
     }
 }
+

@@ -57,5 +57,18 @@ public abstract class Dao<T> extends DaoFactory {
         }
         ps.executeUpdate();
     }
+
+    protected interface RowMapper<T> {
+        T map(java.sql.ResultSet rs) throws SQLException;
+    }
+
+    protected <R> R executeGetLastRecord(String query, RowMapper<R> mapper) throws SQLException {
+        ps = con.prepareStatement(query);
+        rs = ps.executeQuery();
+        if (rs.next()) {
+            return mapper.map(rs);
+        }
+        return null;
+    }
 }
 

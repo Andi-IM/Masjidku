@@ -90,15 +90,7 @@ public class TpaMasukDao extends Dao<TpaMasuk> {
     public void delete(String id) throws SQLException { executeDelete(QUERY_5, id); }
 
     public TpaMasuk getLastRecord() throws SQLException {
-        TpaMasuk res = executeGetLastRecord(QUERY_6, rs1 -> {
-            TpaMasuk m = new TpaMasuk();
-            m.setId(rs1.getString(1));
-            m.setDonatur(rs1.getString(2));
-            m.setJumlah(rs1.getString(3));
-            m.setTanggal(rs1.getString(4));
-            m.setOperator(rs1.getString(5));
-            return m;
-        });
+        TpaMasuk res = executeGetLastRecord(QUERY_6, rs1 -> new TpaMasuk(rs1.getString(1), rs1.getString(2), rs1.getString(3), rs1.getString(4), rs1.getString(5)));
         return res != null ? res : new TpaMasuk();
     }
 
@@ -114,4 +106,5 @@ public class TpaMasukDao extends Dao<TpaMasuk> {
 
     public boolean isDonaturExist(String id) throws SQLException { return executeCheckExists(QUERY_8, id); }
 }
+
 

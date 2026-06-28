@@ -1,7 +1,7 @@
-<p align="center"><img src="https://user-images.githubusercontent.com/21165698/116789775-c6cf5100-aada-11eb-9a0f-29734f4369d7.png" width="400"></p>
+<p align="center"><img alt="img-logo" src="https://user-images.githubusercontent.com/21165698/116789775-c6cf5100-aada-11eb-9a0f-29734f4369d7.png" width="400"></p>
 
 <p align="center">
-<a href="https://github.com/Andi-IM/Masjidku/actions/workflows/codeql-analysis.yml" alt="CodeQL"><img src="https://github.com/Andi-IM/Masjidku/actions/workflows/codeql-analysis.yml/badge.svg"></a>
+<a href="https://github.com/Andi-IM/Masjidku/actions/workflows/codeql-analysis.yml" alt="CodeQL"><img alt="codeql-img" src="https://github.com/Andi-IM/Masjidku/actions/workflows/codeql-analysis.yml/badge.svg"></a>
 <a href="https://github.com/Andi-IM/Masjidku/actions/workflows/cicd-test.yml"><img src="https://github.com/Andi-IM/Masjidku/actions/workflows/cicd-test.yml/badge.svg" alt="Java CI with Gradle"></a>
 </p>
 

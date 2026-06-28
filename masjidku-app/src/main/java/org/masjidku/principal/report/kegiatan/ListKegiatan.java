@@ -15,6 +15,7 @@
 
 package org.masjidku.principal.report.kegiatan;
 
+import org.masjidku.util.TableHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -54,23 +55,16 @@ public class ListKegiatan extends org.masjidku.accountant.BaseTableController<Ke
         this.mainApp = mainApp;
     }
 
-    public ListKegiatan(){
+    public ListKegiatan() {
         dao = ServiceProvider.get(KegiatanService.class);
     }
 
-    
 
     @Override
     protected void setupTableColumns() {
-        colNomor.setCellValueFactory(new PropertyValueFactory<>(""));
-        colNmKegiatan.setCellValueFactory(new PropertyValueFactory<>("nama"));
-        colTempatKegiatan.setCellValueFactory(new PropertyValueFactory<>("tempat"));
-        colWaktuKegiatan.setCellValueFactory(new PropertyValueFactory<>("waktu"));
-        colTanggalKegiatan.setCellValueFactory(new PropertyValueFactory<>("tanggal"));
-        colOperator.setCellValueFactory(new PropertyValueFactory<>("operator"));
+        TableHelper.setupKegiatanColumns(colNomor, colNmKegiatan, colTempatKegiatan, colWaktuKegiatan, colTanggalKegiatan, colOperator);
     }
 
-    
 
     @FXML
     public void printReport() {
@@ -82,15 +76,47 @@ public class ListKegiatan extends org.masjidku.accountant.BaseTableController<Ke
     }
 
     @FXML
-    public void gotoHome() { mainApp.showKegiatanOverview(); }
+    public void gotoHome() {
+        mainApp.showKegiatanOverview();
+    }
 
-    @Override protected org.slf4j.Logger getLogger() { return log; }
-    @Override protected TableView<Kegiatan> getTableView() { return tblKegiatan; }
-    @Override protected Button getBtnEdit() { return null; }
-    @Override protected Button getBtnRemove() { return null; }
-    @Override protected List<Kegiatan> fetchAllData() throws java.sql.SQLException { return dao.getAll(); }
-    @Override protected boolean checkIfExist(Kegiatan item) { return false; }
-    @Override protected void deleteItem(Kegiatan item) {  }
-    @Override protected void handleEdit(Kegiatan item) {  }
+    @Override
+    protected org.slf4j.Logger getLogger() {
+        return log;
+    }
+
+    @Override
+    protected TableView<Kegiatan> getTableView() {
+        return tblKegiatan;
+    }
+
+    @Override
+    protected Button getBtnEdit() {
+        return null;
+    }
+
+    @Override
+    protected Button getBtnRemove() {
+        return null;
+    }
+
+    @Override
+    protected List<Kegiatan> fetchAllData() throws java.sql.SQLException {
+        return dao.getAll();
+    }
+
+    @Override
+    protected boolean checkIfExist(Kegiatan item) {
+        return false;
+    }
+
+    @Override
+    protected void deleteItem(Kegiatan item) {
+    }
+
+    @Override
+    protected void handleEdit(Kegiatan item) {
+    }
 }
+
 

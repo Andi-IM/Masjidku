@@ -35,3 +35,4 @@ public class OperationalServiceImpl implements OperationalService {
     @Override
     public boolean getConnection() { return dao.getConnection(); }
 }
+
