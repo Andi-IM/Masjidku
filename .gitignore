@@ -11,3 +11,5 @@ out/
 *.db
 *.db-shm
 *.db-wal
+/reports/
+/masjidku-app/logs/
