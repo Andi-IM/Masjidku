@@ -79,14 +79,7 @@ public class EditPenerimaZakat {
      * @return fieldStatus
      */
     private boolean formValidation() {
-        if (!txtNama.getText().isBlank()) {
-            if (!txtJumlah.getText().isBlank()) {
-                if (txtJumlah.getText().matches("[0-9]")) {
-                    return date.getEditor().getText().isBlank();
-                }
-            }
-        }
-        return false;
+        return !txtNama.getText().isBlank() && !txtJumlah.getText().isBlank() && txtJumlah.getText().matches("\\d+") && date.getValue() != null;
     }
 
     @FXML
@@ -134,3 +127,4 @@ public class EditPenerimaZakat {
 
 
 }
+

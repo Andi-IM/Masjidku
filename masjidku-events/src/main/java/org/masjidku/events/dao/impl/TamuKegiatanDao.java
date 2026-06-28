@@ -113,3 +113,4 @@ public class TamuKegiatanDao extends Dao<TamuKegiatan> implements org.masjidku.e
         return rs.next();
     }
 }
+

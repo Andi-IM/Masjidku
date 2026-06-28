@@ -17,12 +17,12 @@ package org.masjidku.events.dao.impl;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.masjidku.events.client.model.Tamu;
+import org.masjidku.events.client.service.TamuService;
 import org.masjidku.events.dao.base.Dao;
 
 import java.sql.SQLException;
 
-import org.masjidku.events.client.service.TamuService;
-import org.masjidku.events.client.model.Tamu;
 public class TamuDao extends Dao<Tamu> implements TamuService {
     private static final String QUERY_1 = "SELECT * FROM tamu WHERE tamuID=?";
     private static final String QUERY_2 = "SELECT * FROM tamu";
@@ -38,8 +38,6 @@ public class TamuDao extends Dao<Tamu> implements TamuService {
     }
 
 
-    
-
     @Override
     public Tamu get(String id) throws SQLException {
         ps = con.prepareStatement(QUERY_1);
@@ -48,7 +46,7 @@ public class TamuDao extends Dao<Tamu> implements TamuService {
         rs = ps.executeQuery();
 
         Tamu model = null;
-        if (rs.next()){
+        if (rs.next()) {
             model = new Tamu(
                     rs.getString(1),
                     rs.getString(2),
@@ -67,7 +65,7 @@ public class TamuDao extends Dao<Tamu> implements TamuService {
         rs = ps.executeQuery();
 
         Tamu tamu;
-        while(rs.next()){
+        while (rs.next()) {
             tamu = new Tamu(
                     rs.getString(1),
                     rs.getString(2),
@@ -91,33 +89,20 @@ public class TamuDao extends Dao<Tamu> implements TamuService {
     }
 
     @Override
-    public void delete(String id) throws SQLException { executeDelete(QUERY_5, id); }
+    public void delete(String id) throws SQLException {
+        executeDelete(QUERY_5, id);
+    }
 
-    public boolean isTamuExist(String id) throws SQLException { return executeCheckExists(QUERY_6, id); }
+    public boolean isTamuExist(String id) throws SQLException {
+        return executeCheckExists(QUERY_6, id);
+    }
 
     public ObservableList<String> getAllTamuName() throws SQLException {
-        ObservableList<String> namaTamu = FXCollections.observableArrayList();
-
-        ps = con.prepareStatement(QUERY_7);
-        rs = ps.executeQuery();
-
-        String name;
-        while(rs.next()){
-            name = rs.getString(2);
-            namaTamu.add(name);
-        }
-        return namaTamu;
+        return executeGetAllNames(QUERY_7);
     }
 
     public String getIdByName(String name) throws SQLException {
-        ps = con.prepareStatement(QUERY_8);
-
-        ps.setString(1, name);
-        rs = ps.executeQuery();
-
-        if(rs.next()){
-            return rs.getString(1);
-        }
-        return "";
+        return executeGetIdByName(QUERY_8, name);
     }
 }
+

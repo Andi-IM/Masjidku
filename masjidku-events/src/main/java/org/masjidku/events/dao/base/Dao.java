@@ -53,4 +53,25 @@ public abstract class Dao<T> {
         }
         ps.executeUpdate();
     }
+
+    protected javafx.collections.ObservableList<String> executeGetAllNames(String query) throws SQLException {
+        javafx.collections.ObservableList<String> list = javafx.collections.FXCollections.observableArrayList();
+        ps = con.prepareStatement(query);
+        rs = ps.executeQuery();
+        while (rs.next()) {
+            list.add(rs.getString(2));
+        }
+        return list;
+    }
+
+    protected String executeGetIdByName(String query, String name) throws SQLException {
+        ps = con.prepareStatement(query);
+        ps.setString(1, name);
+        rs = ps.executeQuery();
+        if (rs.next()) {
+            return rs.getString(1);
+        }
+        return "";
+    }
 }
+

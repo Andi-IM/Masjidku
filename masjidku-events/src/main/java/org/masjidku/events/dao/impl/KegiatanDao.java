@@ -83,26 +83,8 @@ public class KegiatanDao extends Dao<Kegiatan> implements KegiatanService {
     @Override
     public void delete(String id) throws SQLException { executeDelete(QUERY_5, id); }
     public boolean isKegiatanExist(String id) throws SQLException { return executeCheckExists(QUERY_6, id); }
-    public ObservableList<String> getAllKegiatanName() throws SQLException {
-        ObservableList<String> items = FXCollections.observableArrayList();
-        ps = con.prepareStatement(QUERY_7);
-        rs = ps.executeQuery();
-        String name;
-        while(rs.next()){
-            name = rs.getString(2);
-            items.add(name);
-        }
-        return items;
-    }
-    public String getIdByName(String name) throws SQLException {
-        ps = con.prepareStatement(QUERY_8);
-        ps.setString(1, name);
-        rs = ps.executeQuery();
-        if(rs.next()){
-            return rs.getString(1);
-        }
-        return "";
-    }
+    public ObservableList<String> getAllKegiatanName() throws SQLException { return executeGetAllNames(QUERY_7); }
+    public String getIdByName(String name) throws SQLException { return executeGetIdByName(QUERY_8, name); }
     public Kegiatan getLastRecord() throws SQLException {
         ps = con.prepareStatement(QUERY_9);
         rs = ps.executeQuery();
@@ -120,3 +102,4 @@ public class KegiatanDao extends Dao<Kegiatan> implements KegiatanService {
     }
     public String getTotalKegiatan() throws SQLException { return executeGetTotal(QUERY_10); }
 }
+

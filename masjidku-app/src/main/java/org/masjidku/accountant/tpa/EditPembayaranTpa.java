@@ -75,16 +75,7 @@ public class EditPembayaranTpa {
      * @return fieldStatus
      */
     private boolean formValidation() {
-        if (!txtNama.getText().isBlank()) {
-            if (!txtKeterangan.getText().isBlank()) {
-                if (!txtJumlah.getText().isBlank()) {
-                    if (txtJumlah.getText().matches("[0-9]")) {
-                        return date.getEditor().getText().isBlank();
-                    }
-                }
-            }
-        }
-        return false;
+        return !txtNama.getText().isBlank() && !txtKeterangan.getText().isBlank() && !txtJumlah.getText().isBlank() && txtJumlah.getText().matches("\\d+") && date.getValue() != null;
     }
 
     @FXML
@@ -99,23 +90,19 @@ public class EditPembayaranTpa {
                 model = new TpaKeluar(nama, keterangan, jumlah, tanggal, operator);
             }
 
-            try {
-                if (dao.isDataExist(model.getId())) {
-                    dao.update(new String[]{
-                            model.getId(),
-                            model.getNama(),
-                            model.getKeterangan(),
-                            model.getJumlah(),
-                            model.getTanggal(),
-                            operator
-                    });
-                    org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "Data telah diupdate");
-                } else {
-                    dao.save(model);
-                }
-            } catch (SQLException e) {
-                log.error("An error occurred", e);
-            }
+            org.masjidku.util.DaoHelper.saveOrUpdate(
+                () -> dao.isDataExist(model.getId()),
+                () -> dao.update(new String[]{
+                        model.getId(),
+                        model.getNama(),
+                        model.getKeterangan(),
+                        model.getJumlah(),
+                        model.getTanggal(),
+                        operator
+                }),
+                () -> dao.save(model),
+                dialogStage, log
+            );
         } else {
             org.masjidku.util.AlertHelper.alertError(dialogStage, "Error", "Data belum lengkap!");
         }
@@ -141,3 +128,4 @@ public class EditPembayaranTpa {
 
 
 }
+
