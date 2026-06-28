@@ -15,6 +15,9 @@
 
 package org.masjidku.accountant.tpa;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
@@ -31,6 +34,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class EditDonaturTpa {
+    private static final Logger log = LoggerFactory.getLogger(EditDonaturTpa.class);
     private final TpaMasukService dao = ServiceProvider.get(TpaMasukService.class);
 
     @FXML
@@ -107,7 +111,7 @@ public class EditDonaturTpa {
                     dao.save(donatur);
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                log.error("An error occurred", e);
             }
         } else {
             alertError("Error", "Data belum lengkap!");

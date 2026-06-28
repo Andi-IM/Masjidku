@@ -15,6 +15,9 @@
 
 package org.masjidku.accountant.tpa;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
@@ -36,6 +39,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class PembayaranTpa implements Initializable {
+    private static final Logger log = LoggerFactory.getLogger(PembayaranTpa.class);
     private final TpaKeluarService dao = ServiceProvider.get(TpaKeluarService.class);
 
     @FXML
@@ -76,7 +80,7 @@ public class PembayaranTpa implements Initializable {
         try {
             dataTpa.addAll(dao.getAll());
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("An error occurred", e);
         }
         return dataTpa;
     }
@@ -133,7 +137,7 @@ public class PembayaranTpa implements Initializable {
                     alertError("SQL Error", "User tidak ditemukan!");
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                log.error("An error occurred", e);
             }
         }
     }

@@ -1,0 +1,26 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/report/Report.jrxml</file>
+  <line>17</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/report/Report.jrxml" />
+  <problem_class id="XmlDefaultAttributeValue" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">Redundant attribute with default value</problem_class>
+  <description>Redundant default attribute value assignment</description>
+  <highlighted_element>&quot;20&quot;</highlighted_element>
+  <language>XML</language>
+  <offset>375</offset>
+  <length>4</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/report/Report.jrxml</file>
+  <line>17</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/report/Report.jrxml" />
+  <problem_class id="XmlDefaultAttributeValue" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">Redundant attribute with default value</problem_class>
+  <description>Redundant default attribute value assignment</description>
+  <highlighted_element>&quot;20&quot;</highlighted_element>
+  <language>XML</language>
+  <offset>392</offset>
+  <length>4</length>
+</problem>
+</problems>

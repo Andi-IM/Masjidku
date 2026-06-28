@@ -1,5 +1,8 @@
 package org.masjidku.model.session;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.common.base.Stopwatch;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
 public class Session extends DaoFactory implements SessionDao{
+    private static final Logger log = LoggerFactory.getLogger(Session.class);
     final Stopwatch stopwatch = Stopwatch.createUnstarted();
     
     private static final String INSERT_QUERY = "INSERT INTO sessions (userid, timestamp) VALUES(?,?)";
@@ -63,7 +67,7 @@ public class Session extends DaoFactory implements SessionDao{
             ps.executeUpdate();
             ps.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("An error occurred", e);
         }
     }
 
@@ -76,7 +80,7 @@ public class Session extends DaoFactory implements SessionDao{
             ps.executeUpdate();
             ps.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("An error occurred", e);
         }
     }
 
@@ -99,7 +103,7 @@ public class Session extends DaoFactory implements SessionDao{
             ps.close();
 
         } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            log.error("An error occurred", throwables);
         }
         return model;
     }
@@ -111,7 +115,7 @@ public class Session extends DaoFactory implements SessionDao{
             generateList();
             ps.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("An error occurred", e);
         }
         return userSessions;
     }
@@ -124,7 +128,7 @@ public class Session extends DaoFactory implements SessionDao{
             generateList();
             ps.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("An error occurred", e);
         }
         return userSessions;
     }
@@ -136,7 +140,7 @@ public class Session extends DaoFactory implements SessionDao{
             ps.executeUpdate();
             ps.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("An error occurred", e);
         }
     }
     private void generateList() throws SQLException {

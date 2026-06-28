@@ -1,0 +1,74 @@
+<problems>
+<problem>
+  <file>Masjidku.masjidku-app.main</file>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="module" FQNAME="Masjidku.masjidku-app.main" />
+  <problem_class id="UnnecessaryModuleDependencyInspection" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary module dependency</problem_class>
+  <hints>
+    <hint value="Masjidku.masjidku-reporting-client.main" />
+  </hints>
+  <description>Module 'Masjidku.masjidku-app.main' sources do not depend on module 'Masjidku.masjidku-reporting-client.main' sources</description>
+  <highlighted_element />
+  <language />
+</problem>
+<problem>
+  <file>Masjidku.masjidku-app.test</file>
+  <module>Masjidku.masjidku-app.test</module>
+  <entry_point TYPE="module" FQNAME="Masjidku.masjidku-app.test" />
+  <problem_class id="UnnecessaryModuleDependencyInspection" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary module dependency</problem_class>
+  <hints>
+    <hint value="Masjidku.masjidku-app.main" />
+  </hints>
+  <description>Module 'Masjidku.masjidku-app.test' sources do not depend on module 'Masjidku.masjidku-app.main' sources</description>
+  <highlighted_element />
+  <language />
+</problem>
+<problem>
+  <file>Masjidku.masjidku-app.test</file>
+  <module>Masjidku.masjidku-app.test</module>
+  <entry_point TYPE="module" FQNAME="Masjidku.masjidku-app.test" />
+  <problem_class id="UnnecessaryModuleDependencyInspection" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary module dependency</problem_class>
+  <hints>
+    <hint value="Masjidku.masjidku-common.main" />
+  </hints>
+  <description>Module 'Masjidku.masjidku-app.test' sources do not depend on module 'Masjidku.masjidku-common.main' sources</description>
+  <highlighted_element />
+  <language />
+</problem>
+<problem>
+  <file>Masjidku.masjidku-app.test</file>
+  <module>Masjidku.masjidku-app.test</module>
+  <entry_point TYPE="module" FQNAME="Masjidku.masjidku-app.test" />
+  <problem_class id="UnnecessaryModuleDependencyInspection" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary module dependency</problem_class>
+  <hints>
+    <hint value="Masjidku.masjidku-accounting-client.main" />
+  </hints>
+  <description>Module 'Masjidku.masjidku-app.test' sources do not depend on module 'Masjidku.masjidku-accounting-client.main' sources</description>
+  <highlighted_element />
+  <language />
+</problem>
+<problem>
+  <file>Masjidku.masjidku-app.test</file>
+  <module>Masjidku.masjidku-app.test</module>
+  <entry_point TYPE="module" FQNAME="Masjidku.masjidku-app.test" />
+  <problem_class id="UnnecessaryModuleDependencyInspection" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary module dependency</problem_class>
+  <hints>
+    <hint value="Masjidku.masjidku-events-client.main" />
+  </hints>
+  <description>Module 'Masjidku.masjidku-app.test' sources do not depend on module 'Masjidku.masjidku-events-client.main' sources</description>
+  <highlighted_element />
+  <language />
+</problem>
+<problem>
+  <file>Masjidku.masjidku-app.test</file>
+  <module>Masjidku.masjidku-app.test</module>
+  <entry_point TYPE="module" FQNAME="Masjidku.masjidku-app.test" />
+  <problem_class id="UnnecessaryModuleDependencyInspection" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary module dependency</problem_class>
+  <hints>
+    <hint value="Masjidku.masjidku-reporting-client.main" />
+  </hints>
+  <description>Module 'Masjidku.masjidku-app.test' sources do not depend on module 'Masjidku.masjidku-reporting-client.main' sources</description>
+  <highlighted_element />
+  <language />
+</problem>
+</problems>

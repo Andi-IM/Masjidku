@@ -15,6 +15,9 @@
 
 package org.masjidku.accountant.zakat;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
@@ -36,6 +39,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class DonaturZakat implements Initializable {
+    private static final Logger log = LoggerFactory.getLogger(DonaturZakat.class);
     private final ZakatMasukService dao = ServiceProvider.get(ZakatMasukService.class);
 
     @FXML
@@ -85,7 +89,7 @@ public class DonaturZakat implements Initializable {
         try {
             donaturData.addAll(dao.getAll());
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("An error occurred", e);
         }
         return donaturData;
     }
@@ -122,7 +126,7 @@ public class DonaturZakat implements Initializable {
                     alertError("SQL Error", "User tidak ditemukan!");
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                log.error("An error occurred", e);
             }
         }
     }

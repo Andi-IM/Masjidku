@@ -15,6 +15,9 @@
 
 package org.masjidku.accountant.operasional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
@@ -31,6 +34,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class EditPembayaranOperasional {
+    private static final Logger log = LoggerFactory.getLogger(EditPembayaranOperasional.class);
     private final OperationalService dao = ServiceProvider.get(OperationalService.class);
 
     @FXML
@@ -112,7 +116,7 @@ public class EditPembayaranOperasional {
                     dao.save(model);
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                log.error("An error occurred", e);
             }
         } else {
             alertError("Error", "Data belum lengkap!");

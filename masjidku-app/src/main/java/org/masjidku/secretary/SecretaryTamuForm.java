@@ -15,6 +15,9 @@
 
 package org.masjidku.secretary;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.masjidku.util.ServiceProvider;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -28,6 +31,7 @@ import org.masjidku.events.client.service.TamuService;
 import java.sql.SQLException;
 
 public class SecretaryTamuForm {
+    private static final Logger log = LoggerFactory.getLogger(SecretaryTamuForm.class);
     private final TamuService dao = ServiceProvider.get(TamuService.class);
 
     @FXML
@@ -84,6 +88,10 @@ public class SecretaryTamuForm {
 
             if (tamu == null){
                 tamu = new Tamu(namaTamu, alamat, noTelp, operator);
+            } else {
+                tamu.setNama(namaTamu);
+                tamu.setAlamat(alamat);
+                tamu.setNotelp(noTelp);
             }
 
                 try {
@@ -100,7 +108,7 @@ public class SecretaryTamuForm {
                         dao.save(tamu);
                     }
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    log.error("An error occurred", e);
                 }
             
     } else {

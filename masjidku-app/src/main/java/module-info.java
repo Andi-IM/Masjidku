@@ -4,11 +4,8 @@ open module main {
     requires javafx.base;
     requires java.sql;
     requires org.masjidku.common;
-    requires java.desktop;
-    requires java.xml.bind;
-
-    requires mysql.connector.java;
     requires com.google.common;
+    requires org.slf4j;
 
     requires org.masjidku.accounting.client;
     requires org.masjidku.events.client;

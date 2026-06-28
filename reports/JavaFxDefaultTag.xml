@@ -1,0 +1,2234 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_anakyatim.fxml</file>
+  <line>34</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_anakyatim.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_anakyatim.fxml</file>
+  <line>36</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_anakyatim.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_anakyatim.fxml</file>
+  <line>44</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_anakyatim.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_anakyatim.fxml</file>
+  <line>50</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_anakyatim.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_anakyatim.fxml</file>
+  <line>54</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_anakyatim.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>28</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_anakyatim.fxml</file>
+  <line>63</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_anakyatim.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>28</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_anakyatim.fxml</file>
+  <line>85</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_anakyatim.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_home.fxml</file>
+  <line>33</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_home.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_home.fxml</file>
+  <line>35</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_home.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_home.fxml</file>
+  <line>44</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_home.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_operasional.fxml</file>
+  <line>33</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_operasional.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_operasional.fxml</file>
+  <line>36</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_operasional.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_operasional.fxml</file>
+  <line>46</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_operasional.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_operasional.fxml</file>
+  <line>55</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_operasional.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_operasional.fxml</file>
+  <line>60</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_operasional.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>28</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_operasional.fxml</file>
+  <line>70</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_operasional.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>28</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_operasional.fxml</file>
+  <line>92</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_operasional.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_pembangunan.fxml</file>
+  <line>33</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_pembangunan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_pembangunan.fxml</file>
+  <line>36</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_pembangunan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_pembangunan.fxml</file>
+  <line>46</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_pembangunan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_pembangunan.fxml</file>
+  <line>55</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_pembangunan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_pembangunan.fxml</file>
+  <line>60</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_pembangunan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>28</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_pembangunan.fxml</file>
+  <line>70</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_pembangunan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>28</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_pembangunan.fxml</file>
+  <line>92</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_pembangunan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_root.fxml</file>
+  <line>25</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_root.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;items&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_root.fxml</file>
+  <line>28</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_root.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_root.fxml</file>
+  <line>44</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_root.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>20</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_root.fxml</file>
+  <line>53</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_root.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>36</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_root.fxml</file>
+  <line>64</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_root.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>36</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_root.fxml</file>
+  <line>75</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_root.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>36</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_root.fxml</file>
+  <line>86</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_root.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>36</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_root.fxml</file>
+  <line>97</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_root.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>36</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_root.fxml</file>
+  <line>108</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_root.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>36</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_root.fxml</file>
+  <line>119</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_root.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>36</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_root.fxml</file>
+  <line>130</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_root.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>36</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_tpa.fxml</file>
+  <line>33</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_tpa.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_tpa.fxml</file>
+  <line>35</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_tpa.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_tpa.fxml</file>
+  <line>43</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_tpa.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_tpa.fxml</file>
+  <line>49</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_tpa.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_tpa.fxml</file>
+  <line>53</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_tpa.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>28</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_tpa.fxml</file>
+  <line>62</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_tpa.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>28</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_tpa.fxml</file>
+  <line>84</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_tpa.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_zakat.fxml</file>
+  <line>33</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_zakat.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_zakat.fxml</file>
+  <line>36</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_zakat.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_zakat.fxml</file>
+  <line>46</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_zakat.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_zakat.fxml</file>
+  <line>55</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_zakat.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_zakat.fxml</file>
+  <line>60</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_zakat.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>28</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_zakat.fxml</file>
+  <line>70</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_zakat.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>28</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_zakat.fxml</file>
+  <line>92</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_zakat.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/admin/user_logs.fxml</file>
+  <line>35</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/admin/user_logs.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/admin/user_logs.fxml</file>
+  <line>37</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/admin/user_logs.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/admin/user_logs.fxml</file>
+  <line>43</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/admin/user_logs.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/admin/user_logs.fxml</file>
+  <line>65</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/admin/user_logs.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/edit_profile.fxml</file>
+  <line>38</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/edit_profile.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/edit_profile.fxml</file>
+  <line>40</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/edit_profile.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/edit_profile.fxml</file>
+  <line>46</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/edit_profile.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/edit_profile.fxml</file>
+  <line>66</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/edit_profile.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/edit_profile.fxml</file>
+  <line>80</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/edit_profile.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>20</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_home.fxml</file>
+  <line>30</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_home.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_home.fxml</file>
+  <line>32</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_home.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_home.fxml</file>
+  <line>40</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_home.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_home.fxml</file>
+  <line>51</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_home.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>15</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_home.fxml</file>
+  <line>60</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_home.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>15</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_laporan.fxml</file>
+  <line>33</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_laporan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_laporan.fxml</file>
+  <line>36</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_laporan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_laporan.fxml</file>
+  <line>47</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_laporan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_laporan.fxml</file>
+  <line>53</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_laporan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_readDataTamu.fxml</file>
+  <line>36</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_readDataTamu.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_readDataTamu.fxml</file>
+  <line>38</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_readDataTamu.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_readDataTamu.fxml</file>
+  <line>49</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_readDataTamu.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_readDataTamu.fxml</file>
+  <line>55</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_readDataTamu.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_readDataTamu.fxml</file>
+  <line>61</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_readDataTamu.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>28</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_read_data.fxml</file>
+  <line>33</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_read_data.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_read_data.fxml</file>
+  <line>36</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_read_data.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_read_data.fxml</file>
+  <line>47</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_read_data.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_read_data.fxml</file>
+  <line>53</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_read_data.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_root.fxml</file>
+  <line>32</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_root.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;items&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_root.fxml</file>
+  <line>35</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_root.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_root.fxml</file>
+  <line>38</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_root.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>20</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_root.fxml</file>
+  <line>46</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_root.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>36</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_root.fxml</file>
+  <line>57</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_root.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>36</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_root.fxml</file>
+  <line>66</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_root.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>36</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_root.fxml</file>
+  <line>80</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_root.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>36</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_root.fxml</file>
+  <line>91</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_root.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>36</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_root.fxml</file>
+  <line>102</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_root.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>36</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_under_dev.fxml</file>
+  <line>26</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_under_dev.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>3</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_under_dev.fxml</file>
+  <line>33</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_under_dev.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>9</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/list_kegiatan.fxml</file>
+  <line>36</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/list_kegiatan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/list_kegiatan.fxml</file>
+  <line>39</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/list_kegiatan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/list_kegiatan.fxml</file>
+  <line>53</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/list_kegiatan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/list_kegiatan.fxml</file>
+  <line>72</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/list_kegiatan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/list_tamu.fxml</file>
+  <line>35</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/list_tamu.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/list_tamu.fxml</file>
+  <line>37</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/list_tamu.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/list_tamu.fxml</file>
+  <line>44</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/list_tamu.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/list_tamu.fxml</file>
+  <line>59</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/list_tamu.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/list_undangan.fxml</file>
+  <line>35</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/list_undangan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/list_undangan.fxml</file>
+  <line>37</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/list_undangan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/list_undangan.fxml</file>
+  <line>44</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/list_undangan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/list_undangan.fxml</file>
+  <line>64</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/list_undangan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/report_kegiatan.fxml</file>
+  <line>31</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/report_kegiatan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/report_kegiatan.fxml</file>
+  <line>33</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/report_kegiatan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/report_kegiatan.fxml</file>
+  <line>40</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/report_kegiatan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/report_kegiatan.fxml</file>
+  <line>59</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/report_kegiatan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/report_kegiatan.fxml</file>
+  <line>68</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/kegiatan/report_kegiatan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_anakyatim.fxml</file>
+  <line>31</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_anakyatim.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_anakyatim.fxml</file>
+  <line>34</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_anakyatim.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_anakyatim.fxml</file>
+  <line>44</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_anakyatim.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_anakyatim.fxml</file>
+  <line>53</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_anakyatim.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_anakyatim.fxml</file>
+  <line>58</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_anakyatim.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>28</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_anakyatim.fxml</file>
+  <line>68</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_anakyatim.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>28</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_anakyatim.fxml</file>
+  <line>90</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_anakyatim.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_operasional.fxml</file>
+  <line>32</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_operasional.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_operasional.fxml</file>
+  <line>35</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_operasional.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_operasional.fxml</file>
+  <line>45</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_operasional.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_operasional.fxml</file>
+  <line>54</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_operasional.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_operasional.fxml</file>
+  <line>59</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_operasional.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>28</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_operasional.fxml</file>
+  <line>69</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_operasional.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>28</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_operasional.fxml</file>
+  <line>91</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_operasional.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_pembangunan.fxml</file>
+  <line>32</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_pembangunan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_pembangunan.fxml</file>
+  <line>35</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_pembangunan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_pembangunan.fxml</file>
+  <line>45</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_pembangunan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_pembangunan.fxml</file>
+  <line>54</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_pembangunan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_pembangunan.fxml</file>
+  <line>59</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_pembangunan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>28</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_pembangunan.fxml</file>
+  <line>69</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_pembangunan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>28</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_pembangunan.fxml</file>
+  <line>91</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_pembangunan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_tpa.fxml</file>
+  <line>32</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_tpa.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_tpa.fxml</file>
+  <line>35</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_tpa.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_tpa.fxml</file>
+  <line>45</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_tpa.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_tpa.fxml</file>
+  <line>54</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_tpa.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_tpa.fxml</file>
+  <line>59</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_tpa.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>28</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_tpa.fxml</file>
+  <line>69</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_tpa.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>28</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_tpa.fxml</file>
+  <line>91</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_tpa.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_zakat.fxml</file>
+  <line>32</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_zakat.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_zakat.fxml</file>
+  <line>35</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_zakat.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_zakat.fxml</file>
+  <line>45</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_zakat.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_zakat.fxml</file>
+  <line>54</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_zakat.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_zakat.fxml</file>
+  <line>59</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_zakat.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>28</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_zakat.fxml</file>
+  <line>69</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_zakat.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>28</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_zakat.fxml</file>
+  <line>91</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/report_zakat.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/profile.fxml</file>
+  <line>36</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/profile.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/profile.fxml</file>
+  <line>38</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/profile.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/profile.fxml</file>
+  <line>45</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/profile.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/profile.fxml</file>
+  <line>50</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/profile.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>9</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/profile.fxml</file>
+  <line>52</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/profile.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>15</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/profile.fxml</file>
+  <line>68</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/profile.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>21</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/profile.fxml</file>
+  <line>95</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/profile.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>9</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/form_kegiatan.fxml</file>
+  <line>39</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/form_kegiatan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/form_kegiatan.fxml</file>
+  <line>41</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/form_kegiatan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/form_kegiatan.fxml</file>
+  <line>57</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/form_kegiatan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/form_kegiatan.fxml</file>
+  <line>86</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/form_kegiatan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/form_tamu.fxml</file>
+  <line>38</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/form_tamu.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/form_tamu.fxml</file>
+  <line>41</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/form_tamu.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/form_tamu.fxml</file>
+  <line>47</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/form_tamu.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/form_tamu.fxml</file>
+  <line>65</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/form_tamu.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/form_undangan.fxml</file>
+  <line>38</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/form_undangan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/form_undangan.fxml</file>
+  <line>41</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/form_undangan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/form_undangan.fxml</file>
+  <line>47</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/form_undangan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/form_undangan.fxml</file>
+  <line>65</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/form_undangan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_kegiatan.fxml</file>
+  <line>35</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_kegiatan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_kegiatan.fxml</file>
+  <line>37</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_kegiatan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_kegiatan.fxml</file>
+  <line>48</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_kegiatan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_kegiatan.fxml</file>
+  <line>54</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_kegiatan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_kegiatan.fxml</file>
+  <line>59</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_kegiatan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>28</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_kegiatan.fxml</file>
+  <line>77</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_kegiatan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>9</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_tamu.fxml</file>
+  <line>36</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_tamu.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_tamu.fxml</file>
+  <line>39</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_tamu.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_tamu.fxml</file>
+  <line>49</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_tamu.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_tamu.fxml</file>
+  <line>58</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_tamu.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_tamu.fxml</file>
+  <line>66</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_tamu.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>28</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_tamu.fxml</file>
+  <line>85</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_tamu.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_undangan.fxml</file>
+  <line>35</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_undangan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_undangan.fxml</file>
+  <line>37</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_undangan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_undangan.fxml</file>
+  <line>44</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_undangan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_undangan.fxml</file>
+  <line>50</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_undangan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_undangan.fxml</file>
+  <line>55</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_undangan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>28</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_undangan.fxml</file>
+  <line>77</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/list_undangan.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/secretary_home.fxml</file>
+  <line>32</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/secretary_home.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/secretary_home.fxml</file>
+  <line>34</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/secretary_home.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/secretary_home.fxml</file>
+  <line>46</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/secretary_home.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/secretary_home.fxml</file>
+  <line>54</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/secretary_home.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>15</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/secretary_root.fxml</file>
+  <line>26</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/secretary_root.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;items&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>4</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/secretary_root.fxml</file>
+  <line>29</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/secretary_root.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>12</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/secretary_root.fxml</file>
+  <line>43</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/secretary_root.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;children&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>20</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/secretary_root.fxml</file>
+  <line>52</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/secretary_root.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>36</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/secretary_root.fxml</file>
+  <line>63</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/secretary_root.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>36</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/secretary_root.fxml</file>
+  <line>77</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/secretary/secretary_root.fxml" />
+  <problem_class id="JavaFxDefaultTag" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary default tag</problem_class>
+  <description>Default property tag could be removed</description>
+  <highlighted_element>&lt;image&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>36</offset>
+  <length>7</length>
+</problem>
+</problems>

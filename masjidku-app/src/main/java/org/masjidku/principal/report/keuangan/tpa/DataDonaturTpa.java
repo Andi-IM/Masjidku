@@ -13,6 +13,9 @@
  *                                HEREUNDER.
  */
 package org.masjidku.principal.report.keuangan.tpa;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
@@ -29,6 +32,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 public class DataDonaturTpa implements Initializable {
+    private static final Logger log = LoggerFactory.getLogger(DataDonaturTpa.class);
     private final TpaMasukService dao = ServiceProvider.get(TpaMasukService.class);
     @FXML
     private TableView<TpaMasuk> tableTpa;
@@ -58,7 +62,7 @@ public class DataDonaturTpa implements Initializable {
         try {
             donaturData.addAll(dao.getAll());
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("An error occurred", e);
         }
         return donaturData;
     }

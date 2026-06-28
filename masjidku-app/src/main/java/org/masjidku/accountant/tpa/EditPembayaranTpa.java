@@ -15,6 +15,9 @@
 
 package org.masjidku.accountant.tpa;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
@@ -31,6 +34,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class EditPembayaranTpa {
+    private static final Logger log = LoggerFactory.getLogger(EditPembayaranTpa.class);
     private final TpaKeluarService dao = ServiceProvider.get(TpaKeluarService.class);
 
     @FXML
@@ -113,7 +117,7 @@ public class EditPembayaranTpa {
                     dao.save(model);
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                log.error("An error occurred", e);
             }
         } else {
             alertError("Error", "Data belum lengkap!");

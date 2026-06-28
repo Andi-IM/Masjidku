@@ -15,6 +15,9 @@
 
 package org.masjidku.principal.report.kegiatan;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.masjidku.util.ServiceProvider;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,6 +36,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class ListTamu implements Initializable {
+    private static final Logger log = LoggerFactory.getLogger(ListTamu.class);
     @FXML
     public TableView<Tamu> tblTamu;
     @FXML
@@ -67,7 +71,7 @@ public class ListTamu implements Initializable {
             try {
                 tamuData.addAll(dao.getAll());
             } catch (SQLException e) {
-                e.printStackTrace();
+                log.error("An error occurred", e);
             }
         
         return tamuData;

@@ -39,6 +39,10 @@ dependencies {
     // Hash Security and other tools
     implementation(libs.guava)
 
+    // Utilities
+    implementation("org.slf4j:slf4j-api:2.0.12")
+    runtimeOnly("ch.qos.logback:logback-classic:1.5.6")
+
     // Unit Test
     testImplementation(libs.junit)
     testImplementation(libs.archunit.junit5)

@@ -14,6 +14,9 @@
  */
 package org.masjidku.accountant;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
@@ -30,6 +33,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class AccountantAnakyatim implements Initializable {
+    private static final Logger log = LoggerFactory.getLogger(AccountantAnakyatim.class);
     private final AccountingFunctionsService df = ServiceProvider.get(AccountingFunctionsService.class);
     private final AnakYatimService ayDao = ServiceProvider.get(AnakYatimService.class);
     private final DonasiAYatimService dayDao = ServiceProvider.get(DonasiAYatimService.class);
@@ -64,7 +68,7 @@ public class AccountantAnakyatim implements Initializable {
             txtTglPemasukkan.setText(pemberi.getTanggal());
             txtTglPengeluaran.setText(penerima.getTanggal());
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("An error occurred", e);
         }
     }
     @FXML

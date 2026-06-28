@@ -15,6 +15,7 @@ tasks.named<JavaCompile>("compileJava") {
 }
 
 dependencies {
-    implementation("org.xerial:sqlite-jdbc:3.42.0.0")
-    implementation("mysql:mysql-connector-java:8.0.30")
+    implementation(libs.sqlite.jdbc)
+    implementation(libs.mysql.connector)
+    implementation("org.slf4j:slf4j-api:2.0.12")
 }

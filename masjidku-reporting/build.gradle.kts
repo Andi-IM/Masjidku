@@ -25,4 +25,5 @@ dependencies {
     implementation(libs.jasperreports) {
         exclude(group = "com.lowagie", module = "itext")
     }
+    implementation("org.slf4j:slf4j-api:2.0.12")
 }

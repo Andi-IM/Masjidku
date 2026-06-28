@@ -1,0 +1,410 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_anakyatim.fxml</file>
+  <line>3</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_anakyatim.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import java.lang.*?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>22</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_anakyatim.fxml</file>
+  <line>4</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_anakyatim.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import java.util.*?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>22</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_anakyatim.fxml</file>
+  <line>5</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/accountant_anakyatim.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.scene.*?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>25</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/anakyatim/form_anakyatim.fxml</file>
+  <line>20</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/anakyatim/form_anakyatim.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.geometry.Insets?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>33</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/anakyatim/form_donatur_anakyatim.fxml</file>
+  <line>20</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/anakyatim/form_donatur_anakyatim.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.geometry.Insets?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>33</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/anakyatim/form_donatur_anakyatim.fxml</file>
+  <line>26</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/anakyatim/form_donatur_anakyatim.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.scene.text.Font?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>33</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/anakyatim/list_anakyatim.fxml</file>
+  <line>24</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/anakyatim/list_anakyatim.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.scene.text.Font?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>33</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/anakyatim/list_donatur_anakyatim.fxml</file>
+  <line>24</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/anakyatim/list_donatur_anakyatim.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.scene.text.Font?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>33</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/operasional/form_donatur_operasional.fxml</file>
+  <line>26</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/operasional/form_donatur_operasional.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.scene.text.Font?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>33</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/operasional/list_operasional.fxml</file>
+  <line>24</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/operasional/list_operasional.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.scene.text.Font?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>33</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/pembangunan/form_donatur_pembangunan.fxml</file>
+  <line>26</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/pembangunan/form_donatur_pembangunan.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.scene.text.Font?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>33</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/pembangunan/form_pembangunan.fxml</file>
+  <line>20</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/pembangunan/form_pembangunan.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.geometry.Insets?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>33</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/pembangunan/form_pembangunan.fxml</file>
+  <line>26</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/pembangunan/form_pembangunan.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.scene.text.Font?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>33</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/pembangunan/list_donatur_pembangunan.fxml</file>
+  <line>24</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/pembangunan/list_donatur_pembangunan.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.scene.text.Font?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>33</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/tpa/form_donatur_tpa.fxml</file>
+  <line>20</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/tpa/form_donatur_tpa.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.geometry.Insets?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>33</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/tpa/form_donatur_tpa.fxml</file>
+  <line>26</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/tpa/form_donatur_tpa.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.scene.text.Font?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>33</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/tpa/form_tpa.fxml</file>
+  <line>20</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/tpa/form_tpa.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.geometry.Insets?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>33</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/tpa/form_tpa.fxml</file>
+  <line>26</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/tpa/form_tpa.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.scene.text.Font?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>33</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/tpa/list_donatur_tpa.fxml</file>
+  <line>24</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/tpa/list_donatur_tpa.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.scene.text.Font?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>33</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/tpa/list_tpa.fxml</file>
+  <line>24</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/tpa/list_tpa.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.scene.text.Font?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>33</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/zakat/form_donatur_zakat.fxml</file>
+  <line>20</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/zakat/form_donatur_zakat.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.geometry.Insets?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>33</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/zakat/form_donatur_zakat.fxml</file>
+  <line>26</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/zakat/form_donatur_zakat.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.scene.text.Font?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>33</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/zakat/form_zakat.fxml</file>
+  <line>20</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/zakat/form_zakat.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.geometry.Insets?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>33</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/zakat/form_zakat.fxml</file>
+  <line>26</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/zakat/form_zakat.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.scene.text.Font?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>33</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/zakat/list_donatur_zakat.fxml</file>
+  <line>24</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/zakat/list_donatur_zakat.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.scene.text.Font?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>33</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/zakat/list_zakat.fxml</file>
+  <line>24</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/accountant/zakat/list_zakat.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.scene.text.Font?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>33</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/admin/admin_home.fxml</file>
+  <line>25</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/admin/admin_home.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.scene.text.Font?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>33</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/admin/user_form.fxml</file>
+  <line>26</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/admin/user_form.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.scene.text.Font?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>33</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/anakyatim/list_anakyatim.fxml</file>
+  <line>24</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/anakyatim/list_anakyatim.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.scene.text.Font?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>33</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/anakyatim/list_donatur_anakyatim.fxml</file>
+  <line>24</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/anakyatim/list_donatur_anakyatim.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.scene.text.Font?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>33</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/pembangunan/list_donatur_pembangunan.fxml</file>
+  <line>24</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/pembangunan/list_donatur_pembangunan.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.scene.text.Font?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>33</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/tpa/list_donatur_tpa.fxml</file>
+  <line>24</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/tpa/list_donatur_tpa.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.scene.text.Font?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>33</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/tpa/list_tpa.fxml</file>
+  <line>24</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/tpa/list_tpa.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.scene.text.Font?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>33</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/zakat/list_zakat.fxml</file>
+  <line>24</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/report/keuangan/zakat/list_zakat.fxml" />
+  <problem_class id="JavaFxUnusedImports" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">JavaFX unused imports</problem_class>
+  <description>Unused import</description>
+  <highlighted_element>&lt;?import javafx.scene.text.Font?&gt;</highlighted_element>
+  <language>XML</language>
+  <offset>0</offset>
+  <length>33</length>
+</problem>
+</problems>

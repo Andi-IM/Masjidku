@@ -15,6 +15,9 @@
 
 package org.masjidku.principal.report.keuangan;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
@@ -30,6 +33,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class ZakatReport implements Initializable {
+    private static final Logger log = LoggerFactory.getLogger(ZakatReport.class);
     private final AccountingFunctionsService df = ServiceProvider.get(AccountingFunctionsService.class);
     private final ZakatKeluarService zkDao = ServiceProvider.get(ZakatKeluarService.class);
     private final ZakatMasukService zmDao = ServiceProvider.get(ZakatMasukService.class);
@@ -76,11 +80,11 @@ public class ZakatReport implements Initializable {
             txtPengeluaranTerakhir.setText("Rp. " + penerima.getJumlah());
             txtTotalPemasukkan.setText("Rp. " + zmDao.getTotalIncome());
             txtTotalPengeluaran.setText("Rp. " + zkDao.gettotalOutcome());
-            txtSaldo.setText("Rp. " + df.getInfakYatimBalance());
+            txtSaldo.setText("Rp. " + df.getZakatBalance());
             txtTglPemasukkan.setText(pemberi.getTanggal());
             txtTglPengeluaran.setText(penerima.getTanggal());
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("An error occurred", e);
         }
     }
 

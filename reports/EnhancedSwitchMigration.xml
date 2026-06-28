@@ -1,0 +1,15 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/model/user/User.java</file>
+  <line>78</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.model.user</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.model.user.User org.masjidku.model.user.User.Jabatan getJabatan()" />
+  <problem_class id="EnhancedSwitchMigration" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Statement can be replaced with enhanced 'switch'</problem_class>
+  <description>Switch statement can be replaced with enhanced 'switch'</description>
+  <highlighted_element>switch</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>6</length>
+</problem>
+</problems>

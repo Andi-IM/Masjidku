@@ -15,6 +15,9 @@
 
 package org.masjidku.admin;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -35,6 +38,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class UserLists implements Initializable {
+    private static final Logger log = LoggerFactory.getLogger(UserLists.class);
 
     @FXML
     private TableView<User> userTable;
@@ -128,7 +132,7 @@ public class UserLists implements Initializable {
         try {
             userData.addAll(dao.getAll());
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("An error occurred", e);
         }
         return userData;
     }
@@ -150,7 +154,7 @@ public class UserLists implements Initializable {
                     alertError("SQL Error", "User tidak ditemukan!");
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                log.error("An error occurred", e);
             }
         }
     }
@@ -174,7 +178,7 @@ public class UserLists implements Initializable {
                     alertError("SQL Error","User tidak ditemukan!");
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                log.error("An error occurred", e);
             }
         } else {
             alertError("Offline","Database tidak terhubung!");

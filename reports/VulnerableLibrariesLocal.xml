@@ -1,0 +1,142 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/build.gradle.kts</file>
+  <line>27</line>
+  <module>Masjidku.masjidku-app</module>
+  <package>&lt;default&gt;</package>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/build.gradle.kts" />
+  <problem_class id="VulnerableLibrariesLocal" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Vulnerable declared dependency</problem_class>
+  <description>&lt;html&gt;&lt;body&gt; Dependency maven:mysql:mysql-connector-java:8.0.24 is vulnerable &lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://www.mend.io/vulnerability-database/CVE-2023-22102?utm_source=JetBrains&quot;&gt;CVE-2023-22102&lt;/a&gt; 8.3 Insufficient Information &lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://www.mend.io/vulnerability-database/CVE-2022-21363?utm_source=JetBrains&quot;&gt;CVE-2022-21363&lt;/a&gt; 6.6 Improper Handling of Insufficient Permissions or Privileges &lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://www.mend.io/vulnerability-database/CVE-2021-2471?utm_source=JetBrains&quot;&gt;CVE-2021-2471&lt;/a&gt; 5.9 Incorrect Authorization &lt;/li&gt;&lt;/ul&gt; Results powered by &lt;a href=&quot;https://www.mend.io/jetbrains-lp/?utm_source=JetBrains&quot;&gt;Mend.io&lt;/a&gt;&lt;/body&gt; &lt;/html&gt;</description>
+  <highlighted_element>libs.mysql.connector</highlighted_element>
+  <language>kotlin</language>
+  <offset>19</offset>
+  <length>20</length>
+  <fingerprint sourcePackage="maven:com.google.protobuf:protobuf-java:3.11.4" vulnerabilityIds="86590d81-fdb9-44ad-b99c-9beca3c080be,736dc50e-e4cc-446d-bfd6-9ecc6846a53c,8325a007-454f-447c-a9b6-80bfb04d4813,aebe5d01-3fd8-4c92-8a9b-68a88e0dc2fc,99a22173-1fce-4c7e-b578-ee52e1c23c05" />
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/build.gradle.kts</file>
+  <line>27</line>
+  <module>Masjidku.masjidku-app</module>
+  <package>&lt;default&gt;</package>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/build.gradle.kts" />
+  <problem_class id="VulnerableLibrariesLocal" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Vulnerable declared dependency</problem_class>
+  <description>&lt;html&gt;&lt;body&gt; Provides transitive vulnerable dependency maven:com.google.protobuf:protobuf-java:3.11.4 &lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://www.mend.io/vulnerability-database/CVE-2022-3509?utm_source=JetBrains&quot;&gt;CVE-2022-3509&lt;/a&gt; 7.5 Uncontrolled Resource Consumption ('Resource Exhaustion') &lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://www.mend.io/vulnerability-database/CVE-2022-3510?utm_source=JetBrains&quot;&gt;CVE-2022-3510&lt;/a&gt; 7.5 Uncontrolled Resource Consumption ('Resource Exhaustion') &lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://www.mend.io/vulnerability-database/CVE-2021-22569?utm_source=JetBrains&quot;&gt;CVE-2021-22569&lt;/a&gt; 7.5 Incorrect Behavior Order &lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://www.mend.io/vulnerability-database/CVE-2024-7254?utm_source=Jetbrains&quot;&gt;CVE-2024-7254&lt;/a&gt; 7.5 Input Validation &lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://www.mend.io/vulnerability-database/CVE-2022-3171?utm_source=JetBrains&quot;&gt;CVE-2022-3171&lt;/a&gt; 4.3 Input Validation &lt;/li&gt;&lt;/ul&gt; Results powered by &lt;a href=&quot;https://www.mend.io/jetbrains-lp/?utm_source=JetBrains&quot;&gt;Mend.io&lt;/a&gt;&lt;/body&gt; &lt;/html&gt;</description>
+  <highlighted_element>libs.mysql.connector</highlighted_element>
+  <language>kotlin</language>
+  <offset>19</offset>
+  <length>20</length>
+  <fingerprint sourcePackage="maven:com.google.protobuf:protobuf-java:3.11.4" vulnerabilityIds="86590d81-fdb9-44ad-b99c-9beca3c080be,736dc50e-e4cc-446d-bfd6-9ecc6846a53c,8325a007-454f-447c-a9b6-80bfb04d4813,aebe5d01-3fd8-4c92-8a9b-68a88e0dc2fc,99a22173-1fce-4c7e-b578-ee52e1c23c05" />
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/build.gradle.kts</file>
+  <line>40</line>
+  <module>Masjidku.masjidku-app</module>
+  <package>&lt;default&gt;</package>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/build.gradle.kts" />
+  <problem_class id="VulnerableLibrariesLocal" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Vulnerable declared dependency</problem_class>
+  <description>&lt;html&gt;&lt;body&gt; Dependency maven:com.google.guava:guava:30.1.1-jre is vulnerable &lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://www.mend.io/vulnerability-database/CVE-2023-2976?utm_source=JetBrains&quot;&gt;CVE-2023-2976&lt;/a&gt; 5.5 Files or Directories Accessible to External Parties &lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://www.mend.io/vulnerability-database/CVE-2020-8908?utm_source=JetBrains&quot;&gt;CVE-2020-8908&lt;/a&gt; 3.3 Incorrect Permission Assignment for Critical Resource &lt;/li&gt;&lt;/ul&gt; Results powered by &lt;a href=&quot;https://www.mend.io/jetbrains-lp/?utm_source=JetBrains&quot;&gt;Mend.io&lt;/a&gt;&lt;/body&gt; &lt;/html&gt;</description>
+  <highlighted_element>libs.guava</highlighted_element>
+  <language>kotlin</language>
+  <offset>19</offset>
+  <length>10</length>
+  <fingerprint sourcePackage="maven:com.google.guava:guava:30.1.1-jre" vulnerabilityIds="07b32bf4-043a-4de2-a336-37c466e3bfc6,f292b02b-5be8-44b8-9c99-45631e36bb98" />
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-common/build.gradle.kts</file>
+  <line>19</line>
+  <module>Masjidku.masjidku-common</module>
+  <package>&lt;default&gt;</package>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-common/build.gradle.kts" />
+  <problem_class id="VulnerableLibrariesLocal" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Vulnerable declared dependency</problem_class>
+  <description>&lt;html&gt;&lt;body&gt; Dependency maven:mysql:mysql-connector-java:8.0.30 is vulnerable &lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://www.mend.io/vulnerability-database/CVE-2023-22102?utm_source=JetBrains&quot;&gt;CVE-2023-22102&lt;/a&gt; 8.3 Insufficient Information &lt;/li&gt;&lt;/ul&gt; Results powered by &lt;a href=&quot;https://www.mend.io/jetbrains-lp/?utm_source=JetBrains&quot;&gt;Mend.io&lt;/a&gt;&lt;/body&gt; &lt;/html&gt;</description>
+  <highlighted_element>&quot;mysql:mysql-connector-java:8.0.30&quot;</highlighted_element>
+  <language>kotlin</language>
+  <offset>19</offset>
+  <length>35</length>
+  <fingerprint sourcePackage="maven:com.google.protobuf:protobuf-java:3.19.4" vulnerabilityIds="86590d81-fdb9-44ad-b99c-9beca3c080be,736dc50e-e4cc-446d-bfd6-9ecc6846a53c,aebe5d01-3fd8-4c92-8a9b-68a88e0dc2fc,99a22173-1fce-4c7e-b578-ee52e1c23c05" />
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-common/build.gradle.kts</file>
+  <line>19</line>
+  <module>Masjidku.masjidku-common</module>
+  <package>&lt;default&gt;</package>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-common/build.gradle.kts" />
+  <problem_class id="VulnerableLibrariesLocal" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Vulnerable declared dependency</problem_class>
+  <description>&lt;html&gt;&lt;body&gt; Provides transitive vulnerable dependency maven:com.google.protobuf:protobuf-java:3.19.4 &lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://www.mend.io/vulnerability-database/CVE-2022-3509?utm_source=JetBrains&quot;&gt;CVE-2022-3509&lt;/a&gt; 7.5 Uncontrolled Resource Consumption ('Resource Exhaustion') &lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://www.mend.io/vulnerability-database/CVE-2022-3510?utm_source=JetBrains&quot;&gt;CVE-2022-3510&lt;/a&gt; 7.5 Uncontrolled Resource Consumption ('Resource Exhaustion') &lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://www.mend.io/vulnerability-database/CVE-2024-7254?utm_source=Jetbrains&quot;&gt;CVE-2024-7254&lt;/a&gt; 7.5 Input Validation &lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://www.mend.io/vulnerability-database/CVE-2022-3171?utm_source=JetBrains&quot;&gt;CVE-2022-3171&lt;/a&gt; 4.3 Input Validation &lt;/li&gt;&lt;/ul&gt; Results powered by &lt;a href=&quot;https://www.mend.io/jetbrains-lp/?utm_source=JetBrains&quot;&gt;Mend.io&lt;/a&gt;&lt;/body&gt; &lt;/html&gt;</description>
+  <highlighted_element>&quot;mysql:mysql-connector-java:8.0.30&quot;</highlighted_element>
+  <language>kotlin</language>
+  <offset>19</offset>
+  <length>35</length>
+  <fingerprint sourcePackage="maven:com.google.protobuf:protobuf-java:3.19.4" vulnerabilityIds="86590d81-fdb9-44ad-b99c-9beca3c080be,736dc50e-e4cc-446d-bfd6-9ecc6846a53c,aebe5d01-3fd8-4c92-8a9b-68a88e0dc2fc,99a22173-1fce-4c7e-b578-ee52e1c23c05" />
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-reporting/build.gradle.kts</file>
+  <line>25</line>
+  <module>Masjidku.masjidku-reporting</module>
+  <package>&lt;default&gt;</package>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-reporting/build.gradle.kts" />
+  <problem_class id="VulnerableLibrariesLocal" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Vulnerable declared dependency</problem_class>
+  <description>&lt;html&gt;&lt;body&gt; Dependency maven:net.sf.jasperreports:jasperreports:6.16.0 is vulnerable &lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://www.mend.io/vulnerability-database/CVE-2025-10492?utm_source=Jetbrains&quot;&gt;CVE-2025-10492&lt;/a&gt; 9.8 Jaspersoft Library Deserialisation Vulnerability &lt;/li&gt;&lt;/ul&gt; Results powered by &lt;a href=&quot;https://www.mend.io/jetbrains-lp/?utm_source=JetBrains&quot;&gt;Mend.io&lt;/a&gt;&lt;/body&gt; &lt;/html&gt;</description>
+  <highlighted_element>libs.jasperreports</highlighted_element>
+  <language>kotlin</language>
+  <offset>19</offset>
+  <length>18</length>
+  <fingerprint sourcePackage="maven:commons-beanutils:commons-beanutils:1.9.4" vulnerabilityIds="0ad06981-4a40-42ad-963e-fdc071d446ee" />
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-reporting/build.gradle.kts</file>
+  <line>25</line>
+  <module>Masjidku.masjidku-reporting</module>
+  <package>&lt;default&gt;</package>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-reporting/build.gradle.kts" />
+  <problem_class id="VulnerableLibrariesLocal" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Vulnerable declared dependency</problem_class>
+  <description>&lt;html&gt;&lt;body&gt; Provides transitive vulnerable dependency maven:com.fasterxml.jackson.core:jackson-core:2.10.0 &lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://www.mend.io/vulnerability-database/WS-2022-0468?utm_source=JetBrains&quot;&gt;WS-2022-0468&lt;/a&gt; 7.5 Insufficient Information &lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://www.mend.io/vulnerability-database/CVE-2025-52999?utm_source=Jetbrains&quot;&gt;CVE-2025-52999&lt;/a&gt; 7.5 jackson-core Has Potential for StackoverflowError if user parses an input file that contains very deeply nested data &lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://www.mend.io/vulnerability-database/WS-2026-0003?utm_source=Jetbrains&quot;&gt;WS-2026-0003&lt;/a&gt; 7.5 Insufficient Information &lt;/li&gt;&lt;/ul&gt; Results powered by &lt;a href=&quot;https://www.mend.io/jetbrains-lp/?utm_source=JetBrains&quot;&gt;Mend.io&lt;/a&gt;&lt;/body&gt; &lt;/html&gt;</description>
+  <highlighted_element>libs.jasperreports</highlighted_element>
+  <language>kotlin</language>
+  <offset>19</offset>
+  <length>18</length>
+  <fingerprint sourcePackage="maven:com.fasterxml.jackson.core:jackson-core:2.10.0" vulnerabilityIds="9c433e26-2477-49e8-9e37-263affb00b63,466b393f-7458-4ba4-8d0e-2261f217f854,81a284ca-90f3-47ba-b068-0cf528608c6c" />
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-reporting/build.gradle.kts</file>
+  <line>25</line>
+  <module>Masjidku.masjidku-reporting</module>
+  <package>&lt;default&gt;</package>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-reporting/build.gradle.kts" />
+  <problem_class id="VulnerableLibrariesLocal" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Vulnerable declared dependency</problem_class>
+  <description>&lt;html&gt;&lt;body&gt; Provides transitive vulnerable dependency maven:com.fasterxml.jackson.core:jackson-databind:2.10.0 &lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://www.mend.io/vulnerability-database/CVE-2022-42004?utm_source=JetBrains&quot;&gt;CVE-2022-42004&lt;/a&gt; 7.5 Deserialization of Untrusted Data &lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://www.mend.io/vulnerability-database/CVE-2022-42003?utm_source=JetBrains&quot;&gt;CVE-2022-42003&lt;/a&gt; 7.5 Deserialization of Untrusted Data &lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://www.mend.io/vulnerability-database/CVE-2021-46877?utm_source=JetBrains&quot;&gt;CVE-2021-46877&lt;/a&gt; 7.5 Allocation of Resources Without Limits or Throttling &lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://www.mend.io/vulnerability-database/CVE-2020-25649?utm_source=JetBrains&quot;&gt;CVE-2020-25649&lt;/a&gt; 7.5 Improper Restriction of XML External Entity Reference ('XXE') &lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://www.mend.io/vulnerability-database/CVE-2020-36518?utm_source=JetBrains&quot;&gt;CVE-2020-36518&lt;/a&gt; 7.5 Out-of-bounds Write &lt;/li&gt;&lt;/ul&gt; Results powered by &lt;a href=&quot;https://www.mend.io/jetbrains-lp/?utm_source=JetBrains&quot;&gt;Mend.io&lt;/a&gt;&lt;/body&gt; &lt;/html&gt;</description>
+  <highlighted_element>libs.jasperreports</highlighted_element>
+  <language>kotlin</language>
+  <offset>19</offset>
+  <length>18</length>
+  <fingerprint sourcePackage="maven:com.fasterxml.jackson.core:jackson-databind:2.10.0" vulnerabilityIds="25662c82-1854-4494-bae4-c71f3ad9cf9b,752a2bc5-66b0-4250-88b8-4b8878695d45,5c214018-0dc6-4612-b110-3a2b9466ce7e,f678e675-ead0-49f3-bca9-5bb5657cfe75,826b5821-9cf4-437f-a09a-006348f2ce85" />
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-reporting/build.gradle.kts</file>
+  <line>25</line>
+  <module>Masjidku.masjidku-reporting</module>
+  <package>&lt;default&gt;</package>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-reporting/build.gradle.kts" />
+  <problem_class id="VulnerableLibrariesLocal" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Vulnerable declared dependency</problem_class>
+  <description>&lt;html&gt;&lt;body&gt; Provides transitive vulnerable dependency maven:commons-beanutils:commons-beanutils:1.9.4 &lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://www.mend.io/vulnerability-database/CVE-2025-48734?utm_source=Jetbrains&quot;&gt;CVE-2025-48734&lt;/a&gt; 8.8 Insufficient Information &lt;/li&gt;&lt;/ul&gt; Results powered by &lt;a href=&quot;https://www.mend.io/jetbrains-lp/?utm_source=JetBrains&quot;&gt;Mend.io&lt;/a&gt;&lt;/body&gt; &lt;/html&gt;</description>
+  <highlighted_element>libs.jasperreports</highlighted_element>
+  <language>kotlin</language>
+  <offset>19</offset>
+  <length>18</length>
+  <fingerprint sourcePackage="maven:commons-beanutils:commons-beanutils:1.9.4" vulnerabilityIds="0ad06981-4a40-42ad-963e-fdc071d446ee" />
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-reporting/build.gradle.kts</file>
+  <line>25</line>
+  <module>Masjidku.masjidku-reporting</module>
+  <package>&lt;default&gt;</package>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-reporting/build.gradle.kts" />
+  <problem_class id="VulnerableLibrariesLocal" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Vulnerable declared dependency</problem_class>
+  <description>&lt;html&gt;&lt;body&gt; Provides transitive vulnerable dependency maven:org.apache.commons:commons-lang3:3.4 &lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://www.mend.io/vulnerability-database/CVE-2025-48924?utm_source=Jetbrains&quot;&gt;CVE-2025-48924&lt;/a&gt; 5.3 Insufficient Information &lt;/li&gt;&lt;/ul&gt; Results powered by &lt;a href=&quot;https://www.mend.io/jetbrains-lp/?utm_source=JetBrains&quot;&gt;Mend.io&lt;/a&gt;&lt;/body&gt; &lt;/html&gt;</description>
+  <highlighted_element>libs.jasperreports</highlighted_element>
+  <language>kotlin</language>
+  <offset>19</offset>
+  <length>18</length>
+  <fingerprint sourcePackage="maven:org.apache.commons:commons-lang3:3.4" vulnerabilityIds="05a838c3-ab55-4fb6-8996-94d71f90ba27" />
+</problem>
+</problems>

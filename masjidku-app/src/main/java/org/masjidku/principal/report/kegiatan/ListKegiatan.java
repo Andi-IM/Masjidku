@@ -15,6 +15,9 @@
 
 package org.masjidku.principal.report.kegiatan;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.masjidku.util.ServiceProvider;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -32,6 +35,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class ListKegiatan implements Initializable {
+    private static final Logger log = LoggerFactory.getLogger(ListKegiatan.class);
     @FXML
     public TableView<Kegiatan> tblKegiatan;
     @FXML
@@ -78,7 +82,7 @@ public class ListKegiatan implements Initializable {
             try {
                 kegiatanData.addAll(dao.getAll());
             } catch (SQLException e) {
-                e.printStackTrace();
+                log.error("An error occurred", e);
             }
         
         return kegiatanData;

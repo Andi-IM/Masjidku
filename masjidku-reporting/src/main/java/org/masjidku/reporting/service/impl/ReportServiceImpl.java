@@ -1,5 +1,8 @@
 package org.masjidku.reporting.service.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -15,6 +18,7 @@ import java.sql.Connection;
 import java.util.Map;
 
 public class ReportServiceImpl implements ReportService {
+    private static final Logger log = LoggerFactory.getLogger(ReportServiceImpl.class);
     private JasperReport jreport;
     private JasperViewer jviewer;
     private JasperPrint jprint;
@@ -28,7 +32,7 @@ public class ReportServiceImpl implements ReportService {
                 jreport = (JasperReport) JRLoader.loadObject(reportStream);
                 jprint = JasperFillManager.fillReport(jreport, parameters, connect);
             } catch (JRException e) {
-                e.printStackTrace();
+                log.error("An error occurred", e);
             }
         }
     }

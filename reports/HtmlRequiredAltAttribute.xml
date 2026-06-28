@@ -1,0 +1,26 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/README.md</file>
+  <line>1</line>
+  <module>Masjidku</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/README.md" />
+  <problem_class id="HtmlRequiredAltAttribute" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Missing required 'alt' attribute</problem_class>
+  <description>Missing required 'alt' attribute</description>
+  <highlighted_element>img</highlighted_element>
+  <language>XML</language>
+  <offset>19</offset>
+  <length>3</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/README.md</file>
+  <line>4</line>
+  <module>Masjidku</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/README.md" />
+  <problem_class id="HtmlRequiredAltAttribute" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Missing required 'alt' attribute</problem_class>
+  <description>Missing required 'alt' attribute</description>
+  <highlighted_element>img</highlighted_element>
+  <language>XML</language>
+  <offset>98</offset>
+  <length>3</length>
+</problem>
+</problems>

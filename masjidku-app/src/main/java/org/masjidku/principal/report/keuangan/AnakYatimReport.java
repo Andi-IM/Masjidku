@@ -15,6 +15,9 @@
 
 package org.masjidku.principal.report.keuangan;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
@@ -30,6 +33,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class AnakYatimReport implements Initializable {
+    private static final Logger log = LoggerFactory.getLogger(AnakYatimReport.class);
     private final AccountingFunctionsService df = ServiceProvider.get(AccountingFunctionsService.class);
     private final AnakYatimService ayDao = ServiceProvider.get(AnakYatimService.class);
     private final DonasiAYatimService dayDao = ServiceProvider.get(DonasiAYatimService.class);
@@ -70,7 +74,7 @@ public class AnakYatimReport implements Initializable {
             txtTglPengeluaran.setText(penerima.getTanggal());
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("An error occurred", e);
         }
 
     }

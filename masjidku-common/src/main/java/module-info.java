@@ -1,6 +1,6 @@
 module org.masjidku.common {
     requires java.sql;
     requires java.logging;
-    requires mysql.connector.java;
+    requires org.slf4j;
     exports org.masjidku.util.db;
 }

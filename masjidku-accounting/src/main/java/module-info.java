@@ -3,6 +3,7 @@ module org.masjidku.accounting {
     requires org.masjidku.common;
     requires javafx.base;
     requires org.masjidku.accounting.client;
+    requires org.slf4j;
 
 
     provides org.masjidku.accounting.client.service.AnakYatimService with org.masjidku.accounting.service.impl.AnakYatimServiceImpl;

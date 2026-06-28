@@ -15,6 +15,9 @@
 
 package org.masjidku.secretary;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.masjidku.util.ServiceProvider;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,6 +38,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class SecretaryUndanganForm implements Initializable {
+    private static final Logger log = LoggerFactory.getLogger(SecretaryUndanganForm.class);
 
     @FXML
     public ChoiceBox<String>cbKegiatan;
@@ -84,7 +88,7 @@ public class SecretaryUndanganForm implements Initializable {
             
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("An error occurred", e);
         }
     }
 
@@ -124,7 +128,7 @@ public class SecretaryUndanganForm implements Initializable {
                     alertInfo("Success","Data telah ditambahkan!");
                 }
             } catch (SQLException throwables) {
-                throwables.printStackTrace();
+                log.error("An error occurred", throwables);
             }
         
 

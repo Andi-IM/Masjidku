@@ -3,8 +3,8 @@ module org.masjidku.reporting {
     requires java.sql;
     requires org.masjidku.common;
     requires jasperreports;
-    requires com.github.librepdf.openpdf;
-    requires java.desktop; // For JasperViewer (Swing)
+    requires org.slf4j;
+    requires java.desktop;
 
     provides org.masjidku.reporting.client.service.ReportService 
         with org.masjidku.reporting.service.impl.ReportServiceImpl;

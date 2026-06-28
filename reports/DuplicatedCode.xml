@@ -1,0 +1,951 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/anakyatim/AnakYatimDao.java</file>
+  <line>96</line>
+  <module>Masjidku.masjidku-accounting.main</module>
+  <package>org.masjidku.accounting.dao.anakyatim</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.dao.anakyatim.AnakYatimDao void update(java.lang.String[] params)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 96-101</description>
+  <highlighted_element>ps = con.prepareStatement(QUERY_4);</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>35</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/anakyatim/DonasiAYatimDao.java</file>
+  <line>81</line>
+  <module>Masjidku.masjidku-accounting.main</module>
+  <package>org.masjidku.accounting.dao.anakyatim</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.dao.anakyatim.DonasiAYatimDao void save(org.masjidku.accounting.client.model.anakyatim.DonasiAYatim donasiAYatim)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 81-88</description>
+  <highlighted_element>ps = con.prepareStatement(QUERY_3);</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>35</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/anakyatim/DonasiAYatimDao.java</file>
+  <line>93</line>
+  <module>Masjidku.masjidku-accounting.main</module>
+  <package>org.masjidku.accounting.dao.anakyatim</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.dao.anakyatim.DonasiAYatimDao void update(java.lang.String[] params)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 93-99</description>
+  <highlighted_element>ps = con.prepareStatement(QUERY_4);</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>35</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/operasional/DonasiOperationalDao.java</file>
+  <line>81</line>
+  <module>Masjidku.masjidku-accounting.main</module>
+  <package>org.masjidku.accounting.dao.operasional</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.dao.operasional.DonasiOperationalDao void save(org.masjidku.accounting.client.model.operasional.DonasiOperasional donasiOperasional)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 81-88</description>
+  <highlighted_element>ps = con.prepareStatement(QUERY_3);</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>35</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/operasional/DonasiOperationalDao.java</file>
+  <line>93</line>
+  <module>Masjidku.masjidku-accounting.main</module>
+  <package>org.masjidku.accounting.dao.operasional</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.dao.operasional.DonasiOperationalDao void update(java.lang.String[] params)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 93-99</description>
+  <highlighted_element>ps = con.prepareStatement(QUERY_4);</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>35</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/operasional/OperationalDao.java</file>
+  <line>83</line>
+  <module>Masjidku.masjidku-accounting.main</module>
+  <package>org.masjidku.accounting.dao.operasional</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.dao.operasional.OperationalDao void save(org.masjidku.accounting.client.model.operasional.Operasional operasional)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 83-91</description>
+  <highlighted_element>ps = con.prepareStatement(QUERY_3);</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>35</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/operasional/OperationalDao.java</file>
+  <line>96</line>
+  <module>Masjidku.masjidku-accounting.main</module>
+  <package>org.masjidku.accounting.dao.operasional</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.dao.operasional.OperationalDao void update(java.lang.String[] params)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 96-103</description>
+  <highlighted_element>ps = con.prepareStatement(QUERY_4);</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>35</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/operasional/OperationalDao.java</file>
+  <line>123</line>
+  <module>Masjidku.masjidku-accounting.main</module>
+  <package>org.masjidku.accounting.dao.operasional</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.dao.operasional.OperationalDao org.masjidku.accounting.client.model.operasional.Operasional getLastRecord()" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 123-136</description>
+  <highlighted_element>rs = ps.executeQuery();</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>23</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/pembangunan/DonasiPembangunanDao.java</file>
+  <line>81</line>
+  <module>Masjidku.masjidku-accounting.main</module>
+  <package>org.masjidku.accounting.dao.pembangunan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.dao.pembangunan.DonasiPembangunanDao void save(org.masjidku.accounting.client.model.pembangunan.DonasiPembangunan donasiPembangunan)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 81-88</description>
+  <highlighted_element>ps = con.prepareStatement(QUERY_3);</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>35</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/pembangunan/DonasiPembangunanDao.java</file>
+  <line>93</line>
+  <module>Masjidku.masjidku-accounting.main</module>
+  <package>org.masjidku.accounting.dao.pembangunan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.dao.pembangunan.DonasiPembangunanDao void update(java.lang.String[] params)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 93-99</description>
+  <highlighted_element>ps = con.prepareStatement(QUERY_4);</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>35</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/pembangunan/PembangunanDao.java</file>
+  <line>83</line>
+  <module>Masjidku.masjidku-accounting.main</module>
+  <package>org.masjidku.accounting.dao.pembangunan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.dao.pembangunan.PembangunanDao void save(org.masjidku.accounting.client.model.pembangunan.Pembangunan pembangunan)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 83-91</description>
+  <highlighted_element>ps = con.prepareStatement(QUERY_3);</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>35</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/pembangunan/PembangunanDao.java</file>
+  <line>96</line>
+  <module>Masjidku.masjidku-accounting.main</module>
+  <package>org.masjidku.accounting.dao.pembangunan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.dao.pembangunan.PembangunanDao void update(java.lang.String[] params)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 96-103</description>
+  <highlighted_element>ps = con.prepareStatement(QUERY_4);</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>35</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/tpa/TpaKeluarDao.java</file>
+  <line>69</line>
+  <module>Masjidku.masjidku-accounting.main</module>
+  <package>org.masjidku.accounting.dao.tpa</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.dao.tpa.TpaKeluarDao void save(org.masjidku.accounting.client.model.tpa.TpaKeluar tpaKeluar)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 69-76</description>
+  <highlighted_element>ps = con.prepareStatement(QUERY_3);</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>35</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/tpa/TpaKeluarDao.java</file>
+  <line>80</line>
+  <module>Masjidku.masjidku-accounting.main</module>
+  <package>org.masjidku.accounting.dao.tpa</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.dao.tpa.TpaKeluarDao void update(java.lang.String[] params)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 80-87</description>
+  <highlighted_element>ps = con.prepareStatement(QUERY_4);</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>35</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/tpa/TpaMasukDao.java</file>
+  <line>81</line>
+  <module>Masjidku.masjidku-accounting.main</module>
+  <package>org.masjidku.accounting.dao.tpa</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.dao.tpa.TpaMasukDao void save(org.masjidku.accounting.client.model.tpa.TpaMasuk tpaMasuk)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 81-88</description>
+  <highlighted_element>ps = con.prepareStatement(QUERY_3);</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>35</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/tpa/TpaMasukDao.java</file>
+  <line>93</line>
+  <module>Masjidku.masjidku-accounting.main</module>
+  <package>org.masjidku.accounting.dao.tpa</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.dao.tpa.TpaMasukDao void update(java.lang.String[] params)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 93-99</description>
+  <highlighted_element>ps = con.prepareStatement(QUERY_4);</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>35</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/tpa/TpaMasukDao.java</file>
+  <line>114</line>
+  <module>Masjidku.masjidku-accounting.main</module>
+  <package>org.masjidku.accounting.dao.tpa</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.dao.tpa.TpaMasukDao org.masjidku.accounting.client.model.tpa.TpaMasuk getLastRecord()" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 114-121</description>
+  <highlighted_element>if (rs.next()) {</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>16</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/zakat/ZakatKeluarDao.java</file>
+  <line>81</line>
+  <module>Masjidku.masjidku-accounting.main</module>
+  <package>org.masjidku.accounting.dao.zakat</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.dao.zakat.ZakatKeluarDao void save(org.masjidku.accounting.client.model.zakat.ZakatKeluar zakatKeluar)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 81-89</description>
+  <highlighted_element>ps = con.prepareStatement(QUERY_3);</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>35</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/zakat/ZakatKeluarDao.java</file>
+  <line>94</line>
+  <module>Masjidku.masjidku-accounting.main</module>
+  <package>org.masjidku.accounting.dao.zakat</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.dao.zakat.ZakatKeluarDao void update(java.lang.String[] params)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 94-100</description>
+  <highlighted_element>ps = con.prepareStatement(QUERY_4);</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>35</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/zakat/ZakatMasukDao.java</file>
+  <line>81</line>
+  <module>Masjidku.masjidku-accounting.main</module>
+  <package>org.masjidku.accounting.dao.zakat</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.dao.zakat.ZakatMasukDao void save(org.masjidku.accounting.client.model.zakat.ZakatMasuk zakatMasuk)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 81-88</description>
+  <highlighted_element>ps = con.prepareStatement(QUERY_3);</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>35</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/zakat/ZakatMasukDao.java</file>
+  <line>93</line>
+  <module>Masjidku.masjidku-accounting.main</module>
+  <package>org.masjidku.accounting.dao.zakat</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.dao.zakat.ZakatMasukDao void update(java.lang.String[] params)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 93-99</description>
+  <highlighted_element>ps = con.prepareStatement(QUERY_4);</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>35</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/zakat/ZakatMasukDao.java</file>
+  <line>114</line>
+  <module>Masjidku.masjidku-accounting.main</module>
+  <package>org.masjidku.accounting.dao.zakat</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.dao.zakat.ZakatMasukDao org.masjidku.accounting.client.model.zakat.ZakatMasuk getLastRecord()" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 114-121</description>
+  <highlighted_element>if (rs.next()) {</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>16</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/AccountantAnakyatim.java</file>
+  <line>56</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.accountant</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accountant.AccountantAnakyatim void initialize(java.net.URL location, java.util.ResourceBundle resources)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 56-68</description>
+  <highlighted_element>try {</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>5</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/AccountantOperasional.java</file>
+  <line>67</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.accountant</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accountant.AccountantOperasional void initialize(java.net.URL location, java.util.ResourceBundle resources)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 67-81</description>
+  <highlighted_element>try {</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>5</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/AccountantPembangunan.java</file>
+  <line>67</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.accountant</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accountant.AccountantPembangunan void initialize(java.net.URL location, java.util.ResourceBundle resources)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 67-81</description>
+  <highlighted_element>try {</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>5</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/AccountantTpa.java</file>
+  <line>67</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.accountant</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accountant.AccountantTpa void initialize(java.net.URL location, java.util.ResourceBundle resources)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 67-81</description>
+  <highlighted_element>try {</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>5</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/AccountantZakat.java</file>
+  <line>67</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.accountant</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accountant.AccountantZakat void initialize(java.net.URL location, java.util.ResourceBundle resources)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 67-80</description>
+  <highlighted_element>try {</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>5</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/anakyatim/DonaturAnakYatim.java</file>
+  <line>129</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.accountant.anakyatim</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accountant.anakyatim.DonaturAnakYatim void onRemoveListener()" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 129-141</description>
+  <highlighted_element>if (selectedItem != null) {</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>27</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/anakyatim/EditDonaturAnakYatim.java</file>
+  <line>86</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.accountant.anakyatim</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accountant.anakyatim.EditDonaturAnakYatim void onSubmitted()" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 86-101</description>
+  <highlighted_element>try {</highlighted_element>
+  <language>JAVA</language>
+  <offset>12</offset>
+  <length>5</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/anakyatim/PenerimaAnakYatim.java</file>
+  <line>88</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.accountant.anakyatim</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accountant.anakyatim.PenerimaAnakYatim void initialize(java.net.URL location, java.util.ResourceBundle resources)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 88-93</description>
+  <highlighted_element>tableAnakyatim.setItems(getDataAnak());</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>39</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/operasional/DonaturOperasional.java</file>
+  <line>117</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.accountant.operasional</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accountant.operasional.DonaturOperasional void onRemoveListener()" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 117-129</description>
+  <highlighted_element>if (selectedItem != null) {</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>27</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/operasional/EditDonaturOperasional.java</file>
+  <line>95</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.accountant.operasional</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accountant.operasional.EditDonaturOperasional void onSubmitted()" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 95-110</description>
+  <highlighted_element>try {</highlighted_element>
+  <language>JAVA</language>
+  <offset>12</offset>
+  <length>5</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/operasional/EditPembayaranOperasional.java</file>
+  <line>76</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.accountant.operasional</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accountant.operasional.EditPembayaranOperasional boolean formValidation()" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 76-85</description>
+  <highlighted_element>if (!txtNama.getText().isBlank()) {</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>35</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/operasional/EditPembayaranOperasional.java</file>
+  <line>100</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.accountant.operasional</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accountant.operasional.EditPembayaranOperasional void onSubmitted()" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 100-116</description>
+  <highlighted_element>try {</highlighted_element>
+  <language>JAVA</language>
+  <offset>12</offset>
+  <length>5</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/operasional/PembayaranOperasional.java</file>
+  <line>88</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.accountant.operasional</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accountant.operasional.PembayaranOperasional void initialize(java.net.URL location, java.util.ResourceBundle resources)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 88-93</description>
+  <highlighted_element>tableOperasional.setItems(getDataOperasional());</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>48</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/operasional/PembayaranOperasional.java</file>
+  <line>129</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.accountant.operasional</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accountant.operasional.PembayaranOperasional void onRemoveListener()" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 129-141</description>
+  <highlighted_element>if (selectedItem != null) {</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>27</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/pembangunan/DonaturPembangunan.java</file>
+  <line>124</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.accountant.pembangunan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accountant.pembangunan.DonaturPembangunan void onRemoveListener()" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 124-136</description>
+  <highlighted_element>if (selectedItem != null) {</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>27</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/pembangunan/EditDonaturPembangunan.java</file>
+  <line>95</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.accountant.pembangunan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accountant.pembangunan.EditDonaturPembangunan void onSubmitted()" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 95-110</description>
+  <highlighted_element>try {</highlighted_element>
+  <language>JAVA</language>
+  <offset>12</offset>
+  <length>5</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/pembangunan/EditPembayaranPembangunan.java</file>
+  <line>77</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.accountant.pembangunan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accountant.pembangunan.EditPembayaranPembangunan boolean formValidation()" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 77-86</description>
+  <highlighted_element>if (!txtNama.getText().isBlank()) {</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>35</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/pembangunan/EditPembayaranPembangunan.java</file>
+  <line>101</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.accountant.pembangunan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accountant.pembangunan.EditPembayaranPembangunan void onSubmitted()" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 101-117</description>
+  <highlighted_element>try {</highlighted_element>
+  <language>JAVA</language>
+  <offset>12</offset>
+  <length>5</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/pembangunan/PembayaranPembangunan.java</file>
+  <line>88</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.accountant.pembangunan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accountant.pembangunan.PembayaranPembangunan void initialize(java.net.URL location, java.util.ResourceBundle resources)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 88-93</description>
+  <highlighted_element>tablePembangunan.setItems(getDataPembangunan());</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>48</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/pembangunan/PembayaranPembangunan.java</file>
+  <line>131</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.accountant.pembangunan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accountant.pembangunan.PembayaranPembangunan void onRemoveListener()" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 131-143</description>
+  <highlighted_element>if (selectedItem != null) {</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>27</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/tpa/DonaturTpa.java</file>
+  <line>115</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.accountant.tpa</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accountant.tpa.DonaturTpa void onRemoveListener()" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 115-127</description>
+  <highlighted_element>if (selectedItem != null) {</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>27</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/tpa/EditDonaturTpa.java</file>
+  <line>96</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.accountant.tpa</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accountant.tpa.EditDonaturTpa void onSubmitted()" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 96-111</description>
+  <highlighted_element>try {</highlighted_element>
+  <language>JAVA</language>
+  <offset>12</offset>
+  <length>5</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/tpa/EditPembayaranTpa.java</file>
+  <line>77</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.accountant.tpa</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accountant.tpa.EditPembayaranTpa boolean formValidation()" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 77-86</description>
+  <highlighted_element>if (!txtNama.getText().isBlank()) {</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>35</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/tpa/EditPembayaranTpa.java</file>
+  <line>101</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.accountant.tpa</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accountant.tpa.EditPembayaranTpa void onSubmitted()" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 101-117</description>
+  <highlighted_element>try {</highlighted_element>
+  <language>JAVA</language>
+  <offset>12</offset>
+  <length>5</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/tpa/PembayaranTpa.java</file>
+  <line>126</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.accountant.tpa</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accountant.tpa.PembayaranTpa void onRemoveListener()" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 126-138</description>
+  <highlighted_element>if (selectedItem != null) {</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>27</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/zakat/DonaturZakat.java</file>
+  <line>115</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.accountant.zakat</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accountant.zakat.DonaturZakat void onRemoveListener()" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 115-127</description>
+  <highlighted_element>if (selectedItem != null) {</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>27</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/zakat/EditDonaturZakat.java</file>
+  <line>86</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.accountant.zakat</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accountant.zakat.EditDonaturZakat void onUserSubmitted()" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 86-101</description>
+  <highlighted_element>try {</highlighted_element>
+  <language>JAVA</language>
+  <offset>12</offset>
+  <length>5</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/zakat/PenerimaZakat.java</file>
+  <line>126</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.accountant.zakat</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accountant.zakat.PenerimaZakat void onRemoveListener()" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 126-138</description>
+  <highlighted_element>if (selectedItem != null) {</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>27</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/kegiatan/ListKegiatan.java</file>
+  <line>68</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.principal.report.kegiatan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.principal.report.kegiatan.ListKegiatan void initialize(java.net.URL location, java.util.ResourceBundle resources)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 68-73</description>
+  <highlighted_element>tblKegiatan.setItems(getKegiatanData());</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>40</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/kegiatan/ListUndangan.java</file>
+  <line>77</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.principal.report.kegiatan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.principal.report.kegiatan.ListUndangan void initialize(java.net.URL location, java.util.ResourceBundle resources)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 77-82</description>
+  <highlighted_element>tblUndangan.setItems(getUndanganData());</highlighted_element>
+  <language>JAVA</language>
+  <offset>77</offset>
+  <length>40</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/AnakYatimReport.java</file>
+  <line>60</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.principal.report.keuangan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.principal.report.keuangan.AnakYatimReport void initialize(java.net.URL location, java.util.ResourceBundle resources)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 60-74</description>
+  <highlighted_element>try {</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>5</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/OperasionalReport.java</file>
+  <line>67</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.principal.report.keuangan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.principal.report.keuangan.OperasionalReport void initialize(java.net.URL location, java.util.ResourceBundle resources)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 67-81</description>
+  <highlighted_element>try {</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>5</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/PembangunanReport.java</file>
+  <line>67</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.principal.report.keuangan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.principal.report.keuangan.PembangunanReport void initialize(java.net.URL location, java.util.ResourceBundle resources)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 67-81</description>
+  <highlighted_element>try {</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>5</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/TpaReport.java</file>
+  <line>67</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.principal.report.keuangan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.principal.report.keuangan.TpaReport void initialize(java.net.URL location, java.util.ResourceBundle resources)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 67-81</description>
+  <highlighted_element>try {</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>5</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/ZakatReport.java</file>
+  <line>71</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.principal.report.keuangan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.principal.report.keuangan.ZakatReport void initialize(java.net.URL location, java.util.ResourceBundle resources)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 71-84</description>
+  <highlighted_element>try {</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>5</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/anakyatim/DataDonaturAnakYatim.java</file>
+  <line>76</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.principal.report.keuangan.anakyatim</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.principal.report.keuangan.anakyatim.DataDonaturAnakYatim void initialize(java.net.URL location, java.util.ResourceBundle resources)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 76-81</description>
+  <highlighted_element>tblAYMasuk.setItems(getDonaturData());</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>38</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/anakyatim/DataPenerimaAnakYatim.java</file>
+  <line>79</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.principal.report.keuangan.anakyatim</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.principal.report.keuangan.anakyatim.DataPenerimaAnakYatim void initialize(java.net.URL location, java.util.ResourceBundle resources)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 79-84</description>
+  <highlighted_element>tableAnakyatim.setItems(getDataAnak());</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>39</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/operasional/DataDonaturOperasional.java</file>
+  <line>76</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.principal.report.keuangan.operasional</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.principal.report.keuangan.operasional.DataDonaturOperasional void initialize(java.net.URL location, java.util.ResourceBundle resources)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 76-81</description>
+  <highlighted_element>tableOperasional.setItems(getDonaturData());</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>44</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/operasional/DataPembayaranOperasional.java</file>
+  <line>69</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.principal.report.keuangan.operasional</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.principal.report.keuangan.operasional.DataPembayaranOperasional void initialize(java.net.URL location, java.util.ResourceBundle resources)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 69-73</description>
+  <highlighted_element>tableOperasional.setItems(getDataOperasional());</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>48</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/pembangunan/DataDonaturPembangunan.java</file>
+  <line>77</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.principal.report.keuangan.pembangunan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.principal.report.keuangan.pembangunan.DataDonaturPembangunan void initialize(java.net.URL location, java.util.ResourceBundle resources)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 77-82</description>
+  <highlighted_element>tablePembangunan.setItems(getDonaturData());</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>44</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/pembangunan/DataPembayaranPembangunan.java</file>
+  <line>78</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.principal.report.keuangan.pembangunan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.principal.report.keuangan.pembangunan.DataPembayaranPembangunan void initialize(java.net.URL location, java.util.ResourceBundle resources)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 78-83</description>
+  <highlighted_element>tablePembangunan.setItems(getDataPembangunan());</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>48</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/tpa/DataDonaturTpa.java</file>
+  <line>67</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.principal.report.keuangan.tpa</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.principal.report.keuangan.tpa.DataDonaturTpa void initialize(java.net.URL location, java.util.ResourceBundle resources)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 67-71</description>
+  <highlighted_element>tableTpa.setItems(getDonaturData());</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>36</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/zakat/DataDonaturZakat.java</file>
+  <line>58</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.principal.report.keuangan.zakat</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.principal.report.keuangan.zakat.DataDonaturZakat void initialize(java.net.URL location, java.util.ResourceBundle resources)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 58-62</description>
+  <highlighted_element>zakatTable.setItems(getDonaturData());</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>38</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/secretary/SecretaryKegiatan.java</file>
+  <line>174</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.secretary</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.secretary.SecretaryKegiatan void initialize(java.net.URL location, java.util.ResourceBundle resources)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 174-179</description>
+  <highlighted_element>tblKegiatan.setItems(getKegiatanData());</highlighted_element>
+  <language>JAVA</language>
+  <offset>78</offset>
+  <length>40</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/secretary/SecretaryUndangan.java</file>
+  <line>86</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.secretary</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.secretary.SecretaryUndangan void initialize(java.net.URL location, java.util.ResourceBundle resources)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 86-91</description>
+  <highlighted_element>tblUndangan.setItems(getUndanganData());</highlighted_element>
+  <language>JAVA</language>
+  <offset>77</offset>
+  <length>40</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-events/src/main/java/org/masjidku/events/dao/impl/KegiatanDao.java</file>
+  <line>87</line>
+  <module>Masjidku.masjidku-events.main</module>
+  <package>org.masjidku.events.dao.impl</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.events.dao.impl.KegiatanDao void update(java.lang.String[] params)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 87-93</description>
+  <highlighted_element>ps = con.prepareStatement(QUERY_4);</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>35</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-events/src/main/java/org/masjidku/events/dao/impl/KegiatanDao.java</file>
+  <line>108</line>
+  <module>Masjidku.masjidku-events.main</module>
+  <package>org.masjidku.events.dao.impl</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.events.dao.impl.KegiatanDao javafx.collections.ObservableList&lt;java.lang.String&gt; getAllKegiatanName()" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 108-116</description>
+  <highlighted_element>ObservableList&lt;String&gt; items = FXCollections.observableArrayList();</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>67</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-events/src/main/java/org/masjidku/events/dao/impl/TamuDao.java</file>
+  <line>97</line>
+  <module>Masjidku.masjidku-events.main</module>
+  <package>org.masjidku.events.dao.impl</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.events.dao.impl.TamuDao void update(java.lang.String[] params)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 97-104</description>
+  <highlighted_element>ps = con.prepareStatement(QUERY_4);</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>35</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-events/src/main/java/org/masjidku/events/dao/impl/TamuDao.java</file>
+  <line>123</line>
+  <module>Masjidku.masjidku-events.main</module>
+  <package>org.masjidku.events.dao.impl</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.events.dao.impl.TamuDao javafx.collections.ObservableList&lt;java.lang.String&gt; getAllTamuName()" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 123-133</description>
+  <highlighted_element>ObservableList&lt;String&gt; namaTamu = FXCollections.observableArrayList();</highlighted_element>
+  <language>JAVA</language>
+  <offset>8</offset>
+  <length>70</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-events/src/main/java/org/masjidku/events/dao/impl/TamuKegiatanDao.java</file>
+  <line>69</line>
+  <module>Masjidku.masjidku-events.main</module>
+  <package>org.masjidku.events.dao.impl</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.events.dao.impl.TamuKegiatanDao org.masjidku.events.client.model.TamuKegiatan get(java.lang.String id)" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 69-77</description>
+  <highlighted_element>model = new TamuKegiatan();</highlighted_element>
+  <language>JAVA</language>
+  <offset>12</offset>
+  <length>27</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-events/src/main/java/org/masjidku/events/dao/impl/TamuKegiatanDao.java</file>
+  <line>87</line>
+  <module>Masjidku.masjidku-events.main</module>
+  <package>org.masjidku.events.dao.impl</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.events.dao.impl.TamuKegiatanDao javafx.collections.ObservableList&lt;org.masjidku.events.client.model.TamuKegiatan&gt; getAll()" />
+  <problem_class id="DuplicatedCode" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Duplicated code fragment</problem_class>
+  <description>Duplicate code: lines 87-95</description>
+  <highlighted_element>model = new TamuKegiatan();</highlighted_element>
+  <language>JAVA</language>
+  <offset>12</offset>
+  <length>27</length>
+</problem>
+</problems>

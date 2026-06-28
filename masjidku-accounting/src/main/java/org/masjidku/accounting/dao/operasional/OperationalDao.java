@@ -84,10 +84,10 @@ public class OperationalDao extends Dao<Operasional> {
 
         ps.setString(1, operasional.getId());
         ps.setString(2, operasional.getTujuan());
-        ps.setString(2, operasional.getKeterangan());
-        ps.setString(3, operasional.getJumlah());
-        ps.setString(4, operasional.getTanggal());
-        ps.setString(5, operasional.getOperator());
+        ps.setString(3, operasional.getKeterangan());
+        ps.setString(4, operasional.getJumlah());
+        ps.setString(5, operasional.getTanggal());
+        ps.setString(6, operasional.getOperator());
         ps.executeUpdate();
     }
 
@@ -99,7 +99,7 @@ public class OperationalDao extends Dao<Operasional> {
         ps.setString(3, params[3]);
         ps.setString(4, params[4]);
         ps.setString(5, params[5]);
-        ps.setString(5, params[0]);
+        ps.setString(6, params[0]);
         ps.executeUpdate();
     }
 

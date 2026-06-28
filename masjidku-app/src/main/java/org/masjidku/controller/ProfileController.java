@@ -15,6 +15,9 @@
 
 package org.masjidku.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import org.masjidku.MainApp;
@@ -24,6 +27,7 @@ import org.masjidku.model.user.UserProfileDao;
 import java.sql.SQLException;
 
 public class ProfileController {
+    private static final Logger log = LoggerFactory.getLogger(ProfileController.class);
 
     @FXML
     private Label userId;
@@ -52,7 +56,7 @@ public class ProfileController {
         try {
             return dao.getFullUserData(userid);
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("An error occurred", e);
         }
         return null;
     }

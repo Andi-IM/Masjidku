@@ -15,6 +15,9 @@
 
 package org.masjidku.secretary;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.masjidku.util.ServiceProvider;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -29,6 +32,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class SecretaryKegiatanForm {
+    private static final Logger log = LoggerFactory.getLogger(SecretaryKegiatanForm.class);
     private final KegiatanService dao = ServiceProvider.get(KegiatanService.class);
 
     @FXML
@@ -96,7 +100,7 @@ public class SecretaryKegiatanForm {
                     }
                     mainApp.showKegiatan();
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    log.error("An error occurred", e);
                 }
             
         } else {

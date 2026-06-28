@@ -15,6 +15,9 @@
 
 package org.masjidku.secretary;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.masjidku.util.ServiceProvider;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,6 +38,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class SecretaryUndangan implements Initializable {
+    private static final Logger log = LoggerFactory.getLogger(SecretaryUndangan.class);
 
     @FXML
     public Button btnEdit;
@@ -76,7 +80,7 @@ public class SecretaryUndangan implements Initializable {
             try {
                 undanganData.addAll(dao.getAll());
             } catch (SQLException e) {
-                e.printStackTrace();
+                log.error("An error occurred", e);
             }
         
         return undanganData;
@@ -118,7 +122,7 @@ public class SecretaryUndangan implements Initializable {
                         alertError("SQL Error", "Kegiatan tidak ditemukan!");
                     }
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    log.error("An error occurred", e);
                 }
             
         }

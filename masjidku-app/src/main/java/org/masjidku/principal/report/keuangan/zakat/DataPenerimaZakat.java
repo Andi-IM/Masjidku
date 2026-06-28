@@ -15,6 +15,9 @@
 
 package org.masjidku.principal.report.keuangan.zakat;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
@@ -33,6 +36,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class DataPenerimaZakat implements Initializable {
+    private static final Logger log = LoggerFactory.getLogger(DataPenerimaZakat.class);
     private final ZakatKeluarService dao = ServiceProvider.get(ZakatKeluarService.class);
     @FXML
     private TableView<ZakatKeluar> tableZakat;
@@ -65,7 +69,7 @@ public class DataPenerimaZakat implements Initializable {
         try {
             dataZakat.addAll(dao.getAll());
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("An error occurred", e);
         }
         return dataZakat;
     }

@@ -1,0 +1,34 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-events/src/main/java/org/masjidku/events/dao/impl/TamuKegiatanDao.java</file>
+  <line>100</line>
+  <module>Masjidku.masjidku-events.main</module>
+  <package>org.masjidku.events.dao.impl</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.events.dao.impl.TamuKegiatanDao void save(org.masjidku.events.client.model.TamuKegiatan tamuKegiatan)" />
+  <problem_class id="RedundantThrows" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Redundant 'throws' clause</problem_class>
+  <hints>
+    <hint value="SQLException" />
+  </hints>
+  <description>The declared exception &lt;code&gt;SQLException&lt;/code&gt; is never thrown</description>
+  <highlighted_element>SQLException</highlighted_element>
+  <language>JAVA</language>
+  <offset>55</offset>
+  <length>12</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-events-client/src/main/java/org/masjidku/events/client/service/TamuKegiatanService.java</file>
+  <line>11</line>
+  <module>Masjidku.masjidku-events-client.main</module>
+  <package>org.masjidku.events.client.service</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.events.client.service.TamuKegiatanService void save(org.masjidku.events.client.model.TamuKegiatan model)" />
+  <problem_class id="RedundantThrows" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Redundant 'throws' clause</problem_class>
+  <hints>
+    <hint value="SQLException" />
+  </hints>
+  <description>The declared exception &lt;code&gt;java.sql.SQLException&lt;/code&gt; is never thrown in any method implementation</description>
+  <highlighted_element>java.sql.SQLException</highlighted_element>
+  <language>JAVA</language>
+  <offset>41</offset>
+  <length>21</length>
+</problem>
+</problems>

@@ -1,0 +1,133 @@
+<root>
+<duplicate cost="1" hash="0">
+  <fragment file="file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/anakyatim/AnakYatimDao.java" line="96" start="3750" end="3965" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/operasional/OperationalDao.java" line="96" start="3773" end="3988" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/pembangunan/PembangunanDao.java" line="96" start="3773" end="3988" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/tpa/TpaKeluarDao.java" line="80" start="3571" end="3786" />
+</duplicate>
+<duplicate cost="1" hash="0">
+  <fragment file="file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/anakyatim/DonasiAYatimDao.java" line="81" start="3204" end="3523" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/operasional/DonasiOperationalDao.java" line="81" start="3270" end="3614" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/pembangunan/DonasiPembangunanDao.java" line="81" start="3270" end="3614" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/tpa/TpaMasukDao.java" line="81" start="3098" end="3397" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/zakat/ZakatMasukDao.java" line="81" start="3145" end="3454" />
+</duplicate>
+<duplicate cost="1" hash="0">
+  <fragment file="file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/anakyatim/DonasiAYatimDao.java" line="93" start="3615" end="3858" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/operasional/DonasiOperationalDao.java" line="93" start="3706" end="3949" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/pembangunan/DonasiPembangunanDao.java" line="93" start="3706" end="3949" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/tpa/TpaMasukDao.java" line="93" start="3489" end="3732" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/zakat/ZakatKeluarDao.java" line="94" start="3627" end="3870" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/zakat/ZakatMasukDao.java" line="93" start="3546" end="3789" />
+</duplicate>
+<duplicate cost="1" hash="0">
+  <fragment file="file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/operasional/OperationalDao.java" line="43" start="2175" end="2562" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/operasional/OperationalDao.java" line="123" start="4554" end="4941" />
+</duplicate>
+<duplicate cost="1" hash="0">
+  <fragment file="file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/operasional/OperationalDao.java" line="83" start="3314" end="3681" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/pembangunan/PembangunanDao.java" line="83" start="3314" end="3681" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/tpa/TpaKeluarDao.java" line="69" start="3126" end="3480" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/zakat/ZakatKeluarDao.java" line="81" start="3168" end="3535" />
+</duplicate>
+<duplicate cost="1" hash="0">
+  <fragment file="file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/operasional/OperationalDao.java" line="96" start="3773" end="4052" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/pembangunan/PembangunanDao.java" line="96" start="3773" end="4052" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/tpa/TpaKeluarDao.java" line="80" start="3571" end="3850" />
+</duplicate>
+<duplicate cost="1" hash="0">
+  <fragment file="file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/tpa/TpaMasukDao.java" line="114" start="4102" end="4380" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-accounting/src/main/java/org/masjidku/accounting/dao/zakat/ZakatMasukDao.java" line="114" start="4165" end="4443" />
+</duplicate>
+<duplicate cost="1" hash="0">
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/AccountantAnakyatim.java" line="56" start="2342" end="3024" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/AnakYatimReport.java" line="60" start="2234" end="2918" />
+</duplicate>
+<duplicate cost="1" hash="0">
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/AccountantOperasional.java" line="67" start="2490" end="3179" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/OperasionalReport.java" line="67" start="2479" end="3168" />
+</duplicate>
+<duplicate cost="1" hash="0">
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/AccountantPembangunan.java" line="67" start="2494" end="3183" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/PembangunanReport.java" line="67" start="2473" end="3162" />
+</duplicate>
+<duplicate cost="1" hash="0">
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/AccountantTpa.java" line="67" start="2405" end="3084" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/TpaReport.java" line="67" start="2404" end="3083" />
+</duplicate>
+<duplicate cost="1" hash="0">
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/AccountantZakat.java" line="67" start="2442" end="3124" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/ZakatReport.java" line="71" start="2446" end="3127" />
+</duplicate>
+<duplicate cost="1" hash="0">
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/anakyatim/DonaturAnakYatim.java" line="129" start="4116" end="4615" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/operasional/DonaturOperasional.java" line="117" start="3918" end="4423" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/pembangunan/DonaturPembangunan.java" line="124" start="4197" end="4702" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/tpa/DonaturTpa.java" line="115" start="3705" end="4202" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/zakat/DonaturZakat.java" line="115" start="3750" end="4249" />
+</duplicate>
+<duplicate cost="1" hash="0">
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/anakyatim/EditDonaturAnakYatim.java" line="86" start="2977" end="3578" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/operasional/EditDonaturOperasional.java" line="95" start="3285" end="3886" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/zakat/EditDonaturZakat.java" line="86" start="2946" end="3547" />
+</duplicate>
+<duplicate cost="1" hash="0">
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/anakyatim/PenerimaAnakYatim.java" line="88" start="2877" end="3209" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/anakyatim/DataPenerimaAnakYatim.java" line="79" start="2694" end="3026" />
+</duplicate>
+<duplicate cost="1" hash="0">
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/operasional/EditPembayaranOperasional.java" line="76" start="2646" end="3008" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/pembangunan/EditPembayaranPembangunan.java" line="77" start="2647" end="3009" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/tpa/EditPembayaranTpa.java" line="77" start="2611" end="2973" />
+</duplicate>
+<duplicate cost="1" hash="0">
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/operasional/EditPembayaranOperasional.java" line="100" start="3492" end="4126" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/pembangunan/EditPembayaranPembangunan.java" line="101" start="3493" end="4127" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/tpa/EditPembayaranTpa.java" line="101" start="3455" end="4089" />
+</duplicate>
+<duplicate cost="1" hash="0">
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/operasional/PembayaranOperasional.java" line="88" start="2947" end="3300" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/operasional/DataPembayaranOperasional.java" line="69" start="2756" end="3108" />
+</duplicate>
+<duplicate cost="1" hash="0">
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/operasional/PembayaranOperasional.java" line="129" start="4290" end="4792" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/pembangunan/PembayaranPembangunan.java" line="131" start="4302" end="4804" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/tpa/PembayaranTpa.java" line="126" start="3989" end="4483" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/zakat/PenerimaZakat.java" line="126" start="4049" end="4545" />
+</duplicate>
+<duplicate cost="1" hash="0">
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/pembangunan/EditDonaturPembangunan.java" line="95" start="3285" end="3883" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/tpa/EditDonaturTpa.java" line="96" start="3190" end="3788" />
+</duplicate>
+<duplicate cost="1" hash="0">
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/accountant/pembangunan/PembayaranPembangunan.java" line="88" start="2947" end="3300" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/pembangunan/DataPembayaranPembangunan.java" line="78" start="2765" end="3118" />
+</duplicate>
+<duplicate cost="1" hash="0">
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/kegiatan/ListKegiatan.java" line="68" start="2464" end="2908" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/secretary/SecretaryKegiatan.java" line="173" start="5471" end="5915" />
+</duplicate>
+<duplicate cost="1" hash="0">
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/kegiatan/ListUndangan.java" line="77" start="2712" end="3145" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/secretary/SecretaryUndangan.java" line="86" start="2901" end="3334" />
+</duplicate>
+<duplicate cost="1" hash="0">
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/anakyatim/DataDonaturAnakYatim.java" line="76" start="2676" end="3019" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/operasional/DataDonaturOperasional.java" line="76" start="2738" end="3087" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/pembangunan/DataDonaturPembangunan.java" line="77" start="2739" end="3088" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/tpa/DataDonaturTpa.java" line="67" start="2599" end="2939" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/zakat/DataDonaturZakat.java" line="58" start="2428" end="2770" />
+</duplicate>
+<duplicate cost="1" hash="0">
+  <fragment file="file://$PROJECT_DIR$/masjidku-events/src/main/java/org/masjidku/events/dao/impl/KegiatanDao.java" line="87" start="3962" end="4205" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-events/src/main/java/org/masjidku/events/dao/impl/TamuDao.java" line="97" start="3501" end="3745" />
+</duplicate>
+<duplicate cost="1" hash="0">
+  <fragment file="file://$PROJECT_DIR$/masjidku-events/src/main/java/org/masjidku/events/dao/impl/KegiatanDao.java" line="108" start="4679" end="4966" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-events/src/main/java/org/masjidku/events/dao/impl/TamuDao.java" line="123" start="4215" end="4513" />
+</duplicate>
+<duplicate cost="1" hash="0">
+  <fragment file="file://$PROJECT_DIR$/masjidku-events/src/main/java/org/masjidku/events/dao/impl/TamuKegiatanDao.java" line="69" start="3279" end="3686" />
+  <fragment file="file://$PROJECT_DIR$/masjidku-events/src/main/java/org/masjidku/events/dao/impl/TamuKegiatanDao.java" line="87" start="4022" end="4429" />
+</duplicate>
+</root>

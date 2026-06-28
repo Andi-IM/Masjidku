@@ -15,6 +15,9 @@
 
 package org.masjidku.principal.report.kegiatan;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.masjidku.util.ServiceProvider;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,6 +31,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class KegiatanOverview implements Initializable {
+    private static final Logger log = LoggerFactory.getLogger(KegiatanOverview.class);
     private final KegiatanService dao = ServiceProvider.get(KegiatanService.class);
     @FXML
     public Text txtKegiatanTerakhir;
@@ -64,7 +68,7 @@ public class KegiatanOverview implements Initializable {
                 txtTotalKegiatan.setText(dao.getTotalKegiatan());
             
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("An error occurred", e);
         }
     }
 }

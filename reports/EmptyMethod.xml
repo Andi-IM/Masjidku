@@ -1,0 +1,882 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting-client/src/main/java/org/masjidku/accounting/client/model/anakyatim/AnakYatim.java</file>
+  <line>44</line>
+  <module>Masjidku.masjidku-accounting-client.main</module>
+  <package>org.masjidku.accounting.client.model.anakyatim</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.client.model.anakyatim.AnakYatim java.lang.String getKeterangan()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>Method only calls its super</description>
+  <highlighted_element>getKeterangan</highlighted_element>
+  <language>JAVA</language>
+  <offset>18</offset>
+  <length>13</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting-client/src/main/java/org/masjidku/accounting/client/model/anakyatim/AnakYatim.java</file>
+  <line>49</line>
+  <module>Masjidku.masjidku-accounting-client.main</module>
+  <package>org.masjidku.accounting.client.model.anakyatim</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.client.model.anakyatim.AnakYatim java.lang.String getJumlah()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>Method only calls its super</description>
+  <highlighted_element>getJumlah</highlighted_element>
+  <language>JAVA</language>
+  <offset>18</offset>
+  <length>9</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting-client/src/main/java/org/masjidku/accounting/client/model/anakyatim/DonasiAYatim.java</file>
+  <line>33</line>
+  <module>Masjidku.masjidku-accounting-client.main</module>
+  <package>org.masjidku.accounting.client.model.anakyatim</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.client.model.anakyatim.DonasiAYatim java.lang.String getDonatur()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>Method only calls its super</description>
+  <highlighted_element>getDonatur</highlighted_element>
+  <language>JAVA</language>
+  <offset>18</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting-client/src/main/java/org/masjidku/accounting/client/model/anakyatim/DonasiAYatim.java</file>
+  <line>38</line>
+  <module>Masjidku.masjidku-accounting-client.main</module>
+  <package>org.masjidku.accounting.client.model.anakyatim</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.client.model.anakyatim.DonasiAYatim java.lang.String getJumlah()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>Method only calls its super</description>
+  <highlighted_element>getJumlah</highlighted_element>
+  <language>JAVA</language>
+  <offset>18</offset>
+  <length>9</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting-client/src/main/java/org/masjidku/accounting/client/model/anakyatim/DonasiAYatim.java</file>
+  <line>43</line>
+  <module>Masjidku.masjidku-accounting-client.main</module>
+  <package>org.masjidku.accounting.client.model.anakyatim</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.client.model.anakyatim.DonasiAYatim java.lang.String getTanggal()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>Method only calls its super</description>
+  <highlighted_element>getTanggal</highlighted_element>
+  <language>JAVA</language>
+  <offset>18</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting-client/src/main/java/org/masjidku/accounting/client/model/operasional/DonasiOperasional.java</file>
+  <line>38</line>
+  <module>Masjidku.masjidku-accounting-client.main</module>
+  <package>org.masjidku.accounting.client.model.operasional</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.client.model.operasional.DonasiOperasional java.lang.String getJumlah()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>Method only calls its super</description>
+  <highlighted_element>getJumlah</highlighted_element>
+  <language>JAVA</language>
+  <offset>18</offset>
+  <length>9</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting-client/src/main/java/org/masjidku/accounting/client/model/operasional/DonasiOperasional.java</file>
+  <line>43</line>
+  <module>Masjidku.masjidku-accounting-client.main</module>
+  <package>org.masjidku.accounting.client.model.operasional</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.client.model.operasional.DonasiOperasional java.lang.String getTanggal()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>Method only calls its super</description>
+  <highlighted_element>getTanggal</highlighted_element>
+  <language>JAVA</language>
+  <offset>18</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting-client/src/main/java/org/masjidku/accounting/client/model/operasional/DonasiOperasional.java</file>
+  <line>48</line>
+  <module>Masjidku.masjidku-accounting-client.main</module>
+  <package>org.masjidku.accounting.client.model.operasional</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.client.model.operasional.DonasiOperasional java.lang.String getOperator()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>Method only calls its super</description>
+  <highlighted_element>getOperator</highlighted_element>
+  <language>JAVA</language>
+  <offset>18</offset>
+  <length>11</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting-client/src/main/java/org/masjidku/accounting/client/model/operasional/Operasional.java</file>
+  <line>36</line>
+  <module>Masjidku.masjidku-accounting-client.main</module>
+  <package>org.masjidku.accounting.client.model.operasional</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.client.model.operasional.Operasional java.lang.String getId()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>Method only calls its super</description>
+  <highlighted_element>getId</highlighted_element>
+  <language>JAVA</language>
+  <offset>18</offset>
+  <length>5</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting-client/src/main/java/org/masjidku/accounting/client/model/operasional/Operasional.java</file>
+  <line>45</line>
+  <module>Masjidku.masjidku-accounting-client.main</module>
+  <package>org.masjidku.accounting.client.model.operasional</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.client.model.operasional.Operasional java.lang.String getKeterangan()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>Method only calls its super</description>
+  <highlighted_element>getKeterangan</highlighted_element>
+  <language>JAVA</language>
+  <offset>18</offset>
+  <length>13</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting-client/src/main/java/org/masjidku/accounting/client/model/operasional/Operasional.java</file>
+  <line>50</line>
+  <module>Masjidku.masjidku-accounting-client.main</module>
+  <package>org.masjidku.accounting.client.model.operasional</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.client.model.operasional.Operasional java.lang.String getJumlah()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>Method only calls its super</description>
+  <highlighted_element>getJumlah</highlighted_element>
+  <language>JAVA</language>
+  <offset>18</offset>
+  <length>9</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting-client/src/main/java/org/masjidku/accounting/client/model/operasional/Operasional.java</file>
+  <line>55</line>
+  <module>Masjidku.masjidku-accounting-client.main</module>
+  <package>org.masjidku.accounting.client.model.operasional</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.client.model.operasional.Operasional java.lang.String getOperator()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>Method only calls its super</description>
+  <highlighted_element>getOperator</highlighted_element>
+  <language>JAVA</language>
+  <offset>18</offset>
+  <length>11</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting-client/src/main/java/org/masjidku/accounting/client/model/pembangunan/DonasiPembangunan.java</file>
+  <line>34</line>
+  <module>Masjidku.masjidku-accounting-client.main</module>
+  <package>org.masjidku.accounting.client.model.pembangunan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.client.model.pembangunan.DonasiPembangunan java.lang.String getId()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>Method only calls its super</description>
+  <highlighted_element>getId</highlighted_element>
+  <language>JAVA</language>
+  <offset>18</offset>
+  <length>5</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting-client/src/main/java/org/masjidku/accounting/client/model/pembangunan/DonasiPembangunan.java</file>
+  <line>43</line>
+  <module>Masjidku.masjidku-accounting-client.main</module>
+  <package>org.masjidku.accounting.client.model.pembangunan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.client.model.pembangunan.DonasiPembangunan java.lang.String getJumlah()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>Method only calls its super</description>
+  <highlighted_element>getJumlah</highlighted_element>
+  <language>JAVA</language>
+  <offset>18</offset>
+  <length>9</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting-client/src/main/java/org/masjidku/accounting/client/model/pembangunan/DonasiPembangunan.java</file>
+  <line>48</line>
+  <module>Masjidku.masjidku-accounting-client.main</module>
+  <package>org.masjidku.accounting.client.model.pembangunan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.client.model.pembangunan.DonasiPembangunan java.lang.String getTanggal()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>Method only calls its super</description>
+  <highlighted_element>getTanggal</highlighted_element>
+  <language>JAVA</language>
+  <offset>18</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting-client/src/main/java/org/masjidku/accounting/client/model/pembangunan/DonasiPembangunan.java</file>
+  <line>53</line>
+  <module>Masjidku.masjidku-accounting-client.main</module>
+  <package>org.masjidku.accounting.client.model.pembangunan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.client.model.pembangunan.DonasiPembangunan java.lang.String getOperator()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>Method only calls its super</description>
+  <highlighted_element>getOperator</highlighted_element>
+  <language>JAVA</language>
+  <offset>18</offset>
+  <length>11</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting-client/src/main/java/org/masjidku/accounting/client/model/pembangunan/Pembangunan.java</file>
+  <line>36</line>
+  <module>Masjidku.masjidku-accounting-client.main</module>
+  <package>org.masjidku.accounting.client.model.pembangunan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.client.model.pembangunan.Pembangunan java.lang.String getId()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>Method only calls its super</description>
+  <highlighted_element>getId</highlighted_element>
+  <language>JAVA</language>
+  <offset>18</offset>
+  <length>5</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting-client/src/main/java/org/masjidku/accounting/client/model/pembangunan/Pembangunan.java</file>
+  <line>45</line>
+  <module>Masjidku.masjidku-accounting-client.main</module>
+  <package>org.masjidku.accounting.client.model.pembangunan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.client.model.pembangunan.Pembangunan java.lang.String getKeterangan()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>Method only calls its super</description>
+  <highlighted_element>getKeterangan</highlighted_element>
+  <language>JAVA</language>
+  <offset>18</offset>
+  <length>13</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting-client/src/main/java/org/masjidku/accounting/client/model/pembangunan/Pembangunan.java</file>
+  <line>50</line>
+  <module>Masjidku.masjidku-accounting-client.main</module>
+  <package>org.masjidku.accounting.client.model.pembangunan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.client.model.pembangunan.Pembangunan java.lang.String getJumlah()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>Method only calls its super</description>
+  <highlighted_element>getJumlah</highlighted_element>
+  <language>JAVA</language>
+  <offset>18</offset>
+  <length>9</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting-client/src/main/java/org/masjidku/accounting/client/model/pembangunan/Pembangunan.java</file>
+  <line>55</line>
+  <module>Masjidku.masjidku-accounting-client.main</module>
+  <package>org.masjidku.accounting.client.model.pembangunan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.client.model.pembangunan.Pembangunan java.lang.String getOperator()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>Method only calls its super</description>
+  <highlighted_element>getOperator</highlighted_element>
+  <language>JAVA</language>
+  <offset>18</offset>
+  <length>11</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting-client/src/main/java/org/masjidku/accounting/client/model/tpa/TpaKeluar.java</file>
+  <line>36</line>
+  <module>Masjidku.masjidku-accounting-client.main</module>
+  <package>org.masjidku.accounting.client.model.tpa</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.client.model.tpa.TpaKeluar java.lang.String getId()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>Method only calls its super</description>
+  <highlighted_element>getId</highlighted_element>
+  <language>JAVA</language>
+  <offset>18</offset>
+  <length>5</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting-client/src/main/java/org/masjidku/accounting/client/model/tpa/TpaKeluar.java</file>
+  <line>45</line>
+  <module>Masjidku.masjidku-accounting-client.main</module>
+  <package>org.masjidku.accounting.client.model.tpa</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.client.model.tpa.TpaKeluar java.lang.String getKeterangan()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>Method only calls its super</description>
+  <highlighted_element>getKeterangan</highlighted_element>
+  <language>JAVA</language>
+  <offset>18</offset>
+  <length>13</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting-client/src/main/java/org/masjidku/accounting/client/model/tpa/TpaKeluar.java</file>
+  <line>50</line>
+  <module>Masjidku.masjidku-accounting-client.main</module>
+  <package>org.masjidku.accounting.client.model.tpa</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.client.model.tpa.TpaKeluar java.lang.String getJumlah()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>Method only calls its super</description>
+  <highlighted_element>getJumlah</highlighted_element>
+  <language>JAVA</language>
+  <offset>18</offset>
+  <length>9</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting-client/src/main/java/org/masjidku/accounting/client/model/tpa/TpaKeluar.java</file>
+  <line>55</line>
+  <module>Masjidku.masjidku-accounting-client.main</module>
+  <package>org.masjidku.accounting.client.model.tpa</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.client.model.tpa.TpaKeluar java.lang.String getOperator()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>Method only calls its super</description>
+  <highlighted_element>getOperator</highlighted_element>
+  <language>JAVA</language>
+  <offset>18</offset>
+  <length>11</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting-client/src/main/java/org/masjidku/accounting/client/model/tpa/TpaMasuk.java</file>
+  <line>32</line>
+  <module>Masjidku.masjidku-accounting-client.main</module>
+  <package>org.masjidku.accounting.client.model.tpa</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.client.model.tpa.TpaMasuk java.lang.String getId()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>Method only calls its super</description>
+  <highlighted_element>getId</highlighted_element>
+  <language>JAVA</language>
+  <offset>18</offset>
+  <length>5</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting-client/src/main/java/org/masjidku/accounting/client/model/tpa/TpaMasuk.java</file>
+  <line>41</line>
+  <module>Masjidku.masjidku-accounting-client.main</module>
+  <package>org.masjidku.accounting.client.model.tpa</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.client.model.tpa.TpaMasuk java.lang.String getJumlah()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>Method only calls its super</description>
+  <highlighted_element>getJumlah</highlighted_element>
+  <language>JAVA</language>
+  <offset>18</offset>
+  <length>9</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting-client/src/main/java/org/masjidku/accounting/client/model/tpa/TpaMasuk.java</file>
+  <line>46</line>
+  <module>Masjidku.masjidku-accounting-client.main</module>
+  <package>org.masjidku.accounting.client.model.tpa</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.client.model.tpa.TpaMasuk java.lang.String getTanggal()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>Method only calls its super</description>
+  <highlighted_element>getTanggal</highlighted_element>
+  <language>JAVA</language>
+  <offset>18</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting-client/src/main/java/org/masjidku/accounting/client/model/tpa/TpaMasuk.java</file>
+  <line>51</line>
+  <module>Masjidku.masjidku-accounting-client.main</module>
+  <package>org.masjidku.accounting.client.model.tpa</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.client.model.tpa.TpaMasuk java.lang.String getOperator()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>Method only calls its super</description>
+  <highlighted_element>getOperator</highlighted_element>
+  <language>JAVA</language>
+  <offset>18</offset>
+  <length>11</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting-client/src/main/java/org/masjidku/accounting/client/model/zakat/ZakatKeluar.java</file>
+  <line>36</line>
+  <module>Masjidku.masjidku-accounting-client.main</module>
+  <package>org.masjidku.accounting.client.model.zakat</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.client.model.zakat.ZakatKeluar java.lang.String getJumlah()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>Method only calls its super</description>
+  <highlighted_element>getJumlah</highlighted_element>
+  <language>JAVA</language>
+  <offset>18</offset>
+  <length>9</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-accounting-client/src/main/java/org/masjidku/accounting/client/model/zakat/ZakatKeluar.java</file>
+  <line>41</line>
+  <module>Masjidku.masjidku-accounting-client.main</module>
+  <package>org.masjidku.accounting.client.model.zakat</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.accounting.client.model.zakat.ZakatKeluar java.lang.String getTanggal()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>Method only calls its super</description>
+  <highlighted_element>getTanggal</highlighted_element>
+  <language>JAVA</language>
+  <offset>18</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/MainApp.java</file>
+  <line>314</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.MainApp void showKegiatanReport()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>The method is empty</description>
+  <highlighted_element>showKegiatanReport</highlighted_element>
+  <language>JAVA</language>
+  <offset>16</offset>
+  <length>18</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/MainApp.java</file>
+  <line>318</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.MainApp void showAnakYatimReport()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>The method is empty</description>
+  <highlighted_element>showAnakYatimReport</highlighted_element>
+  <language>JAVA</language>
+  <offset>16</offset>
+  <length>19</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/MainApp.java</file>
+  <line>322</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.MainApp void showPembangunanReport()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>The method is empty</description>
+  <highlighted_element>showPembangunanReport</highlighted_element>
+  <language>JAVA</language>
+  <offset>16</offset>
+  <length>21</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/MainApp.java</file>
+  <line>326</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.MainApp void showOperasionalReport()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>The method is empty</description>
+  <highlighted_element>showOperasionalReport</highlighted_element>
+  <language>JAVA</language>
+  <offset>16</offset>
+  <length>21</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/MainApp.java</file>
+  <line>330</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.MainApp void showZakatReport()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>The method is empty</description>
+  <highlighted_element>showZakatReport</highlighted_element>
+  <language>JAVA</language>
+  <offset>16</offset>
+  <length>15</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/MainApp.java</file>
+  <line>334</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.MainApp void showTpaReport()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>The method is empty</description>
+  <highlighted_element>showTpaReport</highlighted_element>
+  <language>JAVA</language>
+  <offset>16</offset>
+  <length>13</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/admin/UserLogs.java</file>
+  <line>49</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.admin</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.admin.UserLogs void onMouseClicked()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>The method is empty</description>
+  <highlighted_element>onMouseClicked</highlighted_element>
+  <language>JAVA</language>
+  <offset>16</offset>
+  <length>14</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/controller/LoginController.java</file>
+  <line>60</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.controller</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.controller.LoginController void initialize()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>The method is empty</description>
+  <highlighted_element>initialize</highlighted_element>
+  <language>JAVA</language>
+  <offset>16</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/PrincipalReadDataTamu.java</file>
+  <line>41</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.principal</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.principal.PrincipalReadDataTamu void editListener()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>The method is empty</description>
+  <highlighted_element>editListener</highlighted_element>
+  <language>JAVA</language>
+  <offset>16</offset>
+  <length>12</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/PrincipalReadDataTamu.java</file>
+  <line>44</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.principal</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.principal.PrincipalReadDataTamu void onResetListener()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>The method is empty</description>
+  <highlighted_element>onResetListener</highlighted_element>
+  <language>JAVA</language>
+  <offset>16</offset>
+  <length>15</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/PrincipalReadDataTamu.java</file>
+  <line>47</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.principal</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.principal.PrincipalReadDataTamu void onRemoveListener()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>The method is empty</description>
+  <highlighted_element>onRemoveListener</highlighted_element>
+  <language>JAVA</language>
+  <offset>16</offset>
+  <length>16</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/kegiatan/ListKegiatan.java</file>
+  <line>87</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.principal.report.kegiatan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.principal.report.kegiatan.ListKegiatan void printReport()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>The method is empty</description>
+  <highlighted_element>printReport</highlighted_element>
+  <language>JAVA</language>
+  <offset>26</offset>
+  <length>11</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/kegiatan/ListTamu.java</file>
+  <line>94</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.principal.report.kegiatan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.principal.report.kegiatan.ListTamu void showReport()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>The method is empty</description>
+  <highlighted_element>showReport</highlighted_element>
+  <language>JAVA</language>
+  <offset>26</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/kegiatan/ListUndangan.java</file>
+  <line>90</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.principal.report.kegiatan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.principal.report.kegiatan.ListUndangan void showReport()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>The method is empty</description>
+  <highlighted_element>showReport</highlighted_element>
+  <language>JAVA</language>
+  <offset>26</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/anakyatim/DataDonaturAnakYatim.java</file>
+  <line>100</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.principal.report.keuangan.anakyatim</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.principal.report.keuangan.anakyatim.DataDonaturAnakYatim void printReport()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>The method is empty</description>
+  <highlighted_element>printReport</highlighted_element>
+  <language>JAVA</language>
+  <offset>16</offset>
+  <length>11</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/anakyatim/DataPenerimaAnakYatim.java</file>
+  <line>97</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.principal.report.keuangan.anakyatim</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.principal.report.keuangan.anakyatim.DataPenerimaAnakYatim void printReport()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>The method is empty</description>
+  <highlighted_element>printReport</highlighted_element>
+  <language>JAVA</language>
+  <offset>16</offset>
+  <length>11</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/operasional/DataDonaturOperasional.java</file>
+  <line>95</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.principal.report.keuangan.operasional</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.principal.report.keuangan.operasional.DataDonaturOperasional void showReport()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>The method is empty</description>
+  <highlighted_element>showReport</highlighted_element>
+  <language>JAVA</language>
+  <offset>16</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/operasional/DataPembayaranOperasional.java</file>
+  <line>81</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.principal.report.keuangan.operasional</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.principal.report.keuangan.operasional.DataPembayaranOperasional void showReport()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>The method is empty</description>
+  <highlighted_element>showReport</highlighted_element>
+  <language>JAVA</language>
+  <offset>16</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/pembangunan/DataDonaturPembangunan.java</file>
+  <line>89</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.principal.report.keuangan.pembangunan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.principal.report.keuangan.pembangunan.DataDonaturPembangunan void showReport()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>The method is empty</description>
+  <highlighted_element>showReport</highlighted_element>
+  <language>JAVA</language>
+  <offset>16</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/pembangunan/DataPembayaranPembangunan.java</file>
+  <line>93</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.principal.report.keuangan.pembangunan</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.principal.report.keuangan.pembangunan.DataPembayaranPembangunan void showReport()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>The method is empty</description>
+  <highlighted_element>showReport</highlighted_element>
+  <language>JAVA</language>
+  <offset>16</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/tpa/DataDonaturTpa.java</file>
+  <line>76</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.principal.report.keuangan.tpa</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.principal.report.keuangan.tpa.DataDonaturTpa void showReport()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>The method is empty</description>
+  <highlighted_element>showReport</highlighted_element>
+  <language>JAVA</language>
+  <offset>16</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/tpa/DataPembayaranTpa.java</file>
+  <line>88</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.principal.report.keuangan.tpa</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.principal.report.keuangan.tpa.DataPembayaranTpa void showReport()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>The method is empty</description>
+  <highlighted_element>showReport</highlighted_element>
+  <language>JAVA</language>
+  <offset>16</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/zakat/DataDonaturZakat.java</file>
+  <line>80</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.principal.report.keuangan.zakat</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.principal.report.keuangan.zakat.DataDonaturZakat void showReport()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>The method is empty</description>
+  <highlighted_element>showReport</highlighted_element>
+  <language>JAVA</language>
+  <offset>16</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/java/org/masjidku/principal/report/keuangan/zakat/DataPenerimaZakat.java</file>
+  <line>87</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <package>org.masjidku.principal.report.keuangan.zakat</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.principal.report.keuangan.zakat.DataPenerimaZakat void showReport()" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="false" />
+  </hints>
+  <description>The method is empty</description>
+  <highlighted_element>showReport</highlighted_element>
+  <language>JAVA</language>
+  <offset>16</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-events-client/src/main/java/org/masjidku/events/client/service/TamuKegiatanService.java</file>
+  <line>11</line>
+  <module>Masjidku.masjidku-events-client.main</module>
+  <package>org.masjidku.events.client.service</package>
+  <entry_point TYPE="method" FQNAME="org.masjidku.events.client.service.TamuKegiatanService void save(org.masjidku.events.client.model.TamuKegiatan model)" />
+  <problem_class id="EmptyMethod" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Empty method</problem_class>
+  <hints>
+    <hint value="true" />
+  </hints>
+  <description>All implementations of this method are empty</description>
+  <highlighted_element>save</highlighted_element>
+  <language>JAVA</language>
+  <offset>9</offset>
+  <length>4</length>
+</problem>
+</problems>

@@ -15,6 +15,9 @@
 
 package org.masjidku.accountant.operasional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
@@ -36,6 +39,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class DonaturOperasional implements Initializable {
+    private static final Logger log = LoggerFactory.getLogger(DonaturOperasional.class);
     private final DonasiOperationalService dao = ServiceProvider.get(DonasiOperationalService.class);
 
     @FXML
@@ -76,7 +80,7 @@ public class DonaturOperasional implements Initializable {
         try {
             donaturData.addAll(dao.getAll());
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("An error occurred", e);
         }
         return donaturData;
     }
@@ -124,7 +128,7 @@ public class DonaturOperasional implements Initializable {
                     alertError("SQL Error", "User tidak ditemukan!");
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                log.error("An error occurred", e);
             }
         }
     }

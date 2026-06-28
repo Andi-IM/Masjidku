@@ -15,6 +15,9 @@
 
 package org.masjidku.accountant.anakyatim;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
@@ -32,6 +35,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class EditPenerimaAnakYatim {
+    private static final Logger log = LoggerFactory.getLogger(EditPenerimaAnakYatim.class);
     private final AnakYatimService dao = ServiceProvider.get(AnakYatimService.class);
 
     @FXML
@@ -116,7 +120,7 @@ public class EditPenerimaAnakYatim {
                     dao.save(anakYatim);
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                log.error("An error occurred", e);
             }
         } else {
             alertError("Error", "Data belum lengkap!");

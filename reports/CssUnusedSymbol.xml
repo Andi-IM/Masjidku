@@ -1,0 +1,119 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/styles/styles.css</file>
+  <line>57</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/styles/styles.css" />
+  <problem_class id="CssUnusedSymbol" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">Unused selector</problem_class>
+  <hints />
+  <description>Selector box is never used</description>
+  <highlighted_element>.box</highlighted_element>
+  <language>CSS</language>
+  <offset>11</offset>
+  <length>4</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/styles/styles.css</file>
+  <line>63</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/styles/styles.css" />
+  <problem_class id="CssUnusedSymbol" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">Unused selector</problem_class>
+  <hints />
+  <description>Selector mark is never used</description>
+  <highlighted_element>.mark</highlighted_element>
+  <language>CSS</language>
+  <offset>20</offset>
+  <length>5</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/styles/styles.css</file>
+  <line>67</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/styles/styles.css" />
+  <problem_class id="CssUnusedSymbol" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">Unused selector</problem_class>
+  <hints />
+  <description>Selector box is never used</description>
+  <highlighted_element>.box</highlighted_element>
+  <language>CSS</language>
+  <offset>20</offset>
+  <length>4</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/styles/styles.css</file>
+  <line>128</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/styles/styles.css" />
+  <problem_class id="CssUnusedSymbol" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">Unused selector</problem_class>
+  <hints />
+  <description>Selector table-view is never used</description>
+  <highlighted_element>.table-view</highlighted_element>
+  <language>CSS</language>
+  <offset>0</offset>
+  <length>11</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/styles/styles.css</file>
+  <line>137</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/styles/styles.css" />
+  <problem_class id="CssUnusedSymbol" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">Unused selector</problem_class>
+  <hints />
+  <description>Selector column-header-background is never used</description>
+  <highlighted_element>.column-header-background</highlighted_element>
+  <language>CSS</language>
+  <offset>12</offset>
+  <length>25</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/styles/styles.css</file>
+  <line>141</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/styles/styles.css" />
+  <problem_class id="CssUnusedSymbol" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">Unused selector</problem_class>
+  <hints />
+  <description>Selector column-header is never used</description>
+  <highlighted_element>.column-header</highlighted_element>
+  <language>CSS</language>
+  <offset>12</offset>
+  <length>14</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/styles/styles.css</file>
+  <line>141</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/styles/styles.css" />
+  <problem_class id="CssUnusedSymbol" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">Unused selector</problem_class>
+  <hints />
+  <description>Selector filler is never used</description>
+  <highlighted_element>.filler</highlighted_element>
+  <language>CSS</language>
+  <offset>40</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/styles/styles.css</file>
+  <line>161</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/styles/styles.css" />
+  <problem_class id="CssUnusedSymbol" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">Unused selector</problem_class>
+  <hints />
+  <description>Selector split-pane-divider is never used</description>
+  <highlighted_element>.split-pane-divider</highlighted_element>
+  <language>CSS</language>
+  <offset>25</offset>
+  <length>19</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/styles/styles.css</file>
+  <line>166</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/styles/styles.css" />
+  <problem_class id="CssUnusedSymbol" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">Unused selector</problem_class>
+  <hints />
+  <description>Selector split-pane is never used</description>
+  <highlighted_element>.split-pane</highlighted_element>
+  <language>CSS</language>
+  <offset>0</offset>
+  <length>11</length>
+</problem>
+</problems>

@@ -13,6 +13,9 @@
  *                                HEREUNDER.
  */
 package org.masjidku.principal.report.keuangan.operasional;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
@@ -29,6 +32,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 public class DataPembayaranOperasional implements Initializable {
+    private static final Logger log = LoggerFactory.getLogger(DataPembayaranOperasional.class);
     private final OperationalService dao = ServiceProvider.get(OperationalService.class);
     @FXML
     private TableView<Operasional> tableOperasional;
@@ -60,7 +64,7 @@ public class DataPembayaranOperasional implements Initializable {
         try {
             dataOperasional.addAll(dao.getAll());
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("An error occurred", e);
         }
         return dataOperasional;
     }

@@ -1,0 +1,38 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_readDataTamu.fxml</file>
+  <line>56</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_readDataTamu.fxml" />
+  <problem_class id="JavaFxUnresolvedFxIdReference" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unresolved fx:id attribute reference</problem_class>
+  <description>Unresolved fx:id reference</description>
+  <highlighted_element>btnEdit</highlighted_element>
+  <language>XML</language>
+  <offset>31</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_readDataTamu.fxml</file>
+  <line>57</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_readDataTamu.fxml" />
+  <problem_class id="JavaFxUnresolvedFxIdReference" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unresolved fx:id attribute reference</problem_class>
+  <description>Unresolved fx:id reference</description>
+  <highlighted_element>btnReset</highlighted_element>
+  <language>XML</language>
+  <offset>31</offset>
+  <length>8</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_readDataTamu.fxml</file>
+  <line>58</line>
+  <module>Masjidku.masjidku-app.main</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/masjidku-app/src/main/resources/org/masjidku/principal/principal_readDataTamu.fxml" />
+  <problem_class id="JavaFxUnresolvedFxIdReference" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unresolved fx:id attribute reference</problem_class>
+  <description>Unresolved fx:id reference</description>
+  <highlighted_element>btnRemove</highlighted_element>
+  <language>XML</language>
+  <offset>31</offset>
+  <length>9</length>
+</problem>
+</problems>

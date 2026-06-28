@@ -15,6 +15,9 @@
 
 package org.masjidku.accountant;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
@@ -30,6 +33,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class AccountantPembangunan implements Initializable {
+    private static final Logger log = LoggerFactory.getLogger(AccountantPembangunan.class);
     private final AccountingFunctionsService df = ServiceProvider.get(AccountingFunctionsService.class);
     private final DonasiPembangunanService dpDao = ServiceProvider.get(DonasiPembangunanService.class);
     private final PembangunanService pbDao = ServiceProvider.get(PembangunanService.class);
@@ -72,12 +76,12 @@ public class AccountantPembangunan implements Initializable {
             txtPengeluaranTerakhir.setText("Rp. " + pemberi.getJumlah());
             txtTotalPemasukkan.setText("Rp. " + pbDao.getTotalIncome());
             txtTotalPengeluaran.setText("Rp. " + dpDao.getTotalOutcome());
-            txtSaldo.setText("Rp. " + df.getInfakYatimBalance());
+            txtSaldo.setText("Rp. " + df.getPembangunanBalance());
             txtTglPemasukkan.setText(pemberi.getTanggal());
             txtTglPengeluaran.setText(penerima.getTanggal());
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("An error occurred", e);
         }
     }
 }

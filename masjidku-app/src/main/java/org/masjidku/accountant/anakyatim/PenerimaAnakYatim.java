@@ -15,6 +15,9 @@
 
 package org.masjidku.accountant.anakyatim;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
@@ -36,6 +39,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class PenerimaAnakYatim implements Initializable {
+    private static final Logger log = LoggerFactory.getLogger(PenerimaAnakYatim.class);
     private final AnakYatimService dao = ServiceProvider.get(AnakYatimService.class);
 
     @FXML
@@ -78,7 +82,7 @@ public class PenerimaAnakYatim implements Initializable {
         try {
             dataAnak.addAll(dao.getAll());
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("An error occurred", e);
         }
         return dataAnak;
     }
@@ -138,7 +142,7 @@ public class PenerimaAnakYatim implements Initializable {
                     alertError("SQL Error", "User tidak ditemukan!");
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                log.error("An error occurred", e);
             }
         }
     }
