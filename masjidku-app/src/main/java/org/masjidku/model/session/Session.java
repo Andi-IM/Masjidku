@@ -146,7 +146,8 @@ public class Session extends DaoFactory implements SessionDao{
         query = "DELETE FROM "+TABLE;
         try {
             ps = con.prepareStatement(query);
-            rs = ps.executeQuery();
+            ps.executeUpdate();
+            ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
