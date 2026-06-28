@@ -86,7 +86,6 @@ public class SecretaryTamuForm {
                 tamu = new Tamu(namaTamu, alamat, noTelp, operator);
             }
 
-            if (true){
                 try {
                     if (dao.isTamuExist(tamu.getIdTamu())){
                         dao.update(new String[]{
@@ -103,9 +102,7 @@ public class SecretaryTamuForm {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-            } else {
-            alertError("Error", "Database belum ditanyakan!");
-        }
+            
     } else {
         alertError("Error", "Data belum lengkap!");
     }

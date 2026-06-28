@@ -64,13 +64,12 @@ public class ListUndangan implements Initializable {
             FXCollections.observableArrayList();
 
     private ObservableList<TamuKegiatan> getUndanganData(){
-        if (true){
             try {
                 undanganData.addAll(dao.getAll());
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
+        
         return undanganData;
     }
 

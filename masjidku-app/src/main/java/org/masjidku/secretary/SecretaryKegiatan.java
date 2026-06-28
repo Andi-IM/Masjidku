@@ -86,13 +86,12 @@ public class SecretaryKegiatan implements Initializable {
     }
 
     private ObservableList<Kegiatan> getKegiatanData() {
-        if (true){
             try {
                 kegiatanData.addAll(dao.getAll());
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
+        
         return kegiatanData;
     }
 
@@ -113,7 +112,6 @@ public class SecretaryKegiatan implements Initializable {
     public void onRemoveListener() {
         Kegiatan selectedKegiatan = tblKegiatan.getSelectionModel().getSelectedItem();
         if (selectedKegiatan != null){
-            if (true){
                 try {
                     if (dao.isKegiatanExist(selectedKegiatan.getIdKegiatan())){
                         tblKegiatan.getItems().remove(selectedKegiatan);
@@ -125,9 +123,7 @@ public class SecretaryKegiatan implements Initializable {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-            } else {
-                alertError("Offline", "Database tidak terhuhung!");
-            }
+            
         }
     }
 

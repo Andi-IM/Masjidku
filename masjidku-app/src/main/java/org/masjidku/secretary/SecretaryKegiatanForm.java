@@ -79,7 +79,6 @@ public class SecretaryKegiatanForm {
 
             kegiatan = new Kegiatan(namaKegiatan, waktu, tanggal, tempat, operator);
 
-            if (true) {
                 try {
                     if (dao.isKegiatanExist(kegiatan.getIdKegiatan())) {
                         dao.update(new String[]{
@@ -99,9 +98,7 @@ public class SecretaryKegiatanForm {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-            } else {
-                alertError("Error", "Database belum dinyalakan!");
-            }
+            
         } else {
             alertError("Error", "Data belum lengkap!");
         }

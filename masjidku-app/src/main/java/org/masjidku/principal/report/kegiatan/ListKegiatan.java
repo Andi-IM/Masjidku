@@ -75,13 +75,12 @@ public class ListKegiatan implements Initializable {
     }
 
     private ObservableList<Kegiatan> getKegiatanData() {
-        if (true) {
             try {
                 kegiatanData.addAll(dao.getAll());
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
+        
         return kegiatanData;
     }
 

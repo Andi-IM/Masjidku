@@ -73,7 +73,6 @@ public class SecretaryUndanganForm implements Initializable {
         tamuDao = ServiceProvider.get(TamuService.class);
         kegiatanDao = ServiceProvider.get(KegiatanService.class);
         try {
-            if (true){
                 listTamu.removeAll();
                 listKegiatan.removeAll();
 
@@ -82,7 +81,7 @@ public class SecretaryUndanganForm implements Initializable {
 
                 cbKegiatan.getItems().addAll(listKegiatan);
                 cbTamu.getItems().addAll(listTamu);
-            }
+            
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -116,7 +115,6 @@ public class SecretaryUndanganForm implements Initializable {
         tamuKegiatanService = ServiceProvider.get(TamuKegiatanService.class);
 
         TamuKegiatan model = new TamuKegiatan();
-        if (true){
             try {
                 if (tamuKegiatanService.isUndanganExist(model.getIdKegiatan())){
                     tamuKegiatanService.update(new String[]{model.getKeterangan(), model.getIdTamu(), model.getKegiatan(), model.getIdUndangan()});
@@ -128,7 +126,7 @@ public class SecretaryUndanganForm implements Initializable {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-        }
+        
 
     }
 

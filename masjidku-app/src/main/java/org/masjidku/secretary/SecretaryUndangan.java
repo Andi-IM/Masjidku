@@ -73,13 +73,12 @@ public class SecretaryUndangan implements Initializable {
             FXCollections.observableArrayList();
 
     private ObservableList<TamuKegiatan> getUndanganData(){
-        if (true){
             try {
                 undanganData.addAll(dao.getAll());
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
+        
         return undanganData;
     }
 
@@ -110,7 +109,6 @@ public class SecretaryUndangan implements Initializable {
     public void onRemoveListener() {
         TamuKegiatan selectedUndangan = tblUndangan.getSelectionModel().getSelectedItem();
         if (selectedUndangan != null){
-            if (true){
                 try {
                     if (dao.isUndanganExist(null)){
                         tblUndangan.getItems().remove(selectedUndangan);
@@ -122,9 +120,7 @@ public class SecretaryUndangan implements Initializable {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-            } else {
-                alertError("Offline", "Database tidak terhuhung!");
-            }
+            
         }
     }
 
