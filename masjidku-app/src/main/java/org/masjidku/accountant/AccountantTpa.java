@@ -64,19 +64,17 @@ public class AccountantTpa implements Initializable {
         AccountingFunctionsService df = ServiceLoader.load(AccountingFunctionsService.class).findFirst().orElseThrow();
 
         try {
-            if (tpamdao.getConnection() && tpakdao.getConnection() && df.getConnection()) {
-                TpaKeluar penerima = tpakdao.getLastRecord();
-                TpaMasuk pemberi = tpamdao.getLastRecord();
+            TpaKeluar penerima = tpakdao.getLastRecord();
+            TpaMasuk pemberi = tpamdao.getLastRecord();
 
-                txtPemasukanTerakhir.setText("Rp. " + pemberi.getJumlah());
-                txtPengeluaranTerakhir.setText("Rp. " + penerima.getJumlah());
-                txtTotalPemasukkan.setText("Rp. " + tpamdao.getTotalIncome());
-                txtTotalPengeluaran.setText("Rp. " + tpakdao.getTotalOutcome());
-                txtSaldo.setText("Rp. " + df.getTpaBalance());
-                txtTglPemasukkan.setText(pemberi.getTanggal());
-                txtTglPengeluaran.setText(penerima.getTanggal());
+            txtPemasukanTerakhir.setText("Rp. " + pemberi.getJumlah());
+            txtPengeluaranTerakhir.setText("Rp. " + penerima.getJumlah());
+            txtTotalPemasukkan.setText("Rp. " + tpamdao.getTotalIncome());
+            txtTotalPengeluaran.setText("Rp. " + tpakdao.getTotalOutcome());
+            txtSaldo.setText("Rp. " + df.getTpaBalance());
+            txtTglPemasukkan.setText(pemberi.getTanggal());
+            txtTglPengeluaran.setText(penerima.getTanggal());
 
-            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

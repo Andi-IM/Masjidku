@@ -125,12 +125,10 @@ public class UserLists implements Initializable {
      */
     private ObservableList<User> getUserData() {
         UserService dao = new UserServiceImpl();
-        if (dao.getConnection()){
-            try {
-                userData.addAll(dao.getAll());
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        try {
+            userData.addAll(dao.getAll());
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return userData;
     }
@@ -143,20 +141,16 @@ public class UserLists implements Initializable {
         User selectedUser = userTable.getSelectionModel().getSelectedItem();
         if (selectedUser != null){
             UserService dao = new UserServiceImpl();
-            if (dao.getConnection()){
-                try {
-                    if (dao.isUserExist(selectedUser.getUserId())){
-                        userTable.getItems().remove(selectedUser);
-                        dao.delete(selectedUser.getUserId());
-                        alertInfo("Success", "User dihapus!");
-                    } else {
-                        alertError("SQL Error", "User tidak ditemukan!");
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
+            try {
+                if (dao.isUserExist(selectedUser.getUserId())){
+                    userTable.getItems().remove(selectedUser);
+                    dao.delete(selectedUser.getUserId());
+                    alertInfo("Success", "User dihapus!");
+                } else {
+                    alertError("SQL Error", "User tidak ditemukan!");
                 }
-            } else {
-                alertError("Offline", "Database tidak terhubung!");
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -169,20 +163,18 @@ public class UserLists implements Initializable {
         User selectedUser = userTable.getSelectionModel().getSelectedItem();
         if (selectedUser != null){
             UserService dao = new UserServiceImpl();
-            if (dao.getConnection()){
-                try{
-                    if (dao.isUserExist(selectedUser.getUserId())) {
-                        if (dao.isReset(selectedUser.getUserId())) {
-                            dao.reset(selectedUser.getUserId());
-                        } else {
-                            alertError("User Error", "User telah melakukan reset password!");
-                        }
+            try{
+                if (dao.isUserExist(selectedUser.getUserId())) {
+                    if (dao.isReset(selectedUser.getUserId())) {
+                        dao.reset(selectedUser.getUserId());
                     } else {
-                        alertError("SQL Error","User tidak ditemukan!");
+                        alertError("User Error", "User telah melakukan reset password!");
                     }
-                } catch (SQLException e) {
-                    e.printStackTrace();
+                } else {
+                    alertError("SQL Error","User tidak ditemukan!");
                 }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         } else {
             alertError("Offline","Database tidak terhubung!");

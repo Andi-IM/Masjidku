@@ -74,12 +74,10 @@ public class PenerimaAnakYatim implements Initializable {
      */
     private ObservableList<AnakYatim> getDataAnak() {
         AnakYatimService dao = ServiceLoader.load(AnakYatimService.class).findFirst().orElseThrow();
-        if (dao.getConnection()) {
-            try {
-                dataAnak.addAll(dao.getAll());
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        try {
+            dataAnak.addAll(dao.getAll());
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return dataAnak;
     }
@@ -131,20 +129,16 @@ public class PenerimaAnakYatim implements Initializable {
         AnakYatim selectedItem = tableAnakyatim.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
             AnakYatimService dao = ServiceLoader.load(AnakYatimService.class).findFirst().orElseThrow();
-            if (dao.getConnection()) {
-                try {
-                    if (dao.isAnakYatimExist(selectedItem.getId())) {
-                        tableAnakyatim.getItems().remove(selectedItem);
-                        dao.delete(selectedItem.getId());
-                        alertInfo("Success", "User dihapus!");
-                    } else {
-                        alertError("SQL Error", "User tidak ditemukan!");
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
+            try {
+                if (dao.isAnakYatimExist(selectedItem.getId())) {
+                    tableAnakyatim.getItems().remove(selectedItem);
+                    dao.delete(selectedItem.getId());
+                    alertInfo("Success", "User dihapus!");
+                } else {
+                    alertError("SQL Error", "User tidak ditemukan!");
                 }
-            } else {
-                alertError("Offline", "Database tidak terhubung!");
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }

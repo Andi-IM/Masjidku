@@ -64,19 +64,17 @@ public class OperasionalReport implements Initializable {
         AccountingFunctionsService df = ServiceLoader.load(AccountingFunctionsService.class).findFirst().orElseThrow();
 
         try {
-            if (opDao.getConnection() && doDao.getConnection() && df.getConnection()) {
-                Operasional penerima = opDao.getLastRecord();
-                DonasiOperasional pemberi = doDao.getLastRecord();
+            Operasional penerima = opDao.getLastRecord();
+            DonasiOperasional pemberi = doDao.getLastRecord();
 
-                txtPemasukanTerakhir.setText("Rp. " + penerima.getJumlah());
-                txtPengeluaranTerakhir.setText("Rp. " + pemberi.getJumlah());
-                txtTotalPemasukkan.setText("Rp. " + opDao.getTotalIncome());
-                txtTotalPengeluaran.setText("Rp. " + doDao.getTotalOutcome());
-                txtSaldo.setText("Rp. " + df.getInfakYatimBalance());
-                txtTglPemasukkan.setText(pemberi.getTanggal());
-                txtTglPengeluaran.setText(penerima.getTanggal());
+            txtPemasukanTerakhir.setText("Rp. " + penerima.getJumlah());
+            txtPengeluaranTerakhir.setText("Rp. " + pemberi.getJumlah());
+            txtTotalPemasukkan.setText("Rp. " + opDao.getTotalIncome());
+            txtTotalPengeluaran.setText("Rp. " + doDao.getTotalOutcome());
+            txtSaldo.setText("Rp. " + df.getInfakYatimBalance());
+            txtTglPemasukkan.setText(pemberi.getTanggal());
+            txtTglPengeluaran.setText(penerima.getTanggal());
 
-            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

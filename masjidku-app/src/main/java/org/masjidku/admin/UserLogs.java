@@ -50,10 +50,8 @@ public class UserLogs implements Initializable {
     @FXML
     public void onResetListener() {
         dao = new Session();
-        if (dao.getConnection()){
-            dao.truncateData();
-            mainApp.showUserLog();
-        }
+        dao.truncateData();
+        mainApp.showUserLog();
     }
     /**
      * get User Data from DAO.
@@ -62,9 +60,7 @@ public class UserLogs implements Initializable {
      */
     private ObservableList<UserSession> getSessionData() {
         dao = new Session();
-        if (dao.getConnection()){
-            sessionData.addAll(dao.getAllSessions());
-        }
+        sessionData.addAll(dao.getAllSessions());
         return sessionData;
     }
     @Override

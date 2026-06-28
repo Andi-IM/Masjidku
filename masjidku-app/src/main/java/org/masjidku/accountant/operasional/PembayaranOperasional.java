@@ -74,12 +74,10 @@ public class PembayaranOperasional implements Initializable {
      */
     private ObservableList<Operasional> getDataOperasional() {
         OperationalService dao = ServiceLoader.load(OperationalService.class).findFirst().orElseThrow();
-        if (dao.getConnection()) {
-            try {
-                dataOperasional.addAll(dao.getAll());
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        try {
+            dataOperasional.addAll(dao.getAll());
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return dataOperasional;
     }
@@ -129,20 +127,16 @@ public class PembayaranOperasional implements Initializable {
         Operasional selectedItem = tableOperasional.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
             OperationalService dao = ServiceLoader.load(OperationalService.class).findFirst().orElseThrow();
-            if (dao.getConnection()) {
-                try {
-                    if (dao.isDataExist(selectedItem.getId())) {
-                        tableOperasional.getItems().remove(selectedItem);
-                        dao.delete(selectedItem.getId());
-                        alertInfo("Success", "User dihapus!");
-                    } else {
-                        alertError("SQL Error", "User tidak ditemukan!");
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
+            try {
+                if (dao.isDataExist(selectedItem.getId())) {
+                    tableOperasional.getItems().remove(selectedItem);
+                    dao.delete(selectedItem.getId());
+                    alertInfo("Success", "User dihapus!");
+                } else {
+                    alertError("SQL Error", "User tidak ditemukan!");
                 }
-            } else {
-                alertError("Offline", "Database tidak terhubung!");
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }

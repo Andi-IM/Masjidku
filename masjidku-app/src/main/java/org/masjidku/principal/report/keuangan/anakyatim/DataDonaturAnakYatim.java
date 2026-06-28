@@ -62,12 +62,10 @@ public class DataDonaturAnakYatim implements Initializable {
      */
     private ObservableList<DonasiAYatim> getDonaturData() {
         DonasiAYatimService dao = ServiceLoader.load(DonasiAYatimService.class).findFirst().orElseThrow();
-        if (dao.getConnection()) {
-            try {
-                donaturData.addAll(dao.getAll());
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        try {
+            donaturData.addAll(dao.getAll());
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return donaturData;
     }

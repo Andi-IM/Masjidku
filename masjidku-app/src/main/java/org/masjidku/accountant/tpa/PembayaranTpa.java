@@ -72,12 +72,10 @@ public class PembayaranTpa implements Initializable {
      */
     private ObservableList<TpaKeluar> getDataTpa() {
         TpaKeluarService dao = ServiceLoader.load(TpaKeluarService.class).findFirst().orElseThrow();
-        if (dao.getConnection()) {
-            try {
-                dataTpa.addAll(dao.getAll());
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        try {
+            dataTpa.addAll(dao.getAll());
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return dataTpa;
     }
@@ -126,20 +124,16 @@ public class PembayaranTpa implements Initializable {
         TpaKeluar selectedItem = tableTpa.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
             TpaKeluarService dao = ServiceLoader.load(TpaKeluarService.class).findFirst().orElseThrow();
-            if (dao.getConnection()) {
-                try {
-                    if (dao.isDataExist(selectedItem.getId())) {
-                        tableTpa.getItems().remove(selectedItem);
-                        dao.delete(selectedItem.getId());
-                        alertInfo("Success", "User dihapus!");
-                    } else {
-                        alertError("SQL Error", "User tidak ditemukan!");
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
+            try {
+                if (dao.isDataExist(selectedItem.getId())) {
+                    tableTpa.getItems().remove(selectedItem);
+                    dao.delete(selectedItem.getId());
+                    alertInfo("Success", "User dihapus!");
+                } else {
+                    alertError("SQL Error", "User tidak ditemukan!");
                 }
-            } else {
-                alertError("Offline", "Database tidak terhubung!");
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }

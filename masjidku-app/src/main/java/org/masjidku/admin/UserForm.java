@@ -125,23 +125,19 @@ public class UserForm implements Initializable {
             User user = new User(userid, username, jabatan, status, null, null);
             UserDao dao = new UserDao();
 
-            if (dao.getConnection()){
-               try {
-                   if (dao.isUserExist(userid)){
-                       dao.update(new String[]{user.getJabatan().toString, user.getStatus(), user.getUserId()});
-                       alertInfo("Success", "User telah diperbarui!");
-                   }
-                   else {
-                       dao.save(user);
-                       alertInfo("Success", "User ditambahkan!");
-                   }
-                   mainApp.showUser();
-               } catch (SQLException e){
-                   System.out.println(e.getSQLState());
+           try {
+               if (dao.isUserExist(userid)){
+                   dao.update(new String[]{user.getJabatan().toString, user.getStatus(), user.getUserId()});
+                   alertInfo("Success", "User telah diperbarui!");
                }
-            } else {
-                alertError("Error", "Database belum dinyalakan!");
-            }
+               else {
+                   dao.save(user);
+                   alertInfo("Success", "User ditambahkan!");
+               }
+               mainApp.showUser();
+           } catch (SQLException e){
+               System.out.println(e.getSQLState());
+           }
         } else {
             alertError("Error", "Data belum lengkap!");
         }

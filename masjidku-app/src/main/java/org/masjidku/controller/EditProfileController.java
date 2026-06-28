@@ -87,16 +87,12 @@ public class EditProfileController {
             UserProfileDao profileDao = new UserProfileDao();
 
             try {
-                if (dao.getConnection() && profileDao.getConnection()){
-                    if (dao.isUserExist(id)){
-                        dao.update(id, username, newPassword);
+                if (dao.isUserExist(id)){
+                    dao.update(id, username, newPassword);
 
-                        profileDao.update(new String[]{notel, alamat, id});
-                    }
-                    profileDao.update(new String[]{id, notel, alamat});
-                } else {
-                    alertError("DB Error", "Database belum dinyalakan!");
+                    profileDao.update(new String[]{notel, alamat, id});
                 }
+                profileDao.update(new String[]{id, notel, alamat});
             } catch (SQLException e) {
                 e.printStackTrace();
             }

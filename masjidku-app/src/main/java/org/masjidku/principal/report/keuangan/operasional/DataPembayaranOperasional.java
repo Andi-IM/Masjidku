@@ -56,12 +56,10 @@ public class DataPembayaranOperasional implements Initializable {
      */
     private ObservableList<Operasional> getDataOperasional() {
         OperationalService dao = ServiceLoader.load(OperationalService.class).findFirst().orElseThrow();
-        if (dao.getConnection()) {
-            try {
-                dataOperasional.addAll(dao.getAll());
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        try {
+            dataOperasional.addAll(dao.getAll());
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return dataOperasional;
     }

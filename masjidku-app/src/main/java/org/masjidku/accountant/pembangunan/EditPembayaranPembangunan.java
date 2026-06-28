@@ -97,26 +97,22 @@ public class EditPembayaranPembangunan {
             }
 
             PembangunanService dao = ServiceLoader.load(PembangunanService.class).findFirst().orElseThrow();
-            if (dao.getConnection()) {
-                try {
-                    if (dao.isDataExist(model.getId())) {
-                        dao.update(new String[]{
-                                model.getId(),
-                                model.getNama(),
-                                model.getKeterangan(),
-                                model.getJumlah(),
-                                model.getTanggal(),
-                                operator
-                        });
-                        alertInfo("Success", "Data telah diupdate");
-                    } else {
-                        dao.save(model);
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
+            try {
+                if (dao.isDataExist(model.getId())) {
+                    dao.update(new String[]{
+                            model.getId(),
+                            model.getNama(),
+                            model.getKeterangan(),
+                            model.getJumlah(),
+                            model.getTanggal(),
+                            operator
+                    });
+                    alertInfo("Success", "Data telah diupdate");
+                } else {
+                    dao.save(model);
                 }
-            } else {
-                alertError("Error", "Database belum ditanyakan!");
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         } else {
             alertError("Error", "Data belum lengkap!");

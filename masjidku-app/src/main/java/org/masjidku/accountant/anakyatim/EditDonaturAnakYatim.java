@@ -82,25 +82,21 @@ public class EditDonaturAnakYatim {
             }
 
             DonasiAYatimService dao = ServiceLoader.load(DonasiAYatimService.class).findFirst().orElseThrow();
-            if (dao.getConnection()) {
-                try {
-                    if (dao.isDonaturExist(donatur.getId())) {
-                        dao.update(new String[]{
-                                donatur.getId(),
-                                donatur.getDonatur(),
-                                donatur.getJumlah(),
-                                donatur.getTanggal(),
-                                operator
-                        });
-                        alertInfo("Success", "Data telah diupdate");
-                    } else {
-                        dao.save(donatur);
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
+            try {
+                if (dao.isDonaturExist(donatur.getId())) {
+                    dao.update(new String[]{
+                            donatur.getId(),
+                            donatur.getDonatur(),
+                            donatur.getJumlah(),
+                            donatur.getTanggal(),
+                            operator
+                    });
+                    alertInfo("Success", "Data telah diupdate");
+                } else {
+                    dao.save(donatur);
                 }
-            } else {
-                alertError("Error", "Database belum ditanyakan!");
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         } else {
             alertError("Error", "Data belum lengkap!");

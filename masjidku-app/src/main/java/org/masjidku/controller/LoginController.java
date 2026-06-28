@@ -78,40 +78,36 @@ public class LoginController {
                 .toString();
 
         try {
-            if (dao.getConnection()) {
-                if (dao.isUserExist(username, password)) {
-                    User user = dao.get(username);
+            if (dao.isUserExist(username, password)) {
+                User user = dao.get(username);
 
-                    if (user.getStatus().equals("Aktif")) {
-                        switch (user.getJabatan()) {
-                            case admin:
-                                mainApp.recordSession(user);
-                                mainApp.setAdminView();
-                                break;
-                            case ketua:
-                                mainApp.recordSession(user);
-                                mainApp.setPrincipalView();
-                                break;
-                            case sekretaris:
-                                mainApp.recordSession(user);
-                                mainApp.setSecretaryView();
-                                break;
-                            case bendahara:
-                                mainApp.recordSession(user);
-                                mainApp.setAccountantView();
-                                break;
-                            default:
-                                throw new IllegalArgumentException("Illegal Data Argument");
-                        }
-                    } else {
-                        alertError("Gagal Masuk", "Mohon maaf, akun Anda tidak lagi aktif. " +
-                                "Kontak Admin untuk informasi lebih lanjut.");
+                if (user.getStatus().equals("Aktif")) {
+                    switch (user.getJabatan()) {
+                        case admin:
+                            mainApp.recordSession(user);
+                            mainApp.setAdminView();
+                            break;
+                        case ketua:
+                            mainApp.recordSession(user);
+                            mainApp.setPrincipalView();
+                            break;
+                        case sekretaris:
+                            mainApp.recordSession(user);
+                            mainApp.setSecretaryView();
+                            break;
+                        case bendahara:
+                            mainApp.recordSession(user);
+                            mainApp.setAccountantView();
+                            break;
+                        default:
+                            throw new IllegalArgumentException("Illegal Data Argument");
                     }
                 } else {
-                    alertError("Gagal Masuk", "Periksa username dan password");
+                    alertError("Gagal Masuk", "Mohon maaf, akun Anda tidak lagi aktif. " +
+                            "Kontak Admin untuk informasi lebih lanjut.");
                 }
             } else {
-                alertError("Error DB", "Mohon Nyalakan Database!");
+                alertError("Gagal Masuk", "Periksa username dan password");
             }
         } catch (SQLException e) {
             System.err.println(e.getSQLState());

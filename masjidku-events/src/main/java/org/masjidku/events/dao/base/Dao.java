@@ -6,6 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public abstract class Dao<T> {
+
+    public Dao() {
+        getConnection();
+    }
     protected Connection con;
     protected PreparedStatement ps;
     protected ResultSet rs;

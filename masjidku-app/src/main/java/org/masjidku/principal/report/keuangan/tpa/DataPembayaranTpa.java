@@ -62,12 +62,10 @@ public class DataPembayaranTpa implements Initializable {
      */
     private ObservableList<TpaKeluar> getDataTpa() {
         TpaKeluarService dao = ServiceLoader.load(TpaKeluarService.class).findFirst().orElseThrow();
-        if (dao.getConnection()) {
-            try {
-                dataTpa.addAll(dao.getAll());
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        try {
+            dataTpa.addAll(dao.getAll());
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return dataTpa;
     }

@@ -91,25 +91,21 @@ public class EditDonaturPembangunan {
             }
 
             DonasiPembangunanService dao = ServiceLoader.load(DonasiPembangunanService.class).findFirst().orElseThrow();
-            if (dao.getConnection()) {
-                try {
-                    if (dao.isDonaturExist(donatur.getId())) {
-                        dao.update(new String[]{
-                                donatur.getId(),
-                                donatur.getNama(),
-                                donatur.getJumlah(),
-                                donatur.getTanggal(),
-                                operator
-                        });
-                        alertInfo("Success", "Data telah diupdate");
-                    } else {
-                        dao.save(donatur);
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
+            try {
+                if (dao.isDonaturExist(donatur.getId())) {
+                    dao.update(new String[]{
+                            donatur.getId(),
+                            donatur.getNama(),
+                            donatur.getJumlah(),
+                            donatur.getTanggal(),
+                            operator
+                    });
+                    alertInfo("Success", "Data telah diupdate");
+                } else {
+                    dao.save(donatur);
                 }
-            } else {
-                alertError("Error", "Database belum ditanyakan!");
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         } else {
             alertError("Error", "Data belum lengkap!");

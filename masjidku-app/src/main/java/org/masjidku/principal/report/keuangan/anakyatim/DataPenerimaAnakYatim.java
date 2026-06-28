@@ -65,12 +65,10 @@ public class DataPenerimaAnakYatim implements Initializable {
      */
     private ObservableList<AnakYatim> getDataAnak() {
         AnakYatimService dao = ServiceLoader.load(AnakYatimService.class).findFirst().orElseThrow();
-        if (dao.getConnection()) {
-            try {
-                dataAnak.addAll(dao.getAll());
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        try {
+            dataAnak.addAll(dao.getAll());
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return dataAnak;
     }

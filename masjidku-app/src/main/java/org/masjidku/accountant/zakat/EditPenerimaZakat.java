@@ -98,25 +98,21 @@ public class EditPenerimaZakat {
             }
 
             ZakatKeluarService dao = ServiceLoader.load(ZakatKeluarService.class).findFirst().orElseThrow();
-            if (dao.getConnection()) {
-                try {
-                    if (dao.isDataExist(penerima.getId())) {
-                        dao.update(new String[]{
-                                penerima.getId(),
-                                penerima.getNama(),
-                                penerima.getJumlah(),
-                                penerima.getTanggal(),
-                                operator
-                        });
-                        alertInfo("Success", "Data telah diupdate");
-                    } else {
-                        dao.save(penerima);
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
+            try {
+                if (dao.isDataExist(penerima.getId())) {
+                    dao.update(new String[]{
+                            penerima.getId(),
+                            penerima.getNama(),
+                            penerima.getJumlah(),
+                            penerima.getTanggal(),
+                            operator
+                    });
+                    alertInfo("Success", "Data telah diupdate");
+                } else {
+                    dao.save(penerima);
                 }
-            } else {
-                alertError("Error", "Database belum ditanyakan!");
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         } else {
             alertError("Error", "Data belum lengkap!");

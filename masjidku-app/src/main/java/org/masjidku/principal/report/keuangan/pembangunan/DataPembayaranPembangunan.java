@@ -64,12 +64,10 @@ public class DataPembayaranPembangunan implements Initializable {
      */
     private ObservableList<Pembangunan> getDataPembangunan() {
         PembangunanService dao = ServiceLoader.load(PembangunanService.class).findFirst().orElseThrow();
-        if (dao.getConnection()) {
-            try {
-                dataPembangunan.addAll(dao.getAll());
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        try {
+            dataPembangunan.addAll(dao.getAll());
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return dataPembangunan;
     }

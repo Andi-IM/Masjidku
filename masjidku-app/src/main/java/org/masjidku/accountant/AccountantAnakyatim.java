@@ -49,17 +49,15 @@ public class AccountantAnakyatim implements Initializable {
         DonasiAYatimService dayDao = ServiceLoader.load(DonasiAYatimService.class).findFirst().orElseThrow();
         AccountingFunctionsService df = ServiceLoader.load(AccountingFunctionsService.class).findFirst().orElseThrow();
         try {
-            if (ayDao.getConnection() && dayDao.getConnection() && df.getConnection()) {
-                AnakYatim penerima = ayDao.getLastRecord();
-                DonasiAYatim pemberi = dayDao.getLastRecord();
-                txtPemasukanTerakhir.setText("Rp. " + penerima.getJumlah());
-                txtPengeluaranTerakhir.setText("Rp. " + pemberi.getJumlah());
-                txtTotalPemasukkan.setText("Rp. " + dayDao.getTotalIncome());
-                txtTotalPengeluaran.setText("Rp. " + ayDao.getTotalOutcome());
-                txtSaldo.setText("Rp. " + df.getInfakYatimBalance());
-                txtTglPemasukkan.setText(pemberi.getTanggal());
-                txtTglPengeluaran.setText(penerima.getTanggal());
-            }
+            AnakYatim penerima = ayDao.getLastRecord();
+            DonasiAYatim pemberi = dayDao.getLastRecord();
+            txtPemasukanTerakhir.setText("Rp. " + penerima.getJumlah());
+            txtPengeluaranTerakhir.setText("Rp. " + pemberi.getJumlah());
+            txtTotalPemasukkan.setText("Rp. " + dayDao.getTotalIncome());
+            txtTotalPengeluaran.setText("Rp. " + ayDao.getTotalOutcome());
+            txtSaldo.setText("Rp. " + df.getInfakYatimBalance());
+            txtTglPemasukkan.setText(pemberi.getTanggal());
+            txtTglPengeluaran.setText(penerima.getTanggal());
         } catch (SQLException e) {
             e.printStackTrace();
         }

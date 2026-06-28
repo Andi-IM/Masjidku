@@ -64,18 +64,16 @@ public class AccountantZakat implements Initializable {
         AccountingFunctionsService df = ServiceLoader.load(AccountingFunctionsService.class).findFirst().orElseThrow();
 
         try {
-            if (zkDao.getConnection() && zmDao.getConnection() && df.getConnection()) {
-                ZakatKeluar penerima = zkDao.getLastRecord();
-                ZakatMasuk pemberi = zmDao.getLastRecord();
+            ZakatKeluar penerima = zkDao.getLastRecord();
+            ZakatMasuk pemberi = zmDao.getLastRecord();
 
-                txtPemasukanTerakhir.setText("Rp. " + pemberi.getJumlah() );
-                txtPengeluaranTerakhir.setText("Rp. " + penerima.getJumlah());
-                txtTotalPemasukkan.setText("Rp. " + zmDao.getTotalIncome());
-                txtTotalPengeluaran.setText("Rp. " + zkDao.gettotalOutcome());
-                txtSaldo.setText("Rp. " + df.getInfakYatimBalance());
-                txtTglPemasukkan.setText(pemberi.getTanggal());
-                txtTglPengeluaran.setText(penerima.getTanggal());
-            }
+            txtPemasukanTerakhir.setText("Rp. " + pemberi.getJumlah() );
+            txtPengeluaranTerakhir.setText("Rp. " + penerima.getJumlah());
+            txtTotalPemasukkan.setText("Rp. " + zmDao.getTotalIncome());
+            txtTotalPengeluaran.setText("Rp. " + zkDao.gettotalOutcome());
+            txtSaldo.setText("Rp. " + df.getInfakYatimBalance());
+            txtTglPemasukkan.setText(pemberi.getTanggal());
+            txtTglPengeluaran.setText(penerima.getTanggal());
         } catch (SQLException e) {
             e.printStackTrace();
         }

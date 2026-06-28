@@ -63,12 +63,10 @@ public class DataDonaturPembangunan implements Initializable {
      */
     private ObservableList<DonasiPembangunan> getDonaturData() {
         DonasiPembangunanService dao = ServiceLoader.load(DonasiPembangunanService.class).findFirst().orElseThrow();
-        if (dao.getConnection()) {
-            try {
-                donaturData.addAll(dao.getAll());
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        try {
+            donaturData.addAll(dao.getAll());
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return donaturData;
     }

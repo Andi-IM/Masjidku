@@ -72,12 +72,10 @@ public class PenerimaZakat implements Initializable {
      */
     private ObservableList<ZakatKeluar> getDataZakat() {
         ZakatKeluarService dao = ServiceLoader.load(ZakatKeluarService.class).findFirst().orElseThrow();
-        if (dao.getConnection()) {
-            try {
-                dataZakat.addAll(dao.getAll());
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        try {
+            dataZakat.addAll(dao.getAll());
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return dataZakat;
     }
@@ -126,20 +124,16 @@ public class PenerimaZakat implements Initializable {
         ZakatKeluar selectedItem = tableZakat.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
             ZakatKeluarService dao = ServiceLoader.load(ZakatKeluarService.class).findFirst().orElseThrow();
-            if (dao.getConnection()) {
-                try {
-                    if (dao.isDataExist(selectedItem.getId())) {
-                        tableZakat.getItems().remove(selectedItem);
-                        dao.delete(selectedItem.getId());
-                        alertInfo("Success", "User dihapus!");
-                    } else {
-                        alertError("SQL Error", "User tidak ditemukan!");
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
+            try {
+                if (dao.isDataExist(selectedItem.getId())) {
+                    tableZakat.getItems().remove(selectedItem);
+                    dao.delete(selectedItem.getId());
+                    alertInfo("Success", "User dihapus!");
+                } else {
+                    alertError("SQL Error", "User tidak ditemukan!");
                 }
-            } else {
-                alertError("Offline", "Database tidak terhubung!");
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }

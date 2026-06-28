@@ -49,12 +49,10 @@ public class ProfileController {
      */
     private UserProfile getUserData(String userid) {
         UserProfileDao dao = new UserProfileDao();
-        if (dao.getConnection()){
-            try {
-                return dao.getFullUserData(userid);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        try {
+            return dao.getFullUserData(userid);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
     }

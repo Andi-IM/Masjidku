@@ -61,12 +61,10 @@ public class DataPenerimaZakat implements Initializable {
      */
     private ObservableList<ZakatKeluar> getDataZakat() {
         ZakatKeluarService dao = ServiceLoader.load(ZakatKeluarService.class).findFirst().orElseThrow();
-        if (dao.getConnection()) {
-            try {
-                dataZakat.addAll(dao.getAll());
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        try {
+            dataZakat.addAll(dao.getAll());
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return dataZakat;
     }

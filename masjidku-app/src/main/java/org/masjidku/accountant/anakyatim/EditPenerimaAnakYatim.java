@@ -100,26 +100,22 @@ public class EditPenerimaAnakYatim {
             }
 
             AnakYatimService dao = ServiceLoader.load(AnakYatimService.class).findFirst().orElseThrow();
-            if (dao.getConnection()) {
-                try {
-                    if (dao.isAnakYatimExist(anakYatim.getId())) {
-                        dao.update(new String[]{
-                                anakYatim.getId(),
-                                anakYatim.getNama(),
-                                String.valueOf(anakYatim.getUsia()),
-                                anakYatim.getJumlah(),
-                                anakYatim.getTanggal(),
-                                operator
-                        });
-                        alertInfo("Success", "Data telah diupdate");
-                    } else {
-                        dao.save(anakYatim);
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
+            try {
+                if (dao.isAnakYatimExist(anakYatim.getId())) {
+                    dao.update(new String[]{
+                            anakYatim.getId(),
+                            anakYatim.getNama(),
+                            String.valueOf(anakYatim.getUsia()),
+                            anakYatim.getJumlah(),
+                            anakYatim.getTanggal(),
+                            operator
+                    });
+                    alertInfo("Success", "Data telah diupdate");
+                } else {
+                    dao.save(anakYatim);
                 }
-            } else {
-                alertError("Error", "Database belum ditanyakan!");
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         } else {
             alertError("Error", "Data belum lengkap!");

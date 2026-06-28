@@ -66,12 +66,10 @@ public class DataDonaturZakat implements Initializable {
      */
     private ObservableList<ZakatMasuk> getDonaturData() {
         ZakatMasukService dao = ServiceLoader.load(ZakatMasukService.class).findFirst().orElseThrow();
-        if (dao.getConnection()) {
-            try {
-                donaturData.addAll(dao.getAll());
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        try {
+            donaturData.addAll(dao.getAll());
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return donaturData;
     }
