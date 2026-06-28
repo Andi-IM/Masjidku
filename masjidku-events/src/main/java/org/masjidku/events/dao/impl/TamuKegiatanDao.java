@@ -60,21 +60,13 @@ public class TamuKegiatanDao extends Dao<TamuKegiatan> implements org.masjidku.e
     private final String ACTIVITY = "kegiatan";
     private final String GUEST = "tamu";
     
-    public TamuKegiatan get(String id) throws SQLException {
+    public TamuKegiatan get(String id) {
         ps = con.prepareStatement(QUERY_1);
         ps.setString(1, id);
         ResultSet rs = ps.executeQuery();
         TamuKegiatan model = null;
         if (rs.next()) {
-            model = new TamuKegiatan();
-            model.setIdUndangan(rs.getString(1));
-            model.setIdTamu(rs.getString(2));
-            model.setIdKegiatan(rs.getString(3));
-            model.setNama(rs.getString(4));
-            model.setAlamat(rs.getString(5));
-            model.setKegiatan(rs.getString(6));
-            model.setNotelp(rs.getString(7));
-            model.setKeterangan(rs.getString(8));
+            model = mapResultSetToModel(rs);
         }
         return model;
     }
@@ -84,15 +76,7 @@ public class TamuKegiatanDao extends Dao<TamuKegiatan> implements org.masjidku.e
         rs = ps.executeQuery();
         TamuKegiatan model;
         while (rs.next()) {
-            model = new TamuKegiatan();
-            model.setIdUndangan(rs.getString(1));
-            model.setIdTamu(rs.getString(2));
-            model.setIdKegiatan(rs.getString(3));
-            model.setNama(rs.getString(4));
-            model.setAlamat(rs.getString(5));
-            model.setKegiatan(rs.getString(6));
-            model.setNotelp(rs.getString(7));
-            model.setKeterangan(rs.getString(8));
+            model = mapResultSetToModel(rs);
             items.add(model);
         }
         return items;
@@ -113,4 +97,5 @@ public class TamuKegiatanDao extends Dao<TamuKegiatan> implements org.masjidku.e
         return rs.next();
     }
 }
+
 

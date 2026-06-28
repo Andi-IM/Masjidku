@@ -6,7 +6,7 @@ import org.masjidku.accounting.client.model.pembangunan.DonasiPembangunan;
 import java.sql.SQLException;
 
 public interface DonasiPembangunanService {
-    DonasiPembangunan get(String id) throws SQLException;
+    DonasiPembangunan get(String id);
 
     ObservableList<DonasiPembangunan> getAll() throws SQLException;
 

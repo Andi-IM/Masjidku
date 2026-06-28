@@ -76,8 +76,8 @@ operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
     @Override protected Button getBtnEdit() { return null; }
     @Override protected Button getBtnRemove() { return null; }
     @Override protected List<TpaMasuk> fetchAllData() throws java.sql.SQLException { return dao.getAll(); }
-    @Override protected boolean checkIfExist(TpaMasuk item) throws java.sql.SQLException { return false; }
-    @Override protected void deleteItem(TpaMasuk item) throws java.sql.SQLException {  }
+    @Override protected boolean checkIfExist(TpaMasuk item) { return false; }
+    @Override protected void deleteItem(TpaMasuk item) {  }
     @Override protected void handleEdit(TpaMasuk item) {  }
 }
 

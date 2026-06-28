@@ -75,8 +75,8 @@ public class ListTamu extends org.masjidku.accountant.BaseTableController<Tamu> 
     @Override protected Button getBtnEdit() { return null; }
     @Override protected Button getBtnRemove() { return null; }
     @Override protected List<Tamu> fetchAllData() throws java.sql.SQLException { return dao.getAll(); }
-    @Override protected boolean checkIfExist(Tamu item) throws java.sql.SQLException { return false; }
-    @Override protected void deleteItem(Tamu item) throws java.sql.SQLException {  }
+    @Override protected boolean checkIfExist(Tamu item) { return false; }
+    @Override protected void deleteItem(Tamu item) {  }
     @Override protected void handleEdit(Tamu item) {  }
 }
 

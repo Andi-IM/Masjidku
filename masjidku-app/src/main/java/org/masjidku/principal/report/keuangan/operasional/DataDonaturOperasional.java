@@ -97,12 +97,12 @@ public class DataDonaturOperasional extends org.masjidku.accountant.BaseTableCon
     }
 
     @Override
-    protected boolean checkIfExist(DonasiOperasional item) throws java.sql.SQLException {
+    protected boolean checkIfExist(DonasiOperasional item) {
         return false;
     }
 
     @Override
-    protected void deleteItem(DonasiOperasional item) throws java.sql.SQLException {
+    protected void deleteItem(DonasiOperasional item) {
     }
 
     @Override

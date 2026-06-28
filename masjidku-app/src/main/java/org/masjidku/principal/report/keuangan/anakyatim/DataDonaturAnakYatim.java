@@ -102,12 +102,12 @@ operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
     }
 
     @Override
-    protected boolean checkIfExist(DonasiAYatim item) throws java.sql.SQLException {
+    protected boolean checkIfExist(DonasiAYatim item) {
         return false;
     }
 
     @Override
-    protected void deleteItem(DonasiAYatim item) throws java.sql.SQLException {
+    protected void deleteItem(DonasiAYatim item) {
     }
 
     @Override

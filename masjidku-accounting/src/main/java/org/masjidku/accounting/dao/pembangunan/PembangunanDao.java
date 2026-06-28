@@ -109,7 +109,7 @@ public class PembangunanDao extends Dao<Pembangunan> {
         return model;
     }
 
-    public String getTotalIncome() throws SQLException { return executeGetTotal(QUERY_7); }
+    public String getTotalIncome() { return executeGetTotal(QUERY_7); }
 
     public boolean isDataExist(String id) throws SQLException { return executeCheckExists(QUERY_8, id); }
 }

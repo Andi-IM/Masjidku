@@ -80,8 +80,8 @@ operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
     @Override protected Button getBtnEdit() { return null; }
     @Override protected Button getBtnRemove() { return null; }
     @Override protected List<DonasiPembangunan> fetchAllData() throws java.sql.SQLException { return dao.getAll(); }
-    @Override protected boolean checkIfExist(DonasiPembangunan item) throws java.sql.SQLException { return false; }
-    @Override protected void deleteItem(DonasiPembangunan item) throws java.sql.SQLException {  }
+    @Override protected boolean checkIfExist(DonasiPembangunan item) { return false; }
+    @Override protected void deleteItem(DonasiPembangunan item) {  }
     @Override protected void handleEdit(DonasiPembangunan item) {  }
 }
 

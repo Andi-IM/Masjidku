@@ -86,22 +86,18 @@ public class EditDonaturOperasional {
                 donatur = new DonasiOperasional(nama, jumlah, tanggal, operator);
             }
 
-            try {
-                if (dao.isDonaturExist(donatur.getId())) {
-                    dao.update(new String[]{
-                            donatur.getId(),
-                            donatur.getDonatur(),
-                            donatur.getJumlah(),
-                            donatur.getTanggal(),
-                            operator
-                    });
-                    org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "Data telah diupdate");
-                } else {
-                    dao.save(donatur);
-                }
-            } catch (SQLException e) {
-                log.error("An error occurred", e);
-            }
+            org.masjidku.util.DaoHelper.saveOrUpdate(
+                () -> dao.isDonaturExist(donatur.getId()),
+                () -> dao.update(new String[]{
+                        donatur.getId(),
+                        donatur.getDonatur(),
+                        donatur.getJumlah(),
+                        donatur.getTanggal(),
+                        operator
+                }),
+                () -> dao.save(donatur),
+                dialogStage, log
+            );
         } else {
             org.masjidku.util.AlertHelper.alertError(dialogStage, "Error", "Data belum lengkap!");
         }
@@ -126,4 +122,5 @@ public class EditDonaturOperasional {
 
 
 }
+
 

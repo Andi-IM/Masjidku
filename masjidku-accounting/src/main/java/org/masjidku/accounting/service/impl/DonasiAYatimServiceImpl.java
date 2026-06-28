@@ -31,7 +31,7 @@ public class DonasiAYatimServiceImpl implements DonasiAYatimService {
     }
 
     @Override
-    public void delete(String id) throws SQLException {
+    public void delete(String id) {
         dao.delete(id);
     }
 

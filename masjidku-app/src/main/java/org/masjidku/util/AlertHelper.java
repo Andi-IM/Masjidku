@@ -1,7 +1,9 @@
 package org.masjidku.util;
 
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
 
 public class AlertHelper {
 
@@ -49,15 +51,14 @@ public class AlertHelper {
         java.util.List<T> get() throws java.sql.SQLException;
     }
 
-    public static <T> javafx.collections.ObservableList<T> loadTableData(
-            javafx.collections.ObservableList<T> targetList, 
+    public static <T> void loadTableData(
+            ObservableList<T> targetList,
             SQLDataSupplier<T> supplier, 
-            org.slf4j.Logger log) {
+            Logger log) {
         try {
             targetList.addAll(supplier.get());
         } catch (java.sql.SQLException e) {
             if (log != null) log.error("An error occurred", e);
         }
-        return targetList;
     }
 }

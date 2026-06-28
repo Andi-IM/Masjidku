@@ -11,7 +11,7 @@ public class DonasiPembangunanServiceImpl implements DonasiPembangunanService {
     private final DonasiPembangunanDao dao = new DonasiPembangunanDao();
 
     @Override
-    public DonasiPembangunan get(String id) throws SQLException {
+    public DonasiPembangunan get(String id) {
         return dao.get(id);
     }
 

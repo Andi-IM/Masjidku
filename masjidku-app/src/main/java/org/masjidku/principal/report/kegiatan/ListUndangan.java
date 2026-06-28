@@ -89,8 +89,8 @@ public class ListUndangan extends org.masjidku.accountant.BaseTableController<Ta
     @Override protected Button getBtnEdit() { return null; }
     @Override protected Button getBtnRemove() { return null; }
     @Override protected List<TamuKegiatan> fetchAllData() throws java.sql.SQLException { return dao.getAll(); }
-    @Override protected boolean checkIfExist(TamuKegiatan item) throws java.sql.SQLException { return false; }
-    @Override protected void deleteItem(TamuKegiatan item) throws java.sql.SQLException {  }
+    @Override protected boolean checkIfExist(TamuKegiatan item) { return false; }
+    @Override protected void deleteItem(TamuKegiatan item) {  }
     @Override protected void handleEdit(TamuKegiatan item) {  }
 }
 

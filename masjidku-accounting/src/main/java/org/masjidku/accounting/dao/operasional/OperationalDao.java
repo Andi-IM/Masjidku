@@ -94,22 +94,9 @@ public class OperationalDao extends Dao<Operasional> {
     public boolean isDataExist(String id) throws SQLException { return executeCheckExists(QUERY_6, id); }
 
     public Operasional getLastRecord() throws SQLException {
-        ps = con.prepareStatement(QUERY_7);
-        rs = ps.executeQuery();
-
-        Operasional model = null;
-        if (rs.next()){
-            model = new Operasional(
-                    rs.getString(1),
-                    rs.getString(2),
-                    rs.getString(3),
-                    rs.getString(4),
-                    rs.getString(5),
-                    rs.getString(6)
-            );
-        }
-        return model;
+        return executeGetLastRecord(QUERY_7, rs1 -> new Operasional(rs1.getString(1), rs1.getString(2), rs1.getString(3), rs1.getString(4), rs1.getString(5), rs1.getString(6)));
     }
 
     public String getTotalIncome() throws SQLException { return executeGetTotal(QUERY_8); }
 }
+

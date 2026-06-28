@@ -100,12 +100,12 @@ operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
     }
 
     @Override
-    protected boolean checkIfExist(Pembangunan item) throws java.sql.SQLException {
+    protected boolean checkIfExist(Pembangunan item) {
         return false;
     }
 
     @Override
-    protected void deleteItem(Pembangunan item) throws java.sql.SQLException {
+    protected void deleteItem(Pembangunan item) {
     }
 
     @Override

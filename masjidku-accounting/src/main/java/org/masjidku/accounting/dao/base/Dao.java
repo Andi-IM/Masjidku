@@ -58,3 +58,4 @@ public abstract class Dao<T> extends DaoFactory {
         ps.executeUpdate();
     }
 }
+

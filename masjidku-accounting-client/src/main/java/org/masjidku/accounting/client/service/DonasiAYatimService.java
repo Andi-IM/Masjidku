@@ -14,7 +14,7 @@ public interface DonasiAYatimService {
 
     void update(String[] params) throws SQLException;
 
-    void delete(String id) throws SQLException;
+    void delete(String id);
 
     DonasiAYatim getLastRecord() throws SQLException;
 

@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import org.masjidku.events.client.model.TamuKegiatan;
 
 public interface TamuKegiatanService {
-    TamuKegiatan get(String id) throws java.sql.SQLException;
+    TamuKegiatan get(String id);
 
     ObservableList<TamuKegiatan> getAll() throws java.sql.SQLException;
 

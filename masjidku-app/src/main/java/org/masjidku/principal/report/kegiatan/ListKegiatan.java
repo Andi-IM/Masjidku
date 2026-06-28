@@ -89,8 +89,8 @@ public class ListKegiatan extends org.masjidku.accountant.BaseTableController<Ke
     @Override protected Button getBtnEdit() { return null; }
     @Override protected Button getBtnRemove() { return null; }
     @Override protected List<Kegiatan> fetchAllData() throws java.sql.SQLException { return dao.getAll(); }
-    @Override protected boolean checkIfExist(Kegiatan item) throws java.sql.SQLException { return false; }
-    @Override protected void deleteItem(Kegiatan item) throws java.sql.SQLException {  }
+    @Override protected boolean checkIfExist(Kegiatan item) { return false; }
+    @Override protected void deleteItem(Kegiatan item) {  }
     @Override protected void handleEdit(Kegiatan item) {  }
 }
 
