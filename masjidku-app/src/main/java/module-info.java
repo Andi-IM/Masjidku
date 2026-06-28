@@ -2,7 +2,6 @@ open module main {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.base;
-    requires java.sql;
     requires org.masjidku.common;
     requires com.google.common;
     requires org.slf4j;
@@ -29,3 +28,4 @@ open module main {
     uses org.masjidku.events.client.service.TamuService;
     uses org.masjidku.events.client.service.TamuKegiatanService;
 }
+

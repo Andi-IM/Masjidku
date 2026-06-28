@@ -1,5 +1,4 @@
 module org.masjidku.accounting {
-    requires java.sql;
     requires org.masjidku.common;
     requires javafx.base;
     requires org.masjidku.accounting.client;
@@ -18,3 +17,4 @@ module org.masjidku.accounting {
     provides org.masjidku.accounting.client.service.ZakatMasukService with org.masjidku.accounting.service.impl.ZakatMasukServiceImpl;
     provides org.masjidku.accounting.client.service.AccountingFunctionsService with org.masjidku.accounting.service.impl.AccountingFunctionsServiceImpl;
 }
+
