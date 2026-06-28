@@ -18,25 +18,17 @@ package org.masjidku.secretary;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.masjidku.util.ServiceProvider;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import org.masjidku.accountant.BaseTableController;
+
 import java.util.List;
-import javafx.fxml.Initializable;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import org.masjidku.MainApp;
 import org.masjidku.events.client.model.Tamu;
 import org.masjidku.events.client.service.TamuService;
-
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.ResourceBundle;
 
 public class SecretaryTamu extends org.masjidku.accountant.BaseTableController<Tamu> {
     private static final Logger log = LoggerFactory.getLogger(SecretaryTamu.class);

@@ -19,7 +19,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.MainApp;
 import org.masjidku.accounting.client.model.zakat.ZakatMasuk;
 import org.masjidku.accounting.client.service.ZakatMasukService;
@@ -55,10 +54,8 @@ public class DonaturZakat extends org.masjidku.accountant.BaseTableController<Za
 
     @Override
     protected void setupTableColumns() {
-        donatur.setCellValueFactory(new PropertyValueFactory<>("donatur"));
-        jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));
-        tanggal.setCellValueFactory(new PropertyValueFactory<>("tanggal"));
-    }
+        org.masjidku.util.AlertHelper.setupInflowColumns(donatur, jumlah, tanggal);
+}
 
 
     @FXML

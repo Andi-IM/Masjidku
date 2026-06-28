@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.MainApp;
 import org.masjidku.accountant.BaseTableController;
 import org.masjidku.accounting.client.model.anakyatim.DonasiAYatim;
@@ -76,10 +75,8 @@ public class DonaturAnakYatim extends BaseTableController<DonasiAYatim> {
 
     @Override
     protected void setupTableColumns() {
-        donatur.setCellValueFactory(new PropertyValueFactory<>("donatur"));
-        jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));
-        tanggal.setCellValueFactory(new PropertyValueFactory<>("tanggal"));
-    }
+        org.masjidku.util.AlertHelper.setupInflowColumns(donatur, jumlah, tanggal);
+}
 
     @Override
     protected void handleEdit(DonasiAYatim item) {

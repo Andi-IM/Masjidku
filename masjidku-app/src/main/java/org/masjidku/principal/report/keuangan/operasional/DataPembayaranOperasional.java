@@ -53,11 +53,9 @@ public class DataPembayaranOperasional extends org.masjidku.accountant.BaseTable
 
     @Override
     protected void setupTableColumns() {
-        nama.setCellValueFactory(new PropertyValueFactory<>("tujuan"));
-        keterangan.setCellValueFactory(new PropertyValueFactory<>("keterangan"));
-        jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));
-        tanggal.setCellValueFactory(new PropertyValueFactory<>("tanggal"));
-        operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
+        org.masjidku.util.AlertHelper.setupOutflowColumns(nama, jumlah, tanggal);
+keterangan.setCellValueFactory(new PropertyValueFactory<>("keterangan"));
+operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
     }
 
     @FXML

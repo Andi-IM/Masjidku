@@ -53,10 +53,8 @@ public class DataDonaturAnakYatim extends org.masjidku.accountant.BaseTableContr
 
     @Override
     protected void setupTableColumns() {
-        donatur.setCellValueFactory(new PropertyValueFactory<>("donatur"));
-        jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));
-        tanggal.setCellValueFactory(new PropertyValueFactory<>("tanggal"));
-        operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
+        org.masjidku.util.AlertHelper.setupInflowColumns(donatur, jumlah, tanggal);
+operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
     }
 
 

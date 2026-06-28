@@ -58,7 +58,13 @@ public class ListTamu extends org.masjidku.accountant.BaseTableController<Tamu> 
 
     
 
-    @Override protected void setupTableColumns() {}
+    @Override 
+    protected void setupTableColumns() {
+        if (colNama != null) colNama.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("nama"));
+        if (colAlamat != null) colAlamat.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("alamat"));
+        if (colNotelp != null) colNotelp.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("notelp"));
+        if (colOperator != null) colOperator.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("operator"));
+    }
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }

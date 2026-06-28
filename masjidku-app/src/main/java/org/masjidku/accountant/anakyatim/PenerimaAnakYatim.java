@@ -58,11 +58,9 @@ public class PenerimaAnakYatim extends org.masjidku.accountant.BaseTableControll
 
     @Override
     protected void setupTableColumns() {
-        nama.setCellValueFactory(new PropertyValueFactory<>("tujuan"));
-        usia.setCellValueFactory(new PropertyValueFactory<>("usia"));
-        jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));
-        tanggal.setCellValueFactory(new PropertyValueFactory<>("tanggal"));
-    }
+        org.masjidku.util.AlertHelper.setupOutflowColumns(nama, jumlah, tanggal);
+usia.setCellValueFactory(new PropertyValueFactory<>("usia"));
+}
 
     @FXML
     public void onLogoutClick() {

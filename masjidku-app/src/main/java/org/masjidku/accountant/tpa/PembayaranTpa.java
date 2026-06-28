@@ -19,7 +19,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.MainApp;
 import org.masjidku.accounting.client.model.tpa.TpaKeluar;
 import org.masjidku.accounting.client.service.TpaKeluarService;
@@ -57,10 +56,8 @@ public class PembayaranTpa extends org.masjidku.accountant.BaseTableController<T
 
     @Override
     protected void setupTableColumns() {
-        nama.setCellValueFactory(new PropertyValueFactory<>("tujuan"));
-        jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));
-        tanggal.setCellValueFactory(new PropertyValueFactory<>("tanggal"));
-    }
+        org.masjidku.util.AlertHelper.setupOutflowColumns(nama, jumlah, tanggal);
+}
 
     @FXML
     public void onLogoutClick() {

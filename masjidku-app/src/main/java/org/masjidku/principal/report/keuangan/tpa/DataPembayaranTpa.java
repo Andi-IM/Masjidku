@@ -15,12 +15,10 @@
 
 package org.masjidku.principal.report.keuangan.tpa;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import org.masjidku.accountant.BaseTableController;
+
 import java.util.List;
-import javafx.fxml.Initializable;
+
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Button;
@@ -31,10 +29,6 @@ import org.masjidku.accounting.client.service.TpaKeluarService;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.ResourceBundle;
 
 public class DataPembayaranTpa extends org.masjidku.accountant.BaseTableController<TpaKeluar> {
     private static final Logger log = LoggerFactory.getLogger(DataPembayaranTpa.class);
@@ -62,10 +56,8 @@ public class DataPembayaranTpa extends org.masjidku.accountant.BaseTableControll
 
     @Override
     protected void setupTableColumns() {
-        nama.setCellValueFactory(new PropertyValueFactory<>("tujuan"));
-        jumlah.setCellValueFactory(new PropertyValueFactory<>("jumlah"));
-        tanggal.setCellValueFactory(new PropertyValueFactory<>("tanggal"));
-        operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
+        org.masjidku.util.AlertHelper.setupOutflowColumns(nama, jumlah, tanggal);
+operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
     }
 
     @FXML
