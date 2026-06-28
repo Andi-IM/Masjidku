@@ -32,6 +32,11 @@ dependencies {
     implementation(project(":masjidku-events-client"))
     implementation(project(":masjidku-reporting-client"))
     
+    // Service implementations (runtime)
+    runtimeOnly(project(":masjidku-accounting"))
+    runtimeOnly(project(":masjidku-events"))
+    runtimeOnly(project(":masjidku-reporting"))
+    
     // XML Bind
     implementation(libs.jaxb.api)
     implementation(libs.jetbrains.annotations)
