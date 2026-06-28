@@ -1,20 +1,16 @@
 package org.masjidku.accounting.service.impl;
-
 import org.masjidku.accounting.client.service.OperationalService;
 import org.masjidku.accounting.dao.operasional.OperationalDao;
 import javafx.collections.ObservableList;
 import java.sql.SQLException;
-import java.util.List;
 import org.masjidku.accounting.client.model.*;
 import org.masjidku.accounting.client.model.anakyatim.*;
 import org.masjidku.accounting.client.model.operasional.*;
 import org.masjidku.accounting.client.model.pembangunan.*;
 import org.masjidku.accounting.client.model.tpa.*;
 import org.masjidku.accounting.client.model.zakat.*;
-
 public class OperationalServiceImpl implements OperationalService {
     private final OperationalDao dao = new OperationalDao();
-
     @Override
     public Operasional get(String id) throws SQLException {
         return dao.get(id);    }
@@ -39,7 +35,6 @@ public class OperationalServiceImpl implements OperationalService {
     @Override
     public String getTotalIncome() throws SQLException {
         return dao.getTotalIncome();    }
-
     @Override
     public boolean getConnection() { return dao.getConnection(); }
 }

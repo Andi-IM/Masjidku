@@ -12,35 +12,25 @@
  *                                THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
  *                                HEREUNDER.
  */
-
 package org.masjidku.principal;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.input.MouseEvent;
 import org.masjidku.MainApp;
-
 public class PrincipalRoot {
     @FXML
     public ToggleGroup groupButton;
     private MainApp mainApp;
-
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
-
     @FXML
     public void homeAction() { mainApp.setPrincipalView(); }
-
     @FXML
     public void laporanManage() { mainApp.showLaporan(); }
-
     @FXML
     public void readData() { mainApp.showData(); }
-
     @FXML
     public void aboutAction() { mainApp.showAbout(); }
-
     @FXML
     public void profileAction() { mainApp.showProfile(); }
 }

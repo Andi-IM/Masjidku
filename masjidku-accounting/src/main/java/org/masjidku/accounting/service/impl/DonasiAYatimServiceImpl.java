@@ -1,20 +1,16 @@
 package org.masjidku.accounting.service.impl;
-
 import org.masjidku.accounting.client.service.DonasiAYatimService;
 import org.masjidku.accounting.dao.anakyatim.DonasiAYatimDao;
 import javafx.collections.ObservableList;
 import java.sql.SQLException;
-import java.util.List;
 import org.masjidku.accounting.client.model.*;
 import org.masjidku.accounting.client.model.anakyatim.*;
 import org.masjidku.accounting.client.model.operasional.*;
 import org.masjidku.accounting.client.model.pembangunan.*;
 import org.masjidku.accounting.client.model.tpa.*;
 import org.masjidku.accounting.client.model.zakat.*;
-
 public class DonasiAYatimServiceImpl implements DonasiAYatimService {
     private final DonasiAYatimDao dao = new DonasiAYatimDao();
-
     @Override
     public DonasiAYatim get(String id) throws SQLException {
         return dao.get(id);    }
@@ -39,7 +35,6 @@ public class DonasiAYatimServiceImpl implements DonasiAYatimService {
     @Override
     public boolean isDonaturExist(String id) throws SQLException {
         return dao.isDonaturExist(id);    }
-
     @Override
     public boolean getConnection() { return dao.getConnection(); }
 }

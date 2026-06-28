@@ -12,25 +12,19 @@
  *                                THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
  *                                HEREUNDER.
  */
-
 package org.masjidku.accountant;
-
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import org.masjidku.MainApp;
 import org.masjidku.accounting.client.model.anakyatim.AnakYatim;
 import org.masjidku.accounting.client.model.anakyatim.DonasiAYatim;
-
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-
 public class AccountantAnakyatim implements Initializable {
-
     @FXML
     public Text txtPemasukanTerakhir;
     @FXML
@@ -45,24 +39,19 @@ public class AccountantAnakyatim implements Initializable {
     public Text txtSaldo;
     @FXML
     public Text txtTglPengeluaran;
-
     private MainApp mainApp;
-
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         AnakYatimService ayDao = ServiceLoader.load(AnakYatimService.class).findFirst().orElseThrow();
         DonasiAYatimService dayDao = ServiceLoader.load(DonasiAYatimService.class).findFirst().orElseThrow();
         AccountingFunctionsService df = ServiceLoader.load(AccountingFunctionsService.class).findFirst().orElseThrow();
-
         try {
             if (ayDao.getConnection() && dayDao.getConnection() && df.getConnection()) {
                 AnakYatim penerima = ayDao.getLastRecord();
                 DonasiAYatim pemberi = dayDao.getLastRecord();
-
                 txtPemasukanTerakhir.setText("Rp. " + penerima.getJumlah());
                 txtPengeluaranTerakhir.setText("Rp. " + pemberi.getJumlah());
                 txtTotalPemasukkan.setText("Rp. " + dayDao.getTotalIncome());
@@ -70,20 +59,15 @@ public class AccountantAnakyatim implements Initializable {
                 txtSaldo.setText("Rp. " + df.getInfakYatimBalance());
                 txtTglPemasukkan.setText(pemberi.getTanggal());
                 txtTglPengeluaran.setText(penerima.getTanggal());
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
-
     @FXML
     public void onLogoutClick() { mainApp.onLogoutAction(); }
-
     @FXML
     public void onKelolaDonasiAYatim() {  mainApp.showDonasiAYatim(); }
-
     @FXML
     public void onKelolaDanaAYatim() { mainApp.showDaftarAnakYatim(); }
 }

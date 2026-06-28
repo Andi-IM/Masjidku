@@ -1,20 +1,16 @@
 package org.masjidku.accounting.service.impl;
-
 import org.masjidku.accounting.client.service.DonasiOperationalService;
 import org.masjidku.accounting.dao.operasional.DonasiOperationalDao;
 import javafx.collections.ObservableList;
 import java.sql.SQLException;
-import java.util.List;
 import org.masjidku.accounting.client.model.*;
 import org.masjidku.accounting.client.model.anakyatim.*;
 import org.masjidku.accounting.client.model.operasional.*;
 import org.masjidku.accounting.client.model.pembangunan.*;
 import org.masjidku.accounting.client.model.tpa.*;
 import org.masjidku.accounting.client.model.zakat.*;
-
 public class DonasiOperationalServiceImpl implements DonasiOperationalService {
     private final DonasiOperationalDao dao = new DonasiOperationalDao();
-
     @Override
     public DonasiOperasional get(String id) throws SQLException {
         return dao.get(id);    }
@@ -39,7 +35,6 @@ public class DonasiOperationalServiceImpl implements DonasiOperationalService {
     @Override
     public String getTotalOutcome() throws SQLException {
         return dao.getTotalOutcome();    }
-
     @Override
     public boolean getConnection() { return dao.getConnection(); }
 }

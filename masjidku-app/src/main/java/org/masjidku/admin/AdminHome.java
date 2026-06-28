@@ -12,31 +12,23 @@
  *                                THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
  *                                HEREUNDER.
  */
-
 package org.masjidku.admin;
-
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 import org.masjidku.MainApp;
-import org.masjidku.model.user.User;
-
 public class AdminHome {
     @FXML
     public Text greeting;
-
     private MainApp mainApp;
-
     public void setMainApp(MainApp mainApp) {
         String username = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         greeting.setText("Bapak "+username);
     }
-
     @FXML
     public void onLogoutClick() {
         mainApp.onLogoutAction();
     }
-
     @FXML
     public void onKelolaPenggunaClick() { mainApp.showUser(); }
 }

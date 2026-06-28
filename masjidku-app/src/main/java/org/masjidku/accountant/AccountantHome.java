@@ -12,26 +12,20 @@
  *                                THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
  *                                HEREUNDER.
  */
-
 package org.masjidku.accountant;
-
-import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 import org.masjidku.MainApp;
-
 public class AccountantHome {
     @FXML
     private Text greeting;
     private MainApp mainApp;
-
     public void setMainApp(MainApp mainApp) {
         String username = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         greeting.setText(username);
     }
-
     @FXML
     public void onLogoutClick() { mainApp.onLogoutAction(); }
 }

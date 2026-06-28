@@ -12,28 +12,20 @@
  *                                THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
  *                                HEREUNDER.
  */
-
 package org.masjidku.events.dao.impl;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import org.masjidku.events.client.model.TamuKegiatan;
-import org.masjidku.events.client.model.Tamu;
-import org.masjidku.events.client.model.Kegiatan;
 import org.masjidku.events.dao.base.Dao;
 public class TamuKegiatanDao extends Dao<TamuKegiatan> implements org.masjidku.events.client.service.TamuKegiatanService {
     public TamuKegiatanDao() {
         getConnection();
     }
-
     private final String ACTIVITY = "kegiatan";
     private final String GUEST = "tamu";
     private final String TABLE = "tamukegiatan";
-
     public TamuKegiatan get(String id) throws SQLException {
         query = "SELECT " +
                 "id_undangan, " +
@@ -50,11 +42,9 @@ public class TamuKegiatanDao extends Dao<TamuKegiatan> implements org.masjidku.e
                 "INNER JOIN " + ACTIVITY + " k " +
                 "ON tamukegiatan.id_kegiatan = k.kegiatanID " +
                 "WHERE id_undangan=?";
-
         ps = con.prepareStatement(query);
         ps.setString(1, id);
         ResultSet rs = ps.executeQuery();
-
         TamuKegiatan model = null;
         if (rs.next()) {
             model = new TamuKegiatan();
@@ -69,7 +59,6 @@ public class TamuKegiatanDao extends Dao<TamuKegiatan> implements org.masjidku.e
         }
         return model;
     }
-
     public ObservableList<TamuKegiatan> getAll() throws SQLException {
         ObservableList<TamuKegiatan> items = FXCollections.observableArrayList();
         query = "SELECT " +
@@ -88,7 +77,6 @@ public class TamuKegiatanDao extends Dao<TamuKegiatan> implements org.masjidku.e
                 "ON tamukegiatan.id_kegiatan = k.kegiatanID";
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
-
         TamuKegiatan model;
         while (rs.next()) {
             model = new TamuKegiatan();
@@ -104,13 +92,10 @@ public class TamuKegiatanDao extends Dao<TamuKegiatan> implements org.masjidku.e
         }
         return items;
     }
-
     public void save(TamuKegiatan tamuKegiatan) throws SQLException {
     }
-
     public void save(String idKegiatan, String idTamu, String keterangan, String opeartor) throws SQLException {
         String query = "INSERT INTO " + TABLE + "(id_kegiatan, id_tamu, keterangan, operator) VALUES(?,?,?,?)";
-
         ps = con.prepareStatement(query);
         ps.setString(1, idKegiatan);
         ps.setString(2, idTamu);
@@ -118,10 +103,8 @@ public class TamuKegiatanDao extends Dao<TamuKegiatan> implements org.masjidku.e
         ps.setString(4, opeartor);
         ps.executeUpdate();
     }
-
     public void update(String[] params) throws SQLException {
         String query = "UPDATE " + TABLE + " SET keterangan=? WHERE id_tamu=? and id_kegiatan=? and id_undangan=?";
-
         ps = con.prepareStatement(query);
         ps.setString(1, params[0]);
         ps.setString(2, params[1]);
@@ -129,14 +112,12 @@ public class TamuKegiatanDao extends Dao<TamuKegiatan> implements org.masjidku.e
         ps.setString(4, params[3]);
         ps.executeUpdate();
     }
-
     public void delete(String id) throws SQLException {
         String query = "DELETE FROM " + TABLE + " WHERE id_undangan=?";
         ps = con.prepareStatement(query);
         ps.setString(1, id);
         ps.executeUpdate();
     }
-
     public boolean isUndanganExist(String id) throws SQLException {
         String query = "SELECT id_undangan FROM " + TABLE + " WHERE id_undangan=?";
         ps = con.prepareStatement(query);

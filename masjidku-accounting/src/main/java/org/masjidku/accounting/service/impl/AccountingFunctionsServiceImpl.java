@@ -1,20 +1,15 @@
 package org.masjidku.accounting.service.impl;
-
 import org.masjidku.accounting.client.service.AccountingFunctionsService;
 import org.masjidku.accounting.dao.DaoFunctions;
-import javafx.collections.ObservableList;
 import java.sql.SQLException;
-import java.util.List;
 import org.masjidku.accounting.client.model.*;
 import org.masjidku.accounting.client.model.anakyatim.*;
 import org.masjidku.accounting.client.model.operasional.*;
 import org.masjidku.accounting.client.model.pembangunan.*;
 import org.masjidku.accounting.client.model.tpa.*;
 import org.masjidku.accounting.client.model.zakat.*;
-
 public class AccountingFunctionsServiceImpl implements AccountingFunctionsService {
     private final DaoFunctions dao = new DaoFunctions();
-
     @Override
     public String getInfakYatimBalance() throws SQLException {
         return dao.getInfakYatimBalance();    }
@@ -30,7 +25,6 @@ public class AccountingFunctionsServiceImpl implements AccountingFunctionsServic
     @Override
     public String getZakatBalance() throws SQLException {
         return dao.getZakatBalance();    }
-
     @Override
     public boolean getConnection() { return dao.getConnection(); }
 }

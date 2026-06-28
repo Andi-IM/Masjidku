@@ -1,20 +1,16 @@
 package org.masjidku.accounting.service.impl;
-
 import org.masjidku.accounting.client.service.AnakYatimService;
 import org.masjidku.accounting.dao.anakyatim.AnakYatimDao;
 import javafx.collections.ObservableList;
 import java.sql.SQLException;
-import java.util.List;
 import org.masjidku.accounting.client.model.*;
 import org.masjidku.accounting.client.model.anakyatim.*;
 import org.masjidku.accounting.client.model.operasional.*;
 import org.masjidku.accounting.client.model.pembangunan.*;
 import org.masjidku.accounting.client.model.tpa.*;
 import org.masjidku.accounting.client.model.zakat.*;
-
 public class AnakYatimServiceImpl implements AnakYatimService {
     private final AnakYatimDao dao = new AnakYatimDao();
-
     @Override
     public AnakYatim get(String id) throws SQLException {
         return dao.get(id);    }
@@ -39,7 +35,6 @@ public class AnakYatimServiceImpl implements AnakYatimService {
     @Override
     public boolean isAnakYatimExist(String id) throws SQLException {
         return dao.isAnakYatimExist(id);    }
-
     @Override
     public boolean getConnection() { return dao.getConnection(); }
 }

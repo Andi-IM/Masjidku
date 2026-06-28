@@ -72,7 +72,7 @@ public class SecretaryUndanganForm implements Initializable {
         tamuDao = java.util.ServiceLoader.load(TamuService.class).findFirst().orElseThrow();
         kegiatanDao = java.util.ServiceLoader.load(KegiatanService.class).findFirst().orElseThrow();
         try {
-            if (true && true){
+            if (true){
                 listTamu.removeAll();
                 listKegiatan.removeAll();
 
@@ -115,7 +115,7 @@ public class SecretaryUndanganForm implements Initializable {
         tamuKegiatanService = java.util.ServiceLoader.load(TamuKegiatanService.class).findFirst().orElseThrow();
 
         TamuKegiatan model = new TamuKegiatan();
-        if (true && true){
+        if (true){
             try {
                 if (tamuKegiatanService.isUndanganExist(model.getIdKegiatan())){
                     tamuKegiatanService.update(new String[]{model.getKeterangan(), model.getIdTamu(), model.getKegiatan(), model.getIdUndangan()});

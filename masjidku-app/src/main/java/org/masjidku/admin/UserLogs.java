@@ -12,9 +12,7 @@
  *                                THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
  *                                HEREUNDER.
  */
-
 package org.masjidku.admin;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -22,20 +20,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import org.masjidku.MainApp;
 import org.masjidku.model.session.Session;
-import org.masjidku.model.session.SessionDao;
 import org.masjidku.model.session.UserSession;
 import org.masjidku.model.user.User;
-import org.masjidku.model.user.UserDao;
-
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
-
 public class UserLogs implements Initializable {
-
     @FXML
     public TableView<UserSession> activityTable;
     @FXML
@@ -44,23 +35,18 @@ public class UserLogs implements Initializable {
     public TableColumn<UserSession, String> timestamp;
     @FXML
     public TableColumn<UserSession, String> duration;
-
     private MainApp mainApp;
     private Session dao;
-
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
-
     /**
      * The data as an observable list of Sessions.
      */
     private final ObservableList<UserSession> sessionData =
             FXCollections.observableArrayList();
-
     @FXML
     public void onMouseClicked() { }
-
     @FXML
     public void onResetListener() {
         dao = new Session();
@@ -69,7 +55,6 @@ public class UserLogs implements Initializable {
             mainApp.showUserLog();
         }
     }
-
     /**
      * get User Data from DAO.
      *
@@ -82,7 +67,6 @@ public class UserLogs implements Initializable {
         }
         return sessionData;
     }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         activityTable.setItems(getSessionData());
@@ -90,6 +74,5 @@ public class UserLogs implements Initializable {
         timestamp.setCellValueFactory(new PropertyValueFactory<>("timestamp"));
         duration.setCellValueFactory(new PropertyValueFactory<>("duration"));
     }
-
     public void onLogoutClick() { mainApp.onLogoutAction(); }
 }

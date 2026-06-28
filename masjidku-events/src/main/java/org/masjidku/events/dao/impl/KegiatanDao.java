@@ -12,36 +12,24 @@
  *                                THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
  *                                HEREUNDER.
  */
-
 package org.masjidku.events.dao.impl;
-
-import java.util.ServiceLoader;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.masjidku.events.dao.base.Dao;
-
-
 import java.sql.SQLException;
-
 import org.masjidku.events.client.service.KegiatanService;
 import org.masjidku.events.client.model.Kegiatan;
 public class KegiatanDao extends Dao<Kegiatan> implements KegiatanService {
     public KegiatanDao() {
         getConnection();
     }
-
-
     private final String TABLE = "kegiatan";
-
     @Override
     public Kegiatan get(String id) throws SQLException {
         query = "SELECT * FROM "+TABLE+" WHERE kegiatanID=?";
-
         ps = con.prepareStatement(query);
         ps.setString(1, id);
         rs = ps.executeQuery();
-
         Kegiatan model = null;
         if(rs.next()){
             model = new Kegiatan(
@@ -55,15 +43,12 @@ public class KegiatanDao extends Dao<Kegiatan> implements KegiatanService {
         }
         return model;
     }
-
     @Override
     public ObservableList<Kegiatan> getAll() throws SQLException {
         ObservableList<Kegiatan> items = FXCollections.observableArrayList();
-
         query = "SELECT * FROM "+TABLE;
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
-
         Kegiatan kegiatan;
         while(rs.next()){
             kegiatan = new Kegiatan(
@@ -78,11 +63,9 @@ public class KegiatanDao extends Dao<Kegiatan> implements KegiatanService {
         }
         return items;
     }
-
     @Override
     public void save(Kegiatan kegiatan) throws SQLException {
         query = "INSERT INTO "+TABLE+ "(kegiatanNama, kegiatanWaktu, kegiatanTanggal, kegiatanTempat, operator) VALUES(?,?,?,?,?)";
-
         ps = con.prepareStatement(query);
         ps.setString(1, kegiatan.getNama());
         ps.setString(2, kegiatan.getWaktu());
@@ -91,11 +74,9 @@ public class KegiatanDao extends Dao<Kegiatan> implements KegiatanService {
         ps.setString(5, kegiatan.getOperator());
         ps.executeUpdate();
     }
-
     @Override
     public void update(String[] params) throws SQLException {
         query = "UPDATE "+TABLE+" SET kegiatanNama=?, kegiatanWaktu=?, kegiatanTanggal=?, kegiatanTempat=?, operator=? WHERE kegiatanID=?";
-
         ps = con.prepareStatement(query);
         ps.setString(1, params[0]);
         ps.setString(2, params[1]);
@@ -104,7 +85,6 @@ public class KegiatanDao extends Dao<Kegiatan> implements KegiatanService {
         ps.setString(5, params[4]);
         ps.executeUpdate();
     }
-
     @Override
     public void delete(String id) throws SQLException {
         query = "DELETE FROM "+TABLE+" WHERE kegiatanID=?";
@@ -112,23 +92,18 @@ public class KegiatanDao extends Dao<Kegiatan> implements KegiatanService {
         ps.setString(1, id);
         ps.executeUpdate();
     }
-
     public boolean isKegiatanExist(String id) throws SQLException {
         query = "SELECT kegiatanID FROM "+TABLE+" WHERE kegiatanID=?";
         ps = con.prepareStatement(query);
         ps.setString(1, id);
         rs = ps.executeQuery();
-
         return rs.next();
     }
-
     public ObservableList<String> getAllKegiatanName() throws SQLException {
         ObservableList<String> items = FXCollections.observableArrayList();
-
         query = "SELECT * FROM "+TABLE;
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
-
         String name;
         while(rs.next()){
             name = rs.getString(2);
@@ -136,25 +111,20 @@ public class KegiatanDao extends Dao<Kegiatan> implements KegiatanService {
         }
         return items;
     }
-
     public String getIdByName(String name) throws SQLException {
         query = "SELECT kegiatanID FROM "+TABLE+" WHERE kegiatanNama=?";
-
         ps = con.prepareStatement(query);
         ps.setString(1, name);
         rs = ps.executeQuery();
-
         if(rs.next()){
             return rs.getString(1);
         }
         return "";
     }
-
     public Kegiatan getLastRecord() throws SQLException {
         query = "SELECT * FROM "+TABLE+" ORDER BY kegiatanID DESC LIMIT 1";
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
-
         Kegiatan model = new Kegiatan();
         if (rs.next()){
             model = new Kegiatan();
@@ -167,16 +137,13 @@ public class KegiatanDao extends Dao<Kegiatan> implements KegiatanService {
         }
         return model;
     }
-
     public String getTotalKegiatan() throws SQLException {
         query = "SELECT IFNULL(COUNT(kegiatanID),0) FROM "+TABLE;
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
-
         if (rs.next()){
             return rs.getString(1);
         }
         return null;
     }
-
 }
