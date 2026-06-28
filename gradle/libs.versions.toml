@@ -34,7 +34,7 @@ archunit-junit5 = { group = "com.tngtech.archunit", name = "archunit-junit5", ve
 
 # logging
 slf4j = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4j" }
-logback = { group = "ch.gos.logback", name = "logback-classic", version.ref = "logback" }
+logback = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }
 
 
 [plugins]
