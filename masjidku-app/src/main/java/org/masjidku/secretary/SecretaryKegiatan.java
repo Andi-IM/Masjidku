@@ -86,12 +86,10 @@ public class SecretaryKegiatan implements Initializable {
     }
 
     private ObservableList<Kegiatan> getKegiatanData() {
-        if (true){
-            try {
-                kegiatanData.addAll(dao.getAll());
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        try {
+            kegiatanData.addAll(dao.getAll());
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return kegiatanData;
     }
@@ -113,20 +111,16 @@ public class SecretaryKegiatan implements Initializable {
     public void onRemoveListener() {
         Kegiatan selectedKegiatan = tblKegiatan.getSelectionModel().getSelectedItem();
         if (selectedKegiatan != null){
-            if (true){
-                try {
-                    if (dao.isKegiatanExist(selectedKegiatan.getIdKegiatan())){
-                        tblKegiatan.getItems().remove(selectedKegiatan);
-                        dao.delete(selectedKegiatan.getIdKegiatan());
-                        alertInfo("Success", "Kegiatan Dihapus!");
-                    } else {
-                        alertError("SQL Error", "Kegiatan tidak ditemukan!");
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
+            try {
+                if (dao.isKegiatanExist(selectedKegiatan.getIdKegiatan())){
+                    tblKegiatan.getItems().remove(selectedKegiatan);
+                    dao.delete(selectedKegiatan.getIdKegiatan());
+                    alertInfo("Success", "Kegiatan Dihapus!");
+                } else {
+                    alertError("SQL Error", "Kegiatan tidak ditemukan!");
                 }
-            } else {
-                alertError("Offline", "Database tidak terhuhung!");
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }

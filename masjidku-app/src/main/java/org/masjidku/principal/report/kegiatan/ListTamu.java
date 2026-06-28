@@ -64,12 +64,10 @@ public class ListTamu implements Initializable {
     public ListTamu() { dao = ServiceProvider.get(TamuService.class); }
 
     private ObservableList<Tamu> getTamuData() {
-        if (true){
-            try {
-                tamuData.addAll(dao.getAll());
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        try {
+            tamuData.addAll(dao.getAll());
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return tamuData;
     }

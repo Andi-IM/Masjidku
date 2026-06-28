@@ -86,35 +86,21 @@ public class SecretaryTamuForm {
                 tamu = new Tamu(namaTamu, alamat, noTelp, operator);
             }
 
-            if (true){
-                try {
-                    if (dao.isTamuExist(tamu.getIdTamu())){
-                        dao.update(new String[]{
-                                tamu.getNama(),
-                                tamu.getAlamat(),
-                                tamu.getNotelp(),
-                                operator,
-                                tamu.getIdTamu()
-                        });
-                        alertInfo("Success","Tamu telah diupdate");
-                    } else {
-                        dao.save(tamu);
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
+            try {
+                if (dao.isTamuExist(tamu.getIdTamu())){
+                    dao.update(new String[]{
+                            tamu.getNama(),
+                            tamu.getAlamat(),
+                            tamu.getNotelp(),
+                            operator,
+                            tamu.getIdTamu()
+                    });
+                    alertInfo("Success","Tamu telah diupdate");
+                } else {
+                    dao.save(tamu);
                 }
-            } else {
-            alertError("Error", "Database belum ditanyakan!");
-        }
-    } else {
-        alertError("Error", "Data belum lengkap!");
-    }
-    }
-
-    private boolean formValidation() {
-        if (!txtNamaTamu.getText().isBlank()){
-            if (!txtAlamat.getText().isBlank()){
-                return !txtNomorTelp.getText().isBlank();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
         return false;

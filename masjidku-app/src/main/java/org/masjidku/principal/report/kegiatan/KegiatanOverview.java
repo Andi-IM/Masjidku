@@ -58,12 +58,10 @@ public class KegiatanOverview implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            if (true){
-                Kegiatan model = dao.getLastRecord();
+            Kegiatan model = dao.getLastRecord();
 
-                txtKegiatanTerakhir.setText(model.getNama());
-                txtTotalKegiatan.setText(dao.getTotalKegiatan());
-            }
+            txtKegiatanTerakhir.setText(model.getNama());
+            txtTotalKegiatan.setText(dao.getTotalKegiatan());
         } catch (SQLException e) {
             e.printStackTrace();
         }

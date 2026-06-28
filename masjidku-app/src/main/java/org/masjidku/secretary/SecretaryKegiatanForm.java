@@ -79,28 +79,24 @@ public class SecretaryKegiatanForm {
 
             kegiatan = new Kegiatan(namaKegiatan, waktu, tanggal, tempat, operator);
 
-            if (true) {
-                try {
-                    if (dao.isKegiatanExist(kegiatan.getIdKegiatan())) {
-                        dao.update(new String[]{
-                                kegiatan.getNama(),
-                                kegiatan.getWaktu(),
-                                kegiatan.getTanggal(),
-                                kegiatan.getTempat(),
-                                operator,
-                                kegiatan.getIdKegiatan()
-                        });
-                        alertInfo("Success", "Kegiatan telah diperbarui!");
-                    } else {
-                        dao.save(kegiatan);
-                        alertInfo("Success", "Kegiatan telah ditambahkan!");
-                    }
-                    mainApp.showKegiatan();
-                } catch (SQLException e) {
-                    e.printStackTrace();
+            try {
+                if (dao.isKegiatanExist(kegiatan.getIdKegiatan())) {
+                    dao.update(new String[]{
+                            kegiatan.getNama(),
+                            kegiatan.getWaktu(),
+                            kegiatan.getTanggal(),
+                            kegiatan.getTempat(),
+                            operator,
+                            kegiatan.getIdKegiatan()
+                    });
+                    alertInfo("Success", "Kegiatan telah diperbarui!");
+                } else {
+                    dao.save(kegiatan);
+                    alertInfo("Success", "Kegiatan telah ditambahkan!");
                 }
-            } else {
-                alertError("Error", "Database belum dinyalakan!");
+                mainApp.showKegiatan();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         } else {
             alertError("Error", "Data belum lengkap!");

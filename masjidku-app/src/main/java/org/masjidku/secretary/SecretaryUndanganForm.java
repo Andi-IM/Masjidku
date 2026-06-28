@@ -73,16 +73,14 @@ public class SecretaryUndanganForm implements Initializable {
         tamuDao = ServiceProvider.get(TamuService.class);
         kegiatanDao = ServiceProvider.get(KegiatanService.class);
         try {
-            if (true){
-                listTamu.removeAll();
-                listKegiatan.removeAll();
+            listTamu.removeAll();
+            listKegiatan.removeAll();
 
-                listTamu.addAll(tamuDao.getAllTamuName());
-                listKegiatan.addAll(kegiatanDao.getAllKegiatanName());
+            listTamu.addAll(tamuDao.getAllTamuName());
+            listKegiatan.addAll(kegiatanDao.getAllKegiatanName());
 
-                cbKegiatan.getItems().addAll(listKegiatan);
-                cbTamu.getItems().addAll(listTamu);
-            }
+            cbKegiatan.getItems().addAll(listKegiatan);
+            cbTamu.getItems().addAll(listTamu);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -116,18 +114,16 @@ public class SecretaryUndanganForm implements Initializable {
         tamuKegiatanService = ServiceProvider.get(TamuKegiatanService.class);
 
         TamuKegiatan model = new TamuKegiatan();
-        if (true){
-            try {
-                if (tamuKegiatanService.isUndanganExist(model.getIdKegiatan())){
-                    tamuKegiatanService.update(new String[]{model.getKeterangan(), model.getIdTamu(), model.getKegiatan(), model.getIdUndangan()});
-                    alertInfo("Success", "Data telah diubah!");
-                } else {
-                    tamuKegiatanService.save(kegiatanDao.getIdByName(kegiatanform), tamuDao.getIdByName(namaform), model.getKeterangan(), operator);
-                    alertInfo("Success","Data telah ditambahkan!");
-                }
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+        try {
+            if (tamuKegiatanService.isUndanganExist(model.getIdKegiatan())){
+                tamuKegiatanService.update(new String[]{model.getKeterangan(), model.getIdTamu(), model.getKegiatan(), model.getIdUndangan()});
+                alertInfo("Success", "Data telah diubah!");
+            } else {
+                tamuKegiatanService.save(kegiatanDao.getIdByName(kegiatanform), tamuDao.getIdByName(namaform), model.getKeterangan(), operator);
+                alertInfo("Success","Data telah ditambahkan!");
             }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
 
     }

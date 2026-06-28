@@ -83,12 +83,10 @@ public class SecretaryTamu implements Initializable {
     }
 
     private ObservableList<Tamu> getTamuData() {
-            if (true){
-                try {
-                    tamuData.addAll(dao.getAll());
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+            try {
+                tamuData.addAll(dao.getAll());
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
             return tamuData;
     }
@@ -110,20 +108,16 @@ public class SecretaryTamu implements Initializable {
     public void onRemoveListener() {
         Tamu selectedTamu = tblTamu.getSelectionModel().getSelectedItem();
         if (selectedTamu != null){
-            if (true){
-                try {
-                    if (dao.isTamuExist(selectedTamu.getIdTamu())){
-                        tblTamu.getItems().remove(selectedTamu);
-                        dao.delete(selectedTamu.getIdTamu());
-                        alertInfo("Success", "Kegiatan Dihapus!");
-                    } else {
-                        alertError("SQL Error", "Kegiatan tidak ditemukan!");
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
+            try {
+                if (dao.isTamuExist(selectedTamu.getIdTamu())){
+                    tblTamu.getItems().remove(selectedTamu);
+                    dao.delete(selectedTamu.getIdTamu());
+                    alertInfo("Success", "Kegiatan Dihapus!");
+                } else {
+                    alertError("SQL Error", "Kegiatan tidak ditemukan!");
                 }
-            } else {
-                alertError("Offline", "Database tidak terhuhung!");
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
