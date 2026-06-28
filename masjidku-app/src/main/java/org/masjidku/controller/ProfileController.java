@@ -59,7 +59,8 @@ public class ProfileController {
         return null;
     }
 
-    public void setMainApp(MainApp mainApp, String userid) {
+    public void setMainApp(MainApp mainApp) {
+        String userid = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUserId();
         this.mainApp = mainApp;
         profile = getUserData(userid);
 

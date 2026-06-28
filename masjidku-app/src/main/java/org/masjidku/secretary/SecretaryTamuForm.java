@@ -43,7 +43,8 @@ public class SecretaryTamuForm {
     private Stage dialogStage;
     private String operator;
 
-    public void setMainApp(MainApp mainApp, Tamu tamu, String operator) {
+    public void setMainApp(MainApp mainApp, Tamu tamu) {
+        String operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         this.tamu = tamu;
         this.operator = operator;

@@ -8,6 +8,7 @@ jaxb-api        = "2.3.1"
 jetbrains-ann   = "20.1.0"
 junit           = "4.13.2"
 guava           = "30.1.1-jre"
+archunit        = "1.2.1"
 
 [libraries]
 # Database
@@ -26,6 +27,7 @@ guava           = { group = "com.google.guava", name = "guava", version.ref = "g
 
 # Test
 junit           = { group = "junit", name = "junit", version.ref = "junit" }
+archunit-junit5 = { group = "com.tngtech.archunit", name = "archunit-junit5", version.ref = "archunit" }
 
 [plugins]
 javafx  = { id = "org.openjfx.javafxplugin", version = "0.1.0" }

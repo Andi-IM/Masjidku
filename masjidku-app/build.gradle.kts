@@ -9,7 +9,7 @@ java {
     modularity.inferModulePath.set(true)
 }
 
-tasks.withType<JavaCompile> {
+tasks.named<JavaCompile>("compileJava") {
     options.encoding = "UTF-8"
     doFirst {
         options.compilerArgs.addAll(listOf("--module-path", classpath.asPath))
@@ -17,16 +17,17 @@ tasks.withType<JavaCompile> {
     }
 }
 
+tasks.named<JavaCompile>("compileTestJava") {
+    options.encoding = "UTF-8"
+}
+
 dependencies {
     // Database
     implementation(libs.mysql.connector)
 
     // Submodules
-    runtimeOnly(project(":masjidku-accounting"))
     implementation(project(":masjidku-accounting-client"))
-    implementation(project(":masjidku-events"))
     implementation(project(":masjidku-events-client"))
-    implementation(project(":masjidku-reporting"))
     implementation(project(":masjidku-reporting-client"))
     
     // XML Bind
@@ -38,6 +39,7 @@ dependencies {
 
     // Unit Test
     testImplementation(libs.junit)
+    testImplementation(libs.archunit.junit5)
 }
 
 javafx {
@@ -59,7 +61,7 @@ jlink {
     }
 
     jpackage {
-        installerOutputDir = file("$buildDir/installers")
+        installerOutputDir = layout.buildDirectory.dir("installers").get().asFile
         installerOptions = listOf(
                 "--vendor", "Group 5",
                 "--win-per-user-install", "--win-dir-chooser",
@@ -67,3 +69,12 @@ jlink {
         )
     }
 }
+
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
+
+tasks.compileTestJava {
+    modularity.inferModulePath.set(false)
+}
+

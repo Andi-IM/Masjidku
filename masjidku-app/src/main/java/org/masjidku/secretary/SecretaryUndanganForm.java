@@ -56,7 +56,8 @@ public class SecretaryUndanganForm implements Initializable {
     private Stage dialogStage;
     private String operator;
 
-    public void setMainApp(MainApp mainApp, TamuKegiatan undangan, String operator) {
+    public void setMainApp(MainApp mainApp, TamuKegiatan undangan) {
+        String operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         this.undangan = undangan;
         this.operator = operator;

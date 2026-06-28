@@ -45,7 +45,8 @@ public class EditDonaturAnakYatim {
     @SuppressWarnings("unused")
     private Stage dialogStage;
 
-    public void setMainApp(MainApp mainApp, DonasiAYatim model, String operator) {
+    public void setMainApp(MainApp mainApp, DonasiAYatim model) {
+        String operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         this.donatur = model;
         this.operator = operator;

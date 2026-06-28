@@ -45,7 +45,8 @@ public class EditDonaturPembangunan {
     @SuppressWarnings("unused")
     private Stage dialogStage;
 
-    public void setMainApp(MainApp mainApp, DonasiPembangunan model, String operator) {
+    public void setMainApp(MainApp mainApp, DonasiPembangunan model) {
+        String operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         this.donatur = model;
         this.operator = operator;

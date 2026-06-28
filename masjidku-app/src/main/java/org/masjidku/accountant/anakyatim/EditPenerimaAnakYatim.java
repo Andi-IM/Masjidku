@@ -49,7 +49,8 @@ public class EditPenerimaAnakYatim {
     private Stage dialogStage;
 
 
-    public void setMainApp(MainApp mainApp, AnakYatim model, String operator) {
+    public void setMainApp(MainApp mainApp, AnakYatim model) {
+        String operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         this.anakYatim = model;
         this.operator = operator;

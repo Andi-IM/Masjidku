@@ -26,7 +26,8 @@ public class AccountantHome {
     private Text greeting;
     private MainApp mainApp;
 
-    public void setMainApp(MainApp mainApp, String username) {
+    public void setMainApp(MainApp mainApp) {
+        String username = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         greeting.setText(username);
     }

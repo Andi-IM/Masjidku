@@ -45,7 +45,8 @@ public class SecretaryKegiatanForm {
     @SuppressWarnings("unused")
     private Stage dialogStage;
 
-    public void setMainApp(MainApp mainApp, Kegiatan kegiatan, String operator) {
+    public void setMainApp(MainApp mainApp, Kegiatan kegiatan) {
+        String operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         this.kegiatan = kegiatan;
         this.operator = operator;

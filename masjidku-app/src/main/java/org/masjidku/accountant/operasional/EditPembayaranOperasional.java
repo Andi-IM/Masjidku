@@ -46,7 +46,8 @@ public class EditPembayaranOperasional {
     // create some stage
     @SuppressWarnings("unused")
     private Stage dialogStage;
-    public void setMainApp(MainApp mainApp, Operasional model, String operator) {
+    public void setMainApp(MainApp mainApp, Operasional model) {
+        String operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         this.model = model;
         this.operator = operator;
