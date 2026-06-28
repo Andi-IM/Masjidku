@@ -16,11 +16,14 @@
 plugins {
     id 'java'
     id 'application'
-    id 'org.openjfx.javafxplugin' version '0.0.9'
-    id 'org.beryx.jlink' version '2.21.4'
+    alias(libs.plugins.javafx)
+    alias(libs.plugins.jlink)
 }
 
-sourceCompatibility = 11
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
 
 allprojects {
     group 'org.masjidku'
@@ -33,33 +36,32 @@ repositories {
 
 dependencies {
     // Database
-    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.24'
+    implementation libs.mysql.connector
 
     // Reporting
-    implementation group: 'com.github.librepdf', name: 'openpdf', version: '1.3.26'
-    implementation ('net.sf.jasperreports:jasperreports:6.16.0') {
-        exclude (group: 'com.lowagie', module: 'itext')
+    implementation libs.openpdf
+    implementation(libs.jasperreports) {
+        exclude group: 'com.lowagie', module: 'itext'
     }
 
-    //XML bind
-    implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
-    implementation 'org.jetbrains:annotations:20.1.0'
+    // XML Bind
+    implementation libs.jaxb.api
+    implementation libs.jetbrains.annotations
+
+    // Hash Security and other tools
+    implementation libs.guava
 
     // Unit Test
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-
-    // Hash Security /and other tools
-    implementation group: 'com.google.guava', name: 'guava', version: '30.1.1-jre'
+    testImplementation libs.junit
 }
 
 javafx {
-    version = "14"
-    modules = [ 'javafx.controls', 'javafx.fxml' ]
+    version = libs.versions.javafx.get()
+    modules = ['javafx.controls', 'javafx.fxml']
 }
 
-
-application{
-    mainClassName = 'org.masjidku.MainApp'
+application {
+    mainClass = 'org.masjidku.MainApp'
 }
 
 jlink {
