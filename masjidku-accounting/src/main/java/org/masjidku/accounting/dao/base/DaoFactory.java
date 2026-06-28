@@ -24,7 +24,6 @@ import java.sql.ResultSet;
 public abstract class DaoFactory {
 
     protected Connection con;
-    protected String query = null;
     protected PreparedStatement ps;
     protected ResultSet rs;
 

@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 
 public abstract class Dao<T> {
     protected Connection con;
-    protected String query = null;
     protected PreparedStatement ps;
     protected ResultSet rs;
 
