@@ -19,8 +19,6 @@ import java.util.Map;
 
 public class ReportServiceImpl implements ReportService {
     private static final Logger log = LoggerFactory.getLogger(ReportServiceImpl.class);
-    private JasperReport jreport;
-    private JasperViewer jviewer;
     private JasperPrint jprint;
 
     @Override
@@ -29,7 +27,7 @@ public class ReportServiceImpl implements ReportService {
         Connection connect = db.getConnection();
         if (connect != null) {
             try {
-                jreport = (JasperReport) JRLoader.loadObject(reportStream);
+                JasperReport jreport = (JasperReport) JRLoader.loadObject(reportStream);
                 jprint = JasperFillManager.fillReport(jreport, parameters, connect);
             } catch (JRException e) {
                 log.error("An error occurred", e);
@@ -40,7 +38,7 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public void showReport() {
         if (jprint != null) {
-            jviewer = new JasperViewer(jprint, false); // false = don't exit JVM on close
+            JasperViewer jviewer = new JasperViewer(jprint, false); // false = don't exit JVM on close
             jviewer.setVisible(true);
         }
     }

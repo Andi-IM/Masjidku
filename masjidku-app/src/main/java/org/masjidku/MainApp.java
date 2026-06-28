@@ -268,7 +268,7 @@ public class MainApp extends Application {
 
     /**
      * Open the scene to edit detail for the specified user. If the user
-     * clicks OK, the changes are save to the database
+     * clicks OK, the changes are saved to the database
      *
      * @param user the user object to be edited.
      */
