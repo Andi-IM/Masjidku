@@ -34,6 +34,16 @@ repositories {
     mavenCentral()
 }
 
+// Move all classpath JARs onto the module path so module-info.java can see
+// automatic modules (jasperreports, mysql-connector-java, openpdf, guava).
+tasks.withType(JavaCompile).configureEach {
+    doFirst {
+        options.compilerArgs += ['--module-path', classpath.asPath]
+        classpath = files()
+    }
+}
+
+
 dependencies {
     // Database
     implementation libs.mysql.connector
@@ -62,6 +72,13 @@ javafx {
 
 application {
     mainClass = 'org.masjidku.MainApp'
+    // Suppress JDK 24+ warnings caused by JavaFX 21 internals:
+    // 1. javafx.graphics uses System::load (native library loading)
+    // 2. Marlin renderer uses sun.misc.Unsafe::allocateMemory
+    applicationDefaultJvmArgs = [
+        '--enable-native-access=javafx.graphics',
+        '--sun-misc-unsafe-memory-access=allow'
+    ]
 }
 
 jlink {
