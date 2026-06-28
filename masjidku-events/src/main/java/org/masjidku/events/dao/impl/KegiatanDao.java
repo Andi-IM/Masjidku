@@ -13,18 +13,24 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model.kegiatan;
+package org.masjidku.events.dao.impl;
 
 import java.util.ServiceLoader;
-import org.masjidku.accounting.client.service.*;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.masjidku.model.Dao;
-import org.masjidku.accounting.client.model.anakyatim.AnakYatim;
+import org.masjidku.events.dao.base.Dao;
+
 
 import java.sql.SQLException;
 
-public class KegiatanDao extends Dao<Kegiatan> {
+import org.masjidku.events.client.service.KegiatanService;
+import org.masjidku.events.client.model.Kegiatan;
+public class KegiatanDao extends Dao<Kegiatan> implements KegiatanService {
+    public KegiatanDao() {
+        getConnection();
+    }
+
 
     private final String TABLE = "kegiatan";
 

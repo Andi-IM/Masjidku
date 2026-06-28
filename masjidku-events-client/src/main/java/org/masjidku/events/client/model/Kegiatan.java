@@ -13,7 +13,7 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model.kegiatan;
+package org.masjidku.events.client.model;
 
 public class Kegiatan {
     private String idKegiatan;

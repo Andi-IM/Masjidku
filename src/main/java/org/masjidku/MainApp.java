@@ -38,7 +38,7 @@ import org.masjidku.accounting.client.model.operasional.*;
 import org.masjidku.accounting.client.model.pembangunan.*;
 import org.masjidku.accounting.client.model.tpa.*;
 import org.masjidku.accounting.client.model.zakat.*;
-import org.masjidku.model.kegiatan.*;
+import org.masjidku.events.client.model.*;
 import org.masjidku.model.session.*;
 import org.masjidku.model.user.*;
 import org.masjidku.principal.*;

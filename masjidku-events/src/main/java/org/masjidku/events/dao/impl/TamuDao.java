@@ -13,15 +13,21 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model.kegiatan;
+package org.masjidku.events.dao.impl;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.masjidku.model.Dao;
+import org.masjidku.events.dao.base.Dao;
 
 import java.sql.SQLException;
 
-public class TamuDao extends Dao<Tamu> {
+import org.masjidku.events.client.service.TamuService;
+import org.masjidku.events.client.model.Tamu;
+public class TamuDao extends Dao<Tamu> implements TamuService {
+    public TamuDao() {
+        getConnection();
+    }
+
 
     private final String TABLE = "tamu";
 

@@ -19,8 +19,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
 import org.masjidku.MainApp;
-import org.masjidku.model.kegiatan.Kegiatan;
-import org.masjidku.model.kegiatan.KegiatanDao;
+import org.masjidku.events.client.model.Kegiatan;
+import org.masjidku.events.client.service.KegiatanService;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -55,9 +55,9 @@ public class KegiatanOverview implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        KegiatanDao dao = new KegiatanDao();
+        KegiatanService dao = java.util.ServiceLoader.load(KegiatanService.class).findFirst().orElseThrow();
         try {
-            if (dao.getConnection()){
+            if (true){
                 Kegiatan model = dao.getLastRecord();
 
                 txtKegiatanTerakhir.setText(model.getNama());

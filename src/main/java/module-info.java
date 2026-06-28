@@ -10,6 +10,7 @@ open module main {
     requires com.google.common;
 
     requires org.masjidku.accounting.client;
+    requires org.masjidku.events.client;
 
     exports org.masjidku.model;
     exports org.masjidku.model.user;
@@ -27,4 +28,7 @@ open module main {
     uses org.masjidku.accounting.client.service.ZakatKeluarService;
     uses org.masjidku.accounting.client.service.ZakatMasukService;
     uses org.masjidku.accounting.client.service.AccountingFunctionsService;
+    uses org.masjidku.events.client.service.KegiatanService;
+    uses org.masjidku.events.client.service.TamuService;
+    uses org.masjidku.events.client.service.TamuKegiatanService;
 }

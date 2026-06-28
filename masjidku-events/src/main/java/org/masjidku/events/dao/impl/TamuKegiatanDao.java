@@ -13,7 +13,7 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model.kegiatan;
+package org.masjidku.events.dao.impl;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,12 +21,19 @@ import javafx.collections.ObservableList;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TamuKegiatanDao extends TamuKegiatanDaoFactory<TamuKegiatan> {
+import org.masjidku.events.client.model.TamuKegiatan;
+import org.masjidku.events.client.model.Tamu;
+import org.masjidku.events.client.model.Kegiatan;
+import org.masjidku.events.dao.base.Dao;
+public class TamuKegiatanDao extends Dao<TamuKegiatan> implements org.masjidku.events.client.service.TamuKegiatanService {
+    public TamuKegiatanDao() {
+        getConnection();
+    }
+
     private final String ACTIVITY = "kegiatan";
     private final String GUEST = "tamu";
     private final String TABLE = "tamukegiatan";
 
-    @Override
     public TamuKegiatan get(String id) throws SQLException {
         query = "SELECT " +
                 "id_undangan, " +
@@ -63,7 +70,6 @@ public class TamuKegiatanDao extends TamuKegiatanDaoFactory<TamuKegiatan> {
         return model;
     }
 
-    @Override
     public ObservableList<TamuKegiatan> getAll() throws SQLException {
         ObservableList<TamuKegiatan> items = FXCollections.observableArrayList();
         query = "SELECT " +
@@ -99,11 +105,9 @@ public class TamuKegiatanDao extends TamuKegiatanDaoFactory<TamuKegiatan> {
         return items;
     }
 
-    @Override
     public void save(TamuKegiatan tamuKegiatan) throws SQLException {
     }
 
-    @Override
     public void save(String idKegiatan, String idTamu, String keterangan, String opeartor) throws SQLException {
         String query = "INSERT INTO " + TABLE + "(id_kegiatan, id_tamu, keterangan, operator) VALUES(?,?,?,?)";
 
@@ -115,7 +119,6 @@ public class TamuKegiatanDao extends TamuKegiatanDaoFactory<TamuKegiatan> {
         ps.executeUpdate();
     }
 
-    @Override
     public void update(String[] params) throws SQLException {
         String query = "UPDATE " + TABLE + " SET keterangan=? WHERE id_tamu=? and id_kegiatan=? and id_undangan=?";
 
@@ -127,7 +130,6 @@ public class TamuKegiatanDao extends TamuKegiatanDaoFactory<TamuKegiatan> {
         ps.executeUpdate();
     }
 
-    @Override
     public void delete(String id) throws SQLException {
         String query = "DELETE FROM " + TABLE + " WHERE id_undangan=?";
         ps = con.prepareStatement(query);
@@ -135,7 +137,6 @@ public class TamuKegiatanDao extends TamuKegiatanDaoFactory<TamuKegiatan> {
         ps.executeUpdate();
     }
 
-    @Override
     public boolean isUndanganExist(String id) throws SQLException {
         String query = "SELECT id_undangan FROM " + TABLE + " WHERE id_undangan=?";
         ps = con.prepareStatement(query);

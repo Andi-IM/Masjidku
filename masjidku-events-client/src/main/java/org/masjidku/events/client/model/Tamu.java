@@ -13,48 +13,34 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model.kegiatan;
+package org.masjidku.events.client.model;
 
-public class TamuKegiatan  {
-    private String idUndangan;
-    private String idKegiatan;
+public class Tamu {
+
     private String idTamu;
-
     private String nama;
-    private String kegiatan;
     private String alamat;
     private String notelp;
-    private String keterangan;
     private String operator;
 
-    public TamuKegiatan() { this(null,null,null,null,null,null,null,null,null); }
+    public Tamu() {
+        this(null, null, null, null, null);
+    }
 
-    public TamuKegiatan(String idUndangan, String idKegiatan, String idTamu, String nama, String kegiatan, String alamat, String notelp, String keterangan, String operator) {
-        setIdUndangan(idUndangan);
-        setIdKegiatan(idKegiatan);
+    public Tamu(String idTamu, String nama, String alamat, String notelp, String operator) {
         setIdTamu(idTamu);
         setNama(nama);
         setAlamat(alamat);
         setNotelp(notelp);
-        setKegiatan(kegiatan);
-        setKeterangan(keterangan);
         setOperator(operator);
     }
 
-    public String getIdUndangan() {
-        return idUndangan;
-    }
-
-    public void setIdUndangan(String idUndangan) {
-        this.idUndangan = idUndangan;
-    }
-
-    public String getIdKegiatan() {
-        return idKegiatan;
-    }
-
-    public void setIdKegiatan(String idKegiatan) {
-        this.idKegiatan = idKegiatan;
+    public Tamu(String namaTamu, String alamat, String noTelp, String operator) {
+        setIdTamu(null);
+        setNama(namaTamu);
+        setAlamat(alamat);
+        setNotelp(noTelp);
+        setOperator(operator);
     }
 
     public String getIdTamu() {
@@ -73,14 +59,6 @@ public class TamuKegiatan  {
         this.nama = nama;
     }
 
-    public String getKegiatan() {
-        return kegiatan;
-    }
-
-    public void setKegiatan(String kegiatan) {
-        this.kegiatan = kegiatan;
-    }
-
     public String getAlamat() {
         return alamat;
     }
@@ -95,14 +73,6 @@ public class TamuKegiatan  {
 
     public void setNotelp(String notelp) {
         this.notelp = notelp;
-    }
-
-    public String getKeterangan() {
-        return keterangan;
-    }
-
-    public void setKeterangan(String keterangan) {
-        this.keterangan = keterangan;
     }
 
     public String getOperator() {

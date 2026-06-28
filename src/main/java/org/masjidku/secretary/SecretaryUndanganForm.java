@@ -24,10 +24,10 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.kegiatan.KegiatanDao;
-import org.masjidku.model.kegiatan.TamuDao;
-import org.masjidku.model.kegiatan.TamuKegiatan;
-import org.masjidku.model.kegiatan.TamuKegiatanDao;
+import org.masjidku.events.client.service.KegiatanService;
+import org.masjidku.events.client.service.TamuService;
+import org.masjidku.events.client.model.TamuKegiatan;
+import org.masjidku.events.client.service.TamuKegiatanService;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -44,9 +44,9 @@ public class SecretaryUndanganForm implements Initializable {
 
     private TamuKegiatan undangan;
     private MainApp mainApp;
-    private TamuDao tamuDao;
-    private KegiatanDao kegiatanDao;
-    private TamuKegiatanDao tamuKegiatanDao;
+    private TamuService tamuDao;
+    private KegiatanService kegiatanDao;
+    private TamuKegiatanService tamuKegiatanService;
 
     private final ObservableList<String> listTamu = FXCollections.observableArrayList();
     private final ObservableList<String> listKegiatan = FXCollections.observableArrayList();
@@ -68,10 +68,10 @@ public class SecretaryUndanganForm implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tamuDao = new TamuDao();
-        kegiatanDao = new KegiatanDao();
+        tamuDao = java.util.ServiceLoader.load(TamuService.class).findFirst().orElseThrow();
+        kegiatanDao = java.util.ServiceLoader.load(KegiatanService.class).findFirst().orElseThrow();
         try {
-            if (tamuDao.getConnection() && kegiatanDao.getConnection()){
+            if (true && true){
                 listTamu.removeAll();
                 listKegiatan.removeAll();
 
@@ -109,18 +109,18 @@ public class SecretaryUndanganForm implements Initializable {
         String kegiatanform = cbKegiatan.getValue();
         String keterangan = txtKeterangan.getText();
 
-        tamuDao = new TamuDao();
-        kegiatanDao = new KegiatanDao();
-        tamuKegiatanDao = new TamuKegiatanDao();
+        tamuDao = java.util.ServiceLoader.load(TamuService.class).findFirst().orElseThrow();
+        kegiatanDao = java.util.ServiceLoader.load(KegiatanService.class).findFirst().orElseThrow();
+        tamuKegiatanService = java.util.ServiceLoader.load(TamuKegiatanService.class).findFirst().orElseThrow();
 
         TamuKegiatan model = new TamuKegiatan();
-        if (tamuDao.getConnection() && kegiatanDao.getConnection()){
+        if (true && true){
             try {
-                if (tamuKegiatanDao.isUndanganExist(model.getIdKegiatan())){
-                    tamuKegiatanDao.update(new String[]{model.getKeterangan(), model.getIdTamu(), model.getKegiatan(), model.getIdUndangan()});
+                if (tamuKegiatanService.isUndanganExist(model.getIdKegiatan())){
+                    tamuKegiatanService.update(new String[]{model.getKeterangan(), model.getIdTamu(), model.getKegiatan(), model.getIdUndangan()});
                     alertInfo("Success", "Data telah diubah!");
                 } else {
-                    tamuKegiatanDao.save(kegiatanDao.getIdByName(kegiatanform), tamuDao.getIdByName(namaform), model.getKeterangan(), operator);
+                    tamuKegiatanService.save(kegiatanDao.getIdByName(kegiatanform), tamuDao.getIdByName(namaform), model.getKeterangan(), operator);
                     alertInfo("Success","Data telah ditambahkan!");
                 }
             } catch (SQLException throwables) {

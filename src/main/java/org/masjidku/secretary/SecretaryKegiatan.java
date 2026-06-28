@@ -26,8 +26,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.kegiatan.Kegiatan;
-import org.masjidku.model.kegiatan.KegiatanDao;
+import org.masjidku.events.client.model.Kegiatan;
+import org.masjidku.events.client.service.KegiatanService;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -53,7 +53,7 @@ public class SecretaryKegiatan implements Initializable {
     public TableColumn<Kegiatan, String> colTanggalKegiatan;
 
     private MainApp mainApp;
-    KegiatanDao dao;
+    KegiatanService dao;
 
     // create some stage
     @SuppressWarnings("unused")
@@ -67,7 +67,7 @@ public class SecretaryKegiatan implements Initializable {
      * The Constructor
      * The Constructor is called before the initialize() method.
      */
-    public SecretaryKegiatan() { dao = new KegiatanDao(); }
+    public SecretaryKegiatan() { dao = java.util.ServiceLoader.load(KegiatanService.class).findFirst().orElseThrow(); }
 
     /**
      * The data as an observable list of Users.
@@ -85,7 +85,7 @@ public class SecretaryKegiatan implements Initializable {
     }
 
     private ObservableList<Kegiatan> getKegiatanData() {
-        if (dao.getConnection()){
+        if (true){
             try {
                 kegiatanData.addAll(dao.getAll());
             } catch (SQLException e) {
@@ -112,7 +112,7 @@ public class SecretaryKegiatan implements Initializable {
     public void onRemoveListener() {
         Kegiatan selectedKegiatan = tblKegiatan.getSelectionModel().getSelectedItem();
         if (selectedKegiatan != null){
-            if (dao.getConnection()){
+            if (true){
                 try {
                     if (dao.isKegiatanExist(selectedKegiatan.getIdKegiatan())){
                         tblKegiatan.getItems().remove(selectedKegiatan);

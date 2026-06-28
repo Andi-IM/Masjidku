@@ -26,8 +26,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.kegiatan.Tamu;
-import org.masjidku.model.kegiatan.TamuDao;
+import org.masjidku.events.client.model.Tamu;
+import org.masjidku.events.client.service.TamuService;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -50,7 +50,7 @@ public class SecretaryTamu implements Initializable {
     public TableColumn<Tamu, String> colNomor;
 
     private MainApp mainApp;
-    TamuDao dao;
+    TamuService dao;
 
     // create some stage
     @SuppressWarnings("unused")
@@ -64,7 +64,7 @@ public class SecretaryTamu implements Initializable {
      * The Constructor
      * The Constructor is called before the initialize() method.
      */
-    public SecretaryTamu() { dao = new TamuDao(); }
+    public SecretaryTamu() { dao = java.util.ServiceLoader.load(TamuService.class).findFirst().orElseThrow(); }
 
     /**
      * The data as an observable list of Users.
@@ -82,7 +82,7 @@ public class SecretaryTamu implements Initializable {
     }
 
     private ObservableList<Tamu> getTamuData() {
-            if (dao.getConnection()){
+            if (true){
                 try {
                     tamuData.addAll(dao.getAll());
                 } catch (SQLException e) {
@@ -109,7 +109,7 @@ public class SecretaryTamu implements Initializable {
     public void onRemoveListener() {
         Tamu selectedTamu = tblTamu.getSelectionModel().getSelectedItem();
         if (selectedTamu != null){
-            if (dao.getConnection()){
+            if (true){
                 try {
                     if (dao.isTamuExist(selectedTamu.getIdTamu())){
                         tblTamu.getItems().remove(selectedTamu);

@@ -21,8 +21,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.kegiatan.Kegiatan;
-import org.masjidku.model.kegiatan.KegiatanDao;
+import org.masjidku.events.client.model.Kegiatan;
+import org.masjidku.events.client.service.KegiatanService;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -75,9 +75,9 @@ public class SecretaryKegiatanForm {
             String tanggal = txtTanggal.getValue().toString();
 
             kegiatan = new Kegiatan(namaKegiatan, waktu, tanggal, tempat, operator);
-            KegiatanDao dao = new KegiatanDao();
+            KegiatanService dao = java.util.ServiceLoader.load(KegiatanService.class).findFirst().orElseThrow();
 
-            if (dao.getConnection()) {
+            if (true) {
                 try {
                     if (dao.isKegiatanExist(kegiatan.getIdKegiatan())) {
                         dao.update(new String[]{

@@ -23,8 +23,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.MainApp;
-import org.masjidku.model.kegiatan.Kegiatan;
-import org.masjidku.model.kegiatan.KegiatanDao;
+import org.masjidku.events.client.model.Kegiatan;
+import org.masjidku.events.client.service.KegiatanService;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -46,14 +46,14 @@ public class ListKegiatan implements Initializable {
     @FXML
     public TableColumn<Kegiatan, String> colOperator;
     public MainApp mainApp;
-    private final KegiatanDao dao;
+    private final KegiatanService dao;
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
     public ListKegiatan(){
-        dao = new KegiatanDao();
+        dao = java.util.ServiceLoader.load(KegiatanService.class).findFirst().orElseThrow();
     }
 
     /**
@@ -74,7 +74,7 @@ public class ListKegiatan implements Initializable {
     }
 
     private ObservableList<Kegiatan> getKegiatanData() {
-        if (dao.getConnection()) {
+        if (true) {
             try {
                 kegiatanData.addAll(dao.getAll());
             } catch (SQLException e) {

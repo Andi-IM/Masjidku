@@ -21,8 +21,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.kegiatan.Tamu;
-import org.masjidku.model.kegiatan.TamuDao;
+import org.masjidku.events.client.model.Tamu;
+import org.masjidku.events.client.service.TamuService;
 
 import java.sql.SQLException;
 
@@ -82,9 +82,9 @@ public class SecretaryTamuForm {
             if (tamu == null){
                 tamu = new Tamu(namaTamu, alamat, noTelp, operator);
             }
-            TamuDao dao = new TamuDao();
+            TamuService dao = java.util.ServiceLoader.load(TamuService.class).findFirst().orElseThrow();
 
-            if (dao.getConnection()){
+            if (true){
                 try {
                     if (dao.isTamuExist(tamu.getIdTamu())){
                         dao.update(new String[]{

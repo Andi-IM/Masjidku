@@ -24,8 +24,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.model.kegiatan.Tamu;
-import org.masjidku.model.kegiatan.TamuDao;
+import org.masjidku.events.client.model.Tamu;
+import org.masjidku.events.client.service.TamuService;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -46,7 +46,7 @@ public class ListTamu implements Initializable {
     public TableColumn<Tamu, String> colOperator;
 
     private MainApp mainApp;
-    private final TamuDao dao;
+    private final TamuService dao;
 
     // create some stage
     @SuppressWarnings("unused")
@@ -60,10 +60,10 @@ public class ListTamu implements Initializable {
      * The Constructor
      * The Constructor is called before the initialize() method.
      */
-    public ListTamu() { dao = new TamuDao(); }
+    public ListTamu() { dao = java.util.ServiceLoader.load(TamuService.class).findFirst().orElseThrow(); }
 
     private ObservableList<Tamu> getTamuData() {
-        if (dao.getConnection()){
+        if (true){
             try {
                 tamuData.addAll(dao.getAll());
             } catch (SQLException e) {
