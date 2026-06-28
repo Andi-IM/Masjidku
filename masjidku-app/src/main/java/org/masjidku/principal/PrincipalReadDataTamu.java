@@ -38,7 +38,7 @@ public class PrincipalReadDataTamu implements Initializable {
     public void onLogoutClick() { mainApp.onLogoutAction(); }
 
     @FXML
-    public void editListener() { }
+    public void onEditListener() { }
 
     @FXML
     public void onResetListener() { }
