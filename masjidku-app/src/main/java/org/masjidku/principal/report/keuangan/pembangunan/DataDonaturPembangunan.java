@@ -15,6 +15,7 @@
 
 package org.masjidku.principal.report.keuangan.pembangunan;
 
+import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
 import javafx.collections.FXCollections;
@@ -32,6 +33,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class DataDonaturPembangunan implements Initializable {
+    private final DonasiPembangunanService dao = ServiceProvider.get(DonasiPembangunanService.class);
     @FXML
     private TableView<DonasiPembangunan> tablePembangunan;
     @FXML
@@ -62,7 +64,6 @@ public class DataDonaturPembangunan implements Initializable {
      * @return Observable List
      */
     private ObservableList<DonasiPembangunan> getDonaturData() {
-        DonasiPembangunanService dao = ServiceLoader.load(DonasiPembangunanService.class).findFirst().orElseThrow();
         try {
             donaturData.addAll(dao.getAll());
         } catch (SQLException e) {

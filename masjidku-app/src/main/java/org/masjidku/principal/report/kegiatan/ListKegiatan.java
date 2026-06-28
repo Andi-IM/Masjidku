@@ -15,6 +15,7 @@
 
 package org.masjidku.principal.report.kegiatan;
 
+import org.masjidku.util.ServiceProvider;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -53,7 +54,7 @@ public class ListKegiatan implements Initializable {
     }
 
     public ListKegiatan(){
-        dao = java.util.ServiceLoader.load(KegiatanService.class).findFirst().orElseThrow();
+        dao = ServiceProvider.get(KegiatanService.class);
     }
 
     /**

@@ -15,6 +15,7 @@
 
 package org.masjidku.accountant.pembangunan;
 
+import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
@@ -30,6 +31,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class EditPembayaranPembangunan {
+    private final PembangunanService dao = ServiceProvider.get(PembangunanService.class);
 
     @FXML
     private TextField txtNama;
@@ -96,7 +98,6 @@ public class EditPembayaranPembangunan {
                 model = new Pembangunan(nama, keterangan, jumlah, tanggal, operator);
             }
 
-            PembangunanService dao = ServiceLoader.load(PembangunanService.class).findFirst().orElseThrow();
             try {
                 if (dao.isDataExist(model.getId())) {
                     dao.update(new String[]{

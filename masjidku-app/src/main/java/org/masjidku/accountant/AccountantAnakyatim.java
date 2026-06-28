@@ -13,18 +13,26 @@
  *                                HEREUNDER.
  */
 package org.masjidku.accountant;
-import java.util.ServiceLoader;
-import org.masjidku.accounting.client.service.*;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
 import org.masjidku.MainApp;
 import org.masjidku.accounting.client.model.anakyatim.AnakYatim;
 import org.masjidku.accounting.client.model.anakyatim.DonasiAYatim;
+import org.masjidku.accounting.client.service.AccountingFunctionsService;
+import org.masjidku.accounting.client.service.AnakYatimService;
+import org.masjidku.accounting.client.service.DonasiAYatimService;
+import org.masjidku.util.ServiceProvider;
+
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+
 public class AccountantAnakyatim implements Initializable {
+    private final AccountingFunctionsService df = ServiceProvider.get(AccountingFunctionsService.class);
+    private final AnakYatimService ayDao = ServiceProvider.get(AnakYatimService.class);
+    private final DonasiAYatimService dayDao = ServiceProvider.get(DonasiAYatimService.class);
     @FXML
     public Text txtPemasukanTerakhir;
     @FXML
@@ -45,9 +53,6 @@ public class AccountantAnakyatim implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        AnakYatimService ayDao = ServiceLoader.load(AnakYatimService.class).findFirst().orElseThrow();
-        DonasiAYatimService dayDao = ServiceLoader.load(DonasiAYatimService.class).findFirst().orElseThrow();
-        AccountingFunctionsService df = ServiceLoader.load(AccountingFunctionsService.class).findFirst().orElseThrow();
         try {
             AnakYatim penerima = ayDao.getLastRecord();
             DonasiAYatim pemberi = dayDao.getLastRecord();

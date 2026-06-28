@@ -15,6 +15,7 @@
 
 package org.masjidku.principal.report.kegiatan;
 
+import org.masjidku.util.ServiceProvider;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -57,7 +58,7 @@ public class ListUndangan implements Initializable {
         this.mainApp = mainApp;
     }
 
-    public ListUndangan() { dao = java.util.ServiceLoader.load(TamuKegiatanService.class).findFirst().orElseThrow(); }
+    public ListUndangan() { dao = ServiceProvider.get(TamuKegiatanService.class); }
 
     private final ObservableList<TamuKegiatan> undanganData =
             FXCollections.observableArrayList();

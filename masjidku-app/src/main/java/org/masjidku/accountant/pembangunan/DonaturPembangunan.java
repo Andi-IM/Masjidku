@@ -15,6 +15,7 @@
 
 package org.masjidku.accountant.pembangunan;
 
+import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
 import javafx.collections.FXCollections;
@@ -35,6 +36,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class DonaturPembangunan implements Initializable {
+    private final DonasiPembangunanService dao = ServiceProvider.get(DonasiPembangunanService.class);
 
     @FXML
     private TableView<DonasiPembangunan> tablePembangunan;
@@ -72,7 +74,6 @@ public class DonaturPembangunan implements Initializable {
      * @return Observable List
      */
     private ObservableList<DonasiPembangunan> getDonaturData() {
-        DonasiPembangunanService dao = ServiceLoader.load(DonasiPembangunanService.class).findFirst().orElseThrow();
         try {
             donaturData.addAll(dao.getAll());
         } catch (SQLException e) {
@@ -121,7 +122,6 @@ public class DonaturPembangunan implements Initializable {
     public void onRemoveListener() {
         DonasiPembangunan selectedItem = tablePembangunan.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
-            DonasiPembangunanService dao = ServiceLoader.load(DonasiPembangunanService.class).findFirst().orElseThrow();
             try {
                 if (dao.isDonaturExist(selectedItem.getId())) {
                     tablePembangunan.getItems().remove(selectedItem);

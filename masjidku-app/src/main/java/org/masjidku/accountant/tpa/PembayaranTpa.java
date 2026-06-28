@@ -15,6 +15,7 @@
 
 package org.masjidku.accountant.tpa;
 
+import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
 import javafx.collections.FXCollections;
@@ -35,6 +36,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class PembayaranTpa implements Initializable {
+    private final TpaKeluarService dao = ServiceProvider.get(TpaKeluarService.class);
 
     @FXML
     private TableView<TpaKeluar> tableTpa;
@@ -71,7 +73,6 @@ public class PembayaranTpa implements Initializable {
      * @return Observable List
      */
     private ObservableList<TpaKeluar> getDataTpa() {
-        TpaKeluarService dao = ServiceLoader.load(TpaKeluarService.class).findFirst().orElseThrow();
         try {
             dataTpa.addAll(dao.getAll());
         } catch (SQLException e) {
@@ -123,7 +124,6 @@ public class PembayaranTpa implements Initializable {
     public void onRemoveListener() {
         TpaKeluar selectedItem = tableTpa.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
-            TpaKeluarService dao = ServiceLoader.load(TpaKeluarService.class).findFirst().orElseThrow();
             try {
                 if (dao.isDataExist(selectedItem.getId())) {
                     tableTpa.getItems().remove(selectedItem);

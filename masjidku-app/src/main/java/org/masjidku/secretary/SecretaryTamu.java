@@ -15,6 +15,7 @@
 
 package org.masjidku.secretary;
 
+import org.masjidku.util.ServiceProvider;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -64,7 +65,7 @@ public class SecretaryTamu implements Initializable {
      * The Constructor
      * The Constructor is called before the initialize() method.
      */
-    public SecretaryTamu() { dao = java.util.ServiceLoader.load(TamuService.class).findFirst().orElseThrow(); }
+    public SecretaryTamu() { dao = ServiceProvider.get(TamuService.class); }
 
     /**
      * The data as an observable list of Users.

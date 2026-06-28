@@ -13,6 +13,7 @@
  *                                HEREUNDER.
  */
 package org.masjidku.principal.report.keuangan.zakat;
+import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
 import javafx.collections.FXCollections;
@@ -29,6 +30,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 public class DataDonaturZakat implements Initializable {
+    private final ZakatMasukService dao = ServiceProvider.get(ZakatMasukService.class);
     @FXML
     private TableView<ZakatMasuk> zakatTable;
     @FXML
@@ -65,7 +67,6 @@ public class DataDonaturZakat implements Initializable {
      * @return Observable List
      */
     private ObservableList<ZakatMasuk> getDonaturData() {
-        ZakatMasukService dao = ServiceLoader.load(ZakatMasukService.class).findFirst().orElseThrow();
         try {
             donaturData.addAll(dao.getAll());
         } catch (SQLException e) {

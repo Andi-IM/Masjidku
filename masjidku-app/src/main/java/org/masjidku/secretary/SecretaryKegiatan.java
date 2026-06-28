@@ -15,6 +15,7 @@
 
 package org.masjidku.secretary;
 
+import org.masjidku.util.ServiceProvider;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -67,7 +68,7 @@ public class SecretaryKegiatan implements Initializable {
      * The Constructor
      * The Constructor is called before the initialize() method.
      */
-    public SecretaryKegiatan() { dao = java.util.ServiceLoader.load(KegiatanService.class).findFirst().orElseThrow(); }
+    public SecretaryKegiatan() { dao = ServiceProvider.get(KegiatanService.class); }
 
     /**
      * The data as an observable list of Users.

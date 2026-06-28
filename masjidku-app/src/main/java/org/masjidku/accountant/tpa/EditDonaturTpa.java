@@ -15,6 +15,7 @@
 
 package org.masjidku.accountant.tpa;
 
+import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
@@ -30,6 +31,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class EditDonaturTpa {
+    private final TpaMasukService dao = ServiceProvider.get(TpaMasukService.class);
 
     @FXML
     private TextField txtNama;
@@ -91,7 +93,6 @@ public class EditDonaturTpa {
                 donatur = new TpaMasuk(nama, jumlah, tanggal, operator);
             }
 
-            TpaMasukService dao = ServiceLoader.load(TpaMasukService.class).findFirst().orElseThrow();
             try {
                 if (dao.isDonaturExist(donatur.getId())) {
                     dao.update(new String[]{

@@ -15,6 +15,7 @@
 
 package org.masjidku.accountant.tpa;
 
+import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
 import javafx.collections.FXCollections;
@@ -35,6 +36,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class DonaturTpa implements Initializable {
+    private final TpaMasukService dao = ServiceProvider.get(TpaMasukService.class);
 
     @FXML
     private TableView<TpaMasuk> tableTpa;
@@ -71,7 +73,6 @@ public class DonaturTpa implements Initializable {
      * @return Observable List
      */
     private ObservableList<TpaMasuk> getDonaturData() {
-        TpaMasukService dao = ServiceLoader.load(TpaMasukService.class).findFirst().orElseThrow();
         try {
             donaturData.addAll(dao.getAll());
         } catch (SQLException e) {
@@ -112,7 +113,6 @@ public class DonaturTpa implements Initializable {
     public void onRemoveListener() {
         TpaMasuk selectedItem = tableTpa.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
-            TpaMasukService dao = ServiceLoader.load(TpaMasukService.class).findFirst().orElseThrow();
             try {
                 if (dao.isDonaturExist(selectedItem.getId())) {
                     tableTpa.getItems().remove(selectedItem);

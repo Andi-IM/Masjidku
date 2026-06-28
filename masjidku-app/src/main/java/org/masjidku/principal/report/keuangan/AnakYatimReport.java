@@ -15,6 +15,7 @@
 
 package org.masjidku.principal.report.keuangan;
 
+import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
@@ -29,6 +30,9 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class AnakYatimReport implements Initializable {
+    private final AccountingFunctionsService df = ServiceProvider.get(AccountingFunctionsService.class);
+    private final AnakYatimService ayDao = ServiceProvider.get(AnakYatimService.class);
+    private final DonasiAYatimService dayDao = ServiceProvider.get(DonasiAYatimService.class);
     @FXML
     public Text txtPemasukanTerakhir;
     @FXML
@@ -52,9 +56,6 @@ public class AnakYatimReport implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        AnakYatimService ayDao = ServiceLoader.load(AnakYatimService.class).findFirst().orElseThrow();
-        DonasiAYatimService dayDao = ServiceLoader.load(DonasiAYatimService.class).findFirst().orElseThrow();
-        AccountingFunctionsService df = ServiceLoader.load(AccountingFunctionsService.class).findFirst().orElseThrow();
 
         try {
             AnakYatim penerima = ayDao.getLastRecord();

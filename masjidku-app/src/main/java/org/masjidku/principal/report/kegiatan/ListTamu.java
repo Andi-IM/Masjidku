@@ -15,6 +15,7 @@
 
 package org.masjidku.principal.report.kegiatan;
 
+import org.masjidku.util.ServiceProvider;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -60,7 +61,7 @@ public class ListTamu implements Initializable {
      * The Constructor
      * The Constructor is called before the initialize() method.
      */
-    public ListTamu() { dao = java.util.ServiceLoader.load(TamuService.class).findFirst().orElseThrow(); }
+    public ListTamu() { dao = ServiceProvider.get(TamuService.class); }
 
     private ObservableList<Tamu> getTamuData() {
         if (true){

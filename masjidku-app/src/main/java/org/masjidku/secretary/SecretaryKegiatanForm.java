@@ -15,6 +15,7 @@
 
 package org.masjidku.secretary;
 
+import org.masjidku.util.ServiceProvider;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
@@ -28,6 +29,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class SecretaryKegiatanForm {
+    private final KegiatanService dao = ServiceProvider.get(KegiatanService.class);
 
     @FXML
     private TextField txtNamaKegiatan;
@@ -76,7 +78,6 @@ public class SecretaryKegiatanForm {
             String tanggal = txtTanggal.getValue().toString();
 
             kegiatan = new Kegiatan(namaKegiatan, waktu, tanggal, tempat, operator);
-            KegiatanService dao = java.util.ServiceLoader.load(KegiatanService.class).findFirst().orElseThrow();
 
             if (true) {
                 try {

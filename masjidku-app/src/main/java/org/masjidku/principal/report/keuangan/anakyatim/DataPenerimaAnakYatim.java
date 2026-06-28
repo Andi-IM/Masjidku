@@ -15,6 +15,7 @@
 
 package org.masjidku.principal.report.keuangan.anakyatim;
 
+import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
 import javafx.collections.FXCollections;
@@ -32,6 +33,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class DataPenerimaAnakYatim implements Initializable {
+    private final AnakYatimService dao = ServiceProvider.get(AnakYatimService.class);
 
     @FXML
     private TableView<AnakYatim> tableAnakyatim;
@@ -64,7 +66,6 @@ public class DataPenerimaAnakYatim implements Initializable {
      * @return Observable List
      */
     private ObservableList<AnakYatim> getDataAnak() {
-        AnakYatimService dao = ServiceLoader.load(AnakYatimService.class).findFirst().orElseThrow();
         try {
             dataAnak.addAll(dao.getAll());
         } catch (SQLException e) {

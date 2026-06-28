@@ -15,6 +15,7 @@
 
 package org.masjidku.accountant.zakat;
 
+import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
 import javafx.collections.FXCollections;
@@ -35,6 +36,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class PenerimaZakat implements Initializable {
+    private final ZakatKeluarService dao = ServiceProvider.get(ZakatKeluarService.class);
 
     @FXML
     private TableView<ZakatKeluar> tableZakat;
@@ -71,7 +73,6 @@ public class PenerimaZakat implements Initializable {
      * @return Observable List
      */
     private ObservableList<ZakatKeluar> getDataZakat() {
-        ZakatKeluarService dao = ServiceLoader.load(ZakatKeluarService.class).findFirst().orElseThrow();
         try {
             dataZakat.addAll(dao.getAll());
         } catch (SQLException e) {
@@ -123,7 +124,6 @@ public class PenerimaZakat implements Initializable {
     public void onRemoveListener() {
         ZakatKeluar selectedItem = tableZakat.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
-            ZakatKeluarService dao = ServiceLoader.load(ZakatKeluarService.class).findFirst().orElseThrow();
             try {
                 if (dao.isDataExist(selectedItem.getId())) {
                     tableZakat.getItems().remove(selectedItem);

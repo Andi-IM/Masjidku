@@ -15,6 +15,7 @@
 
 package org.masjidku.accountant.anakyatim;
 
+import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
@@ -31,6 +32,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class EditPenerimaAnakYatim {
+    private final AnakYatimService dao = ServiceProvider.get(AnakYatimService.class);
 
     @FXML
     private TextField txtNama;
@@ -99,7 +101,6 @@ public class EditPenerimaAnakYatim {
                 anakYatim = new AnakYatim(nama, usia, jumlah, tanggal, operator);
             }
 
-            AnakYatimService dao = ServiceLoader.load(AnakYatimService.class).findFirst().orElseThrow();
             try {
                 if (dao.isAnakYatimExist(anakYatim.getId())) {
                     dao.update(new String[]{

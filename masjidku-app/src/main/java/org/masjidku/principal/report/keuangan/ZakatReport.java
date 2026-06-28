@@ -15,6 +15,7 @@
 
 package org.masjidku.principal.report.keuangan;
 
+import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
@@ -29,6 +30,9 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class ZakatReport implements Initializable {
+    private final AccountingFunctionsService df = ServiceProvider.get(AccountingFunctionsService.class);
+    private final ZakatKeluarService zkDao = ServiceProvider.get(ZakatKeluarService.class);
+    private final ZakatMasukService zmDao = ServiceProvider.get(ZakatMasukService.class);
     @FXML
     public Text txtPemasukanTerakhir;
     @FXML
@@ -63,9 +67,6 @@ public class ZakatReport implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ZakatKeluarService zkDao = ServiceLoader.load(ZakatKeluarService.class).findFirst().orElseThrow();
-        ZakatMasukService zmDao = ServiceLoader.load(ZakatMasukService.class).findFirst().orElseThrow();
-        AccountingFunctionsService df = ServiceLoader.load(AccountingFunctionsService.class).findFirst().orElseThrow();
 
         try {
             ZakatKeluar penerima = zkDao.getLastRecord();

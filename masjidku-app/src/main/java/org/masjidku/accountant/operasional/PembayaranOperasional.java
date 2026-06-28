@@ -15,6 +15,7 @@
 
 package org.masjidku.accountant.operasional;
 
+import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
 import javafx.collections.FXCollections;
@@ -35,6 +36,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class PembayaranOperasional implements Initializable {
+    private final OperationalService dao = ServiceProvider.get(OperationalService.class);
 
     @FXML
     private TableView<Operasional> tableOperasional;
@@ -73,7 +75,6 @@ public class PembayaranOperasional implements Initializable {
      * @return Observable List
      */
     private ObservableList<Operasional> getDataOperasional() {
-        OperationalService dao = ServiceLoader.load(OperationalService.class).findFirst().orElseThrow();
         try {
             dataOperasional.addAll(dao.getAll());
         } catch (SQLException e) {
@@ -126,7 +127,6 @@ public class PembayaranOperasional implements Initializable {
     public void onRemoveListener() {
         Operasional selectedItem = tableOperasional.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
-            OperationalService dao = ServiceLoader.load(OperationalService.class).findFirst().orElseThrow();
             try {
                 if (dao.isDataExist(selectedItem.getId())) {
                     tableOperasional.getItems().remove(selectedItem);

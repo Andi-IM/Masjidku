@@ -15,6 +15,7 @@
 
 package org.masjidku.principal.report.keuangan;
 
+import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
@@ -29,6 +30,9 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class OperasionalReport implements Initializable {
+    private final AccountingFunctionsService df = ServiceProvider.get(AccountingFunctionsService.class);
+    private final DonasiOperationalService doDao = ServiceProvider.get(DonasiOperationalService.class);
+    private final OperationalService opDao = ServiceProvider.get(OperationalService.class);
     @FXML
     public Text txtPemasukanTerakhir;
     @FXML
@@ -59,9 +63,6 @@ public class OperasionalReport implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        OperationalService opDao = ServiceLoader.load(OperationalService.class).findFirst().orElseThrow();
-        DonasiOperationalService doDao = ServiceLoader.load(DonasiOperationalService.class).findFirst().orElseThrow();
-        AccountingFunctionsService df = ServiceLoader.load(AccountingFunctionsService.class).findFirst().orElseThrow();
 
         try {
             Operasional penerima = opDao.getLastRecord();

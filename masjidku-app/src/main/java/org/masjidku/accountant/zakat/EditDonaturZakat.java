@@ -15,6 +15,7 @@
 
 package org.masjidku.accountant.zakat;
 
+import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
@@ -30,6 +31,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class EditDonaturZakat {
+    private final ZakatMasukService dao = ServiceProvider.get(ZakatMasukService.class);
 
     @FXML
     private TextField txtNama;
@@ -81,7 +83,6 @@ public class EditDonaturZakat {
                 donatur = new ZakatMasuk(nama, jumlah, tanggal, operator);
             }
 
-            ZakatMasukService dao = ServiceLoader.load(ZakatMasukService.class).findFirst().orElseThrow();
             try {
                 if (dao.isDonaturExist(donatur.getId())) {
                     dao.update(new String[]{

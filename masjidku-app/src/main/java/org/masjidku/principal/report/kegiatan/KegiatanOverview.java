@@ -15,6 +15,7 @@
 
 package org.masjidku.principal.report.kegiatan;
 
+import org.masjidku.util.ServiceProvider;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
@@ -27,6 +28,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class KegiatanOverview implements Initializable {
+    private final KegiatanService dao = ServiceProvider.get(KegiatanService.class);
     @FXML
     public Text txtKegiatanTerakhir;
     @FXML
@@ -55,7 +57,6 @@ public class KegiatanOverview implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        KegiatanService dao = java.util.ServiceLoader.load(KegiatanService.class).findFirst().orElseThrow();
         try {
             if (true){
                 Kegiatan model = dao.getLastRecord();

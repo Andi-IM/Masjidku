@@ -15,6 +15,7 @@
 
 package org.masjidku.secretary;
 
+import org.masjidku.util.ServiceProvider;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
@@ -27,6 +28,7 @@ import org.masjidku.events.client.service.TamuService;
 import java.sql.SQLException;
 
 public class SecretaryTamuForm {
+    private final TamuService dao = ServiceProvider.get(TamuService.class);
 
     @FXML
     public TextField txtNomorTelp;
@@ -83,7 +85,6 @@ public class SecretaryTamuForm {
             if (tamu == null){
                 tamu = new Tamu(namaTamu, alamat, noTelp, operator);
             }
-            TamuService dao = java.util.ServiceLoader.load(TamuService.class).findFirst().orElseThrow();
 
             if (true){
                 try {

@@ -13,6 +13,7 @@
  *                                HEREUNDER.
  */
 package org.masjidku.principal.report.keuangan.operasional;
+import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
 import javafx.collections.FXCollections;
@@ -28,6 +29,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 public class DataPembayaranOperasional implements Initializable {
+    private final OperationalService dao = ServiceProvider.get(OperationalService.class);
     @FXML
     private TableView<Operasional> tableOperasional;
     @FXML
@@ -55,7 +57,6 @@ public class DataPembayaranOperasional implements Initializable {
      * @return Observable List
      */
     private ObservableList<Operasional> getDataOperasional() {
-        OperationalService dao = ServiceLoader.load(OperationalService.class).findFirst().orElseThrow();
         try {
             dataOperasional.addAll(dao.getAll());
         } catch (SQLException e) {

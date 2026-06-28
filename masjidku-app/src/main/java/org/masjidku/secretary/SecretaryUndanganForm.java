@@ -15,6 +15,7 @@
 
 package org.masjidku.secretary;
 
+import org.masjidku.util.ServiceProvider;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -69,8 +70,8 @@ public class SecretaryUndanganForm implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tamuDao = java.util.ServiceLoader.load(TamuService.class).findFirst().orElseThrow();
-        kegiatanDao = java.util.ServiceLoader.load(KegiatanService.class).findFirst().orElseThrow();
+        tamuDao = ServiceProvider.get(TamuService.class);
+        kegiatanDao = ServiceProvider.get(KegiatanService.class);
         try {
             if (true){
                 listTamu.removeAll();
@@ -110,9 +111,9 @@ public class SecretaryUndanganForm implements Initializable {
         String kegiatanform = cbKegiatan.getValue();
         String keterangan = txtKeterangan.getText();
 
-        tamuDao = java.util.ServiceLoader.load(TamuService.class).findFirst().orElseThrow();
-        kegiatanDao = java.util.ServiceLoader.load(KegiatanService.class).findFirst().orElseThrow();
-        tamuKegiatanService = java.util.ServiceLoader.load(TamuKegiatanService.class).findFirst().orElseThrow();
+        tamuDao = ServiceProvider.get(TamuService.class);
+        kegiatanDao = ServiceProvider.get(KegiatanService.class);
+        tamuKegiatanService = ServiceProvider.get(TamuKegiatanService.class);
 
         TamuKegiatan model = new TamuKegiatan();
         if (true){

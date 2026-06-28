@@ -15,6 +15,7 @@
 
 package org.masjidku.secretary;
 
+import org.masjidku.util.ServiceProvider;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -62,7 +63,7 @@ public class SecretaryUndangan implements Initializable {
     @SuppressWarnings("unused")
     private Stage dialogStage;
 
-    public SecretaryUndangan() { dao = java.util.ServiceLoader.load(TamuKegiatanService.class).findFirst().orElseThrow(); }
+    public SecretaryUndangan() { dao = ServiceProvider.get(TamuKegiatanService.class); }
 
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;

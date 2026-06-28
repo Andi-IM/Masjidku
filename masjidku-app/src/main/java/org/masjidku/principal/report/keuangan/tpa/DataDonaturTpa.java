@@ -13,6 +13,7 @@
  *                                HEREUNDER.
  */
 package org.masjidku.principal.report.keuangan.tpa;
+import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
 import javafx.collections.FXCollections;
@@ -28,6 +29,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 public class DataDonaturTpa implements Initializable {
+    private final TpaMasukService dao = ServiceProvider.get(TpaMasukService.class);
     @FXML
     private TableView<TpaMasuk> tableTpa;
     @FXML
@@ -53,7 +55,6 @@ public class DataDonaturTpa implements Initializable {
      * @return Observable List
      */
     private ObservableList<TpaMasuk> getDonaturData() {
-        TpaMasukService dao = ServiceLoader.load(TpaMasukService.class).findFirst().orElseThrow();
         try {
             donaturData.addAll(dao.getAll());
         } catch (SQLException e) {

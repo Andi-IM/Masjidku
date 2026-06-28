@@ -15,6 +15,7 @@
 
 package org.masjidku.accountant.anakyatim;
 
+import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
 import javafx.collections.FXCollections;
@@ -35,6 +36,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class PenerimaAnakYatim implements Initializable {
+    private final AnakYatimService dao = ServiceProvider.get(AnakYatimService.class);
 
     @FXML
     private TableView<AnakYatim> tableAnakyatim;
@@ -73,7 +75,6 @@ public class PenerimaAnakYatim implements Initializable {
      * @return Observable List
      */
     private ObservableList<AnakYatim> getDataAnak() {
-        AnakYatimService dao = ServiceLoader.load(AnakYatimService.class).findFirst().orElseThrow();
         try {
             dataAnak.addAll(dao.getAll());
         } catch (SQLException e) {
@@ -128,7 +129,6 @@ public class PenerimaAnakYatim implements Initializable {
     public void onRemoveListener() {
         AnakYatim selectedItem = tableAnakyatim.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
-            AnakYatimService dao = ServiceLoader.load(AnakYatimService.class).findFirst().orElseThrow();
             try {
                 if (dao.isAnakYatimExist(selectedItem.getId())) {
                     tableAnakyatim.getItems().remove(selectedItem);

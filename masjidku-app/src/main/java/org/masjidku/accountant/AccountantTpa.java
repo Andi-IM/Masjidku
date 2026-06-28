@@ -15,6 +15,7 @@
 
 package org.masjidku.accountant;
 
+import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
@@ -29,6 +30,9 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class AccountantTpa implements Initializable {
+    private final AccountingFunctionsService df = ServiceProvider.get(AccountingFunctionsService.class);
+    private final TpaKeluarService tpakdao = ServiceProvider.get(TpaKeluarService.class);
+    private final TpaMasukService tpamdao = ServiceProvider.get(TpaMasukService.class);
     @FXML
     public Text txtPemasukanTerakhir;
     @FXML
@@ -59,9 +63,6 @@ public class AccountantTpa implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        TpaMasukService tpamdao = ServiceLoader.load(TpaMasukService.class).findFirst().orElseThrow();
-        TpaKeluarService tpakdao = ServiceLoader.load(TpaKeluarService.class).findFirst().orElseThrow();
-        AccountingFunctionsService df = ServiceLoader.load(AccountingFunctionsService.class).findFirst().orElseThrow();
 
         try {
             TpaKeluar penerima = tpakdao.getLastRecord();

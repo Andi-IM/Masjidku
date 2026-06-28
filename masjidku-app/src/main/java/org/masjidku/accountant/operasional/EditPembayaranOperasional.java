@@ -15,6 +15,7 @@
 
 package org.masjidku.accountant.operasional;
 
+import org.masjidku.util.ServiceProvider;
 import java.util.ServiceLoader;
 import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
@@ -30,6 +31,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class EditPembayaranOperasional {
+    private final OperationalService dao = ServiceProvider.get(OperationalService.class);
 
     @FXML
     private TextField txtNama;
@@ -95,7 +97,6 @@ public class EditPembayaranOperasional {
                 model = new Operasional(nama, keterangan, jumlah, tanggal, operator);
             }
 
-            OperationalService dao = ServiceLoader.load(OperationalService.class).findFirst().orElseThrow();
             try {
                 if (dao.isDataExist(model.getId())) {
                     dao.update(new String[]{
