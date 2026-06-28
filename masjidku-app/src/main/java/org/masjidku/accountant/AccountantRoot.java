@@ -13,30 +13,56 @@
  *                                HEREUNDER.
  */
 package org.masjidku.accountant;
-import org.masjidku.accounting.client.service.*;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleGroup;
 import org.masjidku.MainApp;
+
 public class AccountantRoot {
     public ToggleGroup groupButton;
     private MainApp mainApp;
+
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
+
     @FXML
-    public void homeAction() { mainApp.setAccountantView(); }
+    public void homeAction() {
+        mainApp.setAccountantView();
+    }
+
     @FXML
-    public void profileAction() { mainApp.showProfile(); }
+    public void profileAction() {
+        mainApp.showProfile();
+    }
+
     @FXML
-    public void aboutAction() { mainApp.showAbout(); }
+    public void aboutAction() {
+        mainApp.showAbout();
+    }
+
     @FXML
-    public void ayatimAction() { mainApp.showAnakYatim(); }
+    public void ayatimAction() {
+        mainApp.showAnakYatim();
+    }
+
     @FXML
-    public void zakatAction() { mainApp.showZakat(); }
+    public void zakatAction() {
+        mainApp.showZakat();
+    }
+
     @FXML
-    public void pembangunanAction() { mainApp.showPembangunan(); }
+    public void pembangunanAction() {
+        mainApp.showPembangunan();
+    }
+
     @FXML
-    public void operasionalAction() { mainApp.showOperasional(); }
+    public void operasionalAction() {
+        mainApp.showOperasional();
+    }
+
     @FXML
-    public void tpaAction() { mainApp.showTpa(); }
+    public void tpaAction() {
+        mainApp.showTpa();
+    }
 }

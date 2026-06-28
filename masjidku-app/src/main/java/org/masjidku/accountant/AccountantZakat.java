@@ -15,55 +15,46 @@
 
 package org.masjidku.accountant;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.masjidku.util.ServiceProvider;
-import java.util.ServiceLoader;
-import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.text.Text;
 import org.masjidku.MainApp;
 import org.masjidku.accounting.client.model.zakat.ZakatKeluar;
 import org.masjidku.accounting.client.model.zakat.ZakatMasuk;
+import org.masjidku.accounting.client.service.AccountingFunctionsService;
+import org.masjidku.accounting.client.service.ZakatKeluarService;
+import org.masjidku.accounting.client.service.ZakatMasukService;
+import org.masjidku.util.ServiceProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class AccountantZakat implements Initializable {
+public class AccountantZakat extends BaseAccountantController {
     private static final Logger log = LoggerFactory.getLogger(AccountantZakat.class);
     private final AccountingFunctionsService df = ServiceProvider.get(AccountingFunctionsService.class);
     private final ZakatKeluarService zkDao = ServiceProvider.get(ZakatKeluarService.class);
     private final ZakatMasukService zmDao = ServiceProvider.get(ZakatMasukService.class);
-    @FXML
-    public Text txtPemasukanTerakhir;
-    @FXML
-    public Text txtPengeluaranTerakhir;
-    @FXML
-    public Text txtTglPemasukkan;
-    @FXML
-    public Text txtTotalPemasukkan;
-    @FXML
-    public Text txtTotalPengeluaran;
-    @FXML
-    public Text txtSaldo;
-    @FXML
-    public Text txtTglPengeluaran;
-
     private MainApp mainApp;
 
-    public void setMainApp(MainApp mainApp) { this.mainApp = mainApp; }
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+    }
 
     @FXML
-    public void onKelolaDonasiZakat() { mainApp.showDonaturZakat(); }
+    public void onKelolaDonasiZakat() {
+        mainApp.showDonaturZakat();
+    }
 
     @FXML
-    public void onKelolaPenerimaZakat() { mainApp.showDaftarPenerimaZakat(); }
+    public void onKelolaPenerimaZakat() {
+        mainApp.showDaftarPenerimaZakat();
+    }
 
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -72,13 +63,15 @@ public class AccountantZakat implements Initializable {
             ZakatKeluar penerima = zkDao.getLastRecord();
             ZakatMasuk pemberi = zmDao.getLastRecord();
 
-            txtPemasukanTerakhir.setText("Rp. " + pemberi.getJumlah() );
-            txtPengeluaranTerakhir.setText("Rp. " + penerima.getJumlah());
-            txtTotalPemasukkan.setText("Rp. " + zmDao.getTotalIncome());
-            txtTotalPengeluaran.setText("Rp. " + zkDao.gettotalOutcome());
-            txtSaldo.setText("Rp. " + df.getZakatBalance());
-            txtTglPemasukkan.setText(pemberi.getTanggal());
-            txtTglPengeluaran.setText(penerima.getTanggal());
+            updateDashboardSummary(
+                    pemberi.getJumlah(), // Pemasukan
+                    penerima.getJumlah(), // Pengeluaran
+                    zmDao.getTotalIncome(), // Total Pemasukan
+                    zkDao.gettotalOutcome(), // Total Pengeluaran
+                    df.getZakatBalance(), // Saldo
+                    pemberi.getTanggal(), // Tgl Pemasukan
+                    penerima.getTanggal() // Tgl Pengeluaran
+            );
         } catch (SQLException e) {
             log.error("An error occurred", e);
         }

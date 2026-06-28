@@ -71,7 +71,6 @@ public class LoginController {
 
     private void validateLogin() {
         String username = txtUsername.getText();
-        @SuppressWarnings("UnstableApiUsage")
         String password = Hashing
                 .sha256()
                 .hashString(txtPassword.getText(), StandardCharsets.UTF_8)

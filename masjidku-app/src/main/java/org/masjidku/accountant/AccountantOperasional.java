@@ -15,55 +15,46 @@
 
 package org.masjidku.accountant;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.masjidku.util.ServiceProvider;
-import java.util.ServiceLoader;
-import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.text.Text;
 import org.masjidku.MainApp;
 import org.masjidku.accounting.client.model.operasional.DonasiOperasional;
 import org.masjidku.accounting.client.model.operasional.Operasional;
+import org.masjidku.accounting.client.service.AccountingFunctionsService;
+import org.masjidku.accounting.client.service.DonasiOperationalService;
+import org.masjidku.accounting.client.service.OperationalService;
+import org.masjidku.util.ServiceProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class AccountantOperasional implements Initializable {
+public class AccountantOperasional extends BaseAccountantController {
     private static final Logger log = LoggerFactory.getLogger(AccountantOperasional.class);
     private final AccountingFunctionsService df = ServiceProvider.get(AccountingFunctionsService.class);
     private final DonasiOperationalService doDao = ServiceProvider.get(DonasiOperationalService.class);
     private final OperationalService opDao = ServiceProvider.get(OperationalService.class);
-    @FXML
-    public Text txtPemasukanTerakhir;
-    @FXML
-    public Text txtPengeluaranTerakhir;
-    @FXML
-    public Text txtTglPemasukkan;
-    @FXML
-    public Text txtTotalPemasukkan;
-    @FXML
-    public Text txtTotalPengeluaran;
-    @FXML
-    public Text txtSaldo;
-    @FXML
-    public Text txtTglPengeluaran;
-
     private MainApp mainApp;
 
-    public void setMainApp(MainApp mainApp) { this.mainApp = mainApp; }
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+    }
 
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
 
     @FXML
-    public void onKelolaDonaturClick() { mainApp.showDonaturOperasional(); }
+    public void onKelolaDonaturClick() {
+        mainApp.showDonaturOperasional();
+    }
 
     @FXML
-    public void onKelolaOperasionalClick() { mainApp.showAlokasiOperasional(); }
+    public void onKelolaOperasionalClick() {
+        mainApp.showAlokasiOperasional();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -72,13 +63,15 @@ public class AccountantOperasional implements Initializable {
             Operasional penerima = opDao.getLastRecord();
             DonasiOperasional pemberi = doDao.getLastRecord();
 
-            txtPemasukanTerakhir.setText("Rp. " + penerima.getJumlah());
-            txtPengeluaranTerakhir.setText("Rp. " + pemberi.getJumlah());
-            txtTotalPemasukkan.setText("Rp. " + opDao.getTotalIncome());
-            txtTotalPengeluaran.setText("Rp. " + doDao.getTotalOutcome());
-            txtSaldo.setText("Rp. " + df.getOperationalBalance());
-            txtTglPemasukkan.setText(pemberi.getTanggal());
-            txtTglPengeluaran.setText(penerima.getTanggal());
+            updateDashboardSummary(
+                    pemberi.getJumlah(), // Pemasukan
+                    penerima.getJumlah(), // Pengeluaran
+                    opDao.getTotalIncome(), // Total Pemasukan
+                    doDao.getTotalOutcome(), // Total Pengeluaran
+                    df.getOperationalBalance(),
+                    pemberi.getTanggal(),
+                    penerima.getTanggal()
+            );
 
         } catch (SQLException e) {
             log.error("An error occurred", e);

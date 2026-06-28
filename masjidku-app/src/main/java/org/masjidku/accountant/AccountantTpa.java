@@ -15,55 +15,46 @@
 
 package org.masjidku.accountant;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.masjidku.util.ServiceProvider;
-import java.util.ServiceLoader;
-import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.text.Text;
 import org.masjidku.MainApp;
 import org.masjidku.accounting.client.model.tpa.TpaKeluar;
 import org.masjidku.accounting.client.model.tpa.TpaMasuk;
+import org.masjidku.accounting.client.service.AccountingFunctionsService;
+import org.masjidku.accounting.client.service.TpaKeluarService;
+import org.masjidku.accounting.client.service.TpaMasukService;
+import org.masjidku.util.ServiceProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class AccountantTpa implements Initializable {
+public class AccountantTpa extends BaseAccountantController {
     private static final Logger log = LoggerFactory.getLogger(AccountantTpa.class);
     private final AccountingFunctionsService df = ServiceProvider.get(AccountingFunctionsService.class);
     private final TpaKeluarService tpakdao = ServiceProvider.get(TpaKeluarService.class);
     private final TpaMasukService tpamdao = ServiceProvider.get(TpaMasukService.class);
-    @FXML
-    public Text txtPemasukanTerakhir;
-    @FXML
-    public Text txtPengeluaranTerakhir;
-    @FXML
-    public Text txtTglPemasukkan;
-    @FXML
-    public Text txtTotalPemasukkan;
-    @FXML
-    public Text txtTotalPengeluaran;
-    @FXML
-    public Text txtTglPengeluaran;
-    @FXML
-    public Text txtSaldo;
-
     private MainApp mainApp;
 
-    public void setMainApp(MainApp mainApp) { this.mainApp = mainApp; }
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+    }
 
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
 
     @FXML
-    public void onKelolaTpa() { mainApp.showAlokasiTpa(); }
+    public void onKelolaTpa() {
+        mainApp.showAlokasiTpa();
+    }
 
     @FXML
-    public void onKelolaDonasiTpa() { mainApp.showDonaturTpa(); }
+    public void onKelolaDonasiTpa() {
+        mainApp.showDonaturTpa();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -72,13 +63,15 @@ public class AccountantTpa implements Initializable {
             TpaKeluar penerima = tpakdao.getLastRecord();
             TpaMasuk pemberi = tpamdao.getLastRecord();
 
-            txtPemasukanTerakhir.setText("Rp. " + pemberi.getJumlah());
-            txtPengeluaranTerakhir.setText("Rp. " + penerima.getJumlah());
-            txtTotalPemasukkan.setText("Rp. " + tpamdao.getTotalIncome());
-            txtTotalPengeluaran.setText("Rp. " + tpakdao.getTotalOutcome());
-            txtSaldo.setText("Rp. " + df.getTpaBalance());
-            txtTglPemasukkan.setText(pemberi.getTanggal());
-            txtTglPengeluaran.setText(penerima.getTanggal());
+            updateDashboardSummary(
+                    pemberi.getJumlah(), // Pemasukan
+                    penerima.getJumlah(), // Pengeluaran
+                    tpamdao.getTotalIncome(), // Total Pemasukan
+                    tpakdao.getTotalOutcome(), // Total Pengeluaran
+                    df.getTpaBalance(), // Saldo
+                    pemberi.getTanggal(), // Tgl Pemasukan
+                    penerima.getTanggal() // Tgl Pengeluaran
+            );
 
         } catch (SQLException e) {
             log.error("An error occurred", e);

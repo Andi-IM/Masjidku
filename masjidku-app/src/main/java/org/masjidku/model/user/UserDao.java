@@ -47,7 +47,6 @@ public class UserDao extends UserDaoFactory<User> {
         ps = con.prepareStatement(INSERT_QUERY);
         ps.setString(1, user.getUserId());
 
-        @SuppressWarnings("UnstableApiUsage")
         String hex = Hashing
                 .sha256()
                 .hashString("12345678", StandardCharsets.UTF_8)
@@ -86,7 +85,6 @@ public class UserDao extends UserDaoFactory<User> {
         ps.setString(1, username);
         ps.setString(3, userid);
 
-        @SuppressWarnings("UnstableApiUsage")
         String hex = Hashing
                 .sha256()
                 .hashString(password, StandardCharsets.UTF_8)
@@ -111,7 +109,6 @@ public class UserDao extends UserDaoFactory<User> {
         rs = ps.executeQuery();
         boolean reset = false;
         if (rs.next()) {
-            @SuppressWarnings("UnstableApiUsage")
             String hex = Hashing
                     .sha256()
                     .hashString("12345678", StandardCharsets.UTF_8)
@@ -126,7 +123,6 @@ public class UserDao extends UserDaoFactory<User> {
     @Override
     public void reset(String userId) throws SQLException {
         ps = con.prepareStatement(RESET_PASSWORD_QUERY);
-        @SuppressWarnings("UnstableApiUsage")
         String hex = Hashing
                 .sha256()
                 .hashString("12345678", StandardCharsets.UTF_8)

@@ -40,8 +40,8 @@ dependencies {
     implementation(libs.guava)
 
     // Utilities
-    implementation("org.slf4j:slf4j-api:2.0.12")
-    runtimeOnly("ch.qos.logback:logback-classic:1.5.6")
+    implementation(libs.slf4j)
+    runtimeOnly(libs.logback)
 
     // Unit Test
     testImplementation(libs.junit)

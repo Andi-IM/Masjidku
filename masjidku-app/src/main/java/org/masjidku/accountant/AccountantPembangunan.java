@@ -32,26 +32,11 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class AccountantPembangunan implements Initializable {
+public class AccountantPembangunan extends BaseAccountantController {
     private static final Logger log = LoggerFactory.getLogger(AccountantPembangunan.class);
     private final AccountingFunctionsService df = ServiceProvider.get(AccountingFunctionsService.class);
     private final DonasiPembangunanService dpDao = ServiceProvider.get(DonasiPembangunanService.class);
     private final PembangunanService pbDao = ServiceProvider.get(PembangunanService.class);
-    @FXML
-    public Text txtPemasukanTerakhir;
-    @FXML
-    public Text txtPengeluaranTerakhir;
-    @FXML
-    public Text txtTglPemasukkan;
-    @FXML
-    public Text txtTotalPemasukkan;
-    @FXML
-    public Text txtTotalPengeluaran;
-    @FXML
-    public Text txtSaldo;
-    @FXML
-    public Text txtTglPengeluaran;
-
     private MainApp mainApp;
 
     public void setMainApp(MainApp mainApp) { this.mainApp = mainApp; }
@@ -72,13 +57,15 @@ public class AccountantPembangunan implements Initializable {
             Pembangunan penerima = pbDao.getLastRecord();
             DonasiPembangunan pemberi = dpDao.getLastRecord();
 
-            txtPemasukanTerakhir.setText("Rp. " + penerima.getJumlah());
-            txtPengeluaranTerakhir.setText("Rp. " + pemberi.getJumlah());
-            txtTotalPemasukkan.setText("Rp. " + pbDao.getTotalIncome());
-            txtTotalPengeluaran.setText("Rp. " + dpDao.getTotalOutcome());
-            txtSaldo.setText("Rp. " + df.getPembangunanBalance());
-            txtTglPemasukkan.setText(pemberi.getTanggal());
-            txtTglPengeluaran.setText(penerima.getTanggal());
+            updateDashboardSummary(
+                pemberi.getJumlah(), // Pemasukan
+                penerima.getJumlah(), // Pengeluaran
+                pbDao.getTotalIncome(), // Total Pemasukan
+                dpDao.getTotalOutcome(), // Total Pengeluaran
+                df.getPembangunanBalance(), // Saldo
+                pemberi.getTanggal(), // Tgl Pemasukan
+                penerima.getTanggal() // Tgl Pengeluaran
+            );
 
         } catch (SQLException e) {
             log.error("An error occurred", e);

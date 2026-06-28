@@ -14,12 +14,7 @@
  */
 package org.masjidku.accountant;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.text.Text;
 import org.masjidku.MainApp;
 import org.masjidku.accounting.client.model.anakyatim.AnakYatim;
 import org.masjidku.accounting.client.model.anakyatim.DonasiAYatim;
@@ -27,30 +22,18 @@ import org.masjidku.accounting.client.service.AccountingFunctionsService;
 import org.masjidku.accounting.client.service.AnakYatimService;
 import org.masjidku.accounting.client.service.DonasiAYatimService;
 import org.masjidku.util.ServiceProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class AccountantAnakyatim implements Initializable {
+public class AccountantAnakyatim extends BaseAccountantController {
     private static final Logger log = LoggerFactory.getLogger(AccountantAnakyatim.class);
     private final AccountingFunctionsService df = ServiceProvider.get(AccountingFunctionsService.class);
     private final AnakYatimService ayDao = ServiceProvider.get(AnakYatimService.class);
     private final DonasiAYatimService dayDao = ServiceProvider.get(DonasiAYatimService.class);
-    @FXML
-    public Text txtPemasukanTerakhir;
-    @FXML
-    public Text txtPengeluaranTerakhir;
-    @FXML
-    public Text txtTglPemasukkan;
-    @FXML
-    public Text txtTotalPemasukkan;
-    @FXML
-    public Text txtTotalPengeluaran;
-    @FXML
-    public Text txtSaldo;
-    @FXML
-    public Text txtTglPengeluaran;
     private MainApp mainApp;
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
@@ -60,13 +43,16 @@ public class AccountantAnakyatim implements Initializable {
         try {
             AnakYatim penerima = ayDao.getLastRecord();
             DonasiAYatim pemberi = dayDao.getLastRecord();
-            txtPemasukanTerakhir.setText("Rp. " + penerima.getJumlah());
-            txtPengeluaranTerakhir.setText("Rp. " + pemberi.getJumlah());
-            txtTotalPemasukkan.setText("Rp. " + dayDao.getTotalIncome());
-            txtTotalPengeluaran.setText("Rp. " + ayDao.getTotalOutcome());
-            txtSaldo.setText("Rp. " + df.getInfakYatimBalance());
-            txtTglPemasukkan.setText(pemberi.getTanggal());
-            txtTglPengeluaran.setText(penerima.getTanggal());
+            
+            updateDashboardSummary(
+                pemberi.getJumlah(), // Pemasukan
+                penerima.getJumlah(), // Pengeluaran
+                dayDao.getTotalIncome(), // Total Pemasukan
+                ayDao.getTotalOutcome(), // Total Pengeluaran
+                df.getInfakYatimBalance(), // Saldo
+                pemberi.getTanggal(), // Tgl Pemasukan
+                penerima.getTanggal() // Tgl Pengeluaran
+            );
         } catch (SQLException e) {
             log.error("An error occurred", e);
         }

@@ -4,7 +4,7 @@ import org.masjidku.model.DaoFactory;
 
 import java.sql.SQLException;
 
-@SuppressWarnings({"FieldCanBeLocal", "unused"})
+@SuppressWarnings({"unused"})
 public class UserProfileDao extends DaoFactory {
 
     private static final String INSERT_QUERY = "INSERT INTO profil_user (userid, notelp, alamat) VALUES(?,?,?)";
