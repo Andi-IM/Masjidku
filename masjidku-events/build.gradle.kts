@@ -19,5 +19,6 @@ javafx {
 dependencies {
     implementation(project(":masjidku-common"))
     implementation(project(":masjidku-events-client"))
-    implementation("org.slf4j:slf4j-api:2.0.12")
+    implementation(libs.jetbrains.annotations)
+    implementation(libs.slf4j)
 }

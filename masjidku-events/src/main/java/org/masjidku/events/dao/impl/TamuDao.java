@@ -17,6 +17,7 @@ package org.masjidku.events.dao.impl;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.intellij.lang.annotations.Language;
 import org.masjidku.events.client.model.Tamu;
 import org.masjidku.events.client.service.TamuService;
 import org.masjidku.events.dao.base.Dao;
@@ -24,13 +25,21 @@ import org.masjidku.events.dao.base.Dao;
 import java.sql.SQLException;
 
 public class TamuDao extends Dao<Tamu> implements TamuService {
+    @Language("SQL")
     private static final String QUERY_1 = "SELECT * FROM tamu WHERE tamuID=?";
+    @Language("SQL")
     private static final String QUERY_2 = "SELECT * FROM tamu";
+    @Language("SQL")
     private static final String QUERY_3 = "INSERT INTO tamu(tamuID, tamuNama, tamuAlamat, tamuNotelp, operator) VALUES(?,?,?,?,?)";
+    @Language("SQL")
     private static final String QUERY_4 = "UPDATE tamu SET tamuNama=?, tamuAlamat=?, tamuNotelp=?, operator=? WHERE tamuID=?";
+    @Language("SQL")
     private static final String QUERY_5 = "DELETE FROM tamu WHERE tamuID=?";
+    @Language("SQL")
     private static final String QUERY_6 = "SELECT tamuID FROM tamu WHERE tamuID=?";
+    @Language("SQL")
     private static final String QUERY_7 = "SELECT * FROM tamu";
+    @Language("SQL")
     private static final String QUERY_8 = "SELECT tamuID FROM tamu WHERE tamuNama=?";
 
     public TamuDao() {

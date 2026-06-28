@@ -11,6 +11,7 @@ guava = "32.0.1-jre"
 archunit = "1.2.1"
 slf4j = "2.0.12"
 logback = "1.5.13"
+annotation = "24.1.0"
 
 [libraries]
 # Database
@@ -25,7 +26,8 @@ jasperreports = { group = "net.sf.jasperreports", name = "jasperreports", versio
 jaxb-api = { group = "javax.xml.bind", name = "jaxb-api", version.ref = "jaxb-api" }
 
 # Utilities
-jetbrains-annotations = { group = "org.jetbrains", name = "annotations", version.ref = "jetbrains-ann" }
+jetbrains-annotations = { group = "org.jetbrains", name = "annotations", version.ref = "annotation" }
+
 guava = { group = "com.google.guava", name = "guava", version.ref = "guava" }
 
 # Test

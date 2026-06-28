@@ -14,27 +14,33 @@
  */
 
 package org.masjidku.accounting.dao.anakyatim;
-import org.masjidku.accounting.client.model.anakyatim.*;
-
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.intellij.lang.annotations.Language;
+import org.masjidku.accounting.client.model.anakyatim.AnakYatim;
 import org.masjidku.accounting.dao.base.Dao;
 
 import java.sql.SQLException;
 
 public class AnakYatimDao extends Dao<AnakYatim> {
+    @Language("SQL")
     private static final String QUERY_1 = "SELECT * FROM penerima_anakyatim WHERE id=?";
+    @Language("SQL")
     private static final String QUERY_2 = "SELECT * FROM penerima_anakyatim";
+    @Language("SQL")
     private static final String QUERY_3 = "INSERT INTO penerima_anakyatim(id, nama, usia, jumlah, tanggal, operator) VALUES (?,?,?,?,?,?)";
+    @Language("SQL")
     private static final String QUERY_4 = "UPDATE penerima_anakyatim SET nama=?, usia=?, jumlah=?, tanggal=?, operator=? WHERE id=?";
+    @Language("SQL")
     private static final String QUERY_5 = "DELETE FROM penerima_anakyatim WHERE id=?";
+    @Language("SQL")
     private static final String QUERY_6 = "SELECT * FROM penerima_anakyatim ORDER BY ID DESC LIMIT 1";
+    @Language("SQL")
     private static final String QUERY_7 = "SELECT IFNULL(SUM(jumlah),0) FROM penerima_anakyatim";
+    @Language("SQL")
     private static final String QUERY_8 = "SELECT id FROM penerima_anakyatim WHERE id=?";
 
-
-    
 
     @Override
     public AnakYatim get(String id) throws SQLException {
@@ -43,7 +49,7 @@ public class AnakYatimDao extends Dao<AnakYatim> {
         rs = ps.executeQuery();
 
         AnakYatim model = null;
-        if (rs.next()){
+        if (rs.next()) {
             model = new AnakYatim(
                     rs.getString(1),
                     rs.getString(2),
@@ -64,7 +70,7 @@ public class AnakYatimDao extends Dao<AnakYatim> {
         rs = ps.executeQuery();
 
         AnakYatim anakYatim;
-        while (rs.next()){
+        while (rs.next()) {
             anakYatim = new AnakYatim(
                     rs.getString(1),
                     rs.getString(2),
@@ -97,14 +103,16 @@ public class AnakYatimDao extends Dao<AnakYatim> {
     }
 
     @Override
-    public void delete(String id) throws SQLException { executeDelete(QUERY_5, id); }
+    public void delete(String id) throws SQLException {
+        executeDelete(QUERY_5, id);
+    }
 
     public AnakYatim getLastRecord() throws SQLException {
         ps = con.prepareStatement(QUERY_6);
         rs = ps.executeQuery();
 
         AnakYatim model = new AnakYatim();
-        if (rs.next()){
+        if (rs.next()) {
             model = new AnakYatim(
                     rs.getString(1),
                     rs.getString(2),
@@ -117,7 +125,11 @@ public class AnakYatimDao extends Dao<AnakYatim> {
         return model;
     }
 
-    public String getTotalOutcome() throws SQLException { return executeGetTotal(QUERY_7); }
+    public String getTotalOutcome() throws SQLException {
+        return executeGetTotal(QUERY_7);
+    }
 
-    public boolean isAnakYatimExist(String id) throws SQLException { return executeCheckExists(QUERY_8, id); }
+    public boolean isAnakYatimExist(String id) throws SQLException {
+        return executeCheckExists(QUERY_8, id);
+    }
 }

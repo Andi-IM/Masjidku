@@ -14,6 +14,8 @@
  */
 
 package org.masjidku.accounting.dao.pembangunan;
+
+import org.intellij.lang.annotations.Language;
 import org.masjidku.accounting.client.model.pembangunan.*;
 
 
@@ -24,17 +26,23 @@ import org.masjidku.accounting.dao.base.Dao;
 import java.sql.SQLException;
 
 public class PembangunanDao extends Dao<Pembangunan> {
+    @Language("SQL")
     private static final String QUERY_1 = "SELECT * FROM pembangunan_keluar WHERE id=?";
+    @Language("SQL")
     private static final String QUERY_2 = "SELECT * FROM pembangunan_keluar";
+    @Language("SQL")
     private static final String QUERY_3 = "INSERT INTO pembangunan_keluar(id, nama, keterangan, jumlah, tanggal, operator) VALUES (?,?,?,?,?,?)";
+    @Language("SQL")
     private static final String QUERY_4 = "UPDATE pembangunan_keluar SET nama=?, keterangan=?, jumlah=?, tanggal=?, operator=? WHERE id=?";
+    @Language("SQL")
     private static final String QUERY_5 = "DELETE FROM pembangunan_keluar WHERE id=?";
+    @Language("SQL")
     private static final String QUERY_6 = "SELECT * FROM pembangunan_keluar ORDER BY ID DESC LIMIT 1";
+    @Language("SQL")
     private static final String QUERY_7 = "SELECT IFNULL(SUM(jumlah),0) FROM pembangunan_keluar";
+    @Language("SQL")
     private static final String QUERY_8 = "SELECT id FROM pembangunan_keluar WHERE id=?";
 
-
-    
 
     @Override
     public Pembangunan get(String id) throws SQLException {
@@ -43,7 +51,7 @@ public class PembangunanDao extends Dao<Pembangunan> {
         rs = ps.executeQuery();
 
         Pembangunan model = null;
-        if (rs.next()){
+        if (rs.next()) {
             model = new Pembangunan(
                     rs.getString(1),
                     rs.getString(2),
@@ -64,7 +72,7 @@ public class PembangunanDao extends Dao<Pembangunan> {
         rs = ps.executeQuery();
 
         Pembangunan pembangunan;
-        while (rs.next()){
+        while (rs.next()) {
             pembangunan = new Pembangunan(
                     rs.getString(1),
                     rs.getString(2),
@@ -89,14 +97,16 @@ public class PembangunanDao extends Dao<Pembangunan> {
     }
 
     @Override
-    public void delete(String id) throws SQLException { executeDelete(QUERY_5, id); }
+    public void delete(String id) throws SQLException {
+        executeDelete(QUERY_5, id);
+    }
 
     public Pembangunan getLastRecord() throws SQLException {
         ps = con.prepareStatement(QUERY_6);
         rs = ps.executeQuery();
 
         Pembangunan model = new Pembangunan();
-        if (rs.next()){
+        if (rs.next()) {
             model = new Pembangunan(
                     rs.getString(1),
                     rs.getString(2),
@@ -109,8 +119,12 @@ public class PembangunanDao extends Dao<Pembangunan> {
         return model;
     }
 
-    public String getTotalIncome() throws SQLException { return executeGetTotal(QUERY_7); }
+    public String getTotalIncome() throws SQLException {
+        return executeGetTotal(QUERY_7);
+    }
 
-    public boolean isDataExist(String id) throws SQLException { return executeCheckExists(QUERY_8, id); }
+    public boolean isDataExist(String id) throws SQLException {
+        return executeCheckExists(QUERY_8, id);
+    }
 }
 

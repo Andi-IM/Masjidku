@@ -16,6 +16,7 @@
 package org.masjidku.accounting.dao.base;
 
 import javafx.collections.ObservableList;
+import org.intellij.lang.annotations.Language;
 
 import java.sql.SQLException;
 
@@ -27,57 +28,52 @@ public abstract class Dao<T> extends DaoFactory {
     public abstract void update(String[] params) throws SQLException;
     public abstract void delete(String id) throws SQLException;
 
-
     @SuppressWarnings("SqlSourceToSinkFlow")
     protected void executeDelete(String query, String id) throws SQLException {
-        ps = con.prepareStatement(query);
-        ps.setString(1, id);
-        ps.executeUpdate();
-    }
-
-    @SuppressWarnings("SqlSourceToSinkFlow")
-    protected boolean executeCheckExists(String query, String id) throws SQLException {
-        ps = con.prepareStatement(query);
-        ps.setString(1, id);
-        rs = ps.executeQuery();
-        return rs.next();
-    }
-
-    @SuppressWarnings("SqlSourceToSinkFlow")
-    protected String executeGetTotal(String query) throws SQLException {
-        ps = con.prepareStatement(query);
-        rs = ps.executeQuery();
-        if (rs.next()) {
-            return rs.getString(1);
+        try (java.sql.PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setString(1, id);
+            ps.executeUpdate();
         }
-        return null;
     }
 
-    @SuppressWarnings("SqlSourceToSinkFlow")
-    protected void executeUpdateQuery(String query, String... params) throws SQLException {
-        ps = con.prepareStatement(query);
-        for (int i = 0; i < params.length; i++) {
-            ps.setString(i + 1, params[i]);
+    protected boolean executeCheckExists(@Language("SQL") String query, String id) throws SQLException {
+        try (java.sql.PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setString(1, id);
+            try (java.sql.ResultSet rs = ps.executeQuery()) {
+                return rs.next();
+            }
         }
-        ps.executeUpdate();
+    }
+
+    protected String executeGetTotal(@Language("SQL") String query) throws SQLException {
+        try (java.sql.PreparedStatement ps = con.prepareStatement(query);
+             java.sql.ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                return rs.getString(1);
+            }
+            return null;
+        }
+    }
+
+    protected void executeUpdateQuery(@Language("SQL") String query, String... params) throws SQLException {
+        try (java.sql.PreparedStatement ps = con.prepareStatement(query)) {
+            for (int i = 0; i < params.length; i++) {
+                ps.setString(i + 1, params[i]);
+            }
+            ps.executeUpdate();
+        }
     }
 
     protected interface RowMapper<T> {
         T map(java.sql.ResultSet rs) throws SQLException;
     }
-
-    @SuppressWarnings("SqlSourceToSinkFlow")
-    protected <R> R executeGetLastRecord(String query, RowMapper<R> mapper) throws SQLException {
-        ps = con.prepareStatement(query);
-        rs = ps.executeQuery();
-        if (rs.next()) {
-            return mapper.map(rs);
+    protected <R> R executeGetLastRecord(@Language("SQL") String query, RowMapper<R> mapper) throws java.sql.SQLException {
+        try (java.sql.PreparedStatement ps = con.prepareStatement(query);
+             java.sql.ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                return mapper.map(rs);
+            }
+            return null;
         }
-        return null;
     }
 }
-
-
-
-
-
