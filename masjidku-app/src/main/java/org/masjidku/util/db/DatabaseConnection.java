@@ -32,12 +32,21 @@ public class DatabaseConnection {
     }
 
     public static class SQLiteProvider implements ConnectionProvider {
+        private Connection singleConnection = null;
+
         @Override
         public Connection getConnection() throws SQLException, ClassNotFoundException {
-            // using SQLite
-            String url = "jdbc:sqlite:masjidku.db";
-            Class.forName("org.sqlite.JDBC");
-            return DriverManager.getConnection(url);
+            if (singleConnection == null || singleConnection.isClosed()) {
+                // using SQLite
+                String url = "jdbc:sqlite:masjidku.db";
+                Class.forName("org.sqlite.JDBC");
+                singleConnection = DriverManager.getConnection(url);
+                try (java.sql.Statement stmt = singleConnection.createStatement()) {
+                    stmt.execute("PRAGMA busy_timeout = 10000;");
+                    stmt.execute("PRAGMA journal_mode = WAL;");
+                }
+            }
+            return singleConnection;
         }
     }
 

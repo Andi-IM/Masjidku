@@ -7,4 +7,5 @@ build/
 *.iml
 *.iws
 *.ipr
-out/
+out/
+*.db
