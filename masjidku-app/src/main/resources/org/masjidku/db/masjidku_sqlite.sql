@@ -257,3 +257,11 @@ INSERT OR IGNORE INTO `user` (`userid`, `password`, `username`, `jabatan`, `stat
 
 
 
+
+CREATE TABLE IF NOT EXISTS `sessions` (
+  `session_id` INTEGER PRIMARY KEY AUTOINCREMENT,
+  `userid` varchar(50) DEFAULT NULL,
+  `timestamp` varchar(50) DEFAULT NULL,
+  `duration` varchar(50) DEFAULT NULL,
+  CONSTRAINT `fk_sessions_userid` FOREIGN KEY (`userid`) REFERENCES `user` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE
+);
