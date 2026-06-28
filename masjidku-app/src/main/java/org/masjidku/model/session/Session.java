@@ -100,13 +100,11 @@ public class Session extends DaoFactory implements SessionDao{
 
             // latestUserData
             while (rs.next()){
-                if (rs.isLast()){
-                    model = new UserSession();
-                    model.setSession_id(rs.getString(1));
-                    model.setUserid(rs.getString(2));
-                    model.setTimestamp(rs.getString(3));
-                    model.setDuration(rs.getString(4));
-                }
+                model = new UserSession();
+                model.setSession_id(rs.getString(1));
+                model.setUserid(rs.getString(2));
+                model.setTimestamp(rs.getString(3));
+                model.setDuration(rs.getString(4));
             }
 
         } catch (SQLException throwables) {
