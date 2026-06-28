@@ -24,18 +24,26 @@ import java.sql.SQLException;
 import org.masjidku.events.client.service.TamuService;
 import org.masjidku.events.client.model.Tamu;
 public class TamuDao extends Dao<Tamu> implements TamuService {
+    private static final String QUERY_1 = "SELECT * FROM tamu WHERE tamuID=?";
+    private static final String QUERY_2 = "SELECT * FROM tamu";
+    private static final String QUERY_3 = "INSERT INTO tamu(tamuID, tamuNama, tamuAlamat, tamuNotelp, operator) VALUES(?,?,?,?,?)";
+    private static final String QUERY_4 = "UPDATE tamu SET tamuNama=?, tamuAlamat=?, tamuNotelp=?, operator=? WHERE tamuID=?";
+    private static final String QUERY_5 = "DELETE FROM tamu WHERE tamuID=?";
+    private static final String QUERY_6 = "SELECT tamuID FROM tamu WHERE tamuID=?";
+    private static final String QUERY_7 = "SELECT * FROM tamu";
+    private static final String QUERY_8 = "SELECT tamuID FROM tamu WHERE tamuNama=?";
+
     public TamuDao() {
         getConnection();
     }
 
 
-    private final String TABLE = "tamu";
+    
 
     @Override
     public Tamu get(String id) throws SQLException {
-        query = "SELECT * FROM "+TABLE+" WHERE tamuID=?";
+        ps = con.prepareStatement(QUERY_1);
 
-        ps = con.prepareStatement(query);
         ps.setString(1, id);
         rs = ps.executeQuery();
 
@@ -55,8 +63,7 @@ public class TamuDao extends Dao<Tamu> implements TamuService {
     @Override
     public ObservableList<Tamu> getAll() throws SQLException {
         ObservableList<Tamu> items = FXCollections.observableArrayList();
-        query = "SELECT * FROM "+TABLE;
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(QUERY_2);
         rs = ps.executeQuery();
 
         Tamu tamu;
@@ -75,9 +82,8 @@ public class TamuDao extends Dao<Tamu> implements TamuService {
 
     @Override
     public void save(Tamu tamu) throws SQLException {
-        query = "INSERT INTO "+TABLE+"(tamuID, tamuNama, tamuAlamat, tamuNotelp, operator) VALUES(?,?,?,?,?)";
+        ps = con.prepareStatement(QUERY_3);
 
-        ps = con.prepareStatement(query);
         ps.setString(1, tamu.getIdTamu());
         ps.setString(2, tamu.getNama());
         ps.setString(3, tamu.getAlamat());
@@ -88,9 +94,8 @@ public class TamuDao extends Dao<Tamu> implements TamuService {
 
     @Override
     public void update(String[] params) throws SQLException {
-        query = "UPDATE "+TABLE+" SET tamuNama=?, tamuAlamat=?, tamuNotelp=?, operator=? WHERE tamuID=?";
+        ps = con.prepareStatement(QUERY_4);
 
-        ps = con.prepareStatement(query);
         ps.setString(1, params[0]);
         ps.setString(2, params[1]);
         ps.setString(3, params[2]);
@@ -101,15 +106,13 @@ public class TamuDao extends Dao<Tamu> implements TamuService {
 
     @Override
     public void delete(String id) throws SQLException {
-        query = "DELETE FROM "+TABLE+" WHERE tamuID=?";
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(QUERY_5);
         ps.setString(1, id);
         ps.executeUpdate();
     }
 
     public boolean isTamuExist(String id) throws SQLException {
-        query = "SELECT tamuID FROM "+TABLE+" WHERE tamuID=?";
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(QUERY_6);
         ps.setString(1, id);
         rs = ps.executeQuery();
 
@@ -119,8 +122,7 @@ public class TamuDao extends Dao<Tamu> implements TamuService {
     public ObservableList<String> getAllTamuName() throws SQLException {
         ObservableList<String> namaTamu = FXCollections.observableArrayList();
 
-        query = "SELECT * FROM "+TABLE;
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(QUERY_7);
         rs = ps.executeQuery();
 
         String name;
@@ -132,9 +134,8 @@ public class TamuDao extends Dao<Tamu> implements TamuService {
     }
 
     public String getIdByName(String name) throws SQLException {
-        query = "SELECT tamuID FROM "+TABLE+" WHERE tamuNama=?";
+        ps = con.prepareStatement(QUERY_8);
 
-        ps = con.prepareStatement(query);
         ps.setString(1, name);
         rs = ps.executeQuery();
 

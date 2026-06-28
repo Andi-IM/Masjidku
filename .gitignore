@@ -9,3 +9,5 @@ build/
 *.ipr
 out/
 *.db
+*.db-shm
+*.db-wal

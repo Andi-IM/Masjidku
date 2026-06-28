@@ -24,13 +24,21 @@ import org.masjidku.accounting.dao.base.Dao;
 import java.sql.SQLException;
 
 public class ZakatKeluarDao extends Dao<ZakatKeluar> {
+    private static final String QUERY_1 = "SELECT * FROM penerima_zakat WHERE id=?";
+    private static final String QUERY_2 = "SELECT * FROM penerima_zakat";
+    private static final String QUERY_3 = "INSERT INTO penerima_zakat(id, nama, jumlah, tanggal, operator) VALUES (?,?,?,?,?)";
+    private static final String QUERY_4 = "UPDATE penerima_zakat SET nama=?, jumlah=?, tanggal=?, operator=? WHERE id=?";
+    private static final String QUERY_5 = "DELETE FROM penerima_zakat WHERE id=?";
+    private static final String QUERY_6 = "SELECT * FROM penerima_zakat ORDER BY ID DESC LIMIT 1";
+    private static final String QUERY_7 = "SELECT IFNULL(SUM(jumlah),0) FROM penerima_zakat";
+    private static final String QUERY_8 = "SELECT id FROM penerima_zakat WHERE id=?";
 
-    private final String TABLE = "penerima_zakat";
+
+    
 
     @Override
     public ZakatKeluar get(String id) throws SQLException {
-        query = "SELECT * FROM "+TABLE+" WHERE id=?";
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(QUERY_1);
         ps.setString(1, id);
         rs = ps.executeQuery();
 
@@ -51,8 +59,7 @@ public class ZakatKeluarDao extends Dao<ZakatKeluar> {
     public ObservableList<ZakatKeluar> getAll() throws SQLException {
         ObservableList<ZakatKeluar> item = FXCollections.observableArrayList();
 
-        query = "SELECT * FROM "+TABLE;
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(QUERY_2);
         rs = ps.executeQuery();
 
         ZakatKeluar operasional;
@@ -71,9 +78,8 @@ public class ZakatKeluarDao extends Dao<ZakatKeluar> {
 
     @Override
     public void save(ZakatKeluar zakatKeluar) throws SQLException {
-        query = "INSERT INTO "+TABLE+"(id, nama, jumlah, tanggal, operator) VALUES (?,?,?,?,?)";
+        ps = con.prepareStatement(QUERY_3);
 
-        ps = con.prepareStatement(query);
         ps.setString(1, zakatKeluar.getId());
         ps.setString(2, zakatKeluar.getTujuan());
         ps.setString(2, zakatKeluar.getKeterangan());
@@ -85,8 +91,7 @@ public class ZakatKeluarDao extends Dao<ZakatKeluar> {
 
     @Override
     public void update(String[] params) throws SQLException {
-        query = "UPDATE "+TABLE+" SET nama=?, jumlah=?, tanggal=?, operator=? WHERE id=?";
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(QUERY_4);
         ps.setString(1, params[1]);
         ps.setString(2, params[2]);
         ps.setString(3, params[3]);
@@ -97,15 +102,13 @@ public class ZakatKeluarDao extends Dao<ZakatKeluar> {
 
     @Override
     public void delete(String id) throws SQLException {
-        query = "DELETE FROM "+TABLE+" WHERE id=?";
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(QUERY_5);
         ps.setString(1, id);
         ps.executeUpdate();
     }
 
     public ZakatKeluar getLastRecord() throws SQLException {
-        query = "SELECT * FROM "+TABLE+" ORDER BY ID DESC LIMIT 1";
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(QUERY_6);
         rs = ps.executeQuery();
 
         ZakatKeluar model = new ZakatKeluar();
@@ -122,8 +125,7 @@ public class ZakatKeluarDao extends Dao<ZakatKeluar> {
     }
 
     public String gettotalOutcome() throws SQLException {
-        query = "SELECT IFNULL(SUM(jumlah),0) FROM "+TABLE;
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(QUERY_7);
         rs = ps.executeQuery();
 
         if (rs.next()){
@@ -133,8 +135,7 @@ public class ZakatKeluarDao extends Dao<ZakatKeluar> {
     }
 
     public boolean isDataExist(String id) throws SQLException {
-        query = "SELECT id FROM "+TABLE+" WHERE id=?";
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(QUERY_8);
         ps.setString(1, id);
         rs = ps.executeQuery();
 

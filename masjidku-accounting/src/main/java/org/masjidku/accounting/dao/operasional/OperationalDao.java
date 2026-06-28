@@ -24,13 +24,21 @@ import org.masjidku.accounting.dao.base.Dao;
 import java.sql.SQLException;
 
 public class OperationalDao extends Dao<Operasional> {
+    private static final String QUERY_1 = "SELECT * FROM operasional_keluar WHERE id=?";
+    private static final String QUERY_2 = "SELECT * FROM operasional_keluar";
+    private static final String QUERY_3 = "INSERT INTO operasional_keluar(id, nama, keterangan, jumlah, tanggal, operator) VALUES (?,?,?,?,?,?)";
+    private static final String QUERY_4 = "UPDATE operasional_keluar SET nama=?, keterangan=?, jumlah=?, tanggal=?, operator=? WHERE id=?";
+    private static final String QUERY_5 = "DELETE FROM operasional_keluar WHERE id=?";
+    private static final String QUERY_6 = "SELECT id FROM operasional_keluar WHERE id=?";
+    private static final String QUERY_7 = "SELECT * FROM operasional_keluar ORDER BY ID DESC LIMIT 1";
+    private static final String QUERY_8 = "SELECT IFNULL(SUM(jumlah),0) FROM operasional_keluar";
 
-    private final String TABLE = "operasional_keluar";
+
+    
 
     @Override
     public Operasional get(String id) throws SQLException {
-        query = "SELECT * FROM "+TABLE+" WHERE id=?";
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(QUERY_1);
         ps.setString(1, id);
         rs = ps.executeQuery();
 
@@ -52,8 +60,7 @@ public class OperationalDao extends Dao<Operasional> {
     public ObservableList<Operasional> getAll() throws SQLException {
         ObservableList<Operasional> item = FXCollections.observableArrayList();
 
-        query = "SELECT * FROM "+TABLE;
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(QUERY_2);
         rs = ps.executeQuery();
 
         Operasional operasional;
@@ -73,9 +80,8 @@ public class OperationalDao extends Dao<Operasional> {
 
     @Override
     public void save(Operasional operasional) throws SQLException {
-        query = "INSERT INTO "+TABLE+"(id, nama, keterangan, jumlah, tanggal, operator) VALUES (?,?,?,?,?,?)";
+        ps = con.prepareStatement(QUERY_3);
 
-        ps = con.prepareStatement(query);
         ps.setString(1, operasional.getId());
         ps.setString(2, operasional.getTujuan());
         ps.setString(2, operasional.getKeterangan());
@@ -87,8 +93,7 @@ public class OperationalDao extends Dao<Operasional> {
 
     @Override
     public void update(String[] params) throws SQLException {
-        query = "UPDATE "+TABLE+" SET nama=?, keterangan=?, jumlah=?, tanggal=?, operator=? WHERE id=?";
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(QUERY_4);
         ps.setString(1, params[1]);
         ps.setString(2, params[2]);
         ps.setString(3, params[3]);
@@ -100,15 +105,13 @@ public class OperationalDao extends Dao<Operasional> {
 
     @Override
     public void delete(String id) throws SQLException {
-        query = "DELETE FROM "+TABLE+" WHERE id=?";
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(QUERY_5);
         ps.setString(1, id);
         ps.executeUpdate();
     }
 
     public boolean isDataExist(String id) throws SQLException {
-        query = "SELECT id FROM "+TABLE+" WHERE id=?";
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(QUERY_6);
         ps.setString(1, id);
         rs = ps.executeQuery();
 
@@ -116,8 +119,7 @@ public class OperationalDao extends Dao<Operasional> {
     }
 
     public Operasional getLastRecord() throws SQLException {
-        query = "SELECT * FROM "+TABLE+" ORDER BY ID DESC LIMIT 1";
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(QUERY_7);
         rs = ps.executeQuery();
 
         Operasional model = null;
@@ -135,8 +137,7 @@ public class OperationalDao extends Dao<Operasional> {
     }
 
     public String getTotalIncome() throws SQLException {
-        query = "SELECT IFNULL(SUM(jumlah),0) FROM "+TABLE;
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(QUERY_8);
         rs = ps.executeQuery();
 
         if (rs.next()){

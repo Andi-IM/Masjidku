@@ -20,14 +20,7 @@ import java.sql.SQLException;
 import org.masjidku.events.client.model.TamuKegiatan;
 import org.masjidku.events.dao.base.Dao;
 public class TamuKegiatanDao extends Dao<TamuKegiatan> implements org.masjidku.events.client.service.TamuKegiatanService {
-    public TamuKegiatanDao() {
-        getConnection();
-    }
-    private final String ACTIVITY = "kegiatan";
-    private final String GUEST = "tamu";
-    private final String TABLE = "tamukegiatan";
-    public TamuKegiatan get(String id) throws SQLException {
-        query = "SELECT " +
+    private static final String QUERY_1 = "SELECT " +
                 "id_undangan, " +
                 "id_tamu, " +
                 "id_kegiatan, " +
@@ -36,13 +29,39 @@ public class TamuKegiatanDao extends Dao<TamuKegiatan> implements org.masjidku.e
                 "g.tamuNotelp, " +
                 "k.kegiatanNama, " +
                 "keterangan " +
-                "FROM " + TABLE +
+                "FROM "tamukegiatan +
                 " INNER JOIN " + GUEST + " g " +
                 " ON tamukegiatan.id_tamu = g.tamuID " +
                 "INNER JOIN " + ACTIVITY + " k " +
                 "ON tamukegiatan.id_kegiatan = k.kegiatanID " +
                 "WHERE id_undangan=?";
-        ps = con.prepareStatement(query);
+    private static final String QUERY_2 = "SELECT " +
+                "id_undangan, " +
+                "id_tamu, " +
+                "id_kegiatan, " +
+                "g.tamuNama, " +
+                "g.tamuAlamat, " +
+                "g.tamuNotelp, " +
+                "k.kegiatanNama, " +
+                "keterangan " +
+                "FROM "tamukegiatan +
+                " INNER JOIN " + GUEST + " g " +
+                " ON tamukegiatan.id_tamu = g.tamuID " +
+                "INNER JOIN " + ACTIVITY + " k " +
+                "ON tamukegiatan.id_kegiatan = k.kegiatanID";
+    private static final String QUERY_3 = "INSERT INTO tamukegiatan(id_kegiatan, id_tamu, keterangan, operator) VALUES(?,?,?,?)";
+    private static final String QUERY_4 = "UPDATE tamukegiatan SET keterangan=? WHERE id_tamu=? and id_kegiatan=? and id_undangan=?";
+    private static final String QUERY_5 = "DELETE FROM tamukegiatan WHERE id_undangan=?";
+    private static final String QUERY_6 = "SELECT id_undangan FROM tamukegiatan WHERE id_undangan=?";
+
+    public TamuKegiatanDao() {
+        getConnection();
+    }
+    private final String ACTIVITY = "kegiatan";
+    private final String GUEST = "tamu";
+    
+    public TamuKegiatan get(String id) throws SQLException {
+        ps = con.prepareStatement(QUERY_1);
         ps.setString(1, id);
         ResultSet rs = ps.executeQuery();
         TamuKegiatan model = null;
@@ -61,21 +80,7 @@ public class TamuKegiatanDao extends Dao<TamuKegiatan> implements org.masjidku.e
     }
     public ObservableList<TamuKegiatan> getAll() throws SQLException {
         ObservableList<TamuKegiatan> items = FXCollections.observableArrayList();
-        query = "SELECT " +
-                "id_undangan, " +
-                "id_tamu, " +
-                "id_kegiatan, " +
-                "g.tamuNama, " +
-                "g.tamuAlamat, " +
-                "g.tamuNotelp, " +
-                "k.kegiatanNama, " +
-                "keterangan " +
-                "FROM " + TABLE +
-                " INNER JOIN " + GUEST + " g " +
-                " ON tamukegiatan.id_tamu = g.tamuID " +
-                "INNER JOIN " + ACTIVITY + " k " +
-                "ON tamukegiatan.id_kegiatan = k.kegiatanID";
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(QUERY_2);
         rs = ps.executeQuery();
         TamuKegiatan model;
         while (rs.next()) {
@@ -95,8 +100,7 @@ public class TamuKegiatanDao extends Dao<TamuKegiatan> implements org.masjidku.e
     public void save(TamuKegiatan tamuKegiatan) throws SQLException {
     }
     public void save(String idKegiatan, String idTamu, String keterangan, String opeartor) throws SQLException {
-        String query = "INSERT INTO " + TABLE + "(id_kegiatan, id_tamu, keterangan, operator) VALUES(?,?,?,?)";
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(QUERY_3);
         ps.setString(1, idKegiatan);
         ps.setString(2, idTamu);
         ps.setString(3, keterangan);
@@ -104,8 +108,7 @@ public class TamuKegiatanDao extends Dao<TamuKegiatan> implements org.masjidku.e
         ps.executeUpdate();
     }
     public void update(String[] params) throws SQLException {
-        String query = "UPDATE " + TABLE + " SET keterangan=? WHERE id_tamu=? and id_kegiatan=? and id_undangan=?";
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(QUERY_4);
         ps.setString(1, params[0]);
         ps.setString(2, params[1]);
         ps.setString(3, params[2]);
@@ -113,14 +116,12 @@ public class TamuKegiatanDao extends Dao<TamuKegiatan> implements org.masjidku.e
         ps.executeUpdate();
     }
     public void delete(String id) throws SQLException {
-        String query = "DELETE FROM " + TABLE + " WHERE id_undangan=?";
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(QUERY_5);
         ps.setString(1, id);
         ps.executeUpdate();
     }
     public boolean isUndanganExist(String id) throws SQLException {
-        String query = "SELECT id_undangan FROM " + TABLE + " WHERE id_undangan=?";
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(QUERY_6);
         ps.setString(1, id);
         ResultSet rs = ps.executeQuery();
         return rs.next();
