@@ -1,18 +1,3 @@
-/*
- * Copyright (c) 2021. Creative Commons Legal Code
- *
- *                            CC0 1.0 Universal
- *
- *                                CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
- *                                LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN
- *                                ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
- *                                INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
- *                                REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS
- *                                PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
- *                                THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
- *                                HEREUNDER.
- */
-
 package org.masjidku.model.user;
 
 import com.google.common.hash.Hashing;
@@ -25,21 +10,22 @@ import java.sql.SQLException;
 @SuppressWarnings("unused")
 public class UserDao extends UserDaoFactory<User> {
 
-    private final String TABLE = "user";
+    private static final String SELECT_ALL_QUERY = "SELECT userid, username, jabatan, status, created_at, updated_at FROM user";
+    private static final String INSERT_QUERY = "INSERT INTO user (userid, password, username, jabatan, status) VALUES(?,?,?,?,?)";
+    private static final String UPDATE_STATUS_QUERY = "UPDATE user SET jabatan=?, status=? WHERE userid=?";
+    private static final String UPDATE_PROFILE_QUERY = "UPDATE user SET username=?, password=? WHERE userid=?";
+    private static final String DELETE_QUERY = "DELETE FROM user WHERE userid=?";
+    private static final String SELECT_PASSWORD_QUERY = "SELECT password FROM user WHERE userid=?";
+    private static final String RESET_PASSWORD_QUERY = "UPDATE user SET password=? WHERE userid=?";
+    private static final String SELECT_BY_ID_QUERY = "SELECT * FROM user WHERE userid=?";
+    private static final String CHECK_EXIST_QUERY = "SELECT userid FROM user WHERE userid=?";
+    private static final String CHECK_AUTH_QUERY = "SELECT userid FROM user WHERE userid=? and password=? LIMIT 1";
 
-    /**
-     * Only Admin can see this
-     *
-     * @throws SQLException as Error Handling
-     */
     @Override
     public ObservableList<User> getAll() throws SQLException {
         ObservableList<User> users = FXCollections.observableArrayList();
-
-        query = "SELECT userid, username, jabatan, status, created_at, updated_at FROM " + TABLE;
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(SELECT_ALL_QUERY);
         rs = ps.executeQuery();
-
         User user;
         while (rs.next()) {
             user = new User();
@@ -51,18 +37,14 @@ public class UserDao extends UserDaoFactory<User> {
             user.setUpdated_at(rs.getString(6));
             users.add(user);
         }
+        rs.close();
+        ps.close();
         return users;
     }
 
-    /**
-     * Only Admin can create User
-     *
-     * @throws SQLException as Error Handling
-     */
     @Override
     public void save(User user) throws SQLException {
-        query = "INSERT INTO " + TABLE + "(userid, password, username, jabatan, status) VALUES(?,?,?,?,?)";
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(INSERT_QUERY);
         ps.setString(1, user.getUserId());
 
         @SuppressWarnings("UnstableApiUsage")
@@ -76,15 +58,11 @@ public class UserDao extends UserDaoFactory<User> {
         ps.setString(4, user.getJabatan().toString);
         ps.setString(5, user.getStatus());
         ps.executeUpdate();
+        ps.close();
 
         generateProfile(user);
     }
 
-    /**
-     * Generating user profile
-     * @param user user Object
-     * @throws SQLException error handling
-     */
     private void generateProfile(User user) throws SQLException {
         UserProfileDao dao = new UserProfileDao();
         dao.getConnection();
@@ -92,29 +70,19 @@ public class UserDao extends UserDaoFactory<User> {
         dao.save(profile);
     }
 
-    /**
-     * Updating user preference by admin
-     *
-     * @param params the parameter
-     * @throws SQLException as Error Handling.
-     */
     @Override
     public void update(String[] params) throws SQLException {
-        query = "UPDATE " + TABLE + " SET jabatan=?, status=? WHERE userid=?";
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(UPDATE_STATUS_QUERY);
         ps.setString(1, params[0]);
         ps.setString(2, params[1]);
         ps.setString(3, params[2]);
         ps.executeUpdate();
+        ps.close();
     }
 
-    /**
-     * User personality update
-     */
     @Override
     public void update(String userid, String username, String password) throws  SQLException {
-        query = "UPDATE "+TABLE+" SET username=?, password=? WHERE userid=?" ;
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(UPDATE_PROFILE_QUERY);
         ps.setString(1, username);
         ps.setString(3, userid);
 
@@ -124,58 +92,40 @@ public class UserDao extends UserDaoFactory<User> {
                 .hashString(password, StandardCharsets.UTF_8)
                 .toString();
         ps.setString(2, hex);
+        ps.executeUpdate();
+        ps.close();
     }
 
-    /**
-     * Only Admin can delete user.
-     *
-     * @param userid user Id
-     * @throws SQLException as Error Handling
-     */
     @Override
     public void delete(String userid) throws SQLException {
-        query = "DELETE FROM " + TABLE + " WHERE userid=?";
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(DELETE_QUERY);
         ps.setString(1, userid);
         ps.executeUpdate();
+        ps.close();
     }
 
-    /**
-     * Is user already reseted.
-     *
-     * @param userid an user id
-     * @return user reset status
-     * @throws SQLException error handling
-     */
     @Override
     public boolean isReset(String userid) throws SQLException {
-        query = "SELECT password FROM " + TABLE + " WHERE userid=?";
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(SELECT_PASSWORD_QUERY);
         ps.setString(1, userid);
         rs = ps.executeQuery();
-
+        boolean reset = false;
         if (rs.next()) {
             @SuppressWarnings("UnstableApiUsage")
             String hex = Hashing
                     .sha256()
                     .hashString("12345678", StandardCharsets.UTF_8)
                     .toString();
-            return rs.getString(1).equals(hex);
+            reset = rs.getString(1).equals(hex);
         }
-        return false;
+        rs.close();
+        ps.close();
+        return reset;
     }
 
-    /**
-     * Only admin can reset user account.
-     *
-     * @param userId an user id
-     * @throws SQLException as Error Handling
-     */
     @Override
     public void reset(String userId) throws SQLException {
-        query = "UPDATE " + TABLE + " SET password=? WHERE userid=?";
-        ps = con.prepareStatement(query);
-
+        ps = con.prepareStatement(RESET_PASSWORD_QUERY);
         @SuppressWarnings("UnstableApiUsage")
         String hex = Hashing
                 .sha256()
@@ -185,18 +135,12 @@ public class UserDao extends UserDaoFactory<User> {
         ps.setString(2, userId);
         ps.setString(1, hex);
         ps.executeUpdate();
+        ps.close();
     }
 
-    /**
-     * Only Specified User can see this
-     * also this code used for Authorization
-     *
-     * @throws SQLException as Error Handling
-     */
     @Override
     public User get(String userid) throws SQLException {
-        query = "SELECT * FROM " + TABLE + " WHERE userid=? ";
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(SELECT_BY_ID_QUERY);
         ps.setString(1, userid);
         rs = ps.executeQuery();
 
@@ -211,39 +155,31 @@ public class UserDao extends UserDaoFactory<User> {
             model.setCreated_at(rs.getString(6));
             model.setUpdated_at(rs.getString(7));
         }
+        rs.close();
+        ps.close();
         return model;
     }
 
-    /**
-     * method for update user
-     * @param userid user id
-     * @return status
-     * @throws SQLException an Error Handling
-     */
     @Override
     public boolean isUserExist(String userid) throws SQLException {
-        query = "SELECT userid FROM " + TABLE + " WHERE userid=? ";
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(CHECK_EXIST_QUERY);
         ps.setString(1, userid);
         rs = ps.executeQuery();
-        return rs.next();
+        boolean exist = rs.next();
+        rs.close();
+        ps.close();
+        return exist;
     }
 
-    /**
-     * Get UserInfo for Authentication
-     *
-     * @param userid   username
-     * @param password user password
-     * @return userId
-     * @throws SQLException for Error Handling
-     */
     @Override
     public boolean isUserExist(String userid, String password) throws SQLException {
-        query = "SELECT userid FROM " + TABLE + " WHERE userid=? and password=? LIMIT 1";
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(CHECK_AUTH_QUERY);
         ps.setString(1, userid);
         ps.setString(2, password);
         rs = ps.executeQuery();
-        return rs.next();
+        boolean exist = rs.next();
+        rs.close();
+        ps.close();
+        return exist;
     }
 }

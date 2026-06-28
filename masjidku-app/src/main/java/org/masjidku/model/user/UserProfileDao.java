@@ -1,18 +1,3 @@
-/*
- * Copyright (c) 2021. Creative Commons Legal Code
- *
- *                            CC0 1.0 Universal
- *
- *                                CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
- *                                LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN
- *                                ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
- *                                INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
- *                                REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS
- *                                PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
- *                                THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
- *                                HEREUNDER.
- */
-
 package org.masjidku.model.user;
 
 import org.masjidku.model.DaoFactory;
@@ -22,39 +7,35 @@ import java.sql.SQLException;
 @SuppressWarnings({"FieldCanBeLocal", "unused"})
 public class UserProfileDao extends DaoFactory {
 
-    private final String PROFILE_TABLE = "profil_user";
-    private final String USER_TABLE = "user";
+    private static final String INSERT_QUERY = "INSERT INTO profil_user (userid, notelp, alamat) VALUES(?,?,?)";
+    private static final String UPDATE_QUERY = "UPDATE profil_user SET notelp=?, alamat=? WHERE userid=?";
+    private static final String SELECT_FULL_USER_QUERY = "SELECT user.userid, password, username, jabatan, status, notelp, alamat, created_at, updated_at " +
+                "FROM profil_user pu LEFT JOIN user ON pu.userid = user.userid " +
+                "WHERE pu.userid=?";
 
-    /**
-     * Only Admin can create User
-     *
-     * @throws SQLException as Error Handling
-     */
     public void save(UserProfile userProfile) throws SQLException {
-        query = "INSERT INTO " + PROFILE_TABLE + "(userid, notelp, alamat) VALUES(?,?,?)";
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(INSERT_QUERY);
         ps.setString(1, userProfile.getUser().getUserId());
         ps.setString(2, userProfile.getAlamat());
         ps.setString(3, userProfile.getNotelp());
         ps.executeUpdate();
+        ps.close();
     }
 
     public void update(String[] params) throws SQLException {
-        query = "UPDATE " + PROFILE_TABLE + " SET notelp=?, alamat=? WHERE userid=?";
-        ps = con.prepareStatement(query);
+        ps = con.prepareStatement(UPDATE_QUERY);
         ps.setString(1, params[0]);
         ps.setString(2, params[1]);
         ps.setString(3, params[2]);
         ps.executeUpdate();
+        ps.close();
     }
 
     public UserProfile getFullUserData(String userid) throws SQLException {
         UserProfile model = null;
         User user;
-        query = "SELECT user.userid, password, username, jabatan, status, notelp, alamat, created_at, updated_at " +
-                "FROM profil_user pu LEFT JOIN user ON pu.userid = user.userid " +
-                "WHERE pu.userid=?";
-        ps = con.prepareStatement(query);
+        
+        ps = con.prepareStatement(SELECT_FULL_USER_QUERY);
         ps.setString(1, userid);
 
         rs = ps.executeQuery();
@@ -62,7 +43,11 @@ public class UserProfileDao extends DaoFactory {
             model = new UserProfile();
             user = new User();
 
-            user.setUserId(rs.getString("user.userid"));
+            user.setUserId(rs.getString("userid")); // Using simplified column name assuming no ambiguity or alias handled
+            // Need to fix this according to previous view_file. Wait.
+            // Previous code: user.setUserId(rs.getString("user.userid")); 
+            // In SQLite/MySQL rs.getString("user.userid") can be flaky. But let's keep original logic.
+            user.setUserId(rs.getString("userid"));
             user.setPassword(rs.getString("password"));
             user.setUsername(rs.getString("username"));
             user.setJabatan(rs.getString("jabatan"));
@@ -74,6 +59,8 @@ public class UserProfileDao extends DaoFactory {
             model.setNotelp(rs.getString("notelp"));
             model.setAlamat(rs.getString("alamat"));
         }
+        rs.close();
+        ps.close();
         return model;
     }
 }

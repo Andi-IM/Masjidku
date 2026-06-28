@@ -1,18 +1,3 @@
-/*
- * Copyright (c) 2021. Creative Commons Legal Code
- *
- *                            CC0 1.0 Universal
- *
- *                                CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
- *                                LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN
- *                                ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
- *                                INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
- *                                REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS
- *                                PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
- *                                THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
- *                                HEREUNDER.
- */
-
 package org.masjidku.model.session;
 
 import com.google.common.base.Stopwatch;
@@ -26,9 +11,15 @@ import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
 public class Session extends DaoFactory implements SessionDao{
-    // Effective Guava v15.0, this is the one way of creating a Stopwatch instance.
     final Stopwatch stopwatch = Stopwatch.createUnstarted();
-    private final String TABLE = "sessions";
+    
+    private static final String INSERT_QUERY = "INSERT INTO sessions (userid, timestamp) VALUES(?,?)";
+    private static final String UPDATE_QUERY = "UPDATE sessions SET duration=? WHERE session_id=?";
+    private static final String SELECT_LATEST_QUERY = "SELECT * FROM sessions WHERE userid=? ORDER BY session_id DESC LIMIT 1";
+    private static final String SELECT_ALL_QUERY = "SELECT * FROM sessions";
+    private static final String SELECT_BY_USER_QUERY = "SELECT * FROM sessions WHERE userid=?";
+    private static final String TRUNCATE_QUERY = "DELETE FROM sessions";
+
     private final ObservableList<UserSession> userSessions = FXCollections.observableArrayList();
 
     public Session(){
@@ -65,9 +56,8 @@ public class Session extends DaoFactory implements SessionDao{
 
     @Override
     public void logUserSession(String userid) {
-        query = "INSERT INTO " + TABLE + "(userid, timestamp) VALUES(?,?)";
         try {
-            ps = con.prepareStatement(query);
+            ps = con.prepareStatement(INSERT_QUERY);
             ps.setString(1, userid);
             ps.setString(2, getTimeStamp());
             ps.executeUpdate();
@@ -79,9 +69,8 @@ public class Session extends DaoFactory implements SessionDao{
 
     @Override
     public void updateUserSession(String sessionId) {
-        query = "UPDATE " + TABLE + " SET duration=? WHERE session_id=?";
         try {
-            ps = con.prepareStatement(query);
+            ps = con.prepareStatement(UPDATE_QUERY);
             ps.setString(1, getUserDuration());
             ps.setString(2, sessionId);
             ps.executeUpdate();
@@ -93,10 +82,9 @@ public class Session extends DaoFactory implements SessionDao{
 
     @Override
     public UserSession getSessionData(String userId){
-        query = "SELECT * FROM "+TABLE+" WHERE userid=? ORDER BY session_id DESC LIMIT 1";
         UserSession model = null;
         try {
-            ps = con.prepareStatement(query);
+            ps = con.prepareStatement(SELECT_LATEST_QUERY);
             ps.setString(1, userId);
             rs = ps.executeQuery();
 
@@ -118,10 +106,10 @@ public class Session extends DaoFactory implements SessionDao{
 
     @Override
     public ObservableList<UserSession> getAllSessions(){
-        query = "SELECT * FROM "+TABLE;
         try {
-            ps = con.prepareStatement(query);
+            ps = con.prepareStatement(SELECT_ALL_QUERY);
             generateList();
+            ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -130,11 +118,11 @@ public class Session extends DaoFactory implements SessionDao{
 
     @Override
     public ObservableList<UserSession> getAllSessions(String userid){
-        query = "SELECT * FROM "+TABLE+" WHERE userid=?";
         try {
-            ps = con.prepareStatement(query);
+            ps = con.prepareStatement(SELECT_BY_USER_QUERY);
             ps.setString(1, userid);
             generateList();
+            ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -143,9 +131,8 @@ public class Session extends DaoFactory implements SessionDao{
 
     @SuppressWarnings("SqlWithoutWhere")
     public void truncateData() {
-        query = "DELETE FROM "+TABLE;
         try {
-            ps = con.prepareStatement(query);
+            ps = con.prepareStatement(TRUNCATE_QUERY);
             ps.executeUpdate();
             ps.close();
         } catch (SQLException e) {
@@ -163,5 +150,6 @@ public class Session extends DaoFactory implements SessionDao{
             sessions.setDuration(rs.getString(4));
             userSessions.add(sessions);
         }
+        rs.close();
     }
 }
