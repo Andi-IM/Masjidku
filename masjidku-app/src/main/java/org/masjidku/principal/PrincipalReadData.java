@@ -1,0 +1,50 @@
+/*
+ * Copyright (c) 2021. Creative Commons Legal Code
+ *
+ *                            CC0 1.0 Universal
+ *
+ *                                CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
+ *                                LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN
+ *                                ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
+ *                                INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
+ *                                REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS
+ *                                PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
+ *                                THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
+ *                                HEREUNDER.
+ */
+
+package org.masjidku.principal;
+
+import javafx.fxml.FXML;
+import org.masjidku.navigation.AppRouter;
+
+public class PrincipalReadData {
+
+    private AppRouter mainApp;
+
+    public void setMainApp(AppRouter mainApp) {
+        this.mainApp = mainApp;
+    }
+
+    @FXML
+    public void onLogoutClick() { mainApp.onLogoutAction(); }
+
+    @FXML
+    public void readKegiatan() { mainApp.showKegiatanOverview(); }
+
+    @FXML
+    public void readAnakYatim() { mainApp.showAnakYatimData(); }
+
+    @FXML
+    public void readPembangunan() { mainApp.showPembangunanData(); }
+
+    @FXML
+    public void readOperasional() { mainApp.showOperasionalData(); }
+
+    @FXML
+    public void readZakat() { mainApp.showZakatData(); }
+
+    @FXML
+    public void readTpa() { mainApp.showTpaData(); }
+}
+

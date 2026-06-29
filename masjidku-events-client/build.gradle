@@ -1,0 +1,9 @@
+plugins {
+    id 'java'
+    alias(libs.plugins.javafx)
+}
+
+javafx {
+    version = libs.versions.javafx.get()
+    modules = ['javafx.base']
+}
