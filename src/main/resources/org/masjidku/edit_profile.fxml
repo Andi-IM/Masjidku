@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
+
+<!--
+  ~ Copyright (c) 2021. Creative Commons Legal Code
+  ~
+  ~                            CC0 1.0 Universal
+  ~
+  ~                                CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
+  ~                                LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN
+  ~                                ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
+  ~                                INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
+  ~                                REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS
+  ~                                PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
+  ~                                THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
+  ~                                HEREUNDER.
+  -->
+
+<AnchorPane prefHeight="480.0" prefWidth="665.0" styleClass="main" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.masjidku.controller.EditProfileController">
+    <stylesheets>
+        <URL value="@styles/styles.css" />
+        <URL value="@styles/fontstyles.css" />
+    </stylesheets>
+    <children>
+        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="24.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <image>
+                <Image url="@icon/app_icon.png" />
+            </image>
+        </ImageView>
+        <Text layoutX="125.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="app-title" text="Aplikasi Desktop MasjidKu " />
+        <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="398.0" layoutY="42.0" onMouseClicked="#onLogoutClick" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <image>
+                <Image url="@icon/logout.png" />
+            </image>
+        </ImageView>
+        <Text fill="#3AAFA9" layoutX="54.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="headline" text="Edit Profil" wrappingWidth="350.0" />
+        <GridPane layoutX="51.0" layoutY="214.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="400.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label styleClass="labelForm" text="username" GridPane.rowIndex="1" />
+                <Label styleClass="labelForm" text="password lama" GridPane.rowIndex="2" />
+                <Label styleClass="labelForm" text="password baru" GridPane.rowIndex="3" />
+                <TextField fx:id="txtUserName" prefHeight="25.0" prefWidth="113.0" promptText="masukkan userid" styleClass="formField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <PasswordField fx:id="txtOldPassword" promptText="masukkan username" styleClass="formField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Label styleClass="labelForm" text="konfirmasi password " GridPane.rowIndex="4" />
+                <PasswordField fx:id="txtNewPassword" promptText="masukkan password baru" styleClass="formField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <PasswordField fx:id="txtConfirmPassword" promptText="konfirmasi password baru" styleClass="formField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <TextField fx:id="txtNoTel" promptText="masukkan nomor telp" styleClass="formField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <TextField fx:id="txtAlamat" promptText="masukkan alamat " styleClass="formField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                <Label styleClass="labelForm" text="No. Telp" GridPane.rowIndex="5" />
+                <Label styleClass="labelForm" text="Alamat" GridPane.rowIndex="6" />
+                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#clearForm" styleClass="generalButton" text="Bersihkan" />
+                        <Button mnemonicParsing="false" onAction="#onUserSubmitted" styleClass="generalButton" text="OK" />
+                    </children>
+                </HBox>
+                <Label styleClass="labelForm" text="User ID" />
+                <Label fx:id="lbUserID" styleClass="labelForm" text="&lt;User ID&gt;" GridPane.columnIndex="1" />
+            <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onBackAction" styleClass="generalButton" text="Kembali" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
+            </Button>
+            </children>
+        </GridPane>
+    </children>
+</AnchorPane>

@@ -1,24 +1,2 @@
 # Project exclude paths
 /.gradle/
-build/
-**/build/
-
-# IntelliJ IDEA
-.idea/
-*.iml
-*.iws
-*.ipr
-out/
-*.db
-*.db-shm
-*.db-wal
-/reports/
-/masjidku-app/logs/
-*.log
-logs/
-*.py
-
-
-
-# SonarLint
-.sonarlint/
