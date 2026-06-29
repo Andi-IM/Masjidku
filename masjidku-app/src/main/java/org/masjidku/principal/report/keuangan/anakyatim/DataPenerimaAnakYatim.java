@@ -29,6 +29,9 @@ import org.masjidku.accounting.client.service.AnakYatimService;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.masjidku.reporting.client.service.ReportService;
+import javafx.stage.FileChooser;
+import java.io.File;
 
 public class DataPenerimaAnakYatim extends org.masjidku.accountant.BaseTableController<AnakYatim> {
     private static final Logger log = LoggerFactory.getLogger(DataPenerimaAnakYatim.class);
@@ -73,9 +76,17 @@ operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
     public void gotoHome() {
         mainApp.showAnakYatimData();
     }
-
     @FXML
     public void printReport() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Simpan Laporan PDF");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
+        fileChooser.setInitialFileName("LaporanDataPenerimaAnakYatim.pdf");
+        File file = fileChooser.showSaveDialog(null);
+        
+        if (file != null) {
+            ServiceProvider.get(ReportService.class).exportToPdf("/org/masjidku/report/data_penerima_anak_yatim.jrxml", file.getAbsolutePath());
+        }
     }
 
     @Override protected org.slf4j.Logger getLogger() { return log; }

@@ -23,11 +23,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.pembangunan.Pembangunan;
 import org.masjidku.accounting.client.service.PembangunanService;
-import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import org.masjidku.reporting.client.service.ReportService;
+import org.masjidku.util.ServiceProvider;
+
 
 public class DataPembayaranPembangunan extends org.masjidku.accountant.BaseTableController<Pembangunan> {
     private static final Logger log = LoggerFactory.getLogger(DataPembayaranPembangunan.class);
@@ -64,9 +66,9 @@ operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
     public void onLogoutClick() {
         mainApp.onLogoutAction();
     }
-
     @FXML
     public void showReport() {
+        ServiceProvider.get(ReportService.class).showReport("/org/masjidku/report/data_pembayaran_pembangunan.jrxml");
     }
 
     @FXML

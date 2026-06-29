@@ -26,9 +26,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.zakat.ZakatKeluar;
 import org.masjidku.accounting.client.service.ZakatKeluarService;
-import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.masjidku.reporting.client.service.ReportService;
+import org.masjidku.util.ServiceProvider;
+
 
 public class DataPenerimaZakat extends org.masjidku.accountant.BaseTableController<ZakatKeluar> {
     private static final Logger log = LoggerFactory.getLogger(DataPenerimaZakat.class);
@@ -63,9 +65,9 @@ operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
     public void onLogoutClick() {
         mainApp.onLogoutAction();
     }
-
     @FXML
     public void showReport() {
+        ServiceProvider.get(ReportService.class).showReport("/org/masjidku/report/data_penerima_zakat.jrxml");
     }
 
     @FXML

@@ -27,6 +27,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import org.masjidku.reporting.client.service.ReportService;
+import org.masjidku.util.ServiceProvider;
+
 
 public class ListTamu extends org.masjidku.accountant.BaseTableController<Tamu> {
     private static final Logger log = LoggerFactory.getLogger(ListTamu.class);
@@ -63,9 +66,9 @@ public class ListTamu extends org.masjidku.accountant.BaseTableController<Tamu> 
 
     @FXML
     public void onLogoutClick() { mainApp.onLogoutAction(); }
-
     @FXML
     public void showReport() {
+        ServiceProvider.get(ReportService.class).showReport("/org/masjidku/report/list_tamu.jrxml");
     }
 
     @FXML

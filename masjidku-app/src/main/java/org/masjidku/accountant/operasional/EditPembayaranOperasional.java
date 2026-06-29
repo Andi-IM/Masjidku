@@ -61,7 +61,7 @@ public class EditPembayaranOperasional {
     }
 
     private void setModel(Operasional model) {
-        txtNama.setText(model.getNama());
+        txtNama.setText(model.getTujuan());
         txtKeterangan.setText(model.getKeterangan());
         txtJumlah.setText(model.getJumlah());
         LocalDate localDate = LocalDate.parse(model.getTanggal());
@@ -93,7 +93,7 @@ public class EditPembayaranOperasional {
                 () -> dao.isDataExist(model.getId()),
                 () -> dao.update(new String[]{
                         model.getId(),
-                        model.getNama(),
+                        model.getTujuan(),
                         model.getKeterangan(),
                         model.getJumlah(),
                         model.getTanggal(),

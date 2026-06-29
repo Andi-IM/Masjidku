@@ -33,19 +33,4 @@ public class DonasiOperasional extends DataDonasi {
     public String getNama() {
         return super.getDonatur();
     }
-
-    @Override
-    public String getJumlah() {
-        return super.getJumlah();
-    }
-
-    @Override
-    public String getTanggal() {
-        return super.getTanggal();
-    }
-
-    @Override
-    public String getOperator() {
-        return super.getOperator();
-    }
 }

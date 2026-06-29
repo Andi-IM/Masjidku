@@ -35,7 +35,6 @@ public class ReportServiceImpl implements ReportService {
             }
         }
     }
-
     @Override
     public void showReport() {
         if (jprint != null) {
@@ -43,6 +42,23 @@ public class ReportServiceImpl implements ReportService {
             jviewer.setVisible(true);
         }
     }
+
+    @Override
+    public void showReport(String reportPath) {
+        showReport(reportPath, new java.util.HashMap<>());
+    }
+
+    @Override
+    public void showReport(String reportPath, Map<String, Object> parameters) {
+        InputStream reportStream = getClass().getResourceAsStream(reportPath);
+        if (reportStream == null) {
+            log.error("Report template could not be found for path: {}", reportPath);
+            return;
+        }
+        createReport(parameters, reportStream);
+        showReport();
+    }
+
     @Override
     public void exportToPdf(String destFilePath) {
         if (jprint != null) {
@@ -52,5 +68,21 @@ public class ReportServiceImpl implements ReportService {
                 log.error("An error occurred", e);
             }
         }
+    }
+
+    @Override
+    public void exportToPdf(String reportPath, String destFilePath) {
+        exportToPdf(reportPath, new java.util.HashMap<>(), destFilePath);
+    }
+
+    @Override
+    public void exportToPdf(String reportPath, Map<String, Object> parameters, String destFilePath) {
+        InputStream reportStream = getClass().getResourceAsStream(reportPath);
+        if (reportStream == null) {
+            log.error("Report template could not be found for path: {}", reportPath);
+            return;
+        }
+        createReport(parameters, reportStream);
+        exportToPdf(destFilePath);
     }
 }

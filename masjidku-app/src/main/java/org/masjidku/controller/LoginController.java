@@ -56,8 +56,7 @@ public class LoginController {
      * after the fxml file has been loaded.
      */
     @FXML
-    public void initialize() {
-    }
+    public void initialize() {}
 
     @FXML
     public void handleLogin() {

@@ -22,11 +22,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.operasional.Operasional;
 import org.masjidku.accounting.client.service.OperationalService;
-import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import org.masjidku.reporting.client.service.ReportService;
+import org.masjidku.util.ServiceProvider;
+
 
 public class DataPembayaranOperasional extends org.masjidku.accountant.BaseTableController<Operasional> {
     private static final Logger log = LoggerFactory.getLogger(DataPembayaranOperasional.class);
@@ -67,9 +69,9 @@ operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
     public void gotoHome() {
         mainApp.showOperasionalData();
     }
-
     @FXML
     public void showReport() {
+        ServiceProvider.get(ReportService.class).showReport("/org/masjidku/report/data_pembayaran_operasional.jrxml");
     }
 
     @Override

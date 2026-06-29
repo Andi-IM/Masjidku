@@ -26,9 +26,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.tpa.TpaKeluar;
 import org.masjidku.accounting.client.service.TpaKeluarService;
-import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.masjidku.reporting.client.service.ReportService;
+import org.masjidku.util.ServiceProvider;
+
 
 public class DataPembayaranTpa extends org.masjidku.accountant.BaseTableController<TpaKeluar> {
     private static final Logger log = LoggerFactory.getLogger(DataPembayaranTpa.class);
@@ -64,9 +66,9 @@ operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
     public void onLogoutClick() {
         mainApp.onLogoutAction();
     }
-
     @FXML
     public void showReport() {
+        ServiceProvider.get(ReportService.class).showReport("/org/masjidku/report/data_pembayaran_tpa.jrxml");
     }
 
     @FXML

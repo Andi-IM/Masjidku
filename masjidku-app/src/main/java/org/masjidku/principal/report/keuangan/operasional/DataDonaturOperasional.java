@@ -20,14 +20,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.operasional.DonasiOperasional;
 import org.masjidku.accounting.client.service.DonasiOperationalService;
+import org.masjidku.navigation.AppRouter;
+import org.masjidku.reporting.client.service.ReportService;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+
 
 public class DataDonaturOperasional extends org.masjidku.accountant.BaseTableController<DonasiOperasional> {
     private static final Logger log = LoggerFactory.getLogger(DataDonaturOperasional.class);
@@ -69,6 +71,7 @@ public class DataDonaturOperasional extends org.masjidku.accountant.BaseTableCon
 
     @FXML
     public void showReport() {
+        ServiceProvider.get(ReportService.class).showReport("/org/masjidku/report/data_donatur_operasional.jrxml");
     }
 
     @Override

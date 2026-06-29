@@ -19,7 +19,6 @@ import org.masjidku.util.TableHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.masjidku.util.ServiceProvider;
 import javafx.fxml.FXML;
 
 import java.util.List;
@@ -30,6 +29,9 @@ import javafx.scene.control.Button;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.events.client.model.TamuKegiatan;
 import org.masjidku.events.client.service.TamuKegiatanService;
+import org.masjidku.reporting.client.service.ReportService;
+import org.masjidku.util.ServiceProvider;
+
 
 public class ListUndangan extends org.masjidku.accountant.BaseTableController<TamuKegiatan> {
     private static final Logger log = LoggerFactory.getLogger(ListUndangan.class);
@@ -73,9 +75,9 @@ public class ListUndangan extends org.masjidku.accountant.BaseTableController<Ta
     public void onLogoutClick() {
         mainApp.onLogoutAction();
     }
-
     @FXML
     public void showReport() {
+        ServiceProvider.get(ReportService.class).showReport("/org/masjidku/report/list_undangan.jrxml");
     }
 
     @FXML
