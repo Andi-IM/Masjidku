@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2021. Creative Commons Legal Code
+  ~
+  ~                            CC0 1.0 Universal
+  ~
+  ~                                CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
+  ~                                LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN
+  ~                                ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
+  ~                                INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
+  ~                                REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS
+  ~                                PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
+  ~                                THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
+  ~                                HEREUNDER.
+  -->
+
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="480.0" prefWidth="665.0" styleClass="main" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.masjidku.principal.PrincipalHome">
+    <stylesheets>
+        <URL value="@../styles/styles.css" />
+        <URL value="@../styles/fontstyles.css" />
+    </stylesheets>
+    <children>
+        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="24.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <image>
+                <Image url="@../icon/app_icon.png" />
+            </image>
+        </ImageView>
+        <Text layoutX="125.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="app-title" text="Aplikasi Desktop MasjidKu " />
+        <Text layoutX="54.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="headline" text="Assalamu'alaikum" />
+        <Text fx:id="greeting" fill="#3AAFA9" layoutX="54.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="headline" text="Bapak Ali Sadikin" />
+        <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="398.0" layoutY="42.0" onMouseClicked="#onLogoutClick" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <image>
+                <Image url="@../icon/logout.png" />
+            </image>
+        </ImageView>
+
+        <Rectangle arcWidth="5.0" fill="#3aafa9" height="5.0" layoutX="101.0" layoutY="-5.0" smooth="false" stroke="BLACK" strokeLineCap="BUTT" strokeLineJoin="BEVEL" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" width="665.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+        <Text layoutX="54.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="content" text="Ketua Masjid" AnchorPane.leftAnchor="54.0" />
+        <Text layoutX="54.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="content" text="Ingin melakukan apa hari ini?" AnchorPane.leftAnchor="54.0" />
+      <Button layoutX="321.0" layoutY="148.0" mnemonicParsing="false" prefHeight="229.0" prefWidth="108.0" styleClass="generalButton">
+         <graphic>
+            <ImageView fitHeight="150.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/document.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="497.0" layoutY="148.0" mnemonicParsing="false" prefHeight="229.0" prefWidth="154.0" styleClass="generalButton">
+         <graphic>
+            <ImageView fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/database.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+    </children>
+</AnchorPane>
