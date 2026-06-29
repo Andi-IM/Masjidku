@@ -26,11 +26,7 @@ public class DataPenerimaZakat extends org.masjidku.accountant.BaseFinanceReport
         mainApp.showZakatData();
     }
 
-    @Override
-    protected void setupTableColumns() {
-        org.masjidku.util.AlertHelper.setupOutflowColumns(nama, jumlah, tanggal);
-        operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
-    }
+
 
     @Override
     protected String getReportTemplatePath() {

@@ -36,9 +36,8 @@ public class DataPenerimaAnakYatim extends org.masjidku.accountant.BaseFinanceRe
 
     @Override
     protected void setupTableColumns() {
-        org.masjidku.util.AlertHelper.setupOutflowColumns(nama, jumlah, tanggal);
+        super.setupTableColumns();
         usia.setCellValueFactory(new PropertyValueFactory<>("usia"));
-        operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
     }
 
     @Override

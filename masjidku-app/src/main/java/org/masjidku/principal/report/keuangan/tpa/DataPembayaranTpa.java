@@ -26,11 +26,7 @@ public class DataPembayaranTpa extends org.masjidku.accountant.BaseFinanceReport
         mainApp.showTpaData();
     }
 
-    @Override
-    protected void setupTableColumns() {
-        org.masjidku.util.AlertHelper.setupOutflowColumns(nama, jumlah, tanggal);
-        operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
-    }
+
 
     @Override
     protected String getReportTemplatePath() {

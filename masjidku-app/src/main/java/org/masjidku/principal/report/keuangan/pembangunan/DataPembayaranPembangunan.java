@@ -31,9 +31,8 @@ public class DataPembayaranPembangunan extends org.masjidku.accountant.BaseFinan
 
     @Override
     protected void setupTableColumns() {
-        org.masjidku.util.AlertHelper.setupOutflowColumns(nama, jumlah, tanggal);
+        super.setupTableColumns();
         keterangan.setCellValueFactory(new PropertyValueFactory<>("keterangan"));
-        operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
     }
 
     @Override
