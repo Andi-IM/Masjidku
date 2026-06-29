@@ -13,33 +13,32 @@
  *                                HEREUNDER.
  */
 package org.masjidku.accounting.dao.tpa;
-import org.intellij.lang.annotations.Language;
-import org.masjidku.accounting.client.model.tpa.*;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.masjidku.accounting.client.model.tpa.TpaKeluar;
 import org.masjidku.accounting.dao.base.Dao;
+
 import java.sql.SQLException;
+
 public class TpaKeluarDao extends Dao<TpaKeluar> {
     private static final String QUERY_1 = "SELECT * FROM tpa_keluar WHERE id=?";
     private static final String QUERY_2 = "SELECT * FROM tpa_keluar";
-    @Language("SQL")
     private static final String QUERY_3 = "INSERT INTO tpa_keluar(id, nama, keterangan, jumlah, tanggal, operator) VALUES (?,?,?,?,?,?)";
-    @Language("SQL")
     private static final String QUERY_4 = "UPDATE tpa_keluar SET nama=?, keterangan=?, jumlah=?, tanggal=?, operator=? WHERE id=?";
     private static final String QUERY_5 = "DELETE FROM tpa_keluar WHERE id=?";
     private static final String QUERY_6 = "SELECT * FROM tpa_keluar ORDER BY ID DESC LIMIT 1";
     private static final String QUERY_7 = "SELECT IFNULL(SUM(jumlah),0) FROM tpa_keluar";
-    @Language("SQL")
     private static final String QUERY_8 = "SELECT id FROM tpa_keluar WHERE id=?";
 
-    
+
     @Override
     public TpaKeluar get(String id) throws SQLException {
         ps = con.prepareStatement(QUERY_1);
         ps.setString(1, id);
         rs = ps.executeQuery();
         TpaKeluar model = null;
-        if (rs.next()){
+        if (rs.next()) {
             model = new TpaKeluar(
                     rs.getString(1),
                     rs.getString(2),
@@ -50,13 +49,14 @@ public class TpaKeluarDao extends Dao<TpaKeluar> {
         }
         return model;
     }
+
     @Override
     public ObservableList<TpaKeluar> getAll() throws SQLException {
         ObservableList<TpaKeluar> item = FXCollections.observableArrayList();
         ps = con.prepareStatement(QUERY_2);
         rs = ps.executeQuery();
         TpaKeluar operasional;
-        while (rs.next()){
+        while (rs.next()) {
             operasional = new TpaKeluar(
                     rs.getString(1),
                     rs.getString(2),
@@ -68,21 +68,27 @@ public class TpaKeluarDao extends Dao<TpaKeluar> {
         }
         return item;
     }
+
     @Override
     public void save(TpaKeluar tpaKeluar) throws SQLException {
         executeUpdateQuery(QUERY_3, tpaKeluar.getId(), tpaKeluar.getTujuan(), tpaKeluar.getKeterangan(), tpaKeluar.getJumlah(), tpaKeluar.getTanggal(), tpaKeluar.getOperator());
     }
+
     @Override
     public void update(String[] params) throws SQLException {
         executeUpdateQuery(QUERY_4, params[1], params[2], params[3], params[4], params[5], params[0]);
     }
+
     @Override
-    public void delete(String id) throws SQLException { executeDelete(QUERY_5, id); }
+    public void delete(String id) throws SQLException {
+        executeDelete(QUERY_5, id);
+    }
+
     public TpaKeluar getLastRecord() throws SQLException {
         ps = con.prepareStatement(QUERY_6);
         rs = ps.executeQuery();
         TpaKeluar model = new TpaKeluar();
-        if (rs.next()){
+        if (rs.next()) {
             model = new TpaKeluar(
                     rs.getString(1),
                     rs.getString(2),
@@ -94,13 +100,17 @@ public class TpaKeluarDao extends Dao<TpaKeluar> {
         }
         return model;
     }
+
     public String getTotalOutcome() throws SQLException {
         ps = con.prepareStatement(QUERY_7);
         rs = ps.executeQuery();
-        if (rs.next()){
+        if (rs.next()) {
             return rs.getString(1);
         }
         return "0";
     }
-    public boolean isDataExist(String id) throws SQLException { return executeCheckExists(QUERY_8, id); }
+
+    public boolean isDataExist(String id) throws SQLException {
+        return executeCheckExists(QUERY_8, id);
+    }
 }

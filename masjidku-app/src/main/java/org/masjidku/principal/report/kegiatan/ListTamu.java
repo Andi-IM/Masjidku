@@ -27,6 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+
 import org.masjidku.reporting.client.service.ReportService;
 import org.masjidku.util.ServiceProvider;
 
@@ -49,37 +50,71 @@ public class ListTamu extends org.masjidku.accountant.BaseTableController<Tamu> 
     private AppRouter mainApp;
     private final TamuService service = new TamuService(org.masjidku.util.ServiceProvider.get(TamuRepository.class));
 
-    
 
-    @Override 
+    @Override
     protected void setupTableColumns() {
         org.masjidku.util.AlertHelper.setupTamuColumns(colNama, colAlamat, colNotelp);
-        if (colOperator != null) colOperator.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("operator"));
+        if (colOperator != null)
+            colOperator.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("operator"));
     }
+
     public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
-    
 
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
+
     @FXML
     public void showReport() {
         ServiceProvider.get(ReportService.class).showReport("/org/masjidku/report/list_tamu.jrxml");
     }
 
     @FXML
-    public void gotoHome() { mainApp.showKegiatanOverview(); }
+    public void gotoHome() {
+        mainApp.showKegiatanOverview();
+    }
 
-    @Override protected org.slf4j.Logger getLogger() { return log; }
-    @Override protected TableView<Tamu> getTableView() { return tblTamu; }
-    @Override protected Button getBtnEdit() { return null; }
-    @Override protected Button getBtnRemove() { return null; }
-    @Override protected List<Tamu> fetchAllData() throws java.sql.SQLException { return service.getAll(); }
-    @Override protected boolean checkIfExist(Tamu item) { return false; }
-    @Override protected void deleteItem(Tamu item) {  }
-    @Override protected void handleEdit(Tamu item) {  }
+    @Override
+    protected org.slf4j.Logger getLogger() {
+        return log;
+    }
+
+    @Override
+    protected TableView<Tamu> getTableView() {
+        return tblTamu;
+    }
+
+    @Override
+    protected Button getBtnEdit() {
+        return null;
+    }
+
+    @Override
+    protected Button getBtnRemove() {
+        return null;
+    }
+
+    @Override
+    protected List<Tamu> fetchAllData() throws java.sql.SQLException {
+        return service.getAll();
+    }
+
+    @Override
+    protected boolean checkIfExist(Tamu item) {
+        return false;
+    }
+
+    @Override
+    protected void deleteItem(Tamu item) {
+    }
+
+    @Override
+    protected void handleEdit(Tamu item) {
+    }
 }
 
 

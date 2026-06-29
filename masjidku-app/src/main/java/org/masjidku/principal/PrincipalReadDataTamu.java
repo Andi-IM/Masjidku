@@ -20,16 +20,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
-import org.masjidku.navigation.AppRouter;
 import org.masjidku.events.client.model.Tamu;
-import org.masjidku.events.client.service.TamuService;
 import org.masjidku.events.client.repository.TamuRepository;
+import org.masjidku.events.client.service.TamuService;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
 import java.sql.SQLException;
+import java.util.List;
 
 public class PrincipalReadDataTamu extends org.masjidku.accountant.BaseTableController<Tamu> {
     private static final Logger log = LoggerFactory.getLogger(PrincipalReadDataTamu.class);
@@ -96,16 +96,24 @@ public class PrincipalReadDataTamu extends org.masjidku.accountant.BaseTableCont
     }
 
     @Override
-    protected Logger getLogger() { return log; }
+    protected Logger getLogger() {
+        return log;
+    }
 
     @Override
-    protected TableView<Tamu> getTableView() { return tblTamu; }
+    protected TableView<Tamu> getTableView() {
+        return tblTamu;
+    }
 
     @Override
-    protected Button getBtnEdit() { return btnEdit; }
+    protected Button getBtnEdit() {
+        return btnEdit;
+    }
 
     @Override
-    protected Button getBtnRemove() { return btnRemove; }
+    protected Button getBtnRemove() {
+        return btnRemove;
+    }
 
     @Override
     protected List<Tamu> fetchAllData() throws SQLException {

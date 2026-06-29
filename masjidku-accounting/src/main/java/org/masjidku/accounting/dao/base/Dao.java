@@ -28,8 +28,7 @@ public abstract class Dao<T> extends DaoFactory {
     public abstract void update(String[] params) throws SQLException;
     public abstract void delete(String id) throws SQLException;
 
-    @SuppressWarnings("SqlSourceToSinkFlow")
-    protected void executeDelete(String query, String id) throws SQLException {
+    protected void executeDelete(@Language("SQL") String query, String id) throws SQLException {
         try (java.sql.PreparedStatement ps = con.prepareStatement(query)) {
             ps.setString(1, id);
             ps.executeUpdate();

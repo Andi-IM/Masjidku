@@ -22,7 +22,6 @@ import java.util.List;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.events.client.model.Tamu;
 import org.masjidku.events.client.service.TamuService;

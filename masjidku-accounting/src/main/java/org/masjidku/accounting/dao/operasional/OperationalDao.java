@@ -25,12 +25,15 @@ import org.masjidku.accounting.dao.base.Dao;
 import java.sql.SQLException;
 
 public class OperationalDao extends Dao<Operasional> {
+    @Language("SQL")
     private static final String QUERY_1 = "SELECT * FROM operasional_keluar WHERE id=?";
+    @Language("SQL")
     private static final String QUERY_2 = "SELECT * FROM operasional_keluar";
     @Language("SQL")
     private static final String QUERY_3 = "INSERT INTO operasional_keluar(id, nama, keterangan, jumlah, tanggal, operator) VALUES (?,?,?,?,?,?)";
     @Language("SQL")
     private static final String QUERY_4 = "UPDATE operasional_keluar SET nama=?, keterangan=?, jumlah=?, tanggal=?, operator=? WHERE id=?";
+    @Language("SQL")
     private static final String QUERY_5 = "DELETE FROM operasional_keluar WHERE id=?";
     @Language("SQL")
     private static final String QUERY_6 = "SELECT id FROM operasional_keluar WHERE id=?";
