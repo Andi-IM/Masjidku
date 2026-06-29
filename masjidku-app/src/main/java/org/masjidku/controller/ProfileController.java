@@ -69,7 +69,7 @@ public class ProfileController {
         if (profile!=null){
             userId.setText(profile.getUser().getUserId());
             username.setText(profile.getUser().getUsername());
-            userRole.setText(profile.getUser().getJabatan().toString);
+            userRole.setText(profile.getUser().getJabatan().toString());
             userStatus.setText(profile.getUser().getStatus());
             userLastUpdate.setText(profile.getUser().getUpdated_at());
             userPhoneNum.setText(profile.getNotelp());

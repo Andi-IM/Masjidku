@@ -54,7 +54,7 @@ public class UserForm implements Initializable {
     public void setUser(User user) {
         txtUserId.setText(user.getUserId());
         txtUserName.setText(user.getUsername());
-        pilJabatan.getSelectionModel().select(user.getJabatan().toString);
+        pilJabatan.getSelectionModel().select(user.getJabatan().toString());
         statusCheckBox.setSelected(user.getStatus() != null && user.getStatus().equals("Aktif"));
     }
 
@@ -126,7 +126,7 @@ public class UserForm implements Initializable {
 
            try {
                if (dao.isUserExist(userid)){
-                   dao.update(new String[]{user.getJabatan().toString, user.getStatus(), user.getUserId()});
+                   dao.update(new String[]{user.getJabatan().toString(), user.getStatus(), user.getUserId()});
                    org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "User telah diperbarui!");
                }
                else {

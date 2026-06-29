@@ -35,36 +35,17 @@ import org.masjidku.events.client.model.TamuKegiatan;
 import org.masjidku.model.session.SessionManager;
 import org.masjidku.model.user.User;
 import org.masjidku.model.user.UserProfile;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.util.ViewManager;
 
-import org.masjidku.navigation.AppRouter;
 public class MainApp extends Application implements AppRouter {
 
     private Stage primaryStage;
     private ViewManager viewManager;
 
-    /**
-     * Constructor
-     */
-    public MainApp() {
-    }
-
-    public void setRootView(String fxmlPath, Runnable homeMethod) {
-        viewManager.setRootView(fxmlPath, homeMethod);
-    }
-
     public void loadHomeRoot() {
         viewManager.loadHomeRoot();
     }
-
-    public void loadView(String fxmlPath) {
-        viewManager.loadView(fxmlPath);
-    }
-
-    public <T> T loadViewAndGetController(String fxmlPath) {
-        return viewManager.loadViewAndGetController(fxmlPath);
-    }
-
 
     @Override
     public void start(Stage primaryStage) {

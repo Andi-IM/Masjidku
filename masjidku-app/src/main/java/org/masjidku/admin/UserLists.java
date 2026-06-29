@@ -164,23 +164,22 @@ public class UserLists implements Initializable {
     @FXML
     public void onResetListener() {
         User selectedUser = userTable.getSelectionModel().getSelectedItem();
-        if (selectedUser != null){
-            UserService dao = new UserServiceImpl();
-            try{
-                if (dao.isUserExist(selectedUser.getUserId())) {
-                    if (dao.isReset(selectedUser.getUserId())) {
-                        dao.reset(selectedUser.getUserId());
-                    } else {
-                        org.masjidku.util.AlertHelper.alertError(dialogStage, "User Error", "User telah melakukan reset password!");
-                    }
-                } else {
-                    org.masjidku.util.AlertHelper.alertError(dialogStage, "SQL Error","User tidak ditemukan!");
-                }
-            } catch (SQLException e) {
-                log.error("An error occurred", e);
+        if (selectedUser == null) {
+            return;
+        }
+        UserService dao = new UserServiceImpl();
+        try {
+            if (!dao.isUserExist(selectedUser.getUserId())) {
+                org.masjidku.util.AlertHelper.alertError(dialogStage, "SQL Error", "User tidak ditemukan!");
+                return;
             }
-        } else {
-            org.masjidku.util.AlertHelper.alertError(dialogStage, "Offline","Database tidak terhubung!");
+            if (dao.isReset(selectedUser.getUserId())) {
+                dao.reset(selectedUser.getUserId());
+            } else {
+                org.masjidku.util.AlertHelper.alertError(dialogStage, "User Error", "User telah melakukan reset password!");
+            }
+        } catch (SQLException e) {
+            log.error("An error occurred", e);
         }
     }
 

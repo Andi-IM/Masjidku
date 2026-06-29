@@ -119,10 +119,15 @@ public class User {
         bendahara("bendahara"),
         none("");
 
-        public final String toString;
+        private final String label;
 
-        Jabatan(String toString) {
-            this.toString = toString;
+        Jabatan(String label) {
+            this.label = label;
+        }
+
+        @Override
+        public String toString() {
+            return this.label;
         }
     }
 }

@@ -54,7 +54,7 @@ public class UserDao extends UserDaoFactory<User> {
 
         ps.setString(2, hex);
         ps.setString(3, user.getUsername());
-        ps.setString(4, user.getJabatan().toString);
+        ps.setString(4, user.getJabatan().toString());
         ps.setString(5, user.getStatus());
         ps.executeUpdate();
         ps.close();

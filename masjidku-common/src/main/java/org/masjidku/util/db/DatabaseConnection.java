@@ -24,7 +24,7 @@ public class DatabaseConnection {
             String dbName = "masjidku";
             String url = "jdbc:mysql://127.0.0.1:3306/" + dbName;
             String username = "root";
-            String password = ""; // using default password=root in GitHub
+            String password = System.getenv("DB_PASSWORD") != null ? System.getenv("DB_PASSWORD") : ""; // using default password=root in GitHub
             
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");

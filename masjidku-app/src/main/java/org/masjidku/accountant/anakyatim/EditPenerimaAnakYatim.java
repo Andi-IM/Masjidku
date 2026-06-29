@@ -77,17 +77,13 @@ public class EditPenerimaAnakYatim {
      * @return fieldStatus
      */
     private boolean formValidation() {
-        if (!txtNama.getText().isBlank()) {
-            if (!txtJumlah.getText().isBlank()) {
-                if (txtJumlah.getText().matches("[0-9]")) {
-                    if (date.getEditor().getText().isBlank()) {
-                        return spnUsia.getValueFactory().getValue() > 5 &&
-                                spnUsia.getValueFactory().getValue() < 19;
-                    }
-                }
-            }
-        }
-        return false;
+        if (txtNama.getText().isBlank()) return false;
+        if (txtJumlah.getText().isBlank()) return false;
+        if (!txtJumlah.getText().matches("[0-9]")) return false;
+        if (!date.getEditor().getText().isBlank()) return false;
+
+        int usia = spnUsia.getValueFactory().getValue();
+        return usia > 5 && usia < 19;
     }
 
     @FXML
