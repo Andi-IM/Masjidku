@@ -45,40 +45,23 @@ public class KegiatanDao extends Dao<Kegiatan> implements KegiatanService {
     
     @Override
     public Kegiatan get(String id) throws SQLException {
-        ps = con.prepareStatement(QUERY_1);
-        ps.setString(1, id);
-        rs = ps.executeQuery();
-        Kegiatan model = null;
-        if(rs.next()){
-            model = new Kegiatan(
-                    rs.getString(1),
-                    rs.getString(2),
-                    rs.getString(3),
-                    rs.getString(4),
-                    rs.getString(5),
-                    rs.getString(6)
-            );
-        }
-        return model;
+        return executeGet(QUERY_1, id, this::mapResultSetToModel);
     }
+    
     @Override
     public ObservableList<Kegiatan> getAll() throws SQLException {
-        ObservableList<Kegiatan> items = FXCollections.observableArrayList();
-        ps = con.prepareStatement(QUERY_2);
-        rs = ps.executeQuery();
-        Kegiatan kegiatan;
-        while(rs.next()){
-            kegiatan = new Kegiatan(
-                    rs.getString(1),
-                    rs.getString(2),
-                    rs.getString(3),
-                    rs.getString(4),
-                    rs.getString(5),
-                    rs.getString(6)
-            );
-            items.add(kegiatan);
-        }
-        return items;
+        return executeGetAll(QUERY_2, this::mapResultSetToModel);
+    }
+
+    private Kegiatan mapResultSetToModel(java.sql.ResultSet rs) throws SQLException {
+        return new Kegiatan(
+                rs.getString(1),
+                rs.getString(2),
+                rs.getString(3),
+                rs.getString(4),
+                rs.getString(5),
+                rs.getString(6)
+        );
     }
     @Override
     public void save(Kegiatan kegiatan) throws SQLException {
@@ -94,19 +77,16 @@ public class KegiatanDao extends Dao<Kegiatan> implements KegiatanService {
     public ObservableList<String> getAllKegiatanName() throws SQLException { return executeGetAllNames(QUERY_7); }
     public String getIdByName(String name) throws SQLException { return executeGetIdByName(QUERY_8, name); }
     public Kegiatan getLastRecord() throws SQLException {
-        ps = con.prepareStatement(QUERY_9);
-        rs = ps.executeQuery();
-        Kegiatan model = new Kegiatan();
-        if (rs.next()){
-            model = new Kegiatan();
+        return executeGet(QUERY_9, null, rs -> {
+            Kegiatan model = new Kegiatan();
             model.setIdKegiatan(rs.getString(1));
             model.setNama(rs.getString(2));
             model.setWaktu(rs.getString(3));
             model.setTanggal(rs.getString(4));
             model.setTanggal(rs.getString(5));
             model.setOperator(rs.getString(6));
-        }
-        return model;
+            return model;
+        });
     }
     public String getTotalKegiatan() throws SQLException { return executeGetTotal(QUERY_10); }
 }

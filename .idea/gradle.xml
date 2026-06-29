@@ -5,12 +5,17 @@
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleJvm" value="14" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/main" />
-            <option value="$PROJECT_DIR$/test" />
+            <option value="$PROJECT_DIR$/masjidku-accounting" />
+            <option value="$PROJECT_DIR$/masjidku-accounting-client" />
+            <option value="$PROJECT_DIR$/masjidku-app" />
+            <option value="$PROJECT_DIR$/masjidku-common" />
+            <option value="$PROJECT_DIR$/masjidku-events" />
+            <option value="$PROJECT_DIR$/masjidku-events-client" />
+            <option value="$PROJECT_DIR$/masjidku-reporting" />
+            <option value="$PROJECT_DIR$/masjidku-reporting-client" />
           </set>
         </option>
       </GradleProjectSettings>

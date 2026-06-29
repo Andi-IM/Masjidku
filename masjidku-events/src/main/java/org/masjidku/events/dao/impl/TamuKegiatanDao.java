@@ -95,10 +95,7 @@ public class TamuKegiatanDao extends Dao<TamuKegiatan> implements org.masjidku.e
     }
 
     public boolean isUndanganExist(String id) throws SQLException {
-        ps = con.prepareStatement(QUERY_6);
-        ps.setString(1, id);
-        ResultSet rs = ps.executeQuery();
-        return rs.next();
+        return executeCheckExists(QUERY_6, id);
     }
 
     private TamuKegiatan mapResultSetToModel(java.sql.ResultSet rs) throws SQLException {

@@ -20,6 +20,7 @@ public class UserServiceImpl implements UserService {
     }
 
     // Dependency Injection constructor (recommended for future testing)
+    @SuppressWarnings("unused")
     public UserServiceImpl(UserDao userDao) {
         this.userDao = userDao;
     }
