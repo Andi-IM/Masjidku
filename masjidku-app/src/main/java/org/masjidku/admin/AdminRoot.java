@@ -30,16 +30,7 @@ public class AdminRoot {
 
     @FXML
     public void initialize() {
-        if (groupButton != null) {
-            if (!groupButton.getToggles().isEmpty()) {
-                groupButton.getToggles().getFirst().setSelected(true);
-            }
-            groupButton.selectedToggleProperty().addListener((obs, oldVal, newVal) -> {
-                if (newVal == null && oldVal != null) {
-                    javafx.application.Platform.runLater(() -> oldVal.setSelected(true));
-                }
-            });
-        }
+        org.masjidku.util.UIUtils.preventEmptyToggleSelection(groupButton);
     }
 
     @FXML

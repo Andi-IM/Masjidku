@@ -69,7 +69,7 @@ public class DonaturAnakYatim extends BaseTableController<DonasiAYatim> {
     }
 
     @Override
-    protected void deleteItem(DonasiAYatim item) throws SQLException {
+    protected void deleteItem(DonasiAYatim item)  {
         dao.delete(item.getId());
     }
 

@@ -17,6 +17,7 @@ package org.masjidku.principal;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import org.masjidku.MainApp;
 
@@ -24,6 +25,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class PrincipalReadDataTamu implements Initializable {
+    @FXML
+    public Button btnEdit;
+    @FXML
+    public Button btnReset;
+    @FXML
+    public Button btnRemove;
+
     @FXML
     public Text greeting;
     private MainApp mainApp;

@@ -14,8 +14,10 @@
   ~                                HEREUNDER.
   -->
 
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jasperreports.sourceforge.net/jasperreports https://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Report"
-              pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" topMargin="20" bottomMargin="20" uuid="ca533372-ebe5-40eb-b122-35a04801930e">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              name="Report"
+              pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" topMargin="20"
+              bottomMargin="20" uuid="ca533372-ebe5-40eb-b122-35a04801930e">
     <background>
         <band splitType="Stretch"/>
     </background>

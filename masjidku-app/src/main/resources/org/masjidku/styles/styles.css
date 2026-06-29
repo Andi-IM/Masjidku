@@ -54,16 +54,19 @@
     -fx-background-radius: 10.0;
 }
 
+/* noinspection CssUnusedSymbol */
 .check-box .box {
     -fx-background-color: white;
     -fx-border-color: grey;
     -fx-border-radius: 3px;
 }
 
+/* noinspection CssUnusedSymbol */
 .check-box:selected .mark {
     -fx-background-color: white;
 }
 
+/* noinspection CssUnusedSymbol */
 .check-box:selected .box{
     -fx-background-color: #7fb3b0;
 }
@@ -125,6 +128,7 @@
     -fx-border-color: #3AAFa9;
 }
 
+/* noinspection CssUnusedSymbol */
 .table-view {
     -fx-base: #3aafa9;
     -fx-control-inner-background: #fafafa;
@@ -134,10 +138,12 @@
     -fx-padding: 5;
 }
 
+/* noinspection CssUnusedSymbol */
 .table-view .column-header-background {
     -fx-background-color: transparent;
 }
 
+/* noinspection CssUnusedSymbol */
 .table-view .column-header, .table-view .filler {
     -fx-size: 20;
     -fx-border-width: 0 0 1 0;
@@ -158,11 +164,13 @@
     -fx-opacity: 1;
 }
 
+/* noinspection CssUnusedSymbol */
 .split-pane:horizontal > .split-pane-divider {
     -fx-border-color: #0F2F2D;
     -fx-background-color: #0F2F2D;
 }
 
+/* noinspection CssUnusedSymbol */
 .split-pane {
     -fx-padding: 1 0 0 0;
 }

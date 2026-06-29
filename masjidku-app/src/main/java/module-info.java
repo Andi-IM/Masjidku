@@ -7,11 +7,8 @@ open module main {
     requires org.slf4j;
 
     requires org.masjidku.accounting.client;
-    requires org.masjidku.accounting;
     requires org.masjidku.events.client;
-    requires org.masjidku.events;
     requires org.masjidku.reporting.client;
-    requires org.masjidku.reporting;
 
     exports org.masjidku.model;
     exports org.masjidku.model.user;
