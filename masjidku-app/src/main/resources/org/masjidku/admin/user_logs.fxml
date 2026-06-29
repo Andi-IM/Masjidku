@@ -53,7 +53,7 @@
     <Rectangle arcWidth="5.0" fill="#3aafa9" height="5.0" layoutX="101.0" layoutY="-5.0" smooth="false" stroke="BLACK"
                strokeLineCap="BUTT" strokeLineJoin="BEVEL" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0"
                width="665.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
-    <TableView fx:id="activityTable" layoutX="30.0" layoutY="224.0" onMouseClicked="#onMouseClicked" prefHeight="200.0"
+    <TableView fx:id="activityTable" layoutX="30.0" layoutY="224.0" prefHeight="200.0"
                prefWidth="200.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
         <columns>
             <TableColumn fx:id="userid" prefWidth="75.0" text="userid"/>

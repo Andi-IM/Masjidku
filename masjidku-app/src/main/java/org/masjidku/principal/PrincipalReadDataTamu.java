@@ -97,11 +97,6 @@ public class PrincipalReadDataTamu extends org.masjidku.accountant.BaseTableCont
         }
     }
 
-    @FXML
-    public void onRemoveListener() {
-        super.onRemoveListener();
-    }
-
     @Override
     protected Logger getLogger() { return log; }
 

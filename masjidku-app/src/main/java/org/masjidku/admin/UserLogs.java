@@ -46,8 +46,7 @@ public class UserLogs implements Initializable {
     private final ObservableList<UserSession> sessionData =
             FXCollections.observableArrayList();
 
-    @FXML
-    public void onMouseClicked() { }
+
 
     @FXML
     public void onResetListener() {

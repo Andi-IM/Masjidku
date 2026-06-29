@@ -31,7 +31,7 @@ public class ReportServiceImpl implements ReportService {
                 JasperReport jreport = JasperCompileManager.compileReport(reportStream);
                 jprint = JasperFillManager.fillReport(jreport, parameters, connect);
             } catch (JRException e) {
-                log.error("An error occurred", e);
+                log.error("An error occurred while compiling or filling the report", e);
             }
         }
     }
@@ -52,7 +52,7 @@ public class ReportServiceImpl implements ReportService {
     public void showReport(String reportPath, Map<String, Object> parameters) {
         InputStream reportStream = getClass().getResourceAsStream(reportPath);
         if (reportStream == null) {
-            log.error("Report template could not be found for path: {}", reportPath);
+            log.error("Failed to show report. Template could not be found for path: {}", reportPath);
             return;
         }
         createReport(parameters, reportStream);
@@ -65,7 +65,7 @@ public class ReportServiceImpl implements ReportService {
             try {
                 JasperExportManager.exportReportToPdfFile(jprint, destFilePath);
             } catch (JRException e) {
-                log.error("An error occurred", e);
+                log.error("An error occurred while exporting the report to PDF", e);
             }
         }
     }
@@ -79,7 +79,7 @@ public class ReportServiceImpl implements ReportService {
     public void exportToPdf(String reportPath, Map<String, Object> parameters, String destFilePath) {
         InputStream reportStream = getClass().getResourceAsStream(reportPath);
         if (reportStream == null) {
-            log.error("Report template could not be found for path: {}", reportPath);
+            log.error("Failed to export PDF. Template could not be found for path: {}", reportPath);
             return;
         }
         createReport(parameters, reportStream);
