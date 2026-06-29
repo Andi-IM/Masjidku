@@ -15,11 +15,21 @@
 
 package org.masjidku.events.client;
 
-import javafx.collections.ObservableList;
 import org.masjidku.events.client.model.Kegiatan;
+import org.masjidku.events.client.model.Tamu;
+
+import java.util.List;
 
 public interface EventsClient {
-    ObservableList<Kegiatan> getAllKegiatan();
+    List<Kegiatan> getAllKegiatan();
+
     boolean isKegiatanExist(String id);
-    void deleteKegiatan(String id);
+
+    void delete(String id);
+
+    void save(Kegiatan kegiatan);
+
+    void update(Kegiatan kegiatan);
+
+    List<Tamu> getAllTamu();
 }

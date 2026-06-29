@@ -15,13 +15,16 @@
 
 package org.masjidku.events.application;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.masjidku.events.client.EventsClient;
 import org.masjidku.events.client.model.Kegiatan;
+import org.masjidku.events.client.model.Tamu;
 import org.masjidku.events.domain.repository.KegiatanRepository;
 import org.masjidku.events.domain.repository.impl.KegiatanRepositoryImpl;
 
-import java.sql.SQLException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class EventsClientImpl implements EventsClient {
     private final KegiatanRepository repository;
@@ -31,29 +34,57 @@ public class EventsClientImpl implements EventsClient {
     }
 
     @Override
-    public ObservableList<Kegiatan> getAllKegiatan() {
-        try {
-            return repository.getAllKegiatan();
-        } catch (SQLException e) {
-            throw new RuntimeException("Error fetching kegiatan", e);
-        }
+    public List<Kegiatan> getAllKegiatan() {
+        List<org.masjidku.events.domain.entity.Kegiatan> entities = repository.getAllKegiatan();
+        return entities.stream()
+                .map(this::toModel)
+                .collect(Collectors.toCollection(FXCollections::observableArrayList));
+    }
+
+    private Kegiatan toModel(org.masjidku.events.domain.entity.Kegiatan entity) {
+        return new Kegiatan(
+                entity.getIdKegiatan(),
+                entity.getNama(),
+                entity.getWaktu().toString(),
+                entity.getTanggal().toString(),
+                entity.getTempat(),
+                entity.getOperator()
+        );
+    }
+
+    private org.masjidku.events.domain.entity.Kegiatan toEntity(Kegiatan model) {
+        return new org.masjidku.events.domain.entity.Kegiatan(
+          model.idKegiatan(),
+          model.nama(),
+          java.time.LocalTime.parse(model.waktu()),
+          java.time.LocalDate.parse(model.tanggal()),
+          model.tempat(),
+          model.operator()
+        );
     }
 
     @Override
     public boolean isKegiatanExist(String id) {
-        try {
-            return kegiatanUseCase.exists(id);
-        } catch (SQLException e) {
-            throw new RuntimeException("Error checking kegiatan existence", e);
-        }
+        return repository.exists(id);
     }
 
     @Override
-    public void deleteKegiatan(String id) {
-        try {
-            kegiatanUseCase.deleteKegiatan(id);
-        } catch (SQLException e) {
-            throw new RuntimeException("Error deleting kegiatan", e);
-        }
+    public void save(Kegiatan kegiatan) {
+        repository.saveKegiatan(toEntity(kegiatan));
+    }
+
+    @Override
+    public void delete(String id) {
+        repository.deleteKegiatan(id);
+    }
+
+    @Override
+    public void update(Kegiatan kegiatan) {
+        repository.updateKegiatan(toEntity(kegiatan));
+    }
+
+    @Override
+    public ObservableList<Tamu> getAllTamu() {
+        return null;
     }
 }

@@ -1,16 +1,28 @@
 package org.masjidku.events.domain.repository;
-import javafx.collections.ObservableList;
+
 import org.masjidku.events.domain.entity.Kegiatan;
-import java.sql.SQLException;
+
+import java.util.List;
+import java.util.Optional;
+
 public interface KegiatanRepository {
-    Kegiatan getKegiatanById(String id) throws SQLException;
-    ObservableList<Kegiatan> getAllKegiatan() throws SQLException;
-    void saveKegiatan(Kegiatan kegiatan) throws SQLException;
-    void updateKegiatan(String[] params) throws SQLException;
-    void deleteKegiatan(String id) throws SQLException;
-    boolean exists(String id) throws SQLException;
-    ObservableList<String> getAllKegiatanNames() throws SQLException;
-    String getIdByName(String name) throws SQLException;
-    Kegiatan getLastKegiatan() throws SQLException;
-    String getTotalKegiatanCount() throws SQLException;
+    Optional<Kegiatan> getKegiatanById(String id);
+
+    List<Kegiatan> getAllKegiatan();
+
+    void saveKegiatan(Kegiatan kegiatan);
+
+    void updateKegiatan(Kegiatan kegiatan);
+
+    void deleteKegiatan(String id);
+
+    boolean exists(String id);
+
+    List<String> getAllKegiatanNames();
+
+    String getIdByName(String name);
+
+    Kegiatan getLastKegiatan();
+
+    int getTotalKegiatanCount();
 }

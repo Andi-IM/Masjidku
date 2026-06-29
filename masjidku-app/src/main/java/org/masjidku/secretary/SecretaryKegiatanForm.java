@@ -15,23 +15,23 @@
 
 package org.masjidku.secretary;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.masjidku.util.ServiceProvider;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.masjidku.events.client.EventsClient;
+import org.masjidku.events.client.model.Kegiatan;
 import org.masjidku.navigation.AppRouter;
-import org.masjidku.events.domain.entity.Kegiatan;
-import org.masjidku.events.application.usecase.KegiatanUseCase;
+import org.masjidku.util.ServiceProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class SecretaryKegiatanForm {
     private static final Logger log = LoggerFactory.getLogger(SecretaryKegiatanForm.class);
-    private final KegiatanUseCase dao = ServiceProvider.get(KegiatanUseCase.class);
+
 
     @FXML
     private TextField txtNamaKegiatan;
@@ -49,6 +49,12 @@ public class SecretaryKegiatanForm {
     @SuppressWarnings("unused")
     private Stage dialogStage;
 
+    private final EventsClient eventClient;
+
+    SecretaryKegiatanForm() {
+        this.eventClient = ServiceProvider.get(EventsClient.class);
+    }
+
     public void setMainApp(AppRouter mainApp, Kegiatan kegiatan) {
         String operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
         this.mainApp = mainApp;
@@ -57,10 +63,10 @@ public class SecretaryKegiatanForm {
     }
 
     public void setKegiatan(Kegiatan kegiatan) {
-        txtNamaKegiatan.setText(kegiatan.getNama());
-        txtTempat.setText(kegiatan.getTempat());
-        txtTanggal.setValue(kegiatan.getTanggal());
-        txtWaktu.setText(kegiatan.getWaktu() != null ? kegiatan.getWaktu().toString() : "");
+        txtNamaKegiatan.setText(kegiatan.nama());
+        txtTempat.setText(kegiatan.tempat());
+        txtTanggal.setValue(LocalDate.parse(kegiatan.tanggal()));
+        txtWaktu.setText(kegiatan.waktu() != null ? kegiatan.waktu() : "");
     }
 
     @FXML
@@ -81,26 +87,19 @@ public class SecretaryKegiatanForm {
 
             kegiatan = new Kegiatan(namaKegiatan, waktu, tanggal, tempat, operator);
 
-                try {
-                    if (dao.isKegiatanExist(kegiatan.getIdKegiatan())) {
-                        dao.update(new String[]{
-                                kegiatan.getNama(),
-                                kegiatan.getWaktu(),
-                                kegiatan.getTanggal(),
-                                kegiatan.getTempat(),
-                                operator,
-                                kegiatan.getIdKegiatan()
-                        });
-                        org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "Kegiatan telah diperbarui!");
-                    } else {
-                        dao.save(kegiatan);
-                        org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "Kegiatan telah ditambahkan!");
-                    }
-                    mainApp.showKegiatan();
-                } catch (SQLException e) {
-                    log.error("An error occurred", e);
+            try {
+                if (eventClient.isKegiatanExist(kegiatan.idKegiatan())) {
+                    eventClient.update(kegiatan);
+                    org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "Kegiatan telah diperbarui!");
+                } else {
+                    eventClient.save(kegiatan);
+                    org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "Kegiatan telah ditambahkan!");
                 }
-            
+                mainApp.showKegiatan();
+            } catch (Exception e) {
+                log.error("An error occurred", e);
+            }
+
         } else {
             org.masjidku.util.AlertHelper.alertError(dialogStage, "Error", "Data belum lengkap!");
         }

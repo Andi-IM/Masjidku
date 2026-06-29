@@ -15,26 +15,11 @@
 
 package org.masjidku.events.client.model;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
-public record Kegiatan(
-        String idKegiatan,
+public record Tamu(
+        String idTamu,
         String nama,
-        String waktu,
-        String tanggal,
-        String tempat,
+        String alamat,
+        String notelp,
         String operator
 ) {
-    public Kegiatan() {
-        this("", "", null, null, "", "");
-    }
-
-    public Kegiatan(String nama,
-                    LocalTime waktu,
-                    String tanggal,
-                    String tempat,
-                    String operator) {
-        this(null, nama, waktu, tanggal, tempat, operator);
-    }
 }

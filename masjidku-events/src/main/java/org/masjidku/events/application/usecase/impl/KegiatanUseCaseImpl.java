@@ -2,7 +2,7 @@ package org.masjidku.events.application.usecase.impl;
 
 import javafx.collections.ObservableList;
 import org.masjidku.events.application.usecase.KegiatanUseCase;
-import org.masjidku.events.client.model.Kegiatan;
+import org.masjidku.events.domain.entity.Kegiatan;
 import org.masjidku.events.domain.repository.KegiatanRepository;
 import org.masjidku.events.domain.repository.impl.KegiatanRepositoryImpl;
 

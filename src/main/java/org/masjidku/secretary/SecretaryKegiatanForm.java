@@ -106,14 +106,10 @@ public class SecretaryKegiatanForm {
     }
 
     private boolean formValidation() {
-        if (!txtNamaKegiatan.getText().isBlank()) {
-            if (!txtWaktu.getText().isBlank()) {
-                if (!txtTempat.getText().isBlank()) {
-                    return txtTanggal.getValue() != null;
-                }
-            }
-        }
-        return false;
+        return !txtNamaKegiatan.getText().isBlank() &&
+               !txtWaktu.getText().isBlank() &&
+               !txtTempat.getText().isBlank() &&
+               txtTanggal.getValue() != null;
     }
 
     @FXML

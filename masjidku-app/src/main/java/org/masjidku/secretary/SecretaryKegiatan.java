@@ -15,22 +15,20 @@
 
 package org.masjidku.secretary;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import org.masjidku.controller.BaseTableController;
 import org.masjidku.events.client.EventsClient;
 import org.masjidku.events.client.model.Kegiatan;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.util.ServiceProvider;
 import org.masjidku.util.TableHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javafx.fxml.FXML;
-
 import java.util.List;
-
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import org.masjidku.navigation.AppRouter;
 
 public class SecretaryKegiatan extends BaseTableController<Kegiatan> {
     private static final Logger log = LoggerFactory.getLogger(SecretaryKegiatan.class);
@@ -58,7 +56,7 @@ public class SecretaryKegiatan extends BaseTableController<Kegiatan> {
     public SecretaryKegiatan() {
         this.eventClient = ServiceProvider.get(EventsClient.class);
     }
-    
+
     public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
@@ -79,8 +77,6 @@ public class SecretaryKegiatan extends BaseTableController<Kegiatan> {
     /**
      * Remove the selected kegiatan.
      */
-
-
     @Override
     protected void setupTableColumns() {
         TableHelper.setupKegiatanColumns(colNomor, colNmKegiatan, colTempatKegiatan, colWaktuKegiatan, colTanggalKegiatan, null);
@@ -118,12 +114,12 @@ public class SecretaryKegiatan extends BaseTableController<Kegiatan> {
 
     @Override
     protected boolean checkIfExist(Kegiatan item) {
-        return eventClient.isKegiatanExist(item.getIdKegiatan());
+        return eventClient.isKegiatanExist(item.idKegiatan());
     }
 
     @Override
     protected void deleteItem(Kegiatan item) {
-        eventClient.deleteKegiatan(item.getIdKegiatan());
+        eventClient.delete(item.idKegiatan());
     }
 
     @Override
@@ -135,7 +131,3 @@ public class SecretaryKegiatan extends BaseTableController<Kegiatan> {
         super.onEditAction();
     }
 }
-
-
-
-
