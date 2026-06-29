@@ -3,6 +3,11 @@ package org.masjidku.util;
 import javafx.scene.control.ToggleGroup;
 
 public class UIUtils {
+
+    private UIUtils() {
+        // Utility class — do not instantiate
+    }
+
     public static void preventEmptyToggleSelection(ToggleGroup groupButton) {
         if (groupButton != null) {
             if (!groupButton.getToggles().isEmpty()) {

@@ -20,7 +20,7 @@ import org.intellij.lang.annotations.Language;
 
 import java.sql.SQLException;
 
-public abstract class Dao<T> extends DaoFactory {
+public abstract class Dao<T> extends AccountingDaoFactory {
 
     public abstract T get(String id) throws SQLException;
     public abstract ObservableList<T> getAll() throws SQLException;

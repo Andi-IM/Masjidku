@@ -121,10 +121,12 @@ public class ListKegiatan extends org.masjidku.accountant.BaseTableController<Ke
 
     @Override
     protected void deleteItem(Kegiatan item) {
+        // Read-only report view — delete operation is not supported
     }
 
     @Override
     protected void handleEdit(Kegiatan item) {
+        // Read-only report view — edit operation is not supported
     }
 }
 

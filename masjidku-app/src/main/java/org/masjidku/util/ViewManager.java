@@ -50,6 +50,7 @@ import java.util.logging.Logger;
 
 public class ViewManager {
     private static final Logger LOGGER = Logger.getLogger(ViewManager.class.getName());
+    private static final String GAGAL_MEMUAT_VIEW = "Gagal memuat view: ";
 
     private final Stage primaryStage;
     private SplitPane rootLayout;
@@ -95,7 +96,7 @@ public class ViewManager {
                 homeMethod.run();
             }
         } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "Gagal memuat view: " + fxmlPath, e);
+            LOGGER.log(Level.SEVERE, e, () -> GAGAL_MEMUAT_VIEW + fxmlPath);
         }
     }
 
@@ -127,7 +128,7 @@ public class ViewManager {
 
             injectMainApp(loader.getController());
         } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "Gagal memuat view: " + fxmlPath, e);
+            LOGGER.log(Level.SEVERE, e, () -> GAGAL_MEMUAT_VIEW + fxmlPath);
         }
     }
 
@@ -139,7 +140,7 @@ public class ViewManager {
             rootLayout.getItems().set(1, overview);
             return loader.getController();
         } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "Gagal memuat view: " + fxmlPath, e);
+            LOGGER.log(Level.SEVERE, e, () -> GAGAL_MEMUAT_VIEW + fxmlPath);
             return null;
         }
     }

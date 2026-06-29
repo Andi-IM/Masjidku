@@ -13,7 +13,7 @@ import java.sql.ResultSet;
  */
 public abstract class DaoFactory {
 
-    public DaoFactory() {
+    protected DaoFactory() {
         getConnection();
     }
 

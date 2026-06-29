@@ -23,37 +23,37 @@ public abstract class Dao<T> {
 
     @SuppressWarnings("SqlSourceToSinkFlow")
     protected void executeDelete(@Language("SQL") String query, String id) throws SQLException {
-        try (java.sql.PreparedStatement ps = con.prepareStatement(query)) {
-            ps.setString(1, id);
-            ps.executeUpdate();
+        try (java.sql.PreparedStatement stmt = con.prepareStatement(query)) {
+            stmt.setString(1, id);
+            stmt.executeUpdate();
         }
     }
 
     protected boolean executeCheckExists(@org.intellij.lang.annotations.Language("SQL") String query, String id) throws SQLException {
-        try (java.sql.PreparedStatement ps = con.prepareStatement(query)) {
-            ps.setString(1, id);
-            try (java.sql.ResultSet rs = ps.executeQuery()) {
-                return rs.next();
+        try (java.sql.PreparedStatement stmt = con.prepareStatement(query)) {
+            stmt.setString(1, id);
+            try (java.sql.ResultSet resultSet = stmt.executeQuery()) {
+                return resultSet.next();
             }
         }
     }
 
     protected String executeGetTotal(@org.intellij.lang.annotations.Language("SQL") String query) throws SQLException {
-        try (java.sql.PreparedStatement ps = con.prepareStatement(query);
-             java.sql.ResultSet rs = ps.executeQuery()) {
-            if (rs.next()) {
-                return rs.getString(1);
+        try (java.sql.PreparedStatement stmt = con.prepareStatement(query);
+             java.sql.ResultSet resultSet = stmt.executeQuery()) {
+            if (resultSet.next()) {
+                return resultSet.getString(1);
             }
             return null;
         }
     }
 
     protected void executeUpdateQuery(@org.intellij.lang.annotations.Language("SQL") String query, String... params) throws SQLException {
-        try (java.sql.PreparedStatement ps = con.prepareStatement(query)) {
+        try (java.sql.PreparedStatement stmt = con.prepareStatement(query)) {
             for (int i = 0; i < params.length; i++) {
-                ps.setString(i + 1, params[i]);
+                stmt.setString(i + 1, params[i]);
             }
-            ps.executeUpdate();
+            stmt.executeUpdate();
         }
     }
 
@@ -62,11 +62,11 @@ public abstract class Dao<T> {
     }
 
     protected <R> R executeGet(@org.intellij.lang.annotations.Language("SQL") String query, String id, RowMapper<R> mapper) throws SQLException {
-        try (java.sql.PreparedStatement ps = con.prepareStatement(query)) {
-            ps.setString(1, id);
-            try (java.sql.ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    return mapper.map(rs);
+        try (java.sql.PreparedStatement stmt = con.prepareStatement(query)) {
+            stmt.setString(1, id);
+            try (java.sql.ResultSet resultSet = stmt.executeQuery()) {
+                if (resultSet.next()) {
+                    return mapper.map(resultSet);
                 }
                 return null;
             }
@@ -75,10 +75,10 @@ public abstract class Dao<T> {
 
     protected <R> javafx.collections.ObservableList<R> executeGetAll(@org.intellij.lang.annotations.Language("SQL") String query, RowMapper<R> mapper) throws SQLException {
         javafx.collections.ObservableList<R> items = javafx.collections.FXCollections.observableArrayList();
-        try (java.sql.PreparedStatement ps = con.prepareStatement(query);
-             java.sql.ResultSet rs = ps.executeQuery()) {
-            while (rs.next()) {
-                items.add(mapper.map(rs));
+        try (java.sql.PreparedStatement stmt = con.prepareStatement(query);
+             java.sql.ResultSet resultSet = stmt.executeQuery()) {
+            while (resultSet.next()) {
+                items.add(mapper.map(resultSet));
             }
             return items;
         }
@@ -86,21 +86,21 @@ public abstract class Dao<T> {
 
     protected javafx.collections.ObservableList<String> executeGetAllNames(@org.intellij.lang.annotations.Language("SQL") String query) throws SQLException {
         javafx.collections.ObservableList<String> list = javafx.collections.FXCollections.observableArrayList();
-        try (java.sql.PreparedStatement ps = con.prepareStatement(query);
-             java.sql.ResultSet rs = ps.executeQuery()) {
-            while (rs.next()) {
-                list.add(rs.getString(2));
+        try (java.sql.PreparedStatement stmt = con.prepareStatement(query);
+             java.sql.ResultSet resultSet = stmt.executeQuery()) {
+            while (resultSet.next()) {
+                list.add(resultSet.getString(2));
             }
             return list;
         }
     }
 
     protected String executeGetIdByName(@org.intellij.lang.annotations.Language("SQL") String query, String name) throws SQLException {
-        try (java.sql.PreparedStatement ps = con.prepareStatement(query)) {
-            ps.setString(1, name);
-            try (java.sql.ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    return rs.getString(1);
+        try (java.sql.PreparedStatement stmt = con.prepareStatement(query)) {
+            stmt.setString(1, name);
+            try (java.sql.ResultSet resultSet = stmt.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getString(1);
                 }
                 return "";
             }

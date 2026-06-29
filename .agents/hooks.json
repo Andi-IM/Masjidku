@@ -1,0 +1,17 @@
+{
+  "sonar-secrets": {
+    "enabled": true,
+    "PreToolUse": [
+      {
+        "matcher": "view_file",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -NoProfile -File \"sonar/hooks/pretool-secrets.ps1\"",
+            "timeout": 60
+          }
+        ]
+      }
+    ]
+  }
+}

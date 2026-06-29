@@ -7,6 +7,8 @@ module org.masjidku.common {
     requires static org.xerial.sqlitejdbc;
     
     exports org.masjidku.util.db;
+    exports org.masjidku.model.user;
+    exports org.masjidku.model.session;
 }
 
 

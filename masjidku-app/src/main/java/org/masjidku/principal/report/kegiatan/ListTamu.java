@@ -110,10 +110,12 @@ public class ListTamu extends org.masjidku.accountant.BaseTableController<Tamu> 
 
     @Override
     protected void deleteItem(Tamu item) {
+        // Read-only report view — delete operation is not supported
     }
 
     @Override
     protected void handleEdit(Tamu item) {
+        // Read-only report view — edit operation is not supported
     }
 }
 

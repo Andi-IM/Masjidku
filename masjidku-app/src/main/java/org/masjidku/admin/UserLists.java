@@ -38,6 +38,7 @@ import java.util.ResourceBundle;
 
 public class UserLists implements Initializable {
     private static final Logger log = LoggerFactory.getLogger(UserLists.class);
+    private static final String USER_NOT_FOUND_MSG = "User tidak ditemukan!";
 
     @FXML
     private TableView<User> userTable;
@@ -150,7 +151,7 @@ public class UserLists implements Initializable {
                     dao.delete(selectedUser.getUserId());
                     org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "User dihapus!");
                 } else {
-                    org.masjidku.util.AlertHelper.alertError(dialogStage, "SQL Error", "User tidak ditemukan!");
+                    org.masjidku.util.AlertHelper.alertError(dialogStage, "SQL Error", USER_NOT_FOUND_MSG);
                 }
             } catch (SQLException e) {
                 log.error("An error occurred", e);
@@ -170,7 +171,7 @@ public class UserLists implements Initializable {
         UserService dao = new UserServiceImpl();
         try {
             if (!dao.isUserExist(selectedUser.getUserId())) {
-                org.masjidku.util.AlertHelper.alertError(dialogStage, "SQL Error", "User tidak ditemukan!");
+                org.masjidku.util.AlertHelper.alertError(dialogStage, "SQL Error", USER_NOT_FOUND_MSG);
                 return;
             }
             if (dao.isReset(selectedUser.getUserId())) {
@@ -192,7 +193,7 @@ public class UserLists implements Initializable {
         if (selectedUser != null){
             mainApp.showUserEditScene(selectedUser);
         } else {
-            org.masjidku.util.AlertHelper.alertError(dialogStage, "Null Error", "User tidak ditemukan!");
+            org.masjidku.util.AlertHelper.alertError(dialogStage, "Null Error", USER_NOT_FOUND_MSG);
         }
     }
 

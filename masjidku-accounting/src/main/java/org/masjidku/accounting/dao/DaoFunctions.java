@@ -16,11 +16,11 @@
 package org.masjidku.accounting.dao;
 
 import org.intellij.lang.annotations.Language;
-import org.masjidku.accounting.dao.base.DaoFactory;
+import org.masjidku.accounting.dao.base.AccountingDaoFactory;
 
 import java.sql.SQLException;
 
-public class DaoFunctions extends DaoFactory {
+public class DaoFunctions extends AccountingDaoFactory {
 
     public String getInfakYatimBalance() throws SQLException {
         @Language("SQL") String query = "SELECT (SELECT COALESCE(SUM(jumlah), 0) FROM infak_anakyatim) - (SELECT COALESCE(SUM(jumlah), 0) FROM penerima_anakyatim)";
