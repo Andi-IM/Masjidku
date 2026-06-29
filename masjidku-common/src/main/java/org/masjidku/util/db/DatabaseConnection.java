@@ -26,7 +26,11 @@ public class DatabaseConnection {
             String username = "root";
             String password = ""; // using default password=root in GitHub
             
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+            } catch (ClassNotFoundException e) {
+                LOGGER.info("MySQL JDBC driver not explicitly found. Relying on DriverManager SPI...");
+            }
             return DriverManager.getConnection(url, username, password);
         }
     }
@@ -39,7 +43,11 @@ public class DatabaseConnection {
             if (singleConnection == null || singleConnection.isClosed()) {
                 // using SQLite
                 String url = "jdbc:sqlite:masjidku.db";
-                Class.forName("org.sqlite.JDBC");
+                try {
+                    Class.forName("org.sqlite.JDBC");
+                } catch (ClassNotFoundException e) {
+                    LOGGER.info("SQLite JDBC driver not explicitly found. Relying on DriverManager SPI...");
+                }
                 singleConnection = DriverManager.getConnection(url);
                 try (java.sql.Statement stmt = singleConnection.createStatement()) {
                     stmt.execute("PRAGMA busy_timeout = 10000;");
