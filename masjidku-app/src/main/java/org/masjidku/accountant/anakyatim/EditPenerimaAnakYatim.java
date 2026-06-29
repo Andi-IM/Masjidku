@@ -111,6 +111,8 @@ public class EditPenerimaAnakYatim {
                     org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "Data telah diupdate");
                 } else {
                     dao.save(anakYatim);
+                    org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "Data telah ditambahkan");
+                    mainApp.showAnakYatim();
                 }
             } catch (SQLException e) {
                 log.error("An error occurred", e);
