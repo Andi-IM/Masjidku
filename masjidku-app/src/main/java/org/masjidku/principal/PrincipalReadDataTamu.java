@@ -68,9 +68,7 @@ public class PrincipalReadDataTamu extends org.masjidku.accountant.BaseTableCont
 
     @Override
     protected void setupTableColumns() {
-        if (colNama != null) colNama.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("nama"));
-        if (colAlamat != null) colAlamat.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("alamat"));
-        if (colNotelp != null) colNotelp.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("notelp"));
+        org.masjidku.util.AlertHelper.setupTamuColumns(colNama, colAlamat, colNotelp);
     }
 
     @FXML

@@ -17,11 +17,8 @@ package org.masjidku.secretary;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javafx.fxml.FXML;
-
 import java.util.List;
-
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -33,31 +30,21 @@ import org.masjidku.events.client.repository.TamuRepository;
 
 public class SecretaryTamu extends org.masjidku.accountant.BaseTableController<Tamu> {
     private static final Logger log = LoggerFactory.getLogger(SecretaryTamu.class);
-    @FXML
-    public Button btnEdit;
-    @FXML
-    public Button btnRemove;
-    @FXML
-    public TableView<Tamu> tblTamu;
-    @FXML
-    public TableColumn<Tamu, String> colNama;
-    @FXML
-    public TableColumn<Tamu, String> colAlamat;
-    @FXML
-    public TableColumn<Tamu, String> colNotelp;
-    @FXML
-    public TableColumn<Tamu, String> colNomor;
+    
+    @FXML public Button btnEdit;
+    @FXML public Button btnRemove;
+    @FXML public TableView<Tamu> tblTamu;
+    @FXML public TableColumn<Tamu, String> colNama;
+    @FXML public TableColumn<Tamu, String> colAlamat;
+    @FXML public TableColumn<Tamu, String> colNotelp;
+    @FXML public TableColumn<Tamu, String> colNomor;
 
     private AppRouter mainApp;
     final TamuService service = new TamuService(org.masjidku.util.ServiceProvider.get(TamuRepository.class));
 
-    
-
     public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
-
-    
 
     @FXML
     public void onLogoutClick() { mainApp.onLogoutAction(); }
@@ -68,27 +55,9 @@ public class SecretaryTamu extends org.masjidku.accountant.BaseTableController<T
         mainApp.showTamuEditForm(temp);
     }
 
-    
-
-    
-
-    /**
-     * Remove the selected kegiatan.
-     */
-    
-
-    
-
-    
-
-    
-
     @Override
     protected void setupTableColumns() {
-
-        colNama.setCellValueFactory(new PropertyValueFactory<>("nama"));
-        colAlamat.setCellValueFactory(new PropertyValueFactory<>("alamat"));
-        colNotelp.setCellValueFactory(new PropertyValueFactory<>("notelp"));
+        org.masjidku.util.AlertHelper.setupTamuColumns(colNama, colAlamat, colNotelp);
     }
 
     @Override protected org.slf4j.Logger getLogger() { return log; }
@@ -102,7 +71,3 @@ public class SecretaryTamu extends org.masjidku.accountant.BaseTableController<T
 
     @FXML public void onEditListener() { super.onEditAction(); }
 }
-
-
-
-

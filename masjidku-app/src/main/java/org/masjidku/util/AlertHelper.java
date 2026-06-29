@@ -47,6 +47,12 @@ public class AlertHelper {
         if (tanggal != null) tanggal.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("tanggal"));
     }
 
+    public static <T> void setupTamuColumns(javafx.scene.control.TableColumn<T, String> nama, javafx.scene.control.TableColumn<T, String> alamat, javafx.scene.control.TableColumn<T, String> notelp) {
+        if (nama != null) nama.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("nama"));
+        if (alamat != null) alamat.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("alamat"));
+        if (notelp != null) notelp.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("notelp"));
+    }
+
     public interface SQLDataSupplier<T> {
         java.util.List<T> get() throws java.sql.SQLException;
     }
