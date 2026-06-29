@@ -82,9 +82,6 @@ public class TamuKegiatanDao extends Dao<TamuKegiatan> implements org.masjidku.e
         return executeGetAll(QUERY_2, this::mapResultSetToModel);
     }
 
-    public void save(TamuKegiatan tamuKegiatan) {
-    }
-
     public void save(String idKegiatan, String idTamu, String keterangan, String opeartor) throws SQLException {
         executeUpdateQuery(QUERY_3, idKegiatan, idTamu, keterangan, opeartor);
     }

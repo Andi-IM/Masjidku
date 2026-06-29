@@ -16,15 +16,24 @@
 package org.masjidku.principal;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
 import org.masjidku.navigation.AppRouter;
+import org.masjidku.events.client.model.Tamu;
+import org.masjidku.events.client.service.TamuService;
+import org.masjidku.events.client.repository.TamuRepository;
+import org.masjidku.util.ServiceProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.List;
+import java.sql.SQLException;
 
-public class PrincipalReadDataTamu implements Initializable {
+public class PrincipalReadDataTamu extends org.masjidku.accountant.BaseTableController<Tamu> {
+    private static final Logger log = LoggerFactory.getLogger(PrincipalReadDataTamu.class);
+
     @FXML
     public Button btnEdit;
     @FXML
@@ -34,29 +43,89 @@ public class PrincipalReadDataTamu implements Initializable {
 
     @FXML
     public Text greeting;
+
+    @FXML
+    public TableView<Tamu> tblTamu;
+    @FXML
+    public TableColumn<Tamu, String> colNama;
+    @FXML
+    public TableColumn<Tamu, String> colAlamat;
+    @FXML
+    public TableColumn<Tamu, String> colNotelp;
+    @FXML
+    public TableColumn<Tamu, String> colNomor;
+
     private AppRouter mainApp;
+    private final TamuService service = new TamuService(ServiceProvider.get(TamuRepository.class));
 
     public void setMainApp(AppRouter mainApp) {
         String username = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
         this.mainApp = mainApp;
-        greeting.setText("Bapak "+username);
+        if (greeting != null) {
+            greeting.setText("Bapak " + username);
+        }
     }
-
-    @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
-
-    @FXML
-    public void onEditListener() { }
-
-    @FXML
-    public void onResetListener() { }
-
-    @FXML
-    public void onRemoveListener() { }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    protected void setupTableColumns() {
+        if (colNama != null) colNama.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("nama"));
+        if (colAlamat != null) colAlamat.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("alamat"));
+        if (colNotelp != null) colNotelp.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("notelp"));
+    }
 
+    @FXML
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
+
+    @Override
+    protected void handleEdit(Tamu item) {
+        if (mainApp != null) {
+            mainApp.showTamuEditForm(item);
+        }
+    }
+
+    @FXML
+    public void onEditListener() {
+        super.onEditAction();
+    }
+
+    @FXML
+    public void onResetListener() {
+        if (tblTamu != null) {
+            tblTamu.getSelectionModel().clearSelection();
+        }
+    }
+
+    @FXML
+    public void onRemoveListener() {
+        super.onRemoveListener();
+    }
+
+    @Override
+    protected Logger getLogger() { return log; }
+
+    @Override
+    protected TableView<Tamu> getTableView() { return tblTamu; }
+
+    @Override
+    protected Button getBtnEdit() { return btnEdit; }
+
+    @Override
+    protected Button getBtnRemove() { return btnRemove; }
+
+    @Override
+    protected List<Tamu> fetchAllData() throws SQLException {
+        return service.getAll();
+    }
+
+    @Override
+    protected boolean checkIfExist(Tamu item) throws SQLException {
+        return service.isTamuExist(item.getIdTamu());
+    }
+
+    @Override
+    protected void deleteItem(Tamu item) throws SQLException {
+        service.delete(item.getIdTamu());
     }
 }
-

@@ -56,7 +56,21 @@ public class LoginController {
      * after the fxml file has been loaded.
      */
     @FXML
-    public void initialize() {}
+    public void initialize() {
+        // Menambahkan listener agar pengguna dapat menekan 'Enter' untuk login
+        javafx.event.EventHandler<javafx.scene.input.KeyEvent> enterKeyHandler = event -> {
+            if (event.getCode() == javafx.scene.input.KeyCode.ENTER) {
+                handleLogin();
+            }
+        };
+        
+        if (txtUsername != null) {
+            txtUsername.setOnKeyPressed(enterKeyHandler);
+        }
+        if (txtPassword != null) {
+            txtPassword.setOnKeyPressed(enterKeyHandler);
+        }
+    }
 
     @FXML
     public void handleLogin() {
