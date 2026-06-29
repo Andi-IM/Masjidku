@@ -20,7 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.anakyatim.DonasiAYatim;
 import org.masjidku.accounting.client.service.DonasiAYatimService;
 import org.masjidku.reporting.client.service.ReportService;
@@ -49,10 +49,10 @@ public class DataDonaturAnakYatim extends org.masjidku.accountant.BaseTableContr
     @FXML
     private TableColumn<DonasiAYatim, String> operator;
 
-    private MainApp mainApp;
+    private AppRouter mainApp;
 
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -138,4 +138,5 @@ operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
     protected void handleEdit(DonasiAYatim item) {
     }
 }
+
 

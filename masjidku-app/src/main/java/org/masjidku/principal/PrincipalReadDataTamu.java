@@ -19,7 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -34,9 +34,9 @@ public class PrincipalReadDataTamu implements Initializable {
 
     @FXML
     public Text greeting;
-    private MainApp mainApp;
+    private AppRouter mainApp;
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         String username = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         greeting.setText("Bapak "+username);
@@ -59,3 +59,4 @@ public class PrincipalReadDataTamu implements Initializable {
 
     }
 }
+

@@ -18,16 +18,16 @@ package org.masjidku.secretary;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 
 public class SecretaryHome {
     @FXML
     public Button btnKegiatan;
     @FXML
     public Text greeting;
-    private MainApp mainApp;
+    private AppRouter mainApp;
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         String username = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
 
         this.mainApp = mainApp;
@@ -40,3 +40,4 @@ public class SecretaryHome {
     @FXML
     public void onKelolaKegiatanClick() { mainApp.showKegiatan(); }
 }
+

@@ -27,7 +27,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.model.user.User;
 import org.masjidku.service.UserService;
 import org.masjidku.service.impl.UserServiceImpl;
@@ -64,7 +64,7 @@ public class UserLists implements Initializable {
     private Button btnRemove;
 
     //Reference to the main application.
-    private MainApp mainApp;
+    private AppRouter mainApp;
 
     // create some stage
     @SuppressWarnings("unused")
@@ -86,7 +86,7 @@ public class UserLists implements Initializable {
      * Is called by the main application to give a reference back to itself
      * @param mainApp reference to main application
      */
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -214,3 +214,4 @@ public class UserLists implements Initializable {
         }
     }
 }
+

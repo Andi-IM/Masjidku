@@ -16,7 +16,7 @@
 package org.masjidku.accountant;
 
 import javafx.fxml.FXML;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.pembangunan.DonasiPembangunan;
 import org.masjidku.accounting.client.model.pembangunan.Pembangunan;
 import org.masjidku.accounting.client.service.AccountingFunctionsService;
@@ -35,9 +35,9 @@ public class AccountantPembangunan extends BaseAccountantController {
     private final AccountingFunctionsService df = ServiceProvider.get(AccountingFunctionsService.class);
     private final DonasiPembangunanService dpDao = ServiceProvider.get(DonasiPembangunanService.class);
     private final PembangunanService pbDao = ServiceProvider.get(PembangunanService.class);
-    private MainApp mainApp;
+    private AppRouter mainApp;
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -78,4 +78,5 @@ public class AccountantPembangunan extends BaseAccountantController {
         }
     }
 }
+
 

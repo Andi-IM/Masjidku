@@ -19,7 +19,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.zakat.ZakatMasuk;
 import org.masjidku.accounting.client.service.ZakatMasukService;
 import org.masjidku.util.ServiceProvider;
@@ -40,14 +40,14 @@ public class EditDonaturZakat {
     @FXML
     private DatePicker date;
     private ZakatMasuk donatur;
-    private MainApp mainApp;
+    private AppRouter mainApp;
     private String operator;
 
     // create some stage
     @SuppressWarnings("unused")
     private Stage dialogStage;
 
-    public void setMainApp(MainApp mainApp, ZakatMasuk model) {
+    public void setMainApp(AppRouter mainApp, ZakatMasuk model) {
         String operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         this.donatur = model;
@@ -122,5 +122,6 @@ public class EditDonaturZakat {
 
 
 }
+
 
 

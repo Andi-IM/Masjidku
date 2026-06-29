@@ -23,7 +23,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.tpa.TpaKeluar;
 import org.masjidku.accounting.client.service.TpaKeluarService;
 import org.masjidku.util.ServiceProvider;
@@ -46,9 +46,9 @@ public class DataPembayaranTpa extends org.masjidku.accountant.BaseTableControll
 
     
 
-    private MainApp mainApp;
+    private AppRouter mainApp;
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -83,4 +83,5 @@ operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
     @Override protected void deleteItem(TpaKeluar item) {  }
     @Override protected void handleEdit(TpaKeluar item) {  }
 }
+
 

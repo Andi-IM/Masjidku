@@ -19,7 +19,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.tpa.TpaMasuk;
 import org.masjidku.accounting.client.service.TpaMasukService;
 import org.masjidku.util.ServiceProvider;
@@ -45,13 +45,13 @@ public class DonaturTpa extends org.masjidku.accountant.BaseTableController<TpaM
     @FXML
     private Button btnRemove;
 
-    private MainApp mainApp;
+    private AppRouter mainApp;
 
     
 
     
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -97,4 +97,5 @@ public class DonaturTpa extends org.masjidku.accountant.BaseTableController<TpaM
 
     @FXML public void onEditListener() { super.onEditAction(); }
 }
+
 

@@ -23,7 +23,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.model.user.User;
 import org.masjidku.model.user.UserDao;
 
@@ -44,7 +44,7 @@ public class UserForm implements Initializable {
     public CheckBox statusCheckBox;
 
     // reference to main application
-    private MainApp mainApp;
+    private AppRouter mainApp;
 
     // create some stage
     @SuppressWarnings("unused")
@@ -62,7 +62,7 @@ public class UserForm implements Initializable {
      * Is called by the main application to give a reference back to itself
      * @param mainApp the main application reference
      */
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -158,3 +158,4 @@ public class UserForm implements Initializable {
 
 
 }
+

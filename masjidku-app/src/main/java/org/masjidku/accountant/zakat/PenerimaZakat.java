@@ -19,7 +19,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.zakat.ZakatKeluar;
 import org.masjidku.accounting.client.service.ZakatKeluarService;
 import org.masjidku.util.ServiceProvider;
@@ -45,10 +45,10 @@ public class PenerimaZakat extends org.masjidku.accountant.BaseTableController<Z
     @FXML
     private Button btnRemove;
 
-    private MainApp mainApp;
+    private AppRouter mainApp;
 
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -122,4 +122,5 @@ public class PenerimaZakat extends org.masjidku.accountant.BaseTableController<Z
         super.onEditAction();
     }
 }
+
 

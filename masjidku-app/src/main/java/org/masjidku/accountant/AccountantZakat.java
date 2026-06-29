@@ -16,7 +16,7 @@
 package org.masjidku.accountant;
 
 import javafx.fxml.FXML;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.zakat.ZakatKeluar;
 import org.masjidku.accounting.client.model.zakat.ZakatMasuk;
 import org.masjidku.accounting.client.service.AccountingFunctionsService;
@@ -35,9 +35,9 @@ public class AccountantZakat extends BaseAccountantController {
     private final AccountingFunctionsService df = ServiceProvider.get(AccountingFunctionsService.class);
     private final ZakatKeluarService zkDao = ServiceProvider.get(ZakatKeluarService.class);
     private final ZakatMasukService zmDao = ServiceProvider.get(ZakatMasukService.class);
-    private MainApp mainApp;
+    private AppRouter mainApp;
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -77,4 +77,5 @@ public class AccountantZakat extends BaseAccountantController {
         }
     }
 }
+
 

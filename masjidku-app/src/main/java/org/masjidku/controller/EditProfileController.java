@@ -23,7 +23,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.model.user.UserDao;
 import org.masjidku.model.user.UserProfile;
 import org.masjidku.model.user.UserProfileDao;
@@ -48,14 +48,14 @@ public class EditProfileController {
     @FXML
     public TextField txtAlamat;
 
-    private MainApp mainApp;
+    private AppRouter mainApp;
 
     // create some stage
     @SuppressWarnings("unused")
     private Stage dialogStage;
 
     @FXML
-    public void setMainApp(MainApp mainApp, UserProfile profile) {
+    public void setMainApp(AppRouter mainApp, UserProfile profile) {
         this.mainApp = mainApp;
         setUser(profile);
     }
@@ -129,3 +129,4 @@ public class EditProfileController {
 
     
 }
+

@@ -19,7 +19,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.pembangunan.Pembangunan;
 import org.masjidku.accounting.client.service.PembangunanService;
 import org.masjidku.util.ServiceProvider;
@@ -42,14 +42,14 @@ public class EditPembayaranPembangunan {
     @FXML
     private DatePicker date;
     private Pembangunan model;
-    private MainApp mainApp;
+    private AppRouter mainApp;
     private String operator;
 
     // create some stage
     @SuppressWarnings("unused")
     private Stage dialogStage;
 
-    public void setMainApp(MainApp mainApp, Pembangunan model) {
+    public void setMainApp(AppRouter mainApp, Pembangunan model) {
         String operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         this.model = model;
@@ -127,4 +127,5 @@ public class EditPembayaranPembangunan {
 
 
 }
+
 

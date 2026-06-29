@@ -20,7 +20,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.anakyatim.AnakYatim;
 import org.masjidku.accounting.client.service.AnakYatimService;
 import org.masjidku.util.ServiceProvider;
@@ -44,7 +44,7 @@ public class EditPenerimaAnakYatim {
     @FXML
     private DatePicker date;
     private AnakYatim anakYatim;
-    private MainApp mainApp;
+    private AppRouter mainApp;
     private String operator;
 
     // create some stage
@@ -52,7 +52,7 @@ public class EditPenerimaAnakYatim {
     private Stage dialogStage;
 
 
-    public void setMainApp(MainApp mainApp, AnakYatim model) {
+    public void setMainApp(AppRouter mainApp, AnakYatim model) {
         String operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         this.anakYatim = model;
@@ -144,4 +144,5 @@ public class EditPenerimaAnakYatim {
 
 
 }
+
 

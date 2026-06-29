@@ -15,12 +15,12 @@
 package org.masjidku.principal;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleGroup;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 public class PrincipalRoot {
     @FXML
     public ToggleGroup groupButton;
-    private MainApp mainApp;
-    public void setMainApp(MainApp mainApp) {
+    private AppRouter mainApp;
+    public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -39,3 +39,4 @@ public class PrincipalRoot {
     @FXML
     public void profileAction() { mainApp.showProfile(); }
 }
+

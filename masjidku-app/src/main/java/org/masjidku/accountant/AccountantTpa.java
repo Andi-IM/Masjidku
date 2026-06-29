@@ -16,7 +16,7 @@
 package org.masjidku.accountant;
 
 import javafx.fxml.FXML;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.tpa.TpaKeluar;
 import org.masjidku.accounting.client.model.tpa.TpaMasuk;
 import org.masjidku.accounting.client.service.AccountingFunctionsService;
@@ -35,9 +35,9 @@ public class AccountantTpa extends BaseAccountantController {
     private final AccountingFunctionsService df = ServiceProvider.get(AccountingFunctionsService.class);
     private final TpaKeluarService tpakdao = ServiceProvider.get(TpaKeluarService.class);
     private final TpaMasukService tpamdao = ServiceProvider.get(TpaMasukService.class);
-    private MainApp mainApp;
+    private AppRouter mainApp;
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -78,4 +78,5 @@ public class AccountantTpa extends BaseAccountantController {
         }
     }
 }
+
 

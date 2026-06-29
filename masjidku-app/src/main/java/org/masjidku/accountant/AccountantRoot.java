@@ -16,13 +16,13 @@ package org.masjidku.accountant;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleGroup;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 
 public class AccountantRoot {
     public ToggleGroup groupButton;
-    private MainApp mainApp;
+    private AppRouter mainApp;
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -71,4 +71,5 @@ public class AccountantRoot {
         mainApp.showTpa();
     }
 }
+
 

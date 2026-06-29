@@ -26,9 +26,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.events.client.service.KegiatanService;
 import org.masjidku.events.client.service.TamuService;
+import org.masjidku.events.client.repository.TamuRepository;
 import org.masjidku.events.client.model.TamuKegiatan;
 import org.masjidku.events.client.service.TamuKegiatanService;
 
@@ -46,9 +47,9 @@ public class SecretaryUndanganForm implements Initializable {
     @FXML
     public TextArea txtKeterangan;
 
-    private MainApp mainApp;
-    private TamuService tamuDao;
-    private KegiatanService kegiatanDao;
+    private AppRouter mainApp;
+    private TamuService tamuservice;
+    private KegiatanService kegiatanservice;
 
     private final ObservableList<String> listTamu = FXCollections.observableArrayList();
     private final ObservableList<String> listKegiatan = FXCollections.observableArrayList();
@@ -58,7 +59,7 @@ public class SecretaryUndanganForm implements Initializable {
     private Stage dialogStage;
     private String operator;
 
-    public void setMainApp(MainApp mainApp, TamuKegiatan undangan) {
+    public void setMainApp(AppRouter mainApp, TamuKegiatan undangan) {
         String operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         this.operator = operator;
@@ -70,14 +71,14 @@ public class SecretaryUndanganForm implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tamuDao = ServiceProvider.get(TamuService.class);
-        kegiatanDao = ServiceProvider.get(KegiatanService.class);
+        tamuservice = new TamuService(org.masjidku.util.ServiceProvider.get(TamuRepository.class));
+        kegiatanservice = ServiceProvider.get(KegiatanService.class);
         try {
                 listTamu.removeAll();
                 listKegiatan.removeAll();
 
-                listTamu.addAll(tamuDao.getAllTamuName());
-                listKegiatan.addAll(kegiatanDao.getAllKegiatanName());
+                listTamu.addAll(tamuservice.getAllTamuName());
+                listKegiatan.addAll(kegiatanservice.getAllKegiatanName());
 
                 cbKegiatan.getItems().addAll(listKegiatan);
                 cbTamu.getItems().addAll(listTamu);
@@ -110,8 +111,8 @@ public class SecretaryUndanganForm implements Initializable {
         String kegiatanform = cbKegiatan.getValue();
         String keterangan = txtKeterangan.getText();
 
-        tamuDao = ServiceProvider.get(TamuService.class);
-        kegiatanDao = ServiceProvider.get(KegiatanService.class);
+        tamuservice = new TamuService(org.masjidku.util.ServiceProvider.get(TamuRepository.class));
+        kegiatanservice = ServiceProvider.get(KegiatanService.class);
         TamuKegiatanService tamuKegiatanService = ServiceProvider.get(TamuKegiatanService.class);
 
         TamuKegiatan model = new TamuKegiatan();
@@ -120,7 +121,7 @@ public class SecretaryUndanganForm implements Initializable {
                     tamuKegiatanService.update(new String[]{model.getKeterangan(), model.getIdTamu(), model.getKegiatan(), model.getIdUndangan()});
                     org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "Data telah diubah!");
                 } else {
-                    tamuKegiatanService.save(kegiatanDao.getIdByName(kegiatanform), tamuDao.getIdByName(namaform), model.getKeterangan(), operator);
+                    tamuKegiatanService.save(kegiatanservice.getIdByName(kegiatanform), tamuservice.getIdByName(namaform), model.getKeterangan(), operator);
                     org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success","Data telah ditambahkan!");
                 }
             } catch (SQLException throwables) {
@@ -135,3 +136,6 @@ public class SecretaryUndanganForm implements Initializable {
 
 
 }
+
+
+

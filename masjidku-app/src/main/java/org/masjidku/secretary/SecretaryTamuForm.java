@@ -18,20 +18,18 @@ package org.masjidku.secretary;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.masjidku.util.ServiceProvider;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.events.client.model.Tamu;
 import org.masjidku.events.client.service.TamuService;
-
-import java.sql.SQLException;
+import org.masjidku.events.client.repository.TamuRepository;
 
 public class SecretaryTamuForm {
     private static final Logger log = LoggerFactory.getLogger(SecretaryTamuForm.class);
-    private final TamuService dao = ServiceProvider.get(TamuService.class);
+    private final TamuService service = new TamuService(org.masjidku.util.ServiceProvider.get(TamuRepository.class));
 
     @FXML
     public TextField txtNomorTelp;
@@ -41,14 +39,13 @@ public class SecretaryTamuForm {
     public TextArea txtAlamat;
 
     private Tamu tamu;
-    private MainApp mainApp;
+    private AppRouter mainApp;
 
-    // create some stage
     @SuppressWarnings("unused")
     private Stage dialogStage;
     private String operator;
 
-    public void setMainApp(MainApp mainApp, Tamu tamu) {
+    public void setMainApp(AppRouter mainApp, Tamu tamu) {
         String operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         this.tamu = tamu;
@@ -93,26 +90,22 @@ public class SecretaryTamuForm {
                 tamu.setNotelp(noTelp);
             }
 
-                try {
-                    if (dao.isTamuExist(tamu.getIdTamu())){
-                        dao.update(new String[]{
-                                tamu.getNama(),
-                                tamu.getAlamat(),
-                                tamu.getNotelp(),
-                                operator,
-                                tamu.getIdTamu()
-                        });
-                        org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success","Tamu telah diupdate");
-                    } else {
-                        dao.save(tamu);
-                    }
-                } catch (SQLException e) {
-                    log.error("An error occurred", e);
-                }
-            
-    } else {
-        org.masjidku.util.AlertHelper.alertError(dialogStage, "Error", "Data belum lengkap!");
-    }
+            if (service.isTamuExist(tamu.getIdTamu())){
+                service.update(new String[]{
+                        tamu.getNama(),
+                        tamu.getAlamat(),
+                        tamu.getNotelp(),
+                        operator,
+                        tamu.getIdTamu()
+                });
+                org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success","Tamu telah diupdate");
+            } else {
+                service.save(tamu);
+                org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success","Tamu telah disimpan");
+            }
+        } else {
+            org.masjidku.util.AlertHelper.alertError(dialogStage, "Error", "Data belum lengkap!");
+        }
     }
 
     private boolean formValidation() {
@@ -123,6 +116,4 @@ public class SecretaryTamuForm {
         }
         return false;
     }
-
-
 }

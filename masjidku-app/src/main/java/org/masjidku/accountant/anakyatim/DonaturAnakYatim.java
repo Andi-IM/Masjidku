@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.accountant.BaseTableController;
 import org.masjidku.accounting.client.model.anakyatim.DonasiAYatim;
 import org.masjidku.accounting.client.service.DonasiAYatimService;
@@ -32,9 +32,9 @@ public class DonaturAnakYatim extends BaseTableController<DonasiAYatim> {
     @FXML
     private Button btnRemove;
 
-    private MainApp mainApp;
+    private AppRouter mainApp;
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -104,4 +104,5 @@ public class DonaturAnakYatim extends BaseTableController<DonasiAYatim> {
         mainApp.showAnakYatim();
     }
 }
+
 

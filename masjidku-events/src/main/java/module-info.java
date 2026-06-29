@@ -4,7 +4,8 @@ module org.masjidku.events {
     requires org.jetbrains.annotations;
 
     provides org.masjidku.events.client.service.KegiatanService with org.masjidku.events.dao.impl.KegiatanDao;
-    provides org.masjidku.events.client.service.TamuService with org.masjidku.events.dao.impl.TamuDao;
+    provides org.masjidku.events.client.repository.TamuRepository with org.masjidku.events.dao.impl.TamuDao;
     provides org.masjidku.events.client.service.TamuKegiatanService with org.masjidku.events.dao.impl.TamuKegiatanDao;
 }
+
 

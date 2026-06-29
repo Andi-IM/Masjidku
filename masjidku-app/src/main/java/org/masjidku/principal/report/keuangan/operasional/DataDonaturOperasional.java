@@ -20,7 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.operasional.DonasiOperasional;
 import org.masjidku.accounting.client.service.DonasiOperationalService;
 import org.masjidku.util.ServiceProvider;
@@ -43,10 +43,10 @@ public class DataDonaturOperasional extends org.masjidku.accountant.BaseTableCon
     @FXML
     private TableColumn<DonasiOperasional, String> operator;
 
-    private MainApp mainApp;
+    private AppRouter mainApp;
 
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -109,4 +109,5 @@ public class DataDonaturOperasional extends org.masjidku.accountant.BaseTableCon
     protected void handleEdit(DonasiOperasional item) {
     }
 }
+
 

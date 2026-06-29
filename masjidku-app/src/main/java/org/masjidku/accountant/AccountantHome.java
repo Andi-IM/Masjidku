@@ -16,14 +16,14 @@ package org.masjidku.accountant;
 
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 
 public class AccountantHome {
     @FXML
     private Text greeting;
-    private MainApp mainApp;
+    private AppRouter mainApp;
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         String username = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         greeting.setText(username);
@@ -34,3 +34,4 @@ public class AccountantHome {
         mainApp.onLogoutAction();
     }
 }
+

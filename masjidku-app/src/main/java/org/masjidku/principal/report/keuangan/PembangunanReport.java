@@ -23,7 +23,7 @@ import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.pembangunan.DonasiPembangunan;
 import org.masjidku.accounting.client.model.pembangunan.Pembangunan;
 
@@ -51,9 +51,9 @@ public class PembangunanReport implements Initializable {
     @FXML
     public Text txtTglPengeluaran;
 
-    private MainApp mainApp;
+    private AppRouter mainApp;
 
-    public void setMainApp(MainApp mainApp) { this.mainApp = mainApp; }
+    public void setMainApp(AppRouter mainApp) { this.mainApp = mainApp; }
 
     @FXML
     public void uangMasuk() { mainApp.showPembangunanMasuk(); }
@@ -87,4 +87,5 @@ public class PembangunanReport implements Initializable {
     @FXML
     public void gotoHome() { mainApp.showData(); }
 }
+
 

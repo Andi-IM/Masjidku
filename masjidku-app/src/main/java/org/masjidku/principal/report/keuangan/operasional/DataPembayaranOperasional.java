@@ -19,7 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.operasional.Operasional;
 import org.masjidku.accounting.client.service.OperationalService;
 import org.masjidku.util.ServiceProvider;
@@ -43,10 +43,10 @@ public class DataPembayaranOperasional extends org.masjidku.accountant.BaseTable
     private TableColumn<Operasional, String> tanggal;
     @FXML
     private TableColumn<Operasional, String> operator;
-    private MainApp mainApp;
+    private AppRouter mainApp;
 
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -110,4 +110,5 @@ operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
     protected void handleEdit(Operasional item) {
     }
 }
+
 

@@ -20,7 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.model.session.Session;
 import org.masjidku.model.session.UserSession;
 
@@ -35,9 +35,9 @@ public class UserLogs implements Initializable {
     public TableColumn<UserSession, String> timestamp;
     @FXML
     public TableColumn<UserSession, String> duration;
-    private MainApp mainApp;
+    private AppRouter mainApp;
     private Session dao;
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
     /**
@@ -72,3 +72,4 @@ public class UserLogs implements Initializable {
     }
     public void onLogoutClick() { mainApp.onLogoutAction(); }
 }
+

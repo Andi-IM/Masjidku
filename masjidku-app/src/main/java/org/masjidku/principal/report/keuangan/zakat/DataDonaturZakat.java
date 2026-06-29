@@ -22,7 +22,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.zakat.ZakatMasuk;
 import org.masjidku.accounting.client.service.ZakatMasukService;
 import org.masjidku.util.ServiceProvider;
@@ -42,11 +42,11 @@ public class DataDonaturZakat extends org.masjidku.accountant.BaseTableControlle
     private TableColumn<ZakatMasuk, String> tanggal;
     @FXML
     private TableColumn<ZakatMasuk, String> operator;
-    private MainApp mainApp;
+    private AppRouter mainApp;
     
     
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -81,4 +81,5 @@ operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
     @Override protected void deleteItem(ZakatMasuk item) {  }
     @Override protected void handleEdit(ZakatMasuk item) {  }
 }
+
 

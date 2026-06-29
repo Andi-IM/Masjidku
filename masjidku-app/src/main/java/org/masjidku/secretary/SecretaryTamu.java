@@ -26,9 +26,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.events.client.model.Tamu;
 import org.masjidku.events.client.service.TamuService;
+import org.masjidku.events.client.repository.TamuRepository;
 
 public class SecretaryTamu extends org.masjidku.accountant.BaseTableController<Tamu> {
     private static final Logger log = LoggerFactory.getLogger(SecretaryTamu.class);
@@ -47,12 +48,12 @@ public class SecretaryTamu extends org.masjidku.accountant.BaseTableController<T
     @FXML
     public TableColumn<Tamu, String> colNomor;
 
-    private MainApp mainApp;
-    final TamuService dao = org.masjidku.util.ServiceProvider.get(TamuService.class);
+    private AppRouter mainApp;
+    final TamuService service = new TamuService(org.masjidku.util.ServiceProvider.get(TamuRepository.class));
 
     
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -94,11 +95,14 @@ public class SecretaryTamu extends org.masjidku.accountant.BaseTableController<T
     @Override protected TableView<Tamu> getTableView() { return tblTamu; }
     @Override protected Button getBtnEdit() { return btnEdit; }
     @Override protected Button getBtnRemove() { return btnRemove; }
-    @Override protected List<Tamu> fetchAllData() throws java.sql.SQLException { return dao.getAll(); }
-    @Override protected boolean checkIfExist(Tamu item) throws java.sql.SQLException { return dao.isTamuExist(item.getIdTamu()); }
-    @Override protected void deleteItem(Tamu item) throws java.sql.SQLException { dao.delete(item.getIdTamu()); }
+    @Override protected List<Tamu> fetchAllData() throws java.sql.SQLException { return service.getAll(); }
+    @Override protected boolean checkIfExist(Tamu item) throws java.sql.SQLException { return service.isTamuExist(item.getIdTamu()); }
+    @Override protected void deleteItem(Tamu item) throws java.sql.SQLException { service.delete(item.getIdTamu()); }
     @Override protected void handleEdit(Tamu item) {  }
 
     @FXML public void onEditListener() { super.onEditAction(); }
 }
+
+
+
 

@@ -16,13 +16,13 @@
 package org.masjidku.principal;
 
 import javafx.fxml.FXML;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 
 public class PrincipalLaporan {
 
-    private MainApp mainApp;
+    private AppRouter mainApp;
 
-    public void setMainApp(MainApp mainApp) { this.mainApp = mainApp; }
+    public void setMainApp(AppRouter mainApp) { this.mainApp = mainApp; }
 
     @FXML
     public void onLogoutClick() { mainApp.onLogoutAction(); }
@@ -45,3 +45,4 @@ public class PrincipalLaporan {
     @FXML
     public void printTpa() { mainApp.showTpaReport(); }
 }
+

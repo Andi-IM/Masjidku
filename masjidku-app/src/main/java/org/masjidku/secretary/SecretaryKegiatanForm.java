@@ -23,7 +23,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.events.client.model.Kegiatan;
 import org.masjidku.events.client.service.KegiatanService;
 
@@ -43,14 +43,14 @@ public class SecretaryKegiatanForm {
     @FXML
     private TextField txtWaktu;
     private Kegiatan kegiatan;
-    private MainApp mainApp;
+    private AppRouter mainApp;
     private String operator;
 
     // create some stage
     @SuppressWarnings("unused")
     private Stage dialogStage;
 
-    public void setMainApp(MainApp mainApp, Kegiatan kegiatan) {
+    public void setMainApp(AppRouter mainApp, Kegiatan kegiatan) {
         String operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         this.kegiatan = kegiatan;
@@ -130,3 +130,4 @@ public class SecretaryKegiatanForm {
 
 
 }
+

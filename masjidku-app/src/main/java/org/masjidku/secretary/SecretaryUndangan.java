@@ -19,7 +19,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.events.client.model.TamuKegiatan;
 import org.masjidku.events.client.service.TamuKegiatanService;
 import org.masjidku.util.TableHelper;
@@ -51,14 +51,14 @@ public class SecretaryUndangan extends org.masjidku.accountant.BaseTableControll
     @FXML
     public TableColumn<TamuKegiatan, String> colNotelp;
 
-    private MainApp mainApp;
+    private AppRouter mainApp;
     private final TamuKegiatanService dao = org.masjidku.util.ServiceProvider.get(TamuKegiatanService.class);
 
 
     public SecretaryUndangan() {
     }
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -125,5 +125,6 @@ public class SecretaryUndangan extends org.masjidku.accountant.BaseTableControll
         super.onEditAction();
     }
 }
+
 
 

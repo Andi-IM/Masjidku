@@ -20,7 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.anakyatim.AnakYatim;
 import org.masjidku.accounting.client.service.AnakYatimService;
 import org.masjidku.util.ServiceProvider;
@@ -48,10 +48,10 @@ public class PenerimaAnakYatim extends org.masjidku.accountant.BaseTableControll
     @FXML
     private Button btnRemove;
 
-    private MainApp mainApp;
+    private AppRouter mainApp;
 
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -126,4 +126,5 @@ usia.setCellValueFactory(new PropertyValueFactory<>("usia"));
         super.onEditAction();
     }
 }
+
 

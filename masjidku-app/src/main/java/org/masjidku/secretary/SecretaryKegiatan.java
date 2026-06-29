@@ -26,7 +26,7 @@ import java.util.List;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.events.client.model.Kegiatan;
 import org.masjidku.events.client.service.KegiatanService;
 
@@ -50,11 +50,11 @@ public class SecretaryKegiatan extends org.masjidku.accountant.BaseTableControll
     @FXML
     public TableColumn<Kegiatan, String> colTanggalKegiatan;
 
-    private MainApp mainApp;
+    private AppRouter mainApp;
     final KegiatanService dao = org.masjidku.util.ServiceProvider.get(KegiatanService.class);
 
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -130,5 +130,6 @@ public class SecretaryKegiatan extends org.masjidku.accountant.BaseTableControll
         super.onEditAction();
     }
 }
+
 
 

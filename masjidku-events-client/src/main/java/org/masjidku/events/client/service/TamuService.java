@@ -2,21 +2,49 @@ package org.masjidku.events.client.service;
 
 import javafx.collections.ObservableList;
 import org.masjidku.events.client.model.Tamu;
+import org.masjidku.events.client.repository.TamuRepository;
+public class TamuService {
+    private final TamuRepository repository;
 
-public interface TamuService {
-    Tamu get(String id) throws java.sql.SQLException;
+    public TamuService(TamuRepository repository) {
+        this.repository = repository;
+    }
 
-    ObservableList<Tamu> getAll() throws java.sql.SQLException;
+    public Tamu get(String id) {
+        if (id == null || id.trim().isEmpty()) {
+            throw new IllegalArgumentException("ID Tamu tidak boleh kosong");
+        }
+        return repository.get(id);
+    }
 
-    void save(Tamu model) throws java.sql.SQLException;
+    public ObservableList<Tamu> getAll() {
+        return repository.getAll();
+    }
 
-    void update(String[] params) throws java.sql.SQLException;
+    public void save(Tamu model) {
+        if (model.getNama() == null || model.getNama().trim().isEmpty()) {
+            throw new IllegalArgumentException("Nama Tamu tidak boleh kosong");
+        }
+        repository.save(model);
+    }
 
-    void delete(String id) throws java.sql.SQLException;
+    public void update(String[] params) {
+        repository.update(params);
+    }
 
-    boolean isTamuExist(String id) throws java.sql.SQLException;
+    public void delete(String id) {
+        repository.delete(id);
+    }
 
-    ObservableList<String> getAllTamuName() throws java.sql.SQLException;
+    public boolean isTamuExist(String id) {
+        return repository.isTamuExist(id);
+    }
 
-    String getIdByName(String name) throws java.sql.SQLException;
+    public ObservableList<String> getAllTamuName() {
+        return repository.getAllTamuName();
+    }
+
+    public String getIdByName(String name) {
+        return repository.getIdByName(name);
+    }
 }

@@ -19,7 +19,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.tpa.TpaMasuk;
 import org.masjidku.accounting.client.service.TpaMasukService;
 import org.masjidku.util.ServiceProvider;
@@ -41,14 +41,14 @@ public class EditDonaturTpa {
     private DatePicker date;
 
     private TpaMasuk donatur;
-    private MainApp mainApp;
+    private AppRouter mainApp;
     private String operator;
 
     // create some stage
     @SuppressWarnings("unused")
     private Stage dialogStage;
 
-    public void setMainApp(MainApp mainApp, TpaMasuk model) {
+    public void setMainApp(AppRouter mainApp, TpaMasuk model) {
         String operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         this.donatur = model;
@@ -122,4 +122,5 @@ public class EditDonaturTpa {
 
 
 }
+
 

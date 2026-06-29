@@ -20,7 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.pembangunan.Pembangunan;
 import org.masjidku.accounting.client.service.PembangunanService;
 import org.masjidku.util.ServiceProvider;
@@ -45,10 +45,10 @@ public class DataPembayaranPembangunan extends org.masjidku.accountant.BaseTable
     @FXML
     private TableColumn<Pembangunan, String> operator;
 
-    private MainApp mainApp;
+    private AppRouter mainApp;
 
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -112,4 +112,5 @@ operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
     protected void handleEdit(Pembangunan item) {
     }
 }
+
 

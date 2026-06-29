@@ -16,13 +16,13 @@
 package org.masjidku.principal;
 
 import javafx.fxml.FXML;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 
 public class PrincipalReadData {
 
-    private MainApp mainApp;
+    private AppRouter mainApp;
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -47,3 +47,4 @@ public class PrincipalReadData {
     @FXML
     public void readTpa() { mainApp.showTpaData(); }
 }
+

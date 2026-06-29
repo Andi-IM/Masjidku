@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.model.user.UserProfile;
 import org.masjidku.model.user.UserProfileDao;
 
@@ -44,7 +44,7 @@ public class ProfileController {
     @FXML
     public Label userLastUpdate;
 
-    private MainApp mainApp;
+    private AppRouter mainApp;
     private UserProfile profile;
     /**
      * get User Data from DAO.
@@ -61,7 +61,7 @@ public class ProfileController {
         return null;
     }
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         String userid = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUserId();
         this.mainApp = mainApp;
         profile = getUserData(userid);
@@ -87,3 +87,4 @@ public class ProfileController {
         mainApp.onLogoutAction();
     }
 }
+

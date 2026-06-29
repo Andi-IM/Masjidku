@@ -18,7 +18,7 @@ package org.masjidku.principal.report.keuangan;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.anakyatim.AnakYatim;
 import org.masjidku.accounting.client.model.anakyatim.DonasiAYatim;
 import org.masjidku.accounting.client.service.AccountingFunctionsService;
@@ -52,9 +52,9 @@ public class AnakYatimReport implements Initializable {
     @FXML
     public Text txtTglPengeluaran;
 
-    private MainApp mainApp;
+    private AppRouter mainApp;
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -99,4 +99,5 @@ public class AnakYatimReport implements Initializable {
         mainApp.showData();
     }
 }
+
 

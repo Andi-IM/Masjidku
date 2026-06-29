@@ -4,4 +4,6 @@ module org.masjidku.events.client {
 
     exports org.masjidku.events.client.model;
     exports org.masjidku.events.client.service;
+    exports org.masjidku.events.client.repository;
 }
+

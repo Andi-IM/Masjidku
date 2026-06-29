@@ -16,15 +16,16 @@
 package org.masjidku.principal;
 
 import javafx.fxml.FXML;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 
 public class PrincipalUnderDev {
-    private MainApp mainApp;
+    private AppRouter mainApp;
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
     @FXML
     public void onLogoutClick() { mainApp.onLogoutAction(); }
 }
+

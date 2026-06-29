@@ -37,7 +37,8 @@ import org.masjidku.model.user.User;
 import org.masjidku.model.user.UserProfile;
 import org.masjidku.util.ViewManager;
 
-public class MainApp extends Application {
+import org.masjidku.navigation.AppRouter;
+public class MainApp extends Application implements AppRouter {
 
     private Stage primaryStage;
     private ViewManager viewManager;
@@ -527,3 +528,4 @@ public class MainApp extends Application {
         launch(args);
     }
 }
+

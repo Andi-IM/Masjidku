@@ -19,7 +19,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.tpa.TpaKeluar;
 import org.masjidku.accounting.client.service.TpaKeluarService;
 import org.masjidku.util.ServiceProvider;
@@ -46,10 +46,10 @@ public class PembayaranTpa extends org.masjidku.accountant.BaseTableController<T
     private Button btnRemove;
 
 
-    private MainApp mainApp;
+    private AppRouter mainApp;
 
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -123,4 +123,5 @@ public class PembayaranTpa extends org.masjidku.accountant.BaseTableController<T
         super.onEditAction();
     }
 }
+
 

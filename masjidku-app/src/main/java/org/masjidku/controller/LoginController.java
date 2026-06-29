@@ -19,7 +19,7 @@ import com.google.common.hash.Hashing;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.model.user.User;
 import org.masjidku.model.user.UserDao;
 
@@ -29,7 +29,7 @@ import java.sql.SQLException;
 
 public class LoginController {
     // Reference to the main application
-    private MainApp mainApp;
+    private AppRouter mainApp;
 
     @SuppressWarnings("unused")
     private Stage dialogStage;
@@ -40,7 +40,7 @@ public class LoginController {
      *
      * @param mainApp the context
      */
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
         dao = new UserDao();
     }
@@ -114,3 +114,4 @@ public class LoginController {
 
     
 }
+

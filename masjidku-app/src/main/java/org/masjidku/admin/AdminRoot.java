@@ -16,15 +16,15 @@
 package org.masjidku.admin;
 
 import javafx.fxml.FXML;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 
 public class AdminRoot {
     @FXML
     public javafx.scene.control.ToggleGroup groupButton;
 
-    private MainApp mainApp;
+    private AppRouter mainApp;
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -52,3 +52,4 @@ public class AdminRoot {
     @FXML
     public void userLog() { mainApp.showUserLog(); }
 }
+

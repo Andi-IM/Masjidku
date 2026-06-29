@@ -22,7 +22,7 @@ import org.masjidku.util.ServiceProvider;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.events.client.model.Kegiatan;
 import org.masjidku.events.client.service.KegiatanService;
 
@@ -38,9 +38,9 @@ public class KegiatanOverview implements Initializable {
     @FXML
     public Text txtTotalKegiatan;
 
-    private MainApp mainApp;
+    private AppRouter mainApp;
 
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -72,4 +72,5 @@ public class KegiatanOverview implements Initializable {
         }
     }
 }
+
 

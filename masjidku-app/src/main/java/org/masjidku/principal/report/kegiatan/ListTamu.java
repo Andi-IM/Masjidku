@@ -19,9 +19,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.events.client.model.Tamu;
 import org.masjidku.events.client.service.TamuService;
+import org.masjidku.events.client.repository.TamuRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,8 +43,8 @@ public class ListTamu extends org.masjidku.accountant.BaseTableController<Tamu> 
     @FXML
     public TableColumn<Tamu, String> colOperator;
 
-    private MainApp mainApp;
-    private final TamuService dao = org.masjidku.util.ServiceProvider.get(TamuService.class);
+    private AppRouter mainApp;
+    private final TamuService service = new TamuService(org.masjidku.util.ServiceProvider.get(TamuRepository.class));
 
     
 
@@ -54,7 +55,7 @@ public class ListTamu extends org.masjidku.accountant.BaseTableController<Tamu> 
         if (colNotelp != null) colNotelp.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("notelp"));
         if (colOperator != null) colOperator.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("operator"));
     }
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -74,11 +75,14 @@ public class ListTamu extends org.masjidku.accountant.BaseTableController<Tamu> 
     @Override protected TableView<Tamu> getTableView() { return tblTamu; }
     @Override protected Button getBtnEdit() { return null; }
     @Override protected Button getBtnRemove() { return null; }
-    @Override protected List<Tamu> fetchAllData() throws java.sql.SQLException { return dao.getAll(); }
+    @Override protected List<Tamu> fetchAllData() throws java.sql.SQLException { return service.getAll(); }
     @Override protected boolean checkIfExist(Tamu item) { return false; }
     @Override protected void deleteItem(Tamu item) {  }
     @Override protected void handleEdit(Tamu item) {  }
 }
+
+
+
 
 
 

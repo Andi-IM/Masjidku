@@ -23,7 +23,7 @@ import org.masjidku.accounting.client.service.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
-import org.masjidku.MainApp;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.operasional.DonasiOperasional;
 import org.masjidku.accounting.client.model.operasional.Operasional;
 
@@ -51,9 +51,9 @@ public class OperasionalReport implements Initializable {
     @FXML
     public Text txtTglPengeluaran;
 
-    private MainApp mainApp;
+    private AppRouter mainApp;
 
-    public void setMainApp(MainApp mainApp) { this.mainApp = mainApp; }
+    public void setMainApp(AppRouter mainApp) { this.mainApp = mainApp; }
 
     @FXML
     public void onLogoutClick() { mainApp.onLogoutAction(); }
@@ -87,4 +87,5 @@ public class OperasionalReport implements Initializable {
     @FXML
     public void gotoHome() { mainApp.showData(); }
 }
+
 
