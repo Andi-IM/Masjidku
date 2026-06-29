@@ -15,7 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.List;
 
-public class DataPenerimaAnakYatim extends org.masjidku.accountant.BaseFinanceOutflowReportController<AnakYatim> {
+public class DataPenerimaAnakYatim extends org.masjidku.accountant.BaseFinanceReportController<AnakYatim> {
     private static final Logger log = LoggerFactory.getLogger(DataPenerimaAnakYatim.class);
     private final AnakYatimService dao = ServiceProvider.get(AnakYatimService.class);
 

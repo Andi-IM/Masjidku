@@ -7,7 +7,6 @@ package org.masjidku.accountant;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.reporting.client.service.ReportService;
@@ -16,11 +15,18 @@ import javafx.stage.FileChooser;
 import java.io.File;
 
 /**
- * Base Finance Report Controller to eliminate code duplication across financial report controllers.
+ * Unified Base Finance Report Controller to eliminate code duplication across financial report controllers.
  */
 public abstract class BaseFinanceReportController<T> extends BaseTableController<T> {
+    // Inflow column fields
     @FXML
     protected TableColumn<T, String> donatur;
+
+    // Outflow column fields
+    @FXML
+    protected TableColumn<T, String> nama;
+
+    // Shared column fields
     @FXML
     protected TableColumn<T, String> jumlah;
     @FXML
@@ -43,7 +49,11 @@ public abstract class BaseFinanceReportController<T> extends BaseTableController
 
     @Override
     protected void setupTableColumns() {
-        org.masjidku.util.AlertHelper.setupInflowColumns(donatur, jumlah, tanggal);
+        if (donatur != null && jumlah != null && tanggal != null) {
+            org.masjidku.util.AlertHelper.setupInflowColumns(donatur, jumlah, tanggal);
+        } else if (nama != null && jumlah != null && tanggal != null) {
+            org.masjidku.util.AlertHelper.setupOutflowColumns(nama, jumlah, tanggal);
+        }
         if (operator != null) {
             operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
         }

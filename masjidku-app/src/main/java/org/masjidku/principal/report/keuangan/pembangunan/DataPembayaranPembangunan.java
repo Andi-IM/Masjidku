@@ -15,7 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.List;
 
-public class DataPembayaranPembangunan extends org.masjidku.accountant.BaseFinanceOutflowReportController<Pembangunan> {
+public class DataPembayaranPembangunan extends org.masjidku.accountant.BaseFinanceReportController<Pembangunan> {
     private static final Logger log = LoggerFactory.getLogger(DataPembayaranPembangunan.class);
     private final PembangunanService dao = ServiceProvider.get(PembangunanService.class);
 
