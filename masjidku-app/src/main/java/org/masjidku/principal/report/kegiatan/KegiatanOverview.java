@@ -24,7 +24,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.events.client.model.Kegiatan;
-import org.masjidku.events.client.service.KegiatanService;
+import org.masjidku.events.client.usecase.KegiatanUseCase;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -32,7 +32,7 @@ import java.util.ResourceBundle;
 
 public class KegiatanOverview implements Initializable {
     private static final Logger log = LoggerFactory.getLogger(KegiatanOverview.class);
-    private final KegiatanService dao = ServiceProvider.get(KegiatanService.class);
+    private final KegiatanUseCase dao = ServiceProvider.get(KegiatanUseCase.class);
     @FXML
     public Text txtKegiatanTerakhir;
     @FXML
@@ -72,5 +72,6 @@ public class KegiatanOverview implements Initializable {
         }
     }
 }
+
 
 

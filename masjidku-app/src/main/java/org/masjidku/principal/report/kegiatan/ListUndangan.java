@@ -28,7 +28,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.Button;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.events.client.model.TamuKegiatan;
-import org.masjidku.events.client.service.TamuKegiatanService;
+import org.masjidku.events.client.service.TamuKegiatanUseCase;
 import org.masjidku.reporting.client.service.ReportService;
 import org.masjidku.util.ServiceProvider;
 
@@ -55,14 +55,14 @@ public class ListUndangan extends org.masjidku.accountant.BaseTableController<Ta
     public TableColumn<TamuKegiatan, String> colOperator;
 
     private AppRouter mainApp;
-    private final TamuKegiatanService dao;
+    private final TamuKegiatanUseCase dao;
 
     public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
     public ListUndangan() {
-        dao = ServiceProvider.get(TamuKegiatanService.class);
+        dao = ServiceProvider.get(TamuKegiatanUseCase.class);
     }
 
 
@@ -123,6 +123,7 @@ public class ListUndangan extends org.masjidku.accountant.BaseTableController<Ta
     protected void handleEdit(TamuKegiatan item) {
     }
 }
+
 
 
 

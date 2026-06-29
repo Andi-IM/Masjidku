@@ -28,7 +28,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.events.client.model.Kegiatan;
-import org.masjidku.events.client.service.KegiatanService;
+import org.masjidku.events.client.usecase.KegiatanUseCase;
 
 public class SecretaryKegiatan extends org.masjidku.accountant.BaseTableController<Kegiatan> {
     private static final Logger log = LoggerFactory.getLogger(SecretaryKegiatan.class);
@@ -51,7 +51,7 @@ public class SecretaryKegiatan extends org.masjidku.accountant.BaseTableControll
     public TableColumn<Kegiatan, String> colTanggalKegiatan;
 
     private AppRouter mainApp;
-    final KegiatanService dao = org.masjidku.util.ServiceProvider.get(KegiatanService.class);
+    final KegiatanUseCase dao = org.masjidku.util.ServiceProvider.get(KegiatanUseCase.class);
 
 
     public void setMainApp(AppRouter mainApp) {
@@ -130,6 +130,7 @@ public class SecretaryKegiatan extends org.masjidku.accountant.BaseTableControll
         super.onEditAction();
     }
 }
+
 
 
 

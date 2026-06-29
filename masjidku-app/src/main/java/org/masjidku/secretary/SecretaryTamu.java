@@ -24,7 +24,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.events.client.model.Tamu;
-import org.masjidku.events.client.service.TamuService;
+import org.masjidku.events.client.usecase.TamuUseCase;
 import org.masjidku.events.client.repository.TamuRepository;
 
 public class SecretaryTamu extends org.masjidku.accountant.BaseTableController<Tamu> {
@@ -39,7 +39,7 @@ public class SecretaryTamu extends org.masjidku.accountant.BaseTableController<T
     @FXML public TableColumn<Tamu, String> colNomor;
 
     private AppRouter mainApp;
-    final TamuService service = new TamuService(org.masjidku.util.ServiceProvider.get(TamuRepository.class));
+    final TamuUseCase service = new TamuUseCase(org.masjidku.util.ServiceProvider.get(TamuRepository.class));
 
     public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
@@ -70,3 +70,4 @@ public class SecretaryTamu extends org.masjidku.accountant.BaseTableController<T
 
     @FXML public void onEditListener() { super.onEditAction(); }
 }
+

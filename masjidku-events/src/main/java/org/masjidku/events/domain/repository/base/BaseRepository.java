@@ -1,13 +1,13 @@
-package org.masjidku.events.dao.base;
+package org.masjidku.events.domain.repository.base;
 
 import org.intellij.lang.annotations.Language;
 import org.masjidku.util.db.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public abstract class Dao<T> {
+public abstract class BaseRepository<T> {
 
-    protected Dao() {
+    protected BaseRepository() {
         getConnection();
     }
     protected Connection con;
@@ -107,6 +107,7 @@ public abstract class Dao<T> {
         }
     }
 }
+
 
 
 

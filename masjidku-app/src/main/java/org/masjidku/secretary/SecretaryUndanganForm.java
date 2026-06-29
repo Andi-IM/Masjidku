@@ -27,11 +27,11 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import org.masjidku.navigation.AppRouter;
-import org.masjidku.events.client.service.KegiatanService;
-import org.masjidku.events.client.service.TamuService;
+import org.masjidku.events.client.usecase.KegiatanUseCase;
+import org.masjidku.events.client.usecase.TamuUseCase;
 import org.masjidku.events.client.repository.TamuRepository;
 import org.masjidku.events.client.model.TamuKegiatan;
-import org.masjidku.events.client.service.TamuKegiatanService;
+import org.masjidku.events.client.service.TamuKegiatanUseCase;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -48,8 +48,8 @@ public class SecretaryUndanganForm implements Initializable {
     public TextArea txtKeterangan;
 
     private AppRouter mainApp;
-    private TamuService tamuservice;
-    private KegiatanService kegiatanservice;
+    private TamuUseCase TamuUseCase;
+    private KegiatanUseCase KegiatanUseCase;
 
     private final ObservableList<String> listTamu = FXCollections.observableArrayList();
     private final ObservableList<String> listKegiatan = FXCollections.observableArrayList();
@@ -71,14 +71,14 @@ public class SecretaryUndanganForm implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tamuservice = new TamuService(org.masjidku.util.ServiceProvider.get(TamuRepository.class));
-        kegiatanservice = ServiceProvider.get(KegiatanService.class);
+        TamuUseCase = new TamuUseCase(org.masjidku.util.ServiceProvider.get(TamuRepository.class));
+        KegiatanUseCase = ServiceProvider.get(KegiatanUseCase.class);
         try {
                 listTamu.removeAll();
                 listKegiatan.removeAll();
 
-                listTamu.addAll(tamuservice.getAllTamuName());
-                listKegiatan.addAll(kegiatanservice.getAllKegiatanName());
+                listTamu.addAll(TamuUseCase.getAllTamuName());
+                listKegiatan.addAll(KegiatanUseCase.getAllKegiatanName());
 
                 cbKegiatan.getItems().addAll(listKegiatan);
                 cbTamu.getItems().addAll(listTamu);
@@ -111,17 +111,17 @@ public class SecretaryUndanganForm implements Initializable {
         String kegiatanform = cbKegiatan.getValue();
         String keterangan = txtKeterangan.getText();
 
-        tamuservice = new TamuService(org.masjidku.util.ServiceProvider.get(TamuRepository.class));
-        kegiatanservice = ServiceProvider.get(KegiatanService.class);
-        TamuKegiatanService tamuKegiatanService = ServiceProvider.get(TamuKegiatanService.class);
+        TamuUseCase = new TamuUseCase(org.masjidku.util.ServiceProvider.get(TamuRepository.class));
+        KegiatanUseCase = ServiceProvider.get(KegiatanUseCase.class);
+        TamuKegiatanUseCase tamuKegiatanUseCase = ServiceProvider.get(TamuKegiatanUseCase.class);
 
         TamuKegiatan model = new TamuKegiatan();
             try {
-                if (tamuKegiatanService.isUndanganExist(model.getIdKegiatan())){
-                    tamuKegiatanService.update(new String[]{model.getKeterangan(), model.getIdTamu(), model.getKegiatan(), model.getIdUndangan()});
+                if (tamuKegiatanUseCase.isUndanganExist(model.getIdKegiatan())){
+                    tamuKegiatanUseCase.update(new String[]{model.getKeterangan(), model.getIdTamu(), model.getKegiatan(), model.getIdUndangan()});
                     org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "Data telah diubah!");
                 } else {
-                    tamuKegiatanService.save(kegiatanservice.getIdByName(kegiatanform), tamuservice.getIdByName(namaform), model.getKeterangan(), operator);
+                    tamuKegiatanUseCase.save(KegiatanUseCase.getIdByName(kegiatanform), TamuUseCase.getIdByName(namaform), model.getKeterangan(), operator);
                     org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success","Data telah ditambahkan!");
                 }
             } catch (SQLException throwables) {
@@ -136,6 +136,7 @@ public class SecretaryUndanganForm implements Initializable {
 
 
 }
+
 
 
 

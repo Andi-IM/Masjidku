@@ -24,12 +24,12 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.events.client.model.Tamu;
-import org.masjidku.events.client.service.TamuService;
+import org.masjidku.events.client.usecase.TamuUseCase;
 import org.masjidku.events.client.repository.TamuRepository;
 
 public class SecretaryTamuForm {
     private static final Logger log = LoggerFactory.getLogger(SecretaryTamuForm.class);
-    private final TamuService service = new TamuService(org.masjidku.util.ServiceProvider.get(TamuRepository.class));
+    private final TamuUseCase service = new TamuUseCase(org.masjidku.util.ServiceProvider.get(TamuRepository.class));
 
     @FXML
     public TextField txtNomorTelp;
@@ -117,3 +117,4 @@ public class SecretaryTamuForm {
         return false;
     }
 }
+

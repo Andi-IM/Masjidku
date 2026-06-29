@@ -12,16 +12,17 @@
  *                                THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
  *                                HEREUNDER.
  */
-package org.masjidku.events.dao.impl;
+package org.masjidku.events.domain.repository.impl;
 
 import javafx.collections.ObservableList;
 import org.intellij.lang.annotations.Language;
 import org.masjidku.events.client.model.TamuKegiatan;
-import org.masjidku.events.dao.base.Dao;
+import org.masjidku.events.domain.repository.base.BaseRepository;
+import org.masjidku.events.domain.repository.TamuKegiatanRepository;
 
 import java.sql.SQLException;
 
-public class TamuKegiatanDao extends Dao<TamuKegiatan> implements org.masjidku.events.client.service.TamuKegiatanService {
+public class TamuKegiatanRepositoryImpl extends BaseRepository<TamuKegiatan> implements TamuKegiatanRepository {
     @Language("SQL")
     private static final String QUERY_1 = "SELECT " +
             "id_undangan, " +
@@ -61,14 +62,14 @@ public class TamuKegiatanDao extends Dao<TamuKegiatan> implements org.masjidku.e
     private static final String QUERY_5 = "DELETE FROM tamukegiatan WHERE id_undangan=?";
     private static final String QUERY_6 = "SELECT id_undangan FROM tamukegiatan WHERE id_undangan=?";
 
-    public TamuKegiatanDao() {
+    public TamuKegiatanRepositoryImpl() {
         getConnection();
     }
 
     private final String ACTIVITY = "kegiatan";
     private final String GUEST = "tamu";
 
-    public TamuKegiatan get(String id) {
+    public TamuKegiatan getTamuKegiatanById(String id) {
         try {
             return executeGet(QUERY_1, id, this::mapResultSetToModel);
         } catch (SQLException e) {
@@ -76,19 +77,19 @@ public class TamuKegiatanDao extends Dao<TamuKegiatan> implements org.masjidku.e
         }
     }
 
-    public ObservableList<TamuKegiatan> getAll() throws SQLException {
+    public ObservableList<TamuKegiatan> getAllTamuKegiatan() throws SQLException {
         return executeGetAll(QUERY_2, this::mapResultSetToModel);
     }
 
-    public void save(String idKegiatan, String idTamu, String keterangan, String opeartor) throws SQLException {
+    public void saveTamuKegiatan(String idKegiatan, String idTamu, String keterangan, String opeartor) throws SQLException {
         executeUpdateQuery(QUERY_3, idKegiatan, idTamu, keterangan, opeartor);
     }
 
-    public void update(String[] params) throws SQLException {
+    public void updateTamuKegiatan(String[] params) throws SQLException {
         executeUpdateQuery(QUERY_4, params[0], params[1], params[2], params[3]);
     }
 
-    public void delete(String id) throws SQLException {
+    public void deleteTamuKegiatan(String id) throws SQLException {
         executeDelete(QUERY_5, id);
     }
 
@@ -97,19 +98,30 @@ public class TamuKegiatanDao extends Dao<TamuKegiatan> implements org.masjidku.e
     }
 
     private TamuKegiatan mapResultSetToModel(java.sql.ResultSet rs) throws SQLException {
+        org.masjidku.events.client.model.Tamu tamu = new org.masjidku.events.client.model.Tamu();
+        tamu.setIdTamu(rs.getString(2));
+        tamu.setNama(rs.getString(4));
+        tamu.setAlamat(rs.getString(5));
+        tamu.setNotelp(rs.getString(6));
+
+        org.masjidku.events.client.model.Kegiatan kegiatan = new org.masjidku.events.client.model.Kegiatan();
+        kegiatan.setIdKegiatan(rs.getString(3));
+        kegiatan.setNama(rs.getString(7));
+
         TamuKegiatan model = new TamuKegiatan();
         model.setIdUndangan(rs.getString(1));
-        model.setIdTamu(rs.getString(2));
-        model.setIdKegiatan(rs.getString(3));
-        model.setNama(rs.getString(4));
-        model.setAlamat(rs.getString(5));
-        model.setKegiatan(rs.getString(6));
-        model.setNotelp(rs.getString(7));
+        model.setTamu(tamu);
+        model.setKegiatanModel(kegiatan);
         model.setKeterangan(rs.getString(8));
         return model;
     }
+
+
+
+
+
+
+
+
+
 }
-
-
-
-

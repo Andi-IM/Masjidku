@@ -44,3 +44,4 @@ public class AnakYatim extends UangKeluar {
         this.usia = usia;
     }
 }
+

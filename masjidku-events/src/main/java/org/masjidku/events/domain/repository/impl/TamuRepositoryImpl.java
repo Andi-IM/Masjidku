@@ -13,18 +13,18 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.events.dao.impl;
+package org.masjidku.events.domain.repository.impl;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.intellij.lang.annotations.Language;
 import org.masjidku.events.client.model.Tamu;
-import org.masjidku.events.client.repository.TamuRepository;
-import org.masjidku.events.dao.base.Dao;
+import org.masjidku.events.domain.repository.TamuRepository;
+import org.masjidku.events.domain.repository.base.BaseRepository;
 
 import java.sql.SQLException;
 
-public class TamuDao extends Dao<Tamu> implements TamuRepository {
+public class TamuRepositoryImpl extends BaseRepository<Tamu> implements TamuRepository {
     @Language("SQL")
     private static final String QUERY_1 = "SELECT * FROM tamu WHERE tamuID=?";
     @Language("SQL")
@@ -42,7 +42,7 @@ public class TamuDao extends Dao<Tamu> implements TamuRepository {
     @Language("SQL")
     private static final String QUERY_8 = "SELECT tamuID FROM tamu WHERE tamuNama=?";
 
-    public TamuDao() {
+    public TamuRepositoryImpl() {
         getConnection();
     }
 
@@ -143,3 +143,5 @@ public class TamuDao extends Dao<Tamu> implements TamuRepository {
         }
     }
 }
+
+

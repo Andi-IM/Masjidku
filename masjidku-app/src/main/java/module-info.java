@@ -25,9 +25,10 @@ open module main {
     uses org.masjidku.accounting.client.service.ZakatKeluarService;
     uses org.masjidku.accounting.client.service.ZakatMasukService;
     uses org.masjidku.accounting.client.service.AccountingFunctionsService;
-    uses org.masjidku.events.client.service.KegiatanService;
-    uses org.masjidku.events.client.service.TamuService;
-    uses org.masjidku.events.client.service.TamuKegiatanService;
+    uses org.masjidku.events.client.usecase.KegiatanUseCase;
+    uses org.masjidku.events.client.usecase.TamuUseCase;
+    uses org.masjidku.events.client.service.TamuKegiatanUseCase;
     uses org.masjidku.reporting.client.service.ReportService;
 }
+
 

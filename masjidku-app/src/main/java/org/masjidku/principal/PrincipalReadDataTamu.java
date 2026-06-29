@@ -22,7 +22,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
 import org.masjidku.events.client.model.Tamu;
 import org.masjidku.events.client.repository.TamuRepository;
-import org.masjidku.events.client.service.TamuService;
+import org.masjidku.events.client.usecase.TamuUseCase;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
@@ -56,7 +56,7 @@ public class PrincipalReadDataTamu extends org.masjidku.accountant.BaseTableCont
     public TableColumn<Tamu, String> colNomor;
 
     private AppRouter mainApp;
-    private final TamuService service = new TamuService(ServiceProvider.get(TamuRepository.class));
+    private final TamuUseCase service = new TamuUseCase(ServiceProvider.get(TamuRepository.class));
 
     public void setMainApp(AppRouter mainApp) {
         String username = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
@@ -130,3 +130,4 @@ public class PrincipalReadDataTamu extends org.masjidku.accountant.BaseTableCont
         service.delete(item.getIdTamu());
     }
 }
+

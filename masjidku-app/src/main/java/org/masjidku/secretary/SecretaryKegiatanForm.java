@@ -25,14 +25,14 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.events.client.model.Kegiatan;
-import org.masjidku.events.client.service.KegiatanService;
+import org.masjidku.events.client.usecase.KegiatanUseCase;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class SecretaryKegiatanForm {
     private static final Logger log = LoggerFactory.getLogger(SecretaryKegiatanForm.class);
-    private final KegiatanService dao = ServiceProvider.get(KegiatanService.class);
+    private final KegiatanUseCase dao = ServiceProvider.get(KegiatanUseCase.class);
 
     @FXML
     private TextField txtNamaKegiatan;
@@ -60,8 +60,8 @@ public class SecretaryKegiatanForm {
     public void setKegiatan(Kegiatan kegiatan) {
         txtNamaKegiatan.setText(kegiatan.getNama());
         txtTempat.setText(kegiatan.getTempat());
-        txtTanggal.setValue(LocalDate.parse(kegiatan.getTanggal()));
-        txtWaktu.setText(kegiatan.getWaktu());
+        txtTanggal.setValue(kegiatan.getTanggal());
+        txtWaktu.setText(kegiatan.getWaktu() != null ? kegiatan.getWaktu().toString() : "");
     }
 
     @FXML
@@ -76,7 +76,7 @@ public class SecretaryKegiatanForm {
     public void onUserSubmitted() {
         if (formValidation()) {
             String namaKegiatan = txtNamaKegiatan.getText();
-            String waktu = txtWaktu.getText();
+            java.time.LocalTime waktu = java.time.LocalTime.parse(txtWaktu.getText());
             String tempat = txtTempat.getText();
             String tanggal = txtTanggal.getValue().toString();
 
@@ -130,4 +130,6 @@ public class SecretaryKegiatanForm {
 
 
 }
+
+
 

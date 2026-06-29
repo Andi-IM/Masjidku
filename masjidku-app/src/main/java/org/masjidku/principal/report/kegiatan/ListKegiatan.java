@@ -29,7 +29,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.Button;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.events.client.model.Kegiatan;
-import org.masjidku.events.client.service.KegiatanService;
+import org.masjidku.events.client.usecase.KegiatanUseCase;
 import org.masjidku.reporting.client.service.ReportService;
 import javafx.stage.FileChooser;
 import java.io.File;
@@ -51,14 +51,14 @@ public class ListKegiatan extends org.masjidku.accountant.BaseTableController<Ke
     @FXML
     public TableColumn<Kegiatan, String> colOperator;
     public AppRouter mainApp;
-    private final KegiatanService dao;
+    private final KegiatanUseCase dao;
 
     public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
     public ListKegiatan() {
-        dao = ServiceProvider.get(KegiatanService.class);
+        dao = ServiceProvider.get(KegiatanUseCase.class);
     }
 
 
@@ -129,6 +129,7 @@ public class ListKegiatan extends org.masjidku.accountant.BaseTableController<Ke
         // Read-only report view — edit operation is not supported
     }
 }
+
 
 
 

@@ -21,7 +21,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.events.client.model.Tamu;
-import org.masjidku.events.client.service.TamuService;
+import org.masjidku.events.client.usecase.TamuUseCase;
 import org.masjidku.events.client.repository.TamuRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,7 +48,7 @@ public class ListTamu extends org.masjidku.accountant.BaseTableController<Tamu> 
     public TableColumn<Tamu, String> colOperator;
 
     private AppRouter mainApp;
-    private final TamuService service = new TamuService(org.masjidku.util.ServiceProvider.get(TamuRepository.class));
+    private final TamuUseCase service = new TamuUseCase(org.masjidku.util.ServiceProvider.get(TamuRepository.class));
 
 
     @Override
@@ -118,6 +118,7 @@ public class ListTamu extends org.masjidku.accountant.BaseTableController<Tamu> 
         // Read-only report view — edit operation is not supported
     }
 }
+
 
 
 

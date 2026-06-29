@@ -1,12 +1,11 @@
-package org.masjidku.events.client.repository;
-
+package org.masjidku.events.client.usecase;
 import javafx.collections.ObservableList;
 import org.masjidku.events.client.model.Tamu;
-
-public interface TamuRepository {
+import java.sql.SQLException;
+public interface TamuUseCase {
     Tamu get(String id);
     ObservableList<Tamu> getAll();
-    void save(Tamu model);
+    void save(Tamu tamu);
     void update(String[] params);
     void delete(String id);
     boolean isTamuExist(String id);
