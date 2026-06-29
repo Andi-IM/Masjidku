@@ -19,6 +19,7 @@ import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
 
+@SuppressWarnings("SqlInjection")
 public abstract class Dao<T> extends DaoFactory {
 
     public abstract T get(String id) throws SQLException;
