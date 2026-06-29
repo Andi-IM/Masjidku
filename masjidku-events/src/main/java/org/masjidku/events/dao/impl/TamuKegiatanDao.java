@@ -15,13 +15,11 @@
 package org.masjidku.events.dao.impl;
 
 import javafx.collections.ObservableList;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import org.intellij.lang.annotations.Language;
 import org.masjidku.events.client.model.TamuKegiatan;
 import org.masjidku.events.dao.base.Dao;
+
+import java.sql.SQLException;
 
 public class TamuKegiatanDao extends Dao<TamuKegiatan> implements org.masjidku.events.client.service.TamuKegiatanService {
     @Language("SQL")

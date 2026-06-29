@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public abstract class Dao<T> {
 
-    public Dao() {
+    protected Dao() {
         getConnection();
     }
     protected Connection con;
