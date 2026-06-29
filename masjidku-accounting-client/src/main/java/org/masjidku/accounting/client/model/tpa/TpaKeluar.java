@@ -32,28 +32,8 @@ public class TpaKeluar extends UangKeluar {
         super.setOperator(operator);
     }
 
-    @Override
-    public String getId() {
-        return super.getId();
-    }
-
     public String getNama() {
         return super.getTujuan();
-    }
-
-    @Override
-    public String getKeterangan() {
-        return super.getKeterangan();
-    }
-
-    @Override
-    public String getJumlah() {
-        return super.getJumlah();
-    }
-
-    @Override
-    public String getOperator() {
-        return super.getOperator();
     }
 
 }

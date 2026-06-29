@@ -80,7 +80,7 @@
             <TableColumn prefWidth="122.0" text="No. Telepon"/>
         </columns>
         <columnResizePolicy>
-        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
         </columnResizePolicy>
     </TableView>
     <Text fill="#3AAFA9" layoutX="125.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="headline"

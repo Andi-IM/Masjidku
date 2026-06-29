@@ -32,10 +32,6 @@ public class ZakatKeluar extends UangKeluar {
         return super.getTujuan();
     }
 
-    @Override
-    public String getJumlah() {
-        return super.getJumlah();
-    }
 
     @Override
     public String getTanggal() {

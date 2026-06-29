@@ -101,9 +101,6 @@ public class MainApp extends Application {
     /**
      * Show the content inside the root layout
      */
-    /**
-     * Show the content inside the root layout
-     */
     public void showContent() {
         viewManager.showContent();
     }
@@ -208,27 +205,27 @@ public class MainApp extends Application {
     }
 
     public void showKegiatanReport() {
-
+        viewManager.showKegiatanData();
     }
 
     public void showAnakYatimReport() {
-
+        viewManager.showAnakYatimData();
     }
 
     public void showPembangunanReport() {
-
+        viewManager.showPembangunanData();
     }
 
     public void showOperasionalReport() {
-
+        viewManager.showOperasionalData();
     }
 
     public void showZakatReport() {
-
+        viewManager.showZakatData();
     }
 
     public void showTpaReport() {
-
+        viewManager.showTpaData();
     }
 
     /**

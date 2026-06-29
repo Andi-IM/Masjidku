@@ -21,11 +21,20 @@ tasks.withType<JavaCompile> {
 dependencies {
     implementation(project(":masjidku-common"))
     implementation(project(":masjidku-reporting-client"))
-    implementation(libs.openpdf)
+    implementation(libs.openpdf) {
+        exclude(group = "xml-apis", module = "xml-apis")
+        exclude(group = "xml-apis", module = "xml-apis-ext")
+    }
     implementation(libs.jasperreports) {
         exclude(group = "com.lowagie", module = "itext")
         exclude(group = "xml-apis", module = "xml-apis")
         exclude(group = "xml-apis", module = "xml-apis-ext")
     }
+    implementation(libs.jasperreports.pdf) {
+        exclude(group = "xml-apis", module = "xml-apis")
+        exclude(group = "xml-apis", module = "xml-apis-ext")
+    }
     implementation("org.slf4j:slf4j-api:2.0.12")
+
+
 }

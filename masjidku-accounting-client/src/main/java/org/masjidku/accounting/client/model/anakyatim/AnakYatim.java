@@ -40,16 +40,6 @@ public class AnakYatim extends UangKeluar {
         return usia;
     }
 
-    @Override
-    public String getKeterangan() {
-        return super.getKeterangan();
-    }
-
-    @Override
-    public String getJumlah() {
-        return super.getJumlah();
-    }
-
     public void setUsia(int usia) {
         this.usia = usia;
     }

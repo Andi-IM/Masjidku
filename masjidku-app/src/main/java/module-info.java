@@ -31,5 +31,6 @@ open module main {
     uses org.masjidku.events.client.service.KegiatanService;
     uses org.masjidku.events.client.service.TamuService;
     uses org.masjidku.events.client.service.TamuKegiatanService;
+    uses org.masjidku.reporting.client.service.ReportService;
 }
 

@@ -28,8 +28,19 @@ public class RootLayoutController {
     @FXML
     private ToggleButton btn_about;
 
+    @FXML
     private ToggleGroup groupButton;
 
+    @FXML
+    public void initialize() {
+        if (groupButton != null) {
+            groupButton.selectedToggleProperty().addListener((obs, oldVal, newVal) -> {
+                if (newVal == null && oldVal != null) {
+                    javafx.application.Platform.runLater(() -> oldVal.setSelected(true));
+                }
+            });
+        }
+    }
     // Reference to the main application
     private MainApp mainApp;
 

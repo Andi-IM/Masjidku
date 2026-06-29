@@ -23,7 +23,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.MainApp;
 import org.masjidku.accounting.client.model.anakyatim.DonasiAYatim;
 import org.masjidku.accounting.client.service.DonasiAYatimService;
+import org.masjidku.reporting.client.service.ReportService;
 import org.masjidku.util.ServiceProvider;
+import javafx.stage.FileChooser;
+import java.io.InputStream;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -74,6 +80,24 @@ operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
 
     @FXML
     public void printReport() {
+        ReportService reportService = ServiceProvider.get(ReportService.class);
+        InputStream reportStream = getClass().getResourceAsStream("/org/masjidku/report/anak_yatim.jrxml");
+        if (reportStream == null) {
+            System.err.println("reportStream is NULL!");
+            return;
+        }
+        Map<String, Object> parameters = new HashMap<>();
+        reportService.createReport(parameters, reportStream);
+        
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Simpan Laporan PDF");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
+        fileChooser.setInitialFileName("LaporanDonaturAnakYatim.pdf");
+        File file = fileChooser.showSaveDialog(null);
+        
+        if (file != null) {
+            reportService.exportToPdf(file.getAbsolutePath());
+        }
     }
 
     @Override

@@ -3,7 +3,7 @@ javafx = "21"
 mysql = "8.0.28"
 sqlite = "3.42.0.0"
 openpdf = "1.3.26"
-jasperreports = "7.0.4"
+jasperreports = "7.0.6"
 jaxb-api = "2.3.1"
 junit = "4.13.2"
 guava = "32.0.1-jre"
@@ -20,7 +20,7 @@ sqlite-jdbc = { group = "org.xerial", name = "sqlite-jdbc", version.ref = "sqlit
 # Reporting
 openpdf = { group = "com.github.librepdf", name = "openpdf", version.ref = "openpdf" }
 jasperreports = { group = "net.sf.jasperreports", name = "jasperreports", version.ref = "jasperreports" }
-
+jasperreports-pdf = { group = "net.sf.jasperreports", name = "jasperreports-pdf", version.ref = "jasperreports" }
 # XML Bind
 jaxb-api = { group = "javax.xml.bind", name = "jaxb-api", version.ref = "jaxb-api" }
 
@@ -41,3 +41,4 @@ logback = { group = "ch.qos.logback", name = "logback-classic", version.ref = "l
 [plugins]
 javafx = { id = "org.openjfx.javafxplugin", version = "0.1.0" }
 jlink = { id = "org.beryx.jlink", version = "3.0.0" }
+

@@ -91,3 +91,30 @@ tasks.compileTestJava {
 }
 
 
+
+tasks.register<JavaExec>("runTestJasper") {
+    description = ""
+    mainClass.set("org.masjidku.TestJasper")
+    classpath = sourceSets["main"].runtimeClasspath
+}
+
+
+tasks.register<JavaExec>("compileJasper") {
+    description = ""
+    mainClass.set("org.masjidku.Compiler")
+    classpath = sourceSets["main"].runtimeClasspath
+}
+
+
+dependencies {
+
+}
+
+
+tasks.named<JavaExec>("run") {
+    modularity.inferModulePath.set(true)
+}
+
+
+
+

@@ -90,7 +90,7 @@ public class EditDonaturTpa {
                 () -> dao.isDonaturExist(donatur.getId()),
                 () -> dao.update(new String[]{
                         donatur.getId(),
-                        donatur.getNama(),
+                        donatur.getDonatur(),
                         donatur.getJumlah(),
                         donatur.getTanggal(),
                         operator
