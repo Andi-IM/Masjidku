@@ -101,7 +101,7 @@ public class SecretaryUndangan implements Initializable {
         if (selectedItem != null){
             mainApp.showUndanganEditForm(selectedItem);
         } else {
-            alertError("Null Error", "Kegiatan tidak ditemukan!");
+            org.masjidku.util.AlertHelper.alertError(dialogStage, "Null Error", "Kegiatan tidak ditemukan!");
         }
     }
 
@@ -114,15 +114,15 @@ public class SecretaryUndangan implements Initializable {
                     if (dao.isUndanganExist(null)){
                         tblUndangan.getItems().remove(selectedUndangan);
                         dao.delete(null);
-                        alertInfo("Success", "Kegiatan Dihapus!");
+                        org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "Kegiatan Dihapus!");
                     } else {
-                        alertError("SQL Error", "Kegiatan tidak ditemukan!");
+                        org.masjidku.util.AlertHelper.alertError(dialogStage, "SQL Error", "Kegiatan tidak ditemukan!");
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
             } else {
-                alertError("Offline", "Database tidak terhuhung!");
+                org.masjidku.util.AlertHelper.alertError(dialogStage, "Offline", "Database tidak terhuhung!");
             }
         }
     }
@@ -149,30 +149,13 @@ public class SecretaryUndangan implements Initializable {
      * @param header header message
      * @param content content message
      */
-    @SuppressWarnings("SameParameterValue")
-    private void alertError(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.initOwner(dialogStage);
-        alert.setTitle("Prompt");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-
-        alert.showAndWait();
-    }
+    
 
     /**
      * Alert Info Builder
      * @param header header message
      * @param content content message
      */
-    @SuppressWarnings("SameParameterValue")
-    private void alertInfo(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.initOwner(dialogStage);
-        alert.setTitle("Prompt");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-
-        alert.showAndWait();
-    }
+    
 }
+

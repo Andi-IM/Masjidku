@@ -116,7 +116,7 @@ public class PenerimaZakat implements Initializable {
         if (selectedItem != null) {
             mainApp.editPenerimaZakat(selectedItem);
         } else {
-            alertError("Null Error", "Data tidak ditemukan!");
+            org.masjidku.util.AlertHelper.alertError(dialogStage, "Null Error", "Data tidak ditemukan!");
         }
     }
 
@@ -130,15 +130,15 @@ public class PenerimaZakat implements Initializable {
                     if (dao.isDataExist(selectedItem.getId())) {
                         tableZakat.getItems().remove(selectedItem);
                         dao.delete(selectedItem.getId());
-                        alertInfo("Success", "User dihapus!");
+                        org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "User dihapus!");
                     } else {
-                        alertError("SQL Error", "User tidak ditemukan!");
+                        org.masjidku.util.AlertHelper.alertError(dialogStage, "SQL Error", "User tidak ditemukan!");
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
             } else {
-                alertError("Offline", "Database tidak terhubung!");
+                org.masjidku.util.AlertHelper.alertError(dialogStage, "Offline", "Database tidak terhubung!");
             }
         }
     }
@@ -151,30 +151,13 @@ public class PenerimaZakat implements Initializable {
      * @param header header message
      * @param content content message
      */
-    @SuppressWarnings("SameParameterValue")
-    private void alertError(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.initOwner(dialogStage);
-        alert.setTitle("Prompt");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-
-        alert.showAndWait();
-    }
+    
 
     /**
      * Alert Info Builder
      * @param header header message
      * @param content content message
      */
-    @SuppressWarnings("SameParameterValue")
-    private void alertInfo(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.initOwner(dialogStage);
-        alert.setTitle("Prompt");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-
-        alert.showAndWait();
-    }
+    
 }
+

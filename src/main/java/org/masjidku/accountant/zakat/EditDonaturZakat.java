@@ -90,7 +90,7 @@ public class EditDonaturZakat {
                                 tanggal,
                                 operator
                         });
-                        alertInfo("Success", "Data telah diupdate");
+                        org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "Data telah diupdate");
                     } else {
                         dao.save(donatur);
                     }
@@ -98,10 +98,10 @@ public class EditDonaturZakat {
                     e.printStackTrace();
                 }
             } else {
-                alertError("Error", "Database belum ditanyakan!");
+                org.masjidku.util.AlertHelper.alertError(dialogStage, "Error", "Database belum ditanyakan!");
             }
         } else {
-            alertError("Error", "Data belum lengkap!");
+            org.masjidku.util.AlertHelper.alertError(dialogStage, "Error", "Data belum lengkap!");
         }
     }
 
@@ -134,25 +134,8 @@ public class EditDonaturZakat {
      * @param header  header message
      * @param content content message
      */
-    @SuppressWarnings("SameParameterValue")
-    private void alertInfo(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.initOwner(dialogStage);
-        alert.setTitle("Prompt");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
+    
 
-        alert.showAndWait();
-    }
-
-    @SuppressWarnings("SameParameterValue")
-    private void alertError(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.initOwner(dialogStage);
-        alert.setTitle("Prompt");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-
-        alert.showAndWait();
-    }
+    
 }
+

@@ -65,7 +65,7 @@ public class LoginController {
         if (!txtUsername.getText().isBlank() && !txtPassword.getText().isBlank()) {
             validateLogin();
         } else {
-            alertError("Alert!", "Mohon untuk menginput username dan passwordnya!");
+            org.masjidku.util.AlertHelper.alertError(dialogStage, "Alert!", "Mohon untuk menginput username dan passwordnya!");
         }
     }
 
@@ -104,27 +104,20 @@ public class LoginController {
                                 throw new IllegalArgumentException("Illegal Data Argument");
                         }
                     } else {
-                        alertError("Gagal Masuk", "Mohon maaf, akun Anda tidak lagi aktif. " +
+                        org.masjidku.util.AlertHelper.alertError(dialogStage, "Gagal Masuk", "Mohon maaf, akun Anda tidak lagi aktif. " +
                                 "Kontak Admin untuk informasi lebih lanjut.");
                     }
                 } else {
-                    alertError("Gagal Masuk", "Periksa username dan password");
+                    org.masjidku.util.AlertHelper.alertError(dialogStage, "Gagal Masuk", "Periksa username dan password");
                 }
             } else {
-                alertError("Error DB", "Mohon Nyalakan Database!");
+                org.masjidku.util.AlertHelper.alertError(dialogStage, "Error DB", "Mohon Nyalakan Database!");
             }
         } catch (SQLException e) {
             System.err.println(e.getSQLState());
         }
     }
 
-    private void alertError(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.initOwner(dialogStage);
-        alert.setTitle("Prompt");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-
-        alert.showAndWait();
-    }
+    
 }
+

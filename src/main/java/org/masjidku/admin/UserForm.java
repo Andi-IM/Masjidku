@@ -129,21 +129,21 @@ public class UserForm implements Initializable {
                try {
                    if (dao.isUserExist(userid)){
                        dao.update(new String[]{user.getJabatan().toString, user.getStatus(), user.getUserId()});
-                       alertInfo("Success", "User telah diperbarui!");
+                       org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "User telah diperbarui!");
                    }
                    else {
                        dao.save(user);
-                       alertInfo("Success", "User ditambahkan!");
+                       org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "User ditambahkan!");
                    }
                    mainApp.showUser();
                } catch (SQLException e){
                    System.out.println(e.getSQLState());
                }
             } else {
-                alertError("Error", "Database belum dinyalakan!");
+                org.masjidku.util.AlertHelper.alertError(dialogStage, "Error", "Database belum dinyalakan!");
             }
         } else {
-            alertError("Error", "Data belum lengkap!");
+            org.masjidku.util.AlertHelper.alertError(dialogStage, "Error", "Data belum lengkap!");
         }
 
     }
@@ -166,25 +166,8 @@ public class UserForm implements Initializable {
      * @param header header message
      * @param content content message
      */
-    @SuppressWarnings("SameParameterValue")
-    private void alertInfo(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.initOwner(dialogStage);
-        alert.setTitle("Prompt");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
+    
 
-        alert.showAndWait();
-    }
-
-    @SuppressWarnings("SameParameterValue")
-    private void alertError(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.initOwner(dialogStage);
-        alert.setTitle("Prompt");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-
-        alert.showAndWait();
-    }
+    
 }
+

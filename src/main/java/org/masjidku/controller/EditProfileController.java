@@ -95,13 +95,13 @@ public class EditProfileController {
                     }
                     profileDao.update(new String[]{id, notel, alamat});
                 } else {
-                    alertError("DB Error", "Database belum dinyalakan!");
+                    org.masjidku.util.AlertHelper.alertError(dialogStage, "DB Error", "Database belum dinyalakan!");
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         } else {
-            alertError("Empty Form","Salah satu form tidak boleh kosong!");
+            org.masjidku.util.AlertHelper.alertError(dialogStage, "Empty Form","Salah satu form tidak boleh kosong!");
         }
     }
 
@@ -111,7 +111,7 @@ public class EditProfileController {
                 if (txtNewPassword.getText().equals(txtConfirmPassword.getText())) {
                     return !txtAlamat.getText().isBlank() && !txtNoTel.getText().isBlank();
                 } else {
-                    alertError("Error","Password tidak sama!");
+                    org.masjidku.util.AlertHelper.alertError(dialogStage, "Error","Password tidak sama!");
                 }
             }
         }
@@ -128,12 +128,6 @@ public class EditProfileController {
         mainApp.onLogoutAction();
     }
 
-    private void alertError(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.initOwner(dialogStage);
-        alert.setTitle("Prompt");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-        alert.showAndWait();
-    }
+    
 }
+

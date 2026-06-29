@@ -125,11 +125,11 @@ public class SecretaryUndanganForm implements Initializable {
                 if (undangan.getIdUndangan() != null){
                     if (tamuKegiatanDao.isUndanganExist(undangan.getIdKegiatan())){
                         tamuKegiatanDao.update(new String[]{keterangan, name, activity, undangan.getIdUndangan()});
-                        alertInfo("Success", "Data telah diubah!");
+                        org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "Data telah diubah!");
                     }
                 } else {
                     tamuKegiatanDao.save(activity, name, keterangan, operator);
-                    alertInfo("Success","Data telah ditambahkan!");
+                    org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success","Data telah ditambahkan!");
                 }
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
@@ -147,25 +147,8 @@ public class SecretaryUndanganForm implements Initializable {
      * @param header  header message
      * @param content content message
      */
-    @SuppressWarnings("SameParameterValue")
-    private void alertInfo(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.initOwner(dialogStage);
-        alert.setTitle("Prompt");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
+    
 
-        alert.showAndWait();
-    }
-
-    @SuppressWarnings("SameParameterValue")
-    private void alertError(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.initOwner(dialogStage);
-        alert.setTitle("Prompt");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-
-        alert.showAndWait();
-    }
+    
 }
+
