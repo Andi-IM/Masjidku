@@ -1,147 +1,88 @@
-/*
- * Copyright (c) 2021. Creative Commons Legal Code
- *
- *                            CC0 1.0 Universal
- *
- *                                CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
- *                                LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN
- *                                ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
- *                                INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
- *                                REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS
- *                                PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
- *                                THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
- *                                HEREUNDER.
- */
-
 package org.masjidku.events.domain.repository.impl;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.intellij.lang.annotations.Language;
-import org.masjidku.events.client.model.Tamu;
+import org.masjidku.events.domain.entity.Tamu;
 import org.masjidku.events.domain.repository.TamuRepository;
-import org.masjidku.events.domain.repository.base.BaseRepository;
+import org.masjidku.events.domain.repository.base.HibernateUtil;
 
-import java.sql.SQLException;
-
-public class TamuRepositoryImpl extends BaseRepository<Tamu> implements TamuRepository {
-    @Language("SQL")
-    private static final String QUERY_1 = "SELECT * FROM tamu WHERE tamuID=?";
-    @Language("SQL")
-    private static final String QUERY_2 = "SELECT * FROM tamu";
-    @Language("SQL")
-    private static final String QUERY_3 = "INSERT INTO tamu(tamuID, tamuNama, tamuAlamat, tamuNotelp, operator) VALUES(?,?,?,?,?)";
-    @Language("SQL")
-    private static final String QUERY_4 = "UPDATE tamu SET tamuNama=?, tamuAlamat=?, tamuNotelp=?, operator=? WHERE tamuID=?";
-    @Language("SQL")
-    private static final String QUERY_5 = "DELETE FROM tamu WHERE tamuID=?";
-    @Language("SQL")
-    private static final String QUERY_6 = "SELECT tamuID FROM tamu WHERE tamuID=?";
-    @Language("SQL")
-    private static final String QUERY_7 = "SELECT * FROM tamu";
-    @Language("SQL")
-    private static final String QUERY_8 = "SELECT tamuID FROM tamu WHERE tamuNama=?";
+public class TamuRepositoryImpl implements TamuRepository {
 
     public TamuRepositoryImpl() {
-        getConnection();
     }
 
     @Override
     public Tamu get(String id) {
-        try {
-            ps = con.prepareStatement(QUERY_1);
-            ps.setString(1, id);
-            rs = ps.executeQuery();
-            Tamu model = null;
-            if (rs.next()) {
-                model = new Tamu(
-                        rs.getString(1),
-                        rs.getString(2),
-                        rs.getString(3),
-                        rs.getString(4),
-                        rs.getString(5)
-                );
-            }
-            return model;
-        } catch (SQLException e) {
-            throw new RuntimeException("Database error in get Tamu", e);
+        try (var session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.get(Tamu.class, id);
         }
     }
 
     @Override
     public ObservableList<Tamu> getAll() {
-        try {
-            ObservableList<Tamu> items = FXCollections.observableArrayList();
-            ps = con.prepareStatement(QUERY_2);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                items.add(new Tamu(
-                        rs.getString(1),
-                        rs.getString(2),
-                        rs.getString(3),
-                        rs.getString(4),
-                        rs.getString(5)
-                ));
-            }
-            return items;
-        } catch (SQLException e) {
-            throw new RuntimeException("Database error in getAll Tamu", e);
+        try (var session = HibernateUtil.getSessionFactory().openSession()) {
+            var list = session.createQuery("FROM Tamu", Tamu.class).list();
+            return javafx.collections.FXCollections.observableArrayList(list);
         }
     }
 
     @Override
     public void save(Tamu tamu) {
-        try {
-            executeUpdateQuery(QUERY_3, tamu.getIdTamu(), tamu.getNama(), tamu.getAlamat(), tamu.getNotelp(), tamu.getOperator());
-        } catch (SQLException e) {
-            throw new RuntimeException("Database error in save Tamu", e);
+        try (var session = HibernateUtil.getSessionFactory().openSession()) {
+            var transaction = session.beginTransaction();
+            session.persist(tamu);
+            transaction.commit();
         }
     }
 
     @Override
     public void update(String[] params) {
-        try {
-            executeUpdateQuery(QUERY_4, params[0], params[1], params[2], params[3], params[4]);
-        } catch (SQLException e) {
-            throw new RuntimeException("Database error in update Tamu", e);
+        // params: tamuNama, tamuAlamat, tamuNotelp, operator, tamuID
+        try (var session = HibernateUtil.getSessionFactory().openSession()) {
+            var transaction = session.beginTransaction();
+            Tamu tamu = session.get(Tamu.class, params[4]);
+            if (tamu != null) {
+                tamu.setNama(params[0]);
+                tamu.setAlamat(params[1]);
+                tamu.setNotelp(params[2]);
+                tamu.setOperator(params[3]);
+                session.merge(tamu);
+            }
+            transaction.commit();
         }
     }
 
     @Override
     public void delete(String id) {
-        try {
-            executeDelete(QUERY_5, id);
-        } catch (SQLException e) {
-            throw new RuntimeException("Database error in delete Tamu", e);
+        try (var session = HibernateUtil.getSessionFactory().openSession()) {
+            var transaction = session.beginTransaction();
+            Tamu tamu = session.get(Tamu.class, id);
+            if (tamu != null) {
+                session.remove(tamu);
+            }
+            transaction.commit();
         }
     }
 
     @Override
     public boolean isTamuExist(String id) {
-        try {
-            return executeCheckExists(QUERY_6, id);
-        } catch (SQLException e) {
-            throw new RuntimeException("Database error in isTamuExist", e);
-        }
+        return get(id) != null;
     }
 
     @Override
     public ObservableList<String> getAllTamuName() {
-        try {
-            return executeGetAllNames(QUERY_7);
-        } catch (SQLException e) {
-            throw new RuntimeException("Database error in getAllTamuName", e);
+        try (var session = HibernateUtil.getSessionFactory().openSession()) {
+            var list = session.createQuery("SELECT t.nama FROM Tamu t", String.class).list();
+            return javafx.collections.FXCollections.observableArrayList(list);
         }
     }
 
     @Override
     public String getIdByName(String name) {
-        try {
-            return executeGetIdByName(QUERY_8, name);
-        } catch (SQLException e) {
-            throw new RuntimeException("Database error in getIdByName", e);
+        try (var session = HibernateUtil.getSessionFactory().openSession()) {
+            var query = session.createQuery("SELECT t.idTamu FROM Tamu t WHERE t.nama = :name", String.class);
+            query.setParameter("name", name);
+            var result = query.uniqueResult();
+            return result != null ? result : "";
         }
     }
 }
-
-

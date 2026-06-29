@@ -21,4 +21,6 @@ dependencies {
     implementation(project(":masjidku-events-client"))
     implementation(libs.jetbrains.annotations)
     implementation(libs.slf4j)
+    implementation(libs.hibernate.core)
+    implementation(libs.hibernate.community.dialects)
 }

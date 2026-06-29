@@ -1,127 +1,75 @@
-/*
- * Copyright (c) 2021. Creative Commons Legal Code
- *
- *                            CC0 1.0 Universal
- *
- *                                CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
- *                                LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN
- *                                ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
- *                                INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
- *                                REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS
- *                                PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
- *                                THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
- *                                HEREUNDER.
- */
 package org.masjidku.events.domain.repository.impl;
 
 import javafx.collections.ObservableList;
-import org.intellij.lang.annotations.Language;
-import org.masjidku.events.client.model.TamuKegiatan;
-import org.masjidku.events.domain.repository.base.BaseRepository;
+import org.masjidku.events.domain.entity.Kegiatan;
+import org.masjidku.events.domain.entity.Tamu;
+import org.masjidku.events.domain.entity.TamuKegiatan;
 import org.masjidku.events.domain.repository.TamuKegiatanRepository;
+import org.masjidku.events.domain.repository.base.HibernateUtil;
 
-import java.sql.SQLException;
-
-public class TamuKegiatanRepositoryImpl extends BaseRepository<TamuKegiatan> implements TamuKegiatanRepository {
-    @Language("SQL")
-    private static final String QUERY_1 = "SELECT " +
-            "id_undangan, " +
-            "id_tamu, " +
-            "id_kegiatan, " +
-            "g.tamuNama, " +
-            "g.tamuAlamat, " +
-            "g.tamuNotelp, " +
-            "k.kegiatanNama, " +
-            "keterangan " +
-            "FROM tamukegiatan " +
-            "INNER JOIN tamu g " +
-            "ON tamukegiatan.id_tamu = g.tamuID " +
-            "INNER JOIN kegiatan k " +
-            "ON tamukegiatan.id_kegiatan = k.kegiatanID " +
-            "WHERE id_undangan=?";
-    @Language("SQL")
-    private static final String QUERY_2 = "SELECT " +
-            "id_undangan, " +
-            "id_tamu, " +
-            "id_kegiatan, " +
-            "g.tamuNama, " +
-            "g.tamuAlamat, " +
-            "g.tamuNotelp, " +
-            "k.kegiatanNama, " +
-            "keterangan " +
-            "FROM tamukegiatan " +
-            "INNER JOIN tamu g " +
-            "ON tamukegiatan.id_tamu = g.tamuID " +
-            "INNER JOIN kegiatan k " +
-            "ON tamukegiatan.id_kegiatan = k.kegiatanID";
-    @Language("SQL")
-    private static final String QUERY_3 = "INSERT INTO tamukegiatan(id_kegiatan, id_tamu, keterangan, operator) VALUES(?,?,?,?)";
-    @Language("SQL")
-    private static final String QUERY_4 = "UPDATE tamukegiatan SET keterangan=? WHERE id_tamu=? and id_kegiatan=? and id_undangan=?";
-    @Language("SQL")
-    private static final String QUERY_5 = "DELETE FROM tamukegiatan WHERE id_undangan=?";
-    private static final String QUERY_6 = "SELECT id_undangan FROM tamukegiatan WHERE id_undangan=?";
+public class TamuKegiatanRepositoryImpl implements TamuKegiatanRepository {
 
     public TamuKegiatanRepositoryImpl() {
-        getConnection();
     }
 
-    private final String ACTIVITY = "kegiatan";
-    private final String GUEST = "tamu";
-
+    @Override
     public TamuKegiatan getTamuKegiatanById(String id) {
-        try {
-            return executeGet(QUERY_1, id, this::mapResultSetToModel);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        try (var session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.get(TamuKegiatan.class, id);
         }
     }
 
-    public ObservableList<TamuKegiatan> getAllTamuKegiatan() throws SQLException {
-        return executeGetAll(QUERY_2, this::mapResultSetToModel);
+    @Override
+    public ObservableList<TamuKegiatan> getAllTamuKegiatan() {
+        try (var session = HibernateUtil.getSessionFactory().openSession()) {
+            var list = session.createQuery("FROM TamuKegiatan tk JOIN FETCH tk.tamu JOIN FETCH tk.kegiatan", TamuKegiatan.class).list();
+            return javafx.collections.FXCollections.observableArrayList(list);
+        }
     }
 
-    public void saveTamuKegiatan(String idKegiatan, String idTamu, String keterangan, String opeartor) throws SQLException {
-        executeUpdateQuery(QUERY_3, idKegiatan, idTamu, keterangan, opeartor);
+    @Override
+    public void saveTamuKegiatan(String idKegiatan, String idTamu, String keterangan, String operator) {
+        try (var session = HibernateUtil.getSessionFactory().openSession()) {
+            var transaction = session.beginTransaction();
+            TamuKegiatan tk = new TamuKegiatan();
+            tk.setKegiatanModel(session.getReference(Kegiatan.class, idKegiatan));
+            tk.setTamu(session.getReference(Tamu.class, idTamu));
+            tk.setKeterangan(keterangan);
+            session.persist(tk);
+            transaction.commit();
+        }
     }
 
-    public void updateTamuKegiatan(String[] params) throws SQLException {
-        executeUpdateQuery(QUERY_4, params[0], params[1], params[2], params[3]);
+    @Override
+    public void updateTamuKegiatan(String[] params) {
+        // params: keterangan, id_tamu, id_kegiatan, id_undangan
+        try (var session = HibernateUtil.getSessionFactory().openSession()) {
+            var transaction = session.beginTransaction();
+            TamuKegiatan tk = session.get(TamuKegiatan.class, params[3]);
+            if (tk != null) {
+                tk.setKeterangan(params[0]);
+                tk.setTamu(session.getReference(Tamu.class, params[1]));
+                tk.setKegiatanModel(session.getReference(Kegiatan.class, params[2]));
+                session.merge(tk);
+            }
+            transaction.commit();
+        }
     }
 
-    public void deleteTamuKegiatan(String id) throws SQLException {
-        executeDelete(QUERY_5, id);
+    @Override
+    public void deleteTamuKegiatan(String id) {
+        try (var session = HibernateUtil.getSessionFactory().openSession()) {
+            var transaction = session.beginTransaction();
+            TamuKegiatan tk = session.get(TamuKegiatan.class, id);
+            if (tk != null) {
+                session.remove(tk);
+            }
+            transaction.commit();
+        }
     }
 
-    public boolean isUndanganExist(String id) throws SQLException {
-        return executeCheckExists(QUERY_6, id);
+    @Override
+    public boolean isUndanganExist(String id) {
+        return getTamuKegiatanById(id) != null;
     }
-
-    private TamuKegiatan mapResultSetToModel(java.sql.ResultSet rs) throws SQLException {
-        org.masjidku.events.client.model.Tamu tamu = new org.masjidku.events.client.model.Tamu();
-        tamu.setIdTamu(rs.getString(2));
-        tamu.setNama(rs.getString(4));
-        tamu.setAlamat(rs.getString(5));
-        tamu.setNotelp(rs.getString(6));
-
-        org.masjidku.events.client.model.Kegiatan kegiatan = new org.masjidku.events.client.model.Kegiatan();
-        kegiatan.setIdKegiatan(rs.getString(3));
-        kegiatan.setNama(rs.getString(7));
-
-        TamuKegiatan model = new TamuKegiatan();
-        model.setIdUndangan(rs.getString(1));
-        model.setTamu(tamu);
-        model.setKegiatanModel(kegiatan);
-        model.setKeterangan(rs.getString(8));
-        return model;
-    }
-
-
-
-
-
-
-
-
-
 }

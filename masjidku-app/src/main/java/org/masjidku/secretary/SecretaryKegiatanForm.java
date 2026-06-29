@@ -24,11 +24,10 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.navigation.AppRouter;
-import org.masjidku.events.client.model.Kegiatan;
-import org.masjidku.events.client.usecase.KegiatanUseCase;
+import org.masjidku.events.domain.entity.Kegiatan;
+import org.masjidku.events.application.usecase.KegiatanUseCase;
 
 import java.sql.SQLException;
-import java.time.LocalDate;
 
 public class SecretaryKegiatanForm {
     private static final Logger log = LoggerFactory.getLogger(SecretaryKegiatanForm.class);

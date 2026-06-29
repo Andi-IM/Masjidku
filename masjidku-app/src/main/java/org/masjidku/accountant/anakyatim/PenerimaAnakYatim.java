@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.masjidku.controller.BaseTableController;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.anakyatim.AnakYatim;
 import org.masjidku.accounting.client.service.AnakYatimService;
@@ -29,7 +30,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-public class PenerimaAnakYatim extends org.masjidku.accountant.BaseTableController<AnakYatim> {
+public class PenerimaAnakYatim extends BaseTableController<AnakYatim> {
     private static final Logger log = LoggerFactory.getLogger(PenerimaAnakYatim.class);
     private final AnakYatimService dao = ServiceProvider.get(AnakYatimService.class);
 

@@ -27,10 +27,10 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import org.masjidku.navigation.AppRouter;
-import org.masjidku.events.client.usecase.KegiatanUseCase;
-import org.masjidku.events.client.usecase.TamuUseCase;
+import org.masjidku.events.application.usecase.KegiatanUseCase;
+import org.masjidku.events.application.usecase.TamuUseCase;
 import org.masjidku.events.client.repository.TamuRepository;
-import org.masjidku.events.client.model.TamuKegiatan;
+import org.masjidku.events.domain.entity.TamuKegiatan;
 import org.masjidku.events.client.service.TamuKegiatanUseCase;
 
 import java.net.URL;

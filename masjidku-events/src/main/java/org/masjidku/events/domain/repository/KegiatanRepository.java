@@ -1,6 +1,6 @@
 package org.masjidku.events.domain.repository;
 import javafx.collections.ObservableList;
-import org.masjidku.events.client.model.Kegiatan;
+import org.masjidku.events.domain.entity.Kegiatan;
 import java.sql.SQLException;
 public interface KegiatanRepository {
     Kegiatan getKegiatanById(String id) throws SQLException;

@@ -1,7 +1,7 @@
 package org.masjidku.events.domain.repository;
 import javafx.collections.ObservableList;
-import org.masjidku.events.client.model.Tamu;
-import java.sql.SQLException;
+import org.masjidku.events.domain.entity.Tamu;
+
 public interface TamuRepository {
     Tamu get(String id);
     ObservableList<Tamu> getAll();

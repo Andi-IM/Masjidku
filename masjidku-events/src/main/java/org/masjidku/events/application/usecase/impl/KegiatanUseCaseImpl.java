@@ -1,15 +1,20 @@
 package org.masjidku.events.application.usecase.impl;
+
 import javafx.collections.ObservableList;
+import org.masjidku.events.application.usecase.KegiatanUseCase;
 import org.masjidku.events.client.model.Kegiatan;
-import org.masjidku.events.client.usecase.KegiatanUseCase;
 import org.masjidku.events.domain.repository.KegiatanRepository;
 import org.masjidku.events.domain.repository.impl.KegiatanRepositoryImpl;
+
 import java.sql.SQLException;
 
 public class KegiatanUseCaseImpl implements KegiatanUseCase {
     private final KegiatanRepository repository;
 
-    public KegiatanUseCaseImpl() { this.repository = new KegiatanRepositoryImpl(); }
+    public KegiatanUseCaseImpl() {
+        this.repository = new KegiatanRepositoryImpl();
+    }
+
     public KegiatanUseCaseImpl(KegiatanRepository repository) {
         this.repository = repository;
     }

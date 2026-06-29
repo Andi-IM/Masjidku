@@ -19,8 +19,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import org.masjidku.controller.BaseTableController;
 import org.masjidku.navigation.AppRouter;
-import org.masjidku.events.client.model.TamuKegiatan;
+import org.masjidku.events.domain.entity.TamuKegiatan;
 import org.masjidku.events.client.service.TamuKegiatanUseCase;
 import org.masjidku.util.TableHelper;
 import org.slf4j.Logger;
@@ -28,7 +29,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-public class SecretaryUndangan extends org.masjidku.accountant.BaseTableController<TamuKegiatan> {
+public class SecretaryUndangan extends BaseTableController<TamuKegiatan> {
     private static final Logger log = LoggerFactory.getLogger(SecretaryUndangan.class);
 
     @FXML

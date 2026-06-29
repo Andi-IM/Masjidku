@@ -1,7 +1,7 @@
 package org.masjidku.events.application.usecase.impl;
 import javafx.collections.ObservableList;
-import org.masjidku.events.client.model.Tamu;
-import org.masjidku.events.client.usecase.TamuUseCase;
+import org.masjidku.events.application.usecase.TamuUseCase;
+import org.masjidku.events.domain.entity.Tamu;
 import org.masjidku.events.domain.repository.TamuRepository;
 import org.masjidku.events.domain.repository.impl.TamuRepositoryImpl;
 

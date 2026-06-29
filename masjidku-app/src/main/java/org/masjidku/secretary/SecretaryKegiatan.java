@@ -15,6 +15,10 @@
 
 package org.masjidku.secretary;
 
+import org.masjidku.controller.BaseTableController;
+import org.masjidku.events.client.EventsClient;
+import org.masjidku.events.client.model.Kegiatan;
+import org.masjidku.util.ServiceProvider;
 import org.masjidku.util.TableHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,10 +31,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.masjidku.navigation.AppRouter;
-import org.masjidku.events.client.model.Kegiatan;
-import org.masjidku.events.client.usecase.KegiatanUseCase;
 
-public class SecretaryKegiatan extends org.masjidku.accountant.BaseTableController<Kegiatan> {
+public class SecretaryKegiatan extends BaseTableController<Kegiatan> {
     private static final Logger log = LoggerFactory.getLogger(SecretaryKegiatan.class);
 
     @FXML
@@ -51,9 +53,12 @@ public class SecretaryKegiatan extends org.masjidku.accountant.BaseTableControll
     public TableColumn<Kegiatan, String> colTanggalKegiatan;
 
     private AppRouter mainApp;
-    final KegiatanUseCase dao = org.masjidku.util.ServiceProvider.get(KegiatanUseCase.class);
+    private final EventsClient eventClient;
 
-
+    public SecretaryKegiatan() {
+        this.eventClient = ServiceProvider.get(EventsClient.class);
+    }
+    
     public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
@@ -107,18 +112,18 @@ public class SecretaryKegiatan extends org.masjidku.accountant.BaseTableControll
     }
 
     @Override
-    protected List<Kegiatan> fetchAllData() throws java.sql.SQLException {
-        return dao.getAll();
+    protected List<Kegiatan> fetchAllData() {
+        return eventClient.getAllKegiatan();
     }
 
     @Override
-    protected boolean checkIfExist(Kegiatan item) throws java.sql.SQLException {
-        return dao.isKegiatanExist(item.getIdKegiatan());
+    protected boolean checkIfExist(Kegiatan item) {
+        return eventClient.isKegiatanExist(item.getIdKegiatan());
     }
 
     @Override
-    protected void deleteItem(Kegiatan item) throws java.sql.SQLException {
-        dao.delete(item.getIdKegiatan());
+    protected void deleteItem(Kegiatan item) {
+        eventClient.deleteKegiatan(item.getIdKegiatan());
     }
 
     @Override

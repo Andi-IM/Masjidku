@@ -20,9 +20,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
-import org.masjidku.events.client.model.Tamu;
+import org.masjidku.controller.BaseTableController;
+import org.masjidku.events.domain.entity.Tamu;
 import org.masjidku.events.client.repository.TamuRepository;
-import org.masjidku.events.client.usecase.TamuUseCase;
+import org.masjidku.events.application.usecase.TamuUseCase;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
@@ -31,7 +32,7 @@ import org.slf4j.LoggerFactory;
 import java.sql.SQLException;
 import java.util.List;
 
-public class PrincipalReadDataTamu extends org.masjidku.accountant.BaseTableController<Tamu> {
+public class PrincipalReadDataTamu extends BaseTableController<Tamu> {
     private static final Logger log = LoggerFactory.getLogger(PrincipalReadDataTamu.class);
 
     @FXML

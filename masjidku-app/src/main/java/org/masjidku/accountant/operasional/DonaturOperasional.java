@@ -19,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import org.masjidku.controller.BaseTableController;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.operasional.DonasiOperasional;
 import org.masjidku.accounting.client.service.DonasiOperationalService;
@@ -28,7 +29,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-public class DonaturOperasional extends org.masjidku.accountant.BaseTableController<DonasiOperasional> {
+public class DonaturOperasional extends BaseTableController<DonasiOperasional> {
     private static final Logger log = LoggerFactory.getLogger(DonaturOperasional.class);
     private final DonasiOperationalService dao = ServiceProvider.get(DonasiOperationalService.class);
 

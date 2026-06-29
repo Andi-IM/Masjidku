@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021. Creative Commons Legal Code
+ * Copyright (c) 2026. Creative Commons Legal Code
  *
  *                            CC0 1.0 Universal
  *
@@ -13,7 +13,7 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.events.client.model;
+package org.masjidku.events.domain.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

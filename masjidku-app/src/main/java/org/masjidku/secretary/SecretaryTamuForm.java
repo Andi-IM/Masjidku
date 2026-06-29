@@ -23,8 +23,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.navigation.AppRouter;
-import org.masjidku.events.client.model.Tamu;
-import org.masjidku.events.client.usecase.TamuUseCase;
+import org.masjidku.events.domain.entity.Tamu;
+import org.masjidku.events.application.usecase.TamuUseCase;
 import org.masjidku.events.client.repository.TamuRepository;
 
 public class SecretaryTamuForm {

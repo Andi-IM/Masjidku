@@ -11,7 +11,7 @@ archunit = "1.2.1"
 slf4j = "2.0.12"
 logback = "1.5.13"
 annotation = "24.1.0"
-
+hibernate = "6.4.4.Final"
 [libraries]
 # Database
 mysql-connector = { group = "mysql", name = "mysql-connector-java", version.ref = "mysql" }
@@ -29,6 +29,9 @@ jetbrains-annotations = { group = "org.jetbrains", name = "annotations", version
 
 guava = { group = "com.google.guava", name = "guava", version.ref = "guava" }
 
+# Hibernate ORM
+hibernate-core = { group = "org.hibernate.orm", name = "hibernate-core", version.ref = "hibernate" }
+hibernate-community-dialects = { group = "org.hibernate.orm", name = "hibernate-community-dialects", version.ref = "hibernate" }
 # Test
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 archunit-junit5 = { group = "com.tngtech.archunit", name = "archunit-junit5", version.ref = "archunit" }

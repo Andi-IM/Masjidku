@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.masjidku.controller.BaseTableController;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.pembangunan.Pembangunan;
 import org.masjidku.accounting.client.service.PembangunanService;
@@ -29,7 +30,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-public class PembayaranPembangunan extends org.masjidku.accountant.BaseTableController<Pembangunan> {
+public class PembayaranPembangunan extends BaseTableController<Pembangunan> {
     private static final Logger log = LoggerFactory.getLogger(PembayaranPembangunan.class);
     private final PembangunanService dao = ServiceProvider.get(PembangunanService.class);
 

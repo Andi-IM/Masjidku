@@ -15,6 +15,7 @@
 
 package org.masjidku.principal.report.kegiatan;
 
+import org.masjidku.controller.BaseTableController;
 import org.masjidku.util.TableHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,13 +28,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Button;
 import org.masjidku.navigation.AppRouter;
-import org.masjidku.events.client.model.TamuKegiatan;
+import org.masjidku.events.domain.entity.TamuKegiatan;
 import org.masjidku.events.client.service.TamuKegiatanUseCase;
 import org.masjidku.reporting.client.service.ReportService;
 import org.masjidku.util.ServiceProvider;
 
 
-public class ListUndangan extends org.masjidku.accountant.BaseTableController<TamuKegiatan> {
+public class ListUndangan extends BaseTableController<TamuKegiatan> {
     private static final Logger log = LoggerFactory.getLogger(ListUndangan.class);
 
     @FXML

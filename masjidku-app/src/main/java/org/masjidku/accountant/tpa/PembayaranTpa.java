@@ -19,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import org.masjidku.controller.BaseTableController;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.tpa.TpaKeluar;
 import org.masjidku.accounting.client.service.TpaKeluarService;
@@ -28,7 +29,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-public class PembayaranTpa extends org.masjidku.accountant.BaseTableController<TpaKeluar> {
+public class PembayaranTpa extends BaseTableController<TpaKeluar> {
     private static final Logger log = LoggerFactory.getLogger(PembayaranTpa.class);
     private final TpaKeluarService dao = ServiceProvider.get(TpaKeluarService.class);
 

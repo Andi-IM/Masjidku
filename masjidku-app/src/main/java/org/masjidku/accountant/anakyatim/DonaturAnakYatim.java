@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.masjidku.navigation.AppRouter;
-import org.masjidku.accountant.BaseTableController;
+import org.masjidku.controller.BaseTableController;
 import org.masjidku.accounting.client.model.anakyatim.DonasiAYatim;
 import org.masjidku.accounting.client.service.DonasiAYatimService;
 import org.masjidku.util.ServiceProvider;

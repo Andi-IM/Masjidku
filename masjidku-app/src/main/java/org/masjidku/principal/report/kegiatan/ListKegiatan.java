@@ -15,6 +15,7 @@
 
 package org.masjidku.principal.report.kegiatan;
 
+import org.masjidku.controller.BaseTableController;
 import org.masjidku.util.TableHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,13 +29,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Button;
 import org.masjidku.navigation.AppRouter;
-import org.masjidku.events.client.model.Kegiatan;
-import org.masjidku.events.client.usecase.KegiatanUseCase;
+import org.masjidku.events.domain.entity.Kegiatan;
+import org.masjidku.events.application.usecase.KegiatanUseCase;
 import org.masjidku.reporting.client.service.ReportService;
 import javafx.stage.FileChooser;
 import java.io.File;
 
-public class ListKegiatan extends org.masjidku.accountant.BaseTableController<Kegiatan> {
+public class ListKegiatan extends BaseTableController<Kegiatan> {
     private static final Logger log = LoggerFactory.getLogger(ListKegiatan.class);
     @FXML
     public TableView<Kegiatan> tblKegiatan;

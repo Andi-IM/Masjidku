@@ -13,7 +13,7 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.events.application.usecase.impl;
+package org.masjidku.events.application.usecase;
 import javafx.collections.ObservableList;
 import org.masjidku.events.client.model.TamuKegiatan;
 import java.sql.SQLException;

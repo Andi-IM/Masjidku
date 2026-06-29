@@ -1,7 +1,7 @@
 package org.masjidku.events.application.usecase.impl;
 import javafx.collections.ObservableList;
-import org.masjidku.events.client.model.TamuKegiatan;
-import org.masjidku.events.client.usecase.TamuKegiatanUseCase;
+import org.masjidku.events.application.usecase.TamuKegiatanUseCase;
+import org.masjidku.events.domain.entity.TamuKegiatan;
 import org.masjidku.events.domain.repository.TamuKegiatanRepository;
 import org.masjidku.events.domain.repository.impl.TamuKegiatanRepositoryImpl;
 import java.sql.SQLException;

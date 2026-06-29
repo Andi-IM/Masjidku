@@ -23,8 +23,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
 import org.masjidku.navigation.AppRouter;
-import org.masjidku.events.client.model.Kegiatan;
-import org.masjidku.events.client.usecase.KegiatanUseCase;
+import org.masjidku.events.domain.entity.Kegiatan;
+import org.masjidku.events.application.usecase.KegiatanUseCase;
 
 import java.net.URL;
 import java.sql.SQLException;

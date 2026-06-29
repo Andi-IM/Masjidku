@@ -1,121 +1,106 @@
-/*
- * Copyright (c) 2021. Creative Commons Legal Code
- *
- *                            CC0 1.0 Universal
- *
- *                                CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
- *                                LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN
- *                                ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
- *                                INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
- *                                REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS
- *                                PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
- *                                THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
- *                                HEREUNDER.
- */
 package org.masjidku.events.domain.repository.impl;
 
 import javafx.collections.ObservableList;
-import org.intellij.lang.annotations.Language;
-import org.masjidku.events.client.model.Kegiatan;
-
-import org.masjidku.events.domain.repository.base.BaseRepository;
+import org.masjidku.events.domain.entity.Kegiatan;
 import org.masjidku.events.domain.repository.KegiatanRepository;
+import org.masjidku.events.domain.repository.base.HibernateUtil;
 
-import java.sql.SQLException;
-
-public class KegiatanRepositoryImpl extends BaseRepository<Kegiatan> implements KegiatanRepository {
-    private static final String QUERY_1 = "SELECT * FROM kegiatan WHERE kegiatanID=?";
-    private static final String QUERY_2 = "SELECT * FROM kegiatan";
-    @Language("SQL")
-    private static final String QUERY_3 = "INSERT INTO kegiatan" + "(kegiatanNama, kegiatanWaktu, kegiatanTanggal, kegiatanTempat, operator) VALUES(?,?,?,?,?)";
-    @Language("SQL")
-    private static final String QUERY_4 = "UPDATE kegiatan SET kegiatanNama=?, kegiatanWaktu=?, kegiatanTanggal=?, kegiatanTempat=?, operator=? WHERE kegiatanID=?";
-    @Language("SQL")
-    private static final String QUERY_5 = "DELETE FROM kegiatan WHERE kegiatanID=?";
-    @Language("SQL")
-    private static final String QUERY_6 = "SELECT kegiatanID FROM kegiatan WHERE kegiatanID=?";
-    @Language("SQL")
-    private static final String QUERY_7 = "SELECT * FROM kegiatan";
-    @Language("SQL")
-    private static final String QUERY_8 = "SELECT kegiatanID FROM kegiatan WHERE kegiatanNama=?";
-    private static final String QUERY_9 = "SELECT * FROM kegiatan ORDER BY kegiatanID DESC LIMIT 1";
-    @Language("SQL")
-    private static final String QUERY_10 = "SELECT IFNULL(COUNT(kegiatanID),0) FROM kegiatan";
+public class KegiatanRepositoryImpl implements KegiatanRepository {
 
     public KegiatanRepositoryImpl() {
-        getConnection();
     }
 
     @Override
-    public Kegiatan getKegiatanById(String id) throws SQLException {
-        return executeGet(QUERY_1, id, this::mapResultSetToModel);
+    public Kegiatan getKegiatanById(String id) {
+        try (var session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.get(Kegiatan.class, id);
+        }
     }
 
     @Override
-    public ObservableList<Kegiatan> getAllKegiatan() throws SQLException {
-        return executeGetAll(QUERY_2, this::mapResultSetToModel);
-    }
-
-    private Kegiatan mapResultSetToModel(java.sql.ResultSet rs) throws SQLException {
-        return new Kegiatan(
-                rs.getString(1),
-                rs.getString(2),
-                java.time.LocalTime.parse(rs.getString(3)),
-                java.time.LocalDate.parse(rs.getString(4)),
-                rs.getString(5),
-                rs.getString(6)
-        );
+    public ObservableList<Kegiatan> getAllKegiatan() {
+        try (var session = HibernateUtil.getSessionFactory().openSession()) {
+            var list = session.createQuery("FROM Kegiatan", Kegiatan.class).list();
+            return javafx.collections.FXCollections.observableArrayList(list);
+        }
     }
 
     @Override
-    public void saveKegiatan(Kegiatan kegiatan) throws SQLException {
-        executeUpdateQuery(QUERY_3, kegiatan.getNama(), kegiatan.getWaktu().toString(), kegiatan.getTanggal().toString(), kegiatan.getTempat(), kegiatan.getOperator());
+    public void saveKegiatan(Kegiatan kegiatan) {
+        try (var session = HibernateUtil.getSessionFactory().openSession()) {
+            var transaction = session.beginTransaction();
+            session.persist(kegiatan);
+            transaction.commit();
+        }
     }
 
     @Override
-    public void updateKegiatan(String[] params) throws SQLException {
-        executeUpdateQuery(QUERY_4, params[0], params[1], params[2], params[3], params[4]);
+    public void updateKegiatan(String[] params) {
+        // params: kegiatanNama, kegiatanWaktu, kegiatanTanggal, kegiatanTempat, operator, kegiatanID
+        try (var session = HibernateUtil.getSessionFactory().openSession()) {
+            var transaction = session.beginTransaction();
+            Kegiatan kegiatan = session.get(Kegiatan.class, params[5]);
+            if (kegiatan != null) {
+                kegiatan.setNama(params[0]);
+                kegiatan.setWaktu(java.time.LocalTime.parse(params[1]));
+                kegiatan.setTanggal(java.time.LocalDate.parse(params[2]));
+                kegiatan.setTempat(params[3]);
+                kegiatan.setOperator(params[4]);
+                session.merge(kegiatan);
+            }
+            transaction.commit();
+        }
     }
 
     @Override
-    public void deleteKegiatan(String id) throws SQLException {
-        executeDelete(QUERY_5, id);
+    public void deleteKegiatan(String id) {
+        try (var session = HibernateUtil.getSessionFactory().openSession()) {
+            var transaction = session.beginTransaction();
+            Kegiatan kegiatan = session.get(Kegiatan.class, id);
+            if (kegiatan != null) {
+                session.remove(kegiatan);
+            }
+            transaction.commit();
+        }
     }
 
-    public boolean exists(String id) throws SQLException {
-        return executeCheckExists(QUERY_6, id);
+    @Override
+    public boolean exists(String id) {
+        return getKegiatanById(id) != null;
     }
 
-    public ObservableList<String> getAllKegiatanNames() throws SQLException {
-        return executeGetAllNames(QUERY_7);
+    @Override
+    public ObservableList<String> getAllKegiatanNames() {
+        try (var session = HibernateUtil.getSessionFactory().openSession()) {
+            var list = session.createQuery("SELECT k.nama FROM Kegiatan k", String.class).list();
+            return javafx.collections.FXCollections.observableArrayList(list);
+        }
     }
 
-    public String getIdByName(String name) throws SQLException {
-        return executeGetIdByName(QUERY_8, name);
+    @Override
+    public String getIdByName(String name) {
+        try (var session = HibernateUtil.getSessionFactory().openSession()) {
+            var query = session.createQuery("SELECT k.idKegiatan FROM Kegiatan k WHERE k.nama = :name", String.class);
+            query.setParameter("name", name);
+            var result = query.uniqueResult();
+            return result != null ? result : "";
+        }
     }
 
-    public Kegiatan getLastKegiatan() throws SQLException {
-        return executeGet(QUERY_9, null, rs -> {
-            Kegiatan model = new Kegiatan();
-            model.setIdKegiatan(rs.getString(1));
-            model.setNama(rs.getString(2));
-            model.setWaktu(java.time.LocalTime.parse(rs.getString(3)));
-            model.setTanggal(java.time.LocalDate.parse(rs.getString(4)));
-            model.setTanggal(java.time.LocalDate.parse(rs.getString(4)));
-            model.setOperator(rs.getString(6));
-            return model;
-        });
+    @Override
+    public Kegiatan getLastKegiatan() {
+        try (var session = HibernateUtil.getSessionFactory().openSession()) {
+            var query = session.createQuery("FROM Kegiatan ORDER BY idKegiatan DESC", Kegiatan.class);
+            query.setMaxResults(1);
+            return query.uniqueResult();
+        }
     }
 
-    public String getTotalKegiatanCount() throws SQLException {
-        return executeGetTotal(QUERY_10);
+    @Override
+    public String getTotalKegiatanCount() {
+        try (var session = HibernateUtil.getSessionFactory().openSession()) {
+            var count = session.createQuery("SELECT count(k) FROM Kegiatan k", Long.class).uniqueResult();
+            return count != null ? count.toString() : "0";
+        }
     }
 }
-
-
-
-
-
-
-
-
