@@ -63,10 +63,17 @@ public class ViewManager {
     public void injectMainApp(Object rawController) {
         if (rawController != null) {
             try {
-                java.lang.reflect.Method method = rawController.getClass().getMethod("setMainApp", MainApp.class);
+                java.lang.reflect.Method method = rawController.getClass().getMethod("setMainApp", org.masjidku.navigation.AppRouter.class);
                 method.invoke(rawController, mainApp);
             } catch (NoSuchMethodException e) {
-                // Ignore
+                try {
+                    java.lang.reflect.Method method = rawController.getClass().getMethod("setMainApp", MainApp.class);
+                    method.invoke(rawController, mainApp);
+                } catch (NoSuchMethodException ex) {
+                    // Ignore if no setMainApp method exists at all
+                } catch (Exception ex) {
+                    LOGGER.log(Level.SEVERE, "An error occurred injecting MainApp fallback", ex);
+                }
             } catch (Exception e) {
                 LOGGER.log(Level.SEVERE, "An error occurred", e);
             }
