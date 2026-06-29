@@ -32,8 +32,8 @@
 
 
 
--- Dumping structure for table masjidku.infakanakyatim
-CREATE TABLE IF NOT EXISTS `infakanakyatim` (
+-- Dumping structure for table masjidku.infak_anakyatim
+CREATE TABLE IF NOT EXISTS `infak_anakyatim` (
   `id` INTEGER DEFAULT NULL,
   `donatur` varchar(255) DEFAULT 'HAMBA ALLAH',
   `jumlah` double DEFAULT NULL,
@@ -45,8 +45,8 @@ CREATE TABLE IF NOT EXISTS `infakanakyatim` (
 
 
 
--- Dumping structure for table masjidku.infakoperasional
-CREATE TABLE IF NOT EXISTS `infakoperasional` (
+-- Dumping structure for table masjidku.infak_operasional
+CREATE TABLE IF NOT EXISTS `infak_operasional` (
   `id` INTEGER DEFAULT NULL,
   `donatur` varchar(255) DEFAULT 'HAMBA ALLAH',
   `jumlah` double DEFAULT NULL,
@@ -58,8 +58,8 @@ CREATE TABLE IF NOT EXISTS `infakoperasional` (
 
 
 
--- Dumping structure for table masjidku.infakpembangunan
-CREATE TABLE IF NOT EXISTS `infakpembangunan` (
+-- Dumping structure for table masjidku.infak_pembangunan
+CREATE TABLE IF NOT EXISTS `infak_pembangunan` (
   `id` INTEGER DEFAULT NULL,
   `donatur` varchar(255) DEFAULT 'HAMBA ALLAH',
   `jumlah` double DEFAULT NULL,
@@ -71,8 +71,8 @@ CREATE TABLE IF NOT EXISTS `infakpembangunan` (
 
 
 
--- Dumping structure for table masjidku.infaktpa
-CREATE TABLE IF NOT EXISTS `infaktpa` (
+-- Dumping structure for table masjidku.infak_tpa
+CREATE TABLE IF NOT EXISTS `infak_tpa` (
   `id` INTEGER DEFAULT NULL,
   `donatur` varchar(255) DEFAULT 'HAMBA ALLAH',
   `jumlah` double DEFAULT NULL,
@@ -99,8 +99,8 @@ CREATE TABLE IF NOT EXISTS `kegiatan` (
 
 
 
--- Dumping structure for table masjidku.operasionalkeluar
-CREATE TABLE IF NOT EXISTS `operasionalkeluar` (
+-- Dumping structure for table masjidku.operasional_keluar
+CREATE TABLE IF NOT EXISTS `operasional_keluar` (
   `id` INTEGER DEFAULT NULL,
   `nama` varchar(50) DEFAULT NULL,
   `jumlah` double DEFAULT NULL,
@@ -112,8 +112,8 @@ CREATE TABLE IF NOT EXISTS `operasionalkeluar` (
 
 
 
--- Dumping structure for table masjidku.pembangunankeluar
-CREATE TABLE IF NOT EXISTS `pembangunankeluar` (
+-- Dumping structure for table masjidku.pembangunan_keluar
+CREATE TABLE IF NOT EXISTS `pembangunan_keluar` (
   `id` INTEGER DEFAULT NULL,
   `nama` varchar(50) DEFAULT NULL,
   `jumlah` double DEFAULT NULL,
@@ -138,8 +138,8 @@ CREATE TABLE IF NOT EXISTS `pemberi_zakat` (
 
 
 
--- Dumping structure for table masjidku.penerimaanakyatim
-CREATE TABLE IF NOT EXISTS `penerimaanakyatim` (
+-- Dumping structure for table masjidku.penerima_anakyatim
+CREATE TABLE IF NOT EXISTS `penerima_anakyatim` (
   `id` INTEGER DEFAULT NULL,
   `nama` varchar(50) DEFAULT NULL,
   `usia` INTEGER DEFAULT NULL,
@@ -221,8 +221,8 @@ CREATE TABLE IF NOT EXISTS `tamukegiatan` (
 
 
 
--- Dumping structure for table masjidku.tpakeluar
-CREATE TABLE IF NOT EXISTS `tpakeluar` (
+-- Dumping structure for table masjidku.tpa_keluar
+CREATE TABLE IF NOT EXISTS `tpa_keluar` (
   `id` INTEGER DEFAULT NULL,
   `nama` varchar(50) DEFAULT NULL,
   `jumlah` double DEFAULT NULL,

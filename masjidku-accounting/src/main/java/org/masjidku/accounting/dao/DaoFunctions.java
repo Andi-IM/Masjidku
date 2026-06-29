@@ -15,6 +15,7 @@
 
 package org.masjidku.accounting.dao;
 
+import org.intellij.lang.annotations.Language;
 import org.masjidku.accounting.dao.base.DaoFactory;
 
 import java.sql.SQLException;
@@ -22,23 +23,23 @@ import java.sql.SQLException;
 public class DaoFunctions extends DaoFactory {
 
     public String getInfakYatimBalance() throws SQLException {
-        String query = "SELECT getInfakYatimBalance()";
+        @Language("SQL") String query = "SELECT (SELECT COALESCE(SUM(jumlah), 0) FROM infak_anakyatim) - (SELECT COALESCE(SUM(jumlah), 0) FROM penerima_anakyatim)";
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
 
-        if (rs.next()){
+        if (rs.next()) {
             return rs.getString(1);
         }
 
         return null;
     }
 
-    public String getOperationalBalance() throws SQLException{
-        String query = "SELECT getOperationalBalance()";
+    public String getOperationalBalance() throws SQLException {
+        @Language("SQL") String query = "SELECT (SELECT COALESCE(SUM(jumlah), 0) FROM infak_operasional) - (SELECT COALESCE(SUM(jumlah), 0) FROM operasional_keluar)";
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
 
-        if (rs.next()){
+        if (rs.next()) {
             return rs.getString(1);
         }
 
@@ -46,11 +47,11 @@ public class DaoFunctions extends DaoFactory {
     }
 
     public String getPembangunanBalance() throws SQLException {
-        String query = "SELECT getPembangunanBalance()";
+        @Language("SQL") String query = "SELECT (SELECT COALESCE(SUM(jumlah), 0) FROM infak_pembangunan) - (SELECT COALESCE(SUM(jumlah), 0) FROM pembangunan_keluar)";
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
 
-        if (rs.next()){
+        if (rs.next()) {
             return rs.getString(1);
         }
 
@@ -58,22 +59,22 @@ public class DaoFunctions extends DaoFactory {
     }
 
     public String getTpaBalance() throws SQLException {
-        String query = "SELECT getTpaBalance()";
+        @Language("SQL") String query = "SELECT (SELECT COALESCE(SUM(jumlah), 0) FROM infak_tpa) - (SELECT COALESCE(SUM(jumlah), 0) FROM tpa_keluar)";
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
 
-        if (rs.next()){
+        if (rs.next()) {
             return rs.getString(1);
         }
         return null;
     }
 
     public String getZakatBalance() throws SQLException {
-        String query = "SELECT getZakatBalance()";
+        @Language("SQL") String query = "SELECT (SELECT COALESCE(SUM(jumlah), 0) FROM pemberi_zakat) - (SELECT COALESCE(SUM(jumlah), 0) FROM penerima_zakat)";
         ps = con.prepareStatement(query);
         rs = ps.executeQuery();
 
-        if (rs.next()){
+        if (rs.next()) {
             return rs.getString(1);
         }
         return null;

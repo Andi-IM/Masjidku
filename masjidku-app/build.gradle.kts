@@ -59,6 +59,7 @@ javafx {
 }
 
 application {
+    mainModule.set("main")
     mainClass.set("org.masjidku.MainApp")
     applicationDefaultJvmArgs = listOf(
         "--enable-native-access=javafx.graphics",

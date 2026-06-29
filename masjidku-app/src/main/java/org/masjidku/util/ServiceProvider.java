@@ -14,6 +14,11 @@ public class ServiceProvider {
      * @return the service instance
      */
     public static <T> T get(Class<T> serviceClass) {
+        ModuleLayer layer = ServiceProvider.class.getModule().getLayer();
+        if (layer != null) {
+            return ServiceLoader.load(layer, serviceClass).findFirst()
+                    .orElseGet(() -> ServiceLoader.load(serviceClass).findFirst().orElseThrow());
+        }
         return ServiceLoader.load(serviceClass).findFirst().orElseThrow();
     }
 }
