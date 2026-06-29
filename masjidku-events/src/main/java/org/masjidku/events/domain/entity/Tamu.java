@@ -15,12 +15,29 @@
 
 package org.masjidku.events.client.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "tamu")
 public class Tamu {
 
+    @Id
+    @Column(name = "tamuID", length = 5)
     private String idTamu;
+
+    @Column(name = "tamuNama", length = 50)
     private String nama;
+
+    @Column(name = "tamuAlamat", length = 255)
     private String alamat;
+
+    @Column(name = "tamuNotelp", length = 20)
     private String notelp;
+
+    @Column(name = "operator", length = 50)
     private String operator;
 
     public Tamu() {

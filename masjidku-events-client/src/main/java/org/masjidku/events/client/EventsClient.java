@@ -1,4 +1,4 @@
 package org.masjidku.events.client.model;
 
-public record Kegiatan() {
+public interface EventsClient {
 }
