@@ -1,0 +1,53 @@
+<!-- Created with Jaspersoft Studio version 7.0.6.final using JasperReports Library version 7.0.6-5d2a603fdc6b3db8f842a83383e594f41891534d  -->
+<jasperReport name="LaporanAnakYatim" language="java" columnCount="1" pageWidth="595" pageHeight="842" orientation="Landscape" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="888b1cc0-746f-40e9-b5fc-8dc76395e5d3">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Masjidku-db"/>
+	<query language="sql"><![CDATA[SELECT donatur, jumlah, tanggal, operator FROM infak_anakyatim]]></query>
+	<field name="donatur" class="java.lang.String"/>
+	<field name="jumlah" class="java.lang.Double"/>
+	<field name="tanggal" class="java.lang.String"/>
+	<field name="operator" class="java.lang.String"/>
+	<title height="50">
+		<element kind="staticText" uuid="70b0ccbe-6014-41d3-82c8-7013589c3b88" x="0" y="0" width="555" height="30" fontSize="20.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[Laporan Donatur Anak Yatim]]></text>
+		</element>
+	</title>
+	<columnHeader height="30">
+		<element kind="staticText" uuid="453664d6-a249-4171-bc01-e254ff95b35b" x="0" y="0" width="200" height="20" bold="true">
+			<text><![CDATA[Nama Donatur]]></text>
+		</element>
+		<element kind="staticText" uuid="7925e0c6-3d2d-436d-aba7-c238bfa84617" x="200" y="0" width="100" height="20" bold="true">
+			<text><![CDATA[Jumlah]]></text>
+		</element>
+		<element kind="staticText" uuid="a7f2081d-e256-4c40-9eb9-b8d9db9117af" x="300" y="0" width="100" height="20" bold="true">
+			<text><![CDATA[Tanggal]]></text>
+		</element>
+		<element kind="staticText" uuid="c0d8d7b3-c15c-4428-ba50-02cffef0c501" x="400" y="0" width="100" height="20" bold="true">
+			<text><![CDATA[Operator]]></text>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="30">
+			<element kind="textField" uuid="3d8e5784-ef47-410a-bfa2-32a229b4e7a8" x="0" y="0" width="200" height="20">
+				<expression><![CDATA[$F{donatur}]]></expression>
+			</element>
+			<element kind="textField" uuid="1c8a6797-09cd-4c8d-8aeb-7b79bb3e986a" x="200" y="0" width="100" height="20">
+				<expression><![CDATA[$F{jumlah}]]></expression>
+			</element>
+			<element kind="textField" uuid="79f7de41-6946-4a46-81a1-396a8be6b73a" x="300" y="0" width="100" height="20">
+				<expression><![CDATA[$F{tanggal}]]></expression>
+			</element>
+			<element kind="textField" uuid="3f6990d0-fb46-4610-85f9-bfa248d6fbce" x="400" y="0" width="100" height="20">
+				<expression><![CDATA[$F{operator}]]></expression>
+			</element>
+		</band>
+	</detail>
+</jasperReport>

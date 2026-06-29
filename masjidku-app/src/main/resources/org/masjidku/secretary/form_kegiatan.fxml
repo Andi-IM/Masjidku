@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<!--
+  ~ Copyright (c) 2021. Creative Commons Legal Code
+  ~
+  ~                            CC0 1.0 Universal
+  ~
+  ~                                CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
+  ~                                LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN
+  ~                                ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
+  ~                                INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
+  ~                                REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS
+  ~                                PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
+  ~                                THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
+  ~                                HEREUNDER.
+  -->
+
+<AnchorPane prefHeight="480.0" prefWidth="665.0" styleClass="main" xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.masjidku.secretary.SecretaryKegiatanForm">
+    <stylesheets>
+        <URL value="@../styles/styles.css"/>
+        <URL value="@../styles/fontstyles.css"/>
+    </stylesheets>
+    <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="24.0" layoutY="24.0" pickOnBounds="true"
+               preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <Image url="@../icon/app_icon.png"/>
+    </ImageView>
+    <GridPane layoutX="51.0" layoutY="214.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+        </rowConstraints>
+        <Label styleClass="labelForm" text="Nama"/>
+        <Label styleClass="labelForm" text="waktu" GridPane.rowIndex="1"/>
+        <Label styleClass="labelForm" text="tanggal" GridPane.rowIndex="2"/>
+        <TextField fx:id="txtNamaKegiatan" prefHeight="25.0" prefWidth="113.0" promptText="Masukkan Nama Kegiatan"
+                   styleClass="formField" GridPane.columnIndex="1"/>
+        <TextField fx:id="txtWaktu" promptText="Masukkan Waktu Kegiatan" styleClass="formField"
+                   GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        <Label styleClass="labelForm" text="tempat" GridPane.rowIndex="3"/>
+        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clearForm"
+                styleClass="generalButton" text="Bersihkan" GridPane.rowIndex="4">
+            <GridPane.margin>
+                <Insets right="10.0"/>
+            </GridPane.margin>
+        </Button>
+        <Button mnemonicParsing="false" onAction="#onUserSubmitted" styleClass="generalButton" text="OK"
+                GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <GridPane.margin>
+                <Insets left="10.0" right="10.0"/>
+            </GridPane.margin>
+        </Button>
+        <DatePicker fx:id="txtTanggal" maxWidth="1.7976931348623157E308" styleClass="formField"
+                    GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+        <TextField fx:id="txtTempat" promptText="masukkan tempat kegiatan" styleClass="formField"
+                   GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+    </GridPane>
+    <Text fill="#3AAFA9" layoutX="125.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="app-title"
+          text="Aplikasi Desktop MasjidKu "/>
+    <Text fill="#3AAFA9" layoutX="54.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="headline"
+          text="Input Pengguna" wrappingWidth="350.0">
+        <font>
+            <Font name="Roboto Bold" size="25.0"/>
+        </font>
+    </Text>
+    <Button layoutX="14.0" layoutY="441.0" mnemonicParsing="false" onAction="#gotoList" styleClass="generalButton"
+            text="kembali" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0"/>
+    <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="408.0" layoutY="52.0" onMouseClicked="#onLogoutClick"
+               pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+        <Image url="@../icon/logout.png"/>
+    </ImageView>
+    <Rectangle arcWidth="5.0" fill="#3aafa9" height="5.0" layoutX="111.0" layoutY="5.0" smooth="false" stroke="BLACK"
+               strokeLineCap="BUTT" strokeLineJoin="BEVEL" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0"
+               width="665.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+</AnchorPane>

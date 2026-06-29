@@ -92,22 +92,22 @@ public class EditDonaturAnakYatim {
                                     tanggal,
                                     operator
                             });
-                            alertInfo("Success", "Data telah diupdate");
+                            org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "Data telah diupdate");
                             mainApp.showDonasiAYatim();
                         }
                     } else {
                         dao.save(donatur);
-                        alertInfo("Success", "Data telah ditambahkan");
+                        org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "Data telah ditambahkan");
                         mainApp.showDonasiAYatim();
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
             } else {
-                alertError("Error", "Database belum ditanyakan!");
+                org.masjidku.util.AlertHelper.alertError(dialogStage, "Error", "Database belum ditanyakan!");
             }
         } else {
-            alertError("Error", "Data belum lengkap!");
+            org.masjidku.util.AlertHelper.alertError(dialogStage, "Error", "Data belum lengkap!");
         }
     }
 
@@ -142,25 +142,8 @@ public class EditDonaturAnakYatim {
      * @param header  header message
      * @param content content message
      */
-    @SuppressWarnings("SameParameterValue")
-    private void alertInfo(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.initOwner(dialogStage);
-        alert.setTitle("Prompt");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
+    
 
-        alert.showAndWait();
-    }
-
-    @SuppressWarnings("SameParameterValue")
-    private void alertError(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.initOwner(dialogStage);
-        alert.setTitle("Prompt");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-
-        alert.showAndWait();
-    }
+    
 }
+

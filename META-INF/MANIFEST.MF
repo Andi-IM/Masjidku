@@ -1,0 +1,60 @@
+Manifest-Version: 1.0
+Created-By: Maven JAR Plugin 3.3.0
+Build-Jdk-Spec: 21
+Built-By: Cloud Software Group, Inc.
+Specification-Title: JasperReports Library
+Specification-Version: 7.0.4
+Specification-Vendor: Cloud Software Group, Inc.
+Implementation-Title: net.sf.jasperreports.core
+Implementation-Version: 7.0.4-2b24e9a9b5452f9c039e7b7292c57646079d7975
+Implementation-Vendor: Cloud Software Group, Inc.
+Automatic-Module-Name: net.sf.jasperreports.core
+Bundle-ManifestVersion: 2
+Bundle-Name: JasperReports Library
+Bundle-Version: 7.0.4
+Bundle-Vendor: Cloud Software Group, Inc.
+Bundle-SymbolicName: net.sf.jasperreports.core
+Bundle-ClassPath: .
+Export-Package: net.sf.jasperreports.compilers,net.sf.jasperreports.comp
+ onents,net.sf.jasperreports.components.headertoolbar,net.sf.jasperrepor
+ ts.components.iconlabel,net.sf.jasperreports.components.items,net.sf.ja
+ sperreports.components.items.fill,net.sf.jasperreports.components.list,
+ net.sf.jasperreports.components.subreport,net.sf.jasperreports.componen
+ ts.subreport.fill,net.sf.jasperreports.components.table,net.sf.jasperre
+ ports.components.table.fill,net.sf.jasperreports.components.table.util,
+ net.sf.jasperreports.components.util,net.sf.jasperreports.crosstabs,net
+ .sf.jasperreports.crosstabs.base,net.sf.jasperreports.crosstabs.design,
+ net.sf.jasperreports.crosstabs.fill,net.sf.jasperreports.crosstabs.fill
+ .calculation,net.sf.jasperreports.crosstabs.interactive,net.sf.jasperre
+ ports.crosstabs.type,net.sf.jasperreports.data.cache,net.sf.jasperrepor
+ ts.engine,net.sf.jasperreports.engine.analytics.data,net.sf.jasperrepor
+ ts.engine.analytics.dataset,net.sf.jasperreports.engine.base,net.sf.jas
+ perreports.engine.component,net.sf.jasperreports.engine.convert,net.sf.
+ jasperreports.engine.data,net.sf.jasperreports.engine.design,net.sf.jas
+ perreports.engine.design.events,net.sf.jasperreports.engine.export,net.
+ sf.jasperreports.engine.export.data,net.sf.jasperreports.engine.export.
+ draw,net.sf.jasperreports.engine.export.oasis,net.sf.jasperreports.engi
+ ne.export.ooxml,net.sf.jasperreports.engine.export.ooxml.type,net.sf.ja
+ sperreports.engine.export.tabulator,net.sf.jasperreports.engine.export.
+ type,net.sf.jasperreports.engine.export.zip,net.sf.jasperreports.engine
+ .fill,net.sf.jasperreports.engine.fill.events,net.sf.jasperreports.engi
+ ne.fonts,net.sf.jasperreports.engine.part,net.sf.jasperreports.engine.p
+ rint,net.sf.jasperreports.engine.query,net.sf.jasperreports.engine.scri
+ ptlets,net.sf.jasperreports.engine.style,net.sf.jasperreports.engine.ty
+ pe,net.sf.jasperreports.engine.util,net.sf.jasperreports.engine.util.te
+ xt,net.sf.jasperreports.engine.util.xml,net.sf.jasperreports.engine.vir
+ tualization,net.sf.jasperreports.engine.xml,net.sf.jasperreports.engine
+ .xml.print,net.sf.jasperreports.export,net.sf.jasperreports.export.anno
+ tations,net.sf.jasperreports.export.type,net.sf.jasperreports.extension
+ s,net.sf.jasperreports.functions,net.sf.jasperreports.functions.annotat
+ ions,net.sf.jasperreports.governors,net.sf.jasperreports.jackson.repo,n
+ et.sf.jasperreports.jackson.type,net.sf.jasperreports.jackson.util,net.
+ sf.jasperreports.parts,net.sf.jasperreports.parts.subreport,net.sf.jasp
+ erreports.properties,net.sf.jasperreports.renderers,net.sf.jasperreport
+ s.renderers.util,net.sf.jasperreports.repo,net.sf.jasperreports.search,
+ net.sf.jasperreports.swing,net.sf.jasperreports.types.date,net.sf.jaspe
+ rreports.util,net.sf.jasperreports.view,net.sf.jasperreports.view.save,
+ net.sf.jasperreports.web,net.sf.jasperreports.web.actions,net.sf.jasper
+ reports.web.servlets,net.sf.jasperreports.web.util
+DynamicImport-Package: *
+

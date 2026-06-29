@@ -1,0 +1,26 @@
+plugins {
+    java
+    id("org.openjfx.javafxplugin")
+}
+
+repositories {
+    mavenCentral()
+}
+
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
+}
+
+javafx {
+    version = "21.0.6"
+    modules = listOf("javafx.base")
+}
+
+dependencies {
+    implementation(project(":masjidku-common"))
+    implementation(project(":masjidku-events-client"))
+    implementation(libs.jetbrains.annotations)
+    implementation(libs.slf4j)
+    implementation(libs.hibernate.core)
+    implementation(libs.hibernate.community.dialects)
+}

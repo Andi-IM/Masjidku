@@ -1,0 +1,13 @@
+plugins {
+    id 'java'
+    alias(libs.plugins.javafx)
+}
+
+javafx {
+    version = libs.versions.javafx.get()
+    modules = ['javafx.base']
+}
+
+dependencies {
+    implementation('jakarta.persistence:jakarta.persistence-api:3.1.0')
+}

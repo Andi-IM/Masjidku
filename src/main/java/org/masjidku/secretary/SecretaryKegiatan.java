@@ -101,7 +101,7 @@ public class SecretaryKegiatan implements Initializable {
         if (selectedKegiatan != null){
             mainApp.showKegiatanEditform(selectedKegiatan);
         } else {
-            alertError("Null Error", "Kegiatan tidak ditemukan!");
+            org.masjidku.util.AlertHelper.alertError(dialogStage, "Null Error", "Kegiatan tidak ditemukan!");
         }
     }
 
@@ -117,15 +117,15 @@ public class SecretaryKegiatan implements Initializable {
                     if (dao.isKegiatanExist(selectedKegiatan.getIdKegiatan())){
                         tblKegiatan.getItems().remove(selectedKegiatan);
                         dao.delete(selectedKegiatan.getIdKegiatan());
-                        alertInfo("Success", "Kegiatan Dihapus!");
+                        org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "Kegiatan Dihapus!");
                     } else {
-                        alertError("SQL Error", "Kegiatan tidak ditemukan!");
+                        org.masjidku.util.AlertHelper.alertError(dialogStage, "SQL Error", "Kegiatan tidak ditemukan!");
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
             } else {
-                alertError("Offline", "Database tidak terhuhung!");
+                org.masjidku.util.AlertHelper.alertError(dialogStage, "Offline", "Database tidak terhuhung!");
             }
         }
     }
@@ -146,32 +146,14 @@ public class SecretaryKegiatan implements Initializable {
      * @param header header message
      * @param content content message
      */
-    @SuppressWarnings("SameParameterValue")
-    private void alertError(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.initOwner(dialogStage);
-        alert.setTitle("Prompt");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-
-        alert.showAndWait();
-    }
+    
 
     /**
      * Alert Info Builder
      * @param header header message
      * @param content content message
      */
-    @SuppressWarnings("SameParameterValue")
-    private void alertInfo(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.initOwner(dialogStage);
-        alert.setTitle("Prompt");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-
-        alert.showAndWait();
-    }
+    
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -189,3 +171,4 @@ public class SecretaryKegiatan implements Initializable {
         mainApp.showUndangan();
     }
 }
+
