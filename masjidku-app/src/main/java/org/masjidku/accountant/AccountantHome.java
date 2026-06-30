@@ -14,10 +14,6 @@
  */
 package org.masjidku.accountant;
 
-import javafx.fxml.FXML;
-import javafx.scene.text.Text;
-import org.masjidku.di.DiProvider;
-import org.masjidku.navigation.AppRouter;
 import org.masjidku.controller.BaseHomeController;
 
 public class AccountantHome extends BaseHomeController {

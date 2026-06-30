@@ -19,12 +19,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import org.masjidku.accounting.client.model.tpa.TpaKeluar;
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.controller.BaseTableController;
 import org.masjidku.navigation.AppRouter;
-import org.masjidku.accounting.client.model.tpa.TpaKeluar;
-
-
-import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,7 +58,7 @@ public class PembayaranTpa extends BaseTableController<TpaKeluar> {
     @Override
     protected void setupTableColumns() {
         org.masjidku.util.AlertHelper.setupOutflowColumns(nama, jumlah, tanggal);
-}
+    }
 
     @FXML
     public void onLogoutClick() {
@@ -102,17 +100,17 @@ public class PembayaranTpa extends BaseTableController<TpaKeluar> {
     }
 
     @Override
-    protected List<TpaKeluar> fetchAllData() throws java.sql.SQLException {
+    protected List<TpaKeluar> fetchAllData() {
         return client.getAllTpaKeluar();
     }
 
     @Override
-    protected boolean checkIfExist(TpaKeluar item) throws java.sql.SQLException {
+    protected boolean checkIfExist(TpaKeluar item) {
         return client.isTpaKeluarExist(item.id());
     }
 
     @Override
-    protected void deleteItem(TpaKeluar item) throws java.sql.SQLException {
+    protected void deleteItem(TpaKeluar item) {
         client.delete(item);
     }
 

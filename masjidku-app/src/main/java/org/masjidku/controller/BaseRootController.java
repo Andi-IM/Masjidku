@@ -8,6 +8,8 @@ import javafx.scene.control.ToggleGroup;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.util.UIUtils;
 
+import static org.masjidku.util.UIUtils.preventEmptyToggleSelection;
+
 public abstract class BaseRootController {
 
     @FXML
@@ -22,7 +24,7 @@ public abstract class BaseRootController {
     @FXML
     public void initialize() {
         if (groupButton != null) {
-            UIUtils.preventEmptyToggleSelection(groupButton);
+            preventEmptyToggleSelection(groupButton);
         }
     }
 

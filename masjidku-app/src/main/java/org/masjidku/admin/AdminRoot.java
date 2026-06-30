@@ -16,31 +16,26 @@
 package org.masjidku.admin;
 
 import javafx.fxml.FXML;
-import org.masjidku.navigation.AppRouter;
 import org.masjidku.controller.BaseRootController;
 
 public class AdminRoot extends BaseRootController {
-    
 
-    
-
-    
-
-    
 
     @FXML
     public void homeAction() {
         mainApp.setAdminView();
     }
 
-    
 
     @FXML
-    public void userManage(){ mainApp.showUser(); }
+    public void userManage() {
+        mainApp.showUser();
+    }
 
-    
 
     @FXML
-    public void userLog() { mainApp.showUserLog(); }
+    public void userLog() {
+        mainApp.showUserLog();
+    }
 }
 

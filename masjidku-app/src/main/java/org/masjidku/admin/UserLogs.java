@@ -13,6 +13,7 @@
  *                                HEREUNDER.
  */
 package org.masjidku.admin;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,13 +21,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.masjidku.navigation.AppRouter;
 import org.masjidku.domain.repository.UserSessionRepository;
 import org.masjidku.domain.repository.impl.UserSessionRepositoryImpl;
 import org.masjidku.model.session.UserSession;
+import org.masjidku.navigation.AppRouter;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
 public class UserLogs implements Initializable {
     @FXML
     public TableView<UserSession> activityTable;
@@ -38,15 +40,16 @@ public class UserLogs implements Initializable {
     public TableColumn<UserSession, String> duration;
     private AppRouter mainApp;
     private UserSessionRepository dao;
+
     public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
+
     /**
      * The data as an observable list of Sessions.
      */
     private final ObservableList<UserSession> sessionData =
             FXCollections.observableArrayList();
-
 
 
     @FXML
@@ -55,6 +58,7 @@ public class UserLogs implements Initializable {
         dao.truncateData();
         mainApp.showUserLog();
     }
+
     /**
      * get User Data from DAO.
      *
@@ -65,6 +69,7 @@ public class UserLogs implements Initializable {
         sessionData.addAll(dao.getAllSessions());
         return sessionData;
     }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         activityTable.setItems(getSessionData());
@@ -72,6 +77,9 @@ public class UserLogs implements Initializable {
         timestamp.setCellValueFactory(new PropertyValueFactory<>("timestamp"));
         duration.setCellValueFactory(new PropertyValueFactory<>("duration"));
     }
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
 }
 

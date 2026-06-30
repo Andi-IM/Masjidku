@@ -8,6 +8,8 @@ import javafx.scene.text.Text;
 import org.masjidku.di.DiProvider;
 import org.masjidku.navigation.AppRouter;
 
+import static org.masjidku.di.DiProvider.getAppComponent;
+
 public abstract class BaseHomeController {
 
     @FXML
@@ -16,7 +18,7 @@ public abstract class BaseHomeController {
     protected AppRouter mainApp;
 
     public void setMainApp(AppRouter mainApp) {
-        String username = DiProvider.getAppComponent().getSessionManager().getCurrentUser().getUsername();
+        String username = getAppComponent().getSessionManager().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         if (greeting != null) {
             greeting.setText(getGreetingPrefix() + username);

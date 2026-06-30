@@ -23,13 +23,12 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.masjidku.navigation.AppRouter;
-import org.masjidku.model.user.User;
 import org.masjidku.domain.repository.UserRepository;
 import org.masjidku.domain.repository.impl.UserRepositoryImpl;
+import org.masjidku.model.user.User;
+import org.masjidku.navigation.AppRouter;
 
 import java.net.URL;
-
 import java.util.ResourceBundle;
 
 public class UserForm implements Initializable {
@@ -61,6 +60,7 @@ public class UserForm implements Initializable {
 
     /**
      * Is called by the main application to give a reference back to itself
+     *
      * @param mainApp the main application reference
      */
     public void setMainApp(AppRouter mainApp) {
@@ -81,14 +81,16 @@ public class UserForm implements Initializable {
      * Log out user.
      */
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
 
     /**
      * Change the checkbox state
      */
     @FXML
     public void onCheckboxAction() {
-        if (statusCheckBox.isSelected()){
+        if (statusCheckBox.isSelected()) {
             statusCheckBox.setText("Aktif");
         } else statusCheckBox.setText("Nonaktif");
     }
@@ -116,7 +118,7 @@ public class UserForm implements Initializable {
      */
     @FXML
     public void onUserSubmitted() {
-        if (formValidation()){
+        if (formValidation()) {
             String userid = txtUserId.getText();
             String username = txtUserName.getText();
             String jabatan = pilJabatan.getValue();
@@ -125,15 +127,14 @@ public class UserForm implements Initializable {
             User user = new User(userid, username, jabatan, status, null, null);
             UserRepository dao = new UserRepositoryImpl();
 
-               if (dao.isUserExist(userid)){
-                   dao.update(new String[]{user.getJabatan().toString(), user.getStatus(), user.getUserId()});
-                   org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "User telah diperbarui!");
-               }
-               else {
-                   dao.save(user);
-                   org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "User ditambahkan!");
-               }
-               mainApp.showUser();
+            if (dao.isUserExist(userid)) {
+                dao.update(new String[]{user.getJabatan().toString(), user.getStatus(), user.getUserId()});
+                org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "User telah diperbarui!");
+            } else {
+                dao.save(user);
+                org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "User ditambahkan!");
+            }
+            mainApp.showUser();
         } else {
             org.masjidku.util.AlertHelper.alertError(dialogStage, "Error", "Data belum lengkap!");
         }
@@ -142,11 +143,12 @@ public class UserForm implements Initializable {
 
     /**
      * Validating user
+     *
      * @return fieldStatus
      */
     private boolean formValidation() {
-        if (!txtUserId.getText().isBlank()){
-            if (!txtUserName.getText().isBlank()){
+        if (!txtUserId.getText().isBlank()) {
+            if (!txtUserName.getText().isBlank()) {
                 return !pilJabatan.getValue().isBlank();
             }
         }

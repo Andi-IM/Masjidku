@@ -100,10 +100,10 @@ public class EditDonaturPembangunan {
             }
 
             saveOrUpdate(
-                () -> client.isDonasiPembangunanExist(donatur.id()),
-                () -> client.update(new DonasiPembangunan(donatur.id(), nama, jumlah, tanggal, operator)),
-                () -> client.save(donatur),
-                dialogStage, log
+                    () -> client.isDonasiPembangunanExist(donatur.id()),
+                    () -> client.update(new DonasiPembangunan(donatur.id(), nama, jumlah, tanggal, operator)),
+                    () -> client.save(donatur),
+                    dialogStage, log
             );
         } else {
             alertError(dialogStage, ERROR, "Data belum lengkap!");

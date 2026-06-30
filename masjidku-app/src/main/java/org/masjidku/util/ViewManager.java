@@ -55,6 +55,7 @@ public class ViewManager {
     private final Stage primaryStage;
     private SplitPane rootLayout;
     private final MainApp mainApp;
+    private RootLayoutController rootLayoutController;
 
     public ViewManager(Stage primaryStage, MainApp mainApp) {
         this.primaryStage = primaryStage;
@@ -111,6 +112,7 @@ public class ViewManager {
 
             RootLayoutController controller = loader.getController();
             if (controller != null) {
+                this.rootLayoutController = controller;
                 controller.setMainApp(mainApp);
                 controller.btn_home.setSelected(true);
             }
@@ -147,14 +149,23 @@ public class ViewManager {
 
     public void showContent() {
         loadView("home.fxml");
+        if (rootLayoutController != null && rootLayoutController.btn_home != null) {
+            rootLayoutController.btn_home.setSelected(true);
+        }
     }
 
     public void showLogin() {
         loadView("login.fxml");
+        if (rootLayoutController != null && rootLayoutController.btn_login != null) {
+            rootLayoutController.btn_login.setSelected(true);
+        }
     }
 
     public void showAbout() {
         loadView("about.fxml");
+        if (rootLayoutController != null && rootLayoutController.btn_about != null) {
+            rootLayoutController.btn_about.setSelected(true);
+        }
     }
 
     public void showProfile() {

@@ -20,12 +20,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.masjidku.accounting.client.model.pembangunan.Pembangunan;
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.controller.BaseTableController;
 import org.masjidku.navigation.AppRouter;
-import org.masjidku.accounting.client.model.pembangunan.Pembangunan;
-
-
-import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,8 +60,8 @@ public class PembayaranPembangunan extends BaseTableController<Pembangunan> {
     @Override
     protected void setupTableColumns() {
         org.masjidku.util.AlertHelper.setupOutflowColumns(nama, jumlah, tanggal);
-keterangan.setCellValueFactory(new PropertyValueFactory<>("keterangan"));
-}
+        keterangan.setCellValueFactory(new PropertyValueFactory<>("keterangan"));
+    }
 
     @FXML
     public void onLogoutClick() {
@@ -105,17 +103,17 @@ keterangan.setCellValueFactory(new PropertyValueFactory<>("keterangan"));
     }
 
     @Override
-    protected List<Pembangunan> fetchAllData() throws java.sql.SQLException {
+    protected List<Pembangunan> fetchAllData() {
         return client.getAllPembangunan();
     }
 
     @Override
-    protected boolean checkIfExist(Pembangunan item) throws java.sql.SQLException {
+    protected boolean checkIfExist(Pembangunan item) {
         return client.isPembangunanExist(item.id());
     }
 
     @Override
-    protected void deleteItem(Pembangunan item) throws java.sql.SQLException {
+    protected void deleteItem(Pembangunan item) {
         client.delete(item);
     }
 

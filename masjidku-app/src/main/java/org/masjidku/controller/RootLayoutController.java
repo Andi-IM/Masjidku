@@ -24,9 +24,9 @@ public class RootLayoutController {
     @FXML
     public ToggleButton btn_home;
     @FXML
-    private ToggleButton btn_login;
+    public ToggleButton btn_login;
     @FXML
-    private ToggleButton btn_about;
+    public ToggleButton btn_about;
 
     @FXML
     private ToggleGroup groupButton;

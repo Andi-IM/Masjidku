@@ -19,12 +19,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import org.masjidku.accounting.client.model.tpa.TpaMasuk;
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.controller.BaseTableController;
 import org.masjidku.navigation.AppRouter;
-import org.masjidku.accounting.client.model.tpa.TpaMasuk;
-
-
-import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,20 +48,16 @@ public class DonaturTpa extends BaseTableController<TpaMasuk> {
 
     private AppRouter mainApp;
 
-    
-
-    
 
     public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
-    
 
     @Override
     protected void setupTableColumns() {
         org.masjidku.util.AlertHelper.setupInflowColumns(donatur, jumlah, tanggal);
-}
+    }
 
     @FXML
     public void onLogoutClick() {
@@ -76,11 +70,6 @@ public class DonaturTpa extends BaseTableController<TpaMasuk> {
         mainApp.editDonaturTpa(temp);
     }
 
-    
-
-    
-
-    
 
     @FXML
     public void gotoHome() {
@@ -88,17 +77,50 @@ public class DonaturTpa extends BaseTableController<TpaMasuk> {
     }
 
 
+    @Override
+    protected org.slf4j.Logger getLogger() {
+        return log;
+    }
 
-    @Override protected org.slf4j.Logger getLogger() { return log; }
-    @Override protected TableView<TpaMasuk> getTableView() { return tableTpa; }
-    @Override protected Button getBtnEdit() { return btnEdit; }
-    @Override protected Button getBtnRemove() { return btnRemove; }
-    @Override protected List<TpaMasuk> fetchAllData() throws java.sql.SQLException { return client.getAllTpaMasuk(); }
-    @Override protected boolean checkIfExist(TpaMasuk item) throws java.sql.SQLException { return client.isTpaMasukExist(item.id()); }
-    @Override protected void deleteItem(TpaMasuk item) throws java.sql.SQLException { client.delete(item); }
-    @Override protected void handleEdit(TpaMasuk item) { mainApp.editDonaturTpa(item); }
+    @Override
+    protected TableView<TpaMasuk> getTableView() {
+        return tableTpa;
+    }
 
-    @FXML public void onEditListener() { super.onEditAction(); }
+    @Override
+    protected Button getBtnEdit() {
+        return btnEdit;
+    }
+
+    @Override
+    protected Button getBtnRemove() {
+        return btnRemove;
+    }
+
+    @Override
+    protected List<TpaMasuk> fetchAllData() {
+        return client.getAllTpaMasuk();
+    }
+
+    @Override
+    protected boolean checkIfExist(TpaMasuk item) {
+        return client.isTpaMasukExist(item.id());
+    }
+
+    @Override
+    protected void deleteItem(TpaMasuk item) {
+        client.delete(item);
+    }
+
+    @Override
+    protected void handleEdit(TpaMasuk item) {
+        mainApp.editDonaturTpa(item);
+    }
+
+    @FXML
+    public void onEditListener() {
+        super.onEditAction();
+    }
 }
 
 

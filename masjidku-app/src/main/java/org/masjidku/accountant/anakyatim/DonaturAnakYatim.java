@@ -4,12 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import org.masjidku.navigation.AppRouter;
-import org.masjidku.controller.BaseTableController;
 import org.masjidku.accounting.client.model.anakyatim.DonasiAYatim;
-
-
 import org.masjidku.accounting.client.service.AccountingClient;
+import org.masjidku.controller.BaseTableController;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,24 +59,24 @@ public class DonaturAnakYatim extends BaseTableController<DonasiAYatim> {
     }
 
     @Override
-    protected List<DonasiAYatim> fetchAllData() throws SQLException {
+    protected List<DonasiAYatim> fetchAllData() {
         return client.getAllDonasiAYatim();
     }
 
     @Override
-    protected boolean checkIfExist(DonasiAYatim item) throws SQLException {
+    protected boolean checkIfExist(DonasiAYatim item) {
         return client.isDonasiAYatimExist(item.id());
     }
 
     @Override
-    protected void deleteItem(DonasiAYatim item)  {
+    protected void deleteItem(DonasiAYatim item) {
         client.delete(item);
     }
 
     @Override
     protected void setupTableColumns() {
         org.masjidku.util.AlertHelper.setupInflowColumns(donatur, jumlah, tanggal);
-}
+    }
 
     @Override
     protected void handleEdit(DonasiAYatim item) {
