@@ -19,10 +19,10 @@ import com.google.common.hash.Hashing;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.masjidku.auth.domain.repository.UserRepository;
-import org.masjidku.auth.domain.repository.impl.UserRepositoryImpl;
+import org.masjidku.auth.client.AuthClient;
 import org.masjidku.auth.client.model.User;
 import org.masjidku.navigation.AppRouter;
+import org.masjidku.util.ServiceProvider;
 
 import java.nio.charset.StandardCharsets;
 
@@ -40,7 +40,7 @@ public class LoginController {
 
     @SuppressWarnings("unused")
     private Stage dialogStage;
-    private UserRepository dao;
+    private AuthClient dao;
 
     /**
      * Is called by the main application to give a reference back to itself.
@@ -49,7 +49,7 @@ public class LoginController {
      */
     public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
-        dao = new UserRepositoryImpl();
+        dao = ServiceProvider.get(AuthClient.class);
     }
 
     @FXML
@@ -96,7 +96,7 @@ public class LoginController {
                 .toString();
 
         if (dao.isUserExist(username, password)) {
-            User user = dao.get(username);
+            User user = dao.getUser(username);
 
             if (user.status().equals(ACTIVE)) {
                 switch (user.getJabatan()) {

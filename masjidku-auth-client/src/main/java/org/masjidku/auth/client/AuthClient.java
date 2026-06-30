@@ -16,6 +16,35 @@
 package org.masjidku.auth.client;
 
 
-public interface AuthClient {
+import org.masjidku.auth.client.model.User;
+import org.masjidku.auth.client.model.UserProfile;
+import org.masjidku.auth.client.model.UserSession;
 
+import java.util.List;
+
+public interface AuthClient {
+    // UserRepository operations
+    List<User> getAllUsers();
+    void saveUser(User user);
+    void updateUser(String[] params);
+    void updateUser(String userid, String username, String password);
+    void deleteUser(String userid);
+    boolean isUserReset(String userid);
+    void resetUser(String userId);
+    User getUser(String userid);
+    boolean isUserExist(String userid);
+    boolean isUserExist(String userid, String password);
+
+    // UserProfileRepository operations
+    void saveUserProfile(UserProfile userProfile);
+    void updateUserProfile(String[] params);
+    UserProfile getFullUserData(String userid);
+
+    // UserSessionRepository operations
+    void logUserSession(String userid, String timestamp);
+    void updateUserSession(String sessionId, String duration);
+    UserSession getSessionData(String userId);
+    List<UserSession> getAllSessions();
+    List<UserSession> getAllSessions(String userid);
+    void truncateSessionData();
 }

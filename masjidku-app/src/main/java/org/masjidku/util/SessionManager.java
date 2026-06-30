@@ -16,7 +16,7 @@
 package org.masjidku.util;
 
 import com.google.common.base.Stopwatch;
-import org.masjidku.auth.domain.repository.UserSessionRepository;
+import org.masjidku.auth.client.AuthClient;
 import org.masjidku.auth.client.model.UserSession;
 import org.masjidku.auth.client.model.User;
 import org.slf4j.Logger;
@@ -32,14 +32,14 @@ import java.util.concurrent.TimeUnit;
 @Singleton
 public class SessionManager {
     private User currentUser;
-    private final UserSessionRepository sessionRepository;
+    private final AuthClient sessionRepository;
     private UserSession userSession;
     private Stopwatch stopwatch;
 
     private static final Logger log = LoggerFactory.getLogger(SessionManager.class);
 
     @Inject
-    public SessionManager(UserSessionRepository sessionRepository) {
+    public SessionManager(AuthClient sessionRepository) {
         this.sessionRepository = sessionRepository;
     }
 

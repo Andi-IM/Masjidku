@@ -22,8 +22,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.auth.client.model.UserProfile;
-import org.masjidku.auth.domain.repository.UserProfileRepository;
-import org.masjidku.auth.domain.repository.impl.UserProfileRepositoryImpl;
+import org.masjidku.auth.client.AuthClient;
+import org.masjidku.util.ServiceProvider;
 
 import static org.masjidku.di.DiProvider.getAppComponent;
 
@@ -54,7 +54,7 @@ public class ProfileController {
      * @return Observable List
      */
     private UserProfile getUserData(String userid) {
-        UserProfileRepository dao = new UserProfileRepositoryImpl();
+        AuthClient dao = ServiceProvider.get(AuthClient.class);
         return dao.getFullUserData(userid);
     }
 

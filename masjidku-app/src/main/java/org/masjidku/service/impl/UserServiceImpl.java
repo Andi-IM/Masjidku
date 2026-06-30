@@ -2,9 +2,9 @@ package org.masjidku.service.impl;
 
 import javafx.collections.ObservableList;
 import org.masjidku.auth.client.model.User;
-import org.masjidku.auth.domain.repository.UserRepository;
-import org.masjidku.auth.domain.repository.impl.UserRepositoryImpl;
+import org.masjidku.auth.client.AuthClient;
 import org.masjidku.service.UserService;
+import org.masjidku.util.ServiceProvider;
 
 /**
  * Implementation of the UserService abstraction layer.
@@ -12,57 +12,57 @@ import org.masjidku.service.UserService;
  */
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository userDao;
+    private final AuthClient userDao;
 
     public UserServiceImpl() {
-        this.userDao = new UserRepositoryImpl();
+        this.userDao = ServiceProvider.get(AuthClient.class);
     }
 
     // Dependency Injection constructor (recommended for future testing)
     @SuppressWarnings("unused")
-    public UserServiceImpl(UserRepository userDao) {
+    public UserServiceImpl(AuthClient userDao) {
         this.userDao = userDao;
     }
 
     @Override
     public ObservableList<User> getAll() {
-        return javafx.collections.FXCollections.observableArrayList(userDao.getAll());
+        return javafx.collections.FXCollections.observableArrayList(userDao.getAllUsers());
     }
 
     @Override
     public void save(User user) {
         // Business logic validations could go here before saving
-        userDao.save(user);
+        userDao.saveUser(user);
     }
 
     @Override
     public void update(String[] params) {
-        userDao.update(params);
+        userDao.updateUser(params);
     }
 
     @Override
     public void update(String userid, String username, String password) {
-        userDao.update(userid, username, password);
+        userDao.updateUser(userid, username, password);
     }
 
     @Override
     public void delete(String userid) {
-        userDao.delete(userid);
+        userDao.deleteUser(userid);
     }
 
     @Override
     public boolean isReset(String userid) {
-        return userDao.isReset(userid);
+        return userDao.isUserReset(userid);
     }
 
     @Override
     public void reset(String userId) {
-        userDao.reset(userId);
+        userDao.resetUser(userId);
     }
 
     @Override
     public User get(String userid) {
-        return userDao.get(userid);
+        return userDao.getUser(userid);
     }
 
     @Override

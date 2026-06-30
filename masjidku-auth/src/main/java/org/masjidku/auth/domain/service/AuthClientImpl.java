@@ -15,5 +15,139 @@
 
 package org.masjidku.auth.domain.service;
 
-public class AuthClientImpl {
+import org.masjidku.auth.client.AuthClient;
+import org.masjidku.auth.client.model.User;
+import org.masjidku.auth.client.model.UserProfile;
+import org.masjidku.auth.client.model.UserSession;
+import org.masjidku.auth.domain.repository.UserProfileRepository;
+import org.masjidku.auth.domain.repository.UserRepository;
+import org.masjidku.auth.domain.repository.UserSessionRepository;
+import org.masjidku.auth.domain.repository.impl.UserProfileRepositoryImpl;
+import org.masjidku.auth.domain.repository.impl.UserRepositoryImpl;
+import org.masjidku.auth.domain.repository.impl.UserSessionRepositoryImpl;
+import org.masjidku.common.HibernateContext;
+import org.masjidku.common.TransactionHelper;
+import org.hibernate.SessionFactory;
+
+import javax.inject.Inject;
+import java.util.List;
+
+public class AuthClientImpl implements AuthClient {
+    private final UserRepository userRepository;
+    private final UserProfileRepository userProfileRepository;
+    private final UserSessionRepository userSessionRepository;
+
+    @Inject
+    public AuthClientImpl(UserRepository userRepository,
+                          UserProfileRepository userProfileRepository,
+                          UserSessionRepository userSessionRepository) {
+        this.userRepository = userRepository;
+        this.userProfileRepository = userProfileRepository;
+        this.userSessionRepository = userSessionRepository;
+    }
+
+    public AuthClientImpl(SessionFactory sessionFactory, TransactionHelper transactionHelper) {
+        this.userRepository = new UserRepositoryImpl(sessionFactory, transactionHelper);
+        this.userProfileRepository = new UserProfileRepositoryImpl(sessionFactory, transactionHelper);
+        this.userSessionRepository = new UserSessionRepositoryImpl(sessionFactory, transactionHelper);
+    }
+
+    public AuthClientImpl() {
+        this(HibernateContext.getSessionFactory(), HibernateContext.getTransactionHelper());
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return userRepository.getAll();
+    }
+
+    @Override
+    public void saveUser(User user) {
+        userRepository.save(user);
+    }
+
+    @Override
+    public void updateUser(String[] params) {
+        userRepository.update(params);
+    }
+
+    @Override
+    public void updateUser(String userid, String username, String password) {
+        userRepository.update(userid, username, password);
+    }
+
+    @Override
+    public void deleteUser(String userid) {
+        userRepository.delete(userid);
+    }
+
+    @Override
+    public boolean isUserReset(String userid) {
+        return userRepository.isReset(userid);
+    }
+
+    @Override
+    public void resetUser(String userId) {
+        userRepository.reset(userId);
+    }
+
+    @Override
+    public User getUser(String userid) {
+        return userRepository.get(userid);
+    }
+
+    @Override
+    public boolean isUserExist(String userid) {
+        return userRepository.isUserExist(userid);
+    }
+
+    @Override
+    public boolean isUserExist(String userid, String password) {
+        return userRepository.isUserExist(userid, password);
+    }
+
+    @Override
+    public void saveUserProfile(UserProfile userProfile) {
+        userProfileRepository.save(userProfile);
+    }
+
+    @Override
+    public void updateUserProfile(String[] params) {
+        userProfileRepository.update(params);
+    }
+
+    @Override
+    public UserProfile getFullUserData(String userid) {
+        return userProfileRepository.getFullUserData(userid);
+    }
+
+    @Override
+    public void logUserSession(String userid, String timestamp) {
+        userSessionRepository.logUserSession(userid, timestamp);
+    }
+
+    @Override
+    public void updateUserSession(String sessionId, String duration) {
+        userSessionRepository.updateUserSession(sessionId, duration);
+    }
+
+    @Override
+    public UserSession getSessionData(String userId) {
+        return userSessionRepository.getSessionData(userId);
+    }
+
+    @Override
+    public List<UserSession> getAllSessions() {
+        return userSessionRepository.getAllSessions();
+    }
+
+    @Override
+    public List<UserSession> getAllSessions(String userid) {
+        return userSessionRepository.getAllSessions(userid);
+    }
+
+    @Override
+    public void truncateSessionData() {
+        userSessionRepository.truncateData();
+    }
 }

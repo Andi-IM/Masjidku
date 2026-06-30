@@ -24,10 +24,10 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import net.synedra.validatorfx.Validator;
-import org.masjidku.auth.domain.repository.UserRepository;
-import org.masjidku.auth.domain.repository.impl.UserRepositoryImpl;
+import org.masjidku.auth.client.AuthClient;
 import org.masjidku.auth.client.model.User;
 import org.masjidku.navigation.AppRouter;
+import org.masjidku.util.ServiceProvider;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -144,13 +144,13 @@ public class UserForm implements Initializable {
             String status = statusCheckBox.getText();
 
             User user = new User(userid, username, jabatan, status, null, null);
-            UserRepository dao = new UserRepositoryImpl();
+            AuthClient dao = ServiceProvider.get(AuthClient.class);
 
             if (dao.isUserExist(userid)) {
-                dao.update(new String[]{user.jabatan(), user.status(), user.id()});
+                dao.updateUser(new String[]{user.jabatan(), user.status(), user.id()});
                 alertInfo(dialogStage, SUCCESS, "User telah diperbarui!");
             } else {
-                dao.save(user);
+                dao.saveUser(user);
                 alertInfo(dialogStage, SUCCESS, "User ditambahkan!");
             }
             mainApp.showUser();

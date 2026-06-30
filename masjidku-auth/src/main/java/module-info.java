@@ -20,6 +20,7 @@ module org.masjidku.auth {
     exports org.masjidku.auth.domain.repository;
     exports org.masjidku.auth.domain.repository.impl;
     exports org.masjidku.auth.domain.repository.base;
+    exports org.masjidku.auth.domain.service;
         
     opens org.masjidku.auth.domain.entity to org.hibernate.orm.core;
 }

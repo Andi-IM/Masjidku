@@ -4,8 +4,8 @@ import dagger.Module;
 import dagger.Provides;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.masjidku.auth.domain.repository.UserSessionRepository;
-import org.masjidku.auth.domain.repository.impl.UserSessionRepositoryImpl;
+import org.masjidku.auth.client.AuthClient;
+import org.masjidku.auth.domain.service.AuthClientImpl;
 import org.masjidku.reporting.client.service.ReportService;
 import org.masjidku.util.ServiceProvider;
 
@@ -16,8 +16,8 @@ public class AppModule {
 
     @Provides
     @Singleton
-    public UserSessionRepository provideUserSessionRepository() {
-        return new UserSessionRepositoryImpl();
+    public AuthClient provideAuthClient() {
+        return new AuthClientImpl();
     }
 
     @Provides
