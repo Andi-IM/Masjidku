@@ -21,4 +21,8 @@ dependencies {
     implementation(project(":masjidku-accounting-client"))
     implementation(libs.slf4j)
     implementation(libs.jetbrains.annotations)
+    implementation(libs.hibernate.core)
+    implementation(libs.hibernate.community.dialects)
+    implementation(libs.hibernate.hikaricp)
+    implementation(libs.hikaricp)
 }
