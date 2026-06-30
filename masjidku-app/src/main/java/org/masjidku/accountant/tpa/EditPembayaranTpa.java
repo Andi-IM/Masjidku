@@ -19,11 +19,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.masjidku.navigation.AppRouter;
+import net.synedra.validatorfx.Validator;
 import org.masjidku.accounting.client.model.tpa.TpaKeluar;
-
-
 import org.masjidku.accounting.client.service.AccountingClient;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,9 +30,14 @@ import org.slf4j.LoggerFactory;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import static org.masjidku.di.DiProvider.getAppComponent;
+import static org.masjidku.util.DaoHelper.saveOrUpdate;
+import static org.masjidku.util.ValidationHelper.*;
+
 public class EditPembayaranTpa {
     private static final Logger log = LoggerFactory.getLogger(EditPembayaranTpa.class);
     private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
+    private final Validator validator = new Validator();
 
     @FXML
     private TextField txtNama;
@@ -51,11 +55,18 @@ public class EditPembayaranTpa {
     @SuppressWarnings("unused")
     private Stage dialogStage;
 
+    @FXML
+    public void initialize() {
+        registerRequiredField(validator, txtNama, "nama", "Tujuan harus diisi!");
+        registerRequiredField(validator, txtKeterangan, "keterangan", "Keterangan harus diisi!");
+        registerNumericField(validator, txtJumlah, "jumlah", "Jumlah harus diisi!", "Jumlah harus berupa angka!");
+        registerDatePicker(validator, date, "tanggal", "Tanggal harus dipilih!");
+    }
+
     public void setMainApp(AppRouter mainApp, TpaKeluar model) {
-        String operator = org.masjidku.di.DiProvider.getAppComponent().getSessionManager().getCurrentUser().getUsername();
+        operator = getAppComponent().getSessionManager().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         this.model = model;
-        this.operator = operator;
 
         if (model.getId() != null) {
             setModel(model);
@@ -76,7 +87,7 @@ public class EditPembayaranTpa {
      * @return fieldStatus
      */
     private boolean formValidation() {
-        return !txtNama.getText().isBlank() && !txtKeterangan.getText().isBlank() && !txtJumlah.getText().isBlank() && txtJumlah.getText().matches("\\d+") && date.getValue() != null;
+        return validator.validate();
     }
 
     @FXML
@@ -91,11 +102,11 @@ public class EditPembayaranTpa {
                 model = new TpaKeluar(nama, keterangan, jumlah, tanggal, operator);
             }
 
-            org.masjidku.util.DaoHelper.saveOrUpdate(
-                () -> client.isTpaKeluarExist(model.getId()),
-                () -> client.update(new TpaKeluar(model.getId(), nama, keterangan, jumlah, tanggal, operator)),
-                () -> client.save(model),
-                dialogStage, log
+            saveOrUpdate(
+                    () -> client.isTpaKeluarExist(model.getId()),
+                    () -> client.update(new TpaKeluar(model.getId(), nama, keterangan, jumlah, tanggal, operator)),
+                    () -> client.save(model),
+                    dialogStage, log
             );
         } else {
             org.masjidku.util.AlertHelper.alertError(dialogStage, "Error", "Data belum lengkap!");

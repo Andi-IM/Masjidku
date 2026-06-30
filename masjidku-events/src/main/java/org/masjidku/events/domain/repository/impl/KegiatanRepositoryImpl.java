@@ -1,24 +1,21 @@
 package org.masjidku.events.domain.repository.impl;
 
+import org.hibernate.SessionFactory;
 import org.masjidku.events.domain.entity.Kegiatan;
 import org.masjidku.events.domain.repository.KegiatanRepository;
 import org.masjidku.events.domain.repository.exception.DataAccessException;
 
+import javax.inject.Inject;
 import java.util.List;
 import java.util.Optional;
-import javax.inject.Inject;
-import org.hibernate.SessionFactory;
-import org.masjidku.domain.repository.base.TransactionHelper;
 
 public class KegiatanRepositoryImpl implements KegiatanRepository {
 
     private final SessionFactory sessionFactory;
-    private final TransactionHelper transactionHelper;
 
     @Inject
-    public KegiatanRepositoryImpl(SessionFactory sessionFactory, TransactionHelper transactionHelper) {
+    public KegiatanRepositoryImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
-        this.transactionHelper = transactionHelper;
     }
 
 

@@ -15,6 +15,9 @@
 
 package org.masjidku.events.application;
 
+import org.hibernate.SessionFactory;
+import org.masjidku.domain.repository.base.HibernateContext;
+import org.masjidku.domain.repository.base.TransactionHelper;
 import org.masjidku.events.application.mapper.KegiatanMapper;
 import org.masjidku.events.application.mapper.TamuKegiatanMapper;
 import org.masjidku.events.application.mapper.TamuMapper;
@@ -29,28 +32,23 @@ import org.masjidku.events.domain.repository.impl.KegiatanRepositoryImpl;
 import org.masjidku.events.domain.repository.impl.TamuKegiatanRepositoryImpl;
 import org.masjidku.events.domain.repository.impl.TamuRepositoryImpl;
 
-import java.util.List;
 import javax.inject.Inject;
-import org.hibernate.SessionFactory;
-import org.masjidku.domain.repository.base.TransactionHelper;
+import java.util.List;
 
 public class EventsClientImpl implements EventsClient {
-
-    private final SessionFactory sessionFactory;
     private final TransactionHelper transactionHelper;
 
     @Inject
     public EventsClientImpl(SessionFactory sessionFactory, TransactionHelper transactionHelper) {
-        this.sessionFactory = sessionFactory;
         this.transactionHelper = transactionHelper;
-    
-        this.kegiatanRepository = new KegiatanRepositoryImpl(sessionFactory, transactionHelper);
-        this.tamuRepository = new TamuRepositoryImpl(sessionFactory, transactionHelper);
-        this.undanganRepository = new TamuKegiatanRepositoryImpl(sessionFactory, transactionHelper);
+
+        this.kegiatanRepository = new KegiatanRepositoryImpl(sessionFactory);
+        this.tamuRepository = new TamuRepositoryImpl(sessionFactory);
+        this.undanganRepository = new TamuKegiatanRepositoryImpl(sessionFactory);
     }
 
     public EventsClientImpl() {
-        this(org.masjidku.domain.repository.base.HibernateContext.getSessionFactory(), org.masjidku.domain.repository.base.HibernateContext.getTransactionHelper());
+        this(HibernateContext.getSessionFactory(), HibernateContext.getTransactionHelper());
     }
 
 
@@ -58,7 +56,6 @@ public class EventsClientImpl implements EventsClient {
     private final TamuRepository tamuRepository;
     private final TamuKegiatanRepository undanganRepository;
 
-    
 
     @Override
     public List<Kegiatan> getAllKegiatan() {

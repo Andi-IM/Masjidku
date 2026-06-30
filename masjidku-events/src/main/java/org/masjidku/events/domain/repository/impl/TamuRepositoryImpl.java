@@ -1,24 +1,21 @@
 package org.masjidku.events.domain.repository.impl;
 
+import org.hibernate.SessionFactory;
 import org.masjidku.events.domain.entity.Tamu;
 import org.masjidku.events.domain.repository.TamuRepository;
 import org.masjidku.events.domain.repository.exception.DataAccessException;
 
+import javax.inject.Inject;
 import java.util.List;
 import java.util.Optional;
-import javax.inject.Inject;
-import org.hibernate.SessionFactory;
-import org.masjidku.domain.repository.base.TransactionHelper;
 
 public class TamuRepositoryImpl implements TamuRepository {
 
     private final SessionFactory sessionFactory;
-    private final TransactionHelper transactionHelper;
 
     @Inject
-    public TamuRepositoryImpl(SessionFactory sessionFactory, TransactionHelper transactionHelper) {
+    public TamuRepositoryImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
-        this.transactionHelper = transactionHelper;
     }
 
 

@@ -19,11 +19,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.masjidku.navigation.AppRouter;
+import net.synedra.validatorfx.Validator;
 import org.masjidku.accounting.client.model.anakyatim.DonasiAYatim;
-
-
 import org.masjidku.accounting.client.service.AccountingClient;
+import org.masjidku.navigation.AppRouter;
+import org.masjidku.util.AlertHelper;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,9 +31,15 @@ import org.slf4j.LoggerFactory;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import static org.masjidku.di.DiProvider.getAppComponent;
+import static org.masjidku.util.Constants.ERROR;
+import static org.masjidku.util.DaoHelper.saveOrUpdate;
+import static org.masjidku.util.ValidationHelper.*;
+
 public class EditDonaturAnakYatim {
     private static final Logger log = LoggerFactory.getLogger(EditDonaturAnakYatim.class);
     private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
+    private final Validator validator = new Validator();
 
     @FXML
     private TextField txtNama;
@@ -49,11 +55,18 @@ public class EditDonaturAnakYatim {
     @SuppressWarnings("unused")
     private Stage dialogStage;
 
+    @FXML
+    public void initialize() {
+        registerRequiredField(validator, txtNama, "nama", "Nama donatur harus diisi!");
+        registerNumericField(validator, txtJumlah, "jumlah", "Jumlah harus diisi!", "Jumlah harus berupa angka!");
+        registerDatePicker(validator, date, "tanggal", "Tanggal harus dipilih!");
+    }
+
     public void setMainApp(AppRouter mainApp, DonasiAYatim model) {
-        String operator = org.masjidku.di.DiProvider.getAppComponent().getSessionManager().getCurrentUser().getUsername();
+        operator = getAppComponent().getSessionManager().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         this.donatur = model;
-        this.operator = operator;
+
 
         if (model.getId() != null) {
             setDonasi(model);
@@ -85,14 +98,14 @@ public class EditDonaturAnakYatim {
                 donatur = new DonasiAYatim(nama, jumlah, tanggal, operator);
             }
 
-            org.masjidku.util.DaoHelper.saveOrUpdate(
-                () -> client.isDonasiAYatimExist(donatur.getId()),
-                () -> client.update(new DonasiAYatim(donatur.getId(), nama, jumlah, tanggal, operator)),
-                () -> client.save(donatur),
-                dialogStage, log
+            saveOrUpdate(
+                    () -> client.isDonasiAYatimExist(donatur.getId()),
+                    () -> client.update(new DonasiAYatim(donatur.getId(), nama, jumlah, tanggal, operator)),
+                    () -> client.save(donatur),
+                    dialogStage, log
             );
         } else {
-            org.masjidku.util.AlertHelper.alertError(dialogStage, "Error", "Data belum lengkap!");
+            AlertHelper.alertError(dialogStage, ERROR, "Data belum lengkap!");
         }
     }
 
@@ -102,7 +115,7 @@ public class EditDonaturAnakYatim {
      * @return fieldStatus
      */
     private boolean formValidation() {
-        return !txtNama.getText().isBlank() && !txtJumlah.getText().isBlank() && txtJumlah.getText().matches("\\d+") && date.getValue() != null;
+        return validator.validate();
     }
 
     @FXML

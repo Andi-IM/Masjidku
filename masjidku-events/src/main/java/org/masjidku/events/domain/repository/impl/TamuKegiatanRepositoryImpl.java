@@ -1,24 +1,21 @@
 package org.masjidku.events.domain.repository.impl;
 
+import org.hibernate.SessionFactory;
 import org.masjidku.events.domain.entity.TamuKegiatan;
 import org.masjidku.events.domain.repository.TamuKegiatanRepository;
 import org.masjidku.events.domain.repository.exception.DataAccessException;
 
+import javax.inject.Inject;
 import java.util.List;
 import java.util.Optional;
-import javax.inject.Inject;
-import org.hibernate.SessionFactory;
-import org.masjidku.domain.repository.base.TransactionHelper;
 
 public class TamuKegiatanRepositoryImpl implements TamuKegiatanRepository {
 
     private final SessionFactory sessionFactory;
-    private final TransactionHelper transactionHelper;
 
     @Inject
-    public TamuKegiatanRepositoryImpl(SessionFactory sessionFactory, TransactionHelper transactionHelper) {
+    public TamuKegiatanRepositoryImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
-        this.transactionHelper = transactionHelper;
     }
 
 

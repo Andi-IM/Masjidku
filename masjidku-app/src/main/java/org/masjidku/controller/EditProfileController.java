@@ -28,11 +28,11 @@ import org.masjidku.domain.repository.impl.UserProfileRepositoryImpl;
 import org.masjidku.navigation.AppRouter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-
+import net.synedra.validatorfx.Validator;
 
 public class EditProfileController {
     private static final Logger log = LoggerFactory.getLogger(EditProfileController.class);
+    private final Validator validator = new Validator();
 
     @FXML
     public Label lbUserID;
@@ -54,6 +54,49 @@ public class EditProfileController {
     // create some stage
     @SuppressWarnings("unused")
     private Stage dialogStage;
+
+    @FXML
+    public void initialize() {
+        org.masjidku.util.ValidationHelper.registerRequiredField(validator, txtUserName, "username", "Username harus diisi!");
+        org.masjidku.util.ValidationHelper.registerRequiredField(validator, txtNewPassword, "newPassword", "Password baru harus diisi!");
+        org.masjidku.util.ValidationHelper.registerRequiredField(validator, txtAlamat, "alamat", "Alamat harus diisi!");
+        org.masjidku.util.ValidationHelper.registerRequiredField(validator, txtNoTel, "notel", "Nomor telepon harus diisi!");
+
+        validator.createCheck()
+                .dependsOn("oldPassword", txtOldPassword.textProperty())
+                .withMethod(c -> {
+                    String val = c.get("oldPassword");
+                    if (val == null || val.isBlank()) {
+                        c.error("Password lama harus diisi!");
+                    } else {
+                        String userId = lbUserID.getText();
+                        if (userId != null && !userId.isBlank()) {
+                            UserRepository dao = new UserRepositoryImpl();
+                            String hashed = com.google.common.hash.Hashing.sha256()
+                                    .hashString(val, java.nio.charset.StandardCharsets.UTF_8)
+                                    .toString();
+                            if (!dao.isUserExist(userId, hashed)) {
+                                c.error("Password lama salah!");
+                            }
+                        }
+                    }
+                })
+                .decorates(txtOldPassword);
+
+        validator.createCheck()
+                .dependsOn("newPassword", txtNewPassword.textProperty())
+                .dependsOn("confirmPassword", txtConfirmPassword.textProperty())
+                .withMethod(c -> {
+                    String pass = c.get("newPassword");
+                    String confirm = c.get("confirmPassword");
+                    if (confirm == null || confirm.isBlank()) {
+                        c.error("Konfirmasi password harus diisi!");
+                    } else if (pass != null && !pass.equals(confirm)) {
+                        c.error("Password tidak sama!");
+                    }
+                })
+                .decorates(txtConfirmPassword);
+    }
 
     @FXML
     public void setMainApp(AppRouter mainApp, UserProfile profile) {
@@ -101,16 +144,7 @@ public class EditProfileController {
     }
 
     private boolean formValidation() {
-        if (!txtUserName.getText().isBlank() && !txtOldPassword.getText().isBlank()) {
-            if (!txtNewPassword.getText().isBlank() && txtConfirmPassword.getText().isBlank()) {
-                if (txtNewPassword.getText().equals(txtConfirmPassword.getText())) {
-                    return !txtAlamat.getText().isBlank() && !txtNoTel.getText().isBlank();
-                } else {
-                    org.masjidku.util.AlertHelper.alertError(dialogStage, "Error", "Password tidak sama!");
-                }
-            }
-        }
-        return false;
+        return validator.validate();
     }
 
     @FXML
