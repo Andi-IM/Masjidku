@@ -23,16 +23,22 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import net.synedra.validatorfx.Validator;
+import org.masjidku.auth.client.AuthClient;
+import org.masjidku.auth.client.model.User;
 import org.masjidku.navigation.AppRouter;
-import org.masjidku.model.user.User;
-import org.masjidku.domain.repository.UserRepository;
-import org.masjidku.domain.repository.impl.UserRepositoryImpl;
+import org.masjidku.util.ServiceProvider;
 
 import java.net.URL;
-
 import java.util.ResourceBundle;
 
+import static org.masjidku.util.AlertHelper.alertError;
+import static org.masjidku.util.AlertHelper.alertInfo;
+import static org.masjidku.util.Constants.*;
+import static org.masjidku.util.ValidationHelper.registerRequiredField;
+
 public class UserForm implements Initializable {
+    private final Validator validator = new Validator();
     final ObservableList<String> list = FXCollections.observableArrayList();
 
     @FXML
@@ -53,14 +59,15 @@ public class UserForm implements Initializable {
 
     // setting the field
     public void setUser(User user) {
-        txtUserId.setText(user.getUserId());
-        txtUserName.setText(user.getUsername());
-        pilJabatan.getSelectionModel().select(user.getJabatan().toString());
-        statusCheckBox.setSelected(user.getStatus() != null && user.getStatus().equals("Aktif"));
+        txtUserId.setText(user.id());
+        txtUserName.setText(user.username());
+        pilJabatan.getSelectionModel().select(user.jabatan());
+        statusCheckBox.setSelected(user.status() != null && user.status().equals(ACTIVE));
     }
 
     /**
      * Is called by the main application to give a reference back to itself
+     *
      * @param mainApp the main application reference
      */
     public void setMainApp(AppRouter mainApp) {
@@ -75,20 +82,34 @@ public class UserForm implements Initializable {
         String bendahara = "bendahara";
         list.addAll(ketua, sekretaris, bendahara);
         pilJabatan.getItems().addAll(list);
+
+        registerRequiredField(validator, txtUserId, "userid", "User ID harus diisi!");
+        registerRequiredField(validator, txtUserName, "username", "Nama User harus diisi!");
+        validator.createCheck()
+                .dependsOn("jabatan", pilJabatan.valueProperty())
+                .withMethod(c -> {
+                    String val = c.get("jabatan");
+                    if (val == null || val.isBlank()) {
+                        c.error("Jabatan harus dipilih!");
+                    }
+                })
+                .decorates(pilJabatan);
     }
 
     /**
      * Log out user.
      */
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
 
     /**
      * Change the checkbox state
      */
     @FXML
     public void onCheckboxAction() {
-        if (statusCheckBox.isSelected()){
+        if (statusCheckBox.isSelected()) {
             statusCheckBox.setText("Aktif");
         } else statusCheckBox.setText("Nonaktif");
     }
@@ -116,41 +137,36 @@ public class UserForm implements Initializable {
      */
     @FXML
     public void onUserSubmitted() {
-        if (formValidation()){
+        if (formValidation()) {
             String userid = txtUserId.getText();
             String username = txtUserName.getText();
             String jabatan = pilJabatan.getValue();
             String status = statusCheckBox.getText();
 
             User user = new User(userid, username, jabatan, status, null, null);
-            UserRepository dao = new UserRepositoryImpl();
+            AuthClient dao = ServiceProvider.get(AuthClient.class);
 
-               if (dao.isUserExist(userid)){
-                   dao.update(new String[]{user.getJabatan().toString(), user.getStatus(), user.getUserId()});
-                   org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "User telah diperbarui!");
-               }
-               else {
-                   dao.save(user);
-                   org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "User ditambahkan!");
-               }
-               mainApp.showUser();
+            if (dao.isUserExist(userid)) {
+                dao.updateUser(new org.masjidku.auth.client.dto.UpdateUserStatusDto(user.id(), user.jabatan(), user.status()));
+                alertInfo(dialogStage, SUCCESS, "User telah diperbarui!");
+            } else {
+                dao.saveUser(user);
+                alertInfo(dialogStage, SUCCESS, "User ditambahkan!");
+            }
+            mainApp.showUser();
         } else {
-            org.masjidku.util.AlertHelper.alertError(dialogStage, "Error", "Data belum lengkap!");
+            alertError(dialogStage, ERROR, "Data belum lengkap!");
         }
 
     }
 
     /**
      * Validating user
+     *
      * @return fieldStatus
      */
     private boolean formValidation() {
-        if (!txtUserId.getText().isBlank()){
-            if (!txtUserName.getText().isBlank()){
-                return !pilJabatan.getValue().isBlank();
-            }
-        }
-        return false;
+        return validator.validate();
     }
 
 

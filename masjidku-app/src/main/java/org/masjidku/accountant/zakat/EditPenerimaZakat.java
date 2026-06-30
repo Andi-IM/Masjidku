@@ -64,7 +64,7 @@ public class EditPenerimaZakat {
     }
 
     public void setMainApp(AppRouter mainApp, ZakatKeluar model) {
-        operator = getAppComponent().getSessionManager().getCurrentUser().getUsername();
+        operator = getAppComponent().getSessionManager().getCurrentUsername();
         this.mainApp = mainApp;
         this.penerima = model;
 

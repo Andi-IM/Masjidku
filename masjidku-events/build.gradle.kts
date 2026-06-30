@@ -22,6 +22,7 @@ tasks.named<JavaCompile>("compileJava") {
 
 dependencies {
     implementation(project(":masjidku-common"))
+    implementation(project(":masjidku-auth-client"))
     implementation(project(":masjidku-events-client"))
     implementation(libs.jetbrains.annotations)
     implementation(libs.slf4j)

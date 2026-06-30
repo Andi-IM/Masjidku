@@ -3,8 +3,8 @@ package org.masjidku.accounting.di;
 import dagger.Module;
 import dagger.Provides;
 import org.hibernate.SessionFactory;
-import org.masjidku.domain.repository.base.HibernateContext;
-import org.masjidku.domain.repository.base.TransactionHelper;
+import org.masjidku.common.HibernateContext;
+import org.masjidku.common.TransactionHelper;
 import javax.inject.Singleton;
 
 @Module

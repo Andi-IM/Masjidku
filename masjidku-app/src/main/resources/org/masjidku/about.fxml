@@ -23,7 +23,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.*?>
 <?import java.net.URL?>
-<AnchorPane prefHeight="480.0" prefWidth="665.0" styleClass="main" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="480.0" prefWidth="665.0" styleClass="main" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.masjidku.controller.AboutController">
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="24.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
@@ -36,7 +36,7 @@
          </image>
       </ImageView>
       <Text fill="#3AAFA9" layoutX="125.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="app-title" text="Aplikasi Desktop MasjidKu " />
-      <Text fill="#3AAFA9" layoutX="243.0" layoutY="212.0" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aplikasi Desktop versi 1.0 Made by :  " textAlignment="CENTER" wrappingWidth="180.0">
+      <Text fx:id="txtVersion" fill="#3AAFA9" layoutX="243.0" layoutY="212.0" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aplikasi Desktop versi 1.0 Made by :  " textAlignment="CENTER" wrappingWidth="180.0">
          <font>
             <Font name="Roboto" size="15.0" />
          </font>

@@ -27,9 +27,6 @@ public class AnakYatimEntity {
     @Column(name = "operator")
     private String operator;
 
-    public AnakYatimEntity() {
-    }
-
     public String getId() {
         return id;
     }

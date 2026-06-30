@@ -19,24 +19,28 @@ import com.google.common.hash.Hashing;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.masjidku.model.user.User;
-import org.masjidku.domain.repository.UserRepository;
-import org.masjidku.domain.repository.impl.UserRepositoryImpl;
+import org.masjidku.auth.client.AuthClient;
+import org.masjidku.auth.client.model.User;
 import org.masjidku.navigation.AppRouter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.masjidku.util.ServiceProvider;
 
 import java.nio.charset.StandardCharsets;
 
+import net.synedra.validatorfx.Validator;
+import static org.masjidku.util.ValidationHelper.registerRequiredField;
+
+import static org.masjidku.util.AlertHelper.alertError;
+import static org.masjidku.util.Constants.ACTIVE;
+
 
 public class LoginController {
-    private static final Logger log = LoggerFactory.getLogger(LoginController.class);
+    private final Validator validator = new Validator();
     // Reference to the main application
     private AppRouter mainApp;
 
     @SuppressWarnings("unused")
     private Stage dialogStage;
-    private UserRepository dao;
+    private AuthClient dao;
 
     /**
      * Is called by the main application to give a reference back to itself.
@@ -45,7 +49,7 @@ public class LoginController {
      */
     public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
-        dao = new UserRepositoryImpl();
+        dao = ServiceProvider.get(AuthClient.class);
     }
 
     @FXML
@@ -69,18 +73,18 @@ public class LoginController {
 
         if (txtUsername != null) {
             txtUsername.setOnKeyPressed(enterKeyHandler);
+            registerRequiredField(validator, txtUsername, "username", "Username harus diisi!");
         }
         if (txtPassword != null) {
             txtPassword.setOnKeyPressed(enterKeyHandler);
+            registerRequiredField(validator, txtPassword, "password", "Password harus diisi!");
         }
     }
 
     @FXML
     public void handleLogin() {
-        if (!txtUsername.getText().isBlank() && !txtPassword.getText().isBlank()) {
+        if (validator.validate()) {
             validateLogin();
-        } else {
-            org.masjidku.util.AlertHelper.alertError(dialogStage, "Alert!", "Mohon untuk menginput username dan passwordnya!");
         }
     }
 
@@ -91,37 +95,37 @@ public class LoginController {
                 .hashString(txtPassword.getText(), StandardCharsets.UTF_8)
                 .toString();
 
-            if (dao.isUserExist(username, password)) {
-                User user = dao.get(username);
+        if (dao.isUserExist(username, password)) {
+            User user = dao.getUser(username);
 
-                if (user.getStatus().equals("Aktif")) {
-                    switch (user.getJabatan()) {
-                        case admin:
-                            mainApp.recordSession(user);
-                            mainApp.setAdminView();
-                            break;
-                        case ketua:
-                            mainApp.recordSession(user);
-                            mainApp.setPrincipalView();
-                            break;
-                        case sekretaris:
-                            mainApp.recordSession(user);
-                            mainApp.setSecretaryView();
-                            break;
-                        case bendahara:
-                            mainApp.recordSession(user);
-                            mainApp.setAccountantView();
-                            break;
-                        default:
-                            throw new IllegalArgumentException("Illegal Data Argument");
-                    }
-                } else {
-                    org.masjidku.util.AlertHelper.alertError(dialogStage, "Gagal Masuk", "Mohon maaf, akun Anda tidak lagi aktif. " +
-                            "Kontak Admin untuk informasi lebih lanjut.");
+            if (user.status().equals(ACTIVE)) {
+                switch (user.getJabatan()) {
+                    case ADMIN:
+                        mainApp.recordSession(user);
+                        mainApp.setAdminView();
+                        break;
+                    case KETUA:
+                        mainApp.recordSession(user);
+                        mainApp.setPrincipalView();
+                        break;
+                    case SEKRETARIS:
+                        mainApp.recordSession(user);
+                        mainApp.setSecretaryView();
+                        break;
+                    case BENDAHARA:
+                        mainApp.recordSession(user);
+                        mainApp.setAccountantView();
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Illegal Data Argument");
                 }
             } else {
-                org.masjidku.util.AlertHelper.alertError(dialogStage, "Gagal Masuk", "Periksa username dan password");
+                alertError(dialogStage, "Gagal Masuk", "Mohon maaf, akun Anda tidak lagi aktif. " +
+                        "Kontak Admin untuk informasi lebih lanjut.");
             }
+        } else {
+            alertError(dialogStage, "Gagal Masuk", "Periksa username dan password");
+        }
     }
 
 

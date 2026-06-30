@@ -67,7 +67,7 @@ public class ListTamu extends ReadOnlyTableController<Tamu> {
 
     @FXML
     public void showReport() {
-        ServiceProvider.get(ReportService.class).showReport("/org/masjidku/report/list_tamu.jrxml");
+        org.masjidku.di.DiProvider.getAppComponent().getReportService().showReport("/org/masjidku/report/list_tamu.jrxml");
     }
 
     @FXML

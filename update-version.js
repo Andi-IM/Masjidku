@@ -8,3 +8,7 @@ let content = fs.readFileSync('build.gradle', 'utf8');
 content = content.replace(/version\s*=\s*['"].*?['"]/, `version = '${version}'`);
 fs.writeFileSync('build.gradle', content);
 console.log(`Updated build.gradle version to ${version}`);
+
+const propPath = 'masjidku-app/src/main/resources/org/masjidku/version.properties';
+fs.writeFileSync(propPath, `version=${version}\n`);
+console.log(`Updated version.properties to version=${version}`);

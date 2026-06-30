@@ -18,6 +18,8 @@ package org.masjidku.util;
 public class Constants {
     public static final String ERROR = "Error";
     public static final String SUCCESS = "Success";
+    public static final String ACTIVE = "Aktif";
 
-    private Constants(){}
+    private Constants() {
+    }
 }

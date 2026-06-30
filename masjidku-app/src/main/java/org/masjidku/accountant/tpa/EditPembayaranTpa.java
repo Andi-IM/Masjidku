@@ -31,6 +31,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import static org.masjidku.di.DiProvider.getAppComponent;
+import static org.masjidku.util.AlertHelper.alertError;
+import static org.masjidku.util.Constants.ERROR;
 import static org.masjidku.util.DaoHelper.saveOrUpdate;
 import static org.masjidku.util.ValidationHelper.*;
 
@@ -64,7 +66,7 @@ public class EditPembayaranTpa {
     }
 
     public void setMainApp(AppRouter mainApp, TpaKeluar model) {
-        operator = getAppComponent().getSessionManager().getCurrentUser().getUsername();
+        operator = getAppComponent().getSessionManager().getCurrentUsername();
         this.mainApp = mainApp;
         this.model = model;
 
@@ -109,7 +111,7 @@ public class EditPembayaranTpa {
                     dialogStage, log
             );
         } else {
-            org.masjidku.util.AlertHelper.alertError(dialogStage, "Error", "Data belum lengkap!");
+            alertError(dialogStage, ERROR, "Data belum lengkap!");
         }
     }
 

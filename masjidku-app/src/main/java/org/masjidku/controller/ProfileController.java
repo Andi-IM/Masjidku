@@ -21,9 +21,11 @@ import org.slf4j.LoggerFactory;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import org.masjidku.navigation.AppRouter;
-import org.masjidku.model.user.UserProfile;
-import org.masjidku.domain.repository.UserProfileRepository;
-import org.masjidku.domain.repository.impl.UserProfileRepositoryImpl;
+import org.masjidku.auth.client.model.UserProfile;
+import org.masjidku.auth.client.AuthClient;
+import org.masjidku.util.ServiceProvider;
+
+import static org.masjidku.di.DiProvider.getAppComponent;
 
 
 public class ProfileController {
@@ -52,23 +54,23 @@ public class ProfileController {
      * @return Observable List
      */
     private UserProfile getUserData(String userid) {
-        UserProfileRepository dao = new UserProfileRepositoryImpl();
+        AuthClient dao = ServiceProvider.get(AuthClient.class);
         return dao.getFullUserData(userid);
     }
 
     public void setMainApp(AppRouter mainApp) {
-        String userid = org.masjidku.di.DiProvider.getAppComponent().getSessionManager().getCurrentUser().getUserId();
+        String userid = getAppComponent().getSessionManager().getCurrentUser().id();
         this.mainApp = mainApp;
         profile = getUserData(userid);
 
         if (profile!=null){
-            userId.setText(profile.getUser().getUserId());
-            username.setText(profile.getUser().getUsername());
-            userRole.setText(profile.getUser().getJabatan().toString());
-            userStatus.setText(profile.getUser().getStatus());
-            userLastUpdate.setText(profile.getUser().getUpdated_at());
-            userPhoneNum.setText(profile.getNotelp());
-            userAddress.setText(profile.getAlamat());
+            userId.setText(profile.user().id());
+            username.setText(profile.user().username());
+            userRole.setText(profile.user().jabatan());
+            userStatus.setText(profile.user().status());
+            userLastUpdate.setText(profile.user().updatedAt());
+            userPhoneNum.setText(profile.notelp());
+            userAddress.setText(profile.alamat());
         }
     }
 

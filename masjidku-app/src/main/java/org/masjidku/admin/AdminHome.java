@@ -15,17 +15,10 @@
 package org.masjidku.admin;
 
 import javafx.fxml.FXML;
-import javafx.scene.text.Text;
-import org.masjidku.navigation.AppRouter;
 import org.masjidku.controller.BaseHomeController;
 
 public class AdminHome extends BaseHomeController {
-    
-    
 
-    
-
-    
 
     @FXML
     public void onKelolaPenggunaClick() {

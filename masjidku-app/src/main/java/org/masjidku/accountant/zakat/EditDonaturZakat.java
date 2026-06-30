@@ -64,7 +64,7 @@ public class EditDonaturZakat {
     }
 
     public void setMainApp(AppRouter mainApp, ZakatMasuk model) {
-        operator = getAppComponent().getSessionManager().getCurrentUser().getUsername();
+        operator = getAppComponent().getSessionManager().getCurrentUsername();
         this.mainApp = mainApp;
         this.donatur = model;
 

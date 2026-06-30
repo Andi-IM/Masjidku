@@ -7,17 +7,15 @@ import java.util.List;
 import java.util.Optional;
 import javax.inject.Inject;
 import org.hibernate.SessionFactory;
-import org.masjidku.domain.repository.base.TransactionHelper;
+import org.masjidku.common.TransactionHelper;
 
 public class DonasiPembangunanRepositoryImpl implements DonasiPembangunanRepository {
 
     private final SessionFactory sessionFactory;
-    private final TransactionHelper transactionHelper;
 
     @Inject
-    public DonasiPembangunanRepositoryImpl(SessionFactory sessionFactory, TransactionHelper transactionHelper) {
+    public DonasiPembangunanRepositoryImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
-        this.transactionHelper = transactionHelper;
     }
 
 

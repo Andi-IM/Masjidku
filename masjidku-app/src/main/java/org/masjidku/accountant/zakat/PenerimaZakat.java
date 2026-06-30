@@ -19,17 +19,17 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import org.masjidku.accounting.client.model.zakat.ZakatKeluar;
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.controller.BaseTableController;
 import org.masjidku.navigation.AppRouter;
-import org.masjidku.accounting.client.model.zakat.ZakatKeluar;
-
-
-import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+
+import static org.masjidku.util.AlertHelper.setupOutflowColumns;
 
 public class PenerimaZakat extends BaseTableController<ZakatKeluar> {
     private static final Logger log = LoggerFactory.getLogger(PenerimaZakat.class);
@@ -58,8 +58,8 @@ public class PenerimaZakat extends BaseTableController<ZakatKeluar> {
 
     @Override
     protected void setupTableColumns() {
-        org.masjidku.util.AlertHelper.setupOutflowColumns(nama, jumlah, tanggal);
-}
+        setupOutflowColumns(nama, jumlah, tanggal);
+    }
 
     @FXML
     public void onLogoutClick() {
@@ -101,17 +101,17 @@ public class PenerimaZakat extends BaseTableController<ZakatKeluar> {
     }
 
     @Override
-    protected List<ZakatKeluar> fetchAllData() throws java.sql.SQLException {
+    protected List<ZakatKeluar> fetchAllData() {
         return client.getAllZakatKeluar();
     }
 
     @Override
-    protected boolean checkIfExist(ZakatKeluar item) throws java.sql.SQLException {
+    protected boolean checkIfExist(ZakatKeluar item) {
         return client.isZakatKeluarExist(item.id());
     }
 
     @Override
-    protected void deleteItem(ZakatKeluar item) throws java.sql.SQLException {
+    protected void deleteItem(ZakatKeluar item) {
         client.delete(item);
     }
 

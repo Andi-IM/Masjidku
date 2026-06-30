@@ -66,7 +66,7 @@ public class EditPembayaranOperasional {
     }
 
     public void setMainApp(AppRouter mainApp, Operasional model) {
-        operator = getAppComponent().getSessionManager().getCurrentUser().getUsername();
+        operator = getAppComponent().getSessionManager().getCurrentUsername();
         this.mainApp = mainApp;
         this.model = model;
 

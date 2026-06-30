@@ -36,6 +36,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import static org.masjidku.di.DiProvider.getAppComponent;
+
 public class SecretaryUndanganForm implements Initializable {
     private static final Logger log = LoggerFactory.getLogger(SecretaryUndanganForm.class);
     private final EventsClient eventsClient = ServiceProvider.get(EventsClient.class);
@@ -59,7 +61,7 @@ public class SecretaryUndanganForm implements Initializable {
     private TamuKegiatan currentUndangan;
 
     public void setMainApp(AppRouter mainApp, TamuKegiatan undangan) {
-        this.operator = org.masjidku.di.DiProvider.getAppComponent().getSessionManager().getCurrentUser().getUsername();
+        this.operator = getAppComponent().getSessionManager().getCurrentUsername();
         this.mainApp = mainApp;
 
         if (undangan != null) {

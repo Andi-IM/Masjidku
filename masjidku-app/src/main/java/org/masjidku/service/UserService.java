@@ -1,7 +1,6 @@
 package org.masjidku.service;
 
-import javafx.collections.ObservableList;
-import org.masjidku.model.user.User;
+import org.masjidku.auth.client.model.User;
 
 import java.util.List;
 
@@ -9,19 +8,14 @@ import java.util.List;
  * Service interface for User entity.
  */
 public interface UserService {
-    /**
-     * Check if connection to DB is established.
-     * @return true if connected.
-     */
-    boolean getConnection();
 
     List<User> getAll();
 
     void save(User user);
 
-    void update(String[] params);
+    void update(org.masjidku.auth.client.dto.UpdateUserStatusDto dto);
 
-    void update(String userid, String username, String password);
+    void update(org.masjidku.auth.client.dto.UpdateUserCredentialsDto dto);
 
     void delete(String userid);
 

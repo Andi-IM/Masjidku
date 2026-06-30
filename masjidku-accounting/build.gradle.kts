@@ -26,6 +26,7 @@ javafx {
 
 dependencies {
     implementation(project(":masjidku-common"))
+    implementation(project(":masjidku-auth-client"))
     implementation(project(":masjidku-accounting-client"))
     implementation(libs.slf4j)
     implementation(libs.jetbrains.annotations)

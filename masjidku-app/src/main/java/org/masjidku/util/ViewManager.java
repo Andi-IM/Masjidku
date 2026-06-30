@@ -3,6 +3,7 @@ package org.masjidku.util;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
@@ -29,20 +30,23 @@ import org.masjidku.accounting.client.model.zakat.ZakatKeluar;
 import org.masjidku.accounting.client.model.zakat.ZakatMasuk;
 import org.masjidku.admin.AdminHome;
 import org.masjidku.admin.UserForm;
+import org.masjidku.controller.BaseRootController;
 import org.masjidku.controller.EditProfileController;
 import org.masjidku.controller.ProfileController;
 import org.masjidku.controller.RootLayoutController;
 import org.masjidku.events.client.model.Kegiatan;
 import org.masjidku.events.client.model.Tamu;
 import org.masjidku.events.client.model.TamuKegiatan;
-import org.masjidku.model.user.User;
-import org.masjidku.model.user.UserProfile;
+import org.masjidku.auth.client.model.User;
+import org.masjidku.auth.client.model.UserProfile;
 import org.masjidku.principal.PrincipalHome;
 import org.masjidku.principal.PrincipalLaporan;
 import org.masjidku.secretary.SecretaryHome;
 import org.masjidku.secretary.SecretaryKegiatanForm;
 import org.masjidku.secretary.SecretaryTamuForm;
 import org.masjidku.secretary.SecretaryUndanganForm;
+import org.masjidku.navigation.AppRouterAware;
+import org.masjidku.navigation.AppRoute;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -55,6 +59,8 @@ public class ViewManager {
     private final Stage primaryStage;
     private SplitPane rootLayout;
     private final MainApp mainApp;
+    private RootLayoutController rootLayoutController;
+    private BaseRootController currentRootController;
 
     public ViewManager(Stage primaryStage, MainApp mainApp) {
         this.primaryStage = primaryStage;
@@ -62,7 +68,10 @@ public class ViewManager {
     }
 
     public void injectMainApp(Object rawController) {
-        if (rawController != null) {
+        if (rawController instanceof AppRouterAware) {
+            ((AppRouterAware) rawController).setMainApp(mainApp);
+        } else if (rawController != null) {
+            // Fallback for controllers that haven't been updated yet
             try {
                 java.lang.reflect.Method method = rawController.getClass().getMethod("setMainApp", org.masjidku.navigation.AppRouter.class);
                 method.invoke(rawController, mainApp);
@@ -71,7 +80,7 @@ public class ViewManager {
                     java.lang.reflect.Method method = rawController.getClass().getMethod("setMainApp", MainApp.class);
                     method.invoke(rawController, mainApp);
                 } catch (NoSuchMethodException ex) {
-                    // Ignore if no setMainApp method exists at all
+                    // Ignore
                 } catch (Exception ex) {
                     LOGGER.log(Level.SEVERE, "An error occurred injecting MainApp fallback", ex);
                 }
@@ -92,11 +101,36 @@ public class ViewManager {
 
             injectMainApp(loader.getController());
 
+            Object controller = loader.getController();
+            if (controller instanceof BaseRootController) {
+                this.currentRootController = (BaseRootController) controller;
+            } else {
+                this.currentRootController = null;
+            }
+            this.rootLayoutController = null;
+
             if (homeMethod != null) {
                 homeMethod.run();
             }
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, e, () -> GAGAL_MEMUAT_VIEW + fxmlPath);
+        }
+    }
+
+    public void navigateRoot(AppRoute route) {
+        if (route.getFxmlPath() != null) {
+            setRootView(route.getFxmlPath(), () -> {
+                if (route == AppRoute.ADMIN_ROOT) navigate(AppRoute.ADMIN_HOME);
+                else if (route == AppRoute.PRINCIPAL_ROOT) navigate(AppRoute.PRINCIPAL_HOME);
+                else if (route == AppRoute.SECRETARY_ROOT) navigate(AppRoute.SECRETARY_HOME);
+                else if (route == AppRoute.ACCOUNTANT_ROOT) navigate(AppRoute.ACCOUNTANT_HOME);
+            });
+        }
+    }
+
+    public void navigate(AppRoute route) {
+        if (route.getFxmlPath() != null) {
+            loadView(route.getFxmlPath());
         }
     }
 
@@ -111,6 +145,8 @@ public class ViewManager {
 
             RootLayoutController controller = loader.getController();
             if (controller != null) {
+                this.rootLayoutController = controller;
+                this.currentRootController = null;
                 controller.setMainApp(mainApp);
                 controller.btn_home.setSelected(true);
             }
@@ -127,6 +163,7 @@ public class ViewManager {
             rootLayout.getItems().set(1, overview);
 
             injectMainApp(loader.getController());
+            updateSidebarSelectionForPath(fxmlPath);
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, e, () -> GAGAL_MEMUAT_VIEW + fxmlPath);
         }
@@ -138,6 +175,7 @@ public class ViewManager {
             loader.setLocation(MainApp.class.getResource(fxmlPath));
             AnchorPane overview = loader.load();
             rootLayout.getItems().set(1, overview);
+            updateSidebarSelectionForPath(fxmlPath);
             return loader.getController();
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, e, () -> GAGAL_MEMUAT_VIEW + fxmlPath);
@@ -147,14 +185,23 @@ public class ViewManager {
 
     public void showContent() {
         loadView("home.fxml");
+        if (rootLayoutController != null && rootLayoutController.btn_home != null) {
+            rootLayoutController.btn_home.setSelected(true);
+        }
     }
 
     public void showLogin() {
         loadView("login.fxml");
+        if (rootLayoutController != null && rootLayoutController.btn_login != null) {
+            rootLayoutController.btn_login.setSelected(true);
+        }
     }
 
     public void showAbout() {
         loadView("about.fxml");
+        if (rootLayoutController != null && rootLayoutController.btn_about != null) {
+            rootLayoutController.btn_about.setSelected(true);
+        }
     }
 
     public void showProfile() {
@@ -478,6 +525,38 @@ public class ViewManager {
         EditPembayaranTpa controller = loadViewAndGetController("accountant/tpa/form_tpa.fxml");
         if (controller != null) {
             controller.setMainApp(mainApp, model);
+        }
+    }
+
+    private void selectSidebarButton(String text) {
+        ToggleGroup group = null;
+        if (currentRootController != null) {
+            group = currentRootController.groupButton;
+        } else if (rootLayoutController != null) {
+            group = rootLayoutController.groupButton;
+        }
+        
+        if (group != null) {
+            for (javafx.scene.control.Toggle toggle : group.getToggles()) {
+                if (toggle instanceof javafx.scene.control.ToggleButton) {
+                    javafx.scene.control.ToggleButton btn = (javafx.scene.control.ToggleButton) toggle;
+                    if (text.equalsIgnoreCase(btn.getText().trim())) {
+                        btn.setSelected(true);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    private void updateSidebarSelectionForPath(String fxmlPath) {
+        for (AppRoute route : AppRoute.values()) {
+            if (route.getFxmlPath() != null && route.getFxmlPath().equals(fxmlPath)) {
+                if (route.getSidebarText() != null) {
+                    selectSidebarButton(route.getSidebarText());
+                }
+                break;
+            }
         }
     }
 }

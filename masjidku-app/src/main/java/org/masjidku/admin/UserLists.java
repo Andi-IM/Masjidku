@@ -15,9 +15,7 @@
 
 package org.masjidku.admin;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -25,19 +23,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.masjidku.auth.client.model.User;
 import org.masjidku.navigation.AppRouter;
-import org.masjidku.model.user.User;
 import org.masjidku.service.UserService;
 import org.masjidku.service.impl.UserServiceImpl;
 
 import java.net.URL;
-
 import java.util.ResourceBundle;
 
 public class UserLists implements Initializable {
-    private static final Logger log = LoggerFactory.getLogger(UserLists.class);
     private static final String USER_NOT_FOUND_MSG = "User tidak ditemukan!";
 
     @FXML
@@ -77,14 +72,10 @@ public class UserLists implements Initializable {
     private final ObservableList<User> userData =
             FXCollections.observableArrayList();
 
-    /**
-     * The Constructor.
-     * The Constructor is called before the initialize() method.
-     */
-    public UserLists(){}
 
     /**
      * Is called by the main application to give a reference back to itself
+     *
      * @param mainApp reference to main application
      */
     public void setMainApp(AppRouter mainApp) {
@@ -116,10 +107,10 @@ public class UserLists implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         userTable.setItems(getUserData());
 
-        userid.setCellValueFactory(new PropertyValueFactory<>("userId"));
-        username.setCellValueFactory(new PropertyValueFactory<>("username"));
-        jabatan.setCellValueFactory(new PropertyValueFactory<>("jabatan"));
-        status.setCellValueFactory(new PropertyValueFactory<>("status"));
+        userid.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().id()));
+        username.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().username()));
+        jabatan.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().jabatan()));
+        status.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().status()));
     }
 
     /**
@@ -139,11 +130,11 @@ public class UserLists implements Initializable {
     @FXML
     public void onRemoveListener() {
         User selectedUser = userTable.getSelectionModel().getSelectedItem();
-        if (selectedUser != null){
+        if (selectedUser != null) {
             UserService dao = new UserServiceImpl();
-            if (dao.isUserExist(selectedUser.getUserId())){
+            if (dao.isUserExist(selectedUser.id())) {
                 userTable.getItems().remove(selectedUser);
-                dao.delete(selectedUser.getUserId());
+                dao.delete(selectedUser.id());
                 org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "User dihapus!");
             } else {
                 org.masjidku.util.AlertHelper.alertError(dialogStage, "SQL Error", USER_NOT_FOUND_MSG);
@@ -161,12 +152,12 @@ public class UserLists implements Initializable {
             return;
         }
         UserService dao = new UserServiceImpl();
-        if (!dao.isUserExist(selectedUser.getUserId())) {
+        if (!dao.isUserExist(selectedUser.id())) {
             org.masjidku.util.AlertHelper.alertError(dialogStage, "SQL Error", USER_NOT_FOUND_MSG);
             return;
         }
-        if (dao.isReset(selectedUser.getUserId())) {
-            dao.reset(selectedUser.getUserId());
+        if (dao.isReset(selectedUser.id())) {
+            dao.reset(selectedUser.id());
         } else {
             org.masjidku.util.AlertHelper.alertError(dialogStage, "User Error", "User telah melakukan reset password!");
         }
@@ -178,20 +169,17 @@ public class UserLists implements Initializable {
     @FXML
     public void onEditListener() {
         User selectedUser = userTable.getSelectionModel().getSelectedItem();
-        if (selectedUser != null){
+        if (selectedUser != null) {
             mainApp.showUserEditScene(selectedUser);
         } else {
             org.masjidku.util.AlertHelper.alertError(dialogStage, "Null Error", USER_NOT_FOUND_MSG);
         }
     }
 
-    
-
-    
 
     @FXML
     public void onMouseClicked() {
-        if(userTable.getSelectionModel().isEmpty()){
+        if (userTable.getSelectionModel().isEmpty()) {
             btnEdit.setDisable(true);
             btnRemove.setDisable(true);
             btnReset.setDisable(true);

@@ -21,12 +21,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import net.synedra.validatorfx.Validator;
-import org.masjidku.domain.repository.UserProfileRepository;
-import org.masjidku.domain.repository.UserRepository;
-import org.masjidku.domain.repository.impl.UserProfileRepositoryImpl;
-import org.masjidku.domain.repository.impl.UserRepositoryImpl;
-import org.masjidku.model.user.UserProfile;
+import org.masjidku.auth.client.AuthClient;
+import org.masjidku.auth.client.model.UserProfile;
 import org.masjidku.navigation.AppRouter;
+import org.masjidku.util.ServiceProvider;
 
 import static org.masjidku.util.AlertHelper.alertError;
 import static org.masjidku.util.ValidationHelper.registerRequiredField;
@@ -80,7 +78,7 @@ public class EditProfileController {
                     if (userId == null || userId.isBlank()) {
                         return;
                     }
-                    UserRepository dao = new UserRepositoryImpl();
+                    AuthClient dao = ServiceProvider.get(AuthClient.class);
                     String hashed = com.google.common.hash.Hashing.sha256()
                             .hashString(val, java.nio.charset.StandardCharsets.UTF_8)
                             .toString();
@@ -114,10 +112,10 @@ public class EditProfileController {
     }
 
     private void setUser(UserProfile profile) {
-        lbUserID.setText(profile.getUser().getUserId());
-        txtUserName.setText(profile.getUser().getUsername());
-        txtAlamat.setText(profile.getAlamat());
-        txtNoTel.setText(profile.getNotelp());
+        lbUserID.setText(profile.user().id());
+        txtUserName.setText(profile.user().username());
+        txtAlamat.setText(profile.alamat());
+        txtNoTel.setText(profile.notelp());
     }
 
     @FXML
@@ -139,14 +137,13 @@ public class EditProfileController {
             String notel = txtNoTel.getText();
             String alamat = txtAlamat.getText();
 
-            UserRepository dao = new UserRepositoryImpl();
-            UserProfileRepository profileDao = new UserProfileRepositoryImpl();
+            AuthClient dao = ServiceProvider.get(AuthClient.class);
 
             if (dao.isUserExist(id)) {
-                dao.update(id, username, newPassword);
-                profileDao.update(new String[]{notel, alamat, id});
+                dao.updateUser(new org.masjidku.auth.client.dto.UpdateUserCredentialsDto(id, username, newPassword));
+                dao.updateUserProfile(new org.masjidku.auth.client.dto.UpdateUserProfileDto(id, notel, alamat));
             }
-            profileDao.update(new String[]{id, notel, alamat});
+            dao.updateUserProfile(new org.masjidku.auth.client.dto.UpdateUserProfileDto(id, notel, alamat));
         } else {
             alertError(dialogStage, "Empty Form", "Salah satu form tidak boleh kosong!");
         }

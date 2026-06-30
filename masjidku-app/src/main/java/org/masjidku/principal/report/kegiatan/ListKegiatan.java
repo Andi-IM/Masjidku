@@ -71,7 +71,7 @@ public class ListKegiatan extends ReadOnlyTableController<Kegiatan> {
         File file = fileChooser.showSaveDialog(null);
 
         if (file != null) {
-            ServiceProvider.get(ReportService.class).exportToPdf("/org/masjidku/report/list_kegiatan.jrxml", file.getAbsolutePath());
+            org.masjidku.di.DiProvider.getAppComponent().getReportService().exportToPdf("/org/masjidku/report/list_kegiatan.jrxml", file.getAbsolutePath());
         }
     }
 

@@ -1,23 +1,21 @@
 package org.masjidku.accounting.domain.repository.impl;
 
+import org.hibernate.SessionFactory;
 import org.masjidku.accounting.domain.entity.DonasiOperasionalEntity;
 import org.masjidku.accounting.domain.repository.DonasiOperasionalRepository;
 import org.masjidku.accounting.domain.repository.exception.DataAccessException;
+
+import javax.inject.Inject;
 import java.util.List;
 import java.util.Optional;
-import javax.inject.Inject;
-import org.hibernate.SessionFactory;
-import org.masjidku.domain.repository.base.TransactionHelper;
 
 public class DonasiOperasionalRepositoryImpl implements DonasiOperasionalRepository {
 
     private final SessionFactory sessionFactory;
-    private final TransactionHelper transactionHelper;
 
     @Inject
-    public DonasiOperasionalRepositoryImpl(SessionFactory sessionFactory, TransactionHelper transactionHelper) {
+    public DonasiOperasionalRepositoryImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
-        this.transactionHelper = transactionHelper;
     }
 
 

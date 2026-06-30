@@ -1,25 +1,22 @@
 package org.masjidku.accounting.domain.repository.impl;
 
+import org.hibernate.SessionFactory;
 import org.masjidku.accounting.domain.entity.DonasiAnakYatimEntity;
 import org.masjidku.accounting.domain.repository.DonasiAnakYatimRepository;
 import org.masjidku.accounting.domain.repository.exception.DataAccessException;
+
+import javax.inject.Inject;
 import java.util.List;
 import java.util.Optional;
-import javax.inject.Inject;
-import org.hibernate.SessionFactory;
-import org.masjidku.domain.repository.base.TransactionHelper;
 
 public class DonasiAnakYatimRepositoryImpl implements DonasiAnakYatimRepository {
 
     private final SessionFactory sessionFactory;
-    private final TransactionHelper transactionHelper;
 
     @Inject
-    public DonasiAnakYatimRepositoryImpl(SessionFactory sessionFactory, TransactionHelper transactionHelper) {
+    public DonasiAnakYatimRepositoryImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
-        this.transactionHelper = transactionHelper;
     }
-
 
     @Override
     public Optional<DonasiAnakYatimEntity> findById(String id) {

@@ -8,4 +8,7 @@ include 'masjidku-events-client'
 include 'masjidku-reporting'
 include 'masjidku-reporting-client'
 
+include 'masjidku-auth'
+
+include 'masjidku-auth-client'
 include 'masjidku-common'

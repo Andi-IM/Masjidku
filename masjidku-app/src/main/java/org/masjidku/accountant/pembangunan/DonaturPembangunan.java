@@ -19,12 +19,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import org.masjidku.accounting.client.model.pembangunan.DonasiPembangunan;
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.controller.BaseTableController;
 import org.masjidku.navigation.AppRouter;
-import org.masjidku.accounting.client.model.pembangunan.DonasiPembangunan;
-
-
-import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,7 +57,7 @@ public class DonaturPembangunan extends BaseTableController<DonasiPembangunan> {
     @Override
     protected void setupTableColumns() {
         org.masjidku.util.AlertHelper.setupInflowColumns(donatur, jumlah, tanggal);
-}
+    }
 
     @FXML
     public void onLogoutClick() {
@@ -101,17 +99,17 @@ public class DonaturPembangunan extends BaseTableController<DonasiPembangunan> {
     }
 
     @Override
-    protected List<DonasiPembangunan> fetchAllData() throws java.sql.SQLException {
+    protected List<DonasiPembangunan> fetchAllData() {
         return client.getAllDonasiPembangunan();
     }
 
     @Override
-    protected boolean checkIfExist(DonasiPembangunan item) throws java.sql.SQLException {
+    protected boolean checkIfExist(DonasiPembangunan item) {
         return client.isDonasiPembangunanExist(item.id());
     }
 
     @Override
-    protected void deleteItem(DonasiPembangunan item) throws java.sql.SQLException {
+    protected void deleteItem(DonasiPembangunan item) {
         client.delete(item);
     }
 
