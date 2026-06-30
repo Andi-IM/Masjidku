@@ -15,6 +15,8 @@
 
 package org.masjidku.auth.domain.repository;
 
+import org.masjidku.auth.client.dto.UpdateUserCredentialsDto;
+import org.masjidku.auth.client.dto.UpdateUserStatusDto;
 import org.masjidku.auth.client.model.User;
 
 import java.util.List;
@@ -24,9 +26,9 @@ public interface UserRepository {
 
     void save(User user);
 
-    void update(String[] params);
+    void update(UpdateUserStatusDto dto);
 
-    void update(String userid, String username, String password);
+    void update(UpdateUserCredentialsDto dto);
 
     void delete(String userid);
 

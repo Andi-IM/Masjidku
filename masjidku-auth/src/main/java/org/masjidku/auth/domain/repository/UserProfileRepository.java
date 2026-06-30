@@ -15,10 +15,11 @@
 
 package org.masjidku.auth.domain.repository;
 
+import org.masjidku.auth.client.dto.UpdateUserProfileDto;
 import org.masjidku.auth.client.model.UserProfile;
 
 public interface UserProfileRepository {
     void save(UserProfile userProfile);
-    void update(String[] params);
+    void update(UpdateUserProfileDto dto);
     UserProfile getFullUserData(String userid);
 }

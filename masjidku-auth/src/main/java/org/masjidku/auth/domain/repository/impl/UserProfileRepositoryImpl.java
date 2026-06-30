@@ -16,6 +16,7 @@
 package org.masjidku.auth.domain.repository.impl;
 
 import org.hibernate.SessionFactory;
+import org.masjidku.auth.client.dto.UpdateUserProfileDto;
 import org.masjidku.auth.client.model.UserProfile;
 import org.masjidku.auth.domain.entity.UserProfileEntity;
 import org.masjidku.auth.domain.mapper.UserProfileMapper;
@@ -52,20 +53,19 @@ public class UserProfileRepositoryImpl implements UserProfileRepository {
     }
 
     @Override
-    public void update(String[] params) {
-        // params[0] = notelp, params[1] = alamat, params[2] = userid
+    public void update(UpdateUserProfileDto dto) {
         transactionHelper.executeInTransaction(() -> {
             org.hibernate.Session session = sessionFactory.getCurrentSession();
-            UserProfileEntity entity = session.get(UserProfileEntity.class, params[2]);
+            UserProfileEntity entity = session.get(UserProfileEntity.class, dto.userid());
             if (entity != null) {
-                entity.setNotelp(params[0]);
-                entity.setAlamat(params[1]);
+                entity.setNotelp(dto.notelp());
+                entity.setAlamat(dto.alamat());
                 session.merge(entity);
             } else {
                 entity = new UserProfileEntity();
-                entity.setUserId(params[2]);
-                entity.setNotelp(params[0]);
-                entity.setAlamat(params[1]);
+                entity.setUserId(dto.userid());
+                entity.setNotelp(dto.notelp());
+                entity.setAlamat(dto.alamat());
                 session.persist(entity);
             }
         });

@@ -17,6 +17,9 @@ package org.masjidku.auth.client;
 
 
 import org.masjidku.auth.client.model.User;
+import org.masjidku.auth.client.dto.UpdateUserCredentialsDto;
+import org.masjidku.auth.client.dto.UpdateUserProfileDto;
+import org.masjidku.auth.client.dto.UpdateUserStatusDto;
 import org.masjidku.auth.client.model.UserProfile;
 import org.masjidku.auth.client.model.UserSession;
 
@@ -26,8 +29,8 @@ public interface AuthClient {
     // UserRepository operations
     List<User> getAllUsers();
     void saveUser(User user);
-    void updateUser(String[] params);
-    void updateUser(String userid, String username, String password);
+    void updateUser(UpdateUserStatusDto dto);
+    void updateUser(UpdateUserCredentialsDto dto);
     void deleteUser(String userid);
     boolean isUserReset(String userid);
     void resetUser(String userId);
@@ -37,7 +40,7 @@ public interface AuthClient {
 
     // UserProfileRepository operations
     void saveUserProfile(UserProfile userProfile);
-    void updateUserProfile(String[] params);
+    void updateUserProfile(UpdateUserProfileDto dto);
     UserProfile getFullUserData(String userid);
 
     // UserSessionRepository operations

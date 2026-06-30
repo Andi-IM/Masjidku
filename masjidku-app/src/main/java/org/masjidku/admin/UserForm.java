@@ -147,7 +147,7 @@ public class UserForm implements Initializable {
             AuthClient dao = ServiceProvider.get(AuthClient.class);
 
             if (dao.isUserExist(userid)) {
-                dao.updateUser(new String[]{user.jabatan(), user.status(), user.id()});
+                dao.updateUser(new org.masjidku.auth.client.dto.UpdateUserStatusDto(user.id(), user.jabatan(), user.status()));
                 alertInfo(dialogStage, SUCCESS, "User telah diperbarui!");
             } else {
                 dao.saveUser(user);

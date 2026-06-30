@@ -36,13 +36,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void update(String[] params) {
-        userDao.updateUser(params);
+    public void update(org.masjidku.auth.client.dto.UpdateUserStatusDto dto) {
+        userDao.updateUser(dto);
     }
 
     @Override
-    public void update(String userid, String username, String password) {
-        userDao.updateUser(userid, username, password);
+    public void update(org.masjidku.auth.client.dto.UpdateUserCredentialsDto dto) {
+        userDao.updateUser(dto);
     }
 
     @Override

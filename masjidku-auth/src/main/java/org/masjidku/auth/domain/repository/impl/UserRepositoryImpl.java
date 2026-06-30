@@ -20,6 +20,8 @@ import org.hibernate.SessionFactory;
 import org.masjidku.auth.client.model.User;
 import org.masjidku.auth.domain.entity.UserEntity;
 import org.masjidku.auth.domain.entity.UserProfileEntity;
+import org.masjidku.auth.client.dto.UpdateUserCredentialsDto;
+import org.masjidku.auth.client.dto.UpdateUserStatusDto;
 import org.masjidku.auth.domain.mapper.UserMapper;
 import org.masjidku.auth.domain.repository.UserRepository;
 import org.masjidku.common.HibernateContext;
@@ -77,29 +79,28 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void update(String[] params) {
-        // params: jabatan, status, userid
+    public void update(UpdateUserStatusDto dto) {
         transactionHelper.executeInTransaction(() -> {
             org.hibernate.Session session = sessionFactory.getCurrentSession();
-            UserEntity entity = session.get(UserEntity.class, params[2]);
+            UserEntity entity = session.get(UserEntity.class, dto.userid());
             if (entity != null) {
-                entity.setJabatan(params[0]);
-                entity.setStatus(params[1]);
+                entity.setJabatan(dto.jabatan());
+                entity.setStatus(dto.status());
                 session.merge(entity);
             }
         });
     }
 
     @Override
-    public void update(String userid, String username, String password) {
+    public void update(UpdateUserCredentialsDto dto) {
         transactionHelper.executeInTransaction(() -> {
             org.hibernate.Session session = sessionFactory.getCurrentSession();
-            UserEntity entity = session.get(UserEntity.class, userid);
+            UserEntity entity = session.get(UserEntity.class, dto.userid());
             if (entity != null) {
-                entity.setUsername(username);
+                entity.setUsername(dto.username());
                 String hex = Hashing
                         .sha256()
-                        .hashString(password, StandardCharsets.UTF_8)
+                        .hashString(dto.password(), StandardCharsets.UTF_8)
                         .toString();
                 entity.setPassword(hex);
                 session.merge(entity);

@@ -13,9 +13,9 @@ public interface UserService {
 
     void save(User user);
 
-    void update(String[] params);
+    void update(org.masjidku.auth.client.dto.UpdateUserStatusDto dto);
 
-    void update(String userid, String username, String password);
+    void update(org.masjidku.auth.client.dto.UpdateUserCredentialsDto dto);
 
     void delete(String userid);
 

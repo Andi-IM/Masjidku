@@ -140,10 +140,10 @@ public class EditProfileController {
             AuthClient dao = ServiceProvider.get(AuthClient.class);
 
             if (dao.isUserExist(id)) {
-                dao.updateUser(id, username, newPassword);
-                dao.updateUserProfile(new String[]{notel, alamat, id});
+                dao.updateUser(new org.masjidku.auth.client.dto.UpdateUserCredentialsDto(id, username, newPassword));
+                dao.updateUserProfile(new org.masjidku.auth.client.dto.UpdateUserProfileDto(id, notel, alamat));
             }
-            dao.updateUserProfile(new String[]{id, notel, alamat});
+            dao.updateUserProfile(new org.masjidku.auth.client.dto.UpdateUserProfileDto(id, notel, alamat));
         } else {
             alertError(dialogStage, "Empty Form", "Salah satu form tidak boleh kosong!");
         }

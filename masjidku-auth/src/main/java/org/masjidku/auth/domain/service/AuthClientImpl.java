@@ -16,6 +16,9 @@
 package org.masjidku.auth.domain.service;
 
 import org.masjidku.auth.client.AuthClient;
+import org.masjidku.auth.client.dto.UpdateUserCredentialsDto;
+import org.masjidku.auth.client.dto.UpdateUserProfileDto;
+import org.masjidku.auth.client.dto.UpdateUserStatusDto;
 import org.masjidku.auth.client.model.User;
 import org.masjidku.auth.client.model.UserProfile;
 import org.masjidku.auth.client.model.UserSession;
@@ -67,13 +70,13 @@ public class AuthClientImpl implements AuthClient {
     }
 
     @Override
-    public void updateUser(String[] params) {
-        userRepository.update(params);
+    public void updateUser(UpdateUserStatusDto dto) {
+        userRepository.update(dto);
     }
 
     @Override
-    public void updateUser(String userid, String username, String password) {
-        userRepository.update(userid, username, password);
+    public void updateUser(UpdateUserCredentialsDto dto) {
+        userRepository.update(dto);
     }
 
     @Override
@@ -112,8 +115,8 @@ public class AuthClientImpl implements AuthClient {
     }
 
     @Override
-    public void updateUserProfile(String[] params) {
-        userProfileRepository.update(params);
+    public void updateUserProfile(UpdateUserProfileDto dto) {
+        userProfileRepository.update(dto);
     }
 
     @Override
