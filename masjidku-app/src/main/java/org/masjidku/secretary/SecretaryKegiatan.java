@@ -15,6 +15,8 @@
 
 package org.masjidku.secretary;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -27,8 +29,6 @@ import org.masjidku.util.ServiceProvider;
 import org.masjidku.util.TableHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.List;
 
 public class SecretaryKegiatan extends BaseTableController<Kegiatan> {
     private static final Logger log = LoggerFactory.getLogger(SecretaryKegiatan.class);
@@ -103,8 +103,8 @@ public class SecretaryKegiatan extends BaseTableController<Kegiatan> {
     }
 
     @Override
-    protected List<Kegiatan> fetchAllData() {
-        return eventClient.getAllKegiatan();
+    protected ObservableList<Kegiatan> fetchAllData() {
+        return FXCollections.observableArrayList(eventClient.getAllKegiatan());
     }
 
     @Override

@@ -24,8 +24,7 @@ public class TamuKegiatanRepositoryImpl implements TamuKegiatanRepository {
     public List<TamuKegiatan> getAllTamuKegiatan() {
         try {
             var session = HibernateUtil.getSessionFactory().getCurrentSession();
-            var list = session.createQuery("FROM TamuKegiatan tk JOIN FETCH tk.tamu JOIN FETCH tk.kegiatan", TamuKegiatan.class).list();
-            return javafx.collections.FXCollections.observableArrayList(list);
+            return session.createQuery("FROM TamuKegiatan tk JOIN FETCH tk.tamu JOIN FETCH tk.kegiatan", TamuKegiatan.class).list();
         } catch (Exception e) {
             throw new DataAccessException("Failed to get all Kegiatan", e);
         }

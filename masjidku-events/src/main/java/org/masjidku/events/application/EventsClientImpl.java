@@ -15,7 +15,6 @@
 
 package org.masjidku.events.application;
 
-import javafx.collections.FXCollections;
 import org.masjidku.events.application.mapper.KegiatanMapper;
 import org.masjidku.events.application.mapper.TamuKegiatanMapper;
 import org.masjidku.events.application.mapper.TamuMapper;
@@ -51,7 +50,7 @@ public class EventsClientImpl implements EventsClient {
             List<org.masjidku.events.domain.entity.Kegiatan> entities = kegiatanRepository.getAllKegiatan();
             return entities.stream()
                     .map(KegiatanMapper::toModel)
-                    .collect(Collectors.toCollection(FXCollections::observableArrayList));
+                    .collect(Collectors.toList());
         });
     }
 
@@ -82,7 +81,7 @@ public class EventsClientImpl implements EventsClient {
         return HibernateUtil.executeInTransaction(() -> {
             return undanganRepository.getAllTamuKegiatan().stream()
                     .map(TamuKegiatanMapper::toModel)
-                    .collect(Collectors.toCollection(FXCollections::observableArrayList));
+                    .collect(Collectors.toList());
         });
     }
 
@@ -116,7 +115,7 @@ public class EventsClientImpl implements EventsClient {
         return HibernateUtil.executeInTransaction(() -> {
             return tamuRepository.getAll()
                     .stream().map(TamuMapper::toModel)
-                    .collect(Collectors.toCollection(FXCollections::observableArrayList));
+                    .collect(Collectors.toList());
         });
     }
 

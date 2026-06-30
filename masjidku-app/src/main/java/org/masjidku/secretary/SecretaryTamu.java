@@ -24,6 +24,8 @@ import org.slf4j.LoggerFactory;
 import javafx.fxml.FXML;
 
 import java.util.List;
+import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -96,8 +98,8 @@ public class SecretaryTamu extends BaseTableController<Tamu> {
     }
 
     @Override
-    protected List<Tamu> fetchAllData() throws java.sql.SQLException {
-        return eventClient.getAllTamu();
+    protected ObservableList<Tamu> fetchAllData() throws java.sql.SQLException {
+        return FXCollections.observableArrayList(eventClient.getAllTamu());
     }
 
     @Override

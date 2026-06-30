@@ -33,6 +33,8 @@ import org.slf4j.LoggerFactory;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
 
 public class SecretaryUndanganForm implements Initializable {
     private static final Logger log = LoggerFactory.getLogger(SecretaryUndanganForm.class);
@@ -47,8 +49,8 @@ public class SecretaryUndanganForm implements Initializable {
     private AppRouter mainApp;
     private EventsClient eventsClient;
 
-    private List<Tamu> listTamu;
-    private List<Kegiatan> listKegiatan;
+    private ObservableList<Tamu> listTamu;
+    private ObservableList<Kegiatan> listKegiatan;
 
     @SuppressWarnings("unused")
     private Stage dialogStage;
@@ -74,8 +76,8 @@ public class SecretaryUndanganForm implements Initializable {
             cbTamu.getItems().clear();
             cbKegiatan.getItems().clear();
 
-            listTamu = eventsClient.getAllTamu();
-            listKegiatan = eventsClient.getAllKegiatan();
+            listTamu = FXCollections.observableArrayList(eventsClient.getAllTamu());
+            listKegiatan = FXCollections.observableArrayList(eventsClient.getAllKegiatan());
 
             List<String> tamuNames = listTamu.stream().map(Tamu::nama).toList();
             List<String> kegiatanNames = listKegiatan.stream().map(Kegiatan::nama).toList();

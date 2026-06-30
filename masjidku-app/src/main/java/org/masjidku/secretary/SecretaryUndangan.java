@@ -29,6 +29,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
 
 public class SecretaryUndangan extends BaseTableController<TamuKegiatan> {
     private static final Logger log = LoggerFactory.getLogger(SecretaryUndangan.class);
@@ -104,8 +106,8 @@ public class SecretaryUndangan extends BaseTableController<TamuKegiatan> {
     }
 
     @Override
-    protected List<TamuKegiatan> fetchAllData() throws java.sql.SQLException {
-        return eventClient.getAllUndangan();
+    protected ObservableList<TamuKegiatan> fetchAllData() throws java.sql.SQLException {
+        return FXCollections.observableArrayList(eventClient.getAllUndangan());
     }
 
     @Override
