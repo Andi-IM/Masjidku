@@ -76,7 +76,7 @@ public class UserLists implements Initializable {
      * The Constructor.
      * The Constructor is called before the initialize() method.
      */
-    private UserLists() {
+    public UserLists() {
     }
 
     /**
