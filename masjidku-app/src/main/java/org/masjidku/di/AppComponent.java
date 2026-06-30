@@ -7,7 +7,7 @@ import org.masjidku.model.session.dao.SessionManager;
 
 import javax.inject.Singleton;
 
-@AppScope
+@Singleton
 @Component(modules = {AppModule.class, DatabaseModule.class})
 public interface AppComponent {
     SessionManager getSessionManager();

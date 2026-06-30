@@ -11,7 +11,7 @@ import javax.inject.Singleton;
 public class AppModule {
 
     @Provides
-    @AppScope
+    @Singleton
     public UserSessionRepository provideUserSessionRepository() {
         return new UserSessionRepositoryImpl();
     }
