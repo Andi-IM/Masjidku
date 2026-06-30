@@ -19,18 +19,22 @@ import com.google.common.hash.Hashing;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.masjidku.domain.repository.UserRepository;
-import org.masjidku.domain.repository.impl.UserRepositoryImpl;
-import org.masjidku.model.user.User;
+import org.masjidku.auth.domain.repository.UserRepository;
+import org.masjidku.auth.domain.repository.impl.UserRepositoryImpl;
+import org.masjidku.auth.client.model.User;
 import org.masjidku.navigation.AppRouter;
 
 import java.nio.charset.StandardCharsets;
+
+import net.synedra.validatorfx.Validator;
+import static org.masjidku.util.ValidationHelper.registerRequiredField;
 
 import static org.masjidku.util.AlertHelper.alertError;
 import static org.masjidku.util.Constants.ACTIVE;
 
 
 public class LoginController {
+    private final Validator validator = new Validator();
     // Reference to the main application
     private AppRouter mainApp;
 
@@ -69,18 +73,18 @@ public class LoginController {
 
         if (txtUsername != null) {
             txtUsername.setOnKeyPressed(enterKeyHandler);
+            registerRequiredField(validator, txtUsername, "username", "Username harus diisi!");
         }
         if (txtPassword != null) {
             txtPassword.setOnKeyPressed(enterKeyHandler);
+            registerRequiredField(validator, txtPassword, "password", "Password harus diisi!");
         }
     }
 
     @FXML
     public void handleLogin() {
-        if (!txtUsername.getText().isBlank() && !txtPassword.getText().isBlank()) {
+        if (validator.validate()) {
             validateLogin();
-        } else {
-            alertError(dialogStage, "Alert!", "Mohon untuk menginput username dan passwordnya!");
         }
     }
 

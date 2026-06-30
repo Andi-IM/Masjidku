@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import javax.inject.Inject;
 import org.hibernate.SessionFactory;
-import org.masjidku.domain.repository.base.TransactionHelper;
+import org.masjidku.common.TransactionHelper;
 
 public class DonasiPembangunanRepositoryImpl implements DonasiPembangunanRepository {
 

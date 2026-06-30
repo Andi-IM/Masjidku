@@ -10,11 +10,11 @@ import org.masjidku.accounting.client.model.tpa.TpaKeluar;
 import org.masjidku.accounting.client.model.tpa.TpaMasuk;
 import org.masjidku.accounting.client.model.zakat.ZakatKeluar;
 import org.masjidku.accounting.client.model.zakat.ZakatMasuk;
+import org.masjidku.auth.client.model.User;
+import org.masjidku.auth.client.model.UserProfile;
 import org.masjidku.events.client.model.Kegiatan;
 import org.masjidku.events.client.model.Tamu;
 import org.masjidku.events.client.model.TamuKegiatan;
-import org.masjidku.model.user.User;
-import org.masjidku.model.user.UserProfile;
 
 public interface AppRouter {
     void navigate(AppRoute route);

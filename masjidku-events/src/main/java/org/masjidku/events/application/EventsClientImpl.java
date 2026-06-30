@@ -16,8 +16,8 @@
 package org.masjidku.events.application;
 
 import org.hibernate.SessionFactory;
-import org.masjidku.domain.repository.base.HibernateContext;
-import org.masjidku.domain.repository.base.TransactionHelper;
+import org.masjidku.common.HibernateContext;
+import org.masjidku.common.TransactionHelper;
 import org.masjidku.events.application.mapper.KegiatanMapper;
 import org.masjidku.events.application.mapper.TamuKegiatanMapper;
 import org.masjidku.events.application.mapper.TamuMapper;

@@ -21,9 +21,9 @@ import org.slf4j.LoggerFactory;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import org.masjidku.navigation.AppRouter;
-import org.masjidku.model.user.UserProfile;
-import org.masjidku.domain.repository.UserProfileRepository;
-import org.masjidku.domain.repository.impl.UserProfileRepositoryImpl;
+import org.masjidku.auth.client.model.UserProfile;
+import org.masjidku.auth.domain.repository.UserProfileRepository;
+import org.masjidku.auth.domain.repository.impl.UserProfileRepositoryImpl;
 
 import static org.masjidku.di.DiProvider.getAppComponent;
 

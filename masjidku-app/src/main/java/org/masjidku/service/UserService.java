@@ -1,6 +1,6 @@
 package org.masjidku.service;
 
-import org.masjidku.model.user.User;
+import org.masjidku.auth.client.model.User;
 
 import java.util.List;
 

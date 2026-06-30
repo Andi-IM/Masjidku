@@ -22,25 +22,27 @@ tasks.named<JavaCompile>("compileTestJava") {
 }
 
 dependencies {
-    implementation(project(":masjidku-common"))
     // Database
     implementation(libs.mysql.connector)
     implementation(libs.sqlite.jdbc)
     implementation(libs.hibernate.core)
-    implementation("org.jboss.logging:jboss-logging:3.5.3.Final")
-    implementation("jakarta.transaction:jakarta.transaction-api:2.0.1")
-    implementation("jakarta.interceptor:jakarta.interceptor-api:2.1.0")
-    implementation("jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1")
+    implementation(libs.jboss.logging)
+    implementation(libs.jakarta.transaction)
+    implementation(libs.jakarta.interceptor)
+    implementation(libs.jakarta.cdi)
 
     // Submodules
     implementation(project(":masjidku-accounting-client"))
     implementation(project(":masjidku-events-client"))
     implementation(project(":masjidku-reporting-client"))
+    implementation(project(":masjidku-auth-client"))
     
     // Service implementations (runtime)
+    implementation(project(":masjidku-common"))
     implementation(project(":masjidku-accounting"))
     implementation(project(":masjidku-events"))
     implementation(project(":masjidku-reporting"))
+    implementation(project(":masjidku-auth"))
     
     // XML Bind
     implementation(libs.jaxb.api)

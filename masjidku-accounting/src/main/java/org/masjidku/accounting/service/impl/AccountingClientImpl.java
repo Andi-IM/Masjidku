@@ -15,9 +15,9 @@ import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.accounting.domain.entity.*;
 import org.masjidku.accounting.domain.repository.*;
 import org.masjidku.accounting.domain.repository.impl.*;
-import org.masjidku.domain.repository.base.HibernateContext;
-import org.masjidku.domain.repository.base.TransactionHelper;
 import org.masjidku.accounting.di.DaggerAccountingComponent;
+import org.masjidku.common.HibernateContext;
+import org.masjidku.common.TransactionHelper;
 
 import javax.inject.Inject;
 import java.util.List;

@@ -6,6 +6,10 @@ java {
     modularity.inferModulePath.set(true)
 }
 
+repositories {
+    mavenCentral()
+}
+
 tasks.named<JavaCompile>("compileJava") {
     options.encoding = "UTF-8"
     doFirst {
@@ -15,16 +19,11 @@ tasks.named<JavaCompile>("compileJava") {
 }
 
 dependencies {
-    implementation(libs.sqlite.jdbc)
-    implementation(libs.mysql.connector)
-    implementation(libs.slf4j)
-    
     // ORM dependencies
     implementation(libs.hibernate.core)
     implementation(libs.hibernate.community.dialects)
     implementation(libs.hibernate.hikaricp)
     implementation(libs.hikaricp)
-    implementation(libs.guava)
 
     // Dagger 2 DI
     implementation(libs.dagger)

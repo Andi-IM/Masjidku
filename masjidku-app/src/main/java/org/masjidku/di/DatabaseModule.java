@@ -1,7 +1,7 @@
 package org.masjidku.di;
 
 import dagger.Module;
-import org.masjidku.domain.repository.base.CommonEntitiesModule;
+import org.masjidku.auth.domain.repository.base.CommonEntitiesModule;
 import dagger.Provides;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

@@ -1,5 +1,7 @@
 package org.masjidku.di;
 
+import org.masjidku.common.HibernateContext;
+
 public class DiProvider {
     private DiProvider() {
     }
@@ -9,7 +11,7 @@ public class DiProvider {
     public static void init() {
         if (appComponent == null) {
             appComponent = DaggerAppComponent.create();
-            org.masjidku.domain.repository.base.HibernateContext.initialize(
+            HibernateContext.initialize(
                 appComponent.getSessionFactory(),
                 appComponent.getTransactionHelper()
             );

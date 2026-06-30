@@ -21,9 +21,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import org.masjidku.domain.repository.UserSessionRepository;
-import org.masjidku.domain.repository.impl.UserSessionRepositoryImpl;
-import org.masjidku.model.session.UserSession;
+import org.masjidku.auth.domain.repository.UserSessionRepository;
+import org.masjidku.auth.domain.repository.impl.UserSessionRepositoryImpl;
+import org.masjidku.auth.client.model.UserSession;
 import org.masjidku.navigation.AppRouter;
 
 import java.net.URL;

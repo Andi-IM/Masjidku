@@ -24,15 +24,17 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import net.synedra.validatorfx.Validator;
-import org.masjidku.domain.repository.UserRepository;
-import org.masjidku.domain.repository.impl.UserRepositoryImpl;
-import org.masjidku.model.user.User;
+import org.masjidku.auth.domain.repository.UserRepository;
+import org.masjidku.auth.domain.repository.impl.UserRepositoryImpl;
+import org.masjidku.auth.client.model.User;
 import org.masjidku.navigation.AppRouter;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static org.masjidku.util.Constants.ACTIVE;
+import static org.masjidku.util.AlertHelper.alertError;
+import static org.masjidku.util.AlertHelper.alertInfo;
+import static org.masjidku.util.Constants.*;
 import static org.masjidku.util.ValidationHelper.registerRequiredField;
 
 public class UserForm implements Initializable {
@@ -145,15 +147,15 @@ public class UserForm implements Initializable {
             UserRepository dao = new UserRepositoryImpl();
 
             if (dao.isUserExist(userid)) {
-                dao.update(new String[]{user.getJabatan().toString(), user.status(), user.id()});
-                org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "User telah diperbarui!");
+                dao.update(new String[]{user.jabatan(), user.status(), user.id()});
+                alertInfo(dialogStage, SUCCESS, "User telah diperbarui!");
             } else {
                 dao.save(user);
-                org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "User ditambahkan!");
+                alertInfo(dialogStage, SUCCESS, "User ditambahkan!");
             }
             mainApp.showUser();
         } else {
-            org.masjidku.util.AlertHelper.alertError(dialogStage, "Error", "Data belum lengkap!");
+            alertError(dialogStage, ERROR, "Data belum lengkap!");
         }
 
     }

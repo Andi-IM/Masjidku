@@ -16,9 +16,9 @@
 package org.masjidku.util;
 
 import com.google.common.base.Stopwatch;
-import org.masjidku.domain.repository.UserSessionRepository;
-import org.masjidku.model.session.UserSession;
-import org.masjidku.model.user.User;
+import org.masjidku.auth.domain.repository.UserSessionRepository;
+import org.masjidku.auth.client.model.UserSession;
+import org.masjidku.auth.client.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

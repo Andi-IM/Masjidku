@@ -15,6 +15,10 @@ annotation = "24.1.0"
 hibernate = "6.4.4.Final"
 hikaricp = "5.1.0"
 dagger = "2.51.1"
+jboss-logging = "3.5.3.Final"
+jakarta-transaction = "2.0.1"
+jakarta-interceptor = "2.1.0"
+jakarta-cdi = "4.0.1"
 [libraries]
 validatorfx = { group = "net.synedra", name = "validatorfx", version.ref = "validatorfx" }
 # Database
@@ -51,6 +55,11 @@ logback = { group = "ch.qos.logback", name = "logback-classic", version.ref = "l
 dagger = { group = "com.google.dagger", name = "dagger", version.ref = "dagger" }
 dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "dagger" }
 
+# Jakarta & Jboss
+jboss-logging = { group = "org.jboss.logging", name = "jboss-logging", version.ref = "jboss-logging" }
+jakarta-transaction = { group = "jakarta.transaction", name = "jakarta.transaction-api", version.ref = "jakarta-transaction" }
+jakarta-interceptor = { group = "jakarta.interceptor", name = "jakarta.interceptor-api", version.ref = "jakarta-interceptor" }
+jakarta-cdi = { group = "jakarta.enterprise", name = "jakarta.enterprise.cdi-api", version.ref = "jakarta-cdi" }
 [plugins]
 javafx = { id = "org.openjfx.javafxplugin", version = "0.1.0" }
 jlink = { id = "org.beryx.jlink", version = "3.0.0" }

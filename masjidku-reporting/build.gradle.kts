@@ -20,6 +20,7 @@ tasks.withType<JavaCompile> {
 
 dependencies {
     implementation(project(":masjidku-common"))
+    implementation(project(":masjidku-auth-client"))
     implementation(project(":masjidku-reporting-client"))
     implementation(libs.openpdf) {
         exclude(group = "xml-apis", module = "xml-apis")
@@ -34,7 +35,7 @@ dependencies {
         exclude(group = "xml-apis", module = "xml-apis")
         exclude(group = "xml-apis", module = "xml-apis-ext")
     }
-    implementation("org.slf4j:slf4j-api:2.0.12")
+    implementation(libs.slf4j)
 
 
 }

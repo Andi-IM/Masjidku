@@ -24,7 +24,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
-import org.masjidku.model.user.User;
+import org.masjidku.auth.client.model.User;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.service.UserService;
 import org.masjidku.service.impl.UserServiceImpl;

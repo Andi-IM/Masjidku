@@ -1,9 +1,9 @@
 package org.masjidku.service.impl;
 
 import javafx.collections.ObservableList;
-import org.masjidku.model.user.User;
-import org.masjidku.domain.repository.UserRepository;
-import org.masjidku.domain.repository.impl.UserRepositoryImpl;
+import org.masjidku.auth.client.model.User;
+import org.masjidku.auth.domain.repository.UserRepository;
+import org.masjidku.auth.domain.repository.impl.UserRepositoryImpl;
 import org.masjidku.service.UserService;
 
 /**

@@ -4,8 +4,8 @@ import dagger.Module;
 import dagger.Provides;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.masjidku.domain.repository.UserSessionRepository;
-import org.masjidku.domain.repository.impl.UserSessionRepositoryImpl;
+import org.masjidku.auth.domain.repository.UserSessionRepository;
+import org.masjidku.auth.domain.repository.impl.UserSessionRepositoryImpl;
 import org.masjidku.reporting.client.service.ReportService;
 import org.masjidku.util.ServiceProvider;
 
