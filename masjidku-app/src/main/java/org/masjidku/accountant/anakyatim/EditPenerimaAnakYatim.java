@@ -20,20 +20,19 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.anakyatim.AnakYatim;
-import org.masjidku.accounting.client.service.AnakYatimService;
+import org.masjidku.accounting.client.service.AccountingClient;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class EditPenerimaAnakYatim {
     private static final Logger log = LoggerFactory.getLogger(EditPenerimaAnakYatim.class);
-    private final AnakYatimService dao = ServiceProvider.get(AnakYatimService.class);
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
 
     @FXML
     private TextField txtNama;
@@ -99,22 +98,15 @@ public class EditPenerimaAnakYatim {
             }
 
             try {
-                if (dao.isAnakYatimExist(anakYatim.getId())) {
-                    dao.update(new String[]{
-                            anakYatim.getId(),
-                            anakYatim.getNama(),
-                            String.valueOf(anakYatim.getUsia()),
-                            anakYatim.getJumlah(),
-                            anakYatim.getTanggal(),
-                            operator
-                    });
+                if (client.isAnakYatimExist(anakYatim.getId())) {
+                    client.update(new AnakYatim(anakYatim.getId(), nama, usia, jumlah, tanggal, operator));
                     org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "Data telah diupdate");
                 } else {
-                    dao.save(anakYatim);
+                    client.save(anakYatim);
                     org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "Data telah ditambahkan");
                     mainApp.showAnakYatim();
                 }
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 log.error("An error occurred", e);
             }
         } else {

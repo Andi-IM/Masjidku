@@ -7,7 +7,9 @@ package org.masjidku.principal.report.keuangan.zakat;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import org.masjidku.accounting.client.model.zakat.ZakatMasuk;
-import org.masjidku.accounting.client.service.ZakatMasukService;
+
+
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +17,7 @@ import java.util.List;
 
 public class DataDonaturZakat extends org.masjidku.accountant.BaseFinanceReportController<ZakatMasuk> {
     private static final Logger log = LoggerFactory.getLogger(DataDonaturZakat.class);
-    private final ZakatMasukService dao = ServiceProvider.get(ZakatMasukService.class);
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
 
     @FXML
     private TableView<ZakatMasuk> zakatTable;
@@ -42,6 +44,6 @@ public class DataDonaturZakat extends org.masjidku.accountant.BaseFinanceReportC
 
     @Override
     protected List<ZakatMasuk> fetchAllData() throws java.sql.SQLException {
-        return dao.getAll();
+        return client.getAllZakatMasuk();
     }
 }

@@ -71,7 +71,7 @@ public abstract class BaseTableController<T> extends ReadOnlyTableController<T> 
                 } else {
                     AlertHelper.alertError(dialogStage, "SQL Error", "Data tidak ditemukan!");
                 }
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 getLogger().error("An error occurred", e);
             }
         }

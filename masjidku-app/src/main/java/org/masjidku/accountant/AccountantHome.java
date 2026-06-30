@@ -20,6 +20,8 @@ import org.masjidku.di.DiProvider;
 import org.masjidku.navigation.AppRouter;
 
 public class AccountantHome {
+
+    
     @FXML
     private Text greeting;
     private AppRouter mainApp;

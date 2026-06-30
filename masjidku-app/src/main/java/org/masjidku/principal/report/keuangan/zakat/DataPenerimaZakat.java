@@ -8,7 +8,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableView;
 import org.masjidku.accounting.client.model.zakat.ZakatKeluar;
-import org.masjidku.accounting.client.service.ZakatKeluarService;
+
+
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +18,7 @@ import java.util.List;
 
 public class DataPenerimaZakat extends org.masjidku.accountant.BaseFinanceReportController<ZakatKeluar> {
     private static final Logger log = LoggerFactory.getLogger(DataPenerimaZakat.class);
-    private final ZakatKeluarService dao = ServiceProvider.get(ZakatKeluarService.class);
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
 
     @FXML
     private TableView<ZakatKeluar> tableZakat;
@@ -45,6 +47,6 @@ public class DataPenerimaZakat extends org.masjidku.accountant.BaseFinanceReport
 
     @Override
     protected List<ZakatKeluar> fetchAllData() throws java.sql.SQLException {
-        return dao.getAll();
+        return client.getAllZakatKeluar();
     }
 }

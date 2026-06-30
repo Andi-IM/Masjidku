@@ -7,7 +7,9 @@ package org.masjidku.principal.report.keuangan.anakyatim;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import org.masjidku.accounting.client.model.anakyatim.DonasiAYatim;
-import org.masjidku.accounting.client.service.DonasiAYatimService;
+
+
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +17,7 @@ import java.util.List;
 
 public class DataDonaturAnakYatim extends org.masjidku.accountant.BaseFinanceReportController<DonasiAYatim> {
     private static final Logger log = LoggerFactory.getLogger(DataDonaturAnakYatim.class);
-    private final DonasiAYatimService dao = ServiceProvider.get(DonasiAYatimService.class);
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
 
     @FXML
     private TableView<DonasiAYatim> tblAYMasuk;
@@ -47,6 +49,6 @@ public class DataDonaturAnakYatim extends org.masjidku.accountant.BaseFinanceRep
 
     @Override
     protected List<DonasiAYatim> fetchAllData() throws java.sql.SQLException {
-        return dao.getAll();
+        return client.getAllDonasiAYatim();
     }
 }

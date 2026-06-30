@@ -9,7 +9,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableView;
 import org.masjidku.accounting.client.model.anakyatim.AnakYatim;
-import org.masjidku.accounting.client.service.AnakYatimService;
+
+
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +19,7 @@ import java.util.List;
 
 public class DataPenerimaAnakYatim extends org.masjidku.accountant.BaseFinanceReportController<AnakYatim> {
     private static final Logger log = LoggerFactory.getLogger(DataPenerimaAnakYatim.class);
-    private final AnakYatimService dao = ServiceProvider.get(AnakYatimService.class);
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
 
     @FXML
     private TableView<AnakYatim> tableAnakyatim;
@@ -57,6 +59,6 @@ public class DataPenerimaAnakYatim extends org.masjidku.accountant.BaseFinanceRe
 
     @Override
     protected List<AnakYatim> fetchAllData() throws java.sql.SQLException {
-        return dao.getAll();
+        return client.getAllAnakYatim();
     }
 }

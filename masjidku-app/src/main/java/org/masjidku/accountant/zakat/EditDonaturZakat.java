@@ -21,7 +21,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.zakat.ZakatMasuk;
-import org.masjidku.accounting.client.service.ZakatMasukService;
+
+
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +33,7 @@ import java.time.format.DateTimeFormatter;
 
 public class EditDonaturZakat {
     private static final Logger log = LoggerFactory.getLogger(EditDonaturZakat.class);
-    private final ZakatMasukService dao = ServiceProvider.get(ZakatMasukService.class);
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
 
     @FXML
     private TextField txtNama;
@@ -84,15 +86,9 @@ public class EditDonaturZakat {
             }
 
             org.masjidku.util.DaoHelper.saveOrUpdate(
-                () -> dao.isDonaturExist(donatur.getId()),
-                () -> dao.update(new String[]{
-                        donatur.getId(),
-                        donatur.getDonatur(),
-                        donatur.getJumlah(),
-                        donatur.getTanggal(),
-                        operator
-                }),
-                () -> dao.save(donatur),
+                () -> client.isZakatMasukExist(donatur.getId()),
+                () -> client.update(new ZakatMasuk(donatur.getId(), nama, jumlah, tanggal, operator)),
+                () -> client.save(donatur),
                 dialogStage, log
             );
         } else {

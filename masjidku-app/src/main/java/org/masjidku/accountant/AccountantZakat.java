@@ -19,9 +19,11 @@ import javafx.fxml.FXML;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.zakat.ZakatKeluar;
 import org.masjidku.accounting.client.model.zakat.ZakatMasuk;
-import org.masjidku.accounting.client.service.AccountingFunctionsService;
-import org.masjidku.accounting.client.service.ZakatKeluarService;
-import org.masjidku.accounting.client.service.ZakatMasukService;
+
+
+
+
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,10 +33,8 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class AccountantZakat extends BaseAccountantController {
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
     private static final Logger log = LoggerFactory.getLogger(AccountantZakat.class);
-    private final AccountingFunctionsService df = ServiceProvider.get(AccountingFunctionsService.class);
-    private final ZakatKeluarService zkDao = ServiceProvider.get(ZakatKeluarService.class);
-    private final ZakatMasukService zmDao = ServiceProvider.get(ZakatMasukService.class);
     private AppRouter mainApp;
 
     public void setMainApp(AppRouter mainApp) {
@@ -60,19 +60,19 @@ public class AccountantZakat extends BaseAccountantController {
     public void initialize(URL location, ResourceBundle resources) {
 
         try {
-            ZakatKeluar penerima = zkDao.getLastRecord();
-            ZakatMasuk pemberi = zmDao.getLastRecord();
+            ZakatKeluar penerima = client.getLastZakatKeluar();
+            ZakatMasuk pemberi = client.getLastZakatMasuk();
 
             updateDashboardSummary(
                     pemberi.getJumlah(), // Pemasukan
                     penerima.getJumlah(), // Pengeluaran
-                    zmDao.getTotalIncome(), // Total Pemasukan
-                    zkDao.gettotalOutcome(), // Total Pengeluaran
-                    df.getZakatBalance(), // Saldo
+                    client.getTotalZakatMasuk(), // Total Pemasukan
+                    client.getTotalZakatKeluar(), // Total Pengeluaran
+                    client.getZakatBalance(), // Saldo
                     pemberi.getTanggal(), // Tgl Pemasukan
                     penerima.getTanggal() // Tgl Pengeluaran
             );
-        } catch (SQLException e) {
+        } catch (Exception e) {
             log.error("An error occurred", e);
         }
     }

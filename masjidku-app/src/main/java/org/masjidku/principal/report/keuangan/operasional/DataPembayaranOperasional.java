@@ -9,7 +9,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.accounting.client.model.operasional.Operasional;
-import org.masjidku.accounting.client.service.OperationalService;
+
+
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +19,7 @@ import java.util.List;
 
 public class DataPembayaranOperasional extends org.masjidku.accountant.BaseFinanceReportController<Operasional> {
     private static final Logger log = LoggerFactory.getLogger(DataPembayaranOperasional.class);
-    private final OperationalService dao = ServiceProvider.get(OperationalService.class);
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
 
     @FXML
     private TableView<Operasional> tableOperasional;
@@ -52,6 +54,6 @@ public class DataPembayaranOperasional extends org.masjidku.accountant.BaseFinan
 
     @Override
     protected List<Operasional> fetchAllData() throws java.sql.SQLException {
-        return dao.getAll();
+        return client.getAllOperasional();
     }
 }

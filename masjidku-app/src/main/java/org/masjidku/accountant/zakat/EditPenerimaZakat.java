@@ -21,7 +21,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.zakat.ZakatKeluar;
-import org.masjidku.accounting.client.service.ZakatKeluarService;
+
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +33,7 @@ import java.time.format.DateTimeFormatter;
 
 public class EditPenerimaZakat {
     private static final Logger log = LoggerFactory.getLogger(EditPenerimaZakat.class);
-    private final ZakatKeluarService dao = ServiceProvider.get(ZakatKeluarService.class);
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
 
     @FXML
     private TextField txtNama;
@@ -94,19 +95,13 @@ public class EditPenerimaZakat {
             }
 
             try {
-                if (dao.isDataExist(penerima.getId())) {
-                    dao.update(new String[]{
-                            penerima.getId(),
-                            penerima.getNama(),
-                            penerima.getJumlah(),
-                            penerima.getTanggal(),
-                            operator
-                    });
+                if (client.isZakatKeluarExist(penerima.getId())) {
+                    client.update(new ZakatKeluar(penerima.getId(), penerima.getNama(), penerima.getJumlah(), penerima.getTanggal(), operator));
                     org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "Data telah diupdate");
                 } else {
-                    dao.save(penerima);
+                    client.save(penerima);
                 }
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 log.error("An error occurred", e);
             }
         } else {

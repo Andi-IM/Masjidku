@@ -21,7 +21,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.operasional.DonasiOperasional;
-import org.masjidku.accounting.client.service.DonasiOperationalService;
+
+
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +33,7 @@ import java.time.format.DateTimeFormatter;
 
 public class EditDonaturOperasional {
     private static final Logger log = LoggerFactory.getLogger(EditDonaturOperasional.class);
-    private final DonasiOperationalService dao = ServiceProvider.get(DonasiOperationalService.class);
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
 
     @FXML
     private TextField txtNama;
@@ -86,15 +88,9 @@ public class EditDonaturOperasional {
             }
 
             org.masjidku.util.DaoHelper.saveOrUpdate(
-                () -> dao.isDonaturExist(donatur.getId()),
-                () -> dao.update(new String[]{
-                        donatur.getId(),
-                        donatur.getDonatur(),
-                        donatur.getJumlah(),
-                        donatur.getTanggal(),
-                        operator
-                }),
-                () -> dao.save(donatur),
+                () -> client.isDonasiOperasionalExist(donatur.getId()),
+                () -> client.update(new DonasiOperasional(donatur.getId(), nama, jumlah, tanggal, operator)),
+                () -> client.save(donatur),
                 dialogStage, log
             );
         } else {

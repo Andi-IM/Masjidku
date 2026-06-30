@@ -19,6 +19,8 @@ import javafx.scene.control.ToggleGroup;
 import org.masjidku.navigation.AppRouter;
 
 public class AccountantRoot {
+
+    
     public ToggleGroup groupButton;
     private AppRouter mainApp;
 

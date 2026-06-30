@@ -123,3 +123,15 @@ tasks.named<JavaExec>("run") {
 
 
 
+
+tasks.named<JavaExec>("run") {
+    doFirst {
+        jvmArgs = listOf(
+            "--module-path", classpath.asPath,
+            "--module", "main/org.masjidku.MainApp",
+            "--enable-native-access=javafx.graphics",
+            "--sun-misc-unsafe-memory-access=allow"
+        )
+        classpath = files()
+    }
+}

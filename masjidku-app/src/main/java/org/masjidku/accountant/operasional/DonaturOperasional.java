@@ -22,7 +22,9 @@ import javafx.scene.control.TableView;
 import org.masjidku.controller.BaseTableController;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.operasional.DonasiOperasional;
-import org.masjidku.accounting.client.service.DonasiOperationalService;
+
+
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +33,7 @@ import java.util.List;
 
 public class DonaturOperasional extends BaseTableController<DonasiOperasional> {
     private static final Logger log = LoggerFactory.getLogger(DonaturOperasional.class);
-    private final DonasiOperationalService dao = ServiceProvider.get(DonasiOperationalService.class);
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
 
     @FXML
     private TableView<DonasiOperasional> tableOperasional;
@@ -99,17 +101,17 @@ public class DonaturOperasional extends BaseTableController<DonasiOperasional> {
 
     @Override
     protected List<DonasiOperasional> fetchAllData() throws java.sql.SQLException {
-        return dao.getAll();
+        return client.getAllDonasiOperasional();
     }
 
     @Override
     protected boolean checkIfExist(DonasiOperasional item) throws java.sql.SQLException {
-        return dao.isDonaturExist(item.getId());
+        return client.isDonasiOperasionalExist(item.getId());
     }
 
     @Override
     protected void deleteItem(DonasiOperasional item) throws java.sql.SQLException {
-        dao.delete(item.getId());
+        client.delete(item);
     }
 
     @Override

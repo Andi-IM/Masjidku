@@ -23,7 +23,7 @@ public class DaoHelper {
                 saveAction.execute();
                 AlertHelper.alertInfo(dialogStage, "Success", "Data berhasil disimpan");
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             log.error("An error occurred", e);
         }
     }

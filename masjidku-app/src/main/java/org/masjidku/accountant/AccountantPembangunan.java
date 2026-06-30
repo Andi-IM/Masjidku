@@ -19,9 +19,11 @@ import javafx.fxml.FXML;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.pembangunan.DonasiPembangunan;
 import org.masjidku.accounting.client.model.pembangunan.Pembangunan;
-import org.masjidku.accounting.client.service.AccountingFunctionsService;
-import org.masjidku.accounting.client.service.DonasiPembangunanService;
-import org.masjidku.accounting.client.service.PembangunanService;
+
+
+
+
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,10 +33,8 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class AccountantPembangunan extends BaseAccountantController {
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
     private static final Logger log = LoggerFactory.getLogger(AccountantPembangunan.class);
-    private final AccountingFunctionsService df = ServiceProvider.get(AccountingFunctionsService.class);
-    private final DonasiPembangunanService dpDao = ServiceProvider.get(DonasiPembangunanService.class);
-    private final PembangunanService pbDao = ServiceProvider.get(PembangunanService.class);
     private AppRouter mainApp;
 
     public void setMainApp(AppRouter mainApp) {
@@ -60,20 +60,20 @@ public class AccountantPembangunan extends BaseAccountantController {
     public void initialize(URL location, ResourceBundle resources) {
 
         try {
-            Pembangunan penerima = pbDao.getLastRecord();
-            DonasiPembangunan pemberi = dpDao.getLastRecord();
+            Pembangunan penerima = client.getLastPembangunan();
+            DonasiPembangunan pemberi = client.getLastDonasiPembangunan();
 
             updateDashboardSummary(
                     pemberi.getJumlah(), // Pemasukan
                     penerima.getJumlah(), // Pengeluaran
-                    pbDao.getTotalIncome(), // Total Pemasukan
-                    dpDao.getTotalOutcome(), // Total Pengeluaran
-                    df.getPembangunanBalance(), // Saldo
+                    client.getTotalPembangunan(), // Total Pemasukan
+                    client.getTotalDonasiPembangunan(), // Total Pengeluaran
+                    client.getPembangunanBalance(), // Saldo
                     pemberi.getTanggal(), // Tgl Pemasukan
                     penerima.getTanggal() // Tgl Pengeluaran
             );
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             log.error("An error occurred", e);
         }
     }

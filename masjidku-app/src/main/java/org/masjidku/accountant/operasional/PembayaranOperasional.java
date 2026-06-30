@@ -23,7 +23,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.controller.BaseTableController;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.operasional.Operasional;
-import org.masjidku.accounting.client.service.OperationalService;
+
+
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +34,7 @@ import java.util.List;
 
 public class PembayaranOperasional extends BaseTableController<Operasional> {
     private static final Logger log = LoggerFactory.getLogger(PembayaranOperasional.class);
-    private final OperationalService dao = ServiceProvider.get(OperationalService.class);
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
 
     @FXML
     private TableView<Operasional> tableOperasional;
@@ -104,17 +106,17 @@ keterangan.setCellValueFactory(new PropertyValueFactory<>("keterangan"));
 
     @Override
     protected List<Operasional> fetchAllData() throws java.sql.SQLException {
-        return dao.getAll();
+        return client.getAllOperasional();
     }
 
     @Override
     protected boolean checkIfExist(Operasional item) throws java.sql.SQLException {
-        return dao.isDataExist(item.getId());
+        return client.isOperasionalExist(item.getId());
     }
 
     @Override
     protected void deleteItem(Operasional item) throws java.sql.SQLException {
-        dao.delete(item.getId());
+        client.delete(item);
     }
 
     @Override

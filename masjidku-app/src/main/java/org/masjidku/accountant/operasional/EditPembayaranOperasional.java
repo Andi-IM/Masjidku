@@ -21,7 +21,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.operasional.Operasional;
-import org.masjidku.accounting.client.service.OperationalService;
+
+
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +33,7 @@ import java.time.format.DateTimeFormatter;
 
 public class EditPembayaranOperasional {
     private static final Logger log = LoggerFactory.getLogger(EditPembayaranOperasional.class);
-    private final OperationalService dao = ServiceProvider.get(OperationalService.class);
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
 
     @FXML
     private TextField txtNama;
@@ -90,16 +92,9 @@ public class EditPembayaranOperasional {
             }
 
             org.masjidku.util.DaoHelper.saveOrUpdate(
-                () -> dao.isDataExist(model.getId()),
-                () -> dao.update(new String[]{
-                        model.getId(),
-                        model.getTujuan(),
-                        model.getKeterangan(),
-                        model.getJumlah(),
-                        model.getTanggal(),
-                        operator
-                }),
-                () -> dao.save(model),
+                () -> client.isOperasionalExist(model.getId()),
+                () -> client.update(new Operasional(model.getId(), nama, keterangan, jumlah, tanggal, operator)),
+                () -> client.save(model),
                 dialogStage, log
             );
         } else {

@@ -18,8 +18,10 @@ package org.masjidku.principal.report.keuangan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
-import org.masjidku.accounting.client.service.*;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
@@ -32,10 +34,8 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class OperasionalReport implements Initializable {
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
     private static final Logger log = LoggerFactory.getLogger(OperasionalReport.class);
-    private final AccountingFunctionsService df = ServiceProvider.get(AccountingFunctionsService.class);
-    private final DonasiOperationalService doDao = ServiceProvider.get(DonasiOperationalService.class);
-    private final OperationalService opDao = ServiceProvider.get(OperationalService.class);
     @FXML
     public Text txtPemasukanTerakhir;
     @FXML
@@ -68,18 +68,18 @@ public class OperasionalReport implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         try {
-            Operasional penerima = opDao.getLastRecord();
-            DonasiOperasional pemberi = doDao.getLastRecord();
+            Operasional penerima = client.getLastOperasional();
+            DonasiOperasional pemberi = client.getLastDonasiOperasional();
 
             txtPemasukanTerakhir.setText("Rp. " + penerima.getJumlah());
             txtPengeluaranTerakhir.setText("Rp. " + pemberi.getJumlah());
-            txtTotalPemasukkan.setText("Rp. " + opDao.getTotalIncome());
-            txtTotalPengeluaran.setText("Rp. " + doDao.getTotalOutcome());
-            txtSaldo.setText("Rp. " + df.getOperationalBalance());
+            txtTotalPemasukkan.setText("Rp. " + client.getTotalOperasional());
+            txtTotalPengeluaran.setText("Rp. " + client.getTotalDonasiOperasional());
+            txtSaldo.setText("Rp. " + client.getOperationalBalance());
             txtTglPemasukkan.setText(pemberi.getTanggal());
             txtTglPengeluaran.setText(penerima.getTanggal());
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             log.error("An error occurred", e);
         }
     }

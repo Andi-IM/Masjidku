@@ -7,7 +7,9 @@ package org.masjidku.principal.report.keuangan.tpa;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import org.masjidku.accounting.client.model.tpa.TpaMasuk;
-import org.masjidku.accounting.client.service.TpaMasukService;
+
+
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +17,7 @@ import java.util.List;
 
 public class DataDonaturTpa extends org.masjidku.accountant.BaseFinanceReportController<TpaMasuk> {
     private static final Logger log = LoggerFactory.getLogger(DataDonaturTpa.class);
-    private final TpaMasukService dao = ServiceProvider.get(TpaMasukService.class);
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
 
     @FXML
     private TableView<TpaMasuk> tableTpa;
@@ -42,6 +44,6 @@ public class DataDonaturTpa extends org.masjidku.accountant.BaseFinanceReportCon
 
     @Override
     protected List<TpaMasuk> fetchAllData() throws java.sql.SQLException {
-        return dao.getAll();
+        return client.getAllTpaMasuk();
     }
 }

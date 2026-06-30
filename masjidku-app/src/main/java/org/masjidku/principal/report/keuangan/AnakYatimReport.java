@@ -21,9 +21,11 @@ import javafx.scene.text.Text;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.anakyatim.AnakYatim;
 import org.masjidku.accounting.client.model.anakyatim.DonasiAYatim;
-import org.masjidku.accounting.client.service.AccountingFunctionsService;
-import org.masjidku.accounting.client.service.AnakYatimService;
-import org.masjidku.accounting.client.service.DonasiAYatimService;
+
+
+
+
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,10 +35,8 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class AnakYatimReport implements Initializable {
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
     private static final Logger log = LoggerFactory.getLogger(AnakYatimReport.class);
-    private final AccountingFunctionsService df = ServiceProvider.get(AccountingFunctionsService.class);
-    private final AnakYatimService ayDao = ServiceProvider.get(AnakYatimService.class);
-    private final DonasiAYatimService dayDao = ServiceProvider.get(DonasiAYatimService.class);
     @FXML
     public Text txtPemasukanTerakhir;
     @FXML
@@ -62,18 +62,18 @@ public class AnakYatimReport implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         try {
-            AnakYatim penerima = ayDao.getLastRecord();
-            DonasiAYatim pemberi = dayDao.getLastRecord();
+            AnakYatim penerima = client.getLastAnakYatim();
+            DonasiAYatim pemberi = client.getLastDonasiAYatim();
 
             txtPemasukanTerakhir.setText("Rp. " + penerima.getJumlah());
             txtPengeluaranTerakhir.setText("Rp. " + pemberi.getJumlah());
-            txtTotalPemasukkan.setText("Rp. " + dayDao.getTotalIncome());
-            txtTotalPengeluaran.setText("Rp. " + ayDao.getTotalOutcome());
-            txtSaldo.setText("Rp. " + df.getInfakYatimBalance());
+            txtTotalPemasukkan.setText("Rp. " + client.getTotalDonasiAYatim());
+            txtTotalPengeluaran.setText("Rp. " + client.getTotalAnakYatim());
+            txtSaldo.setText("Rp. " + client.getInfakYatimBalance());
             txtTglPemasukkan.setText(pemberi.getTanggal());
             txtTglPengeluaran.setText(penerima.getTanggal());
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             log.error("An error occurred", e);
         }
 

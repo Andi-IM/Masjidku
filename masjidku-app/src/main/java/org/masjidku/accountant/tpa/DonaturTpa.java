@@ -22,7 +22,9 @@ import javafx.scene.control.TableView;
 import org.masjidku.controller.BaseTableController;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.tpa.TpaMasuk;
-import org.masjidku.accounting.client.service.TpaMasukService;
+
+
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +33,7 @@ import java.util.List;
 
 public class DonaturTpa extends BaseTableController<TpaMasuk> {
     private static final Logger log = LoggerFactory.getLogger(DonaturTpa.class);
-    private final TpaMasukService dao = ServiceProvider.get(TpaMasukService.class);
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
 
     @FXML
     private TableView<TpaMasuk> tableTpa;
@@ -91,9 +93,9 @@ public class DonaturTpa extends BaseTableController<TpaMasuk> {
     @Override protected TableView<TpaMasuk> getTableView() { return tableTpa; }
     @Override protected Button getBtnEdit() { return btnEdit; }
     @Override protected Button getBtnRemove() { return btnRemove; }
-    @Override protected List<TpaMasuk> fetchAllData() throws java.sql.SQLException { return dao.getAll(); }
-    @Override protected boolean checkIfExist(TpaMasuk item) throws java.sql.SQLException { return dao.isDonaturExist(item.getId()); }
-    @Override protected void deleteItem(TpaMasuk item) throws java.sql.SQLException { dao.delete(item.getId()); }
+    @Override protected List<TpaMasuk> fetchAllData() throws java.sql.SQLException { return client.getAllTpaMasuk(); }
+    @Override protected boolean checkIfExist(TpaMasuk item) throws java.sql.SQLException { return client.isTpaMasukExist(item.getId()); }
+    @Override protected void deleteItem(TpaMasuk item) throws java.sql.SQLException { client.delete(item); }
     @Override protected void handleEdit(TpaMasuk item) { mainApp.editDonaturTpa(item); }
 
     @FXML public void onEditListener() { super.onEditAction(); }

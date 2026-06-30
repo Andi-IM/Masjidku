@@ -18,8 +18,10 @@ package org.masjidku.principal.report.keuangan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
-import org.masjidku.accounting.client.service.*;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
@@ -32,10 +34,8 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class TpaReport implements Initializable {
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
     private static final Logger log = LoggerFactory.getLogger(TpaReport.class);
-    private final AccountingFunctionsService df = ServiceProvider.get(AccountingFunctionsService.class);
-    private final TpaKeluarService tpakdao = ServiceProvider.get(TpaKeluarService.class);
-    private final TpaMasukService tpamdao = ServiceProvider.get(TpaMasukService.class);
     @FXML
     public Text txtPemasukanTerakhir;
     @FXML
@@ -68,18 +68,18 @@ public class TpaReport implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         try {
-            TpaKeluar penerima = tpakdao.getLastRecord();
-            TpaMasuk pemberi = tpamdao.getLastRecord();
+            TpaKeluar penerima = client.getLastTpaKeluar();
+            TpaMasuk pemberi = client.getLastTpaMasuk();
 
             txtPemasukanTerakhir.setText("Rp. " + pemberi.getJumlah());
             txtPengeluaranTerakhir.setText("Rp. " + penerima.getJumlah());
-            txtTotalPemasukkan.setText("Rp. " + tpamdao.getTotalIncome());
-            txtTotalPengeluaran.setText("Rp. " + tpakdao.getTotalOutcome());
-            txtSaldo.setText("Rp. " + df.getTpaBalance());
+            txtTotalPemasukkan.setText("Rp. " + client.getTotalTpaMasuk());
+            txtTotalPengeluaran.setText("Rp. " + client.getTotalTpaKeluar());
+            txtSaldo.setText("Rp. " + client.getTpaBalance());
             txtTglPemasukkan.setText(pemberi.getTanggal());
             txtTglPengeluaran.setText(penerima.getTanggal());
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             log.error("An error occurred", e);
         }
     }

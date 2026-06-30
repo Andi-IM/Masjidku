@@ -23,7 +23,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.controller.BaseTableController;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.pembangunan.Pembangunan;
-import org.masjidku.accounting.client.service.PembangunanService;
+
+
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +34,7 @@ import java.util.List;
 
 public class PembayaranPembangunan extends BaseTableController<Pembangunan> {
     private static final Logger log = LoggerFactory.getLogger(PembayaranPembangunan.class);
-    private final PembangunanService dao = ServiceProvider.get(PembangunanService.class);
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
 
     @FXML
     private TableView<Pembangunan> tablePembangunan;
@@ -104,17 +106,17 @@ keterangan.setCellValueFactory(new PropertyValueFactory<>("keterangan"));
 
     @Override
     protected List<Pembangunan> fetchAllData() throws java.sql.SQLException {
-        return dao.getAll();
+        return client.getAllPembangunan();
     }
 
     @Override
     protected boolean checkIfExist(Pembangunan item) throws java.sql.SQLException {
-        return dao.isDataExist(item.getId());
+        return client.isPembangunanExist(item.getId());
     }
 
     @Override
     protected void deleteItem(Pembangunan item) throws java.sql.SQLException {
-        dao.delete(item.getId());
+        client.delete(item);
     }
 
     @Override

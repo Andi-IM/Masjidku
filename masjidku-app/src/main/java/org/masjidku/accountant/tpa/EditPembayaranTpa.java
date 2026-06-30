@@ -21,7 +21,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.tpa.TpaKeluar;
-import org.masjidku.accounting.client.service.TpaKeluarService;
+
+
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +33,7 @@ import java.time.format.DateTimeFormatter;
 
 public class EditPembayaranTpa {
     private static final Logger log = LoggerFactory.getLogger(EditPembayaranTpa.class);
-    private final TpaKeluarService dao = ServiceProvider.get(TpaKeluarService.class);
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
 
     @FXML
     private TextField txtNama;
@@ -90,16 +92,9 @@ public class EditPembayaranTpa {
             }
 
             org.masjidku.util.DaoHelper.saveOrUpdate(
-                () -> dao.isDataExist(model.getId()),
-                () -> dao.update(new String[]{
-                        model.getId(),
-                        model.getNama(),
-                        model.getKeterangan(),
-                        model.getJumlah(),
-                        model.getTanggal(),
-                        operator
-                }),
-                () -> dao.save(model),
+                () -> client.isTpaKeluarExist(model.getId()),
+                () -> client.update(new TpaKeluar(model.getId(), nama, keterangan, jumlah, tanggal, operator)),
+                () -> client.save(model),
                 dialogStage, log
             );
         } else {
