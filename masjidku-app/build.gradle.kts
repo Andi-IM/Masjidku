@@ -26,6 +26,7 @@ dependencies {
     // Database
     implementation(libs.mysql.connector)
     implementation(libs.sqlite.jdbc)
+    implementation(libs.hibernate.core)
 
     // Submodules
     implementation(project(":masjidku-accounting-client"))

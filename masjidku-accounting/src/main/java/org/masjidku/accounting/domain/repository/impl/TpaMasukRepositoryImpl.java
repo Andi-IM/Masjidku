@@ -2,17 +2,29 @@ package org.masjidku.accounting.domain.repository.impl;
 
 import org.masjidku.accounting.domain.entity.TpaMasukEntity;
 import org.masjidku.accounting.domain.repository.TpaMasukRepository;
-import org.masjidku.accounting.domain.repository.base.HibernateUtil;
 import org.masjidku.accounting.domain.repository.exception.DataAccessException;
 import java.util.List;
 import java.util.Optional;
+import javax.inject.Inject;
+import org.hibernate.SessionFactory;
+import org.masjidku.domain.repository.base.TransactionHelper;
 
 public class TpaMasukRepositoryImpl implements TpaMasukRepository {
+
+    private final SessionFactory sessionFactory;
+    private final TransactionHelper transactionHelper;
+
+    @Inject
+    public TpaMasukRepositoryImpl(SessionFactory sessionFactory, TransactionHelper transactionHelper) {
+        this.sessionFactory = sessionFactory;
+        this.transactionHelper = transactionHelper;
+    }
+
 
     @Override
     public Optional<TpaMasukEntity> findById(String id) {
         try {
-            var session = HibernateUtil.getSessionFactory().getCurrentSession();
+            var session = sessionFactory.getCurrentSession();
             return Optional.ofNullable(session.get(TpaMasukEntity.class, id));
         } catch (Exception e) {
             throw new DataAccessException("Failed to get TpaMasukEntity by ID", e);
@@ -22,7 +34,7 @@ public class TpaMasukRepositoryImpl implements TpaMasukRepository {
     @Override
     public List<TpaMasukEntity> findAll() {
         try {
-            var session = HibernateUtil.getSessionFactory().getCurrentSession();
+            var session = sessionFactory.getCurrentSession();
             return session.createQuery("FROM TpaMasukEntity", TpaMasukEntity.class).list();
         } catch (Exception e) {
             throw new DataAccessException("Failed to get all TpaMasukEntity", e);
@@ -32,7 +44,7 @@ public class TpaMasukRepositoryImpl implements TpaMasukRepository {
     @Override
     public void save(TpaMasukEntity entity) {
         try {
-            var session = HibernateUtil.getSessionFactory().getCurrentSession();
+            var session = sessionFactory.getCurrentSession();
             session.persist(entity);
         } catch (Exception e) {
             throw new DataAccessException("Failed to save TpaMasukEntity", e);
@@ -42,7 +54,7 @@ public class TpaMasukRepositoryImpl implements TpaMasukRepository {
     @Override
     public void update(TpaMasukEntity entity) {
         try {
-            var session = HibernateUtil.getSessionFactory().getCurrentSession();
+            var session = sessionFactory.getCurrentSession();
             session.merge(entity);
         } catch (Exception e) {
             throw new DataAccessException("Failed to update TpaMasukEntity", e);
@@ -52,7 +64,7 @@ public class TpaMasukRepositoryImpl implements TpaMasukRepository {
     @Override
     public void delete(String id) {
         try {
-            var session = HibernateUtil.getSessionFactory().getCurrentSession();
+            var session = sessionFactory.getCurrentSession();
             TpaMasukEntity entity = session.get(TpaMasukEntity.class, id);
             if (entity != null) {
                 session.remove(entity);
@@ -70,7 +82,7 @@ public class TpaMasukRepositoryImpl implements TpaMasukRepository {
     @Override
     public TpaMasukEntity getLastRecord() {
         try {
-            var session = HibernateUtil.getSessionFactory().getCurrentSession();
+            var session = sessionFactory.getCurrentSession();
             var query = session.createQuery("FROM TpaMasukEntity ORDER BY id DESC", TpaMasukEntity.class);
             query.setMaxResults(1);
             return query.uniqueResult();
@@ -82,7 +94,7 @@ public class TpaMasukRepositoryImpl implements TpaMasukRepository {
     @Override
     public String getTotal() {
         try {
-            var session = HibernateUtil.getSessionFactory().getCurrentSession();
+            var session = sessionFactory.getCurrentSession();
             var count = session.createQuery("SELECT IFNULL(SUM(CAST(e.jumlah AS double)), 0) FROM TpaMasukEntity e", Double.class).uniqueResult();
             return count != null ? String.valueOf(count.longValue()) : "0";
         } catch (Exception e) {

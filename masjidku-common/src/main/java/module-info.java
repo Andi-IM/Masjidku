@@ -8,6 +8,8 @@ module org.masjidku.common {
     requires org.hibernate.orm.core;
     requires com.zaxxer.hikari;
     requires com.google.common;
+    requires dagger;
+    requires javax.inject;
     
     // Optional module dependencies for database drivers
     requires static mysql.connector.java;
@@ -19,7 +21,8 @@ module org.masjidku.common {
     
     exports org.masjidku.domain.repository;
     exports org.masjidku.domain.repository.impl;
-    
+    exports org.masjidku.domain.repository.base;
+        
     opens org.masjidku.domain.entity to org.hibernate.orm.core;
 }
 

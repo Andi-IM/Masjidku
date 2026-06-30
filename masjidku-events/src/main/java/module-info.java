@@ -8,6 +8,10 @@ module org.masjidku.events {
     requires jakarta.persistence;
     requires java.naming;
     requires org.slf4j;
+    requires dagger;
+    requires javax.inject;
+
+    exports org.masjidku.events.di;
 
     provides org.masjidku.events.client.EventsClient with EventsClientImpl;
 }

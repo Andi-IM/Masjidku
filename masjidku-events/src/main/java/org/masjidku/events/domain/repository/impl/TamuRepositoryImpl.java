@@ -2,18 +2,30 @@ package org.masjidku.events.domain.repository.impl;
 
 import org.masjidku.events.domain.entity.Tamu;
 import org.masjidku.events.domain.repository.TamuRepository;
-import org.masjidku.events.domain.repository.base.HibernateUtil;
 import org.masjidku.events.domain.repository.exception.DataAccessException;
 
 import java.util.List;
 import java.util.Optional;
+import javax.inject.Inject;
+import org.hibernate.SessionFactory;
+import org.masjidku.domain.repository.base.TransactionHelper;
 
 public class TamuRepositoryImpl implements TamuRepository {
+
+    private final SessionFactory sessionFactory;
+    private final TransactionHelper transactionHelper;
+
+    @Inject
+    public TamuRepositoryImpl(SessionFactory sessionFactory, TransactionHelper transactionHelper) {
+        this.sessionFactory = sessionFactory;
+        this.transactionHelper = transactionHelper;
+    }
+
 
     @Override
     public Optional<Tamu> get(String id) {
         try {
-            var session = HibernateUtil.getSessionFactory().getCurrentSession();
+            var session = sessionFactory.getCurrentSession();
             return Optional.ofNullable(session.get(Tamu.class, id));
         } catch (Exception e) {
             throw new DataAccessException("Failed to get Tamu by ID", e);
@@ -23,7 +35,7 @@ public class TamuRepositoryImpl implements TamuRepository {
     @Override
     public List<Tamu> getAll() {
         try {
-            var session = HibernateUtil.getSessionFactory().getCurrentSession();
+            var session = sessionFactory.getCurrentSession();
             return session.createQuery("FROM Tamu", Tamu.class).list();
         } catch (Exception e) {
             throw new DataAccessException("Failed to get all Tamu", e);
@@ -33,7 +45,7 @@ public class TamuRepositoryImpl implements TamuRepository {
     @Override
     public void save(Tamu tamu) {
         try {
-            var session = HibernateUtil.getSessionFactory().getCurrentSession();
+            var session = sessionFactory.getCurrentSession();
             session.persist(tamu);
         } catch (Exception e) {
             throw new DataAccessException("Failed to save Tamu", e);
@@ -43,7 +55,7 @@ public class TamuRepositoryImpl implements TamuRepository {
     @Override
     public void update(Tamu tamu) {
         try {
-            var session = HibernateUtil.getSessionFactory().getCurrentSession();
+            var session = sessionFactory.getCurrentSession();
             session.merge(tamu);
         } catch (Exception e) {
             throw new DataAccessException("Failed to update Tamu", e);
@@ -53,7 +65,7 @@ public class TamuRepositoryImpl implements TamuRepository {
     @Override
     public void delete(String id) {
         try {
-            var session = HibernateUtil.getSessionFactory().getCurrentSession();
+            var session = sessionFactory.getCurrentSession();
             Tamu tamu = session.get(Tamu.class, id);
             if (tamu != null) {
                 session.remove(tamu);
@@ -71,7 +83,7 @@ public class TamuRepositoryImpl implements TamuRepository {
     @Override
     public List<String> getAllTamuName() {
         try {
-            var session = HibernateUtil.getSessionFactory().getCurrentSession();
+            var session = sessionFactory.getCurrentSession();
             return session.createQuery("SELECT t.nama FROM Tamu t", String.class).list();
         } catch (Exception e) {
             throw new DataAccessException("Failed to get Tamu names", e);
@@ -81,7 +93,7 @@ public class TamuRepositoryImpl implements TamuRepository {
     @Override
     public String getIdByName(String name) {
         try {
-            var session = HibernateUtil.getSessionFactory().getCurrentSession();
+            var session = sessionFactory.getCurrentSession();
             var query = session.createQuery("SELECT t.idTamu FROM Tamu t WHERE t.nama = :name", String.class);
             query.setParameter("name", name);
             var result = query.uniqueResult();

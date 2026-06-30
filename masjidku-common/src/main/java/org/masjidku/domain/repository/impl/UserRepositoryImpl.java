@@ -5,19 +5,36 @@ import org.masjidku.domain.entity.UserEntity;
 import org.masjidku.domain.entity.UserProfileEntity;
 import org.masjidku.domain.mapper.UserMapper;
 import org.masjidku.domain.repository.UserRepository;
-import org.masjidku.domain.repository.base.HibernateUtil;
 import org.masjidku.model.user.User;
 
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.inject.Inject;
+import org.hibernate.SessionFactory;
+import org.masjidku.domain.repository.base.TransactionHelper;
 
 public class UserRepositoryImpl implements UserRepository {
 
+    private final SessionFactory sessionFactory;
+    private final TransactionHelper transactionHelper;
+
+    @Inject
+    public UserRepositoryImpl(SessionFactory sessionFactory, TransactionHelper transactionHelper) {
+        this.sessionFactory = sessionFactory;
+        this.transactionHelper = transactionHelper;
+    }
+
+    public UserRepositoryImpl() {
+        this(org.masjidku.domain.repository.base.HibernateContext.getSessionFactory(), org.masjidku.domain.repository.base.HibernateContext.getTransactionHelper());
+    }
+
+
+
     @Override
     public List<User> getAll() {
-        return HibernateUtil.executeInTransaction(() -> {
-            List<UserEntity> entities = HibernateUtil.getSessionFactory().getCurrentSession()
+        return transactionHelper.executeInTransaction(() -> {
+            List<UserEntity> entities = sessionFactory.getCurrentSession()
                     .createQuery("FROM UserEntity", UserEntity.class)
                     .list();
             return entities.stream().map(UserMapper::toDomain).collect(Collectors.toList());
@@ -26,7 +43,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public void save(User user) {
-        HibernateUtil.executeInTransaction(() -> {
+        transactionHelper.executeInTransaction(() -> {
             UserEntity entity = UserMapper.toEntity(user);
             
             String hex = Hashing
@@ -35,12 +52,12 @@ public class UserRepositoryImpl implements UserRepository {
                     .toString();
             entity.setPassword(hex);
             
-            HibernateUtil.getSessionFactory().getCurrentSession().persist(entity);
+            sessionFactory.getCurrentSession().persist(entity);
 
             // Generate Profile automatically
             UserProfileEntity profileEntity = new UserProfileEntity();
             profileEntity.setUserId(entity.getUserId());
-            HibernateUtil.getSessionFactory().getCurrentSession().persist(profileEntity);
+            sessionFactory.getCurrentSession().persist(profileEntity);
             return null;
         });
     }
@@ -48,8 +65,8 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public void update(String[] params) {
         // params: jabatan, status, userid
-        HibernateUtil.executeInTransaction(() -> {
-            org.hibernate.Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        transactionHelper.executeInTransaction(() -> {
+            org.hibernate.Session session = sessionFactory.getCurrentSession();
             UserEntity entity = session.get(UserEntity.class, params[2]);
             if (entity != null) {
                 entity.setJabatan(params[0]);
@@ -61,8 +78,8 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public void update(String userid, String username, String password) {
-        HibernateUtil.executeInTransaction(() -> {
-            org.hibernate.Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        transactionHelper.executeInTransaction(() -> {
+            org.hibernate.Session session = sessionFactory.getCurrentSession();
             UserEntity entity = session.get(UserEntity.class, userid);
             if (entity != null) {
                 entity.setUsername(username);
@@ -78,8 +95,8 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public void delete(String userid) {
-        HibernateUtil.executeInTransaction(() -> {
-            org.hibernate.Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        transactionHelper.executeInTransaction(() -> {
+            org.hibernate.Session session = sessionFactory.getCurrentSession();
             UserEntity entity = session.get(UserEntity.class, userid);
             if (entity != null) {
                 session.remove(entity);
@@ -89,8 +106,8 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public boolean isReset(String userid) {
-        return HibernateUtil.executeInTransaction(() -> {
-            org.hibernate.Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        return transactionHelper.executeInTransaction(() -> {
+            org.hibernate.Session session = sessionFactory.getCurrentSession();
             UserEntity entity = session.get(UserEntity.class, userid);
             if (entity != null) {
                 String hex = Hashing
@@ -105,8 +122,8 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public void reset(String userId) {
-        HibernateUtil.executeInTransaction(() -> {
-            org.hibernate.Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        transactionHelper.executeInTransaction(() -> {
+            org.hibernate.Session session = sessionFactory.getCurrentSession();
             UserEntity entity = session.get(UserEntity.class, userId);
             if (entity != null) {
                 String hex = Hashing
@@ -121,8 +138,8 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User get(String userid) {
-        return HibernateUtil.executeInTransaction(() -> {
-            org.hibernate.Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        return transactionHelper.executeInTransaction(() -> {
+            org.hibernate.Session session = sessionFactory.getCurrentSession();
             UserEntity entity = session.get(UserEntity.class, userid);
             return UserMapper.toDomain(entity);
         });
@@ -130,8 +147,8 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public boolean isUserExist(String userid) {
-        return HibernateUtil.executeInTransaction(() -> {
-            org.hibernate.Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        return transactionHelper.executeInTransaction(() -> {
+            org.hibernate.Session session = sessionFactory.getCurrentSession();
             Long count = session.createQuery("SELECT count(u) FROM UserEntity u WHERE u.userId = :userid", Long.class)
                     .setParameter("userid", userid)
                     .uniqueResult();
@@ -141,8 +158,8 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public boolean isUserExist(String userid, String password) {
-        return HibernateUtil.executeInTransaction(() -> {
-            org.hibernate.Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        return transactionHelper.executeInTransaction(() -> {
+            org.hibernate.Session session = sessionFactory.getCurrentSession();
             Long count = session.createQuery("SELECT count(u) FROM UserEntity u WHERE u.userId = :userid AND u.password = :password", Long.class)
                     .setParameter("userid", userid)
                     .setParameter("password", password)

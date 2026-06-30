@@ -1,7 +1,6 @@
 package org.masjidku.accounting.service.impl;
 
 import org.masjidku.accounting.client.service.AccountingClient;
-import org.masjidku.accounting.domain.repository.base.HibernateUtil;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.masjidku.accounting.client.model.zakat.ZakatMasuk;
@@ -44,9 +43,39 @@ import org.masjidku.accounting.client.model.anakyatim.AnakYatim;
 import org.masjidku.accounting.domain.entity.AnakYatimEntity;
 import org.masjidku.accounting.domain.repository.AnakYatimRepository;
 import org.masjidku.accounting.domain.repository.impl.AnakYatimRepositoryImpl;
+import javax.inject.Inject;
+import org.hibernate.SessionFactory;
+import org.masjidku.domain.repository.base.TransactionHelper;
 
 
 public class AccountingClientImpl implements AccountingClient {
+
+    private final SessionFactory sessionFactory;
+    private final TransactionHelper transactionHelper;
+
+    @Inject
+    public AccountingClientImpl(SessionFactory sessionFactory, TransactionHelper transactionHelper) {
+        this.sessionFactory = sessionFactory;
+        this.transactionHelper = transactionHelper;
+    
+        this.zakatMasukRepository = new ZakatMasukRepositoryImpl(sessionFactory, transactionHelper);
+        this.zakatKeluarRepository = new ZakatKeluarRepositoryImpl(sessionFactory, transactionHelper);
+        this.tpaMasukRepository = new TpaMasukRepositoryImpl(sessionFactory, transactionHelper);
+        this.tpaKeluarRepository = new TpaKeluarRepositoryImpl(sessionFactory, transactionHelper);
+        this.donasiPembangunanRepository = new DonasiPembangunanRepositoryImpl(sessionFactory, transactionHelper);
+        this.pembangunanRepository = new PembangunanRepositoryImpl(sessionFactory, transactionHelper);
+        this.donasiOperasionalRepository = new DonasiOperasionalRepositoryImpl(sessionFactory, transactionHelper);
+        this.operasionalRepository = new OperasionalRepositoryImpl(sessionFactory, transactionHelper);
+        this.donasiAnakYatimRepository = new DonasiAnakYatimRepositoryImpl(sessionFactory, transactionHelper);
+        this.anakYatimRepository = new AnakYatimRepositoryImpl(sessionFactory, transactionHelper);
+
+    }
+
+    public AccountingClientImpl() {
+        this(org.masjidku.domain.repository.base.HibernateContext.getSessionFactory(), org.masjidku.domain.repository.base.HibernateContext.getTransactionHelper());
+    }
+
+
     private final ZakatMasukRepository zakatMasukRepository;
     private final ZakatKeluarRepository zakatKeluarRepository;
     private final TpaMasukRepository tpaMasukRepository;
@@ -59,19 +88,7 @@ public class AccountingClientImpl implements AccountingClient {
     private final AnakYatimRepository anakYatimRepository;
 
 
-    public AccountingClientImpl() {
-        this.zakatMasukRepository = new ZakatMasukRepositoryImpl();
-        this.zakatKeluarRepository = new ZakatKeluarRepositoryImpl();
-        this.tpaMasukRepository = new TpaMasukRepositoryImpl();
-        this.tpaKeluarRepository = new TpaKeluarRepositoryImpl();
-        this.donasiPembangunanRepository = new DonasiPembangunanRepositoryImpl();
-        this.pembangunanRepository = new PembangunanRepositoryImpl();
-        this.donasiOperasionalRepository = new DonasiOperasionalRepositoryImpl();
-        this.operasionalRepository = new OperasionalRepositoryImpl();
-        this.donasiAnakYatimRepository = new DonasiAnakYatimRepositoryImpl();
-        this.anakYatimRepository = new AnakYatimRepositoryImpl();
-
-    }
+    
 
     private ZakatMasukEntity toEntity(ZakatMasuk model) {
         ZakatMasukEntity entity = new ZakatMasukEntity();
@@ -90,46 +107,46 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public List<ZakatMasuk> getAllZakatMasuk() {
-        return HibernateUtil.executeInTransaction(() -> 
+        return transactionHelper.executeInTransaction(() -> 
             zakatMasukRepository.findAll().stream().map(this::toModel).collect(Collectors.toList())
         );
     }
 
     @Override
     public ZakatMasuk getZakatMasuk(String id) {
-        return HibernateUtil.executeInTransaction(() -> 
+        return transactionHelper.executeInTransaction(() -> 
             zakatMasukRepository.findById(id).map(this::toModel).orElse(null)
         );
     }
 
     @Override
     public boolean isZakatMasukExist(String id) {
-        return HibernateUtil.executeInTransaction(() -> zakatMasukRepository.exists(id));
+        return transactionHelper.executeInTransaction(() -> zakatMasukRepository.exists(id));
     }
 
     @Override
     public void save(ZakatMasuk model) {
-        HibernateUtil.executeInTransaction(() -> zakatMasukRepository.save(toEntity(model)));
+        transactionHelper.executeInTransaction(() -> zakatMasukRepository.save(toEntity(model)));
     }
 
     @Override
     public void update(ZakatMasuk model) {
-        HibernateUtil.executeInTransaction(() -> zakatMasukRepository.update(toEntity(model)));
+        transactionHelper.executeInTransaction(() -> zakatMasukRepository.update(toEntity(model)));
     }
 
     @Override
     public void delete(ZakatMasuk model) {
-        HibernateUtil.executeInTransaction(() -> zakatMasukRepository.delete(model.getId()));
+        transactionHelper.executeInTransaction(() -> zakatMasukRepository.delete(model.getId()));
     }
 
     @Override
     public ZakatMasuk getLastZakatMasuk() {
-        return HibernateUtil.executeInTransaction(() -> toModel(zakatMasukRepository.getLastRecord()));
+        return transactionHelper.executeInTransaction(() -> toModel(zakatMasukRepository.getLastRecord()));
     }
 
     @Override
     public String getTotalZakatMasuk() {
-        return HibernateUtil.executeInTransaction(() -> zakatMasukRepository.getTotal());
+        return transactionHelper.executeInTransaction(() -> zakatMasukRepository.getTotal());
     }
     private ZakatKeluarEntity toEntity(ZakatKeluar model) {
         ZakatKeluarEntity entity = new ZakatKeluarEntity();
@@ -148,46 +165,46 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public List<ZakatKeluar> getAllZakatKeluar() {
-        return HibernateUtil.executeInTransaction(() -> 
+        return transactionHelper.executeInTransaction(() -> 
             zakatKeluarRepository.findAll().stream().map(this::toModel).collect(Collectors.toList())
         );
     }
 
     @Override
     public ZakatKeluar getZakatKeluar(String id) {
-        return HibernateUtil.executeInTransaction(() -> 
+        return transactionHelper.executeInTransaction(() -> 
             zakatKeluarRepository.findById(id).map(this::toModel).orElse(null)
         );
     }
 
     @Override
     public boolean isZakatKeluarExist(String id) {
-        return HibernateUtil.executeInTransaction(() -> zakatKeluarRepository.exists(id));
+        return transactionHelper.executeInTransaction(() -> zakatKeluarRepository.exists(id));
     }
 
     @Override
     public void save(ZakatKeluar model) {
-        HibernateUtil.executeInTransaction(() -> zakatKeluarRepository.save(toEntity(model)));
+        transactionHelper.executeInTransaction(() -> zakatKeluarRepository.save(toEntity(model)));
     }
 
     @Override
     public void update(ZakatKeluar model) {
-        HibernateUtil.executeInTransaction(() -> zakatKeluarRepository.update(toEntity(model)));
+        transactionHelper.executeInTransaction(() -> zakatKeluarRepository.update(toEntity(model)));
     }
 
     @Override
     public void delete(ZakatKeluar model) {
-        HibernateUtil.executeInTransaction(() -> zakatKeluarRepository.delete(model.getId()));
+        transactionHelper.executeInTransaction(() -> zakatKeluarRepository.delete(model.getId()));
     }
 
     @Override
     public ZakatKeluar getLastZakatKeluar() {
-        return HibernateUtil.executeInTransaction(() -> toModel(zakatKeluarRepository.getLastRecord()));
+        return transactionHelper.executeInTransaction(() -> toModel(zakatKeluarRepository.getLastRecord()));
     }
 
     @Override
     public String getTotalZakatKeluar() {
-        return HibernateUtil.executeInTransaction(() -> zakatKeluarRepository.getTotal());
+        return transactionHelper.executeInTransaction(() -> zakatKeluarRepository.getTotal());
     }
     private TpaMasukEntity toEntity(TpaMasuk model) {
         TpaMasukEntity entity = new TpaMasukEntity();
@@ -206,46 +223,46 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public List<TpaMasuk> getAllTpaMasuk() {
-        return HibernateUtil.executeInTransaction(() -> 
+        return transactionHelper.executeInTransaction(() -> 
             tpaMasukRepository.findAll().stream().map(this::toModel).collect(Collectors.toList())
         );
     }
 
     @Override
     public TpaMasuk getTpaMasuk(String id) {
-        return HibernateUtil.executeInTransaction(() -> 
+        return transactionHelper.executeInTransaction(() -> 
             tpaMasukRepository.findById(id).map(this::toModel).orElse(null)
         );
     }
 
     @Override
     public boolean isTpaMasukExist(String id) {
-        return HibernateUtil.executeInTransaction(() -> tpaMasukRepository.exists(id));
+        return transactionHelper.executeInTransaction(() -> tpaMasukRepository.exists(id));
     }
 
     @Override
     public void save(TpaMasuk model) {
-        HibernateUtil.executeInTransaction(() -> tpaMasukRepository.save(toEntity(model)));
+        transactionHelper.executeInTransaction(() -> tpaMasukRepository.save(toEntity(model)));
     }
 
     @Override
     public void update(TpaMasuk model) {
-        HibernateUtil.executeInTransaction(() -> tpaMasukRepository.update(toEntity(model)));
+        transactionHelper.executeInTransaction(() -> tpaMasukRepository.update(toEntity(model)));
     }
 
     @Override
     public void delete(TpaMasuk model) {
-        HibernateUtil.executeInTransaction(() -> tpaMasukRepository.delete(model.getId()));
+        transactionHelper.executeInTransaction(() -> tpaMasukRepository.delete(model.getId()));
     }
 
     @Override
     public TpaMasuk getLastTpaMasuk() {
-        return HibernateUtil.executeInTransaction(() -> toModel(tpaMasukRepository.getLastRecord()));
+        return transactionHelper.executeInTransaction(() -> toModel(tpaMasukRepository.getLastRecord()));
     }
 
     @Override
     public String getTotalTpaMasuk() {
-        return HibernateUtil.executeInTransaction(() -> tpaMasukRepository.getTotal());
+        return transactionHelper.executeInTransaction(() -> tpaMasukRepository.getTotal());
     }
     private TpaKeluarEntity toEntity(TpaKeluar model) {
         TpaKeluarEntity entity = new TpaKeluarEntity();
@@ -265,46 +282,46 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public List<TpaKeluar> getAllTpaKeluar() {
-        return HibernateUtil.executeInTransaction(() -> 
+        return transactionHelper.executeInTransaction(() -> 
             tpaKeluarRepository.findAll().stream().map(this::toModel).collect(Collectors.toList())
         );
     }
 
     @Override
     public TpaKeluar getTpaKeluar(String id) {
-        return HibernateUtil.executeInTransaction(() -> 
+        return transactionHelper.executeInTransaction(() -> 
             tpaKeluarRepository.findById(id).map(this::toModel).orElse(null)
         );
     }
 
     @Override
     public boolean isTpaKeluarExist(String id) {
-        return HibernateUtil.executeInTransaction(() -> tpaKeluarRepository.exists(id));
+        return transactionHelper.executeInTransaction(() -> tpaKeluarRepository.exists(id));
     }
 
     @Override
     public void save(TpaKeluar model) {
-        HibernateUtil.executeInTransaction(() -> tpaKeluarRepository.save(toEntity(model)));
+        transactionHelper.executeInTransaction(() -> tpaKeluarRepository.save(toEntity(model)));
     }
 
     @Override
     public void update(TpaKeluar model) {
-        HibernateUtil.executeInTransaction(() -> tpaKeluarRepository.update(toEntity(model)));
+        transactionHelper.executeInTransaction(() -> tpaKeluarRepository.update(toEntity(model)));
     }
 
     @Override
     public void delete(TpaKeluar model) {
-        HibernateUtil.executeInTransaction(() -> tpaKeluarRepository.delete(model.getId()));
+        transactionHelper.executeInTransaction(() -> tpaKeluarRepository.delete(model.getId()));
     }
 
     @Override
     public TpaKeluar getLastTpaKeluar() {
-        return HibernateUtil.executeInTransaction(() -> toModel(tpaKeluarRepository.getLastRecord()));
+        return transactionHelper.executeInTransaction(() -> toModel(tpaKeluarRepository.getLastRecord()));
     }
 
     @Override
     public String getTotalTpaKeluar() {
-        return HibernateUtil.executeInTransaction(() -> tpaKeluarRepository.getTotal());
+        return transactionHelper.executeInTransaction(() -> tpaKeluarRepository.getTotal());
     }
     private DonasiPembangunanEntity toEntity(DonasiPembangunan model) {
         DonasiPembangunanEntity entity = new DonasiPembangunanEntity();
@@ -323,46 +340,46 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public List<DonasiPembangunan> getAllDonasiPembangunan() {
-        return HibernateUtil.executeInTransaction(() -> 
+        return transactionHelper.executeInTransaction(() -> 
             donasiPembangunanRepository.findAll().stream().map(this::toModel).collect(Collectors.toList())
         );
     }
 
     @Override
     public DonasiPembangunan getDonasiPembangunan(String id) {
-        return HibernateUtil.executeInTransaction(() -> 
+        return transactionHelper.executeInTransaction(() -> 
             donasiPembangunanRepository.findById(id).map(this::toModel).orElse(null)
         );
     }
 
     @Override
     public boolean isDonasiPembangunanExist(String id) {
-        return HibernateUtil.executeInTransaction(() -> donasiPembangunanRepository.exists(id));
+        return transactionHelper.executeInTransaction(() -> donasiPembangunanRepository.exists(id));
     }
 
     @Override
     public void save(DonasiPembangunan model) {
-        HibernateUtil.executeInTransaction(() -> donasiPembangunanRepository.save(toEntity(model)));
+        transactionHelper.executeInTransaction(() -> donasiPembangunanRepository.save(toEntity(model)));
     }
 
     @Override
     public void update(DonasiPembangunan model) {
-        HibernateUtil.executeInTransaction(() -> donasiPembangunanRepository.update(toEntity(model)));
+        transactionHelper.executeInTransaction(() -> donasiPembangunanRepository.update(toEntity(model)));
     }
 
     @Override
     public void delete(DonasiPembangunan model) {
-        HibernateUtil.executeInTransaction(() -> donasiPembangunanRepository.delete(model.getId()));
+        transactionHelper.executeInTransaction(() -> donasiPembangunanRepository.delete(model.getId()));
     }
 
     @Override
     public DonasiPembangunan getLastDonasiPembangunan() {
-        return HibernateUtil.executeInTransaction(() -> toModel(donasiPembangunanRepository.getLastRecord()));
+        return transactionHelper.executeInTransaction(() -> toModel(donasiPembangunanRepository.getLastRecord()));
     }
 
     @Override
     public String getTotalDonasiPembangunan() {
-        return HibernateUtil.executeInTransaction(() -> donasiPembangunanRepository.getTotal());
+        return transactionHelper.executeInTransaction(() -> donasiPembangunanRepository.getTotal());
     }
     private PembangunanEntity toEntity(Pembangunan model) {
         PembangunanEntity entity = new PembangunanEntity();
@@ -382,46 +399,46 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public List<Pembangunan> getAllPembangunan() {
-        return HibernateUtil.executeInTransaction(() -> 
+        return transactionHelper.executeInTransaction(() -> 
             pembangunanRepository.findAll().stream().map(this::toModel).collect(Collectors.toList())
         );
     }
 
     @Override
     public Pembangunan getPembangunan(String id) {
-        return HibernateUtil.executeInTransaction(() -> 
+        return transactionHelper.executeInTransaction(() -> 
             pembangunanRepository.findById(id).map(this::toModel).orElse(null)
         );
     }
 
     @Override
     public boolean isPembangunanExist(String id) {
-        return HibernateUtil.executeInTransaction(() -> pembangunanRepository.exists(id));
+        return transactionHelper.executeInTransaction(() -> pembangunanRepository.exists(id));
     }
 
     @Override
     public void save(Pembangunan model) {
-        HibernateUtil.executeInTransaction(() -> pembangunanRepository.save(toEntity(model)));
+        transactionHelper.executeInTransaction(() -> pembangunanRepository.save(toEntity(model)));
     }
 
     @Override
     public void update(Pembangunan model) {
-        HibernateUtil.executeInTransaction(() -> pembangunanRepository.update(toEntity(model)));
+        transactionHelper.executeInTransaction(() -> pembangunanRepository.update(toEntity(model)));
     }
 
     @Override
     public void delete(Pembangunan model) {
-        HibernateUtil.executeInTransaction(() -> pembangunanRepository.delete(model.getId()));
+        transactionHelper.executeInTransaction(() -> pembangunanRepository.delete(model.getId()));
     }
 
     @Override
     public Pembangunan getLastPembangunan() {
-        return HibernateUtil.executeInTransaction(() -> toModel(pembangunanRepository.getLastRecord()));
+        return transactionHelper.executeInTransaction(() -> toModel(pembangunanRepository.getLastRecord()));
     }
 
     @Override
     public String getTotalPembangunan() {
-        return HibernateUtil.executeInTransaction(() -> pembangunanRepository.getTotal());
+        return transactionHelper.executeInTransaction(() -> pembangunanRepository.getTotal());
     }
     private DonasiOperasionalEntity toEntity(DonasiOperasional model) {
         DonasiOperasionalEntity entity = new DonasiOperasionalEntity();
@@ -440,46 +457,46 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public List<DonasiOperasional> getAllDonasiOperasional() {
-        return HibernateUtil.executeInTransaction(() -> 
+        return transactionHelper.executeInTransaction(() -> 
             donasiOperasionalRepository.findAll().stream().map(this::toModel).collect(Collectors.toList())
         );
     }
 
     @Override
     public DonasiOperasional getDonasiOperasional(String id) {
-        return HibernateUtil.executeInTransaction(() -> 
+        return transactionHelper.executeInTransaction(() -> 
             donasiOperasionalRepository.findById(id).map(this::toModel).orElse(null)
         );
     }
 
     @Override
     public boolean isDonasiOperasionalExist(String id) {
-        return HibernateUtil.executeInTransaction(() -> donasiOperasionalRepository.exists(id));
+        return transactionHelper.executeInTransaction(() -> donasiOperasionalRepository.exists(id));
     }
 
     @Override
     public void save(DonasiOperasional model) {
-        HibernateUtil.executeInTransaction(() -> donasiOperasionalRepository.save(toEntity(model)));
+        transactionHelper.executeInTransaction(() -> donasiOperasionalRepository.save(toEntity(model)));
     }
 
     @Override
     public void update(DonasiOperasional model) {
-        HibernateUtil.executeInTransaction(() -> donasiOperasionalRepository.update(toEntity(model)));
+        transactionHelper.executeInTransaction(() -> donasiOperasionalRepository.update(toEntity(model)));
     }
 
     @Override
     public void delete(DonasiOperasional model) {
-        HibernateUtil.executeInTransaction(() -> donasiOperasionalRepository.delete(model.getId()));
+        transactionHelper.executeInTransaction(() -> donasiOperasionalRepository.delete(model.getId()));
     }
 
     @Override
     public DonasiOperasional getLastDonasiOperasional() {
-        return HibernateUtil.executeInTransaction(() -> toModel(donasiOperasionalRepository.getLastRecord()));
+        return transactionHelper.executeInTransaction(() -> toModel(donasiOperasionalRepository.getLastRecord()));
     }
 
     @Override
     public String getTotalDonasiOperasional() {
-        return HibernateUtil.executeInTransaction(() -> donasiOperasionalRepository.getTotal());
+        return transactionHelper.executeInTransaction(() -> donasiOperasionalRepository.getTotal());
     }
     private OperasionalEntity toEntity(Operasional model) {
         OperasionalEntity entity = new OperasionalEntity();
@@ -499,46 +516,46 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public List<Operasional> getAllOperasional() {
-        return HibernateUtil.executeInTransaction(() -> 
+        return transactionHelper.executeInTransaction(() -> 
             operasionalRepository.findAll().stream().map(this::toModel).collect(Collectors.toList())
         );
     }
 
     @Override
     public Operasional getOperasional(String id) {
-        return HibernateUtil.executeInTransaction(() -> 
+        return transactionHelper.executeInTransaction(() -> 
             operasionalRepository.findById(id).map(this::toModel).orElse(null)
         );
     }
 
     @Override
     public boolean isOperasionalExist(String id) {
-        return HibernateUtil.executeInTransaction(() -> operasionalRepository.exists(id));
+        return transactionHelper.executeInTransaction(() -> operasionalRepository.exists(id));
     }
 
     @Override
     public void save(Operasional model) {
-        HibernateUtil.executeInTransaction(() -> operasionalRepository.save(toEntity(model)));
+        transactionHelper.executeInTransaction(() -> operasionalRepository.save(toEntity(model)));
     }
 
     @Override
     public void update(Operasional model) {
-        HibernateUtil.executeInTransaction(() -> operasionalRepository.update(toEntity(model)));
+        transactionHelper.executeInTransaction(() -> operasionalRepository.update(toEntity(model)));
     }
 
     @Override
     public void delete(Operasional model) {
-        HibernateUtil.executeInTransaction(() -> operasionalRepository.delete(model.getId()));
+        transactionHelper.executeInTransaction(() -> operasionalRepository.delete(model.getId()));
     }
 
     @Override
     public Operasional getLastOperasional() {
-        return HibernateUtil.executeInTransaction(() -> toModel(operasionalRepository.getLastRecord()));
+        return transactionHelper.executeInTransaction(() -> toModel(operasionalRepository.getLastRecord()));
     }
 
     @Override
     public String getTotalOperasional() {
-        return HibernateUtil.executeInTransaction(() -> operasionalRepository.getTotal());
+        return transactionHelper.executeInTransaction(() -> operasionalRepository.getTotal());
     }
     private DonasiAnakYatimEntity toEntity(DonasiAYatim model) {
         DonasiAnakYatimEntity entity = new DonasiAnakYatimEntity();
@@ -557,46 +574,46 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public List<DonasiAYatim> getAllDonasiAYatim() {
-        return HibernateUtil.executeInTransaction(() -> 
+        return transactionHelper.executeInTransaction(() -> 
             donasiAnakYatimRepository.findAll().stream().map(this::toModel).collect(Collectors.toList())
         );
     }
 
     @Override
     public DonasiAYatim getDonasiAYatim(String id) {
-        return HibernateUtil.executeInTransaction(() -> 
+        return transactionHelper.executeInTransaction(() -> 
             donasiAnakYatimRepository.findById(id).map(this::toModel).orElse(null)
         );
     }
 
     @Override
     public boolean isDonasiAYatimExist(String id) {
-        return HibernateUtil.executeInTransaction(() -> donasiAnakYatimRepository.exists(id));
+        return transactionHelper.executeInTransaction(() -> donasiAnakYatimRepository.exists(id));
     }
 
     @Override
     public void save(DonasiAYatim model) {
-        HibernateUtil.executeInTransaction(() -> donasiAnakYatimRepository.save(toEntity(model)));
+        transactionHelper.executeInTransaction(() -> donasiAnakYatimRepository.save(toEntity(model)));
     }
 
     @Override
     public void update(DonasiAYatim model) {
-        HibernateUtil.executeInTransaction(() -> donasiAnakYatimRepository.update(toEntity(model)));
+        transactionHelper.executeInTransaction(() -> donasiAnakYatimRepository.update(toEntity(model)));
     }
 
     @Override
     public void delete(DonasiAYatim model) {
-        HibernateUtil.executeInTransaction(() -> donasiAnakYatimRepository.delete(model.getId()));
+        transactionHelper.executeInTransaction(() -> donasiAnakYatimRepository.delete(model.getId()));
     }
 
     @Override
     public DonasiAYatim getLastDonasiAYatim() {
-        return HibernateUtil.executeInTransaction(() -> toModel(donasiAnakYatimRepository.getLastRecord()));
+        return transactionHelper.executeInTransaction(() -> toModel(donasiAnakYatimRepository.getLastRecord()));
     }
 
     @Override
     public String getTotalDonasiAYatim() {
-        return HibernateUtil.executeInTransaction(() -> donasiAnakYatimRepository.getTotal());
+        return transactionHelper.executeInTransaction(() -> donasiAnakYatimRepository.getTotal());
     }
     private AnakYatimEntity toEntity(AnakYatim model) {
         AnakYatimEntity entity = new AnakYatimEntity();
@@ -617,52 +634,52 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public List<AnakYatim> getAllAnakYatim() {
-        return HibernateUtil.executeInTransaction(() -> 
+        return transactionHelper.executeInTransaction(() -> 
             anakYatimRepository.findAll().stream().map(this::toModel).collect(Collectors.toList())
         );
     }
 
     @Override
     public AnakYatim getAnakYatim(String id) {
-        return HibernateUtil.executeInTransaction(() -> 
+        return transactionHelper.executeInTransaction(() -> 
             anakYatimRepository.findById(id).map(this::toModel).orElse(null)
         );
     }
 
     @Override
     public boolean isAnakYatimExist(String id) {
-        return HibernateUtil.executeInTransaction(() -> anakYatimRepository.exists(id));
+        return transactionHelper.executeInTransaction(() -> anakYatimRepository.exists(id));
     }
 
     @Override
     public void save(AnakYatim model) {
-        HibernateUtil.executeInTransaction(() -> anakYatimRepository.save(toEntity(model)));
+        transactionHelper.executeInTransaction(() -> anakYatimRepository.save(toEntity(model)));
     }
 
     @Override
     public void update(AnakYatim model) {
-        HibernateUtil.executeInTransaction(() -> anakYatimRepository.update(toEntity(model)));
+        transactionHelper.executeInTransaction(() -> anakYatimRepository.update(toEntity(model)));
     }
 
     @Override
     public void delete(AnakYatim model) {
-        HibernateUtil.executeInTransaction(() -> anakYatimRepository.delete(model.getId()));
+        transactionHelper.executeInTransaction(() -> anakYatimRepository.delete(model.getId()));
     }
 
     @Override
     public AnakYatim getLastAnakYatim() {
-        return HibernateUtil.executeInTransaction(() -> toModel(anakYatimRepository.getLastRecord()));
+        return transactionHelper.executeInTransaction(() -> toModel(anakYatimRepository.getLastRecord()));
     }
 
     @Override
     public String getTotalAnakYatim() {
-        return HibernateUtil.executeInTransaction(() -> anakYatimRepository.getTotal());
+        return transactionHelper.executeInTransaction(() -> anakYatimRepository.getTotal());
     }
 
 
     private String getBalance(String query) {
-        return HibernateUtil.executeInTransaction(() -> {
-            var session = HibernateUtil.getSessionFactory().getCurrentSession();
+        return transactionHelper.executeInTransaction(() -> {
+            var session = sessionFactory.getCurrentSession();
             var count = session.createNativeQuery(query, Double.class).uniqueResult();
             return count != null ? String.valueOf(count.longValue()) : "0";
         });

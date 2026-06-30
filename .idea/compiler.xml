@@ -28,7 +28,10 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.errorprone/error_prone_annotations/2.23.0/43a27853b6c7d54893e0b1997c2c778c347179eb/error_prone_annotations-2.23.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar" />
         </processorPath>
+        <module name="Masjidku.masjidku-accounting.main" />
         <module name="Masjidku.masjidku-app.main" />
+        <module name="Masjidku.masjidku-events.main" />
+        <module name="Masjidku.masjidku-common.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="21" />

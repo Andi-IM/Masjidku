@@ -2,17 +2,29 @@ package org.masjidku.accounting.domain.repository.impl;
 
 import org.masjidku.accounting.domain.entity.DonasiOperasionalEntity;
 import org.masjidku.accounting.domain.repository.DonasiOperasionalRepository;
-import org.masjidku.accounting.domain.repository.base.HibernateUtil;
 import org.masjidku.accounting.domain.repository.exception.DataAccessException;
 import java.util.List;
 import java.util.Optional;
+import javax.inject.Inject;
+import org.hibernate.SessionFactory;
+import org.masjidku.domain.repository.base.TransactionHelper;
 
 public class DonasiOperasionalRepositoryImpl implements DonasiOperasionalRepository {
+
+    private final SessionFactory sessionFactory;
+    private final TransactionHelper transactionHelper;
+
+    @Inject
+    public DonasiOperasionalRepositoryImpl(SessionFactory sessionFactory, TransactionHelper transactionHelper) {
+        this.sessionFactory = sessionFactory;
+        this.transactionHelper = transactionHelper;
+    }
+
 
     @Override
     public Optional<DonasiOperasionalEntity> findById(String id) {
         try {
-            var session = HibernateUtil.getSessionFactory().getCurrentSession();
+            var session = sessionFactory.getCurrentSession();
             return Optional.ofNullable(session.get(DonasiOperasionalEntity.class, id));
         } catch (Exception e) {
             throw new DataAccessException("Failed to get DonasiOperasionalEntity by ID", e);
@@ -22,7 +34,7 @@ public class DonasiOperasionalRepositoryImpl implements DonasiOperasionalReposit
     @Override
     public List<DonasiOperasionalEntity> findAll() {
         try {
-            var session = HibernateUtil.getSessionFactory().getCurrentSession();
+            var session = sessionFactory.getCurrentSession();
             return session.createQuery("FROM DonasiOperasionalEntity", DonasiOperasionalEntity.class).list();
         } catch (Exception e) {
             throw new DataAccessException("Failed to get all DonasiOperasionalEntity", e);
@@ -32,7 +44,7 @@ public class DonasiOperasionalRepositoryImpl implements DonasiOperasionalReposit
     @Override
     public void save(DonasiOperasionalEntity entity) {
         try {
-            var session = HibernateUtil.getSessionFactory().getCurrentSession();
+            var session = sessionFactory.getCurrentSession();
             session.persist(entity);
         } catch (Exception e) {
             throw new DataAccessException("Failed to save DonasiOperasionalEntity", e);
@@ -42,7 +54,7 @@ public class DonasiOperasionalRepositoryImpl implements DonasiOperasionalReposit
     @Override
     public void update(DonasiOperasionalEntity entity) {
         try {
-            var session = HibernateUtil.getSessionFactory().getCurrentSession();
+            var session = sessionFactory.getCurrentSession();
             session.merge(entity);
         } catch (Exception e) {
             throw new DataAccessException("Failed to update DonasiOperasionalEntity", e);
@@ -52,7 +64,7 @@ public class DonasiOperasionalRepositoryImpl implements DonasiOperasionalReposit
     @Override
     public void delete(String id) {
         try {
-            var session = HibernateUtil.getSessionFactory().getCurrentSession();
+            var session = sessionFactory.getCurrentSession();
             DonasiOperasionalEntity entity = session.get(DonasiOperasionalEntity.class, id);
             if (entity != null) {
                 session.remove(entity);
@@ -70,7 +82,7 @@ public class DonasiOperasionalRepositoryImpl implements DonasiOperasionalReposit
     @Override
     public DonasiOperasionalEntity getLastRecord() {
         try {
-            var session = HibernateUtil.getSessionFactory().getCurrentSession();
+            var session = sessionFactory.getCurrentSession();
             var query = session.createQuery("FROM DonasiOperasionalEntity ORDER BY id DESC", DonasiOperasionalEntity.class);
             query.setMaxResults(1);
             return query.uniqueResult();
@@ -82,7 +94,7 @@ public class DonasiOperasionalRepositoryImpl implements DonasiOperasionalReposit
     @Override
     public String getTotal() {
         try {
-            var session = HibernateUtil.getSessionFactory().getCurrentSession();
+            var session = sessionFactory.getCurrentSession();
             var count = session.createQuery("SELECT IFNULL(SUM(CAST(e.jumlah AS double)), 0) FROM DonasiOperasionalEntity e", Double.class).uniqueResult();
             return count != null ? String.valueOf(count.longValue()) : "0";
         } catch (Exception e) {
