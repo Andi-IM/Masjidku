@@ -31,7 +31,11 @@ import org.masjidku.navigation.AppRouter;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import net.synedra.validatorfx.Validator;
+import static org.masjidku.util.ValidationHelper.*;
+
 public class UserForm implements Initializable {
+    private final Validator validator = new Validator();
     final ObservableList<String> list = FXCollections.observableArrayList();
 
     @FXML
@@ -75,6 +79,18 @@ public class UserForm implements Initializable {
         String bendahara = "bendahara";
         list.addAll(ketua, sekretaris, bendahara);
         pilJabatan.getItems().addAll(list);
+
+        registerRequiredField(validator, txtUserId, "userid", "User ID harus diisi!");
+        registerRequiredField(validator, txtUserName, "username", "Nama User harus diisi!");
+        validator.createCheck()
+                .dependsOn("jabatan", pilJabatan.valueProperty())
+                .withMethod(c -> {
+                    String val = c.get("jabatan");
+                    if (val == null || val.isBlank()) {
+                        c.error("Jabatan harus dipilih!");
+                    }
+                })
+                .decorates(pilJabatan);
     }
 
     /**
@@ -147,12 +163,7 @@ public class UserForm implements Initializable {
      * @return fieldStatus
      */
     private boolean formValidation() {
-        if (!txtUserId.getText().isBlank()) {
-            if (!txtUserName.getText().isBlank()) {
-                return !pilJabatan.getValue().isBlank();
-            }
-        }
-        return false;
+        return validator.validate();
     }
 
 
