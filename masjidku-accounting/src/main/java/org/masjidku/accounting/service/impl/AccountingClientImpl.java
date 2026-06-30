@@ -1,51 +1,25 @@
 package org.masjidku.accounting.service.impl;
 
-import org.masjidku.accounting.client.service.AccountingClient;
-import java.util.List;
-import java.util.stream.Collectors;
-import org.masjidku.accounting.client.model.zakat.ZakatMasuk;
-import org.masjidku.accounting.domain.entity.ZakatMasukEntity;
-import org.masjidku.accounting.domain.repository.ZakatMasukRepository;
-import org.masjidku.accounting.domain.repository.impl.ZakatMasukRepositoryImpl;
-import org.masjidku.accounting.client.model.zakat.ZakatKeluar;
-import org.masjidku.accounting.domain.entity.ZakatKeluarEntity;
-import org.masjidku.accounting.domain.repository.ZakatKeluarRepository;
-import org.masjidku.accounting.domain.repository.impl.ZakatKeluarRepositoryImpl;
-import org.masjidku.accounting.client.model.tpa.TpaMasuk;
-import org.masjidku.accounting.domain.entity.TpaMasukEntity;
-import org.masjidku.accounting.domain.repository.TpaMasukRepository;
-import org.masjidku.accounting.domain.repository.impl.TpaMasukRepositoryImpl;
-import org.masjidku.accounting.client.model.tpa.TpaKeluar;
-import org.masjidku.accounting.domain.entity.TpaKeluarEntity;
-import org.masjidku.accounting.domain.repository.TpaKeluarRepository;
-import org.masjidku.accounting.domain.repository.impl.TpaKeluarRepositoryImpl;
-import org.masjidku.accounting.client.model.pembangunan.DonasiPembangunan;
-import org.masjidku.accounting.domain.entity.DonasiPembangunanEntity;
-import org.masjidku.accounting.domain.repository.DonasiPembangunanRepository;
-import org.masjidku.accounting.domain.repository.impl.DonasiPembangunanRepositoryImpl;
-import org.masjidku.accounting.client.model.pembangunan.Pembangunan;
-import org.masjidku.accounting.domain.entity.PembangunanEntity;
-import org.masjidku.accounting.domain.repository.PembangunanRepository;
-import org.masjidku.accounting.domain.repository.impl.PembangunanRepositoryImpl;
-import org.masjidku.accounting.client.model.operasional.DonasiOperasional;
-import org.masjidku.accounting.domain.entity.DonasiOperasionalEntity;
-import org.masjidku.accounting.domain.repository.DonasiOperasionalRepository;
-import org.masjidku.accounting.domain.repository.impl.DonasiOperasionalRepositoryImpl;
-import org.masjidku.accounting.client.model.operasional.Operasional;
-import org.masjidku.accounting.domain.entity.OperasionalEntity;
-import org.masjidku.accounting.domain.repository.OperasionalRepository;
-import org.masjidku.accounting.domain.repository.impl.OperasionalRepositoryImpl;
-import org.masjidku.accounting.client.model.anakyatim.DonasiAYatim;
-import org.masjidku.accounting.domain.entity.DonasiAnakYatimEntity;
-import org.masjidku.accounting.domain.repository.DonasiAnakYatimRepository;
-import org.masjidku.accounting.domain.repository.impl.DonasiAnakYatimRepositoryImpl;
-import org.masjidku.accounting.client.model.anakyatim.AnakYatim;
-import org.masjidku.accounting.domain.entity.AnakYatimEntity;
-import org.masjidku.accounting.domain.repository.AnakYatimRepository;
-import org.masjidku.accounting.domain.repository.impl.AnakYatimRepositoryImpl;
-import javax.inject.Inject;
 import org.hibernate.SessionFactory;
+import org.masjidku.accounting.client.model.anakyatim.AnakYatim;
+import org.masjidku.accounting.client.model.anakyatim.DonasiAYatim;
+import org.masjidku.accounting.client.model.operasional.DonasiOperasional;
+import org.masjidku.accounting.client.model.operasional.Operasional;
+import org.masjidku.accounting.client.model.pembangunan.DonasiPembangunan;
+import org.masjidku.accounting.client.model.pembangunan.Pembangunan;
+import org.masjidku.accounting.client.model.tpa.TpaKeluar;
+import org.masjidku.accounting.client.model.tpa.TpaMasuk;
+import org.masjidku.accounting.client.model.zakat.ZakatKeluar;
+import org.masjidku.accounting.client.model.zakat.ZakatMasuk;
+import org.masjidku.accounting.client.service.AccountingClient;
+import org.masjidku.accounting.domain.entity.*;
+import org.masjidku.accounting.domain.repository.*;
+import org.masjidku.accounting.domain.repository.impl.*;
 import org.masjidku.domain.repository.base.TransactionHelper;
+
+import javax.inject.Inject;
+import java.util.List;
+import java.util.Objects;
 
 
 public class AccountingClientImpl implements AccountingClient {
@@ -57,7 +31,7 @@ public class AccountingClientImpl implements AccountingClient {
     public AccountingClientImpl(SessionFactory sessionFactory, TransactionHelper transactionHelper) {
         this.sessionFactory = sessionFactory;
         this.transactionHelper = transactionHelper;
-    
+
         this.zakatMasukRepository = new ZakatMasukRepositoryImpl(sessionFactory, transactionHelper);
         this.zakatKeluarRepository = new ZakatKeluarRepositoryImpl(sessionFactory, transactionHelper);
         this.tpaMasukRepository = new TpaMasukRepositoryImpl(sessionFactory, transactionHelper);
@@ -88,15 +62,13 @@ public class AccountingClientImpl implements AccountingClient {
     private final AnakYatimRepository anakYatimRepository;
 
 
-    
-
     private ZakatMasukEntity toEntity(ZakatMasuk model) {
         ZakatMasukEntity entity = new ZakatMasukEntity();
-        entity.setId(model.getId());
-        entity.setJumlah(model.getJumlah());
-        entity.setTanggal(model.getTanggal());
-        entity.setOperator(model.getOperator());
-        entity.setDonatur(model.getDonatur());
+        entity.setId(model.id());
+        entity.setJumlah(model.jumlah());
+        entity.setTanggal(model.tanggal());
+        entity.setOperator(model.operator());
+        entity.setDonatur(model.donatur());
         return entity;
     }
 
@@ -107,15 +79,15 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public List<ZakatMasuk> getAllZakatMasuk() {
-        return transactionHelper.executeInTransaction(() -> 
-            zakatMasukRepository.findAll().stream().map(this::toModel).collect(Collectors.toList())
+        return transactionHelper.executeInTransaction(() ->
+                zakatMasukRepository.findAll().stream().map(this::toModel).toList()
         );
     }
 
     @Override
     public ZakatMasuk getZakatMasuk(String id) {
-        return transactionHelper.executeInTransaction(() -> 
-            zakatMasukRepository.findById(id).map(this::toModel).orElse(null)
+        return transactionHelper.executeInTransaction(() ->
+                Objects.requireNonNull(zakatMasukRepository.findById(id).map(this::toModel).orElse(null))
         );
     }
 
@@ -136,7 +108,7 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public void delete(ZakatMasuk model) {
-        transactionHelper.executeInTransaction(() -> zakatMasukRepository.delete(model.getId()));
+        transactionHelper.executeInTransaction(() -> zakatMasukRepository.delete(model.id()));
     }
 
     @Override
@@ -146,15 +118,16 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public String getTotalZakatMasuk() {
-        return transactionHelper.executeInTransaction(() -> zakatMasukRepository.getTotal());
+        return transactionHelper.executeInTransaction(zakatMasukRepository::getTotal);
     }
+
     private ZakatKeluarEntity toEntity(ZakatKeluar model) {
         ZakatKeluarEntity entity = new ZakatKeluarEntity();
-        entity.setId(model.getId());
-        entity.setJumlah(model.getJumlah());
-        entity.setTanggal(model.getTanggal());
-        entity.setOperator(model.getOperator());
-        entity.setTujuan(model.getTujuan());
+        entity.setId(model.id());
+        entity.setJumlah(model.jumlah());
+        entity.setTanggal(model.tanggal());
+        entity.setOperator(model.operator());
+        entity.setTujuan(model.tujuan());
         return entity;
     }
 
@@ -165,15 +138,15 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public List<ZakatKeluar> getAllZakatKeluar() {
-        return transactionHelper.executeInTransaction(() -> 
-            zakatKeluarRepository.findAll().stream().map(this::toModel).collect(Collectors.toList())
+        return transactionHelper.executeInTransaction(() ->
+                zakatKeluarRepository.findAll().stream().map(this::toModel).toList()
         );
     }
 
     @Override
     public ZakatKeluar getZakatKeluar(String id) {
-        return transactionHelper.executeInTransaction(() -> 
-            zakatKeluarRepository.findById(id).map(this::toModel).orElse(null)
+        return transactionHelper.executeInTransaction(() ->
+                Objects.requireNonNull(zakatKeluarRepository.findById(id).map(this::toModel).orElse(null))
         );
     }
 
@@ -194,7 +167,7 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public void delete(ZakatKeluar model) {
-        transactionHelper.executeInTransaction(() -> zakatKeluarRepository.delete(model.getId()));
+        transactionHelper.executeInTransaction(() -> zakatKeluarRepository.delete(model.id()));
     }
 
     @Override
@@ -204,15 +177,16 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public String getTotalZakatKeluar() {
-        return transactionHelper.executeInTransaction(() -> zakatKeluarRepository.getTotal());
+        return transactionHelper.executeInTransaction(zakatKeluarRepository::getTotal);
     }
+
     private TpaMasukEntity toEntity(TpaMasuk model) {
         TpaMasukEntity entity = new TpaMasukEntity();
-        entity.setId(model.getId());
-        entity.setJumlah(model.getJumlah());
-        entity.setTanggal(model.getTanggal());
-        entity.setOperator(model.getOperator());
-        entity.setDonatur(model.getDonatur());
+        entity.setId(model.id());
+        entity.setJumlah(model.jumlah());
+        entity.setTanggal(model.tanggal());
+        entity.setOperator(model.operator());
+        entity.setDonatur(model.donatur());
         return entity;
     }
 
@@ -223,15 +197,15 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public List<TpaMasuk> getAllTpaMasuk() {
-        return transactionHelper.executeInTransaction(() -> 
-            tpaMasukRepository.findAll().stream().map(this::toModel).collect(Collectors.toList())
+        return transactionHelper.executeInTransaction(() ->
+                tpaMasukRepository.findAll().stream().map(this::toModel).toList()
         );
     }
 
     @Override
     public TpaMasuk getTpaMasuk(String id) {
-        return transactionHelper.executeInTransaction(() -> 
-            tpaMasukRepository.findById(id).map(this::toModel).orElse(null)
+        return transactionHelper.executeInTransaction(() ->
+                Objects.requireNonNull(tpaMasukRepository.findById(id).map(this::toModel).orElse(null))
         );
     }
 
@@ -252,7 +226,7 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public void delete(TpaMasuk model) {
-        transactionHelper.executeInTransaction(() -> tpaMasukRepository.delete(model.getId()));
+        transactionHelper.executeInTransaction(() -> tpaMasukRepository.delete(model.id()));
     }
 
     @Override
@@ -262,16 +236,17 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public String getTotalTpaMasuk() {
-        return transactionHelper.executeInTransaction(() -> tpaMasukRepository.getTotal());
+        return transactionHelper.executeInTransaction(tpaMasukRepository::getTotal);
     }
+
     private TpaKeluarEntity toEntity(TpaKeluar model) {
         TpaKeluarEntity entity = new TpaKeluarEntity();
-        entity.setId(model.getId());
-        entity.setJumlah(model.getJumlah());
-        entity.setTanggal(model.getTanggal());
-        entity.setOperator(model.getOperator());
-        entity.setTujuan(model.getTujuan());
-        entity.setKeterangan(model.getKeterangan());
+        entity.setId(model.id());
+        entity.setJumlah(model.jumlah());
+        entity.setTanggal(model.tanggal());
+        entity.setOperator(model.operator());
+        entity.setTujuan(model.tujuan());
+        entity.setKeterangan(model.keterangan());
         return entity;
     }
 
@@ -282,15 +257,15 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public List<TpaKeluar> getAllTpaKeluar() {
-        return transactionHelper.executeInTransaction(() -> 
-            tpaKeluarRepository.findAll().stream().map(this::toModel).collect(Collectors.toList())
+        return transactionHelper.executeInTransaction(() ->
+                tpaKeluarRepository.findAll().stream().map(this::toModel).toList()
         );
     }
 
     @Override
     public TpaKeluar getTpaKeluar(String id) {
-        return transactionHelper.executeInTransaction(() -> 
-            tpaKeluarRepository.findById(id).map(this::toModel).orElse(null)
+        return transactionHelper.executeInTransaction(() ->
+                Objects.requireNonNull(tpaKeluarRepository.findById(id).map(this::toModel).orElse(null))
         );
     }
 
@@ -311,7 +286,7 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public void delete(TpaKeluar model) {
-        transactionHelper.executeInTransaction(() -> tpaKeluarRepository.delete(model.getId()));
+        transactionHelper.executeInTransaction(() -> tpaKeluarRepository.delete(model.id()));
     }
 
     @Override
@@ -321,15 +296,16 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public String getTotalTpaKeluar() {
-        return transactionHelper.executeInTransaction(() -> tpaKeluarRepository.getTotal());
+        return transactionHelper.executeInTransaction(tpaKeluarRepository::getTotal);
     }
+
     private DonasiPembangunanEntity toEntity(DonasiPembangunan model) {
         DonasiPembangunanEntity entity = new DonasiPembangunanEntity();
-        entity.setId(model.getId());
-        entity.setJumlah(model.getJumlah());
-        entity.setTanggal(model.getTanggal());
-        entity.setOperator(model.getOperator());
-        entity.setDonatur(model.getDonatur());
+        entity.setId(model.id());
+        entity.setJumlah(model.jumlah());
+        entity.setTanggal(model.tanggal());
+        entity.setOperator(model.operator());
+        entity.setDonatur(model.donatur());
         return entity;
     }
 
@@ -340,15 +316,15 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public List<DonasiPembangunan> getAllDonasiPembangunan() {
-        return transactionHelper.executeInTransaction(() -> 
-            donasiPembangunanRepository.findAll().stream().map(this::toModel).collect(Collectors.toList())
+        return transactionHelper.executeInTransaction(() ->
+                donasiPembangunanRepository.findAll().stream().map(this::toModel).toList()
         );
     }
 
     @Override
     public DonasiPembangunan getDonasiPembangunan(String id) {
-        return transactionHelper.executeInTransaction(() -> 
-            donasiPembangunanRepository.findById(id).map(this::toModel).orElse(null)
+        return transactionHelper.executeInTransaction(() ->
+                Objects.requireNonNull(donasiPembangunanRepository.findById(id).map(this::toModel).orElse(null))
         );
     }
 
@@ -369,7 +345,7 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public void delete(DonasiPembangunan model) {
-        transactionHelper.executeInTransaction(() -> donasiPembangunanRepository.delete(model.getId()));
+        transactionHelper.executeInTransaction(() -> donasiPembangunanRepository.delete(model.id()));
     }
 
     @Override
@@ -379,16 +355,17 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public String getTotalDonasiPembangunan() {
-        return transactionHelper.executeInTransaction(() -> donasiPembangunanRepository.getTotal());
+        return transactionHelper.executeInTransaction(donasiPembangunanRepository::getTotal);
     }
+
     private PembangunanEntity toEntity(Pembangunan model) {
         PembangunanEntity entity = new PembangunanEntity();
-        entity.setId(model.getId());
-        entity.setJumlah(model.getJumlah());
-        entity.setTanggal(model.getTanggal());
-        entity.setOperator(model.getOperator());
-        entity.setTujuan(model.getTujuan());
-        entity.setKeterangan(model.getKeterangan());
+        entity.setId(model.id());
+        entity.setJumlah(model.jumlah());
+        entity.setTanggal(model.tanggal());
+        entity.setOperator(model.operator());
+        entity.setTujuan(model.tujuan());
+        entity.setKeterangan(model.keterangan());
         return entity;
     }
 
@@ -399,15 +376,15 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public List<Pembangunan> getAllPembangunan() {
-        return transactionHelper.executeInTransaction(() -> 
-            pembangunanRepository.findAll().stream().map(this::toModel).collect(Collectors.toList())
+        return transactionHelper.executeInTransaction(() ->
+                pembangunanRepository.findAll().stream().map(this::toModel).toList()
         );
     }
 
     @Override
     public Pembangunan getPembangunan(String id) {
-        return transactionHelper.executeInTransaction(() -> 
-            pembangunanRepository.findById(id).map(this::toModel).orElse(null)
+        return transactionHelper.executeInTransaction(() ->
+                Objects.requireNonNull(pembangunanRepository.findById(id).map(this::toModel).orElse(null))
         );
     }
 
@@ -428,7 +405,7 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public void delete(Pembangunan model) {
-        transactionHelper.executeInTransaction(() -> pembangunanRepository.delete(model.getId()));
+        transactionHelper.executeInTransaction(() -> pembangunanRepository.delete(model.id()));
     }
 
     @Override
@@ -438,15 +415,16 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public String getTotalPembangunan() {
-        return transactionHelper.executeInTransaction(() -> pembangunanRepository.getTotal());
+        return transactionHelper.executeInTransaction(pembangunanRepository::getTotal);
     }
+
     private DonasiOperasionalEntity toEntity(DonasiOperasional model) {
         DonasiOperasionalEntity entity = new DonasiOperasionalEntity();
-        entity.setId(model.getId());
-        entity.setJumlah(model.getJumlah());
-        entity.setTanggal(model.getTanggal());
-        entity.setOperator(model.getOperator());
-        entity.setDonatur(model.getDonatur());
+        entity.setId(model.id());
+        entity.setJumlah(model.jumlah());
+        entity.setTanggal(model.tanggal());
+        entity.setOperator(model.operator());
+        entity.setDonatur(model.nama());
         return entity;
     }
 
@@ -457,15 +435,15 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public List<DonasiOperasional> getAllDonasiOperasional() {
-        return transactionHelper.executeInTransaction(() -> 
-            donasiOperasionalRepository.findAll().stream().map(this::toModel).collect(Collectors.toList())
+        return transactionHelper.executeInTransaction(() ->
+                donasiOperasionalRepository.findAll().stream().map(this::toModel).toList()
         );
     }
 
     @Override
     public DonasiOperasional getDonasiOperasional(String id) {
-        return transactionHelper.executeInTransaction(() -> 
-            donasiOperasionalRepository.findById(id).map(this::toModel).orElse(null)
+        return transactionHelper.executeInTransaction(() ->
+                Objects.requireNonNull(donasiOperasionalRepository.findById(id).map(this::toModel).orElse(null))
         );
     }
 
@@ -486,7 +464,7 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public void delete(DonasiOperasional model) {
-        transactionHelper.executeInTransaction(() -> donasiOperasionalRepository.delete(model.getId()));
+        transactionHelper.executeInTransaction(() -> donasiOperasionalRepository.delete(model.id()));
     }
 
     @Override
@@ -496,16 +474,17 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public String getTotalDonasiOperasional() {
-        return transactionHelper.executeInTransaction(() -> donasiOperasionalRepository.getTotal());
+        return transactionHelper.executeInTransaction(donasiOperasionalRepository::getTotal);
     }
+
     private OperasionalEntity toEntity(Operasional model) {
         OperasionalEntity entity = new OperasionalEntity();
-        entity.setId(model.getId());
-        entity.setJumlah(model.getJumlah());
-        entity.setTanggal(model.getTanggal());
-        entity.setOperator(model.getOperator());
-        entity.setNama(model.getTujuan());
-        entity.setKeterangan(model.getKeterangan());
+        entity.setId(model.id());
+        entity.setJumlah(model.jumlah());
+        entity.setTanggal(model.tanggal());
+        entity.setOperator(model.operator());
+        entity.setNama(model.tujuan());
+        entity.setKeterangan(model.keterangan());
         return entity;
     }
 
@@ -516,15 +495,15 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public List<Operasional> getAllOperasional() {
-        return transactionHelper.executeInTransaction(() -> 
-            operasionalRepository.findAll().stream().map(this::toModel).collect(Collectors.toList())
+        return transactionHelper.executeInTransaction(() ->
+                operasionalRepository.findAll().stream().map(this::toModel).toList()
         );
     }
 
     @Override
     public Operasional getOperasional(String id) {
-        return transactionHelper.executeInTransaction(() -> 
-            operasionalRepository.findById(id).map(this::toModel).orElse(null)
+        return transactionHelper.executeInTransaction(() ->
+                Objects.requireNonNull(operasionalRepository.findById(id).map(this::toModel).orElse(null))
         );
     }
 
@@ -545,7 +524,7 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public void delete(Operasional model) {
-        transactionHelper.executeInTransaction(() -> operasionalRepository.delete(model.getId()));
+        transactionHelper.executeInTransaction(() -> operasionalRepository.delete(model.id()));
     }
 
     @Override
@@ -555,15 +534,16 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public String getTotalOperasional() {
-        return transactionHelper.executeInTransaction(() -> operasionalRepository.getTotal());
+        return transactionHelper.executeInTransaction(operasionalRepository::getTotal);
     }
+
     private DonasiAnakYatimEntity toEntity(DonasiAYatim model) {
         DonasiAnakYatimEntity entity = new DonasiAnakYatimEntity();
-        entity.setId(model.getId());
-        entity.setJumlah(model.getJumlah());
-        entity.setTanggal(model.getTanggal());
-        entity.setOperator(model.getOperator());
-        entity.setDonatur(model.getDonatur());
+        entity.setId(model.id());
+        entity.setJumlah(model.jumlah());
+        entity.setTanggal(model.tanggal());
+        entity.setOperator(model.operator());
+        entity.setDonatur(model.donatur());
         return entity;
     }
 
@@ -574,15 +554,15 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public List<DonasiAYatim> getAllDonasiAYatim() {
-        return transactionHelper.executeInTransaction(() -> 
-            donasiAnakYatimRepository.findAll().stream().map(this::toModel).collect(Collectors.toList())
+        return transactionHelper.executeInTransaction(() ->
+                donasiAnakYatimRepository.findAll().stream().map(this::toModel).toList()
         );
     }
 
     @Override
     public DonasiAYatim getDonasiAYatim(String id) {
-        return transactionHelper.executeInTransaction(() -> 
-            donasiAnakYatimRepository.findById(id).map(this::toModel).orElse(null)
+        return transactionHelper.executeInTransaction(() ->
+                Objects.requireNonNull(donasiAnakYatimRepository.findById(id).map(this::toModel).orElse(null))
         );
     }
 
@@ -603,7 +583,7 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public void delete(DonasiAYatim model) {
-        transactionHelper.executeInTransaction(() -> donasiAnakYatimRepository.delete(model.getId()));
+        transactionHelper.executeInTransaction(() -> donasiAnakYatimRepository.delete(model.id()));
     }
 
     @Override
@@ -613,36 +593,45 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public String getTotalDonasiAYatim() {
-        return transactionHelper.executeInTransaction(() -> donasiAnakYatimRepository.getTotal());
+        return transactionHelper.executeInTransaction(donasiAnakYatimRepository::getTotal);
     }
+
     private AnakYatimEntity toEntity(AnakYatim model) {
         AnakYatimEntity entity = new AnakYatimEntity();
-        entity.setId(model.getId());
-        entity.setJumlah(model.getJumlah());
-        entity.setTanggal(model.getTanggal());
-        entity.setOperator(model.getOperator());
-        entity.setTujuan(model.getTujuan());
-        entity.setKeterangan(model.getKeterangan());
-        entity.setUsia(model.getUsia());
+        entity.setId(model.id());
+        entity.setJumlah(model.jumlah());
+        entity.setTanggal(model.tanggal());
+        entity.setOperator(model.operator());
+        entity.setTujuan(model.tujuan());
+        entity.setKeterangan(model.keterangan());
+        entity.setUsia(model.usia());
         return entity;
     }
 
     private AnakYatim toModel(AnakYatimEntity entity) {
         if (entity == null) return new AnakYatim();
-        return new AnakYatim(entity.getId(), entity.getTujuan(), entity.getUsia(), entity.getJumlah(), entity.getTanggal(), entity.getOperator());
+        return new AnakYatim(
+                entity.getId(),
+                entity.getTujuan(),
+                entity.getUsia(),
+                entity.getJumlah(),
+                entity.getTanggal(),
+                null,
+                entity.getOperator()
+        );
     }
 
     @Override
     public List<AnakYatim> getAllAnakYatim() {
-        return transactionHelper.executeInTransaction(() -> 
-            anakYatimRepository.findAll().stream().map(this::toModel).collect(Collectors.toList())
+        return transactionHelper.executeInTransaction(() ->
+                anakYatimRepository.findAll().stream().map(this::toModel).toList()
         );
     }
 
     @Override
     public AnakYatim getAnakYatim(String id) {
-        return transactionHelper.executeInTransaction(() -> 
-            anakYatimRepository.findById(id).map(this::toModel).orElse(null)
+        return transactionHelper.executeInTransaction(() ->
+                Objects.requireNonNull(anakYatimRepository.findById(id).map(this::toModel).orElse(null))
         );
     }
 
@@ -663,7 +652,7 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public void delete(AnakYatim model) {
-        transactionHelper.executeInTransaction(() -> anakYatimRepository.delete(model.getId()));
+        transactionHelper.executeInTransaction(() -> anakYatimRepository.delete(model.id()));
     }
 
     @Override
@@ -673,7 +662,7 @@ public class AccountingClientImpl implements AccountingClient {
 
     @Override
     public String getTotalAnakYatim() {
-        return transactionHelper.executeInTransaction(() -> anakYatimRepository.getTotal());
+        return transactionHelper.executeInTransaction(anakYatimRepository::getTotal);
     }
 
 

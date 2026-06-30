@@ -15,33 +15,26 @@
 
 package org.masjidku.accounting.client.model.anakyatim;
 
-import org.masjidku.accounting.client.model.UangKeluar;
+public record AnakYatim(String id, String tujuan, int usia, String jumlah, String tanggal, String keterangan,
+                        String operator) {
 
-public class AnakYatim extends UangKeluar {
-    private int usia;
-
-    public AnakYatim(){ this(null, null, 0, "0", null, null); }
-
-    public AnakYatim(String id, String tujuan, int usia, String jumlah, String tanggal, String operator) {
-        super(id, tujuan, jumlah, tanggal, operator);
-        setUsia(usia);
+    public AnakYatim() {
+        this(null, null, 0, "0", null, "", null);
     }
 
     public AnakYatim(String tujuan, int usia, String jumlah, String tanggal, String operator) {
-        super(tujuan, jumlah, tanggal, operator);
-        setUsia(usia);
+        this(null, tujuan, usia, jumlah, tanggal, "", operator);
     }
 
-    public String getNama() {
-        return super.getTujuan();
+    public AnakYatim(String id, String tujuan, int usia, String jumlah, String tanggal, String operator) {
+        this(id, tujuan, usia, jumlah, tanggal, "", operator);
     }
 
-    public int getUsia() {
-        return usia;
+    public AnakYatim(String tujuan, int usia, String jumlah, String tanggal, String keterangan, String operator) {
+        this(null, tujuan, usia, jumlah, tanggal, keterangan, operator);
     }
 
-    public void setUsia(int usia) {
-        this.usia = usia;
+    public String nama() {
+        return tujuan;
     }
 }
-

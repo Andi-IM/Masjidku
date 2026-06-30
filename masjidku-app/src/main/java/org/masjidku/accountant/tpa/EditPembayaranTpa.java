@@ -68,16 +68,16 @@ public class EditPembayaranTpa {
         this.mainApp = mainApp;
         this.model = model;
 
-        if (model.getId() != null) {
+        if (model.id() != null) {
             setModel(model);
         }
     }
 
     private void setModel(TpaKeluar model) {
-        txtNama.setText(model.getNama());
-        txtKeterangan.setText(model.getKeterangan());
-        txtJumlah.setText(model.getJumlah());
-        LocalDate localDate = LocalDate.parse(model.getTanggal());
+        txtNama.setText(model.nama());
+        txtKeterangan.setText(model.keterangan());
+        txtJumlah.setText(model.jumlah());
+        LocalDate localDate = LocalDate.parse(model.tanggal());
         date.setValue(localDate);
     }
 
@@ -98,13 +98,13 @@ public class EditPembayaranTpa {
             String jumlah = txtJumlah.getText();
             String tanggal = date.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-            if (model.getId() == null) {
+            if (model.id() == null) {
                 model = new TpaKeluar(nama, keterangan, jumlah, tanggal, operator);
             }
 
             saveOrUpdate(
-                    () -> client.isTpaKeluarExist(model.getId()),
-                    () -> client.update(new TpaKeluar(model.getId(), nama, keterangan, jumlah, tanggal, operator)),
+                    () -> client.isTpaKeluarExist(model.id()),
+                    () -> client.update(new TpaKeluar(model.id(), nama, keterangan, jumlah, tanggal, operator)),
                     () -> client.save(model),
                     dialogStage, log
             );

@@ -71,13 +71,13 @@ public class TpaReport implements Initializable {
             TpaKeluar penerima = client.getLastTpaKeluar();
             TpaMasuk pemberi = client.getLastTpaMasuk();
 
-            txtPemasukanTerakhir.setText("Rp. " + pemberi.getJumlah());
-            txtPengeluaranTerakhir.setText("Rp. " + penerima.getJumlah());
+            txtPemasukanTerakhir.setText("Rp. " + pemberi.jumlah());
+            txtPengeluaranTerakhir.setText("Rp. " + penerima.jumlah());
             txtTotalPemasukkan.setText("Rp. " + client.getTotalTpaMasuk());
             txtTotalPengeluaran.setText("Rp. " + client.getTotalTpaKeluar());
             txtSaldo.setText("Rp. " + client.getTpaBalance());
-            txtTglPemasukkan.setText(pemberi.getTanggal());
-            txtTglPengeluaran.setText(penerima.getTanggal());
+            txtTglPemasukkan.setText(pemberi.tanggal());
+            txtTglPengeluaran.setText(penerima.tanggal());
 
         } catch (Exception e) {
             log.error("An error occurred", e);

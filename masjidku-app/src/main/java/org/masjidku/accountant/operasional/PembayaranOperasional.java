@@ -111,7 +111,7 @@ keterangan.setCellValueFactory(new PropertyValueFactory<>("keterangan"));
 
     @Override
     protected boolean checkIfExist(Operasional item) throws java.sql.SQLException {
-        return client.isOperasionalExist(item.getId());
+        return client.isOperasionalExist(item.id());
     }
 
     @Override

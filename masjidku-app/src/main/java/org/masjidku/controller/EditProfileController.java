@@ -20,18 +20,19 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.masjidku.model.user.UserProfile;
-import org.masjidku.domain.repository.UserRepository;
-import org.masjidku.domain.repository.UserProfileRepository;
-import org.masjidku.domain.repository.impl.UserRepositoryImpl;
-import org.masjidku.domain.repository.impl.UserProfileRepositoryImpl;
-import org.masjidku.navigation.AppRouter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import net.synedra.validatorfx.Validator;
+import org.masjidku.domain.repository.UserProfileRepository;
+import org.masjidku.domain.repository.UserRepository;
+import org.masjidku.domain.repository.impl.UserProfileRepositoryImpl;
+import org.masjidku.domain.repository.impl.UserRepositoryImpl;
+import org.masjidku.model.user.UserProfile;
+import org.masjidku.navigation.AppRouter;
+
+import static org.masjidku.util.AlertHelper.alertError;
+import static org.masjidku.util.ValidationHelper.registerRequiredField;
 
 public class EditProfileController {
-    private static final Logger log = LoggerFactory.getLogger(EditProfileController.class);
+    private static final String NEW_PASSWORD_KEY = "newPassword";
     private final Validator validator = new Validator();
 
     @FXML
@@ -57,37 +58,45 @@ public class EditProfileController {
 
     @FXML
     public void initialize() {
-        org.masjidku.util.ValidationHelper.registerRequiredField(validator, txtUserName, "username", "Username harus diisi!");
-        org.masjidku.util.ValidationHelper.registerRequiredField(validator, txtNewPassword, "newPassword", "Password baru harus diisi!");
-        org.masjidku.util.ValidationHelper.registerRequiredField(validator, txtAlamat, "alamat", "Alamat harus diisi!");
-        org.masjidku.util.ValidationHelper.registerRequiredField(validator, txtNoTel, "notel", "Nomor telepon harus diisi!");
+        registerRequiredField(validator, txtUserName, "username", "Username harus diisi!");
+        registerRequiredField(validator, txtNewPassword, NEW_PASSWORD_KEY, "Password baru harus diisi!");
+        registerRequiredField(validator, txtAlamat, "alamat", "Alamat harus diisi!");
+        registerRequiredField(validator, txtNoTel, "notel", "Nomor telepon harus diisi!");
 
+        registerOldPasswordCheck();
+        registerPasswordMatchCheck();
+    }
+
+    private void registerOldPasswordCheck() {
         validator.createCheck()
                 .dependsOn("oldPassword", txtOldPassword.textProperty())
                 .withMethod(c -> {
                     String val = c.get("oldPassword");
                     if (val == null || val.isBlank()) {
                         c.error("Password lama harus diisi!");
-                    } else {
-                        String userId = lbUserID.getText();
-                        if (userId != null && !userId.isBlank()) {
-                            UserRepository dao = new UserRepositoryImpl();
-                            String hashed = com.google.common.hash.Hashing.sha256()
-                                    .hashString(val, java.nio.charset.StandardCharsets.UTF_8)
-                                    .toString();
-                            if (!dao.isUserExist(userId, hashed)) {
-                                c.error("Password lama salah!");
-                            }
-                        }
+                        return;
+                    }
+                    String userId = lbUserID.getText();
+                    if (userId == null || userId.isBlank()) {
+                        return;
+                    }
+                    UserRepository dao = new UserRepositoryImpl();
+                    String hashed = com.google.common.hash.Hashing.sha256()
+                            .hashString(val, java.nio.charset.StandardCharsets.UTF_8)
+                            .toString();
+                    if (!dao.isUserExist(userId, hashed)) {
+                        c.error("Password lama salah!");
                     }
                 })
                 .decorates(txtOldPassword);
+    }
 
+    private void registerPasswordMatchCheck() {
         validator.createCheck()
-                .dependsOn("newPassword", txtNewPassword.textProperty())
+                .dependsOn(NEW_PASSWORD_KEY, txtNewPassword.textProperty())
                 .dependsOn("confirmPassword", txtConfirmPassword.textProperty())
                 .withMethod(c -> {
-                    String pass = c.get("newPassword");
+                    String pass = c.get(NEW_PASSWORD_KEY);
                     String confirm = c.get("confirmPassword");
                     if (confirm == null || confirm.isBlank()) {
                         c.error("Konfirmasi password harus diisi!");
@@ -139,7 +148,7 @@ public class EditProfileController {
             }
             profileDao.update(new String[]{id, notel, alamat});
         } else {
-            org.masjidku.util.AlertHelper.alertError(dialogStage, "Empty Form", "Salah satu form tidak boleh kosong!");
+            alertError(dialogStage, "Empty Form", "Salah satu form tidak boleh kosong!");
         }
     }
 
@@ -156,7 +165,5 @@ public class EditProfileController {
     public void onLogoutClick() {
         mainApp.onLogoutAction();
     }
-
-
 }
 

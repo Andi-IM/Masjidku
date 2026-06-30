@@ -94,7 +94,7 @@ public class DonaturTpa extends BaseTableController<TpaMasuk> {
     @Override protected Button getBtnEdit() { return btnEdit; }
     @Override protected Button getBtnRemove() { return btnRemove; }
     @Override protected List<TpaMasuk> fetchAllData() throws java.sql.SQLException { return client.getAllTpaMasuk(); }
-    @Override protected boolean checkIfExist(TpaMasuk item) throws java.sql.SQLException { return client.isTpaMasukExist(item.getId()); }
+    @Override protected boolean checkIfExist(TpaMasuk item) throws java.sql.SQLException { return client.isTpaMasukExist(item.id()); }
     @Override protected void deleteItem(TpaMasuk item) throws java.sql.SQLException { client.delete(item); }
     @Override protected void handleEdit(TpaMasuk item) { mainApp.editDonaturTpa(item); }
 

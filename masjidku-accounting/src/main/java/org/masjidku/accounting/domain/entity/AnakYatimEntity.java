@@ -54,13 +54,26 @@ public class AnakYatimEntity {
         this.keterangan = keterangan;
     }
 
-    public String getJumlah() { return jumlah; }
-    public void setJumlah(String jumlah) { this.jumlah = jumlah; }
+    public String getJumlah() {
+        return jumlah;
+    }
 
-    public int getUsia() { return usia; }
-    public void setUsia(int usia) { this.usia = usia; }
+    public void setJumlah(String jumlah) {
+        this.jumlah = jumlah;
+    }
 
-    public String getTanggal() { return tanggal; }
+    public int getUsia() {
+        return usia;
+    }
+
+    public void setUsia(int usia) {
+        this.usia = usia;
+    }
+
+    public String getTanggal() {
+        return tanggal;
+    }
+
     public void setTanggal(String tanggal) {
         this.tanggal = tanggal;
     }

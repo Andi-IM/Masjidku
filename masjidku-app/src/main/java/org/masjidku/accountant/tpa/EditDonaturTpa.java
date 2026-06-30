@@ -68,15 +68,15 @@ public class EditDonaturTpa {
         this.mainApp = mainApp;
         this.donatur = model;
 
-        if (model.getId() != null) {
+        if (model.id() != null) {
             setDonatur(model);
         }
     }
 
     public void setDonatur(TpaMasuk model) {
-        txtNama.setText(model.getDonatur());
-        txtJumlah.setText(model.getJumlah());
-        LocalDate localDate = LocalDate.parse(model.getTanggal());
+        txtNama.setText(model.donatur());
+        txtJumlah.setText(model.jumlah());
+        LocalDate localDate = LocalDate.parse(model.tanggal());
         date.setValue(localDate);
     }
 
@@ -101,8 +101,8 @@ public class EditDonaturTpa {
             }
 
             saveOrUpdate(
-                    () -> client.isTpaMasukExist(donatur.getId()),
-                    () -> client.update(new TpaMasuk(donatur.getId(), nama, jumlah, tanggal, operator)),
+                    () -> client.isTpaMasukExist(donatur.id()),
+                    () -> client.update(new TpaMasuk(donatur.id(), nama, jumlah, tanggal, operator)),
                     () -> client.save(donatur),
                     dialogStage, log
             );

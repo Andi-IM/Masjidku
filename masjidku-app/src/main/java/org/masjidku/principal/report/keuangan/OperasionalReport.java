@@ -71,13 +71,13 @@ public class OperasionalReport implements Initializable {
             Operasional penerima = client.getLastOperasional();
             DonasiOperasional pemberi = client.getLastDonasiOperasional();
 
-            txtPemasukanTerakhir.setText("Rp. " + penerima.getJumlah());
-            txtPengeluaranTerakhir.setText("Rp. " + pemberi.getJumlah());
+            txtPemasukanTerakhir.setText("Rp. " + penerima.jumlah());
+            txtPengeluaranTerakhir.setText("Rp. " + pemberi.jumlah());
             txtTotalPemasukkan.setText("Rp. " + client.getTotalOperasional());
             txtTotalPengeluaran.setText("Rp. " + client.getTotalDonasiOperasional());
             txtSaldo.setText("Rp. " + client.getOperationalBalance());
-            txtTglPemasukkan.setText(pemberi.getTanggal());
-            txtTglPengeluaran.setText(penerima.getTanggal());
+            txtTglPemasukkan.setText(pemberi.tanggal());
+            txtTglPengeluaran.setText(penerima.tanggal());
 
         } catch (Exception e) {
             log.error("An error occurred", e);

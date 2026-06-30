@@ -107,7 +107,7 @@ public class DonaturPembangunan extends BaseTableController<DonasiPembangunan> {
 
     @Override
     protected boolean checkIfExist(DonasiPembangunan item) throws java.sql.SQLException {
-        return client.isDonasiPembangunanExist(item.getId());
+        return client.isDonasiPembangunanExist(item.id());
     }
 
     @Override

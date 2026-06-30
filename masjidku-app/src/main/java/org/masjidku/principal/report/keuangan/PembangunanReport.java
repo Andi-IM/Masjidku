@@ -71,13 +71,13 @@ public class PembangunanReport implements Initializable {
             Pembangunan penerima = client.getLastPembangunan();
             DonasiPembangunan pemberi = client.getLastDonasiPembangunan();
 
-            txtPemasukanTerakhir.setText("Rp. " + penerima.getJumlah());
-            txtPengeluaranTerakhir.setText("Rp. " + pemberi.getJumlah());
+            txtPemasukanTerakhir.setText("Rp. " + penerima.jumlah());
+            txtPengeluaranTerakhir.setText("Rp. " + pemberi.jumlah());
             txtTotalPemasukkan.setText("Rp. " + client.getTotalPembangunan());
             txtTotalPengeluaran.setText("Rp. " + client.getTotalDonasiPembangunan());
             txtSaldo.setText("Rp. " + client.getPembangunanBalance());
-            txtTglPemasukkan.setText(pemberi.getTanggal());
-            txtTglPengeluaran.setText(penerima.getTanggal());
+            txtTglPemasukkan.setText(pemberi.tanggal());
+            txtTglPengeluaran.setText(penerima.tanggal());
 
         } catch (Exception e) {
             log.error("An error occurred", e);

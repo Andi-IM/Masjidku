@@ -15,16 +15,13 @@
 
 package org.masjidku.accounting.client.model.tpa;
 
-import org.masjidku.accounting.client.model.DataDonasi;
+public record TpaMasuk(String id, String donatur, String jumlah, String tanggal, String operator) {
 
-public class TpaMasuk extends DataDonasi {
-    public TpaMasuk() { this(null,null,"0",null,null); }
-
-    public TpaMasuk(String id, String donatur, String jumlah, String tanggal, String operator) {
-        super(id, donatur, jumlah, tanggal, operator);
+    public TpaMasuk() {
+        this(null, null, "0", null, null);
     }
 
-    public TpaMasuk(String nama, String jumlah, String tanggal, String operator) {
-        super(nama, jumlah, tanggal, operator);
+    public TpaMasuk(String donatur, String jumlah, String tanggal, String operator) {
+        this(null, donatur, jumlah, tanggal, operator);
     }
 }

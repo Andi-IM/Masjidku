@@ -108,7 +108,7 @@ public class PembayaranTpa extends BaseTableController<TpaKeluar> {
 
     @Override
     protected boolean checkIfExist(TpaKeluar item) throws java.sql.SQLException {
-        return client.isTpaKeluarExist(item.getId());
+        return client.isTpaKeluarExist(item.id());
     }
 
     @Override

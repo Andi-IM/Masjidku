@@ -47,13 +47,13 @@ public class AccountantAnakyatim extends BaseAccountantController {
             DonasiAYatim pemberi = client.getLastDonasiAYatim();
 
             updateDashboardSummary(
-                    pemberi.getJumlah(), // Pemasukan
-                    penerima.getJumlah(), // Pengeluaran
+                    pemberi.jumlah(), // Pemasukan
+                    penerima.jumlah(), // Pengeluaran
                     client.getTotalDonasiAYatim(), // Total Pemasukan
                     client.getTotalAnakYatim(), // Total Pengeluaran
                     client.getInfakYatimBalance(), // Saldo
-                    pemberi.getTanggal(), // Tgl Pemasukan
-                    penerima.getTanggal() // Tgl Pengeluaran
+                    pemberi.tanggal(), // Tgl Pemasukan
+                    penerima.tanggal() // Tgl Pengeluaran
             );
         } catch (Exception e) {
             log.error("An error occurred", e);

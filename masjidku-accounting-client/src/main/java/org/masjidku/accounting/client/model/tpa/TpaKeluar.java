@@ -15,25 +15,18 @@
 
 package org.masjidku.accounting.client.model.tpa;
 
-import org.masjidku.accounting.client.model.UangKeluar;
+public record TpaKeluar(String id, String tujuan, String keterangan, String jumlah, String tanggal, String operator) {
 
-public class TpaKeluar extends UangKeluar {
-    public TpaKeluar() { this(null,null,"0",null,null);}
-
-    public TpaKeluar(String id, String nama, String keterangan, String jumlah, String tanggal, String operator) {
-        super(id, nama, keterangan, jumlah, tanggal, operator);
+    public TpaKeluar() {
+        this(null, null, null, "0", null, null);
     }
 
-    public TpaKeluar(String nama, String keterangan, String jumlah, String tanggal, String operator) {
-        super.setTujuan(nama);
-        super.setKeterangan(keterangan);
-        super.setJumlah(jumlah);
-        super.setTanggal(tanggal);
-        super.setOperator(operator);
+    public TpaKeluar(String tujuan, String keterangan, String jumlah, String tanggal, String operator) {
+        this(null, tujuan, keterangan, jumlah, tanggal, operator);
     }
 
-    public String getNama() {
-        return super.getTujuan();
+    public String nama() {
+        return tujuan;
     }
 
 }

@@ -106,7 +106,7 @@ public class DonaturOperasional extends BaseTableController<DonasiOperasional> {
 
     @Override
     protected boolean checkIfExist(DonasiOperasional item) throws java.sql.SQLException {
-        return client.isDonasiOperasionalExist(item.getId());
+        return client.isDonasiOperasionalExist(item.id());
     }
 
     @Override

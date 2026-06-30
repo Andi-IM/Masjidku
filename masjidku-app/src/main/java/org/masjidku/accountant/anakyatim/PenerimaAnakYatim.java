@@ -111,7 +111,7 @@ usia.setCellValueFactory(new PropertyValueFactory<>("usia"));
 
     @Override
     protected boolean checkIfExist(AnakYatim item) throws java.sql.SQLException {
-        return client.isAnakYatimExist(item.getId());
+        return client.isAnakYatimExist(item.id());
     }
 
     @Override

@@ -81,16 +81,16 @@ public class EditPenerimaAnakYatim {
         this.mainApp = mainApp;
         this.anakYatim = model;
 
-        if (model.getId() != null) {
+        if (model.id() != null) {
             setModel(model);
         }
     }
 
     private void setModel(AnakYatim model) {
-        txtNama.setText(model.getNama());
-        txtJumlah.setText(model.getJumlah());
-        spnUsia.getValueFactory().setValue(model.getUsia());
-        LocalDate localDate = LocalDate.parse(model.getTanggal());
+        txtNama.setText(model.nama());
+        txtJumlah.setText(model.jumlah());
+        spnUsia.getValueFactory().setValue(model.usia());
+        LocalDate localDate = LocalDate.parse(model.tanggal());
         date.setValue(localDate);
     }
 
@@ -111,13 +111,13 @@ public class EditPenerimaAnakYatim {
             String jumlah = txtJumlah.getText();
             String tanggal = date.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-            if (anakYatim.getId() == null) {
+            if (anakYatim.id() == null) {
                 anakYatim = new AnakYatim(nama, usia, jumlah, tanggal, operator);
             }
 
             try {
-                if (client.isAnakYatimExist(anakYatim.getId())) {
-                    client.update(new AnakYatim(anakYatim.getId(), nama, usia, jumlah, tanggal, operator));
+                if (client.isAnakYatimExist(anakYatim.id())) {
+                    client.update(new AnakYatim(anakYatim.id(), nama, usia, jumlah, tanggal, operator));
                     alertInfo(dialogStage, ERROR, "Data telah diupdate");
                 } else {
                     client.save(anakYatim);

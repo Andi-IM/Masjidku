@@ -68,15 +68,15 @@ public class EditDonaturAnakYatim {
         this.donatur = model;
 
 
-        if (model.getId() != null) {
+        if (model.id() != null) {
             setDonasi(model);
         }
     }
 
     private void setDonasi(DonasiAYatim model) {
-        txtNama.setText(model.getDonatur());
-        txtJumlah.setText(model.getJumlah());
-        LocalDate localDate = LocalDate.parse(model.getTanggal());
+        txtNama.setText(model.donatur());
+        txtJumlah.setText(model.jumlah());
+        LocalDate localDate = LocalDate.parse(model.tanggal());
         date.setValue(localDate);
     }
 
@@ -94,13 +94,13 @@ public class EditDonaturAnakYatim {
             String jumlah = txtJumlah.getText();
             String tanggal = date.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-            if (donatur.getId() == null) {
+            if (donatur.id() == null) {
                 donatur = new DonasiAYatim(nama, jumlah, tanggal, operator);
             }
 
             saveOrUpdate(
-                    () -> client.isDonasiAYatimExist(donatur.getId()),
-                    () -> client.update(new DonasiAYatim(donatur.getId(), nama, jumlah, tanggal, operator)),
+                    () -> client.isDonasiAYatimExist(donatur.id()),
+                    () -> client.update(new DonasiAYatim(donatur.id(), nama, jumlah, tanggal, operator)),
                     () -> client.save(donatur),
                     dialogStage, log
             );

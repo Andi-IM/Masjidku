@@ -15,18 +15,13 @@
 
 package org.masjidku.accounting.client.model.pembangunan;
 
-import org.masjidku.accounting.client.model.DataDonasi;
-
-public class DonasiPembangunan extends DataDonasi {
-    public DonasiPembangunan(String id, String donatur, String jumlah, String tanggal, String operator) {
-        super(id, donatur, jumlah, tanggal, operator);
-    }
+public record DonasiPembangunan(String id, String donatur, String jumlah, String tanggal, String operator) {
 
     public DonasiPembangunan() {
-        this(null,null,null,null,null);
+        this(null, null, null, null, null);
     }
 
-    public DonasiPembangunan(String nama, String jumlah, String tanggal, String operator) {
-        super(nama, jumlah, tanggal, operator);
+    public DonasiPembangunan(String donatur, String jumlah, String tanggal, String operator) {
+        this(null, donatur, jumlah, tanggal, operator);
     }
 }

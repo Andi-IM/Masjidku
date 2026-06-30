@@ -64,13 +64,13 @@ public class AccountantPembangunan extends BaseAccountantController {
             DonasiPembangunan pemberi = client.getLastDonasiPembangunan();
 
             updateDashboardSummary(
-                    pemberi.getJumlah(), // Pemasukan
-                    penerima.getJumlah(), // Pengeluaran
+                    pemberi.jumlah(), // Pemasukan
+                    penerima.jumlah(), // Pengeluaran
                     client.getTotalPembangunan(), // Total Pemasukan
                     client.getTotalDonasiPembangunan(), // Total Pengeluaran
                     client.getPembangunanBalance(), // Saldo
-                    pemberi.getTanggal(), // Tgl Pemasukan
-                    penerima.getTanggal() // Tgl Pengeluaran
+                    pemberi.tanggal(), // Tgl Pemasukan
+                    penerima.tanggal() // Tgl Pengeluaran
             );
 
         } catch (Exception e) {

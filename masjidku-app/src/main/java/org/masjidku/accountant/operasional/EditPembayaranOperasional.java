@@ -70,16 +70,16 @@ public class EditPembayaranOperasional {
         this.mainApp = mainApp;
         this.model = model;
 
-        if (model.getId() != null) {
+        if (model.id() != null) {
             setModel(model);
         }
     }
 
     private void setModel(Operasional model) {
-        txtNama.setText(model.getTujuan());
-        txtKeterangan.setText(model.getKeterangan());
-        txtJumlah.setText(model.getJumlah());
-        LocalDate localDate = LocalDate.parse(model.getTanggal());
+        txtNama.setText(model.tujuan());
+        txtKeterangan.setText(model.keterangan());
+        txtJumlah.setText(model.jumlah());
+        LocalDate localDate = LocalDate.parse(model.tanggal());
         date.setValue(localDate);
     }
 
@@ -100,13 +100,13 @@ public class EditPembayaranOperasional {
             String jumlah = txtJumlah.getText();
             String tanggal = date.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-            if (model.getId() == null) {
+            if (model.id() == null) {
                 model = new Operasional(nama, keterangan, jumlah, tanggal, operator);
             }
 
             saveOrUpdate(
-                    () -> client.isOperasionalExist(model.getId()),
-                    () -> client.update(new Operasional(model.getId(), nama, keterangan, jumlah, tanggal, operator)),
+                    () -> client.isOperasionalExist(model.id()),
+                    () -> client.update(new Operasional(model.id(), nama, keterangan, jumlah, tanggal, operator)),
                     () -> client.save(model),
                     dialogStage, log
             );

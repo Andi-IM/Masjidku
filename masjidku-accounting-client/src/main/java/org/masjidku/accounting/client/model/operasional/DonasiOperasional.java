@@ -15,22 +15,17 @@
 
 package org.masjidku.accounting.client.model.operasional;
 
-import org.masjidku.accounting.client.model.DataDonasi;
-
-public class DonasiOperasional extends DataDonasi {
-    public DonasiOperasional(String id, String donatur, String jumlah, String tanggal, String operator) {
-        super(id, donatur, jumlah, tanggal, operator);
-    }
+public record DonasiOperasional(String id, String donatur, String jumlah, String tanggal, String operator) {
 
     public DonasiOperasional() {
         this(null, null, "0", null, null);
     }
 
-    public DonasiOperasional(String nama, String jumlah, String tanggal, String operator) {
-        super(nama, jumlah, tanggal, operator);
+    public DonasiOperasional(String donatur, String jumlah, String tanggal, String operator) {
+        this(null, donatur, jumlah, tanggal, operator);
     }
 
-    public String getNama() {
-        return super.getDonatur();
+    public String nama() {
+        return donatur;
     }
 }

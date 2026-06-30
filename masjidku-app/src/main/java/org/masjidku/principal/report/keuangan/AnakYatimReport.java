@@ -65,13 +65,13 @@ public class AnakYatimReport implements Initializable {
             AnakYatim penerima = client.getLastAnakYatim();
             DonasiAYatim pemberi = client.getLastDonasiAYatim();
 
-            txtPemasukanTerakhir.setText("Rp. " + penerima.getJumlah());
-            txtPengeluaranTerakhir.setText("Rp. " + pemberi.getJumlah());
+            txtPemasukanTerakhir.setText("Rp. " + penerima.jumlah());
+            txtPengeluaranTerakhir.setText("Rp. " + pemberi.jumlah());
             txtTotalPemasukkan.setText("Rp. " + client.getTotalDonasiAYatim());
             txtTotalPengeluaran.setText("Rp. " + client.getTotalAnakYatim());
             txtSaldo.setText("Rp. " + client.getInfakYatimBalance());
-            txtTglPemasukkan.setText(pemberi.getTanggal());
-            txtTglPengeluaran.setText(penerima.getTanggal());
+            txtTglPemasukkan.setText(pemberi.tanggal());
+            txtTglPengeluaran.setText(penerima.tanggal());
 
         } catch (Exception e) {
             log.error("An error occurred", e);

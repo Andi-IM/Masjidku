@@ -67,7 +67,7 @@ public class DonaturAnakYatim extends BaseTableController<DonasiAYatim> {
 
     @Override
     protected boolean checkIfExist(DonasiAYatim item) throws SQLException {
-        return client.isDonasiAYatimExist(item.getId());
+        return client.isDonasiAYatimExist(item.id());
     }
 
     @Override
