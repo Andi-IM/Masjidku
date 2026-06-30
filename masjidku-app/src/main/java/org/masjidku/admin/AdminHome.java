@@ -24,7 +24,7 @@ public class AdminHome {
     private AppRouter mainApp;
 
     public void setMainApp(AppRouter mainApp) {
-        String username = org.masjidku.model.session.dao.SessionManager.getInstance().getCurrentUser().getUsername();
+        String username = org.masjidku.di.DiProvider.getAppComponent().getSessionManager().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         greeting.setText("Bapak " + username);
     }
@@ -39,4 +39,5 @@ public class AdminHome {
         mainApp.showUser();
     }
 }
+
 

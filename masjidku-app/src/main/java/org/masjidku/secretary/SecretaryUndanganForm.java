@@ -59,7 +59,7 @@ public class SecretaryUndanganForm implements Initializable {
     private TamuKegiatan currentUndangan;
 
     public void setMainApp(AppRouter mainApp, TamuKegiatan undangan) {
-        this.operator = org.masjidku.model.session.dao.SessionManager.getInstance().getCurrentUser().getUsername();
+        this.operator = org.masjidku.di.DiProvider.getAppComponent().getSessionManager().getCurrentUser().getUsername();
         this.mainApp = mainApp;
 
         if (undangan != null) {
@@ -162,3 +162,4 @@ public class SecretaryUndanganForm implements Initializable {
         mainApp.onLogoutAction();
     }
 }
+

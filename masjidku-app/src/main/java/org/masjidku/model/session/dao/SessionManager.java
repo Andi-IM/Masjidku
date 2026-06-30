@@ -2,29 +2,30 @@ package org.masjidku.model.session.dao;
 
 import com.google.common.base.Stopwatch;
 import org.masjidku.domain.repository.UserSessionRepository;
-import org.masjidku.domain.repository.impl.UserSessionRepositoryImpl;
 import org.masjidku.model.session.UserSession;
 import org.masjidku.model.user.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
-public enum SessionManager {
-    INSTANCE;
-
+@Singleton
+public class SessionManager {
     private User currentUser;
-    private final UserSessionRepository sessionRepository = new UserSessionRepositoryImpl();
+    private final UserSessionRepository sessionRepository;
     private UserSession userSession;
     private Stopwatch stopwatch;
 
     private static final Logger log = LoggerFactory.getLogger(SessionManager.class);
 
-    public static SessionManager getInstance() {
-        return INSTANCE;
+    @Inject
+    public SessionManager(UserSessionRepository sessionRepository) {
+        this.sessionRepository = sessionRepository;
     }
 
     public void login(User user) {

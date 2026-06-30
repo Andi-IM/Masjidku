@@ -16,6 +16,7 @@ package org.masjidku.accountant;
 
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
+import org.masjidku.di.DiProvider;
 import org.masjidku.navigation.AppRouter;
 
 public class AccountantHome {
@@ -24,7 +25,7 @@ public class AccountantHome {
     private AppRouter mainApp;
 
     public void setMainApp(AppRouter mainApp) {
-        String username = org.masjidku.model.session.dao.SessionManager.getInstance().getCurrentUser().getUsername();
+        String username = DiProvider.getAppComponent().getSessionManager().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         greeting.setText(username);
     }
@@ -34,4 +35,5 @@ public class AccountantHome {
         mainApp.onLogoutAction();
     }
 }
+
 

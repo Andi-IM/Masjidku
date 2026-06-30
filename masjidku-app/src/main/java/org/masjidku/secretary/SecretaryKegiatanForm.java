@@ -52,7 +52,7 @@ public class SecretaryKegiatanForm {
 
 
     public void setMainApp(AppRouter mainApp, Kegiatan kegiatan) {
-        operator = org.masjidku.model.session.dao.SessionManager.getInstance().getCurrentUser().getUsername();
+        operator = org.masjidku.di.DiProvider.getAppComponent().getSessionManager().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         this.kegiatan = kegiatan;
     }
@@ -150,6 +150,7 @@ public class SecretaryKegiatanForm {
 
 
 }
+
 
 
 

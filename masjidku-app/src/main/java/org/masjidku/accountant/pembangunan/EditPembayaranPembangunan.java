@@ -50,7 +50,7 @@ public class EditPembayaranPembangunan {
     private Stage dialogStage;
 
     public void setMainApp(AppRouter mainApp, Pembangunan model) {
-        String operator = org.masjidku.model.session.dao.SessionManager.getInstance().getCurrentUser().getUsername();
+        String operator = org.masjidku.di.DiProvider.getAppComponent().getSessionManager().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         this.model = model;
         this.operator = operator;
@@ -127,5 +127,6 @@ public class EditPembayaranPembangunan {
 
 
 }
+
 
 

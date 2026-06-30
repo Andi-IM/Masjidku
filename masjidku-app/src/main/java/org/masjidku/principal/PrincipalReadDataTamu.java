@@ -63,7 +63,7 @@ public class PrincipalReadDataTamu extends BaseTableController<Tamu> {
     }
 
     public void setMainApp(AppRouter mainApp) {
-        String username = org.masjidku.model.session.dao.SessionManager.getInstance().getCurrentUser().getUsername();
+        String username = org.masjidku.di.DiProvider.getAppComponent().getSessionManager().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         if (greeting != null) {
             greeting.setText("Bapak " + username);
@@ -134,4 +134,5 @@ public class PrincipalReadDataTamu extends BaseTableController<Tamu> {
         eventClient.delete(item);
     }
 }
+
 

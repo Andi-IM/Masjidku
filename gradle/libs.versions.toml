@@ -14,6 +14,7 @@ logback = "1.5.13"
 annotation = "24.1.0"
 hibernate = "6.4.4.Final"
 hikaricp = "5.1.0"
+dagger = "2.51.1"
 [libraries]
 validatorfx = { group = "net.synedra", name = "validatorfx", version.ref = "validatorfx" }
 # Database
@@ -46,6 +47,9 @@ archunit-junit5 = { group = "com.tngtech.archunit", name = "archunit-junit5", ve
 slf4j = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4j" }
 logback = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }
 
+# Dagger 2
+dagger = { group = "com.google.dagger", name = "dagger", version.ref = "dagger" }
+dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "dagger" }
 
 [plugins]
 javafx = { id = "org.openjfx.javafxplugin", version = "0.1.0" }

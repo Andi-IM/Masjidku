@@ -57,7 +57,7 @@ public class ProfileController {
     }
 
     public void setMainApp(AppRouter mainApp) {
-        String userid = org.masjidku.model.session.dao.SessionManager.getInstance().getCurrentUser().getUserId();
+        String userid = org.masjidku.di.DiProvider.getAppComponent().getSessionManager().getCurrentUser().getUserId();
         this.mainApp = mainApp;
         profile = getUserData(userid);
 
@@ -82,4 +82,5 @@ public class ProfileController {
         mainApp.onLogoutAction();
     }
 }
+
 

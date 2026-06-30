@@ -18,7 +18,7 @@ package org.masjidku.secretary;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
-import org.masjidku.model.session.dao.SessionManager;
+import org.masjidku.di.DiProvider;
 import org.masjidku.navigation.AppRouter;
 
 public class SecretaryHome {
@@ -29,16 +29,21 @@ public class SecretaryHome {
     private AppRouter mainApp;
 
     public void setMainApp(AppRouter mainApp) {
-        String username = SessionManager.getInstance().getCurrentUser().getUsername();
+        String username = DiProvider.getAppComponent().getSessionManager().getCurrentUser().getUsername();
 
         this.mainApp = mainApp;
-        greeting.setText("Bapak "+username);
+        greeting.setText("Bapak " + username);
     }
 
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
 
     @FXML
-    public void onKelolaKegiatanClick() { mainApp.showKegiatan(); }
+    public void onKelolaKegiatanClick() {
+        mainApp.showKegiatan();
+    }
 }
+
 

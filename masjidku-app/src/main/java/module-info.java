@@ -10,6 +10,8 @@ open module main {
     requires org.masjidku.accounting.client;
     requires org.masjidku.events.client;
     requires org.masjidku.reporting.client;
+    requires dagger;
+    requires javax.inject;
 
     exports org.masjidku.model;
 

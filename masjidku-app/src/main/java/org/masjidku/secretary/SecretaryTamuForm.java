@@ -73,7 +73,7 @@ public class SecretaryTamuForm {
     }
 
     public void setMainApp(AppRouter mainApp, Tamu tamu) {
-        operator = org.masjidku.model.session.dao.SessionManager.getInstance().getCurrentUser().getUsername();
+        operator = org.masjidku.di.DiProvider.getAppComponent().getSessionManager().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         this.tamu = tamu;
 
@@ -134,3 +134,4 @@ public class SecretaryTamuForm {
         return validator.validate();
     }
 }
+

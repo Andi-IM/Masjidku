@@ -49,6 +49,9 @@ public class MainApp extends Application implements AppRouter {
 
     @Override
     public void start(Stage primaryStage) {
+        // Initialize Dagger 2 DI
+        org.masjidku.di.DiProvider.init();
+
         // Initialize SQLite Database schema if necessary
         org.masjidku.util.db.SQLiteInitService.initializeDatabase();
 
@@ -66,7 +69,7 @@ public class MainApp extends Application implements AppRouter {
 
     @Override
     public void stop() throws Exception {
-        SessionManager.getInstance().logout();
+        org.masjidku.di.DiProvider.getAppComponent().getSessionManager().logout();
         super.stop();
     }
 
@@ -107,7 +110,7 @@ public class MainApp extends Application implements AppRouter {
      * @param user user
      */
     public void recordSession(User user) {
-        SessionManager.getInstance().login(user);
+        org.masjidku.di.DiProvider.getAppComponent().getSessionManager().login(user);
     }
 
     /**
@@ -494,7 +497,7 @@ public class MainApp extends Application implements AppRouter {
      * Logout
      */
     public void onLogoutAction() {
-        org.masjidku.model.session.dao.SessionManager.getInstance().logout();
+        org.masjidku.di.DiProvider.getAppComponent().getSessionManager().logout();
 
         loadHomeRoot();
         showContent();

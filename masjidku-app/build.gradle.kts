@@ -52,6 +52,10 @@ dependencies {
     // Unit Test
     testImplementation(libs.junit)
     testImplementation(libs.archunit.junit5)
+
+    // Dagger 2 DI
+    implementation(libs.dagger)
+    annotationProcessor(libs.dagger.compiler)
 }
 
 javafx {
