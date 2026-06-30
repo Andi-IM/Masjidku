@@ -60,7 +60,7 @@ public class SessionManager {
         if (userSession != null) {
             String duration = getUserDuration();
             log.info("session duration: {}", duration);
-            sessionRepository.updateUserSession(userSession.getSession_id(), duration);
+            sessionRepository.updateUserSession(userSession.session_id(), duration);
         }
 
         this.currentUser = null;

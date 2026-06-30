@@ -62,13 +62,13 @@ public class ProfileController {
         profile = getUserData(userid);
 
         if (profile!=null){
-            userId.setText(profile.getUser().getUserId());
-            username.setText(profile.getUser().getUsername());
-            userRole.setText(profile.getUser().getJabatan().toString());
-            userStatus.setText(profile.getUser().getStatus());
-            userLastUpdate.setText(profile.getUser().getUpdated_at());
-            userPhoneNum.setText(profile.getNotelp());
-            userAddress.setText(profile.getAlamat());
+            userId.setText(profile.user().getUserId());
+            username.setText(profile.user().getUsername());
+            userRole.setText(profile.user().getJabatan().toString());
+            userStatus.setText(profile.user().getStatus());
+            userLastUpdate.setText(profile.user().getUpdatedAt());
+            userPhoneNum.setText(profile.notelp());
+            userAddress.setText(profile.alamat());
         }
     }
 

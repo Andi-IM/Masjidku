@@ -96,19 +96,19 @@ public class LoginController {
 
                 if (user.getStatus().equals("Aktif")) {
                     switch (user.getJabatan()) {
-                        case admin:
+                        case ADMIN:
                             mainApp.recordSession(user);
                             mainApp.setAdminView();
                             break;
-                        case ketua:
+                        case KETUA:
                             mainApp.recordSession(user);
                             mainApp.setPrincipalView();
                             break;
-                        case sekretaris:
+                        case SEKRETARIS:
                             mainApp.recordSession(user);
                             mainApp.setSecretaryView();
                             break;
-                        case bendahara:
+                        case BENDAHARA:
                             mainApp.recordSession(user);
                             mainApp.setAccountantView();
                             break;

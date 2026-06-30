@@ -15,51 +15,5 @@
 
 package org.masjidku.model.session;
 
-public final class UserSession {
-    private String session_id;
-    private String userid;
-    private String timestamp;
-    private String duration;
-
-    public UserSession(){ }
-
-    public UserSession(String session_id, String userid, String timestamp, String duration) {
-        setSession_id(session_id);
-        setDuration(duration);
-        setTimestamp(timestamp);
-        setUserid(userid);
-
-    }
-
-    public String getSession_id() {
-        return session_id;
-    }
-
-    public String getUserid() {
-        return userid;
-    }
-
-    public String getTimestamp() {
-        return timestamp;
-    }
-
-    public String getDuration() {
-        return duration;
-    }
-
-    public void setSession_id(String session_id) {
-        this.session_id = session_id;
-    }
-
-    public void setUserid(String userid) {
-        this.userid = userid;
-    }
-
-    public void setDuration(String duration) {
-        this.duration = duration;
-    }
-
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
-    }
+public record UserSession(String session_id, String userid, String timestamp, String duration) {
 }

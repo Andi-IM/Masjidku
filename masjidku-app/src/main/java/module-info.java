@@ -16,8 +16,6 @@ open module main {
     requires javax.inject;
     requires org.hibernate.orm.core;
 
-    exports org.masjidku.model;
-
     uses org.masjidku.accounting.client.service.AccountingClient;
 
     uses org.masjidku.events.client.EventsClient;

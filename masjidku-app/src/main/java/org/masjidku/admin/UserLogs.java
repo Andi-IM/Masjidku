@@ -14,13 +14,13 @@
  */
 package org.masjidku.admin;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.domain.repository.UserSessionRepository;
 import org.masjidku.domain.repository.impl.UserSessionRepositoryImpl;
 import org.masjidku.model.session.UserSession;
@@ -73,9 +73,9 @@ public class UserLogs implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         activityTable.setItems(getSessionData());
-        userid.setCellValueFactory(new PropertyValueFactory<>("userid"));
-        timestamp.setCellValueFactory(new PropertyValueFactory<>("timestamp"));
-        duration.setCellValueFactory(new PropertyValueFactory<>("duration"));
+        userid.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().userid()));
+        timestamp.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().timestamp()));
+        duration.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().duration()));
     }
 
     public void onLogoutClick() {

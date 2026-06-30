@@ -18,8 +18,8 @@ public class UserMapper {
         domain.setUsername(entity.getUsername());
         domain.setJabatan(entity.getJabatan());
         domain.setStatus(entity.getStatus());
-        domain.setCreated_at(entity.getCreatedAt());
-        domain.setUpdated_at(entity.getUpdatedAt());
+        domain.setCreatedAt(entity.getCreatedAt());
+        domain.setUpdatedAt(entity.getUpdatedAt());
         return domain;
     }
 
@@ -35,8 +35,8 @@ public class UserMapper {
             entity.setJabatan(domain.getJabatan().toString());
         }
         entity.setStatus(domain.getStatus());
-        entity.setCreatedAt(domain.getCreated_at());
-        entity.setUpdatedAt(domain.getUpdated_at());
+        entity.setCreatedAt(domain.getCreatedAt());
+        entity.setUpdatedAt(domain.getUpdatedAt());
         return entity;
     }
 }

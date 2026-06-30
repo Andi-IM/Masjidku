@@ -114,10 +114,10 @@ public class EditProfileController {
     }
 
     private void setUser(UserProfile profile) {
-        lbUserID.setText(profile.getUser().getUserId());
-        txtUserName.setText(profile.getUser().getUsername());
-        txtAlamat.setText(profile.getAlamat());
-        txtNoTel.setText(profile.getNotelp());
+        lbUserID.setText(profile.user().getUserId());
+        txtUserName.setText(profile.user().getUsername());
+        txtAlamat.setText(profile.alamat());
+        txtNoTel.setText(profile.notelp());
     }
 
     @FXML

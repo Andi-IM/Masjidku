@@ -11,13 +11,11 @@ public class UserProfileMapper {
         if (entity == null) {
             return null;
         }
-        UserProfile domain = new UserProfile();
-        domain.setAlamat(entity.getAlamat());
-        domain.setNotelp(entity.getNotelp());
-        if (entity.getUser() != null) {
-            domain.setUser(UserMapper.toDomain(entity.getUser()));
-        }
-        return domain;
+        return new UserProfile(
+            entity.getUser() != null ? UserMapper.toDomain(entity.getUser()) : null,
+            entity.getAlamat(),
+            entity.getNotelp()
+        );
     }
 
     public static UserProfileEntity toEntity(UserProfile domain) {
@@ -25,11 +23,11 @@ public class UserProfileMapper {
             return null;
         }
         UserProfileEntity entity = new UserProfileEntity();
-        if (domain.getUser() != null) {
-            entity.setUserId(domain.getUser().getUserId());
+        if (domain.user() != null) {
+            entity.setUserId(domain.user().getUserId());
         }
-        entity.setAlamat(domain.getAlamat());
-        entity.setNotelp(domain.getNotelp());
+        entity.setAlamat(domain.alamat());
+        entity.setNotelp(domain.notelp());
         return entity;
     }
 }

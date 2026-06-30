@@ -12,11 +12,11 @@ public class UserSessionMapper {
         if (entity == null) {
             return null;
         }
-        UserSession domain = new UserSession();
-        domain.setSession_id(entity.getSessionId() != null ? String.valueOf(entity.getSessionId()) : null);
-        domain.setUserid(entity.getUserid());
-        domain.setTimestamp(entity.getTimestamp());
-        domain.setDuration(entity.getDuration());
-        return domain;
+        return new UserSession(
+            entity.getSessionId() != null ? String.valueOf(entity.getSessionId()) : null,
+            entity.getUserid(),
+            entity.getTimestamp(),
+            entity.getDuration()
+        );
     }
 }

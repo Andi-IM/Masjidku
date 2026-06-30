@@ -15,44 +15,4 @@
 
 package org.masjidku.model.user;
 
-public class UserProfile{
-    private User user;
-    private String alamat;
-    private String notelp;
-
-    public UserProfile(){}
-
-    public UserProfile(User user){
-        this.user = user;
-    }
-
-    public UserProfile(User user, String alamat, String notelp) {
-        this.user = user;
-        this.alamat = alamat;
-        this.notelp = notelp;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public String getAlamat() {
-        return alamat;
-    }
-
-    public String getNotelp() {
-        return notelp;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public void setAlamat(String alamat) {
-        this.alamat = alamat;
-    }
-
-    public void setNotelp(String notelp) {
-        this.notelp = notelp;
-    }
-}
+public record UserProfile(User user, String alamat, String notelp) { }

@@ -24,30 +24,33 @@ public class User {
     private String password;
     private String jabatan;
     private String status;
-    private String created_at;
-    private String updated_at;
+    private String createdAt;
+    private String updatedAt;
 
     /**
      * Constructor
      */
-    public User() { this(null, null, "none", null, null, null); }
+    public User() {
+        this(null, null, "none", null, null, null);
+    }
 
     /**
      * Filled Constructor
-     * @param userId a user id
-     * @param username a username
-     * @param jabatan user role
-     * @param status user status
-     * @param created_at first time create
-     * @param updated_at after user update data.
+     *
+     * @param userId    a user id
+     * @param username  a username
+     * @param jabatan   user role
+     * @param status    user status
+     * @param createdAt first time create
+     * @param updatedAt after user update data.
      */
-    public User(String userId, String username, String jabatan, String status, String created_at, String updated_at) {
+    public User(String userId, String username, String jabatan, String status, String createdAt, String updatedAt) {
         setUserId(userId);
         setUsername(username);
         setJabatan(jabatan);
         setStatus(status);
-        setCreated_at(created_at);
-        setUpdated_at(updated_at);
+        setCreatedAt(createdAt);
+        setUpdatedAt(updatedAt);
     }
 
     public String getUserId() {
@@ -76,11 +79,11 @@ public class User {
 
     public Jabatan getJabatan() {
         return switch (this.jabatan) {
-            case "admin" -> admin;
-            case "ketua" -> ketua;
-            case "sekretaris" -> sekretaris;
-            case "bendahara" -> bendahara;
-            default -> none;
+            case "admin" -> ADMIN;
+            case "ketua" -> KETUA;
+            case "sekretaris" -> SEKRETARIS;
+            case "bendahara" -> BENDAHARA;
+            default -> NONE;
         };
     }
 
@@ -96,28 +99,28 @@ public class User {
         this.status = status;
     }
 
-    public String getCreated_at() {
-        return created_at;
+    public String getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(String created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public String getUpdated_at() {
-        return updated_at;
+    public String getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdated_at(String updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
-    public enum Jabatan{
-        admin("admin"),
-        ketua("ketua"),
-        sekretaris("sekretaris"),
-        bendahara("bendahara"),
-        none("");
+    public enum Jabatan {
+        ADMIN("admin"),
+        KETUA("ketua"),
+        SEKRETARIS("sekretaris"),
+        BENDAHARA("bendahara"),
+        NONE("");
 
         private final String label;
 
