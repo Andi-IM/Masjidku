@@ -70,7 +70,7 @@ public class ListUndangan extends ReadOnlyTableController<TamuKegiatan> {
 
     @FXML
     public void showReport() {
-        ServiceProvider.get(ReportService.class).showReport("/org/masjidku/report/list_undangan.jrxml");
+        org.masjidku.di.DiProvider.getAppComponent().getReportService().showReport("/org/masjidku/report/list_undangan.jrxml");
     }
 
     @FXML

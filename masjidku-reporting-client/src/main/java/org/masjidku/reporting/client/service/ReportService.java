@@ -11,4 +11,5 @@ public interface ReportService {
     void exportToPdf(String destFilePath);
     void exportToPdf(String reportPath, String destFilePath);
     void exportToPdf(String reportPath, Map<String, Object> parameters, String destFilePath);
+    void setConnectionProvider(ReportConnectionProvider provider);
 }

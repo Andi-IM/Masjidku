@@ -40,7 +40,6 @@ import org.masjidku.navigation.AppRouter;
 import org.masjidku.util.ViewManager;
 
 import static org.masjidku.di.DiProvider.getAppComponent;
-import static org.masjidku.util.db.SQLiteInitService.initializeDatabase;
 
 public class MainApp extends Application implements AppRouter {
 
@@ -65,9 +64,6 @@ public class MainApp extends Application implements AppRouter {
     public void start(Stage primaryStage) {
         // Initialize Dagger 2 DI
         DiProvider.init();
-
-        // Initialize SQLite Database schema if necessary
-        initializeDatabase();
 
         this.primaryStage = primaryStage;
         this.viewManager = new ViewManager(primaryStage, this);

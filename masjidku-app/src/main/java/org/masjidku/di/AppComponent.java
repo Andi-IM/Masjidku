@@ -13,4 +13,5 @@ public interface AppComponent {
     SessionManager getSessionManager();
     SessionFactory getSessionFactory();
     TransactionHelper getTransactionHelper();
+    org.masjidku.reporting.client.service.ReportService getReportService();
 }

@@ -45,7 +45,7 @@ public abstract class BaseFinanceReportController<T> extends ReadOnlyTableContro
 
     @FXML
     public void showReport() {
-        ServiceProvider.get(ReportService.class).showReport(getReportTemplatePath());
+        org.masjidku.di.DiProvider.getAppComponent().getReportService().showReport(getReportTemplatePath());
     }
 
     @Override
@@ -73,7 +73,7 @@ public abstract class BaseFinanceReportController<T> extends ReadOnlyTableContro
         File file = fileChooser.showSaveDialog(null);
 
         if (file != null) {
-            ServiceProvider.get(ReportService.class).exportToPdf(templatePath, file.getAbsolutePath());
+            org.masjidku.di.DiProvider.getAppComponent().getReportService().exportToPdf(templatePath, file.getAbsolutePath());
         }
     }
 }
