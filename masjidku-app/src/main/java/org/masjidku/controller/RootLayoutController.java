@@ -29,7 +29,7 @@ public class RootLayoutController {
     public ToggleButton btn_about;
 
     @FXML
-    private ToggleGroup groupButton;
+    public ToggleGroup groupButton;
 
     @FXML
     public void initialize() {

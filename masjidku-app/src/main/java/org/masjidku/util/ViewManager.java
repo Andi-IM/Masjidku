@@ -3,6 +3,7 @@ package org.masjidku.util;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
@@ -29,6 +30,7 @@ import org.masjidku.accounting.client.model.zakat.ZakatKeluar;
 import org.masjidku.accounting.client.model.zakat.ZakatMasuk;
 import org.masjidku.admin.AdminHome;
 import org.masjidku.admin.UserForm;
+import org.masjidku.controller.BaseRootController;
 import org.masjidku.controller.EditProfileController;
 import org.masjidku.controller.ProfileController;
 import org.masjidku.controller.RootLayoutController;
@@ -56,6 +58,7 @@ public class ViewManager {
     private SplitPane rootLayout;
     private final MainApp mainApp;
     private RootLayoutController rootLayoutController;
+    private BaseRootController currentRootController;
 
     public ViewManager(Stage primaryStage, MainApp mainApp) {
         this.primaryStage = primaryStage;
@@ -93,6 +96,14 @@ public class ViewManager {
 
             injectMainApp(loader.getController());
 
+            Object controller = loader.getController();
+            if (controller instanceof BaseRootController) {
+                this.currentRootController = (BaseRootController) controller;
+            } else {
+                this.currentRootController = null;
+            }
+            this.rootLayoutController = null;
+
             if (homeMethod != null) {
                 homeMethod.run();
             }
@@ -113,6 +124,7 @@ public class ViewManager {
             RootLayoutController controller = loader.getController();
             if (controller != null) {
                 this.rootLayoutController = controller;
+                this.currentRootController = null;
                 controller.setMainApp(mainApp);
                 controller.btn_home.setSelected(true);
             }
@@ -129,6 +141,7 @@ public class ViewManager {
             rootLayout.getItems().set(1, overview);
 
             injectMainApp(loader.getController());
+            updateSidebarSelectionForPath(fxmlPath);
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, e, () -> GAGAL_MEMUAT_VIEW + fxmlPath);
         }
@@ -140,6 +153,7 @@ public class ViewManager {
             loader.setLocation(MainApp.class.getResource(fxmlPath));
             AnchorPane overview = loader.load();
             rootLayout.getItems().set(1, overview);
+            updateSidebarSelectionForPath(fxmlPath);
             return loader.getController();
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, e, () -> GAGAL_MEMUAT_VIEW + fxmlPath);
@@ -489,6 +503,82 @@ public class ViewManager {
         EditPembayaranTpa controller = loadViewAndGetController("accountant/tpa/form_tpa.fxml");
         if (controller != null) {
             controller.setMainApp(mainApp, model);
+        }
+    }
+
+    private void selectSidebarButton(String text) {
+        ToggleGroup group = null;
+        if (currentRootController != null) {
+            group = currentRootController.groupButton;
+        } else if (rootLayoutController != null) {
+            group = rootLayoutController.groupButton;
+        }
+        
+        if (group != null) {
+            for (javafx.scene.control.Toggle toggle : group.getToggles()) {
+                if (toggle instanceof javafx.scene.control.ToggleButton) {
+                    javafx.scene.control.ToggleButton btn = (javafx.scene.control.ToggleButton) toggle;
+                    if (text.equalsIgnoreCase(btn.getText().trim())) {
+                        btn.setSelected(true);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    private void updateSidebarSelectionForPath(String fxmlPath) {
+        String path = fxmlPath.toLowerCase();
+        String buttonText = null;
+
+        if (path.contains("admin_home") || path.contains("accountant_home") || 
+            path.contains("secretary_home") || path.contains("principal_home") || 
+            path.equals("home.fxml")) {
+            buttonText = "Beranda";
+        } else if (path.contains("profile") || path.contains("edit_profile")) {
+            buttonText = "Profil";
+        } else if (path.contains("about")) {
+            buttonText = "Tentang";
+        } else if (path.contains("user_lists") || path.contains("user_form")) {
+            buttonText = "Kelola User";
+        } else if (path.contains("user_logs")) {
+            buttonText = "Log User";
+        } else if (path.contains("principal_laporan") || path.contains("report_")) {
+            buttonText = "Baca Laporan";
+        } else if (path.contains("principal_read_data") || path.contains("list_")) {
+            if (currentRootController != null && currentRootController.getClass().getSimpleName().contains("Principal")) {
+                buttonText = "Baca Data";
+            }
+        }
+        
+        // Accountant mappings
+        if (buttonText == null) {
+            if (path.contains("anakyatim") || path.contains("anak_yatim")) {
+                buttonText = "Anak Yatim";
+            } else if (path.contains("zakat")) {
+                buttonText = "Zakat";
+            } else if (path.contains("pembangunan")) {
+                buttonText = "Pembangunan";
+            } else if (path.contains("operasional")) {
+                buttonText = "Operasional";
+            } else if (path.contains("tpa")) {
+                buttonText = "TPA";
+            }
+        }
+
+        // Secretary mappings
+        if (buttonText == null) {
+            if (path.contains("kegiatan")) {
+                buttonText = "Kelola Kegiatan";
+            } else if (path.contains("tamu")) {
+                buttonText = "Kelola Tamu";
+            } else if (path.contains("undangan")) {
+                buttonText = "Kelola Undangan";
+            }
+        }
+
+        if (buttonText != null) {
+            selectSidebarButton(buttonText);
         }
     }
 }
