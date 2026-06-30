@@ -114,8 +114,8 @@ public class EditProfileController {
     }
 
     private void setUser(UserProfile profile) {
-        lbUserID.setText(profile.user().getUserId());
-        txtUserName.setText(profile.user().getUsername());
+        lbUserID.setText(profile.user().id());
+        txtUserName.setText(profile.user().username());
         txtAlamat.setText(profile.alamat());
         txtNoTel.setText(profile.notelp());
     }

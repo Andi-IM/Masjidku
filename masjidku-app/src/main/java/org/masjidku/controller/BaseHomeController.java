@@ -20,7 +20,7 @@ public abstract class BaseHomeController implements AppRouterAware {
     protected AppRouter mainApp;
 
     public void setMainApp(AppRouter mainApp) {
-        String username = getAppComponent().getSessionManager().getCurrentUser().getUsername();
+        String username = getAppComponent().getSessionManager().getCurrentUsername();
         this.mainApp = mainApp;
         if (greeting != null) {
             greeting.setText(getGreetingPrefix() + username);

@@ -77,7 +77,7 @@ public class EditPenerimaAnakYatim {
     }
 
     public void setMainApp(AppRouter mainApp, AnakYatim model) {
-        operator = getAppComponent().getSessionManager().getCurrentUser().getUsername();
+        operator = getAppComponent().getSessionManager().getCurrentUsername();
         this.mainApp = mainApp;
         this.anakYatim = model;
 

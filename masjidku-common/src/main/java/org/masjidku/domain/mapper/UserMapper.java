@@ -12,15 +12,15 @@ public class UserMapper {
         if (entity == null) {
             return null;
         }
-        User domain = new User();
-        domain.setUserId(entity.getUserId());
-        domain.setPassword(entity.getPassword());
-        domain.setUsername(entity.getUsername());
-        domain.setJabatan(entity.getJabatan());
-        domain.setStatus(entity.getStatus());
-        domain.setCreatedAt(entity.getCreatedAt());
-        domain.setUpdatedAt(entity.getUpdatedAt());
-        return domain;
+        return new User(
+                entity.getUserId(),
+                entity.getUsername(),
+                entity.getPassword(),
+                entity.getJabatan(),
+                entity.getStatus(),
+                entity.getCreatedAt(),
+                entity.getUpdatedAt()
+        );
     }
 
     public static UserEntity toEntity(User domain) {
@@ -28,15 +28,15 @@ public class UserMapper {
             return null;
         }
         UserEntity entity = new UserEntity();
-        entity.setUserId(domain.getUserId());
-        entity.setPassword(domain.getPassword());
-        entity.setUsername(domain.getUsername());
-        if (domain.getJabatan() != null) {
-            entity.setJabatan(domain.getJabatan().toString());
+        entity.setUserId(domain.id());
+        entity.setPassword(domain.password());
+        entity.setUsername(domain.username());
+        if (domain.jabatan() != null) {
+            entity.setJabatan(domain.jabatan());
         }
-        entity.setStatus(domain.getStatus());
-        entity.setCreatedAt(domain.getCreatedAt());
-        entity.setUpdatedAt(domain.getUpdatedAt());
+        entity.setStatus(domain.status());
+        entity.setCreatedAt(domain.createdAt());
+        entity.setUpdatedAt(domain.updatedAt());
         return entity;
     }
 }

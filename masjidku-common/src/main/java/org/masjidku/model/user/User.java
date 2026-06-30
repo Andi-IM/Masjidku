@@ -18,66 +18,38 @@ package org.masjidku.model.user;
 import static org.masjidku.model.user.User.Jabatan.*;
 
 @SuppressWarnings("unused")
-public class User {
-    private String userId;
-    private String username;
-    private String password;
-    private String jabatan;
-    private String status;
-    private String createdAt;
-    private String updatedAt;
-
+public record User(
+        String id,
+        String username,
+        String password,
+        String jabatan,
+        String status,
+        String createdAt,
+        String updatedAt
+) {
     /**
      * Constructor
      */
     public User() {
-        this(null, null, "none", null, null, null);
+        this(null, null, null, "none", null, null, null);
     }
 
     /**
-     * Filled Constructor
-     *
-     * @param userId    a user id
-     * @param username  a username
-     * @param jabatan   user role
-     * @param status    user status
-     * @param createdAt first time create
-     * @param updatedAt after user update data.
+     * Filled Constructor (Without Password for backward compatibility)
      */
     public User(String userId, String username, String jabatan, String status, String createdAt, String updatedAt) {
-        setUserId(userId);
-        setUsername(username);
-        setJabatan(jabatan);
-        setStatus(status);
-        setCreatedAt(createdAt);
-        setUpdatedAt(updatedAt);
+        this(userId, username, null, jabatan != null ? jabatan.toLowerCase() : null, status, createdAt, updatedAt);
     }
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    // Explicit 7-arg canonical constructor to ensure jabatan is lowercase
+    public User {
+        if (jabatan != null) {
+            jabatan = jabatan.toLowerCase();
+        }
     }
 
     public Jabatan getJabatan() {
+        if (this.jabatan == null) return NONE;
         return switch (this.jabatan) {
             case "admin" -> ADMIN;
             case "ketua" -> KETUA;
@@ -85,34 +57,6 @@ public class User {
             case "bendahara" -> BENDAHARA;
             default -> NONE;
         };
-    }
-
-    public void setJabatan(String jabatan) {
-        this.jabatan = jabatan.toLowerCase();
-    }
-
-    public String getStatus() {
-        return this.status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
     }
 
     public enum Jabatan {
@@ -134,4 +78,3 @@ public class User {
         }
     }
 }
-

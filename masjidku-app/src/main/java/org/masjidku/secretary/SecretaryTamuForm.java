@@ -26,6 +26,8 @@ import org.masjidku.navigation.AppRouter;
 import org.masjidku.util.Constants;
 import org.masjidku.util.ServiceProvider;
 
+import static org.masjidku.di.DiProvider.getAppComponent;
+
 public class SecretaryTamuForm {
     private final EventsClient eventsClient = ServiceProvider.get(EventsClient.class);
     private final Validator validator = new Validator();
@@ -73,7 +75,7 @@ public class SecretaryTamuForm {
     }
 
     public void setMainApp(AppRouter mainApp, Tamu tamu) {
-        operator = org.masjidku.di.DiProvider.getAppComponent().getSessionManager().getCurrentUser().getUsername();
+        operator = getAppComponent().getSessionManager().getCurrentUsername();
         this.mainApp = mainApp;
         this.tamu = tamu;
 

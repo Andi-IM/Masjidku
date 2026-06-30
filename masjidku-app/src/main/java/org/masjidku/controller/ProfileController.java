@@ -25,6 +25,8 @@ import org.masjidku.model.user.UserProfile;
 import org.masjidku.domain.repository.UserProfileRepository;
 import org.masjidku.domain.repository.impl.UserProfileRepositoryImpl;
 
+import static org.masjidku.di.DiProvider.getAppComponent;
+
 
 public class ProfileController {
     private static final Logger log = LoggerFactory.getLogger(ProfileController.class);
@@ -57,16 +59,16 @@ public class ProfileController {
     }
 
     public void setMainApp(AppRouter mainApp) {
-        String userid = org.masjidku.di.DiProvider.getAppComponent().getSessionManager().getCurrentUser().getUserId();
+        String userid = getAppComponent().getSessionManager().getCurrentUser().id();
         this.mainApp = mainApp;
         profile = getUserData(userid);
 
         if (profile!=null){
-            userId.setText(profile.user().getUserId());
-            username.setText(profile.user().getUsername());
-            userRole.setText(profile.user().getJabatan().toString());
-            userStatus.setText(profile.user().getStatus());
-            userLastUpdate.setText(profile.user().getUpdatedAt());
+            userId.setText(profile.user().id());
+            username.setText(profile.user().username());
+            userRole.setText(profile.user().jabatan());
+            userStatus.setText(profile.user().status());
+            userLastUpdate.setText(profile.user().updatedAt());
             userPhoneNum.setText(profile.notelp());
             userAddress.setText(profile.alamat());
         }

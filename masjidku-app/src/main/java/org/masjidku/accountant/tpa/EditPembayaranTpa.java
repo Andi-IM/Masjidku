@@ -66,7 +66,7 @@ public class EditPembayaranTpa {
     }
 
     public void setMainApp(AppRouter mainApp, TpaKeluar model) {
-        operator = getAppComponent().getSessionManager().getCurrentUser().getUsername();
+        operator = getAppComponent().getSessionManager().getCurrentUsername();
         this.mainApp = mainApp;
         this.model = model;
 

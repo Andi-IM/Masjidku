@@ -58,7 +58,7 @@ public class UserSessionRepositoryImpl implements UserSessionRepository {
             Session session = sessionFactory.getCurrentSession();
             UserSessionEntity entity = session.createQuery(
                             "FROM UserSessionEntity u WHERE u.userid = :userId ORDER BY u.sessionId DESC", UserSessionEntity.class)
-                    .setParameter("userId", userId)
+                    .setParameter("id", userId)
                     .setMaxResults(1)
                     .uniqueResult();
             return UserSessionMapper.toDomain(entity);
@@ -79,7 +79,7 @@ public class UserSessionRepositoryImpl implements UserSessionRepository {
         return transactionHelper.executeInTransaction(() -> {
             Session session = sessionFactory.getCurrentSession();
             List<UserSessionEntity> entities = session.createQuery("FROM UserSessionEntity u WHERE u.userid = :userId", UserSessionEntity.class)
-                    .setParameter("userId", userid)
+                    .setParameter("id", userid)
                     .list();
             return entities.stream().map(UserSessionMapper::toDomain).toList();
         });

@@ -29,6 +29,8 @@ import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
 
+import static org.masjidku.di.DiProvider.getAppComponent;
+
 public class SecretaryKegiatanForm {
     private static final Logger log = LoggerFactory.getLogger(SecretaryKegiatanForm.class);
     private final EventsClient eventClient = ServiceProvider.get(EventsClient.class);
@@ -52,7 +54,7 @@ public class SecretaryKegiatanForm {
 
 
     public void setMainApp(AppRouter mainApp, Kegiatan kegiatan) {
-        operator = org.masjidku.di.DiProvider.getAppComponent().getSessionManager().getCurrentUser().getUsername();
+        operator = getAppComponent().getSessionManager().getCurrentUsername();
         this.mainApp = mainApp;
         this.kegiatan = kegiatan;
     }

@@ -31,6 +31,8 @@ import org.slf4j.LoggerFactory;
 import java.sql.SQLException;
 import java.util.List;
 
+import static org.masjidku.di.DiProvider.getAppComponent;
+
 public class PrincipalReadDataTamu extends BaseTableController<Tamu> {
     private static final Logger log = LoggerFactory.getLogger(PrincipalReadDataTamu.class);
 
@@ -63,7 +65,7 @@ public class PrincipalReadDataTamu extends BaseTableController<Tamu> {
     }
 
     public void setMainApp(AppRouter mainApp) {
-        String username = org.masjidku.di.DiProvider.getAppComponent().getSessionManager().getCurrentUser().getUsername();
+        String username = getAppComponent().getSessionManager().getCurrentUsername();
         this.mainApp = mainApp;
         if (greeting != null) {
             greeting.setText("Bapak " + username);

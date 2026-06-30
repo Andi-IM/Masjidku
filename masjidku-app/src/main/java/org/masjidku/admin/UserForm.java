@@ -23,6 +23,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import net.synedra.validatorfx.Validator;
 import org.masjidku.domain.repository.UserRepository;
 import org.masjidku.domain.repository.impl.UserRepositoryImpl;
 import org.masjidku.model.user.User;
@@ -31,8 +32,8 @@ import org.masjidku.navigation.AppRouter;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import net.synedra.validatorfx.Validator;
-import static org.masjidku.util.ValidationHelper.*;
+import static org.masjidku.util.Constants.ACTIVE;
+import static org.masjidku.util.ValidationHelper.registerRequiredField;
 
 public class UserForm implements Initializable {
     private final Validator validator = new Validator();
@@ -56,10 +57,10 @@ public class UserForm implements Initializable {
 
     // setting the field
     public void setUser(User user) {
-        txtUserId.setText(user.getUserId());
-        txtUserName.setText(user.getUsername());
-        pilJabatan.getSelectionModel().select(user.getJabatan().toString());
-        statusCheckBox.setSelected(user.getStatus() != null && user.getStatus().equals("Aktif"));
+        txtUserId.setText(user.id());
+        txtUserName.setText(user.username());
+        pilJabatan.getSelectionModel().select(user.jabatan());
+        statusCheckBox.setSelected(user.status() != null && user.status().equals(ACTIVE));
     }
 
     /**
@@ -144,7 +145,7 @@ public class UserForm implements Initializable {
             UserRepository dao = new UserRepositoryImpl();
 
             if (dao.isUserExist(userid)) {
-                dao.update(new String[]{user.getJabatan().toString(), user.getStatus(), user.getUserId()});
+                dao.update(new String[]{user.getJabatan().toString(), user.status(), user.id()});
                 org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "User telah diperbarui!");
             } else {
                 dao.save(user);

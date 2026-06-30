@@ -24,7 +24,7 @@ public class UserProfileMapper {
         }
         UserProfileEntity entity = new UserProfileEntity();
         if (domain.user() != null) {
-            entity.setUserId(domain.user().getUserId());
+            entity.setUserId(domain.user().id());
         }
         entity.setAlamat(domain.alamat());
         entity.setNotelp(domain.notelp());

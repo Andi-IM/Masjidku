@@ -63,7 +63,7 @@ public class EditDonaturPembangunan {
     }
 
     public void setMainApp(AppRouter mainApp, DonasiPembangunan model) {
-        operator = getAppComponent().getSessionManager().getCurrentUser().getUsername();
+        operator = getAppComponent().getSessionManager().getCurrentUsername();
         this.mainApp = mainApp;
         this.donatur = model;
 

@@ -48,8 +48,8 @@ public class SessionManager {
         this.stopwatch = Stopwatch.createStarted();
         log.info("login on: {}", getTimeStamp());
 
-        this.sessionRepository.logUserSession(user.getUserId(), getTimeStamp());
-        this.userSession = sessionRepository.getSessionData(user.getUserId());
+        this.sessionRepository.logUserSession(user.id(), getTimeStamp());
+        this.userSession = sessionRepository.getSessionData(user.id());
     }
 
     public void logout() {
@@ -70,6 +70,10 @@ public class SessionManager {
 
     public User getCurrentUser() {
         return currentUser;
+    }
+
+    public String getCurrentUsername(){
+        return currentUser.username();
     }
 
     private String getUserDuration() {

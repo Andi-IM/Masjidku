@@ -19,18 +19,18 @@ import com.google.common.hash.Hashing;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.masjidku.model.user.User;
 import org.masjidku.domain.repository.UserRepository;
 import org.masjidku.domain.repository.impl.UserRepositoryImpl;
+import org.masjidku.model.user.User;
 import org.masjidku.navigation.AppRouter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
 
+import static org.masjidku.util.AlertHelper.alertError;
+import static org.masjidku.util.Constants.ACTIVE;
+
 
 public class LoginController {
-    private static final Logger log = LoggerFactory.getLogger(LoginController.class);
     // Reference to the main application
     private AppRouter mainApp;
 
@@ -80,7 +80,7 @@ public class LoginController {
         if (!txtUsername.getText().isBlank() && !txtPassword.getText().isBlank()) {
             validateLogin();
         } else {
-            org.masjidku.util.AlertHelper.alertError(dialogStage, "Alert!", "Mohon untuk menginput username dan passwordnya!");
+            alertError(dialogStage, "Alert!", "Mohon untuk menginput username dan passwordnya!");
         }
     }
 
@@ -91,37 +91,37 @@ public class LoginController {
                 .hashString(txtPassword.getText(), StandardCharsets.UTF_8)
                 .toString();
 
-            if (dao.isUserExist(username, password)) {
-                User user = dao.get(username);
+        if (dao.isUserExist(username, password)) {
+            User user = dao.get(username);
 
-                if (user.getStatus().equals("Aktif")) {
-                    switch (user.getJabatan()) {
-                        case ADMIN:
-                            mainApp.recordSession(user);
-                            mainApp.setAdminView();
-                            break;
-                        case KETUA:
-                            mainApp.recordSession(user);
-                            mainApp.setPrincipalView();
-                            break;
-                        case SEKRETARIS:
-                            mainApp.recordSession(user);
-                            mainApp.setSecretaryView();
-                            break;
-                        case BENDAHARA:
-                            mainApp.recordSession(user);
-                            mainApp.setAccountantView();
-                            break;
-                        default:
-                            throw new IllegalArgumentException("Illegal Data Argument");
-                    }
-                } else {
-                    org.masjidku.util.AlertHelper.alertError(dialogStage, "Gagal Masuk", "Mohon maaf, akun Anda tidak lagi aktif. " +
-                            "Kontak Admin untuk informasi lebih lanjut.");
+            if (user.status().equals(ACTIVE)) {
+                switch (user.getJabatan()) {
+                    case ADMIN:
+                        mainApp.recordSession(user);
+                        mainApp.setAdminView();
+                        break;
+                    case KETUA:
+                        mainApp.recordSession(user);
+                        mainApp.setPrincipalView();
+                        break;
+                    case SEKRETARIS:
+                        mainApp.recordSession(user);
+                        mainApp.setSecretaryView();
+                        break;
+                    case BENDAHARA:
+                        mainApp.recordSession(user);
+                        mainApp.setAccountantView();
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Illegal Data Argument");
                 }
             } else {
-                org.masjidku.util.AlertHelper.alertError(dialogStage, "Gagal Masuk", "Periksa username dan password");
+                alertError(dialogStage, "Gagal Masuk", "Mohon maaf, akun Anda tidak lagi aktif. " +
+                        "Kontak Admin untuk informasi lebih lanjut.");
             }
+        } else {
+            alertError(dialogStage, "Gagal Masuk", "Periksa username dan password");
+        }
     }
 
 
