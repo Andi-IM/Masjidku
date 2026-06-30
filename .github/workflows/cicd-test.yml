@@ -10,7 +10,7 @@ env:
 
 on:
   push:
-    branches: [ production, development-modular ]
+    branches: [ development-modular ]
   pull_request:
     branches: [ production, development-modular ]
 
