@@ -22,9 +22,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.model.user.UserProfile;
-import org.masjidku.model.user.dao.UserProfileDao;
+import org.masjidku.domain.repository.UserProfileRepository;
+import org.masjidku.domain.repository.impl.UserProfileRepositoryImpl;
 
-import java.sql.SQLException;
 
 public class ProfileController {
     private static final Logger log = LoggerFactory.getLogger(ProfileController.class);
@@ -52,13 +52,8 @@ public class ProfileController {
      * @return Observable List
      */
     private UserProfile getUserData(String userid) {
-        UserProfileDao dao = new UserProfileDao();
-        try {
-            return dao.getFullUserData(userid);
-        } catch (SQLException e) {
-            log.error("An error occurred", e);
-        }
-        return null;
+        UserProfileRepository dao = new UserProfileRepositoryImpl();
+        return dao.getFullUserData(userid);
     }
 
     public void setMainApp(AppRouter mainApp) {

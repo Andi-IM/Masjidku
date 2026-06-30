@@ -33,7 +33,7 @@ import org.masjidku.service.UserService;
 import org.masjidku.service.impl.UserServiceImpl;
 
 import java.net.URL;
-import java.sql.SQLException;
+
 import java.util.ResourceBundle;
 
 public class UserLists implements Initializable {
@@ -129,11 +129,7 @@ public class UserLists implements Initializable {
      */
     private ObservableList<User> getUserData() {
         UserService dao = new UserServiceImpl();
-        try {
-            userData.addAll(dao.getAll());
-        } catch (SQLException e) {
-            log.error("An error occurred", e);
-        }
+        userData.addAll(dao.getAll());
         return userData;
     }
 
@@ -145,16 +141,12 @@ public class UserLists implements Initializable {
         User selectedUser = userTable.getSelectionModel().getSelectedItem();
         if (selectedUser != null){
             UserService dao = new UserServiceImpl();
-            try {
-                if (dao.isUserExist(selectedUser.getUserId())){
-                    userTable.getItems().remove(selectedUser);
-                    dao.delete(selectedUser.getUserId());
-                    org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "User dihapus!");
-                } else {
-                    org.masjidku.util.AlertHelper.alertError(dialogStage, "SQL Error", USER_NOT_FOUND_MSG);
-                }
-            } catch (SQLException e) {
-                log.error("An error occurred", e);
+            if (dao.isUserExist(selectedUser.getUserId())){
+                userTable.getItems().remove(selectedUser);
+                dao.delete(selectedUser.getUserId());
+                org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "User dihapus!");
+            } else {
+                org.masjidku.util.AlertHelper.alertError(dialogStage, "SQL Error", USER_NOT_FOUND_MSG);
             }
         }
     }
@@ -169,18 +161,14 @@ public class UserLists implements Initializable {
             return;
         }
         UserService dao = new UserServiceImpl();
-        try {
-            if (!dao.isUserExist(selectedUser.getUserId())) {
-                org.masjidku.util.AlertHelper.alertError(dialogStage, "SQL Error", USER_NOT_FOUND_MSG);
-                return;
-            }
-            if (dao.isReset(selectedUser.getUserId())) {
-                dao.reset(selectedUser.getUserId());
-            } else {
-                org.masjidku.util.AlertHelper.alertError(dialogStage, "User Error", "User telah melakukan reset password!");
-            }
-        } catch (SQLException e) {
-            log.error("An error occurred", e);
+        if (!dao.isUserExist(selectedUser.getUserId())) {
+            org.masjidku.util.AlertHelper.alertError(dialogStage, "SQL Error", USER_NOT_FOUND_MSG);
+            return;
+        }
+        if (dao.isReset(selectedUser.getUserId())) {
+            dao.reset(selectedUser.getUserId());
+        } else {
+            org.masjidku.util.AlertHelper.alertError(dialogStage, "User Error", "User telah melakukan reset password!");
         }
     }
 

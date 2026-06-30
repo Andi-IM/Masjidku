@@ -25,10 +25,11 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.model.user.User;
-import org.masjidku.model.user.dao.UserDao;
+import org.masjidku.domain.repository.UserRepository;
+import org.masjidku.domain.repository.impl.UserRepositoryImpl;
 
 import java.net.URL;
-import java.sql.SQLException;
+
 import java.util.ResourceBundle;
 
 public class UserForm implements Initializable {
@@ -122,9 +123,8 @@ public class UserForm implements Initializable {
             String status = statusCheckBox.getText();
 
             User user = new User(userid, username, jabatan, status, null, null);
-            UserDao dao = new UserDao();
+            UserRepository dao = new UserRepositoryImpl();
 
-           try {
                if (dao.isUserExist(userid)){
                    dao.update(new String[]{user.getJabatan().toString(), user.getStatus(), user.getUserId()});
                    org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "User telah diperbarui!");
@@ -134,9 +134,6 @@ public class UserForm implements Initializable {
                    org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "User ditambahkan!");
                }
                mainApp.showUser();
-           } catch (SQLException e){
-               System.out.println(e.getSQLState());
-           }
         } else {
             org.masjidku.util.AlertHelper.alertError(dialogStage, "Error", "Data belum lengkap!");
         }

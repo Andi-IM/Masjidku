@@ -18,4 +18,11 @@ dependencies {
     implementation(libs.sqlite.jdbc)
     implementation(libs.mysql.connector)
     implementation("org.slf4j:slf4j-api:2.0.12")
+    
+    // ORM dependencies
+    implementation(libs.hibernate.core)
+    implementation(libs.hibernate.community.dialects)
+    implementation(libs.hibernate.hikaricp)
+    implementation(libs.hikaricp)
+    implementation(libs.guava)
 }

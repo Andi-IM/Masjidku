@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021. Creative Commons Legal Code
+ * Copyright (c) 2026. Creative Commons Legal Code
  *
  *                            CC0 1.0 Universal
  *
@@ -13,15 +13,15 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model.session.dao;
+package org.masjidku.domain.repository;
 
-import javafx.collections.ObservableList;
-import org.masjidku.model.session.UserSession;
+import org.masjidku.model.user.UserProfile;
 
-public interface SessionDao {
-    void logUserSession(String userid);
-    void updateUserSession(String sessionId);
-    UserSession getSessionData(String id);
-    ObservableList<UserSession> getAllSessions();
-    ObservableList<UserSession> getAllSessions(String userid);
+import java.sql.SQLException;
+
+public interface UserProfileRepository {
+    void save(UserProfile userProfile);
+    void update(String[] params);
+    UserProfile getFullUserData(String userid);
+    boolean getConnection();
 }

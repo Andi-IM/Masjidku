@@ -12,9 +12,7 @@ open module main {
     requires org.masjidku.reporting.client;
 
     exports org.masjidku.model;
-    exports org.masjidku.model.user.dao;
-    
-    
+
     uses org.masjidku.accounting.client.service.AnakYatimService;
     uses org.masjidku.accounting.client.service.DonasiAYatimService;
     uses org.masjidku.accounting.client.service.DonasiOperationalService;

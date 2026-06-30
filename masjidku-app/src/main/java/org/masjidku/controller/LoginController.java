@@ -20,13 +20,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.model.user.User;
-import org.masjidku.model.user.dao.UserDao;
+import org.masjidku.domain.repository.UserRepository;
+import org.masjidku.domain.repository.impl.UserRepositoryImpl;
 import org.masjidku.navigation.AppRouter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
-import java.sql.SQLException;
 
 
 public class LoginController {
@@ -36,7 +36,7 @@ public class LoginController {
 
     @SuppressWarnings("unused")
     private Stage dialogStage;
-    private UserDao dao;
+    private UserRepository dao;
 
     /**
      * Is called by the main application to give a reference back to itself.
@@ -45,7 +45,7 @@ public class LoginController {
      */
     public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
-        dao = new UserDao();
+        dao = new UserRepositoryImpl();
     }
 
     @FXML
@@ -91,7 +91,6 @@ public class LoginController {
                 .hashString(txtPassword.getText(), StandardCharsets.UTF_8)
                 .toString();
 
-        try {
             if (dao.isUserExist(username, password)) {
                 User user = dao.get(username);
 
@@ -123,9 +122,6 @@ public class LoginController {
             } else {
                 org.masjidku.util.AlertHelper.alertError(dialogStage, "Gagal Masuk", "Periksa username dan password");
             }
-        } catch (SQLException e) {
-            log.error(e.getSQLState());
-        }
     }
 
 

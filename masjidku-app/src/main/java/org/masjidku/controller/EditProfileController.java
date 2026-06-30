@@ -21,13 +21,15 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.model.user.UserProfile;
-import org.masjidku.model.user.dao.UserDao;
-import org.masjidku.model.user.dao.UserProfileDao;
+import org.masjidku.domain.repository.UserRepository;
+import org.masjidku.domain.repository.UserProfileRepository;
+import org.masjidku.domain.repository.impl.UserRepositoryImpl;
+import org.masjidku.domain.repository.impl.UserProfileRepositoryImpl;
 import org.masjidku.navigation.AppRouter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.SQLException;
+
 
 public class EditProfileController {
     private static final Logger log = LoggerFactory.getLogger(EditProfileController.class);
@@ -85,19 +87,14 @@ public class EditProfileController {
             String notel = txtNoTel.getText();
             String alamat = txtAlamat.getText();
 
-            UserDao dao = new UserDao();
-            UserProfileDao profileDao = new UserProfileDao();
+            UserRepository dao = new UserRepositoryImpl();
+            UserProfileRepository profileDao = new UserProfileRepositoryImpl();
 
-            try {
-                if (dao.isUserExist(id)) {
-                    dao.update(id, username, newPassword);
-
-                    profileDao.update(new String[]{notel, alamat, id});
-                }
-                profileDao.update(new String[]{id, notel, alamat});
-            } catch (SQLException e) {
-                log.error("An error occurred", e);
+            if (dao.isUserExist(id)) {
+                dao.update(id, username, newPassword);
+                profileDao.update(new String[]{notel, alamat, id});
             }
+            profileDao.update(new String[]{id, notel, alamat});
         } else {
             org.masjidku.util.AlertHelper.alertError(dialogStage, "Empty Form", "Salah satu form tidak boleh kosong!");
         }

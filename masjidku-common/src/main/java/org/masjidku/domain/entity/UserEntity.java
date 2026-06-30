@@ -1,0 +1,89 @@
+package org.masjidku.domain.entity;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "user")
+public class UserEntity {
+
+    @Id
+    @Column(name = "userid", length = 30, nullable = false)
+    private String userId;
+
+    @Column(name = "password", nullable = false)
+    private String password;
+
+    @Column(name = "username", length = 30)
+    private String username;
+
+    @Column(name = "jabatan", length = 15)
+    private String jabatan;
+
+    @Column(name = "status", length = 10)
+    private String status;
+
+    @Column(name = "created_at")
+    private String createdAt;
+
+    @Column(name = "updated_at")
+    private String updatedAt;
+
+    public UserEntity() {
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getJabatan() {
+        return jabatan;
+    }
+
+    public void setJabatan(String jabatan) {
+        this.jabatan = jabatan;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+}
