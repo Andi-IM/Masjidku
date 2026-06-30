@@ -15,28 +15,28 @@
 
 package org.masjidku.principal.report.kegiatan;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.stage.FileChooser;
 import org.masjidku.controller.BaseTableController;
+import org.masjidku.events.client.EventsClient;
+import org.masjidku.events.client.model.Kegiatan;
+import org.masjidku.navigation.AppRouter;
+import org.masjidku.reporting.client.service.ReportService;
+import org.masjidku.util.ServiceProvider;
 import org.masjidku.util.TableHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.masjidku.util.ServiceProvider;
-import javafx.fxml.FXML;
-
-import java.util.List;
-
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.Button;
-import org.masjidku.navigation.AppRouter;
-import org.masjidku.events.domain.entity.Kegiatan;
-import org.masjidku.events.application.usecase.KegiatanUseCase;
-import org.masjidku.reporting.client.service.ReportService;
-import javafx.stage.FileChooser;
 import java.io.File;
+import java.util.List;
 
 public class ListKegiatan extends BaseTableController<Kegiatan> {
     private static final Logger log = LoggerFactory.getLogger(ListKegiatan.class);
+    private final EventsClient dao = ServiceProvider.get(EventsClient.class);
+
     @FXML
     public TableView<Kegiatan> tblKegiatan;
     @FXML
@@ -52,14 +52,9 @@ public class ListKegiatan extends BaseTableController<Kegiatan> {
     @FXML
     public TableColumn<Kegiatan, String> colOperator;
     public AppRouter mainApp;
-    private final KegiatanUseCase dao;
 
     public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
-    }
-
-    public ListKegiatan() {
-        dao = ServiceProvider.get(KegiatanUseCase.class);
     }
 
 
@@ -67,6 +62,7 @@ public class ListKegiatan extends BaseTableController<Kegiatan> {
     protected void setupTableColumns() {
         TableHelper.setupKegiatanColumns(colNomor, colNmKegiatan, colTempatKegiatan, colWaktuKegiatan, colTanggalKegiatan, colOperator);
     }
+
     @FXML
     public void printReport() {
         FileChooser fileChooser = new FileChooser();
@@ -74,7 +70,7 @@ public class ListKegiatan extends BaseTableController<Kegiatan> {
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
         fileChooser.setInitialFileName("LaporanListKegiatan.pdf");
         File file = fileChooser.showSaveDialog(null);
-        
+
         if (file != null) {
             ServiceProvider.get(ReportService.class).exportToPdf("/org/masjidku/report/list_kegiatan.jrxml", file.getAbsolutePath());
         }
@@ -112,7 +108,7 @@ public class ListKegiatan extends BaseTableController<Kegiatan> {
 
     @Override
     protected List<Kegiatan> fetchAllData() throws java.sql.SQLException {
-        return dao.getAll();
+        return dao.getAllKegiatan();
     }
 
     @Override

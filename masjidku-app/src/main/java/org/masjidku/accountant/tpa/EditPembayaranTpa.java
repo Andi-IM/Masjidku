@@ -50,7 +50,7 @@ public class EditPembayaranTpa {
     private Stage dialogStage;
 
     public void setMainApp(AppRouter mainApp, TpaKeluar model) {
-        String operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
+        String operator = org.masjidku.model.session.dao.SessionManager.getInstance().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         this.model = model;
         this.operator = operator;

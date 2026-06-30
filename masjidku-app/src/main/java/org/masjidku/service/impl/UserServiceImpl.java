@@ -2,7 +2,7 @@ package org.masjidku.service.impl;
 
 import javafx.collections.ObservableList;
 import org.masjidku.model.user.User;
-import org.masjidku.model.user.UserDao;
+import org.masjidku.model.user.dao.UserDao;
 import org.masjidku.service.UserService;
 
 import java.sql.SQLException;

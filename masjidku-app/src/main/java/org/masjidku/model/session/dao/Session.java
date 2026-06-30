@@ -1,4 +1,4 @@
-package org.masjidku.model.session;
+package org.masjidku.model.session.dao;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,6 +7,7 @@ import com.google.common.base.Stopwatch;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.masjidku.model.DaoFactory;
+import org.masjidku.model.session.UserSession;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;

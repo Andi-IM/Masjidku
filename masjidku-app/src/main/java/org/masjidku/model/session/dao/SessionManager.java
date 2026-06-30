@@ -1,5 +1,6 @@
-package org.masjidku.model.session;
+package org.masjidku.model.session.dao;
 import org.masjidku.model.user.User;
+import org.masjidku.model.session.UserSession;
 import java.util.logging.Logger;
 public class SessionManager {
     private static SessionManager instance;

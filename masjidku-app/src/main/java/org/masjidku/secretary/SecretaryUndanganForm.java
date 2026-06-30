@@ -15,6 +15,8 @@
 
 package org.masjidku.secretary;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
@@ -33,11 +35,10 @@ import org.slf4j.LoggerFactory;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.collections.ObservableList;
-import javafx.collections.FXCollections;
 
 public class SecretaryUndanganForm implements Initializable {
     private static final Logger log = LoggerFactory.getLogger(SecretaryUndanganForm.class);
+    private final EventsClient eventsClient = ServiceProvider.get(EventsClient.class);
 
     @FXML
     public ChoiceBox<String> cbKegiatan;
@@ -47,7 +48,6 @@ public class SecretaryUndanganForm implements Initializable {
     public TextArea txtKeterangan;
 
     private AppRouter mainApp;
-    private EventsClient eventsClient;
 
     private ObservableList<Tamu> listTamu;
     private ObservableList<Kegiatan> listKegiatan;
@@ -59,7 +59,7 @@ public class SecretaryUndanganForm implements Initializable {
     private TamuKegiatan currentUndangan;
 
     public void setMainApp(AppRouter mainApp, TamuKegiatan undangan) {
-        this.operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
+        this.operator = org.masjidku.model.session.dao.SessionManager.getInstance().getCurrentUser().getUsername();
         this.mainApp = mainApp;
 
         if (undangan != null) {
@@ -70,8 +70,6 @@ public class SecretaryUndanganForm implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        eventsClient = ServiceProvider.get(EventsClient.class);
-
         try {
             cbTamu.getItems().clear();
             cbKegiatan.getItems().clear();

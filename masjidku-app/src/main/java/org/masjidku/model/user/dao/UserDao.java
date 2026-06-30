@@ -1,8 +1,10 @@
-package org.masjidku.model.user;
+package org.masjidku.model.user.dao;
 
 import com.google.common.hash.Hashing;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.masjidku.model.user.User;
+import org.masjidku.model.user.UserProfile;
 
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;

@@ -24,9 +24,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.navigation.AppRouter;
-import org.masjidku.model.user.UserDao;
+import org.masjidku.model.user.dao.UserDao;
 import org.masjidku.model.user.UserProfile;
-import org.masjidku.model.user.UserProfileDao;
+import org.masjidku.model.user.dao.UserProfileDao;
 
 import java.sql.SQLException;
 

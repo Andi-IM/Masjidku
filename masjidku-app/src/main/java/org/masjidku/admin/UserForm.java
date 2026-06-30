@@ -25,7 +25,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.model.user.User;
-import org.masjidku.model.user.UserDao;
+import org.masjidku.model.user.dao.UserDao;
 
 import java.net.URL;
 import java.sql.SQLException;

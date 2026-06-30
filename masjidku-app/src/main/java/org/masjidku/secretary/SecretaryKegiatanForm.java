@@ -31,6 +31,7 @@ import java.time.LocalDate;
 
 public class SecretaryKegiatanForm {
     private static final Logger log = LoggerFactory.getLogger(SecretaryKegiatanForm.class);
+    private final EventsClient eventClient = ServiceProvider.get(EventsClient.class);
 
     private final Validator validator = new Validator();
 
@@ -49,14 +50,9 @@ public class SecretaryKegiatanForm {
 
     private final Stage dialogStage = new Stage();
 
-    private final EventsClient eventClient;
-
-    SecretaryKegiatanForm() {
-        this.eventClient = ServiceProvider.get(EventsClient.class);
-    }
 
     public void setMainApp(AppRouter mainApp, Kegiatan kegiatan) {
-        operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
+        operator = org.masjidku.model.session.dao.SessionManager.getInstance().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         this.kegiatan = kegiatan;
     }

@@ -53,7 +53,7 @@ public class EditPenerimaAnakYatim {
 
 
     public void setMainApp(AppRouter mainApp, AnakYatim model) {
-        String operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
+        String operator = org.masjidku.model.session.dao.SessionManager.getInstance().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         this.anakYatim = model;
         this.operator = operator;

@@ -32,6 +32,7 @@ import org.slf4j.LoggerFactory;
 
 public class SecretaryKegiatan extends BaseTableController<Kegiatan> {
     private static final Logger log = LoggerFactory.getLogger(SecretaryKegiatan.class);
+    private final EventsClient eventClient = ServiceProvider.get(EventsClient.class);
 
     @FXML
     public Button btnEdit;
@@ -51,11 +52,6 @@ public class SecretaryKegiatan extends BaseTableController<Kegiatan> {
     public TableColumn<Kegiatan, String> colTanggalKegiatan;
 
     private AppRouter mainApp;
-    private final EventsClient eventClient;
-
-    public SecretaryKegiatan() {
-        this.eventClient = ServiceProvider.get(EventsClient.class);
-    }
 
     public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;

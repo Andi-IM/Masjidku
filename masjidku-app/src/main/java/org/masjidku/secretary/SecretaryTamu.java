@@ -15,25 +15,23 @@
 
 package org.masjidku.secretary;
 
-import org.masjidku.controller.BaseTableController;
-import org.masjidku.events.client.EventsClient;
-import org.masjidku.events.client.model.Tamu;
-import org.masjidku.util.ServiceProvider;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import javafx.fxml.FXML;
-
-import java.util.List;
-import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
-
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import org.masjidku.controller.BaseTableController;
+import org.masjidku.events.client.EventsClient;
+import org.masjidku.events.client.model.Tamu;
 import org.masjidku.navigation.AppRouter;
+import org.masjidku.util.ServiceProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SecretaryTamu extends BaseTableController<Tamu> {
     private static final Logger log = LoggerFactory.getLogger(SecretaryTamu.class);
+    private final EventsClient eventClient = ServiceProvider.get(EventsClient.class);
 
     @FXML
     public Button btnEdit;
@@ -51,11 +49,6 @@ public class SecretaryTamu extends BaseTableController<Tamu> {
     public TableColumn<Tamu, String> colNomor;
 
     private AppRouter mainApp;
-    private final EventsClient eventClient;
-
-    SecretaryTamu() {
-        this.eventClient = ServiceProvider.get(EventsClient.class);
-    }
 
     public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;

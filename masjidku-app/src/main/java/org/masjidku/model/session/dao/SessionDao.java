@@ -13,16 +13,15 @@
  *                                HEREUNDER.
  */
 
-package org.masjidku.model.user;
+package org.masjidku.model.session.dao;
 
-import org.masjidku.model.Dao;
+import javafx.collections.ObservableList;
+import org.masjidku.model.session.UserSession;
 
-import java.sql.SQLException;
-
-public abstract class UserDaoFactory<T> extends Dao<T> {
-    public abstract boolean isReset(String userid) throws SQLException;
-    public abstract void reset(String userId) throws SQLException;
-    public abstract boolean isUserExist(String userid) throws SQLException;
-    public abstract boolean isUserExist(String userid, String password) throws SQLException;
-    public abstract void update(String userid, String username, String password) throws  SQLException;
+public interface SessionDao {
+    void logUserSession(String userid);
+    void updateUserSession(String sessionId);
+    UserSession getSessionData(String id);
+    ObservableList<UserSession> getAllSessions();
+    ObservableList<UserSession> getAllSessions(String userid);
 }

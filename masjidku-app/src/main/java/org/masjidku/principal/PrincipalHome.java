@@ -21,7 +21,7 @@ public class PrincipalHome {
     public Text greeting;
     private AppRouter mainApp;
     public void setMainApp(AppRouter mainApp) {
-        String username = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
+        String username = org.masjidku.model.session.dao.SessionManager.getInstance().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         greeting.setText("Bapak "+username);
     }

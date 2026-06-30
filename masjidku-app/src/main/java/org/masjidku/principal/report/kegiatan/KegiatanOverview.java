@@ -15,24 +15,24 @@
 
 package org.masjidku.principal.report.kegiatan;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.masjidku.util.ServiceProvider;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
+import org.masjidku.events.client.EventsClient;
+import org.masjidku.events.client.model.Kegiatan;
 import org.masjidku.navigation.AppRouter;
-import org.masjidku.events.domain.entity.Kegiatan;
-import org.masjidku.events.application.usecase.KegiatanUseCase;
+import org.masjidku.util.ServiceProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URL;
-import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class KegiatanOverview implements Initializable {
     private static final Logger log = LoggerFactory.getLogger(KegiatanOverview.class);
-    private final KegiatanUseCase dao = ServiceProvider.get(KegiatanUseCase.class);
+    private final EventsClient eventsClient = ServiceProvider.get(EventsClient.class);
+
     @FXML
     public Text txtKegiatanTerakhir;
     @FXML
@@ -45,33 +45,42 @@ public class KegiatanOverview implements Initializable {
     }
 
     @FXML
-    public void gotoHome() { mainApp.showData(); }
+    public void gotoHome() {
+        mainApp.showData();
+    }
 
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
 
     @FXML
-    public void kegiatanData() { mainApp.showKegiatanData(); }
+    public void kegiatanData() {
+        mainApp.showKegiatanData();
+    }
 
     @FXML
-    public void tamuData() { mainApp.showTamuData(); }
+    public void tamuData() {
+        mainApp.showTamuData();
+    }
 
     @FXML
-    public void undanganData() { mainApp.showUndanganData(); }
+    public void undanganData() {
+        mainApp.showUndanganData();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-                Kegiatan model = dao.getLastRecord();
+            List<Kegiatan> allKegiatan = eventsClient.getAllKegiatan();
+            if (!allKegiatan.isEmpty()) {
+                Kegiatan model = allKegiatan.getLast();
+                txtKegiatanTerakhir.setText(model.nama());
+            }
+            txtTotalKegiatan.setText(String.valueOf(allKegiatan.size()));
 
-                txtKegiatanTerakhir.setText(model.getNama());
-                txtTotalKegiatan.setText(dao.getTotalKegiatan());
-            
-        } catch (SQLException e) {
+        } catch (Exception e) {
             log.error("An error occurred", e);
         }
     }
 }
-
-
-

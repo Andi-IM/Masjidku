@@ -22,7 +22,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.model.user.UserProfile;
-import org.masjidku.model.user.UserProfileDao;
+import org.masjidku.model.user.dao.UserProfileDao;
 
 import java.sql.SQLException;
 
@@ -62,7 +62,7 @@ public class ProfileController {
     }
 
     public void setMainApp(AppRouter mainApp) {
-        String userid = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUserId();
+        String userid = org.masjidku.model.session.dao.SessionManager.getInstance().getCurrentUser().getUserId();
         this.mainApp = mainApp;
         profile = getUserData(userid);
 

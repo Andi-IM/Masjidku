@@ -21,7 +21,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.navigation.AppRouter;
-import org.masjidku.model.session.Session;
+import org.masjidku.model.session.dao.Session;
 import org.masjidku.model.session.UserSession;
 
 import java.net.URL;

@@ -29,10 +29,10 @@ import org.masjidku.accounting.client.model.tpa.TpaKeluar;
 import org.masjidku.accounting.client.model.tpa.TpaMasuk;
 import org.masjidku.accounting.client.model.zakat.ZakatKeluar;
 import org.masjidku.accounting.client.model.zakat.ZakatMasuk;
-import org.masjidku.events.domain.entity.Kegiatan;
-import org.masjidku.events.domain.entity.Tamu;
-import org.masjidku.events.domain.entity.TamuKegiatan;
-import org.masjidku.model.session.SessionManager;
+import org.masjidku.events.client.model.Kegiatan;
+import org.masjidku.events.client.model.Tamu;
+import org.masjidku.events.client.model.TamuKegiatan;
+import org.masjidku.model.session.dao.SessionManager;
 import org.masjidku.model.user.User;
 import org.masjidku.model.user.UserProfile;
 import org.masjidku.navigation.AppRouter;
@@ -494,7 +494,7 @@ public class MainApp extends Application implements AppRouter {
      * Logout
      */
     public void onLogoutAction() {
-        org.masjidku.model.session.SessionManager.getInstance().logout();
+        org.masjidku.model.session.dao.SessionManager.getInstance().logout();
 
         loadHomeRoot();
         showContent();

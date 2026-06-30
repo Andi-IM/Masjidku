@@ -27,7 +27,7 @@ import org.masjidku.util.Constants;
 import org.masjidku.util.ServiceProvider;
 
 public class SecretaryTamuForm {
-
+    private final EventsClient eventsClient = ServiceProvider.get(EventsClient.class);
     private final Validator validator = new Validator();
 
     @FXML
@@ -44,11 +44,6 @@ public class SecretaryTamuForm {
     private Stage dialogStage;
     private String operator;
 
-    private final EventsClient eventsClient;
-
-    SecretaryTamuForm() {
-        this.eventsClient = ServiceProvider.get(EventsClient.class);
-    }
 
     @FXML
     public void initialize() {
@@ -78,7 +73,7 @@ public class SecretaryTamuForm {
     }
 
     public void setMainApp(AppRouter mainApp, Tamu tamu) {
-        operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
+        operator = org.masjidku.model.session.dao.SessionManager.getInstance().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         this.tamu = tamu;
 

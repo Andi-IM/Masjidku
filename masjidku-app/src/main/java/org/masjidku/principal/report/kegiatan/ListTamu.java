@@ -20,21 +20,21 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.masjidku.controller.BaseTableController;
+import org.masjidku.events.client.EventsClient;
+import org.masjidku.events.client.model.Tamu;
 import org.masjidku.navigation.AppRouter;
-import org.masjidku.events.domain.entity.Tamu;
-import org.masjidku.events.application.usecase.TamuUseCase;
-import org.masjidku.events.client.repository.TamuRepository;
+import org.masjidku.reporting.client.service.ReportService;
+import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-import org.masjidku.reporting.client.service.ReportService;
-import org.masjidku.util.ServiceProvider;
-
 
 public class ListTamu extends BaseTableController<Tamu> {
     private static final Logger log = LoggerFactory.getLogger(ListTamu.class);
+    private final EventsClient service = org.masjidku.util.ServiceProvider.get(EventsClient.class);
+
     @FXML
     public TableView<Tamu> tblTamu;
     @FXML
@@ -49,8 +49,6 @@ public class ListTamu extends BaseTableController<Tamu> {
     public TableColumn<Tamu, String> colOperator;
 
     private AppRouter mainApp;
-    private final TamuUseCase service = new TamuUseCase(org.masjidku.util.ServiceProvider.get(TamuRepository.class));
-
 
     @Override
     protected void setupTableColumns() {
@@ -101,7 +99,7 @@ public class ListTamu extends BaseTableController<Tamu> {
 
     @Override
     protected List<Tamu> fetchAllData() throws java.sql.SQLException {
-        return service.getAll();
+        return service.getAllTamu();
     }
 
     @Override

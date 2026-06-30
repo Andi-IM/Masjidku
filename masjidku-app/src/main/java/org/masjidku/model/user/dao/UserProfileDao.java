@@ -1,6 +1,8 @@
-package org.masjidku.model.user;
+package org.masjidku.model.user.dao;
 
 import org.masjidku.model.DaoFactory;
+import org.masjidku.model.user.User;
+import org.masjidku.model.user.UserProfile;
 
 import java.sql.SQLException;
 

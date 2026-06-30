@@ -48,7 +48,7 @@ public class EditDonaturZakat {
     private Stage dialogStage;
 
     public void setMainApp(AppRouter mainApp, ZakatMasuk model) {
-        String operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
+        String operator = org.masjidku.model.session.dao.SessionManager.getInstance().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         this.donatur = model;
         this.operator = operator;
