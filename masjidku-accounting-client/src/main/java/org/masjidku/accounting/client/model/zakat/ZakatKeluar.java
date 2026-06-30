@@ -28,4 +28,11 @@ public record ZakatKeluar(String id, String tujuan, String jumlah, String tangga
     public String nama() {
         return tujuan;
     }
+
+    public String getId() { return id; }
+    public String getTujuan() { return tujuan; }
+    public String getJumlah() { return jumlah; }
+    public String getTanggal() { return tanggal; }
+    public String getOperator() { return operator; }
+    public String getNama() { return tujuan; }
 }

@@ -37,4 +37,13 @@ public record AnakYatim(String id, String tujuan, int usia, String jumlah, Strin
     public String nama() {
         return tujuan;
     }
+
+    public String getId() { return id; }
+    public String getTujuan() { return tujuan; }
+    public int getUsia() { return usia; }
+    public String getJumlah() { return jumlah; }
+    public String getTanggal() { return tanggal; }
+    public String getKeterangan() { return keterangan; }
+    public String getOperator() { return operator; }
+    public String getNama() { return tujuan; }
 }

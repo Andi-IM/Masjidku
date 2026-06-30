@@ -24,4 +24,12 @@ public record Pembangunan(String id, String tujuan, String keterangan, String ju
     public Pembangunan(String tujuan, String keterangan, String jumlah, String tanggal, String operator) {
         this(null, tujuan, keterangan, jumlah, tanggal, operator);
     }
+
+    public String getId() { return id; }
+    public String getTujuan() { return tujuan; }
+    public String getKeterangan() { return keterangan; }
+    public String getJumlah() { return jumlah; }
+    public String getTanggal() { return tanggal; }
+    public String getOperator() { return operator; }
+    public String getNama() { return tujuan; }
 }

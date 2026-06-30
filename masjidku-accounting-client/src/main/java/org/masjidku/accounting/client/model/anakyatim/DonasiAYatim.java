@@ -24,4 +24,10 @@ public record DonasiAYatim(String id, String donatur, String jumlah, String tang
     public DonasiAYatim(String donatur, String jumlah, String tanggal, String operator) {
         this(null, donatur, jumlah, tanggal, operator);
     }
+
+    public String getId() { return id; }
+    public String getDonatur() { return donatur; }
+    public String getJumlah() { return jumlah; }
+    public String getTanggal() { return tanggal; }
+    public String getOperator() { return operator; }
 }

@@ -6,12 +6,12 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Column;
 
 @Entity
-@Table(name = "donasi_ayatim")
+@Table(name = "infak_anakyatim")
 public class DonasiAnakYatimEntity {
     @Id
     @Column(name = "id")
     private String id;
-    @Column(name = "nama")
+    @Column(name = "donatur")
     private String donatur;
     @Column(name = "jumlah")
     private String jumlah;

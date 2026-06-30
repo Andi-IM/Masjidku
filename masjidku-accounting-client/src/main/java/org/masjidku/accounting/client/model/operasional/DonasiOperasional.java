@@ -28,4 +28,11 @@ public record DonasiOperasional(String id, String donatur, String jumlah, String
     public String nama() {
         return donatur;
     }
+
+    public String getId() { return id; }
+    public String getDonatur() { return donatur; }
+    public String getJumlah() { return jumlah; }
+    public String getTanggal() { return tanggal; }
+    public String getOperator() { return operator; }
+    public String getNama() { return donatur; }
 }

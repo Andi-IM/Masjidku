@@ -11,7 +11,7 @@ public class TpaMasukEntity {
     @Id
     @Column(name = "id")
     private String id;
-    @Column(name = "nama")
+    @Column(name = "donatur")
     private String donatur;
     @Column(name = "jumlah")
     private String jumlah;

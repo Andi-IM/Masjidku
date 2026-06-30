@@ -29,4 +29,11 @@ public record TpaKeluar(String id, String tujuan, String keterangan, String juml
         return tujuan;
     }
 
+    public String getId() { return id; }
+    public String getTujuan() { return tujuan; }
+    public String getKeterangan() { return keterangan; }
+    public String getJumlah() { return jumlah; }
+    public String getTanggal() { return tanggal; }
+    public String getOperator() { return operator; }
+    public String getNama() { return tujuan; }
 }

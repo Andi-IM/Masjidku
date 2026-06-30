@@ -1,4 +1,4 @@
-module org.masjidku.accounting.client {
+open module org.masjidku.accounting.client {
     requires transitive javafx.base;
     requires transitive java.sql;
 
