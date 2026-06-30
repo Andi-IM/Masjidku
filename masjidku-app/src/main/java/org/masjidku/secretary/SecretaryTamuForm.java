@@ -15,21 +15,20 @@
 
 package org.masjidku.secretary;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import net.synedra.validatorfx.Validator;
+import org.masjidku.events.client.EventsClient;
+import org.masjidku.events.client.model.Tamu;
 import org.masjidku.navigation.AppRouter;
-import org.masjidku.events.domain.entity.Tamu;
-import org.masjidku.events.application.usecase.TamuUseCase;
-import org.masjidku.events.client.repository.TamuRepository;
+import org.masjidku.util.Constants;
+import org.masjidku.util.ServiceProvider;
 
 public class SecretaryTamuForm {
-    private static final Logger log = LoggerFactory.getLogger(SecretaryTamuForm.class);
-    private final TamuUseCase service = new TamuUseCase(org.masjidku.util.ServiceProvider.get(TamuRepository.class));
+
+    private final Validator validator = new Validator();
 
     @FXML
     public TextField txtNomorTelp;
@@ -45,28 +44,64 @@ public class SecretaryTamuForm {
     private Stage dialogStage;
     private String operator;
 
+    private final EventsClient eventsClient;
+
+    SecretaryTamuForm() {
+        this.eventsClient = ServiceProvider.get(EventsClient.class);
+    }
+
+    @FXML
+    public void initialize() {
+        validator.createCheck()
+                .dependsOn("nama", txtNamaTamu.textProperty())
+                .withMethod(c -> {
+                    String val = c.get("nama");
+                    if (val == null || val.isBlank()) c.error("Nama tamu harus diisi!");
+                })
+                .decorates(txtNamaTamu);
+
+        validator.createCheck()
+                .dependsOn("alamat", txtAlamat.textProperty())
+                .withMethod(c -> {
+                    String val = c.get("alamat");
+                    if (val == null || val.isBlank()) c.error("Alamat harus diisi!");
+                })
+                .decorates(txtAlamat);
+
+        validator.createCheck()
+                .dependsOn("notelp", txtNomorTelp.textProperty())
+                .withMethod(c -> {
+                    String val = c.get("notelp");
+                    if (val == null || val.isBlank()) c.error("Nomor telepon harus diisi!");
+                })
+                .decorates(txtNomorTelp);
+    }
+
     public void setMainApp(AppRouter mainApp, Tamu tamu) {
-        String operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
+        operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         this.tamu = tamu;
-        this.operator = operator;
 
-        if (tamu != null){
+        if (tamu != null) {
             setTamu(tamu);
         }
     }
 
     private void setTamu(Tamu tamu) {
-        txtNamaTamu.setText(tamu.getNama());
-        txtAlamat.setText(tamu.getAlamat());
-        txtNomorTelp.setText(tamu.getNotelp());
+        txtNamaTamu.setText(tamu.nama());
+        txtAlamat.setText(tamu.alamat());
+        txtNomorTelp.setText(tamu.notelp());
     }
 
     @FXML
-    public void onBackAction() { mainApp.showTamu(); }
+    public void onBackAction() {
+        mainApp.showTamu();
+    }
 
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
 
     @FXML
     public void clearForm() {
@@ -77,44 +112,30 @@ public class SecretaryTamuForm {
 
     @FXML
     public void onUserSubmitted() {
-        if (formValidation()){
+        if (formValidation()) {
             String namaTamu = txtNamaTamu.getText();
             String alamat = txtAlamat.getText();
             String noTelp = txtNomorTelp.getText();
 
-            if (tamu == null){
-                tamu = new Tamu(namaTamu, alamat, noTelp, operator);
+            if (tamu == null) {
+                tamu = new Tamu(null, namaTamu, alamat, noTelp, operator);
             } else {
-                tamu.setNama(namaTamu);
-                tamu.setAlamat(alamat);
-                tamu.setNotelp(noTelp);
+                tamu = new Tamu(tamu.idTamu(), namaTamu, alamat, noTelp, operator);
             }
 
-            if (service.isTamuExist(tamu.getIdTamu())){
-                service.update(new String[]{
-                        tamu.getNama(),
-                        tamu.getAlamat(),
-                        tamu.getNotelp(),
-                        operator,
-                        tamu.getIdTamu()
-                });
-                org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success","Tamu telah diupdate");
+            if (eventsClient.isTamuExist(tamu.idTamu())) {
+                eventsClient.update(tamu);
+                org.masjidku.util.AlertHelper.alertInfo(dialogStage, Constants.SUCCESS, "Tamu telah diupdate");
             } else {
-                service.save(tamu);
-                org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success","Tamu telah disimpan");
+                eventsClient.save(tamu);
+                org.masjidku.util.AlertHelper.alertInfo(dialogStage, Constants.SUCCESS, "Tamu telah disimpan");
             }
         } else {
-            org.masjidku.util.AlertHelper.alertError(dialogStage, "Error", "Data belum lengkap!");
+            org.masjidku.util.AlertHelper.alertError(dialogStage, Constants.ERROR, "Data belum lengkap!");
         }
     }
 
     private boolean formValidation() {
-        if (!txtNamaTamu.getText().isBlank()){
-            if (!txtAlamat.getText().isBlank()){
-                return !txtNomorTelp.getText().isBlank();
-            }
-        }
-        return false;
+        return validator.validate();
     }
 }
-

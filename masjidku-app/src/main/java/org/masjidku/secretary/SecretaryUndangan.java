@@ -20,9 +20,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.masjidku.controller.BaseTableController;
+import org.masjidku.events.client.EventsClient;
+import org.masjidku.events.client.model.TamuKegiatan;
 import org.masjidku.navigation.AppRouter;
-import org.masjidku.events.domain.entity.TamuKegiatan;
-import org.masjidku.events.client.service.TamuKegiatanUseCase;
+import org.masjidku.util.ServiceProvider;
 import org.masjidku.util.TableHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,10 +54,10 @@ public class SecretaryUndangan extends BaseTableController<TamuKegiatan> {
     public TableColumn<TamuKegiatan, String> colNotelp;
 
     private AppRouter mainApp;
-    private final TamuKegiatanUseCase dao = org.masjidku.util.ServiceProvider.get(TamuKegiatanUseCase.class);
-
+    private final EventsClient eventClient;
 
     public SecretaryUndangan() {
+        eventClient = ServiceProvider.get(EventsClient.class);
     }
 
     public void setMainApp(AppRouter mainApp) {
@@ -104,21 +105,24 @@ public class SecretaryUndangan extends BaseTableController<TamuKegiatan> {
 
     @Override
     protected List<TamuKegiatan> fetchAllData() throws java.sql.SQLException {
-        return dao.getAll();
+        return eventClient.getAllUndangan();
     }
 
     @Override
     protected boolean checkIfExist(TamuKegiatan item) throws java.sql.SQLException {
-        return dao.isUndanganExist(item.getIdUndangan());
+        return eventClient.isUndanganExist(item.idUndangan());
     }
 
     @Override
     protected void deleteItem(TamuKegiatan item) throws java.sql.SQLException {
-        dao.delete(item.getIdUndangan());
+        eventClient.delete(item);
     }
 
     @Override
     protected void handleEdit(TamuKegiatan item) {
+        if (item != null) {
+            mainApp.showUndanganEditForm(item);
+        }
     }
 
     @FXML

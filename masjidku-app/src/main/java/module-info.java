@@ -5,6 +5,7 @@ open module main {
     requires org.masjidku.common;
     requires com.google.common;
     requires org.slf4j;
+    requires net.synedra.validatorfx;
 
     requires org.masjidku.accounting.client;
     requires org.masjidku.events.client;

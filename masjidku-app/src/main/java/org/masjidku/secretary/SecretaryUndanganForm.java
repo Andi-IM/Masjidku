@@ -15,95 +15,100 @@
 
 package org.masjidku.secretary;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.masjidku.util.ServiceProvider;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
+import org.masjidku.events.client.EventsClient;
+import org.masjidku.events.client.model.Kegiatan;
+import org.masjidku.events.client.model.Tamu;
+import org.masjidku.events.client.model.TamuKegiatan;
 import org.masjidku.navigation.AppRouter;
-import org.masjidku.events.application.usecase.KegiatanUseCase;
-import org.masjidku.events.application.usecase.TamuUseCase;
-import org.masjidku.events.client.repository.TamuRepository;
-import org.masjidku.events.domain.entity.TamuKegiatan;
-import org.masjidku.events.client.service.TamuKegiatanUseCase;
+import org.masjidku.util.Constants;
+import org.masjidku.util.ServiceProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URL;
-import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class SecretaryUndanganForm implements Initializable {
     private static final Logger log = LoggerFactory.getLogger(SecretaryUndanganForm.class);
 
     @FXML
-    public ChoiceBox<String>cbKegiatan;
+    public ChoiceBox<String> cbKegiatan;
     @FXML
-    public ChoiceBox<String>cbTamu;
+    public ChoiceBox<String> cbTamu;
     @FXML
     public TextArea txtKeterangan;
 
     private AppRouter mainApp;
-    private TamuUseCase TamuUseCase;
-    private KegiatanUseCase KegiatanUseCase;
+    private EventsClient eventsClient;
 
-    private final ObservableList<String> listTamu = FXCollections.observableArrayList();
-    private final ObservableList<String> listKegiatan = FXCollections.observableArrayList();
+    private List<Tamu> listTamu;
+    private List<Kegiatan> listKegiatan;
 
-    // create some stage
     @SuppressWarnings("unused")
     private Stage dialogStage;
     private String operator;
 
-    public void setMainApp(AppRouter mainApp, TamuKegiatan undangan) {
-        String operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
-        this.mainApp = mainApp;
-        this.operator = operator;
+    private TamuKegiatan currentUndangan;
 
-        if (undangan != null){
+    public void setMainApp(AppRouter mainApp, TamuKegiatan undangan) {
+        this.operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
+        this.mainApp = mainApp;
+
+        if (undangan != null) {
+            this.currentUndangan = undangan;
             setUndangan(undangan);
         }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        TamuUseCase = new TamuUseCase(org.masjidku.util.ServiceProvider.get(TamuRepository.class));
-        KegiatanUseCase = ServiceProvider.get(KegiatanUseCase.class);
+        eventsClient = ServiceProvider.get(EventsClient.class);
+
         try {
-                listTamu.removeAll();
-                listKegiatan.removeAll();
+            cbTamu.getItems().clear();
+            cbKegiatan.getItems().clear();
 
-                listTamu.addAll(TamuUseCase.getAllTamuName());
-                listKegiatan.addAll(KegiatanUseCase.getAllKegiatanName());
+            listTamu = eventsClient.getAllTamu();
+            listKegiatan = eventsClient.getAllKegiatan();
 
-                cbKegiatan.getItems().addAll(listKegiatan);
-                cbTamu.getItems().addAll(listTamu);
-            
+            List<String> tamuNames = listTamu.stream().map(Tamu::nama).toList();
+            List<String> kegiatanNames = listKegiatan.stream().map(Kegiatan::nama).toList();
 
-        } catch (SQLException e) {
-            log.error("An error occurred", e);
+            cbTamu.getItems().addAll(tamuNames);
+            cbKegiatan.getItems().addAll(kegiatanNames);
+        } catch (Exception e) {
+            log.error("An error occurred during initialization", e);
         }
     }
 
     private void setUndangan(TamuKegiatan undangan) {
-        cbTamu.setValue(undangan.getNama());
-        cbKegiatan.setValue(undangan.getKegiatan());
-        txtKeterangan.setText(undangan.getKeterangan());
+        if (undangan.tamu() != null) {
+            cbTamu.setValue(undangan.tamu().nama());
+        }
+        if (undangan.kegiatan() != null) {
+            cbKegiatan.setValue(undangan.kegiatan().nama());
+        }
+        txtKeterangan.setText(undangan.keterangan());
     }
 
     @FXML
     public void clearForm() {
-        cbTamu.getItems().clear();
-        cbKegiatan.getItems().clear();
+        cbTamu.getSelectionModel().clearSelection();
+        cbKegiatan.getSelectionModel().clearSelection();
         txtKeterangan.clear();
+        currentUndangan = null;
     }
 
     @FXML
-    public void gotoUndangan(){ mainApp.showUndangan(); }
+    public void gotoUndangan() {
+        mainApp.showUndangan();
+    }
 
     @FXML
     public void onUserSubmitted() {
@@ -111,32 +116,49 @@ public class SecretaryUndanganForm implements Initializable {
         String kegiatanform = cbKegiatan.getValue();
         String keterangan = txtKeterangan.getText();
 
-        TamuUseCase = new TamuUseCase(org.masjidku.util.ServiceProvider.get(TamuRepository.class));
-        KegiatanUseCase = ServiceProvider.get(KegiatanUseCase.class);
-        TamuKegiatanUseCase tamuKegiatanUseCase = ServiceProvider.get(TamuKegiatanUseCase.class);
+        if (namaform == null || kegiatanform == null) {
+            org.masjidku.util.AlertHelper.alertError(dialogStage, Constants.ERROR, "Tamu dan Kegiatan harus dipilih!");
+            return;
+        }
 
-        TamuKegiatan model = new TamuKegiatan();
-            try {
-                if (tamuKegiatanUseCase.isUndanganExist(model.getIdKegiatan())){
-                    tamuKegiatanUseCase.update(new String[]{model.getKeterangan(), model.getIdTamu(), model.getKegiatan(), model.getIdUndangan()});
-                    org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "Data telah diubah!");
-                } else {
-                    tamuKegiatanUseCase.save(KegiatanUseCase.getIdByName(kegiatanform), TamuUseCase.getIdByName(namaform), model.getKeterangan(), operator);
-                    org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success","Data telah ditambahkan!");
-                }
-            } catch (SQLException throwables) {
-                log.error("An error occurred", throwables);
+        Tamu selectedTamu = listTamu.stream().filter(t -> t.nama().equals(namaform)).findFirst().orElse(null);
+        Kegiatan selectedKegiatan = listKegiatan.stream().filter(k -> k.nama().equals(kegiatanform)).findFirst().orElse(null);
+
+        if (selectedTamu == null || selectedKegiatan == null) {
+            org.masjidku.util.AlertHelper.alertError(dialogStage, Constants.ERROR, "Tamu atau Kegiatan tidak valid!");
+            return;
+        }
+
+        try {
+            if (currentUndangan != null && eventsClient.isUndanganExist(currentUndangan.idUndangan())) {
+                TamuKegiatan updatedUndangan = new TamuKegiatan(
+                        currentUndangan.idUndangan(),
+                        selectedTamu,
+                        selectedKegiatan,
+                        keterangan,
+                        this.operator
+                );
+                eventsClient.update(updatedUndangan);
+                org.masjidku.util.AlertHelper.alertInfo(dialogStage, Constants.SUCCESS, "Data telah diubah!");
+            } else {
+                TamuKegiatan newUndangan = new TamuKegiatan(
+                        null, // ID generated by DB
+                        selectedTamu,
+                        selectedKegiatan,
+                        keterangan,
+                        this.operator
+                );
+                eventsClient.save(newUndangan);
+                org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "Data telah ditambahkan!");
             }
-        
-
+        } catch (Exception e) {
+            log.error("An error occurred during submission", e);
+            org.masjidku.util.AlertHelper.alertError(dialogStage, "Error", "Gagal menyimpan data: " + e.getMessage());
+        }
     }
 
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
-
-
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
 }
-
-
-
-

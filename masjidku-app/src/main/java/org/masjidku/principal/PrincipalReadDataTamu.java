@@ -121,17 +121,17 @@ public class PrincipalReadDataTamu extends BaseTableController<Tamu> {
 
     @Override
     protected List<Tamu> fetchAllData() throws SQLException {
-        return service.getAll();
+        return eventClient.getAllTamu();
     }
 
     @Override
     protected boolean checkIfExist(Tamu item) throws SQLException {
-        return service.isTamuExist(item.getIdTamu());
+        return eventClient.isTamuExist(item.idTamu());
     }
 
     @Override
     protected void deleteItem(Tamu item) throws SQLException {
-        service.delete(item.getIdTamu());
+        eventClient.delete(item);
     }
 }
 

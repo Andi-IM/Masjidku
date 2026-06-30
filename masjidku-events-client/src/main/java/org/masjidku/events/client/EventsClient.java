@@ -17,19 +17,26 @@ package org.masjidku.events.client;
 
 import org.masjidku.events.client.model.Kegiatan;
 import org.masjidku.events.client.model.Tamu;
+import org.masjidku.events.client.model.TamuKegiatan;
 
 import java.util.List;
 
 public interface EventsClient {
     List<Kegiatan> getAllKegiatan();
-
     boolean isKegiatanExist(String id);
-
-    void delete(String id);
-
+    void delete(Kegiatan kegiatan);
     void save(Kegiatan kegiatan);
-
     void update(Kegiatan kegiatan);
 
     List<Tamu> getAllTamu();
+    boolean isTamuExist(String id);
+    void save(Tamu tamu);
+    void update(Tamu tamu);
+    void delete(Tamu tamu);
+
+    List<TamuKegiatan> getAllUndangan();
+    boolean isUndanganExist(String id);
+    void save(TamuKegiatan undangan);
+    void delete(TamuKegiatan undangan);
+    void update(TamuKegiatan undangan);
 }

@@ -82,11 +82,6 @@ public class SecretaryKegiatan extends BaseTableController<Kegiatan> {
         TableHelper.setupKegiatanColumns(colNomor, colNmKegiatan, colTempatKegiatan, colWaktuKegiatan, colTanggalKegiatan, null);
     }
 
-    @FXML
-    public void tamuListener() {
-        mainApp.showUndangan();
-    }
-
     @Override
     protected org.slf4j.Logger getLogger() {
         return log;
@@ -119,11 +114,14 @@ public class SecretaryKegiatan extends BaseTableController<Kegiatan> {
 
     @Override
     protected void deleteItem(Kegiatan item) {
-        eventClient.delete(item.idKegiatan());
+        eventClient.delete(item);
     }
 
     @Override
     protected void handleEdit(Kegiatan item) {
+        if (item != null) {
+            mainApp.showKegiatanEditform(item);
+        }
     }
 
     @FXML

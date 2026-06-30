@@ -10,10 +10,10 @@ import java.util.Optional;
 
 public class KegiatanRepositoryImpl implements KegiatanRepository {
 
-
     @Override
     public Optional<Kegiatan> getKegiatanById(String id) {
-        try (var session = HibernateUtil.getSessionFactory().openSession()) {
+        try {
+            var session = HibernateUtil.getSessionFactory().getCurrentSession();
             return Optional.ofNullable(session.get(Kegiatan.class, id));
         } catch (Exception e) {
             throw new DataAccessException("Failed to get Kegiatan by ID", e);
@@ -22,7 +22,8 @@ public class KegiatanRepositoryImpl implements KegiatanRepository {
 
     @Override
     public List<Kegiatan> getAllKegiatan() {
-        try (var session = HibernateUtil.getSessionFactory().openSession()) {
+        try {
+            var session = HibernateUtil.getSessionFactory().getCurrentSession();
             return session.createQuery("FROM Kegiatan", Kegiatan.class).list();
         } catch (Exception e) {
             throw new DataAccessException("Failed to get all Kegiatan", e);
@@ -31,10 +32,9 @@ public class KegiatanRepositoryImpl implements KegiatanRepository {
 
     @Override
     public void saveKegiatan(Kegiatan kegiatan) {
-        try (var session = HibernateUtil.getSessionFactory().openSession()) {
-            var transaction = session.beginTransaction();
+        try {
+            var session = HibernateUtil.getSessionFactory().getCurrentSession();
             session.persist(kegiatan);
-            transaction.commit();
         } catch (Exception e) {
             throw new DataAccessException("Failed to save Kegiatan", e);
         }
@@ -42,10 +42,9 @@ public class KegiatanRepositoryImpl implements KegiatanRepository {
 
     @Override
     public void updateKegiatan(Kegiatan kegiatan) {
-        try (var session = HibernateUtil.getSessionFactory().openSession()) {
-            var transaction = session.beginTransaction();
+        try {
+            var session = HibernateUtil.getSessionFactory().getCurrentSession();
             session.merge(kegiatan);
-            transaction.commit();
         } catch (Exception e) {
             throw new DataAccessException("Failed to update Kegiatan", e);
         }
@@ -53,13 +52,12 @@ public class KegiatanRepositoryImpl implements KegiatanRepository {
 
     @Override
     public void deleteKegiatan(String id) {
-        try (var session = HibernateUtil.getSessionFactory().openSession()) {
-            var transaction = session.beginTransaction();
+        try {
+            var session = HibernateUtil.getSessionFactory().getCurrentSession();
             Kegiatan kegiatan = session.get(Kegiatan.class, id);
             if (kegiatan != null) {
                 session.remove(kegiatan);
             }
-            transaction.commit();
         } catch (Exception e) {
             throw new DataAccessException("Failed to delete Kegiatan", e);
         }
@@ -72,7 +70,8 @@ public class KegiatanRepositoryImpl implements KegiatanRepository {
 
     @Override
     public List<String> getAllKegiatanNames() {
-        try (var session = HibernateUtil.getSessionFactory().openSession()) {
+        try {
+            var session = HibernateUtil.getSessionFactory().getCurrentSession();
             return session.createQuery("SELECT k.nama FROM Kegiatan k", String.class).list();
         } catch (Exception e) {
             throw new DataAccessException("Failed to get Kegiatan names", e);
@@ -81,7 +80,8 @@ public class KegiatanRepositoryImpl implements KegiatanRepository {
 
     @Override
     public String getIdByName(String name) {
-        try (var session = HibernateUtil.getSessionFactory().openSession()) {
+        try {
+            var session = HibernateUtil.getSessionFactory().getCurrentSession();
             var query = session.createQuery("SELECT k.idKegiatan FROM Kegiatan k WHERE k.nama = :name", String.class);
             query.setParameter("name", name);
             var result = query.uniqueResult();
@@ -93,7 +93,8 @@ public class KegiatanRepositoryImpl implements KegiatanRepository {
 
     @Override
     public Kegiatan getLastKegiatan() {
-        try (var session = HibernateUtil.getSessionFactory().openSession()) {
+        try {
+            var session = HibernateUtil.getSessionFactory().getCurrentSession();
             var query = session.createQuery("FROM Kegiatan ORDER BY idKegiatan DESC", Kegiatan.class);
             query.setMaxResults(1);
             return query.uniqueResult();
@@ -104,7 +105,8 @@ public class KegiatanRepositoryImpl implements KegiatanRepository {
 
     @Override
     public int getTotalKegiatanCount() {
-        try (var session = HibernateUtil.getSessionFactory().openSession()) {
+        try {
+            var session = HibernateUtil.getSessionFactory().getCurrentSession();
             var count = session.createQuery("SELECT count(k) FROM Kegiatan k", Long.class).uniqueResult();
             return count != null ? count.intValue() : 0;
         } catch (Exception e) {

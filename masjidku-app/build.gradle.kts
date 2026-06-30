@@ -47,6 +47,7 @@ dependencies {
     // Utilities
     implementation(libs.slf4j)
     runtimeOnly(libs.logback)
+    implementation(libs.validatorfx)
 
     // Unit Test
     testImplementation(libs.junit)

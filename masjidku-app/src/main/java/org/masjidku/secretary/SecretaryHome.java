@@ -18,6 +18,7 @@ package org.masjidku.secretary;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
+import org.masjidku.model.session.SessionManager;
 import org.masjidku.navigation.AppRouter;
 
 public class SecretaryHome {
@@ -28,7 +29,7 @@ public class SecretaryHome {
     private AppRouter mainApp;
 
     public void setMainApp(AppRouter mainApp) {
-        String username = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
+        String username = SessionManager.getInstance().getCurrentUser().getUsername();
 
         this.mainApp = mainApp;
         greeting.setText("Bapak "+username);

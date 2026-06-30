@@ -16,41 +16,56 @@
 package org.masjidku.secretary;
 
 import org.masjidku.controller.BaseTableController;
+import org.masjidku.events.client.EventsClient;
+import org.masjidku.events.client.model.Tamu;
+import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javafx.fxml.FXML;
+
 import java.util.List;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.masjidku.navigation.AppRouter;
-import org.masjidku.events.domain.entity.Tamu;
-import org.masjidku.events.application.usecase.TamuUseCase;
-import org.masjidku.events.client.repository.TamuRepository;
 
 public class SecretaryTamu extends BaseTableController<Tamu> {
     private static final Logger log = LoggerFactory.getLogger(SecretaryTamu.class);
-    
-    @FXML public Button btnEdit;
-    @FXML public Button btnRemove;
-    @FXML public TableView<Tamu> tblTamu;
-    @FXML public TableColumn<Tamu, String> colNama;
-    @FXML public TableColumn<Tamu, String> colAlamat;
-    @FXML public TableColumn<Tamu, String> colNotelp;
-    @FXML public TableColumn<Tamu, String> colNomor;
+
+    @FXML
+    public Button btnEdit;
+    @FXML
+    public Button btnRemove;
+    @FXML
+    public TableView<Tamu> tblTamu;
+    @FXML
+    public TableColumn<Tamu, String> colNama;
+    @FXML
+    public TableColumn<Tamu, String> colAlamat;
+    @FXML
+    public TableColumn<Tamu, String> colNotelp;
+    @FXML
+    public TableColumn<Tamu, String> colNomor;
 
     private AppRouter mainApp;
-    final TamuUseCase service = new TamuUseCase(org.masjidku.util.ServiceProvider.get(TamuRepository.class));
+    private final EventsClient eventClient;
+
+    SecretaryTamu() {
+        this.eventClient = ServiceProvider.get(EventsClient.class);
+    }
 
     public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
 
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
 
     @FXML
-    public void addListener(){
+    public void addListener() {
         Tamu temp = new Tamu();
         mainApp.showTamuEditForm(temp);
     }
@@ -60,15 +75,51 @@ public class SecretaryTamu extends BaseTableController<Tamu> {
         org.masjidku.util.AlertHelper.setupTamuColumns(colNama, colAlamat, colNotelp);
     }
 
-    @Override protected org.slf4j.Logger getLogger() { return log; }
-    @Override protected TableView<Tamu> getTableView() { return tblTamu; }
-    @Override protected Button getBtnEdit() { return btnEdit; }
-    @Override protected Button getBtnRemove() { return btnRemove; }
-    @Override protected List<Tamu> fetchAllData() throws java.sql.SQLException { return service.getAll(); }
-    @Override protected boolean checkIfExist(Tamu item) throws java.sql.SQLException { return service.isTamuExist(item.getIdTamu()); }
-    @Override protected void deleteItem(Tamu item) throws java.sql.SQLException { service.delete(item.getIdTamu()); }
-    @Override protected void handleEdit(Tamu item) {  }
+    @Override
+    protected org.slf4j.Logger getLogger() {
+        return log;
+    }
 
-    @FXML public void onEditListener() { super.onEditAction(); }
+    @Override
+    protected TableView<Tamu> getTableView() {
+        return tblTamu;
+    }
+
+    @Override
+    protected Button getBtnEdit() {
+        return btnEdit;
+    }
+
+    @Override
+    protected Button getBtnRemove() {
+        return btnRemove;
+    }
+
+    @Override
+    protected List<Tamu> fetchAllData() throws java.sql.SQLException {
+        return eventClient.getAllTamu();
+    }
+
+    @Override
+    protected boolean checkIfExist(Tamu item) throws java.sql.SQLException {
+        return eventClient.isTamuExist(item.idTamu());
+    }
+
+    @Override
+    protected void deleteItem(Tamu item) throws java.sql.SQLException {
+        eventClient.delete(item);
+    }
+
+    @Override
+    protected void handleEdit(Tamu item) {
+        if (item != null) {
+            mainApp.showTamuEditForm(item);
+        }
+    }
+
+    @FXML
+    public void onEditListener() {
+        super.onEditAction();
+    }
 }
 

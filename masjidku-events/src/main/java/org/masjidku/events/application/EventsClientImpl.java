@@ -16,75 +16,124 @@
 package org.masjidku.events.application;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import org.masjidku.events.application.mapper.KegiatanMapper;
+import org.masjidku.events.application.mapper.TamuKegiatanMapper;
+import org.masjidku.events.application.mapper.TamuMapper;
 import org.masjidku.events.client.EventsClient;
 import org.masjidku.events.client.model.Kegiatan;
 import org.masjidku.events.client.model.Tamu;
+import org.masjidku.events.client.model.TamuKegiatan;
 import org.masjidku.events.domain.repository.KegiatanRepository;
+import org.masjidku.events.domain.repository.TamuKegiatanRepository;
+import org.masjidku.events.domain.repository.TamuRepository;
 import org.masjidku.events.domain.repository.impl.KegiatanRepositoryImpl;
+import org.masjidku.events.domain.repository.impl.TamuKegiatanRepositoryImpl;
+import org.masjidku.events.domain.repository.impl.TamuRepositoryImpl;
+import org.masjidku.events.domain.repository.base.HibernateUtil;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class EventsClientImpl implements EventsClient {
-    private final KegiatanRepository repository;
+    private final KegiatanRepository kegiatanRepository;
+    private final TamuRepository tamuRepository;
+    private final TamuKegiatanRepository undanganRepository;
 
     public EventsClientImpl() {
-        this.repository = new KegiatanRepositoryImpl();
+        this.kegiatanRepository = new KegiatanRepositoryImpl();
+        this.tamuRepository = new TamuRepositoryImpl();
+        this.undanganRepository = new TamuKegiatanRepositoryImpl();
     }
 
     @Override
     public List<Kegiatan> getAllKegiatan() {
-        List<org.masjidku.events.domain.entity.Kegiatan> entities = repository.getAllKegiatan();
-        return entities.stream()
-                .map(this::toModel)
-                .collect(Collectors.toCollection(FXCollections::observableArrayList));
+        return HibernateUtil.executeInTransaction(() -> {
+            List<org.masjidku.events.domain.entity.Kegiatan> entities = kegiatanRepository.getAllKegiatan();
+            return entities.stream()
+                    .map(KegiatanMapper::toModel)
+                    .collect(Collectors.toCollection(FXCollections::observableArrayList));
+        });
     }
 
-    private Kegiatan toModel(org.masjidku.events.domain.entity.Kegiatan entity) {
-        return new Kegiatan(
-                entity.getIdKegiatan(),
-                entity.getNama(),
-                entity.getWaktu().toString(),
-                entity.getTanggal().toString(),
-                entity.getTempat(),
-                entity.getOperator()
-        );
-    }
 
-    private org.masjidku.events.domain.entity.Kegiatan toEntity(Kegiatan model) {
-        return new org.masjidku.events.domain.entity.Kegiatan(
-          model.idKegiatan(),
-          model.nama(),
-          java.time.LocalTime.parse(model.waktu()),
-          java.time.LocalDate.parse(model.tanggal()),
-          model.tempat(),
-          model.operator()
-        );
-    }
 
     @Override
     public boolean isKegiatanExist(String id) {
-        return repository.exists(id);
+        return HibernateUtil.executeInTransaction(() -> kegiatanRepository.exists(id));
     }
 
     @Override
     public void save(Kegiatan kegiatan) {
-        repository.saveKegiatan(toEntity(kegiatan));
+        HibernateUtil.executeInTransaction(() -> kegiatanRepository.saveKegiatan(KegiatanMapper.toEntity(kegiatan)));
     }
 
     @Override
-    public void delete(String id) {
-        repository.deleteKegiatan(id);
+    public void delete(Kegiatan kegiatan) {
+        HibernateUtil.executeInTransaction(() -> kegiatanRepository.deleteKegiatan(kegiatan.idKegiatan()));
+    }
+
+    @Override
+    public void delete(Tamu tamu) {
+        HibernateUtil.executeInTransaction(() -> tamuRepository.delete(TamuMapper.toEntity(tamu).getIdTamu()));
+    }
+
+    @Override
+    public List<TamuKegiatan> getAllUndangan() {
+        return HibernateUtil.executeInTransaction(() -> {
+            return undanganRepository.getAllTamuKegiatan().stream()
+                    .map(TamuKegiatanMapper::toModel)
+                    .collect(Collectors.toCollection(FXCollections::observableArrayList));
+        });
+    }
+
+    @Override
+    public boolean isUndanganExist(String id) {
+        return HibernateUtil.executeInTransaction(() -> undanganRepository.isUndanganExist(id));
+    }
+
+    @Override
+    public void delete(TamuKegiatan undangan) {
+        HibernateUtil.executeInTransaction(() -> undanganRepository.delete(undangan.idUndangan()));
+    }
+
+    @Override
+    public void save(TamuKegiatan undangan) {
+        HibernateUtil.executeInTransaction(() -> undanganRepository.save(TamuKegiatanMapper.toEntity(undangan)));
+    }
+
+    @Override
+    public void update(TamuKegiatan undangan) {
+        HibernateUtil.executeInTransaction(() -> undanganRepository.update(TamuKegiatanMapper.toEntity(undangan)));
     }
 
     @Override
     public void update(Kegiatan kegiatan) {
-        repository.updateKegiatan(toEntity(kegiatan));
+        HibernateUtil.executeInTransaction(() -> kegiatanRepository.updateKegiatan(KegiatanMapper.toEntity(kegiatan)));
     }
 
     @Override
-    public ObservableList<Tamu> getAllTamu() {
-        return null;
+    public List<Tamu> getAllTamu() {
+        return HibernateUtil.executeInTransaction(() -> {
+            return tamuRepository.getAll()
+                    .stream().map(TamuMapper::toModel)
+                    .collect(Collectors.toCollection(FXCollections::observableArrayList));
+        });
+    }
+
+
+
+    @Override
+    public boolean isTamuExist(String id) {
+        return HibernateUtil.executeInTransaction(() -> tamuRepository.isTamuExist(id));
+    }
+
+    @Override
+    public void save(Tamu tamu) {
+        HibernateUtil.executeInTransaction(() -> tamuRepository.save(TamuMapper.toEntity(tamu)));
+    }
+
+    @Override
+    public void update(Tamu tamu) {
+        HibernateUtil.executeInTransaction(() -> tamuRepository.update(TamuMapper.toEntity(tamu)));
     }
 }

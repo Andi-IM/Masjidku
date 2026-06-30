@@ -23,4 +23,6 @@ dependencies {
     implementation(libs.slf4j)
     implementation(libs.hibernate.core)
     implementation(libs.hibernate.community.dialects)
+    implementation(libs.hibernate.hikaricp)
+    implementation(libs.hikaricp)
 }
