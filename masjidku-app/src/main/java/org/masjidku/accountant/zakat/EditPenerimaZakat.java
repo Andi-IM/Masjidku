@@ -68,15 +68,15 @@ public class EditPenerimaZakat {
         this.mainApp = mainApp;
         this.penerima = model;
 
-        if (model.getId() != null) {
+        if (model.id() != null) {
             setModel(model);
         }
     }
 
     private void setModel(ZakatKeluar model) {
-        txtNama.setText(model.getNama());
-        txtJumlah.setText(model.getJumlah());
-        LocalDate localDate = LocalDate.parse(model.getTanggal());
+        txtNama.setText(model.nama());
+        txtJumlah.setText(model.jumlah());
+        LocalDate localDate = LocalDate.parse(model.tanggal());
         date.setValue(localDate);
     }
 
@@ -108,8 +108,8 @@ public class EditPenerimaZakat {
             }
 
             try {
-                if (client.isZakatKeluarExist(penerima.getId())) {
-                    client.update(new ZakatKeluar(penerima.getId(), penerima.getNama(), penerima.getJumlah(), penerima.getTanggal(), operator));
+                if (client.isZakatKeluarExist(penerima.id())) {
+                    client.update(new ZakatKeluar(penerima.id(), penerima.nama(), penerima.jumlah(), penerima.tanggal(), operator));
                     alertInfo(dialogStage, SUCCESS, "Data telah diupdate");
                 } else {
                     client.save(penerima);

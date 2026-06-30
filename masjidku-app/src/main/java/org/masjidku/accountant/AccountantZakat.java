@@ -64,13 +64,13 @@ public class AccountantZakat extends BaseAccountantController {
             ZakatMasuk pemberi = client.getLastZakatMasuk();
 
             updateDashboardSummary(
-                    pemberi.getJumlah(), // Pemasukan
-                    penerima.getJumlah(), // Pengeluaran
+                    pemberi.jumlah(), // Pemasukan
+                    penerima.jumlah(), // Pengeluaran
                     client.getTotalZakatMasuk(), // Total Pemasukan
                     client.getTotalZakatKeluar(), // Total Pengeluaran
                     client.getZakatBalance(), // Saldo
-                    pemberi.getTanggal(), // Tgl Pemasukan
-                    penerima.getTanggal() // Tgl Pengeluaran
+                    pemberi.tanggal(), // Tgl Pemasukan
+                    penerima.tanggal() // Tgl Pengeluaran
             );
         } catch (Exception e) {
             log.error("An error occurred", e);

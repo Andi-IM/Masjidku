@@ -68,15 +68,15 @@ public class EditDonaturZakat {
         this.mainApp = mainApp;
         this.donatur = model;
 
-        if (model.getId() != null) {
+        if (model.id() != null) {
             setDonatur(model);
         }
     }
 
     public void setDonatur(ZakatMasuk model) {
-        txtNama.setText(model.getDonatur());
-        txtJumlah.setText(model.getJumlah());
-        LocalDate localDate = LocalDate.parse(model.getTanggal());
+        txtNama.setText(model.donatur());
+        txtJumlah.setText(model.jumlah());
+        LocalDate localDate = LocalDate.parse(model.tanggal());
         date.setValue(localDate);
     }
 
@@ -99,8 +99,8 @@ public class EditDonaturZakat {
             }
 
             org.masjidku.util.DaoHelper.saveOrUpdate(
-                () -> client.isZakatMasukExist(donatur.getId()),
-                () -> client.update(new ZakatMasuk(donatur.getId(), nama, jumlah, tanggal, operator)),
+                () -> client.isZakatMasukExist(donatur.id()),
+                () -> client.update(new ZakatMasuk(donatur.id(), nama, jumlah, tanggal, operator)),
                 () -> client.save(donatur),
                 dialogStage, log
             );

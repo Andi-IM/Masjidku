@@ -75,13 +75,13 @@ public class ZakatReport implements Initializable {
             ZakatKeluar penerima = client.getLastZakatKeluar();
             ZakatMasuk pemberi = client.getLastZakatMasuk();
 
-            txtPemasukanTerakhir.setText("Rp. " + pemberi.getJumlah());
-            txtPengeluaranTerakhir.setText("Rp. " + penerima.getJumlah());
+            txtPemasukanTerakhir.setText("Rp. " + pemberi.jumlah());
+            txtPengeluaranTerakhir.setText("Rp. " + penerima.jumlah());
             txtTotalPemasukkan.setText("Rp. " + client.getTotalZakatMasuk());
             txtTotalPengeluaran.setText("Rp. " + client.getTotalZakatKeluar());
             txtSaldo.setText("Rp. " + client.getZakatBalance());
-            txtTglPemasukkan.setText(pemberi.getTanggal());
-            txtTglPengeluaran.setText(penerima.getTanggal());
+            txtTglPemasukkan.setText(pemberi.tanggal());
+            txtTglPengeluaran.setText(penerima.tanggal());
         } catch (Exception e) {
             log.error("An error occurred", e);
         }

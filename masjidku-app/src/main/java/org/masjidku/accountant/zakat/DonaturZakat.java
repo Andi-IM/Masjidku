@@ -106,7 +106,7 @@ public class DonaturZakat extends BaseTableController<ZakatMasuk> {
 
     @Override
     protected boolean checkIfExist(ZakatMasuk item) throws java.sql.SQLException {
-        return client.isZakatMasukExist(item.getId());
+        return client.isZakatMasukExist(item.id());
     }
 
     @Override
