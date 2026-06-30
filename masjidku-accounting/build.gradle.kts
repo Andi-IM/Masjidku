@@ -7,8 +7,16 @@ repositories {
     mavenCentral()
 }
 
-tasks.withType<JavaCompile> {
+java {
+    modularity.inferModulePath.set(true)
+}
+
+tasks.named<JavaCompile>("compileJava") {
     options.encoding = "UTF-8"
+    doFirst {
+        options.compilerArgs.addAll(listOf("--module-path", classpath.asPath))
+        classpath = files()
+    }
 }
 
 javafx {
@@ -21,4 +29,12 @@ dependencies {
     implementation(project(":masjidku-accounting-client"))
     implementation(libs.slf4j)
     implementation(libs.jetbrains.annotations)
+    implementation(libs.hibernate.core)
+    implementation(libs.hibernate.community.dialects)
+    implementation(libs.hibernate.hikaricp)
+    implementation(libs.hikaricp)
+
+    // Dagger 2 DI
+    implementation(libs.dagger)
+    annotationProcessor(libs.dagger.compiler)
 }

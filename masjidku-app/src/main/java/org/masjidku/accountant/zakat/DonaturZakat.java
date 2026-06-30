@@ -22,7 +22,9 @@ import javafx.scene.control.TableView;
 import org.masjidku.controller.BaseTableController;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.zakat.ZakatMasuk;
-import org.masjidku.accounting.client.service.ZakatMasukService;
+
+
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +33,7 @@ import java.util.List;
 
 public class DonaturZakat extends BaseTableController<ZakatMasuk> {
     private static final Logger log = LoggerFactory.getLogger(DonaturZakat.class);
-    private final ZakatMasukService dao = ServiceProvider.get(ZakatMasukService.class);
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
 
     @FXML
     private TableView<ZakatMasuk> zakatTable;
@@ -99,17 +101,17 @@ public class DonaturZakat extends BaseTableController<ZakatMasuk> {
 
     @Override
     protected List<ZakatMasuk> fetchAllData() throws java.sql.SQLException {
-        return dao.getAll();
+        return client.getAllZakatMasuk();
     }
 
     @Override
     protected boolean checkIfExist(ZakatMasuk item) throws java.sql.SQLException {
-        return dao.isDonaturExist(item.getId());
+        return client.isZakatMasukExist(item.id());
     }
 
     @Override
     protected void deleteItem(ZakatMasuk item) throws java.sql.SQLException {
-        dao.delete(item.getId());
+        client.delete(item);
     }
 
     @Override

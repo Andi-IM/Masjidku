@@ -13,23 +13,24 @@
  *                                HEREUNDER.
  */
 package org.masjidku.admin;
+
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 import org.masjidku.navigation.AppRouter;
-public class AdminHome {
+import org.masjidku.controller.BaseHomeController;
+
+public class AdminHome extends BaseHomeController {
+    
+    
+
+    
+
+    
+
     @FXML
-    public Text greeting;
-    private AppRouter mainApp;
-    public void setMainApp(AppRouter mainApp) {
-        String username = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
-        this.mainApp = mainApp;
-        greeting.setText("Bapak "+username);
+    public void onKelolaPenggunaClick() {
+        mainApp.showUser();
     }
-    @FXML
-    public void onLogoutClick() {
-        mainApp.onLogoutAction();
-    }
-    @FXML
-    public void onKelolaPenggunaClick() { mainApp.showUser(); }
 }
+
 

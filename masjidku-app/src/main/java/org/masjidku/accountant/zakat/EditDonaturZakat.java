@@ -21,17 +21,26 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.zakat.ZakatMasuk;
-import org.masjidku.accounting.client.service.ZakatMasukService;
+
+
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import net.synedra.validatorfx.Validator;
+
+import static org.masjidku.di.DiProvider.getAppComponent;
+import static org.masjidku.util.AlertHelper.alertError;
+import static org.masjidku.util.Constants.ERROR;
+import static org.masjidku.util.ValidationHelper.*;
 
 public class EditDonaturZakat {
     private static final Logger log = LoggerFactory.getLogger(EditDonaturZakat.class);
-    private final ZakatMasukService dao = ServiceProvider.get(ZakatMasukService.class);
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
+    private final Validator validator = new Validator();
 
     @FXML
     private TextField txtNama;
@@ -47,21 +56,27 @@ public class EditDonaturZakat {
     @SuppressWarnings("unused")
     private Stage dialogStage;
 
+    @FXML
+    public void initialize() {
+        registerRequiredField(validator, txtNama, "nama", "Nama donatur harus diisi!");
+        registerNumericField(validator, txtJumlah, "jumlah", "Jumlah harus diisi!", "Jumlah harus berupa angka!");
+        registerDatePicker(validator, date, "tanggal", "Tanggal harus dipilih!");
+    }
+
     public void setMainApp(AppRouter mainApp, ZakatMasuk model) {
-        String operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
+        operator = getAppComponent().getSessionManager().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         this.donatur = model;
-        this.operator = operator;
 
-        if (model.getId() != null) {
+        if (model.id() != null) {
             setDonatur(model);
         }
     }
 
     public void setDonatur(ZakatMasuk model) {
-        txtNama.setText(model.getDonatur());
-        txtJumlah.setText(model.getJumlah());
-        LocalDate localDate = LocalDate.parse(model.getTanggal());
+        txtNama.setText(model.donatur());
+        txtJumlah.setText(model.jumlah());
+        LocalDate localDate = LocalDate.parse(model.tanggal());
         date.setValue(localDate);
     }
 
@@ -84,19 +99,13 @@ public class EditDonaturZakat {
             }
 
             org.masjidku.util.DaoHelper.saveOrUpdate(
-                () -> dao.isDonaturExist(donatur.getId()),
-                () -> dao.update(new String[]{
-                        donatur.getId(),
-                        donatur.getDonatur(),
-                        donatur.getJumlah(),
-                        donatur.getTanggal(),
-                        operator
-                }),
-                () -> dao.save(donatur),
+                () -> client.isZakatMasukExist(donatur.id()),
+                () -> client.update(new ZakatMasuk(donatur.id(), nama, jumlah, tanggal, operator)),
+                () -> client.save(donatur),
                 dialogStage, log
             );
         } else {
-            org.masjidku.util.AlertHelper.alertError(dialogStage, "Error", "Data belum lengkap!");
+            alertError(dialogStage, ERROR, "Data belum lengkap!");
         }
     }
 
@@ -106,7 +115,7 @@ public class EditDonaturZakat {
      * @return fieldStatus
      */
     private boolean formValidation() {
-        return !txtNama.getText().isBlank() && !txtJumlah.getText().isBlank() && txtJumlah.getText().matches("\\d+") && date.getValue() != null;
+        return validator.validate();
     }
 
 
@@ -122,6 +131,7 @@ public class EditDonaturZakat {
 
 
 }
+
 
 
 

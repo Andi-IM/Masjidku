@@ -15,6 +15,8 @@
 
 package org.masjidku.secretary;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -28,10 +30,9 @@ import org.masjidku.util.TableHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
-
 public class SecretaryKegiatan extends BaseTableController<Kegiatan> {
     private static final Logger log = LoggerFactory.getLogger(SecretaryKegiatan.class);
+    private final EventsClient eventClient = ServiceProvider.get(EventsClient.class);
 
     @FXML
     public Button btnEdit;
@@ -51,11 +52,6 @@ public class SecretaryKegiatan extends BaseTableController<Kegiatan> {
     public TableColumn<Kegiatan, String> colTanggalKegiatan;
 
     private AppRouter mainApp;
-    private final EventsClient eventClient;
-
-    public SecretaryKegiatan() {
-        this.eventClient = ServiceProvider.get(EventsClient.class);
-    }
 
     public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
@@ -82,11 +78,6 @@ public class SecretaryKegiatan extends BaseTableController<Kegiatan> {
         TableHelper.setupKegiatanColumns(colNomor, colNmKegiatan, colTempatKegiatan, colWaktuKegiatan, colTanggalKegiatan, null);
     }
 
-    @FXML
-    public void tamuListener() {
-        mainApp.showUndangan();
-    }
-
     @Override
     protected org.slf4j.Logger getLogger() {
         return log;
@@ -108,8 +99,8 @@ public class SecretaryKegiatan extends BaseTableController<Kegiatan> {
     }
 
     @Override
-    protected List<Kegiatan> fetchAllData() {
-        return eventClient.getAllKegiatan();
+    protected ObservableList<Kegiatan> fetchAllData() {
+        return FXCollections.observableArrayList(eventClient.getAllKegiatan());
     }
 
     @Override
@@ -119,11 +110,14 @@ public class SecretaryKegiatan extends BaseTableController<Kegiatan> {
 
     @Override
     protected void deleteItem(Kegiatan item) {
-        eventClient.delete(item.idKegiatan());
+        eventClient.delete(item);
     }
 
     @Override
     protected void handleEdit(Kegiatan item) {
+        if (item != null) {
+            mainApp.showKegiatanEditform(item);
+        }
     }
 
     @FXML

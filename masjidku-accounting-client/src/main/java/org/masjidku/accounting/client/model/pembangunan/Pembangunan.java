@@ -15,20 +15,21 @@
 
 package org.masjidku.accounting.client.model.pembangunan;
 
-import org.masjidku.accounting.client.model.UangKeluar;
+public record Pembangunan(String id, String tujuan, String keterangan, String jumlah, String tanggal, String operator) {
 
-public class Pembangunan extends UangKeluar {
-    public Pembangunan() { this(null, null, null, "0", null, null); }
-
-    public Pembangunan(String id, String nama, String keterangan, String jumlah, String tanggal, String operator) {
-        super(id, nama, keterangan, jumlah, tanggal, operator);
+    public Pembangunan() {
+        this(null, null, null, "0", null, null);
     }
 
-    public Pembangunan(String nama, String keterangan, String jumlah, String tanggal, String operator) {
-        super.setTujuan(nama);
-        super.setKeterangan(keterangan);
-        super.setJumlah(jumlah);
-        super.setTanggal(tanggal);
-        super.setOperator(operator);
+    public Pembangunan(String tujuan, String keterangan, String jumlah, String tanggal, String operator) {
+        this(null, tujuan, keterangan, jumlah, tanggal, operator);
     }
+
+    public String getId() { return id; }
+    public String getTujuan() { return tujuan; }
+    public String getKeterangan() { return keterangan; }
+    public String getJumlah() { return jumlah; }
+    public String getTanggal() { return tanggal; }
+    public String getOperator() { return operator; }
+    public String getNama() { return tujuan; }
 }

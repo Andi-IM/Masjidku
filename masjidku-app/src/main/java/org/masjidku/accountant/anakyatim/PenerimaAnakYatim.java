@@ -23,7 +23,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.controller.BaseTableController;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.anakyatim.AnakYatim;
-import org.masjidku.accounting.client.service.AnakYatimService;
+
+
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +34,7 @@ import java.util.List;
 
 public class PenerimaAnakYatim extends BaseTableController<AnakYatim> {
     private static final Logger log = LoggerFactory.getLogger(PenerimaAnakYatim.class);
-    private final AnakYatimService dao = ServiceProvider.get(AnakYatimService.class);
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
 
     @FXML
     private TableView<AnakYatim> tableAnakyatim;
@@ -104,17 +106,17 @@ usia.setCellValueFactory(new PropertyValueFactory<>("usia"));
 
     @Override
     protected List<AnakYatim> fetchAllData() throws java.sql.SQLException {
-        return dao.getAll();
+        return client.getAllAnakYatim();
     }
 
     @Override
     protected boolean checkIfExist(AnakYatim item) throws java.sql.SQLException {
-        return dao.isAnakYatimExist(item.getId());
+        return client.isAnakYatimExist(item.id());
     }
 
     @Override
     protected void deleteItem(AnakYatim item) throws java.sql.SQLException {
-        dao.delete(item.getId());
+        client.delete(item);
     }
 
     @Override

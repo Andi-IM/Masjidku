@@ -18,27 +18,21 @@ package org.masjidku.secretary;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleGroup;
 import org.masjidku.navigation.AppRouter;
+import org.masjidku.controller.BaseRootController;
 
-public class SecretaryRoot {
+public class SecretaryRoot extends BaseRootController {
 
-    @FXML
-    public ToggleGroup groupButton;
-    private AppRouter mainApp;
     
-    public void setMainApp(AppRouter mainApp) {
-        this.mainApp = mainApp;
-    }
+    
+    
+    
 
-    @FXML
-    public void initialize() {
-        org.masjidku.util.UIUtils.preventEmptyToggleSelection(groupButton);
-    }
+    
 
     @FXML
     public void homeAction() { mainApp.setSecretaryView(); }
 
-    @FXML
-    public void profileAction() { mainApp.showProfile(); }
+    
 
     @FXML
     public void activityManage() { mainApp.showKegiatan(); }
@@ -49,7 +43,6 @@ public class SecretaryRoot {
     @FXML
     public void invitationManage() { mainApp.showUndangan(); }
 
-    @FXML
-    public void aboutAction() { mainApp.showAbout(); }
+    
 }
 

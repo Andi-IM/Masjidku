@@ -46,6 +46,8 @@ public class Kegiatan {
     private String operator;
 
     public Kegiatan() {
+        this.waktu = LocalTime.now();
+        this.tanggal = LocalDate.now();
     }
 
     public Kegiatan(String nama, LocalTime waktu, LocalDate tanggal, String tempat, String operator) {

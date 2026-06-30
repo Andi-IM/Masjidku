@@ -15,9 +15,6 @@
 
 package org.masjidku.events.client.model;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 public record Kegiatan(
         String idKegiatan,
         String nama,
@@ -31,7 +28,7 @@ public record Kegiatan(
     }
 
     public Kegiatan(String nama,
-                    LocalTime waktu,
+                    String waktu,
                     String tanggal,
                     String tempat,
                     String operator) {

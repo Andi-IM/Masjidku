@@ -15,20 +15,24 @@
 
 package org.masjidku.accounting.client.model.zakat;
 
-import org.masjidku.accounting.client.model.UangKeluar;
+public record ZakatKeluar(String id, String tujuan, String jumlah, String tanggal, String operator) {
 
-public class ZakatKeluar extends UangKeluar {
-    public ZakatKeluar() { this(null,null,"0",null,null); }
-
-    public ZakatKeluar(String id, String tujuan, String jumlah, String tanggal, String operator) {
-        super(id, tujuan, jumlah, tanggal, operator);
+    public ZakatKeluar() {
+        this(null, null, "0", null, null);
     }
 
-    public ZakatKeluar(String nama, String jumlah, String tanggal, String operator) {
-        super(nama,jumlah,tanggal,operator);
+    public ZakatKeluar(String tujuan, String jumlah, String tanggal, String operator) {
+        this(null, tujuan, jumlah, tanggal, operator);
     }
 
-    public String getNama() {
-        return super.getTujuan();
+    public String nama() {
+        return tujuan;
     }
+
+    public String getId() { return id; }
+    public String getTujuan() { return tujuan; }
+    public String getJumlah() { return jumlah; }
+    public String getTanggal() { return tanggal; }
+    public String getOperator() { return operator; }
+    public String getNama() { return tujuan; }
 }

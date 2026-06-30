@@ -19,9 +19,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.masjidku.navigation.AppRouter;
+import net.synedra.validatorfx.Validator;
 import org.masjidku.accounting.client.model.tpa.TpaKeluar;
-import org.masjidku.accounting.client.service.TpaKeluarService;
+import org.masjidku.accounting.client.service.AccountingClient;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,9 +30,14 @@ import org.slf4j.LoggerFactory;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import static org.masjidku.di.DiProvider.getAppComponent;
+import static org.masjidku.util.DaoHelper.saveOrUpdate;
+import static org.masjidku.util.ValidationHelper.*;
+
 public class EditPembayaranTpa {
     private static final Logger log = LoggerFactory.getLogger(EditPembayaranTpa.class);
-    private final TpaKeluarService dao = ServiceProvider.get(TpaKeluarService.class);
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
+    private final Validator validator = new Validator();
 
     @FXML
     private TextField txtNama;
@@ -49,22 +55,29 @@ public class EditPembayaranTpa {
     @SuppressWarnings("unused")
     private Stage dialogStage;
 
+    @FXML
+    public void initialize() {
+        registerRequiredField(validator, txtNama, "nama", "Tujuan harus diisi!");
+        registerRequiredField(validator, txtKeterangan, "keterangan", "Keterangan harus diisi!");
+        registerNumericField(validator, txtJumlah, "jumlah", "Jumlah harus diisi!", "Jumlah harus berupa angka!");
+        registerDatePicker(validator, date, "tanggal", "Tanggal harus dipilih!");
+    }
+
     public void setMainApp(AppRouter mainApp, TpaKeluar model) {
-        String operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
+        operator = getAppComponent().getSessionManager().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         this.model = model;
-        this.operator = operator;
 
-        if (model.getId() != null) {
+        if (model.id() != null) {
             setModel(model);
         }
     }
 
     private void setModel(TpaKeluar model) {
-        txtNama.setText(model.getNama());
-        txtKeterangan.setText(model.getKeterangan());
-        txtJumlah.setText(model.getJumlah());
-        LocalDate localDate = LocalDate.parse(model.getTanggal());
+        txtNama.setText(model.nama());
+        txtKeterangan.setText(model.keterangan());
+        txtJumlah.setText(model.jumlah());
+        LocalDate localDate = LocalDate.parse(model.tanggal());
         date.setValue(localDate);
     }
 
@@ -74,7 +87,7 @@ public class EditPembayaranTpa {
      * @return fieldStatus
      */
     private boolean formValidation() {
-        return !txtNama.getText().isBlank() && !txtKeterangan.getText().isBlank() && !txtJumlah.getText().isBlank() && txtJumlah.getText().matches("\\d+") && date.getValue() != null;
+        return validator.validate();
     }
 
     @FXML
@@ -85,22 +98,15 @@ public class EditPembayaranTpa {
             String jumlah = txtJumlah.getText();
             String tanggal = date.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-            if (model.getId() == null) {
+            if (model.id() == null) {
                 model = new TpaKeluar(nama, keterangan, jumlah, tanggal, operator);
             }
 
-            org.masjidku.util.DaoHelper.saveOrUpdate(
-                () -> dao.isDataExist(model.getId()),
-                () -> dao.update(new String[]{
-                        model.getId(),
-                        model.getNama(),
-                        model.getKeterangan(),
-                        model.getJumlah(),
-                        model.getTanggal(),
-                        operator
-                }),
-                () -> dao.save(model),
-                dialogStage, log
+            saveOrUpdate(
+                    () -> client.isTpaKeluarExist(model.id()),
+                    () -> client.update(new TpaKeluar(model.id(), nama, keterangan, jumlah, tanggal, operator)),
+                    () -> client.save(model),
+                    dialogStage, log
             );
         } else {
             org.masjidku.util.AlertHelper.alertError(dialogStage, "Error", "Data belum lengkap!");
@@ -127,5 +133,6 @@ public class EditPembayaranTpa {
 
 
 }
+
 
 

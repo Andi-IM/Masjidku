@@ -17,34 +17,26 @@ package org.masjidku.accountant;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleGroup;
 import org.masjidku.navigation.AppRouter;
+import org.masjidku.controller.BaseRootController;
 
-public class AccountantRoot {
+public class AccountantRoot extends BaseRootController {
+
+    
     public ToggleGroup groupButton;
-    private AppRouter mainApp;
+    
 
-    public void setMainApp(AppRouter mainApp) {
-        this.mainApp = mainApp;
-    }
+    
 
-    @FXML
-    public void initialize() {
-        org.masjidku.util.UIUtils.preventEmptyToggleSelection(groupButton);
-    }
+    
 
     @FXML
     public void homeAction() {
         mainApp.setAccountantView();
     }
 
-    @FXML
-    public void profileAction() {
-        mainApp.showProfile();
-    }
+    
 
-    @FXML
-    public void aboutAction() {
-        mainApp.showAbout();
-    }
+    
 
     @FXML
     public void ayatimAction() {

@@ -16,16 +16,12 @@ package org.masjidku.principal;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 import org.masjidku.navigation.AppRouter;
-public class PrincipalHome {
-    @FXML
-    public Text greeting;
-    private AppRouter mainApp;
-    public void setMainApp(AppRouter mainApp) {
-        String username = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
-        this.mainApp = mainApp;
-        greeting.setText("Bapak "+username);
-    }
-    @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+import org.masjidku.controller.BaseHomeController;
+public class PrincipalHome extends BaseHomeController {
+    
+    
+    
+    
 }
+
 

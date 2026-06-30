@@ -24,14 +24,19 @@ public class HomeController {
 
     /**
      * Is called by the main application to give a reference back to itself.
+     *
      * @param mainApp the context
      */
-    public void setMainApp(AppRouter mainApp){ this.mainApp = mainApp; }
+    public void setMainApp(AppRouter mainApp) {
+        this.mainApp = mainApp;
+    }
 
     /**
      * Opens login page.
      */
     @FXML
-    public void handleLoginPage() { mainApp.showLogin(); }
+    public void handleLoginPage() {
+        mainApp.showLogin();
+    }
 }
 

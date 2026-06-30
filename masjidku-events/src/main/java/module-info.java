@@ -1,7 +1,4 @@
 import org.masjidku.events.application.EventsClientImpl;
-import org.masjidku.events.application.usecase.KegiatanUseCase;
-import org.masjidku.events.application.usecase.TamuKegiatanUseCase;
-import org.masjidku.events.application.usecase.TamuUseCase;
 
 module org.masjidku.events {
     requires transitive org.masjidku.events.client;
@@ -10,9 +7,12 @@ module org.masjidku.events {
     requires org.hibernate.orm.core;
     requires jakarta.persistence;
     requires java.naming;
+    requires org.slf4j;
+    requires dagger;
+    requires javax.inject;
 
-    provides KegiatanUseCase with org.masjidku.events.application.usecase.impl.KegiatanUseCaseImpl;
-    provides TamuUseCase with org.masjidku.events.application.usecase.impl.TamuUseCaseImpl;
-    provides TamuKegiatanUseCase with org.masjidku.events.application.usecase.impl.TamuKegiatanUseCaseImpl;
+    exports org.masjidku.events.di;
+    opens org.masjidku.events.domain.entity to org.hibernate.orm.core;
+
     provides org.masjidku.events.client.EventsClient with EventsClientImpl;
 }

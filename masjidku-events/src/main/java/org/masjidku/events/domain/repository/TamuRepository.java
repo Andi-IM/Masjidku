@@ -1,14 +1,24 @@
 package org.masjidku.events.domain.repository;
-import javafx.collections.ObservableList;
+
 import org.masjidku.events.domain.entity.Tamu;
 
+import java.util.List;
+import java.util.Optional;
+
 public interface TamuRepository {
-    Tamu get(String id);
-    ObservableList<Tamu> getAll();
+    Optional<Tamu> get(String id);
+
+    List<Tamu> getAll();
+
     void save(Tamu tamu);
-    void update(String[] params);
+
+    void update(Tamu tamu);
+
     void delete(String id);
+
     boolean isTamuExist(String id);
-    ObservableList<String> getAllTamuName();
+
+    List<String> getAllTamuName();
+
     String getIdByName(String name);
 }

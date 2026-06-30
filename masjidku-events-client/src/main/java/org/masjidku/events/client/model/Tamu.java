@@ -22,4 +22,12 @@ public record Tamu(
         String notelp,
         String operator
 ) {
+    public Tamu() {
+        this("", "", "", "", "");
+    }
+
+    public Tamu(String namaTamu, String alamat, String noTelp, String operator){
+        this(null, namaTamu, alamat, noTelp, operator);
+    }
+
 }

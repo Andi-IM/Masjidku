@@ -15,16 +15,19 @@
 
 package org.masjidku.accounting.client.model.zakat;
 
-import org.masjidku.accounting.client.model.DataDonasi;
+public record ZakatMasuk(String id, String donatur, String jumlah, String tanggal, String operator) {
 
-public class ZakatMasuk extends DataDonasi {
-    public ZakatMasuk(String id, String donatur, String jumlah, String tanggal, String operator) {
-        super(id, donatur, jumlah, tanggal, operator);
+    public ZakatMasuk() {
+        this(null, null, "0", null, null);
     }
-
-    public ZakatMasuk() { this(null, null, "0", null, null); }
 
     public ZakatMasuk(String donatur, String jumlah, String tanggal, String operator) {
-        super(donatur, jumlah, tanggal, operator);
+        this(null, donatur, jumlah, tanggal, operator);
     }
+
+    public String getId() { return id; }
+    public String getDonatur() { return donatur; }
+    public String getJumlah() { return jumlah; }
+    public String getTanggal() { return tanggal; }
+    public String getOperator() { return operator; }
 }

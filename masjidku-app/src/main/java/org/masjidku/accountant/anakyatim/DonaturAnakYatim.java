@@ -7,7 +7,9 @@ import javafx.scene.control.TableView;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.controller.BaseTableController;
 import org.masjidku.accounting.client.model.anakyatim.DonasiAYatim;
-import org.masjidku.accounting.client.service.DonasiAYatimService;
+
+
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +19,7 @@ import java.util.List;
 
 public class DonaturAnakYatim extends BaseTableController<DonasiAYatim> {
     private static final Logger log = LoggerFactory.getLogger(DonaturAnakYatim.class);
-    private final DonasiAYatimService dao = ServiceProvider.get(DonasiAYatimService.class);
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
 
     @FXML
     private TableView<DonasiAYatim> tblAYMasuk;
@@ -60,17 +62,17 @@ public class DonaturAnakYatim extends BaseTableController<DonasiAYatim> {
 
     @Override
     protected List<DonasiAYatim> fetchAllData() throws SQLException {
-        return dao.getAll();
+        return client.getAllDonasiAYatim();
     }
 
     @Override
     protected boolean checkIfExist(DonasiAYatim item) throws SQLException {
-        return dao.isDonaturExist(item.getId());
+        return client.isDonasiAYatimExist(item.id());
     }
 
     @Override
     protected void deleteItem(DonasiAYatim item)  {
-        dao.delete(item.getId());
+        client.delete(item);
     }
 
     @Override

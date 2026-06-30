@@ -19,6 +19,10 @@ public record TamuKegiatan(
         String idUndangan,
         Tamu tamu,
         Kegiatan kegiatan,
-        String keterangan
+        String keterangan,
+        String operator
 ) {
+    public TamuKegiatan(){
+        this("",null, null,null, "");
+    }
 }

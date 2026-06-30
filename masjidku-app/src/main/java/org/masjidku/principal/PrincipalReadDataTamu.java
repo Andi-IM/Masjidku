@@ -63,7 +63,7 @@ public class PrincipalReadDataTamu extends BaseTableController<Tamu> {
     }
 
     public void setMainApp(AppRouter mainApp) {
-        String username = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
+        String username = org.masjidku.di.DiProvider.getAppComponent().getSessionManager().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         if (greeting != null) {
             greeting.setText("Bapak " + username);
@@ -121,17 +121,18 @@ public class PrincipalReadDataTamu extends BaseTableController<Tamu> {
 
     @Override
     protected List<Tamu> fetchAllData() throws SQLException {
-        return service.getAll();
+        return eventClient.getAllTamu();
     }
 
     @Override
     protected boolean checkIfExist(Tamu item) throws SQLException {
-        return service.isTamuExist(item.getIdTamu());
+        return eventClient.isTamuExist(item.idTamu());
     }
 
     @Override
     protected void deleteItem(Tamu item) throws SQLException {
-        service.delete(item.getIdTamu());
+        eventClient.delete(item);
     }
 }
+
 

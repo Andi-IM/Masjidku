@@ -1,0 +1,104 @@
+package org.masjidku.accounting.domain.repository.impl;
+
+import org.masjidku.accounting.domain.entity.ZakatKeluarEntity;
+import org.masjidku.accounting.domain.repository.ZakatKeluarRepository;
+import org.masjidku.accounting.domain.repository.exception.DataAccessException;
+import java.util.List;
+import java.util.Optional;
+import javax.inject.Inject;
+import org.hibernate.SessionFactory;
+import org.masjidku.domain.repository.base.TransactionHelper;
+
+public class ZakatKeluarRepositoryImpl implements ZakatKeluarRepository {
+
+    private final SessionFactory sessionFactory;
+    private final TransactionHelper transactionHelper;
+
+    @Inject
+    public ZakatKeluarRepositoryImpl(SessionFactory sessionFactory, TransactionHelper transactionHelper) {
+        this.sessionFactory = sessionFactory;
+        this.transactionHelper = transactionHelper;
+    }
+
+
+    @Override
+    public Optional<ZakatKeluarEntity> findById(String id) {
+        try {
+            var session = sessionFactory.getCurrentSession();
+            return Optional.ofNullable(session.get(ZakatKeluarEntity.class, id));
+        } catch (Exception e) {
+            throw new DataAccessException("Failed to get ZakatKeluarEntity by ID", e);
+        }
+    }
+
+    @Override
+    public List<ZakatKeluarEntity> findAll() {
+        try {
+            var session = sessionFactory.getCurrentSession();
+            return session.createQuery("FROM ZakatKeluarEntity", ZakatKeluarEntity.class).list();
+        } catch (Exception e) {
+            throw new DataAccessException("Failed to get all ZakatKeluarEntity", e);
+        }
+    }
+
+    @Override
+    public void save(ZakatKeluarEntity entity) {
+        try {
+            var session = sessionFactory.getCurrentSession();
+            session.persist(entity);
+        } catch (Exception e) {
+            throw new DataAccessException("Failed to save ZakatKeluarEntity", e);
+        }
+    }
+
+    @Override
+    public void update(ZakatKeluarEntity entity) {
+        try {
+            var session = sessionFactory.getCurrentSession();
+            session.merge(entity);
+        } catch (Exception e) {
+            throw new DataAccessException("Failed to update ZakatKeluarEntity", e);
+        }
+    }
+
+    @Override
+    public void delete(String id) {
+        try {
+            var session = sessionFactory.getCurrentSession();
+            ZakatKeluarEntity entity = session.get(ZakatKeluarEntity.class, id);
+            if (entity != null) {
+                session.remove(entity);
+            }
+        } catch (Exception e) {
+            throw new DataAccessException("Failed to delete ZakatKeluarEntity", e);
+        }
+    }
+
+    @Override
+    public boolean exists(String id) {
+        return findById(id).isPresent();
+    }
+
+    @Override
+    public ZakatKeluarEntity getLastRecord() {
+        try {
+            var session = sessionFactory.getCurrentSession();
+            var query = session.createQuery("FROM ZakatKeluarEntity ORDER BY id DESC", ZakatKeluarEntity.class);
+            query.setMaxResults(1);
+            return query.uniqueResult();
+        } catch (Exception e) {
+            throw new DataAccessException("Failed to get last ZakatKeluarEntity", e);
+        }
+    }
+
+    @Override
+    public String getTotal() {
+        try {
+            var session = sessionFactory.getCurrentSession();
+            var count = session.createQuery("SELECT IFNULL(SUM(CAST(e.jumlah AS double)), 0) FROM ZakatKeluarEntity e", Double.class).uniqueResult();
+            return count != null ? String.valueOf(count.longValue()) : "0";
+        } catch (Exception e) {
+            throw new DataAccessException("Failed to get total ZakatKeluarEntity", e);
+        }
+    }
+}

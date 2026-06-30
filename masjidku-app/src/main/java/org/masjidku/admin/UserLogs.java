@@ -21,7 +21,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.navigation.AppRouter;
-import org.masjidku.model.session.Session;
+import org.masjidku.domain.repository.UserSessionRepository;
+import org.masjidku.domain.repository.impl.UserSessionRepositoryImpl;
 import org.masjidku.model.session.UserSession;
 
 import java.net.URL;
@@ -36,7 +37,7 @@ public class UserLogs implements Initializable {
     @FXML
     public TableColumn<UserSession, String> duration;
     private AppRouter mainApp;
-    private Session dao;
+    private UserSessionRepository dao;
     public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
@@ -50,7 +51,7 @@ public class UserLogs implements Initializable {
 
     @FXML
     public void onResetListener() {
-        dao = new Session();
+        dao = new UserSessionRepositoryImpl();
         dao.truncateData();
         mainApp.showUserLog();
     }
@@ -60,7 +61,7 @@ public class UserLogs implements Initializable {
      * @return Observable List
      */
     private ObservableList<UserSession> getSessionData() {
-        dao = new Session();
+        dao = new UserSessionRepositoryImpl();
         sessionData.addAll(dao.getAllSessions());
         return sessionData;
     }

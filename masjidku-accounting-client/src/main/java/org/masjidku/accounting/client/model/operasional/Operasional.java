@@ -15,20 +15,21 @@
 
 package org.masjidku.accounting.client.model.operasional;
 
-import org.masjidku.accounting.client.model.UangKeluar;
+public record Operasional(String id, String tujuan, String keterangan, String jumlah, String tanggal, String operator) {
 
-public class Operasional extends UangKeluar {
-    public Operasional(){ this(null, null, null, "0", null, null); }
-
-    public Operasional(String id, String tujuan, String keterangan, String jumlah, String tanggal, String operator) {
-        super(id, tujuan, keterangan, jumlah, tanggal, operator);
+    public Operasional() {
+        this(null, null, null, "0", null, null);
     }
 
-    public Operasional(String nama, String keterangan, String jumlah, String tanggal, String operator) {
-        super.setTujuan(nama);
-        super.setKeterangan(keterangan);
-        super.setJumlah(jumlah);
-        super.setTanggal(tanggal);
-        super.setOperator(operator);
+    public Operasional(String tujuan, String keterangan, String jumlah, String tanggal, String operator) {
+        this(null, tujuan, keterangan, jumlah, tanggal, operator);
     }
+
+    public String getId() { return id; }
+    public String getTujuan() { return tujuan; }
+    public String getKeterangan() { return keterangan; }
+    public String getJumlah() { return jumlah; }
+    public String getTanggal() { return tanggal; }
+    public String getOperator() { return operator; }
+    public String getNama() { return tujuan; }
 }

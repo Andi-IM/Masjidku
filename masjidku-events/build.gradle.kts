@@ -1,20 +1,24 @@
 plugins {
     java
-    id("org.openjfx.javafxplugin")
 }
 
 repositories {
     mavenCentral()
 }
 
-tasks.withType<JavaCompile> {
-    options.encoding = "UTF-8"
+java {
+    modularity.inferModulePath.set(true)
 }
 
-javafx {
-    version = "21.0.6"
-    modules = listOf("javafx.base")
+tasks.named<JavaCompile>("compileJava") {
+    options.encoding = "UTF-8"
+    doFirst {
+        options.compilerArgs.addAll(listOf("--module-path", classpath.asPath))
+        classpath = files()
+    }
 }
+
+
 
 dependencies {
     implementation(project(":masjidku-common"))
@@ -23,4 +27,10 @@ dependencies {
     implementation(libs.slf4j)
     implementation(libs.hibernate.core)
     implementation(libs.hibernate.community.dialects)
+    implementation(libs.hibernate.hikaricp)
+    implementation(libs.hikaricp)
+
+    // Dagger 2 DI
+    implementation(libs.dagger)
+    annotationProcessor(libs.dagger.compiler)
 }

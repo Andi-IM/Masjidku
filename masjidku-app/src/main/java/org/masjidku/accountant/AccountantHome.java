@@ -16,22 +16,24 @@ package org.masjidku.accountant;
 
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
+import org.masjidku.di.DiProvider;
 import org.masjidku.navigation.AppRouter;
+import org.masjidku.controller.BaseHomeController;
 
-public class AccountantHome {
-    @FXML
-    private Text greeting;
-    private AppRouter mainApp;
-
-    public void setMainApp(AppRouter mainApp) {
-        String username = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
-        this.mainApp = mainApp;
-        greeting.setText(username);
+public class AccountantHome extends BaseHomeController {
+    @Override
+    protected String getGreetingPrefix() {
+        return "";
     }
 
-    @FXML
-    public void onLogoutClick() {
-        mainApp.onLogoutAction();
-    }
+
+    
+    
+    
+
+    
+
+    
 }
+
 

@@ -19,20 +19,28 @@ import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.masjidku.navigation.AppRouter;
+import net.synedra.validatorfx.Validator;
 import org.masjidku.accounting.client.model.zakat.ZakatKeluar;
-import org.masjidku.accounting.client.service.ZakatKeluarService;
+import org.masjidku.accounting.client.service.AccountingClient;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import static org.masjidku.di.DiProvider.getAppComponent;
+import static org.masjidku.util.AlertHelper.alertError;
+import static org.masjidku.util.AlertHelper.alertInfo;
+import static org.masjidku.util.Constants.ERROR;
+import static org.masjidku.util.Constants.SUCCESS;
+import static org.masjidku.util.ValidationHelper.*;
+
 public class EditPenerimaZakat {
     private static final Logger log = LoggerFactory.getLogger(EditPenerimaZakat.class);
-    private final ZakatKeluarService dao = ServiceProvider.get(ZakatKeluarService.class);
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
+    private final Validator validator = new Validator();
 
     @FXML
     private TextField txtNama;
@@ -48,21 +56,27 @@ public class EditPenerimaZakat {
     @SuppressWarnings("unused")
     private Stage dialogStage;
 
+    @FXML
+    public void initialize() {
+        registerRequiredField(validator, txtNama, "nama", "Nama penerima harus diisi!");
+        registerNumericField(validator, txtJumlah, "jumlah", "Jumlah harus diisi!", "Jumlah harus berupa angka!");
+        registerDatePicker(validator, date, "tanggal", "Tanggal harus dipilih!");
+    }
+
     public void setMainApp(AppRouter mainApp, ZakatKeluar model) {
-        String operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
+        operator = getAppComponent().getSessionManager().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         this.penerima = model;
-        this.operator = operator;
 
-        if (model.getId() != null) {
+        if (model.id() != null) {
             setModel(model);
         }
     }
 
     private void setModel(ZakatKeluar model) {
-        txtNama.setText(model.getNama());
-        txtJumlah.setText(model.getJumlah());
-        LocalDate localDate = LocalDate.parse(model.getTanggal());
+        txtNama.setText(model.nama());
+        txtJumlah.setText(model.jumlah());
+        LocalDate localDate = LocalDate.parse(model.tanggal());
         date.setValue(localDate);
     }
 
@@ -79,7 +93,7 @@ public class EditPenerimaZakat {
      * @return fieldStatus
      */
     private boolean formValidation() {
-        return !txtNama.getText().isBlank() && !txtJumlah.getText().isBlank() && txtJumlah.getText().matches("\\d+") && date.getValue() != null;
+        return validator.validate();
     }
 
     @FXML
@@ -94,23 +108,17 @@ public class EditPenerimaZakat {
             }
 
             try {
-                if (dao.isDataExist(penerima.getId())) {
-                    dao.update(new String[]{
-                            penerima.getId(),
-                            penerima.getNama(),
-                            penerima.getJumlah(),
-                            penerima.getTanggal(),
-                            operator
-                    });
-                    org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "Data telah diupdate");
+                if (client.isZakatKeluarExist(penerima.id())) {
+                    client.update(new ZakatKeluar(penerima.id(), penerima.nama(), penerima.jumlah(), penerima.tanggal(), operator));
+                    alertInfo(dialogStage, SUCCESS, "Data telah diupdate");
                 } else {
-                    dao.save(penerima);
+                    client.save(penerima);
                 }
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 log.error("An error occurred", e);
             }
         } else {
-            org.masjidku.util.AlertHelper.alertError(dialogStage, "Error", "Data belum lengkap!");
+            alertError(dialogStage, ERROR, "Data belum lengkap!");
         }
     }
 
@@ -127,5 +135,6 @@ public class EditPenerimaZakat {
 
 
 }
+
 
 

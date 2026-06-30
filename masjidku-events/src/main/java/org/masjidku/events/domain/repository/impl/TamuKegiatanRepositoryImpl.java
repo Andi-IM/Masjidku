@@ -1,75 +1,79 @@
 package org.masjidku.events.domain.repository.impl;
 
-import javafx.collections.ObservableList;
-import org.masjidku.events.domain.entity.Kegiatan;
-import org.masjidku.events.domain.entity.Tamu;
+import org.hibernate.SessionFactory;
 import org.masjidku.events.domain.entity.TamuKegiatan;
 import org.masjidku.events.domain.repository.TamuKegiatanRepository;
-import org.masjidku.events.domain.repository.base.HibernateUtil;
+import org.masjidku.events.domain.repository.exception.DataAccessException;
+
+import javax.inject.Inject;
+import java.util.List;
+import java.util.Optional;
 
 public class TamuKegiatanRepositoryImpl implements TamuKegiatanRepository {
 
-    public TamuKegiatanRepositoryImpl() {
+    private final SessionFactory sessionFactory;
+
+    @Inject
+    public TamuKegiatanRepositoryImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
+
     @Override
-    public TamuKegiatan getTamuKegiatanById(String id) {
-        try (var session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.get(TamuKegiatan.class, id);
+    public Optional<TamuKegiatan> getTamuKegiatanById(String id) {
+        try {
+            var session = sessionFactory.getCurrentSession();
+            return Optional.ofNullable(session.get(TamuKegiatan.class, id));
+        } catch (Exception e) {
+            throw new DataAccessException("Failed to get Undangan by ID", e);
         }
     }
 
     @Override
-    public ObservableList<TamuKegiatan> getAllTamuKegiatan() {
-        try (var session = HibernateUtil.getSessionFactory().openSession()) {
-            var list = session.createQuery("FROM TamuKegiatan tk JOIN FETCH tk.tamu JOIN FETCH tk.kegiatan", TamuKegiatan.class).list();
-            return javafx.collections.FXCollections.observableArrayList(list);
+    public List<TamuKegiatan> getAllTamuKegiatan() {
+        try {
+            var session = sessionFactory.getCurrentSession();
+            return session.createQuery("FROM TamuKegiatan tk JOIN FETCH tk.tamu JOIN FETCH tk.kegiatan", TamuKegiatan.class).list();
+        } catch (Exception e) {
+            throw new DataAccessException("Failed to get all Kegiatan", e);
         }
     }
 
     @Override
-    public void saveTamuKegiatan(String idKegiatan, String idTamu, String keterangan, String operator) {
-        try (var session = HibernateUtil.getSessionFactory().openSession()) {
-            var transaction = session.beginTransaction();
-            TamuKegiatan tk = new TamuKegiatan();
-            tk.setKegiatanModel(session.getReference(Kegiatan.class, idKegiatan));
-            tk.setTamu(session.getReference(Tamu.class, idTamu));
-            tk.setKeterangan(keterangan);
-            session.persist(tk);
-            transaction.commit();
+    public void save(TamuKegiatan undangan) {
+        try {
+            var session = sessionFactory.getCurrentSession();
+            session.persist(undangan);
+        } catch (Exception e) {
+            throw new DataAccessException("Failed to save undangan", e);
         }
     }
 
     @Override
-    public void updateTamuKegiatan(String[] params) {
-        // params: keterangan, id_tamu, id_kegiatan, id_undangan
-        try (var session = HibernateUtil.getSessionFactory().openSession()) {
-            var transaction = session.beginTransaction();
-            TamuKegiatan tk = session.get(TamuKegiatan.class, params[3]);
-            if (tk != null) {
-                tk.setKeterangan(params[0]);
-                tk.setTamu(session.getReference(Tamu.class, params[1]));
-                tk.setKegiatanModel(session.getReference(Kegiatan.class, params[2]));
-                session.merge(tk);
-            }
-            transaction.commit();
+    public void update(TamuKegiatan undangan) {
+        try {
+            var session = sessionFactory.getCurrentSession();
+            session.merge(undangan);
+        } catch (Exception e) {
+            throw new DataAccessException("Failed to update undangan", e);
         }
     }
 
     @Override
-    public void deleteTamuKegiatan(String id) {
-        try (var session = HibernateUtil.getSessionFactory().openSession()) {
-            var transaction = session.beginTransaction();
+    public void delete(String id) {
+        try {
+            var session = sessionFactory.getCurrentSession();
             TamuKegiatan tk = session.get(TamuKegiatan.class, id);
             if (tk != null) {
                 session.remove(tk);
             }
-            transaction.commit();
+        } catch (Exception e) {
+            throw new DataAccessException("Failed to delete undangan", e);
         }
     }
 
     @Override
     public boolean isUndanganExist(String id) {
-        return getTamuKegiatanById(id) != null;
+        return getTamuKegiatanById(id).isPresent();
     }
 }

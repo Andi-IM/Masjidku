@@ -15,19 +15,19 @@
 
 package org.masjidku.accounting.client.model.anakyatim;
 
-import org.masjidku.accounting.client.model.DataDonasi;
-
-public class DonasiAYatim extends DataDonasi {
+public record DonasiAYatim(String id, String donatur, String jumlah, String tanggal, String operator) {
 
     public DonasiAYatim() {
         this(null, "", "0", null, "");
     }
 
-    public DonasiAYatim(String id, String donatur, String jumlah, String tanggal, String operator) {
-        super(id, donatur, jumlah, tanggal, operator);
+    public DonasiAYatim(String donatur, String jumlah, String tanggal, String operator) {
+        this(null, donatur, jumlah, tanggal, operator);
     }
 
-    public DonasiAYatim(String donatur, String jumlah, String tanggal, String operator) {
-        super(donatur, jumlah, tanggal, operator);
-    }
+    public String getId() { return id; }
+    public String getDonatur() { return donatur; }
+    public String getJumlah() { return jumlah; }
+    public String getTanggal() { return tanggal; }
+    public String getOperator() { return operator; }
 }

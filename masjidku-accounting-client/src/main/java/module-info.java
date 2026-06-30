@@ -1,8 +1,7 @@
-module org.masjidku.accounting.client {
+open module org.masjidku.accounting.client {
     requires transitive javafx.base;
     requires transitive java.sql;
 
-    exports org.masjidku.accounting.client.model;
     exports org.masjidku.accounting.client.model.anakyatim;
     exports org.masjidku.accounting.client.model.operasional;
     exports org.masjidku.accounting.client.model.pembangunan;

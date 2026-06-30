@@ -22,7 +22,9 @@ import javafx.scene.control.TableView;
 import org.masjidku.controller.BaseTableController;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.tpa.TpaKeluar;
-import org.masjidku.accounting.client.service.TpaKeluarService;
+
+
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +33,7 @@ import java.util.List;
 
 public class PembayaranTpa extends BaseTableController<TpaKeluar> {
     private static final Logger log = LoggerFactory.getLogger(PembayaranTpa.class);
-    private final TpaKeluarService dao = ServiceProvider.get(TpaKeluarService.class);
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
 
     @FXML
     private TableView<TpaKeluar> tableTpa;
@@ -101,17 +103,17 @@ public class PembayaranTpa extends BaseTableController<TpaKeluar> {
 
     @Override
     protected List<TpaKeluar> fetchAllData() throws java.sql.SQLException {
-        return dao.getAll();
+        return client.getAllTpaKeluar();
     }
 
     @Override
     protected boolean checkIfExist(TpaKeluar item) throws java.sql.SQLException {
-        return dao.isDataExist(item.getId());
+        return client.isTpaKeluarExist(item.id());
     }
 
     @Override
     protected void deleteItem(TpaKeluar item) throws java.sql.SQLException {
-        dao.delete(item.getId());
+        client.delete(item);
     }
 
     @Override

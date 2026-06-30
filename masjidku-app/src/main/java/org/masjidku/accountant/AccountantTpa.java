@@ -19,9 +19,11 @@ import javafx.fxml.FXML;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.tpa.TpaKeluar;
 import org.masjidku.accounting.client.model.tpa.TpaMasuk;
-import org.masjidku.accounting.client.service.AccountingFunctionsService;
-import org.masjidku.accounting.client.service.TpaKeluarService;
-import org.masjidku.accounting.client.service.TpaMasukService;
+
+
+
+
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,10 +33,8 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class AccountantTpa extends BaseAccountantController {
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
     private static final Logger log = LoggerFactory.getLogger(AccountantTpa.class);
-    private final AccountingFunctionsService df = ServiceProvider.get(AccountingFunctionsService.class);
-    private final TpaKeluarService tpakdao = ServiceProvider.get(TpaKeluarService.class);
-    private final TpaMasukService tpamdao = ServiceProvider.get(TpaMasukService.class);
     private AppRouter mainApp;
 
     public void setMainApp(AppRouter mainApp) {
@@ -60,20 +60,20 @@ public class AccountantTpa extends BaseAccountantController {
     public void initialize(URL location, ResourceBundle resources) {
 
         try {
-            TpaKeluar penerima = tpakdao.getLastRecord();
-            TpaMasuk pemberi = tpamdao.getLastRecord();
+            TpaKeluar penerima = client.getLastTpaKeluar();
+            TpaMasuk pemberi = client.getLastTpaMasuk();
 
             updateDashboardSummary(
-                    pemberi.getJumlah(), // Pemasukan
-                    penerima.getJumlah(), // Pengeluaran
-                    tpamdao.getTotalIncome(), // Total Pemasukan
-                    tpakdao.getTotalOutcome(), // Total Pengeluaran
-                    df.getTpaBalance(), // Saldo
-                    pemberi.getTanggal(), // Tgl Pemasukan
-                    penerima.getTanggal() // Tgl Pengeluaran
+                    pemberi.jumlah(), // Pemasukan
+                    penerima.jumlah(), // Pengeluaran
+                    client.getTotalTpaMasuk(), // Total Pemasukan
+                    client.getTotalTpaKeluar(), // Total Pengeluaran
+                    client.getTpaBalance(), // Saldo
+                    pemberi.tanggal(), // Tgl Pemasukan
+                    penerima.tanggal() // Tgl Pengeluaran
             );
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             log.error("An error occurred", e);
         }
     }

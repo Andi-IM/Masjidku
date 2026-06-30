@@ -15,27 +15,24 @@
 
 package org.masjidku.principal.report.kegiatan;
 
-import org.masjidku.controller.BaseTableController;
+import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import org.masjidku.controller.ReadOnlyTableController;
+import org.masjidku.events.client.EventsClient;
+import org.masjidku.events.client.model.TamuKegiatan;
+import org.masjidku.navigation.AppRouter;
+import org.masjidku.reporting.client.service.ReportService;
+import org.masjidku.util.ServiceProvider;
 import org.masjidku.util.TableHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javafx.fxml.FXML;
-
 import java.util.List;
 
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.Button;
-import org.masjidku.navigation.AppRouter;
-import org.masjidku.events.domain.entity.TamuKegiatan;
-import org.masjidku.events.client.service.TamuKegiatanUseCase;
-import org.masjidku.reporting.client.service.ReportService;
-import org.masjidku.util.ServiceProvider;
-
-
-public class ListUndangan extends BaseTableController<TamuKegiatan> {
+public class ListUndangan extends ReadOnlyTableController<TamuKegiatan> {
     private static final Logger log = LoggerFactory.getLogger(ListUndangan.class);
+    private final EventsClient dao = ServiceProvider.get(EventsClient.class);
 
     @FXML
     public TableView<TamuKegiatan> tblUndangan;
@@ -56,16 +53,10 @@ public class ListUndangan extends BaseTableController<TamuKegiatan> {
     public TableColumn<TamuKegiatan, String> colOperator;
 
     private AppRouter mainApp;
-    private final TamuKegiatanUseCase dao;
 
     public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
     }
-
-    public ListUndangan() {
-        dao = ServiceProvider.get(TamuKegiatanUseCase.class);
-    }
-
 
     @Override
     protected void setupTableColumns() {
@@ -76,6 +67,7 @@ public class ListUndangan extends BaseTableController<TamuKegiatan> {
     public void onLogoutClick() {
         mainApp.onLogoutAction();
     }
+
     @FXML
     public void showReport() {
         ServiceProvider.get(ReportService.class).showReport("/org/masjidku/report/list_undangan.jrxml");
@@ -97,34 +89,7 @@ public class ListUndangan extends BaseTableController<TamuKegiatan> {
     }
 
     @Override
-    protected Button getBtnEdit() {
-        return null;
-    }
-
-    @Override
-    protected Button getBtnRemove() {
-        return null;
-    }
-
-    @Override
     protected List<TamuKegiatan> fetchAllData() throws java.sql.SQLException {
-        return dao.getAll();
-    }
-
-    @Override
-    protected boolean checkIfExist(TamuKegiatan item) {
-        return false;
-    }
-
-    @Override
-    protected void deleteItem(TamuKegiatan item) {
-    }
-
-    @Override
-    protected void handleEdit(TamuKegiatan item) {
+        return dao.getAllUndangan();
     }
 }
-
-
-
-

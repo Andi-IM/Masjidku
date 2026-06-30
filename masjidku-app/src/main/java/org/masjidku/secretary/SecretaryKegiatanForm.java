@@ -19,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import net.synedra.validatorfx.Validator;
 import org.masjidku.events.client.EventsClient;
 import org.masjidku.events.client.model.Kegiatan;
 import org.masjidku.navigation.AppRouter;
@@ -26,11 +27,13 @@ import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class SecretaryKegiatanForm {
     private static final Logger log = LoggerFactory.getLogger(SecretaryKegiatanForm.class);
+    private final EventsClient eventClient = ServiceProvider.get(EventsClient.class);
+
+    private final Validator validator = new Validator();
 
 
     @FXML
@@ -45,21 +48,47 @@ public class SecretaryKegiatanForm {
     private AppRouter mainApp;
     private String operator;
 
-    // create some stage
-    @SuppressWarnings("unused")
-    private Stage dialogStage;
+    private final Stage dialogStage = new Stage();
 
-    private final EventsClient eventClient;
-
-    SecretaryKegiatanForm() {
-        this.eventClient = ServiceProvider.get(EventsClient.class);
-    }
 
     public void setMainApp(AppRouter mainApp, Kegiatan kegiatan) {
-        String operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
+        operator = org.masjidku.di.DiProvider.getAppComponent().getSessionManager().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         this.kegiatan = kegiatan;
-        this.operator = operator;
+    }
+
+    @FXML
+    public void initialize() {
+        validator.createCheck()
+                .dependsOn("nama", txtNamaKegiatan.textProperty())
+                .withMethod(c -> {
+                    String val = c.get("nama");
+                    if (val == null || val.isBlank()) c.error("Nama Kegiatan harus diisi!");
+                })
+                .decorates(txtNamaKegiatan);
+
+        validator.createCheck()
+                .dependsOn("tempat", txtTempat.textProperty())
+                .withMethod(c -> {
+                    String val = c.get("tempat");
+                    if (val == null || val.isBlank()) c.error("Tempat harus diisi!");
+                })
+                .decorates(txtTempat);
+
+        validator.createCheck()
+                .dependsOn("waktu", txtWaktu.textProperty())
+                .withMethod(c -> {
+                    String val = c.get("waktu");
+                    if (val == null || val.isBlank()) c.error("Waktu harus diisi!");
+                })
+                .decorates(txtWaktu);
+
+        validator.createCheck()
+                .dependsOn("tanggal", txtTanggal.valueProperty())
+                .withMethod(c -> {
+                    if (c.get("tanggal") == null) c.error("Tanggal harus dipilih!");
+                })
+                .decorates(txtTanggal);
     }
 
     public void setKegiatan(Kegiatan kegiatan) {
@@ -85,7 +114,7 @@ public class SecretaryKegiatanForm {
             String tempat = txtTempat.getText();
             String tanggal = txtTanggal.getValue().toString();
 
-            kegiatan = new Kegiatan(namaKegiatan, waktu, tanggal, tempat, operator);
+            kegiatan = new Kegiatan(namaKegiatan, waktu.toString(), tanggal, tempat, operator);
 
             try {
                 if (eventClient.isKegiatanExist(kegiatan.idKegiatan())) {
@@ -106,14 +135,7 @@ public class SecretaryKegiatanForm {
     }
 
     private boolean formValidation() {
-        if (!txtNamaKegiatan.getText().isBlank()) {
-            if (!txtWaktu.getText().isBlank()) {
-                if (!txtTempat.getText().isBlank()) {
-                    return txtTanggal.getValue() != null;
-                }
-            }
-        }
-        return false;
+        return validator.validate();
     }
 
     @FXML
@@ -128,6 +150,7 @@ public class SecretaryKegiatanForm {
 
 
 }
+
 
 
 

@@ -18,8 +18,10 @@ package org.masjidku.principal.report.keuangan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
+import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
-import org.masjidku.accounting.client.service.*;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
@@ -32,10 +34,8 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class ZakatReport implements Initializable {
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
     private static final Logger log = LoggerFactory.getLogger(ZakatReport.class);
-    private final AccountingFunctionsService df = ServiceProvider.get(AccountingFunctionsService.class);
-    private final ZakatKeluarService zkDao = ServiceProvider.get(ZakatKeluarService.class);
-    private final ZakatMasukService zmDao = ServiceProvider.get(ZakatMasukService.class);
     @FXML
     public Text txtPemasukanTerakhir;
     @FXML
@@ -72,17 +72,17 @@ public class ZakatReport implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         try {
-            ZakatKeluar penerima = zkDao.getLastRecord();
-            ZakatMasuk pemberi = zmDao.getLastRecord();
+            ZakatKeluar penerima = client.getLastZakatKeluar();
+            ZakatMasuk pemberi = client.getLastZakatMasuk();
 
-            txtPemasukanTerakhir.setText("Rp. " + pemberi.getJumlah());
-            txtPengeluaranTerakhir.setText("Rp. " + penerima.getJumlah());
-            txtTotalPemasukkan.setText("Rp. " + zmDao.getTotalIncome());
-            txtTotalPengeluaran.setText("Rp. " + zkDao.gettotalOutcome());
-            txtSaldo.setText("Rp. " + df.getZakatBalance());
-            txtTglPemasukkan.setText(pemberi.getTanggal());
-            txtTglPengeluaran.setText(penerima.getTanggal());
-        } catch (SQLException e) {
+            txtPemasukanTerakhir.setText("Rp. " + pemberi.jumlah());
+            txtPengeluaranTerakhir.setText("Rp. " + penerima.jumlah());
+            txtTotalPemasukkan.setText("Rp. " + client.getTotalZakatMasuk());
+            txtTotalPengeluaran.setText("Rp. " + client.getTotalZakatKeluar());
+            txtSaldo.setText("Rp. " + client.getZakatBalance());
+            txtTglPemasukkan.setText(pemberi.tanggal());
+            txtTglPengeluaran.setText(penerima.tanggal());
+        } catch (Exception e) {
             log.error("An error occurred", e);
         }
     }

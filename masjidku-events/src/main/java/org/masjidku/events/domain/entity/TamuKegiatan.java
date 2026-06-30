@@ -35,15 +35,19 @@ public class TamuKegiatan {
     @Column(name = "keterangan", length = 50)
     private String keterangan;
 
+    @Column(name = "operator", length = 50)
+    private String operator;
+
     public TamuKegiatan() {
-        this(null, null, null, null);
+        this(null, null, null, null, null);
     }
 
-    public TamuKegiatan(String idUndangan, Tamu tamu, Kegiatan kegiatan, String keterangan) {
+    public TamuKegiatan(String idUndangan, Tamu tamu, Kegiatan kegiatan, String keterangan, String operator) {
         this.idUndangan = idUndangan;
         this.tamu = tamu;
         this.kegiatan = kegiatan;
         this.keterangan = keterangan;
+        this.operator = operator;
     }
 
     public String getIdUndangan() {
@@ -66,10 +70,6 @@ public class TamuKegiatan {
         return kegiatan;
     }
 
-    public void setKegiatanModel(Kegiatan kegiatan) {
-        this.kegiatan = kegiatan;
-    }
-
     public String getKeterangan() {
         return keterangan;
     }
@@ -78,13 +78,12 @@ public class TamuKegiatan {
         this.keterangan = keterangan;
     }
 
-    // Convenience getters for JavaFX PropertyValueFactory compatibility
-    public String getIdTamu() {
-        return tamu != null ? tamu.getIdTamu() : null;
+    public String getOperator() {
+        return operator;
     }
 
-    public String getIdKegiatan() {
-        return kegiatan != null ? kegiatan.getIdKegiatan() : null;
+    public void setOperator(String operator) {
+        this.operator = operator;
     }
 
     public String getNama() {
@@ -93,10 +92,6 @@ public class TamuKegiatan {
 
     public String getAlamat() {
         return tamu != null ? tamu.getAlamat() : null;
-    }
-
-    public String getNotelp() {
-        return tamu != null ? tamu.getNotelp() : null;
     }
 
     public String getKegiatan() {

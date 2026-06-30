@@ -19,9 +19,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.masjidku.navigation.AppRouter;
+import net.synedra.validatorfx.Validator;
 import org.masjidku.accounting.client.model.operasional.DonasiOperasional;
-import org.masjidku.accounting.client.service.DonasiOperationalService;
+import org.masjidku.accounting.client.service.AccountingClient;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,9 +30,14 @@ import org.slf4j.LoggerFactory;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import static org.masjidku.di.DiProvider.getAppComponent;
+import static org.masjidku.util.DaoHelper.saveOrUpdate;
+import static org.masjidku.util.ValidationHelper.*;
+
 public class EditDonaturOperasional {
     private static final Logger log = LoggerFactory.getLogger(EditDonaturOperasional.class);
-    private final DonasiOperationalService dao = ServiceProvider.get(DonasiOperationalService.class);
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
+    private final Validator validator = new Validator();
 
     @FXML
     private TextField txtNama;
@@ -47,21 +53,27 @@ public class EditDonaturOperasional {
     @SuppressWarnings("unused")
     private Stage dialogStage;
 
+    @FXML
+    public void initialize() {
+        registerRequiredField(validator, txtNama, "nama", "Nama donatur harus diisi!");
+        registerNumericField(validator, txtJumlah, "jumlah", "Jumlah harus diisi!", "Jumlah harus berupa angka!");
+        registerDatePicker(validator, date, "tanggal", "Tanggal harus dipilih!");
+    }
+
     public void setMainApp(AppRouter mainApp, DonasiOperasional model) {
-        String operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
+        operator = getAppComponent().getSessionManager().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         this.donatur = model;
-        this.operator = operator;
 
-        if (model.getId() != null) {
+        if (model.id() != null) {
             setDonasi(model);
         }
     }
 
     private void setDonasi(DonasiOperasional model) {
-        txtNama.setText(model.getDonatur());
-        txtJumlah.setText(model.getJumlah());
-        LocalDate localDate = LocalDate.parse(model.getTanggal());
+        txtNama.setText(model.nama());
+        txtJumlah.setText(model.jumlah());
+        LocalDate localDate = LocalDate.parse(model.tanggal());
         date.setValue(localDate);
     }
 
@@ -71,7 +83,7 @@ public class EditDonaturOperasional {
      * @return fieldStatus
      */
     private boolean formValidation() {
-        return !txtNama.getText().isBlank() && !txtJumlah.getText().isBlank() && txtJumlah.getText().matches("\\d+") && date.getValue() != null;
+        return validator.validate();
     }
 
     @FXML
@@ -81,21 +93,15 @@ public class EditDonaturOperasional {
             String jumlah = txtJumlah.getText();
             String tanggal = date.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-            if (donatur.getId() == null) {
+            if (donatur.id() == null) {
                 donatur = new DonasiOperasional(nama, jumlah, tanggal, operator);
             }
 
-            org.masjidku.util.DaoHelper.saveOrUpdate(
-                () -> dao.isDonaturExist(donatur.getId()),
-                () -> dao.update(new String[]{
-                        donatur.getId(),
-                        donatur.getDonatur(),
-                        donatur.getJumlah(),
-                        donatur.getTanggal(),
-                        operator
-                }),
-                () -> dao.save(donatur),
-                dialogStage, log
+            saveOrUpdate(
+                    () -> client.isDonasiOperasionalExist(donatur.id()),
+                    () -> client.update(new DonasiOperasional(donatur.id(), nama, jumlah, tanggal, operator)),
+                    () -> client.save(donatur),
+                    dialogStage, log
             );
         } else {
             org.masjidku.util.AlertHelper.alertError(dialogStage, "Error", "Data belum lengkap!");
@@ -121,6 +127,7 @@ public class EditDonaturOperasional {
 
 
 }
+
 
 
 

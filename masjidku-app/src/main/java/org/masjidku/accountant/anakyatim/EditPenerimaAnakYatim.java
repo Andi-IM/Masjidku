@@ -20,20 +20,28 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.masjidku.navigation.AppRouter;
+import net.synedra.validatorfx.Validator;
 import org.masjidku.accounting.client.model.anakyatim.AnakYatim;
-import org.masjidku.accounting.client.service.AnakYatimService;
+import org.masjidku.accounting.client.service.AccountingClient;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import static org.masjidku.di.DiProvider.getAppComponent;
+import static org.masjidku.util.AlertHelper.alertError;
+import static org.masjidku.util.AlertHelper.alertInfo;
+import static org.masjidku.util.Constants.ERROR;
+import static org.masjidku.util.Constants.SUCCESS;
+import static org.masjidku.util.ValidationHelper.*;
+
 public class EditPenerimaAnakYatim {
     private static final Logger log = LoggerFactory.getLogger(EditPenerimaAnakYatim.class);
-    private final AnakYatimService dao = ServiceProvider.get(AnakYatimService.class);
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
+    private final Validator validator = new Validator();
 
     @FXML
     private TextField txtNama;
@@ -51,23 +59,38 @@ public class EditPenerimaAnakYatim {
     @SuppressWarnings("unused")
     private Stage dialogStage;
 
+    @FXML
+    public void initialize() {
+        registerRequiredField(validator, txtNama, "nama", "Nama penerima harus diisi!");
+        registerNumericField(validator, txtJumlah, "jumlah", "Jumlah harus diisi!", "Jumlah harus berupa angka!");
+        registerDatePicker(validator, date, "tanggal", "Tanggal harus dipilih!");
+
+        validator.createCheck()
+                .dependsOn("usia", spnUsia.valueProperty())
+                .withMethod(c -> {
+                    Integer val = c.get("usia");
+                    if (val == null || val <= 5 || val >= 19) {
+                        c.error("Usia anak yatim harus di antara 6 dan 18 tahun!");
+                    }
+                })
+                .decorates(spnUsia);
+    }
 
     public void setMainApp(AppRouter mainApp, AnakYatim model) {
-        String operator = org.masjidku.model.session.SessionManager.getInstance().getCurrentUser().getUsername();
+        operator = getAppComponent().getSessionManager().getCurrentUser().getUsername();
         this.mainApp = mainApp;
         this.anakYatim = model;
-        this.operator = operator;
 
-        if (model.getId() != null) {
+        if (model.id() != null) {
             setModel(model);
         }
     }
 
     private void setModel(AnakYatim model) {
-        txtNama.setText(model.getNama());
-        txtJumlah.setText(model.getJumlah());
-        spnUsia.getValueFactory().setValue(model.getUsia());
-        LocalDate localDate = LocalDate.parse(model.getTanggal());
+        txtNama.setText(model.nama());
+        txtJumlah.setText(model.jumlah());
+        spnUsia.getValueFactory().setValue(model.usia());
+        LocalDate localDate = LocalDate.parse(model.tanggal());
         date.setValue(localDate);
     }
 
@@ -77,13 +100,7 @@ public class EditPenerimaAnakYatim {
      * @return fieldStatus
      */
     private boolean formValidation() {
-        if (txtNama.getText().isBlank()) return false;
-        if (txtJumlah.getText().isBlank()) return false;
-        if (!txtJumlah.getText().matches("[0-9]")) return false;
-        if (!date.getEditor().getText().isBlank()) return false;
-
-        int usia = spnUsia.getValueFactory().getValue();
-        return usia > 5 && usia < 19;
+        return validator.validate();
     }
 
     @FXML
@@ -94,31 +111,24 @@ public class EditPenerimaAnakYatim {
             String jumlah = txtJumlah.getText();
             String tanggal = date.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-            if (anakYatim.getId() == null) {
+            if (anakYatim.id() == null) {
                 anakYatim = new AnakYatim(nama, usia, jumlah, tanggal, operator);
             }
 
             try {
-                if (dao.isAnakYatimExist(anakYatim.getId())) {
-                    dao.update(new String[]{
-                            anakYatim.getId(),
-                            anakYatim.getNama(),
-                            String.valueOf(anakYatim.getUsia()),
-                            anakYatim.getJumlah(),
-                            anakYatim.getTanggal(),
-                            operator
-                    });
-                    org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "Data telah diupdate");
+                if (client.isAnakYatimExist(anakYatim.id())) {
+                    client.update(new AnakYatim(anakYatim.id(), nama, usia, jumlah, tanggal, operator));
+                    alertInfo(dialogStage, ERROR, "Data telah diupdate");
                 } else {
-                    dao.save(anakYatim);
-                    org.masjidku.util.AlertHelper.alertInfo(dialogStage, "Success", "Data telah ditambahkan");
+                    client.save(anakYatim);
+                    alertInfo(dialogStage, SUCCESS, "Data telah ditambahkan");
                     mainApp.showAnakYatim();
                 }
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 log.error("An error occurred", e);
             }
         } else {
-            org.masjidku.util.AlertHelper.alertError(dialogStage, "Error", "Data belum lengkap!");
+            alertError(dialogStage, "Error", "Data belum lengkap!");
         }
     }
 
@@ -139,8 +149,7 @@ public class EditPenerimaAnakYatim {
         txtJumlah.clear();
         date.getEditor().clear();
     }
-
-
 }
+
 
 
