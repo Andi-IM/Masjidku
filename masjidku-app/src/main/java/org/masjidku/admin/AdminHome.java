@@ -17,22 +17,15 @@ package org.masjidku.admin;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 import org.masjidku.navigation.AppRouter;
+import org.masjidku.controller.BaseHomeController;
 
-public class AdminHome {
-    @FXML
-    public Text greeting;
-    private AppRouter mainApp;
+public class AdminHome extends BaseHomeController {
+    
+    
 
-    public void setMainApp(AppRouter mainApp) {
-        String username = org.masjidku.di.DiProvider.getAppComponent().getSessionManager().getCurrentUser().getUsername();
-        this.mainApp = mainApp;
-        greeting.setText("Bapak " + username);
-    }
+    
 
-    @FXML
-    public void onLogoutClick() {
-        mainApp.onLogoutAction();
-    }
+    
 
     @FXML
     public void onKelolaPenggunaClick() {

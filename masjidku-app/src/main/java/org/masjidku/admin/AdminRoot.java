@@ -17,37 +17,28 @@ package org.masjidku.admin;
 
 import javafx.fxml.FXML;
 import org.masjidku.navigation.AppRouter;
+import org.masjidku.controller.BaseRootController;
 
-public class AdminRoot {
-    @FXML
-    public javafx.scene.control.ToggleGroup groupButton;
+public class AdminRoot extends BaseRootController {
+    
 
-    private AppRouter mainApp;
+    
 
-    public void setMainApp(AppRouter mainApp) {
-        this.mainApp = mainApp;
-    }
+    
 
-    @FXML
-    public void initialize() {
-        org.masjidku.util.UIUtils.preventEmptyToggleSelection(groupButton);
-    }
+    
 
     @FXML
     public void homeAction() {
         mainApp.setAdminView();
     }
 
-    @FXML
-    public void profileAction(){ mainApp.showProfile(); }
+    
 
     @FXML
     public void userManage(){ mainApp.showUser(); }
 
-    @FXML
-    public void aboutAction(){
-        mainApp.showAbout();
-    }
+    
 
     @FXML
     public void userLog() { mainApp.showUserLog(); }

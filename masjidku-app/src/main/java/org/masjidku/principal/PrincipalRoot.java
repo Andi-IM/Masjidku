@@ -16,27 +16,20 @@ package org.masjidku.principal;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleGroup;
 import org.masjidku.navigation.AppRouter;
-public class PrincipalRoot {
-    @FXML
-    public ToggleGroup groupButton;
-    private AppRouter mainApp;
-    public void setMainApp(AppRouter mainApp) {
-        this.mainApp = mainApp;
-    }
+import org.masjidku.controller.BaseRootController;
+public class PrincipalRoot extends BaseRootController {
+    
+    
+    
 
-    @FXML
-    public void initialize() {
-        org.masjidku.util.UIUtils.preventEmptyToggleSelection(groupButton);
-    }
+    
     @FXML
     public void homeAction() { mainApp.setPrincipalView(); }
     @FXML
     public void laporanManage() { mainApp.showLaporan(); }
     @FXML
     public void readData() { mainApp.showData(); }
-    @FXML
-    public void aboutAction() { mainApp.showAbout(); }
-    @FXML
-    public void profileAction() { mainApp.showProfile(); }
+    
+    
 }
 

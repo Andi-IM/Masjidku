@@ -18,24 +18,22 @@ import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 import org.masjidku.di.DiProvider;
 import org.masjidku.navigation.AppRouter;
+import org.masjidku.controller.BaseHomeController;
 
-public class AccountantHome {
+public class AccountantHome extends BaseHomeController {
+    @Override
+    protected String getGreetingPrefix() {
+        return "";
+    }
+
 
     
-    @FXML
-    private Text greeting;
-    private AppRouter mainApp;
+    
+    
 
-    public void setMainApp(AppRouter mainApp) {
-        String username = DiProvider.getAppComponent().getSessionManager().getCurrentUser().getUsername();
-        this.mainApp = mainApp;
-        greeting.setText(username);
-    }
+    
 
-    @FXML
-    public void onLogoutClick() {
-        mainApp.onLogoutAction();
-    }
+    
 }
 
 

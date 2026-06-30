@@ -70,10 +70,6 @@ public class TamuKegiatan {
         return kegiatan;
     }
 
-    public void setKegiatanModel(Kegiatan kegiatan) {
-        this.kegiatan = kegiatan;
-    }
-
     public String getKeterangan() {
         return keterangan;
     }
@@ -90,25 +86,12 @@ public class TamuKegiatan {
         this.operator = operator;
     }
 
-    // Convenience getters for JavaFX PropertyValueFactory compatibility
-    public String getIdTamu() {
-        return tamu != null ? tamu.getIdTamu() : null;
-    }
-
-    public String getIdKegiatan() {
-        return kegiatan != null ? kegiatan.getIdKegiatan() : null;
-    }
-
     public String getNama() {
         return tamu != null ? tamu.getNama() : null;
     }
 
     public String getAlamat() {
         return tamu != null ? tamu.getAlamat() : null;
-    }
-
-    public String getNotelp() {
-        return tamu != null ? tamu.getNotelp() : null;
     }
 
     public String getKegiatan() {
