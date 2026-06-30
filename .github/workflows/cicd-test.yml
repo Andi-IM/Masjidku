@@ -6,6 +6,7 @@ env:
   DB_DATABASE: masjidku
   DB_USER: root
   DB_PASSWORD: root
+  GRADLE_OPTS: -Dorg.gradle.java.home=$JAVA_HOME
 
 on:
   push:
