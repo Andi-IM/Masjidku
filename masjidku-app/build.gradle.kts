@@ -27,6 +27,10 @@ dependencies {
     implementation(libs.mysql.connector)
     implementation(libs.sqlite.jdbc)
     implementation(libs.hibernate.core)
+    implementation("org.jboss.logging:jboss-logging:3.5.3.Final")
+    implementation("jakarta.transaction:jakarta.transaction-api:2.0.1")
+    implementation("jakarta.interceptor:jakarta.interceptor-api:2.1.0")
+    implementation("jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1")
 
     // Submodules
     implementation(project(":masjidku-accounting-client"))
@@ -129,6 +133,7 @@ tasks.named<JavaExec>("run") {
     doFirst {
         jvmArgs = listOf(
             "--module-path", classpath.asPath,
+            "--add-modules", "ALL-MODULE-PATH",
             "--module", "main/org.masjidku.MainApp",
             "--enable-native-access=javafx.graphics",
             "--sun-misc-unsafe-memory-access=allow"

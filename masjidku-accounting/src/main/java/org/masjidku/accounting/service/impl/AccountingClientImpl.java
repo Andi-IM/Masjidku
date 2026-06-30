@@ -16,6 +16,7 @@ import org.masjidku.accounting.domain.entity.*;
 import org.masjidku.accounting.domain.repository.*;
 import org.masjidku.accounting.domain.repository.impl.*;
 import org.masjidku.domain.repository.base.TransactionHelper;
+import org.masjidku.accounting.di.DaggerAccountingComponent;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -26,30 +27,6 @@ public class AccountingClientImpl implements AccountingClient {
 
     private final SessionFactory sessionFactory;
     private final TransactionHelper transactionHelper;
-
-    @Inject
-    public AccountingClientImpl(SessionFactory sessionFactory, TransactionHelper transactionHelper) {
-        this.sessionFactory = sessionFactory;
-        this.transactionHelper = transactionHelper;
-
-        this.zakatMasukRepository = new ZakatMasukRepositoryImpl(sessionFactory, transactionHelper);
-        this.zakatKeluarRepository = new ZakatKeluarRepositoryImpl(sessionFactory, transactionHelper);
-        this.tpaMasukRepository = new TpaMasukRepositoryImpl(sessionFactory, transactionHelper);
-        this.tpaKeluarRepository = new TpaKeluarRepositoryImpl(sessionFactory, transactionHelper);
-        this.donasiPembangunanRepository = new DonasiPembangunanRepositoryImpl(sessionFactory, transactionHelper);
-        this.pembangunanRepository = new PembangunanRepositoryImpl(sessionFactory, transactionHelper);
-        this.donasiOperasionalRepository = new DonasiOperasionalRepositoryImpl(sessionFactory, transactionHelper);
-        this.operasionalRepository = new OperasionalRepositoryImpl(sessionFactory, transactionHelper);
-        this.donasiAnakYatimRepository = new DonasiAnakYatimRepositoryImpl(sessionFactory, transactionHelper);
-        this.anakYatimRepository = new AnakYatimRepositoryImpl(sessionFactory, transactionHelper);
-
-    }
-
-    public AccountingClientImpl() {
-        this(org.masjidku.domain.repository.base.HibernateContext.getSessionFactory(), org.masjidku.domain.repository.base.HibernateContext.getTransactionHelper());
-    }
-
-
     private final ZakatMasukRepository zakatMasukRepository;
     private final ZakatKeluarRepository zakatKeluarRepository;
     private final TpaMasukRepository tpaMasukRepository;
@@ -61,6 +38,54 @@ public class AccountingClientImpl implements AccountingClient {
     private final DonasiAnakYatimRepository donasiAnakYatimRepository;
     private final AnakYatimRepository anakYatimRepository;
 
+    public static AccountingClientImpl provider() {
+        return DaggerAccountingComponent.create().getAccountingClientImpl();
+    }
+
+    @Inject
+    public AccountingClientImpl(
+            SessionFactory sessionFactory,
+            TransactionHelper transactionHelper,
+            ZakatMasukRepository zakatMasukRepository,
+            ZakatKeluarRepository zakatKeluarRepository,
+            TpaMasukRepository tpaMasukRepository,
+            TpaKeluarRepository tpaKeluarRepository,
+            DonasiPembangunanRepository donasiPembangunanRepository,
+            PembangunanRepository pembangunanRepository,
+            DonasiOperasionalRepository donasiOperasionalRepository,
+            OperasionalRepository operasionalRepository,
+            DonasiAnakYatimRepository donasiAnakYatimRepository,
+            AnakYatimRepository anakYatimRepository
+    ) {
+        this.sessionFactory = sessionFactory;
+        this.transactionHelper = transactionHelper;
+        this.zakatMasukRepository = zakatMasukRepository;
+        this.zakatKeluarRepository = zakatKeluarRepository;
+        this.tpaMasukRepository = tpaMasukRepository;
+        this.tpaKeluarRepository = tpaKeluarRepository;
+        this.donasiPembangunanRepository = donasiPembangunanRepository;
+        this.pembangunanRepository = pembangunanRepository;
+        this.donasiOperasionalRepository = donasiOperasionalRepository;
+        this.operasionalRepository = operasionalRepository;
+        this.donasiAnakYatimRepository = donasiAnakYatimRepository;
+        this.anakYatimRepository = anakYatimRepository;
+    }
+
+    @Deprecated
+    public AccountingClientImpl() {
+        this.sessionFactory = org.masjidku.domain.repository.base.HibernateContext.getSessionFactory();
+        this.transactionHelper = org.masjidku.domain.repository.base.HibernateContext.getTransactionHelper();
+        this.zakatMasukRepository = new ZakatMasukRepositoryImpl(sessionFactory, transactionHelper);
+        this.zakatKeluarRepository = new ZakatKeluarRepositoryImpl(sessionFactory, transactionHelper);
+        this.tpaMasukRepository = new TpaMasukRepositoryImpl(sessionFactory, transactionHelper);
+        this.tpaKeluarRepository = new TpaKeluarRepositoryImpl(sessionFactory, transactionHelper);
+        this.donasiPembangunanRepository = new DonasiPembangunanRepositoryImpl(sessionFactory, transactionHelper);
+        this.pembangunanRepository = new PembangunanRepositoryImpl(sessionFactory, transactionHelper);
+        this.donasiOperasionalRepository = new DonasiOperasionalRepositoryImpl(sessionFactory, transactionHelper);
+        this.operasionalRepository = new OperasionalRepositoryImpl(sessionFactory, transactionHelper);
+        this.donasiAnakYatimRepository = new DonasiAnakYatimRepositoryImpl(sessionFactory, transactionHelper);
+        this.anakYatimRepository = new AnakYatimRepositoryImpl(sessionFactory, transactionHelper);
+    }
 
     private ZakatMasukEntity toEntity(ZakatMasuk model) {
         ZakatMasukEntity entity = new ZakatMasukEntity();

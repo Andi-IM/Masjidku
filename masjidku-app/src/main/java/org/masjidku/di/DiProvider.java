@@ -9,6 +9,10 @@ public class DiProvider {
     public static void init() {
         if (appComponent == null) {
             appComponent = DaggerAppComponent.create();
+            org.masjidku.domain.repository.base.HibernateContext.initialize(
+                appComponent.getSessionFactory(),
+                appComponent.getTransactionHelper()
+            );
         }
     }
 

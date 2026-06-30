@@ -1,6 +1,7 @@
 package org.masjidku.model.session.dao;
 
 import com.google.common.base.Stopwatch;
+import org.masjidku.di.AppScope;
 import org.masjidku.domain.repository.UserSessionRepository;
 import org.masjidku.model.session.UserSession;
 import org.masjidku.model.user.User;
@@ -14,7 +15,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
-@Singleton
+@AppScope
 public class SessionManager {
     private User currentUser;
     private final UserSessionRepository sessionRepository;

@@ -14,6 +14,7 @@ open module main {
     requires org.masjidku.events;
     requires dagger;
     requires javax.inject;
+    requires org.hibernate.orm.core;
 
     exports org.masjidku.model;
 

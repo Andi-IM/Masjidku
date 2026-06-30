@@ -12,6 +12,7 @@ module org.masjidku.events {
     requires javax.inject;
 
     exports org.masjidku.events.di;
+    opens org.masjidku.events.domain.entity to org.hibernate.orm.core;
 
     provides org.masjidku.events.client.EventsClient with EventsClientImpl;
 }
