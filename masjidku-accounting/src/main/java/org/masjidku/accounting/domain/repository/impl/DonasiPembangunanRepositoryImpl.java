@@ -12,12 +12,10 @@ import org.masjidku.domain.repository.base.TransactionHelper;
 public class DonasiPembangunanRepositoryImpl implements DonasiPembangunanRepository {
 
     private final SessionFactory sessionFactory;
-    private final TransactionHelper transactionHelper;
 
     @Inject
-    public DonasiPembangunanRepositoryImpl(SessionFactory sessionFactory, TransactionHelper transactionHelper) {
+    public DonasiPembangunanRepositoryImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
-        this.transactionHelper = transactionHelper;
     }
 
 

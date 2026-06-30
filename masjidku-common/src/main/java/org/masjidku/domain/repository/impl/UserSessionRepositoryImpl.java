@@ -1,16 +1,18 @@
 package org.masjidku.domain.repository.impl;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.masjidku.domain.entity.UserSessionEntity;
 import org.masjidku.domain.mapper.UserSessionMapper;
 import org.masjidku.domain.repository.UserSessionRepository;
+import org.masjidku.domain.repository.base.TransactionHelper;
 import org.masjidku.model.session.UserSession;
 
-import java.util.List;
-import java.util.stream.Collectors;
 import javax.inject.Inject;
-import org.hibernate.SessionFactory;
-import org.masjidku.domain.repository.base.TransactionHelper;
+import java.util.List;
+
+import static org.masjidku.domain.repository.base.HibernateContext.getSessionFactory;
+import static org.masjidku.domain.repository.base.HibernateContext.getTransactionHelper;
 
 public class UserSessionRepositoryImpl implements UserSessionRepository {
 
@@ -24,9 +26,8 @@ public class UserSessionRepositoryImpl implements UserSessionRepository {
     }
 
     public UserSessionRepositoryImpl() {
-        this(org.masjidku.domain.repository.base.HibernateContext.getSessionFactory(), org.masjidku.domain.repository.base.HibernateContext.getTransactionHelper());
+        this(getSessionFactory(), getTransactionHelper());
     }
-
 
 
     @Override
@@ -69,7 +70,7 @@ public class UserSessionRepositoryImpl implements UserSessionRepository {
         return transactionHelper.executeInTransaction(() -> {
             Session session = sessionFactory.getCurrentSession();
             List<UserSessionEntity> entities = session.createQuery("FROM UserSessionEntity", UserSessionEntity.class).list();
-            return entities.stream().map(UserSessionMapper::toDomain).collect(Collectors.toList());
+            return entities.stream().map(UserSessionMapper::toDomain).toList();
         });
     }
 
@@ -80,7 +81,7 @@ public class UserSessionRepositoryImpl implements UserSessionRepository {
             List<UserSessionEntity> entities = session.createQuery("FROM UserSessionEntity u WHERE u.userid = :userId", UserSessionEntity.class)
                     .setParameter("userId", userid)
                     .list();
-            return entities.stream().map(UserSessionMapper::toDomain).collect(Collectors.toList());
+            return entities.stream().map(UserSessionMapper::toDomain).toList();
         });
     }
 

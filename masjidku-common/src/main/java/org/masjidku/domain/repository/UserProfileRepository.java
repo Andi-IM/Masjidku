@@ -23,5 +23,4 @@ public interface UserProfileRepository {
     void save(UserProfile userProfile);
     void update(String[] params);
     UserProfile getFullUserData(String userid);
-    boolean getConnection();
 }

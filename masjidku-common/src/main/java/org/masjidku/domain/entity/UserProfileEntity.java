@@ -20,9 +20,6 @@ public class UserProfileEntity {
     @Column(name = "alamat", length = 50)
     private String alamat;
 
-    public UserProfileEntity() {
-    }
-
     public String getUserId() {
         return userId;
     }

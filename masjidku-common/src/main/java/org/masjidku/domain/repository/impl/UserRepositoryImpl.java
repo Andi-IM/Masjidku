@@ -1,18 +1,17 @@
 package org.masjidku.domain.repository.impl;
 
 import com.google.common.hash.Hashing;
+import org.hibernate.SessionFactory;
 import org.masjidku.domain.entity.UserEntity;
 import org.masjidku.domain.entity.UserProfileEntity;
 import org.masjidku.domain.mapper.UserMapper;
 import org.masjidku.domain.repository.UserRepository;
+import org.masjidku.domain.repository.base.TransactionHelper;
 import org.masjidku.model.user.User;
 
+import javax.inject.Inject;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.stream.Collectors;
-import javax.inject.Inject;
-import org.hibernate.SessionFactory;
-import org.masjidku.domain.repository.base.TransactionHelper;
 
 public class UserRepositoryImpl implements UserRepository {
 
@@ -30,14 +29,13 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
 
-
     @Override
     public List<User> getAll() {
         return transactionHelper.executeInTransaction(() -> {
             List<UserEntity> entities = sessionFactory.getCurrentSession()
                     .createQuery("FROM UserEntity", UserEntity.class)
                     .list();
-            return entities.stream().map(UserMapper::toDomain).collect(Collectors.toList());
+            return entities.stream().map(UserMapper::toDomain).toList();
         });
     }
 
@@ -45,13 +43,13 @@ public class UserRepositoryImpl implements UserRepository {
     public void save(User user) {
         transactionHelper.executeInTransaction(() -> {
             UserEntity entity = UserMapper.toEntity(user);
-            
+
             String hex = Hashing
                     .sha256()
                     .hashString("12345678", StandardCharsets.UTF_8)
                     .toString();
             entity.setPassword(hex);
-            
+
             sessionFactory.getCurrentSession().persist(entity);
 
             // Generate Profile automatically
@@ -166,10 +164,5 @@ public class UserRepositoryImpl implements UserRepository {
                     .uniqueResult();
             return count != null && count > 0;
         });
-    }
-
-    @Override
-    public boolean getConnection() {
-        return true;
     }
 }

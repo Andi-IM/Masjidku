@@ -1,23 +1,21 @@
 package org.masjidku.accounting.domain.repository.impl;
 
+import org.hibernate.SessionFactory;
 import org.masjidku.accounting.domain.entity.ZakatMasukEntity;
 import org.masjidku.accounting.domain.repository.ZakatMasukRepository;
 import org.masjidku.accounting.domain.repository.exception.DataAccessException;
+
+import javax.inject.Inject;
 import java.util.List;
 import java.util.Optional;
-import javax.inject.Inject;
-import org.hibernate.SessionFactory;
-import org.masjidku.domain.repository.base.TransactionHelper;
 
 public class ZakatMasukRepositoryImpl implements ZakatMasukRepository {
 
     private final SessionFactory sessionFactory;
-    private final TransactionHelper transactionHelper;
 
     @Inject
-    public ZakatMasukRepositoryImpl(SessionFactory sessionFactory, TransactionHelper transactionHelper) {
+    public ZakatMasukRepositoryImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
-        this.transactionHelper = transactionHelper;
     }
 
 

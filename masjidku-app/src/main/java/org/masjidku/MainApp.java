@@ -33,11 +33,14 @@ import org.masjidku.di.DiProvider;
 import org.masjidku.events.client.model.Kegiatan;
 import org.masjidku.events.client.model.Tamu;
 import org.masjidku.events.client.model.TamuKegiatan;
-import org.masjidku.model.session.dao.SessionManager;
 import org.masjidku.model.user.User;
 import org.masjidku.model.user.UserProfile;
+import org.masjidku.navigation.AppRoute;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.util.ViewManager;
+
+import static org.masjidku.di.DiProvider.getAppComponent;
+import static org.masjidku.util.db.SQLiteInitService.initializeDatabase;
 
 public class MainApp extends Application implements AppRouter {
 
@@ -49,12 +52,22 @@ public class MainApp extends Application implements AppRouter {
     }
 
     @Override
+    public void navigate(AppRoute route) {
+        viewManager.navigate(route);
+    }
+
+    @Override
+    public void navigateRoot(AppRoute route) {
+        viewManager.navigateRoot(route);
+    }
+
+    @Override
     public void start(Stage primaryStage) {
         // Initialize Dagger 2 DI
-        org.masjidku.di.DiProvider.init();
+        DiProvider.init();
 
         // Initialize SQLite Database schema if necessary
-        org.masjidku.util.db.SQLiteInitService.initializeDatabase();
+        initializeDatabase();
 
         this.primaryStage = primaryStage;
         this.viewManager = new ViewManager(primaryStage, this);
@@ -70,7 +83,7 @@ public class MainApp extends Application implements AppRouter {
 
     @Override
     public void stop() throws Exception {
-        DiProvider.getAppComponent().getSessionManager().logout();
+        getAppComponent().getSessionManager().logout();
         super.stop();
     }
 
@@ -85,33 +98,12 @@ public class MainApp extends Application implements AppRouter {
     }
 
     /**
-     * Show the content inside the root layout
-     */
-    public void showContent() {
-        viewManager.showContent();
-    }
-
-    /**
-     * Show User Login
-     */
-    public void showLogin() {
-        viewManager.showLogin();
-    }
-
-    /**
-     * Show App About
-     */
-    public void showAbout() {
-        viewManager.showAbout();
-    }
-
-    /**
      * record user sessions
      *
      * @param user user
      */
     public void recordSession(User user) {
-        org.masjidku.di.DiProvider.getAppComponent().getSessionManager().login(user);
+        getAppComponent().getSessionManager().login(user);
     }
 
     /**
@@ -130,28 +122,6 @@ public class MainApp extends Application implements AppRouter {
         viewManager.editProfile(profile);
     }
 
-
-    /**
-     * Admin Privilege
-     */
-    public void setAdminView() {
-        viewManager.setAdminView();
-    }
-
-    /**
-     * Admin Home
-     */
-    public void showAdminHome() {
-        viewManager.showAdminHome();
-    }
-
-    /**
-     * show list of user
-     */
-    public void showUser() {
-        viewManager.showUser();
-    }
-
     /**
      * Open the scene to edit detail for the specified user. If the user
      * clicks OK, the changes are saved to the database
@@ -163,33 +133,8 @@ public class MainApp extends Application implements AppRouter {
     }
 
     /**
-     * Show list of User Activities
-     */
-    public void showUserLog() {
-        viewManager.showUserLog();
-    }
-
-    /**
-     * Principal Privilege
-     */
-    public void setPrincipalView() {
-        viewManager.setPrincipalView();
-    }
-
-    /**
-     * Showing principal home
-     */
-    public void showPrincipalHome() {
-        viewManager.showPrincipalHome();
-    }
-
-    /**
      * Show laporan
      */
-    public void showLaporan() {
-        viewManager.showLaporan();
-    }
-
     public void showKegiatanReport() {
         viewManager.showKegiatanData();
     }
@@ -215,129 +160,10 @@ public class MainApp extends Application implements AppRouter {
     }
 
     /**
-     * Show data
-     */
-    public void showData() {
-        viewManager.showData();
-    }
-
-    public void showKegiatanOverview() {
-        viewManager.showKegiatanOverview();
-    }
-
-    public void showKegiatanData() {
-        viewManager.showKegiatanData();
-    }
-
-    public void showTamuData() {
-        viewManager.showTamuData();
-    }
-
-    public void showUndanganData() {
-        viewManager.showUndanganData();
-    }
-
-    /**
-     * Keuangan Data
-     */
-    // Anak Yatim
-    public void showAnakYatimData() {
-        viewManager.showAnakYatimData();
-    }
-
-    public void showAnakYatimMasuk() {
-        viewManager.showAnakYatimMasuk();
-    }
-
-    public void showAnakYatimKeluar() {
-        viewManager.showAnakYatimKeluar();
-    }
-
-    // Pembangunan
-    public void showPembangunanData() {
-        viewManager.showPembangunanData();
-    }
-
-    public void showPembangunanMasuk() {
-        viewManager.showPembangunanMasuk();
-    }
-
-    public void showPembangunanKeluar() {
-        viewManager.showPembangunanKeluar();
-    }
-
-    // Operasional
-    public void showOperasionalData() {
-        viewManager.showOperasionalData();
-    }
-
-    public void showOperasionalMasuk() {
-        viewManager.showOperasionalMasuk();
-    }
-
-    public void showOperasionalKeluar() {
-        viewManager.showOperasionalKeluar();
-    }
-
-    // Zakat
-    public void showZakatData() {
-        viewManager.showZakatData();
-    }
-
-    public void showZakatMasuk() {
-        viewManager.showZakatMasuk();
-    }
-
-    public void showZakatKeluar() {
-        viewManager.showZakatKeluar();
-    }
-
-    // TPA
-    public void showTpaData() {
-        viewManager.showTpaData();
-    }
-
-    public void showTpaMasuk() {
-        viewManager.showTpaMasuk();
-    }
-
-    public void showTpaKeluar() {
-        viewManager.showTpaKeluar();
-    }
-
-    /**
-     * Secretary Privilege
-     */
-    public void setSecretaryView() {
-        viewManager.setSecretaryView();
-    }
-
-    /**
-     * Showing secretary home
-     */
-    public void setSecretaryHome() {
-        viewManager.setSecretaryHome();
-    }
-
-    /**
-     * Showing secretary kegiatan
-     */
-    public void showKegiatan() {
-        viewManager.showKegiatan();
-    }
-
-    /**
      * Showing secretary edit kegiatan
      */
     public void showKegiatanEditform(Kegiatan kegiatan) {
         viewManager.showKegiatanEditform(kegiatan);
-    }
-
-    /**
-     * Showing secretary tamu
-     */
-    public void showTamu() {
-        viewManager.showTamu();
     }
 
     /**
@@ -350,13 +176,6 @@ public class MainApp extends Application implements AppRouter {
     }
 
     /**
-     * showing undangan
-     */
-    public void showUndangan() {
-        viewManager.showUndangan();
-    }
-
-    /**
      * Showing undangan edit form
      *
      * @param undangan undangan
@@ -366,34 +185,8 @@ public class MainApp extends Application implements AppRouter {
     }
 
     /**
-     * Accountant Privilege
-     */
-    public void setAccountantView() {
-        viewManager.setAccountantView();
-    }
-
-    /**
-     * show accountant home
-     */
-    public void setAccountantHome() {
-        viewManager.setAccountantHome();
-    }
-
-    /**
      * show anakYatimprompt
      */
-    public void showAnakYatim() {
-        viewManager.showAnakYatim();
-    }
-
-    public void showDonasiAYatim() {
-        viewManager.showDonasiAYatim();
-    }
-
-    public void showDaftarAnakYatim() {
-        viewManager.showDaftarAnakYatim();
-    }
-
     public void editDonaturAnakYatim(DonasiAYatim model) {
         viewManager.editDonaturAnakYatim(model);
     }
@@ -405,17 +198,7 @@ public class MainApp extends Application implements AppRouter {
     /**
      * show zakatPrompt
      */
-    public void showZakat() {
-        viewManager.showZakat();
-    }
 
-    public void showDonaturZakat() {
-        viewManager.showDonaturZakat();
-    }
-
-    public void showDaftarPenerimaZakat() {
-        viewManager.showDaftarPenerimaZakat();
-    }
 
     public void editDonaturZakat(ZakatMasuk model) {
         viewManager.editDonaturZakat(model);
@@ -428,17 +211,7 @@ public class MainApp extends Application implements AppRouter {
     /**
      * show Pembangunan
      */
-    public void showPembangunan() {
-        viewManager.showPembangunan();
-    }
 
-    public void showDonaturPembangunan() {
-        viewManager.showDonaturPembangunan();
-    }
-
-    public void showAlokasiPembangunan() {
-        viewManager.showAlokasiPembangunan();
-    }
 
     public void editDonaturPembangunan(DonasiPembangunan model) {
         viewManager.editDonaturPembangunan(model);
@@ -451,17 +224,7 @@ public class MainApp extends Application implements AppRouter {
     /**
      * show operational
      */
-    public void showOperasional() {
-        viewManager.showOperasional();
-    }
 
-    public void showDonaturOperasional() {
-        viewManager.showDonaturOperasional();
-    }
-
-    public void showAlokasiOperasional() {
-        viewManager.showAlokasiOperasional();
-    }
 
     public void editDonaturOperasional(DonasiOperasional model) {
         viewManager.editDonaturOperasional(model);
@@ -474,17 +237,7 @@ public class MainApp extends Application implements AppRouter {
     /**
      * show tpa
      */
-    public void showTpa() {
-        viewManager.showTpa();
-    }
 
-    public void showDonaturTpa() {
-        viewManager.showDonaturTpa();
-    }
-
-    public void showAlokasiTpa() {
-        viewManager.showAlokasiTpa();
-    }
 
     public void editDonaturTpa(TpaMasuk model) {
         viewManager.editDonaturTpa(model);
@@ -498,7 +251,7 @@ public class MainApp extends Application implements AppRouter {
      * Logout
      */
     public void onLogoutAction() {
-        org.masjidku.di.DiProvider.getAppComponent().getSessionManager().logout();
+        getAppComponent().getSessionManager().logout();
 
         loadHomeRoot();
         showContent();
@@ -513,4 +266,3 @@ public class MainApp extends Application implements AppRouter {
         launch(args);
     }
 }
-

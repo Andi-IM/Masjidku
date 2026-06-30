@@ -10,7 +10,9 @@ import org.masjidku.util.UIUtils;
 
 import static org.masjidku.util.UIUtils.preventEmptyToggleSelection;
 
-public abstract class BaseRootController {
+import org.masjidku.navigation.AppRouterAware;
+
+public abstract class BaseRootController implements AppRouterAware {
 
     @FXML
     public ToggleGroup groupButton;

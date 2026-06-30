@@ -45,6 +45,8 @@ import org.masjidku.secretary.SecretaryHome;
 import org.masjidku.secretary.SecretaryKegiatanForm;
 import org.masjidku.secretary.SecretaryTamuForm;
 import org.masjidku.secretary.SecretaryUndanganForm;
+import org.masjidku.navigation.AppRouterAware;
+import org.masjidku.navigation.AppRoute;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -66,7 +68,10 @@ public class ViewManager {
     }
 
     public void injectMainApp(Object rawController) {
-        if (rawController != null) {
+        if (rawController instanceof AppRouterAware) {
+            ((AppRouterAware) rawController).setMainApp(mainApp);
+        } else if (rawController != null) {
+            // Fallback for controllers that haven't been updated yet
             try {
                 java.lang.reflect.Method method = rawController.getClass().getMethod("setMainApp", org.masjidku.navigation.AppRouter.class);
                 method.invoke(rawController, mainApp);
@@ -75,7 +80,7 @@ public class ViewManager {
                     java.lang.reflect.Method method = rawController.getClass().getMethod("setMainApp", MainApp.class);
                     method.invoke(rawController, mainApp);
                 } catch (NoSuchMethodException ex) {
-                    // Ignore if no setMainApp method exists at all
+                    // Ignore
                 } catch (Exception ex) {
                     LOGGER.log(Level.SEVERE, "An error occurred injecting MainApp fallback", ex);
                 }
@@ -109,6 +114,23 @@ public class ViewManager {
             }
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, e, () -> GAGAL_MEMUAT_VIEW + fxmlPath);
+        }
+    }
+
+    public void navigateRoot(AppRoute route) {
+        if (route.getFxmlPath() != null) {
+            setRootView(route.getFxmlPath(), () -> {
+                if (route == AppRoute.ADMIN_ROOT) navigate(AppRoute.ADMIN_HOME);
+                else if (route == AppRoute.PRINCIPAL_ROOT) navigate(AppRoute.PRINCIPAL_HOME);
+                else if (route == AppRoute.SECRETARY_ROOT) navigate(AppRoute.SECRETARY_HOME);
+                else if (route == AppRoute.ACCOUNTANT_ROOT) navigate(AppRoute.ACCOUNTANT_HOME);
+            });
+        }
+    }
+
+    public void navigate(AppRoute route) {
+        if (route.getFxmlPath() != null) {
+            loadView(route.getFxmlPath());
         }
     }
 
@@ -528,57 +550,13 @@ public class ViewManager {
     }
 
     private void updateSidebarSelectionForPath(String fxmlPath) {
-        String path = fxmlPath.toLowerCase();
-        String buttonText = null;
-
-        if (path.contains("admin_home") || path.contains("accountant_home") || 
-            path.contains("secretary_home") || path.contains("principal_home") || 
-            path.equals("home.fxml")) {
-            buttonText = "Beranda";
-        } else if (path.contains("profile") || path.contains("edit_profile")) {
-            buttonText = "Profil";
-        } else if (path.contains("about")) {
-            buttonText = "Tentang";
-        } else if (path.contains("user_lists") || path.contains("user_form")) {
-            buttonText = "Kelola User";
-        } else if (path.contains("user_logs")) {
-            buttonText = "Log User";
-        } else if (path.contains("principal_laporan") || path.contains("report_")) {
-            buttonText = "Baca Laporan";
-        } else if (path.contains("principal_read_data") || path.contains("list_")) {
-            if (currentRootController != null && currentRootController.getClass().getSimpleName().contains("Principal")) {
-                buttonText = "Baca Data";
+        for (AppRoute route : AppRoute.values()) {
+            if (route.getFxmlPath() != null && route.getFxmlPath().equals(fxmlPath)) {
+                if (route.getSidebarText() != null) {
+                    selectSidebarButton(route.getSidebarText());
+                }
+                break;
             }
-        }
-        
-        // Accountant mappings
-        if (buttonText == null) {
-            if (path.contains("anakyatim") || path.contains("anak_yatim")) {
-                buttonText = "Anak Yatim";
-            } else if (path.contains("zakat")) {
-                buttonText = "Zakat";
-            } else if (path.contains("pembangunan")) {
-                buttonText = "Pembangunan";
-            } else if (path.contains("operasional")) {
-                buttonText = "Operasional";
-            } else if (path.contains("tpa")) {
-                buttonText = "TPA";
-            }
-        }
-
-        // Secretary mappings
-        if (buttonText == null) {
-            if (path.contains("kegiatan")) {
-                buttonText = "Kelola Kegiatan";
-            } else if (path.contains("tamu")) {
-                buttonText = "Kelola Tamu";
-            } else if (path.contains("undangan")) {
-                buttonText = "Kelola Undangan";
-            }
-        }
-
-        if (buttonText != null) {
-            selectSidebarButton(buttonText);
         }
     }
 }

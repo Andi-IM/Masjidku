@@ -39,6 +39,4 @@ public interface UserRepository {
     boolean isUserExist(String userid);
 
     boolean isUserExist(String userid, String password);
-
-    boolean getConnection();
 }

@@ -1,12 +1,16 @@
 package org.masjidku.domain.repository.impl;
 
+import org.hibernate.SessionFactory;
 import org.masjidku.domain.entity.UserProfileEntity;
 import org.masjidku.domain.mapper.UserProfileMapper;
 import org.masjidku.domain.repository.UserProfileRepository;
-import org.masjidku.model.user.UserProfile;
-import javax.inject.Inject;
-import org.hibernate.SessionFactory;
 import org.masjidku.domain.repository.base.TransactionHelper;
+import org.masjidku.model.user.UserProfile;
+
+import javax.inject.Inject;
+
+import static org.masjidku.domain.repository.base.HibernateContext.getSessionFactory;
+import static org.masjidku.domain.repository.base.HibernateContext.getTransactionHelper;
 
 public class UserProfileRepositoryImpl implements UserProfileRepository {
 
@@ -20,9 +24,8 @@ public class UserProfileRepositoryImpl implements UserProfileRepository {
     }
 
     public UserProfileRepositoryImpl() {
-        this(org.masjidku.domain.repository.base.HibernateContext.getSessionFactory(), org.masjidku.domain.repository.base.HibernateContext.getTransactionHelper());
+        this(getSessionFactory(), getTransactionHelper());
     }
-
 
 
     @Override
@@ -63,10 +66,5 @@ public class UserProfileRepositoryImpl implements UserProfileRepository {
                     .uniqueResult();
             return UserProfileMapper.toDomain(entity);
         });
-    }
-
-    @Override
-    public boolean getConnection() {
-        return true;
     }
 }

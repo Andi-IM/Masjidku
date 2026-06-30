@@ -25,11 +25,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean getConnection() {
-        return userDao.getConnection();
-    }
-
-    @Override
     public ObservableList<User> getAll() {
         return javafx.collections.FXCollections.observableArrayList(userDao.getAll());
     }

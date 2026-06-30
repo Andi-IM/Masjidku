@@ -10,7 +10,9 @@ import org.masjidku.navigation.AppRouter;
 
 import static org.masjidku.di.DiProvider.getAppComponent;
 
-public abstract class BaseHomeController {
+import org.masjidku.navigation.AppRouterAware;
+
+public abstract class BaseHomeController implements AppRouterAware {
 
     @FXML
     public Text greeting;
