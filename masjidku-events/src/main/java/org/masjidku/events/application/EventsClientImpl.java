@@ -25,13 +25,12 @@ import org.masjidku.events.client.model.TamuKegiatan;
 import org.masjidku.events.domain.repository.KegiatanRepository;
 import org.masjidku.events.domain.repository.TamuKegiatanRepository;
 import org.masjidku.events.domain.repository.TamuRepository;
+import org.masjidku.events.domain.repository.base.HibernateUtil;
 import org.masjidku.events.domain.repository.impl.KegiatanRepositoryImpl;
 import org.masjidku.events.domain.repository.impl.TamuKegiatanRepositoryImpl;
 import org.masjidku.events.domain.repository.impl.TamuRepositoryImpl;
-import org.masjidku.events.domain.repository.base.HibernateUtil;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class EventsClientImpl implements EventsClient {
     private final KegiatanRepository kegiatanRepository;
@@ -50,10 +49,9 @@ public class EventsClientImpl implements EventsClient {
             List<org.masjidku.events.domain.entity.Kegiatan> entities = kegiatanRepository.getAllKegiatan();
             return entities.stream()
                     .map(KegiatanMapper::toModel)
-                    .collect(Collectors.toList());
+                    .toList();
         });
     }
-
 
 
     @Override
@@ -78,11 +76,9 @@ public class EventsClientImpl implements EventsClient {
 
     @Override
     public List<TamuKegiatan> getAllUndangan() {
-        return HibernateUtil.executeInTransaction(() -> {
-            return undanganRepository.getAllTamuKegiatan().stream()
-                    .map(TamuKegiatanMapper::toModel)
-                    .collect(Collectors.toList());
-        });
+        return HibernateUtil.executeInTransaction(() -> undanganRepository.getAllTamuKegiatan().stream()
+                .map(TamuKegiatanMapper::toModel)
+                .toList());
     }
 
     @Override
@@ -112,13 +108,10 @@ public class EventsClientImpl implements EventsClient {
 
     @Override
     public List<Tamu> getAllTamu() {
-        return HibernateUtil.executeInTransaction(() -> {
-            return tamuRepository.getAll()
-                    .stream().map(TamuMapper::toModel)
-                    .collect(Collectors.toList());
-        });
+        return HibernateUtil.executeInTransaction(() -> tamuRepository.getAll()
+                .stream().map(TamuMapper::toModel)
+                .toList());
     }
-
 
 
     @Override

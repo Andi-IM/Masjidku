@@ -16,11 +16,10 @@
 package org.masjidku.principal.report.kegiatan;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.FileChooser;
-import org.masjidku.controller.BaseTableController;
+import org.masjidku.controller.ReadOnlyTableController;
 import org.masjidku.events.client.EventsClient;
 import org.masjidku.events.client.model.Kegiatan;
 import org.masjidku.navigation.AppRouter;
@@ -33,7 +32,7 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.util.List;
 
-public class ListKegiatan extends BaseTableController<Kegiatan> {
+public class ListKegiatan extends ReadOnlyTableController<Kegiatan> {
     private static final Logger log = LoggerFactory.getLogger(ListKegiatan.class);
     private final EventsClient dao = ServiceProvider.get(EventsClient.class);
 
@@ -97,36 +96,7 @@ public class ListKegiatan extends BaseTableController<Kegiatan> {
     }
 
     @Override
-    protected Button getBtnEdit() {
-        return null;
-    }
-
-    @Override
-    protected Button getBtnRemove() {
-        return null;
-    }
-
-    @Override
     protected List<Kegiatan> fetchAllData() throws java.sql.SQLException {
         return dao.getAllKegiatan();
     }
-
-    @Override
-    protected boolean checkIfExist(Kegiatan item) {
-        return false;
-    }
-
-    @Override
-    protected void deleteItem(Kegiatan item) {
-        // Read-only report view — delete operation is not supported
-    }
-
-    @Override
-    protected void handleEdit(Kegiatan item) {
-        // Read-only report view — edit operation is not supported
-    }
 }
-
-
-
-

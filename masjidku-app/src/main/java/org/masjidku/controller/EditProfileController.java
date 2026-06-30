@@ -15,18 +15,17 @@
 
 package org.masjidku.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.masjidku.navigation.AppRouter;
-import org.masjidku.model.user.dao.UserDao;
 import org.masjidku.model.user.UserProfile;
+import org.masjidku.model.user.dao.UserDao;
 import org.masjidku.model.user.dao.UserProfileDao;
+import org.masjidku.navigation.AppRouter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
 
@@ -79,7 +78,7 @@ public class EditProfileController {
 
     @FXML
     public void onUserSubmitted() {
-        if (formValidation()){
+        if (formValidation()) {
             String id = lbUserID.getText();
             String username = txtUserName.getText();
             String newPassword = txtNewPassword.getText();
@@ -90,7 +89,7 @@ public class EditProfileController {
             UserProfileDao profileDao = new UserProfileDao();
 
             try {
-                if (dao.isUserExist(id)){
+                if (dao.isUserExist(id)) {
                     dao.update(id, username, newPassword);
 
                     profileDao.update(new String[]{notel, alamat, id});
@@ -100,7 +99,7 @@ public class EditProfileController {
                 log.error("An error occurred", e);
             }
         } else {
-            org.masjidku.util.AlertHelper.alertError(dialogStage, "Empty Form","Salah satu form tidak boleh kosong!");
+            org.masjidku.util.AlertHelper.alertError(dialogStage, "Empty Form", "Salah satu form tidak boleh kosong!");
         }
     }
 
@@ -110,7 +109,7 @@ public class EditProfileController {
                 if (txtNewPassword.getText().equals(txtConfirmPassword.getText())) {
                     return !txtAlamat.getText().isBlank() && !txtNoTel.getText().isBlank();
                 } else {
-                    org.masjidku.util.AlertHelper.alertError(dialogStage, "Error","Password tidak sama!");
+                    org.masjidku.util.AlertHelper.alertError(dialogStage, "Error", "Password tidak sama!");
                 }
             }
         }
@@ -127,6 +126,6 @@ public class EditProfileController {
         mainApp.onLogoutAction();
     }
 
-    
+
 }
 

@@ -5,10 +5,9 @@
 package org.masjidku.accountant;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.masjidku.controller.BaseTableController;
+import org.masjidku.controller.ReadOnlyTableController;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.reporting.client.service.ReportService;
 import org.masjidku.util.ServiceProvider;
@@ -18,7 +17,7 @@ import java.io.File;
 /**
  * Unified Base Finance Report Controller to eliminate code duplication across financial report controllers.
  */
-public abstract class BaseFinanceReportController<T> extends BaseTableController<T> {
+public abstract class BaseFinanceReportController<T> extends ReadOnlyTableController<T> {
     // Inflow column fields
     @FXML
     protected TableColumn<T, String> donatur;
@@ -63,31 +62,6 @@ public abstract class BaseFinanceReportController<T> extends BaseTableController
     @FXML
     public void onLogoutClick() {
         mainApp.onLogoutAction();
-    }
-
-    @Override
-    protected Button getBtnEdit() {
-        return null;
-    }
-
-    @Override
-    protected Button getBtnRemove() {
-        return null;
-    }
-
-    @Override
-    protected boolean checkIfExist(T item) {
-        return false;
-    }
-
-    @Override
-    protected void deleteItem(T item) {
-        // Read-only report view
-    }
-
-    @Override
-    protected void handleEdit(T item) {
-        // Read-only report view
     }
 
     protected void exportPdf(String templatePath, String defaultFileName) {

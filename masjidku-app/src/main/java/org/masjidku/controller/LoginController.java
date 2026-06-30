@@ -19,15 +19,18 @@ import com.google.common.hash.Hashing;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.masjidku.navigation.AppRouter;
 import org.masjidku.model.user.User;
 import org.masjidku.model.user.dao.UserDao;
+import org.masjidku.navigation.AppRouter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 
 
 public class LoginController {
+    private static final Logger log = LoggerFactory.getLogger(LoginController.class);
     // Reference to the main application
     private AppRouter mainApp;
 
@@ -63,7 +66,7 @@ public class LoginController {
                 handleLogin();
             }
         };
-        
+
         if (txtUsername != null) {
             txtUsername.setOnKeyPressed(enterKeyHandler);
         }
@@ -121,10 +124,10 @@ public class LoginController {
                 org.masjidku.util.AlertHelper.alertError(dialogStage, "Gagal Masuk", "Periksa username dan password");
             }
         } catch (SQLException e) {
-            System.err.println(e.getSQLState());
+            log.error(e.getSQLState());
         }
     }
 
-    
+
 }
 

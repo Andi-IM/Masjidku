@@ -16,10 +16,9 @@
 package org.masjidku.principal.report.kegiatan;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import org.masjidku.controller.BaseTableController;
+import org.masjidku.controller.ReadOnlyTableController;
 import org.masjidku.events.client.EventsClient;
 import org.masjidku.events.client.model.TamuKegiatan;
 import org.masjidku.navigation.AppRouter;
@@ -31,8 +30,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-
-public class ListUndangan extends BaseTableController<TamuKegiatan> {
+public class ListUndangan extends ReadOnlyTableController<TamuKegiatan> {
     private static final Logger log = LoggerFactory.getLogger(ListUndangan.class);
     private final EventsClient dao = ServiceProvider.get(EventsClient.class);
 
@@ -91,34 +89,7 @@ public class ListUndangan extends BaseTableController<TamuKegiatan> {
     }
 
     @Override
-    protected Button getBtnEdit() {
-        return null;
-    }
-
-    @Override
-    protected Button getBtnRemove() {
-        return null;
-    }
-
-    @Override
     protected List<TamuKegiatan> fetchAllData() throws java.sql.SQLException {
         return dao.getAllUndangan();
     }
-
-    @Override
-    protected boolean checkIfExist(TamuKegiatan item) {
-        return false;
-    }
-
-    @Override
-    protected void deleteItem(TamuKegiatan item) {
-    }
-
-    @Override
-    protected void handleEdit(TamuKegiatan item) {
-    }
 }
-
-
-
-
