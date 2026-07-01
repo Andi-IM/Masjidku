@@ -80,8 +80,8 @@ public class TpaReport implements Initializable {
             txtTotalPemasukkan.setText("Rp. " + client.getTotalTpaMasuk());
             txtTotalPengeluaran.setText("Rp. " + client.getTotalTpaKeluar());
             txtSaldo.setText("Rp. " + client.getTpaBalance());
-            txtTglPemasukkan.setText(pemberi.tanggal());
-            txtTglPengeluaran.setText(penerima.tanggal());
+            txtTglPemasukkan.setText(pemberi.tanggal().toString());
+            txtTglPengeluaran.setText(penerima.tanggal().toString());
 
         } catch (Exception e) {
             log.error("An error occurred", e);

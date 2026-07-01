@@ -59,13 +59,13 @@ public class AccountantTpa extends BaseAccountantController {
             TpaMasuk pemberi = client.getLastTpaMasuk();
 
             updateDashboardSummary(
-                    pemberi.jumlah(), // Pemasukan
-                    penerima.jumlah(), // Pengeluaran
+                    pemberi.jumlah().toPlainString(), // Pemasukan
+                    penerima.jumlah().toPlainString(), // Pengeluaran
                     client.getTotalTpaMasuk(), // Total Pemasukan
                     client.getTotalTpaKeluar(), // Total Pengeluaran
                     client.getTpaBalance(), // Saldo
-                    pemberi.tanggal(), // Tgl Pemasukan
-                    penerima.tanggal() // Tgl Pengeluaran
+                    pemberi.tanggal().toString(), // Tgl Pemasukan
+                    penerima.tanggal().toString() // Tgl Pengeluaran
             );
 
         } catch (Exception e) {

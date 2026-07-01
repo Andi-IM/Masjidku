@@ -15,22 +15,25 @@
 
 package org.masjidku.accounting.client.model.anakyatim;
 
-public record AnakYatim(String id, String tujuan, int usia, String jumlah, String tanggal, String keterangan,
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+public record AnakYatim(String id, String tujuan, int usia, BigDecimal jumlah, LocalDate tanggal, String keterangan,
                         String operator) {
 
     public AnakYatim() {
-        this(null, null, 0, "0", null, "", null);
+        this(null, null, 0, BigDecimal.ZERO, null, "", null);
     }
 
-    public AnakYatim(String tujuan, int usia, String jumlah, String tanggal, String operator) {
+    public AnakYatim(String tujuan, int usia, BigDecimal jumlah, LocalDate tanggal, String operator) {
         this(null, tujuan, usia, jumlah, tanggal, "", operator);
     }
 
-    public AnakYatim(String id, String tujuan, int usia, String jumlah, String tanggal, String operator) {
+    public AnakYatim(String id, String tujuan, int usia, BigDecimal jumlah, LocalDate tanggal, String operator) {
         this(id, tujuan, usia, jumlah, tanggal, "", operator);
     }
 
-    public AnakYatim(String tujuan, int usia, String jumlah, String tanggal, String keterangan, String operator) {
+    public AnakYatim(String tujuan, int usia, BigDecimal jumlah, LocalDate tanggal, String keterangan, String operator) {
         this(null, tujuan, usia, jumlah, tanggal, keterangan, operator);
     }
 
@@ -41,8 +44,8 @@ public record AnakYatim(String id, String tujuan, int usia, String jumlah, Strin
     public String getId() { return id; }
     public String getTujuan() { return tujuan; }
     public int getUsia() { return usia; }
-    public String getJumlah() { return jumlah; }
-    public String getTanggal() { return tanggal; }
+    public BigDecimal getJumlah() { return jumlah; }
+    public LocalDate getTanggal() { return tanggal; }
     public String getKeterangan() { return keterangan; }
     public String getOperator() { return operator; }
     public String getNama() { return tujuan; }

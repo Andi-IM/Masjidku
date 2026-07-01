@@ -15,19 +15,22 @@
 
 package org.masjidku.accounting.client.model.pembangunan;
 
-public record DonasiPembangunan(String id, String donatur, String jumlah, String tanggal, String operator) {
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+public record DonasiPembangunan(String id, String donatur, BigDecimal jumlah, LocalDate tanggal, String operator) {
 
     public DonasiPembangunan() {
         this(null, null, null, null, null);
     }
 
-    public DonasiPembangunan(String donatur, String jumlah, String tanggal, String operator) {
+    public DonasiPembangunan(String donatur, BigDecimal jumlah, LocalDate tanggal, String operator) {
         this(null, donatur, jumlah, tanggal, operator);
     }
 
     public String getId() { return id; }
     public String getDonatur() { return donatur; }
-    public String getJumlah() { return jumlah; }
-    public String getTanggal() { return tanggal; }
+    public BigDecimal getJumlah() { return jumlah; }
+    public LocalDate getTanggal() { return tanggal; }
     public String getOperator() { return operator; }
 }

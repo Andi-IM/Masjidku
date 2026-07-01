@@ -80,8 +80,8 @@ public class PembangunanReport implements Initializable {
             txtTotalPemasukkan.setText("Rp. " + client.getTotalPembangunan());
             txtTotalPengeluaran.setText("Rp. " + client.getTotalDonasiPembangunan());
             txtSaldo.setText("Rp. " + client.getPembangunanBalance());
-            txtTglPemasukkan.setText(pemberi.tanggal());
-            txtTglPengeluaran.setText(penerima.tanggal());
+            txtTglPemasukkan.setText(pemberi.tanggal().toString());
+            txtTglPengeluaran.setText(penerima.tanggal().toString());
 
         } catch (Exception e) {
             log.error("An error occurred", e);

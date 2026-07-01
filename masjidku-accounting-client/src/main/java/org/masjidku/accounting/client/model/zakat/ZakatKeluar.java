@@ -15,13 +15,16 @@
 
 package org.masjidku.accounting.client.model.zakat;
 
-public record ZakatKeluar(String id, String tujuan, String jumlah, String tanggal, String operator) {
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+public record ZakatKeluar(String id, String tujuan, BigDecimal jumlah, LocalDate tanggal, String operator) {
 
     public ZakatKeluar() {
-        this(null, null, "0", null, null);
+        this(null, null, BigDecimal.ZERO, null, null);
     }
 
-    public ZakatKeluar(String tujuan, String jumlah, String tanggal, String operator) {
+    public ZakatKeluar(String tujuan, BigDecimal jumlah, LocalDate tanggal, String operator) {
         this(null, tujuan, jumlah, tanggal, operator);
     }
 
@@ -31,8 +34,8 @@ public record ZakatKeluar(String id, String tujuan, String jumlah, String tangga
 
     public String getId() { return id; }
     public String getTujuan() { return tujuan; }
-    public String getJumlah() { return jumlah; }
-    public String getTanggal() { return tanggal; }
+    public BigDecimal getJumlah() { return jumlah; }
+    public LocalDate getTanggal() { return tanggal; }
     public String getOperator() { return operator; }
     public String getNama() { return tujuan; }
 }

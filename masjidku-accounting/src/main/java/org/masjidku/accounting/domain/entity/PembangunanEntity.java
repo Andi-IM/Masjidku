@@ -5,6 +5,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "pembangunan_keluar")
 public class PembangunanEntity {
@@ -15,10 +18,10 @@ public class PembangunanEntity {
     private String tujuan;
     @Column(name = "keterangan")
     private String keterangan;
-    @Column(name = "jumlah")
-    private String jumlah;
+    @Column(name = "jumlah", precision = 19, scale = 2)
+    private BigDecimal jumlah;
     @Column(name = "tanggal")
-    private String tanggal;
+    private LocalDate tanggal;
     @Column(name = "operator")
     private String operator;
 
@@ -46,19 +49,19 @@ public class PembangunanEntity {
         this.keterangan = keterangan;
     }
 
-    public String getJumlah() {
+    public BigDecimal getJumlah() {
         return jumlah;
     }
 
-    public void setJumlah(String jumlah) {
+    public void setJumlah(BigDecimal jumlah) {
         this.jumlah = jumlah;
     }
 
-    public String getTanggal() {
+    public LocalDate getTanggal() {
         return tanggal;
     }
 
-    public void setTanggal(String tanggal) {
+    public void setTanggal(LocalDate tanggal) {
         this.tanggal = tanggal;
     }
 
@@ -70,4 +73,3 @@ public class PembangunanEntity {
         this.operator = operator;
     }
 }
-

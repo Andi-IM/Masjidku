@@ -76,8 +76,8 @@ public class ZakatReport implements Initializable {
             txtTotalPemasukkan.setText("Rp. " + client.getTotalZakatMasuk());
             txtTotalPengeluaran.setText("Rp. " + client.getTotalZakatKeluar());
             txtSaldo.setText("Rp. " + client.getZakatBalance());
-            txtTglPemasukkan.setText(pemberi.tanggal());
-            txtTglPengeluaran.setText(penerima.tanggal());
+            txtTglPemasukkan.setText(pemberi.tanggal().toString());
+            txtTglPengeluaran.setText(penerima.tanggal().toString());
         } catch (Exception e) {
             log.error("An error occurred", e);
         }

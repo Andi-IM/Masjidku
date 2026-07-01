@@ -65,8 +65,8 @@ public class AnakYatimReport implements Initializable {
             txtTotalPemasukkan.setText("Rp. " + client.getTotalDonasiAYatim());
             txtTotalPengeluaran.setText("Rp. " + client.getTotalAnakYatim());
             txtSaldo.setText("Rp. " + client.getInfakYatimBalance());
-            txtTglPemasukkan.setText(pemberi.tanggal());
-            txtTglPengeluaran.setText(penerima.tanggal());
+            txtTglPemasukkan.setText(pemberi.tanggal().toString());
+            txtTglPengeluaran.setText(penerima.tanggal().toString());
 
         } catch (Exception e) {
             log.error("An error occurred", e);
