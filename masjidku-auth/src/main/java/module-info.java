@@ -12,7 +12,6 @@ module org.masjidku.auth {
     requires javax.inject;
     
     // Optional module dependencies for database drivers
-    requires static mysql.connector.java;
     requires static org.xerial.sqlitejdbc;
     requires org.masjidku.common; requires org.masjidku.auth.client;
 
@@ -23,6 +22,8 @@ module org.masjidku.auth {
     exports org.masjidku.auth.domain.service;
         
     opens org.masjidku.auth.domain.entity to org.hibernate.orm.core;
+
+    provides org.masjidku.auth.client.AuthClient with org.masjidku.auth.domain.service.AuthClientImpl;
 }
 
 

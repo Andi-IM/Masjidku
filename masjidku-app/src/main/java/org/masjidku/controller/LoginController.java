@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 import org.masjidku.auth.client.AuthClient;
 import org.masjidku.auth.client.model.User;
 import org.masjidku.navigation.AppRouter;
+import org.masjidku.navigation.AppRouterAware;
 import org.masjidku.util.ServiceProvider;
 
 import java.nio.charset.StandardCharsets;
@@ -33,7 +34,7 @@ import static org.masjidku.util.AlertHelper.alertError;
 import static org.masjidku.util.Constants.ACTIVE;
 
 
-public class LoginController {
+public class LoginController implements AppRouterAware {
     private final Validator validator = new Validator();
     // Reference to the main application
     private AppRouter mainApp;
@@ -47,6 +48,7 @@ public class LoginController {
      *
      * @param mainApp the context
      */
+    @Override
     public void setMainApp(AppRouter mainApp) {
         this.mainApp = mainApp;
         dao = ServiceProvider.get(AuthClient.class);

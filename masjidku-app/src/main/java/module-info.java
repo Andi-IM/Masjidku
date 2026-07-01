@@ -22,6 +22,7 @@ open module main {
     uses org.masjidku.events.client.EventsClient;
     uses org.masjidku.events.client.model.Kegiatan;
     uses org.masjidku.reporting.client.service.ReportService;
+    uses org.masjidku.auth.client.AuthClient;
 }
 
 

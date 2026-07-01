@@ -24,6 +24,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 
+import jakarta.persistence.Convert;
+
+
+
 @Entity
 @Table(name = "kegiatan")
 public class Kegiatan {
@@ -34,9 +38,11 @@ public class Kegiatan {
     @Column(name = "kegiatanNama", length = 50)
     private String nama;
 
+    @Convert(converter = LocalTimeStringConverter.class)
     @Column(name = "kegiatanWaktu")
     private LocalTime waktu;
 
+    @Convert(converter = LocalDateStringConverter.class)
     @Column(name = "kegiatanTanggal")
     private LocalDate tanggal;
 

@@ -23,6 +23,13 @@ public record Kegiatan(
         String tempat,
         String operator
 ) {
+    public String getIdKegiatan() { return idKegiatan; }
+    public String getNama() { return nama; }
+    public String getWaktu() { return waktu; }
+    public String getTanggal() { return tanggal; }
+    public String getTempat() { return tempat; }
+    public String getOperator() { return operator; }
+
     public Kegiatan() {
         this("", "", null, null, "", "");
     }

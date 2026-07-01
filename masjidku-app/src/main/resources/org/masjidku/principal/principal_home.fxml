@@ -51,7 +51,7 @@
     <Text layoutX="54.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="content"
           text="Ingin melakukan apa hari ini?" AnchorPane.leftAnchor="54.0"/>
     <Button layoutX="321.0" layoutY="148.0" mnemonicParsing="false" prefHeight="229.0" prefWidth="108.0"
-            styleClass="generalButton">
+            styleClass="generalButton" onAction="#onLaporanClick">
         <graphic>
             <ImageView fitHeight="150.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
                 <Image url="@../icon/document.png"/>
@@ -59,7 +59,7 @@
         </graphic>
     </Button>
     <Button layoutX="497.0" layoutY="148.0" mnemonicParsing="false" prefHeight="229.0" prefWidth="154.0"
-            styleClass="generalButton">
+            styleClass="generalButton" onAction="#onDataClick">
         <graphic>
             <ImageView fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                 <Image url="@../icon/database.png"/>

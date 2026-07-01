@@ -14,10 +14,24 @@
  */
 package org.masjidku.principal;
 
+import javafx.fxml.FXML;
 import org.masjidku.controller.BaseHomeController;
 
 public class PrincipalHome extends BaseHomeController {
 
+    @FXML
+    public void onLaporanClick() {
+        if (mainApp != null) {
+            mainApp.showLaporan();
+        }
+    }
+
+    @FXML
+    public void onDataClick() {
+        if (mainApp != null) {
+            mainApp.showData();
+        }
+    }
 
 }
 
