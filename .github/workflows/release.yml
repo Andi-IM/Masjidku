@@ -9,7 +9,6 @@ env:
   DB_DATABASE: masjidku
   DB_USER: root
   DB_PASSWORD: root
-  GRADLE_OPTS: -Dorg.gradle.java.home=${{ env.JAVA_HOME }}
 
 jobs:
   release:
