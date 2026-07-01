@@ -25,7 +25,6 @@ dependencies {
     // Global excludes to prevent jdeps from finding them and requiring them
     configurations.all {
         exclude(group = "jakarta.enterprise", module = "jakarta.cdi-api")
-        exclude(group = "jakarta.transaction", module = "jakarta.transaction-api")
     }
     
     // implementation
@@ -81,6 +80,8 @@ application {
 
 jlink {
     forceMerge("HikariCP")
+    forceMerge("jakarta.transaction")
+    addExtraDependencies("jakarta.interceptor", "jakarta.annotation")
     launcher {
         name = "JPackage Demo"
     }
@@ -129,10 +130,15 @@ tasks.named<JavaExec>("run") {
 
 
 
+
 tasks.named<JavaExec>("run") {
     doFirst {
+        val transactionJars = classpath.filter { it.name.contains("jakarta.transaction") }
+        val modulePathJars = classpath.filter { !it.name.contains("jakarta.transaction") }
+
         jvmArgs = listOf(
-            "--module-path", classpath.asPath,
+            "--module-path", modulePathJars.asPath,
+            "--class-path", transactionJars.asPath,
             "--add-modules", "ALL-MODULE-PATH",
             "--module", "main/org.masjidku.MainApp",
             "--enable-native-access=javafx.graphics",
