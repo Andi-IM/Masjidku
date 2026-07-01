@@ -22,16 +22,19 @@ tasks.named<JavaCompile>("compileTestJava") {
 }
 
 dependencies {
+    // Global excludes to prevent jdeps from finding them and requiring them
+    configurations.all {
+        exclude(group = "jakarta.enterprise", module = "jakarta.cdi-api")
+        exclude(group = "jakarta.transaction", module = "jakarta.transaction-api")
+    }
+    
     // implementation
     implementation(libs.mysql.connector) {
         exclude(group = "com.google.protobuf", module = "protobuf-java")
     }
     implementation(libs.sqlite.jdbc)
     implementation(libs.hibernate.core)
-    implementation(libs.jboss.logging)
-    implementation(libs.jakarta.transaction)
     implementation(libs.jakarta.interceptor)
-    implementation(libs.jakarta.cdi)
     implementation(project(":masjidku-accounting-client"))
     implementation(project(":masjidku-events-client"))
     implementation(project(":masjidku-reporting-client"))
@@ -57,6 +60,9 @@ dependencies {
 
     // annotationProcessor
     annotationProcessor(libs.dagger.compiler)
+
+    // Fix for jlink missing module
+    implementation("jakarta.activation:jakarta.activation-api:2.1.3")
 }
 
 javafx {
@@ -74,10 +80,11 @@ application {
 }
 
 jlink {
+    forceMerge("HikariCP")
     launcher {
         name = "JPackage Demo"
     }
-
+    
     jpackage {
         installerOutputDir = layout.buildDirectory.dir("installers").get().asFile
         installerOptions = listOf(
