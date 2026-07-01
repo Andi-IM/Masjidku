@@ -13,15 +13,26 @@
  *                                HEREUNDER.
  */
 package org.masjidku.principal;
+
 import javafx.fxml.FXML;
-import javafx.scene.text.Text;
-import org.masjidku.navigation.AppRouter;
 import org.masjidku.controller.BaseHomeController;
+
 public class PrincipalHome extends BaseHomeController {
-    
-    
-    
-    
+
+    @FXML
+    public void onLaporanClick() {
+        if (mainApp != null) {
+            mainApp.showLaporan();
+        }
+    }
+
+    @FXML
+    public void onDataClick() {
+        if (mainApp != null) {
+            mainApp.showData();
+        }
+    }
+
 }
 
 

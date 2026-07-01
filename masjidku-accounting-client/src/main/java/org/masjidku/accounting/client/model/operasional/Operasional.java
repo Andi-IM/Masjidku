@@ -15,21 +15,24 @@
 
 package org.masjidku.accounting.client.model.operasional;
 
-public record Operasional(String id, String tujuan, String keterangan, String jumlah, String tanggal, String operator) {
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+public record Operasional(String id, String tujuan, String keterangan, BigDecimal jumlah, LocalDate tanggal, String operator) {
 
     public Operasional() {
-        this(null, null, null, "0", null, null);
+        this(null, null, null, BigDecimal.ZERO, null, null);
     }
 
-    public Operasional(String tujuan, String keterangan, String jumlah, String tanggal, String operator) {
+    public Operasional(String tujuan, String keterangan, BigDecimal jumlah, LocalDate tanggal, String operator) {
         this(null, tujuan, keterangan, jumlah, tanggal, operator);
     }
 
     public String getId() { return id; }
     public String getTujuan() { return tujuan; }
     public String getKeterangan() { return keterangan; }
-    public String getJumlah() { return jumlah; }
-    public String getTanggal() { return tanggal; }
+    public BigDecimal getJumlah() { return jumlah; }
+    public LocalDate getTanggal() { return tanggal; }
     public String getOperator() { return operator; }
     public String getNama() { return tujuan; }
 }

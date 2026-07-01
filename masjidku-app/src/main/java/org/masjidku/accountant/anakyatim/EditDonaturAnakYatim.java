@@ -28,8 +28,9 @@ import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+
 
 import static org.masjidku.di.DiProvider.getAppComponent;
 import static org.masjidku.util.Constants.ERROR;
@@ -75,9 +76,8 @@ public class EditDonaturAnakYatim {
 
     private void setDonasi(DonasiAYatim model) {
         txtNama.setText(model.donatur());
-        txtJumlah.setText(model.jumlah());
-        LocalDate localDate = LocalDate.parse(model.tanggal());
-        date.setValue(localDate);
+        txtJumlah.setText(model.jumlah().toPlainString());
+        date.setValue(model.tanggal());
     }
 
     @FXML
@@ -91,10 +91,10 @@ public class EditDonaturAnakYatim {
     public void onSubmitted() {
         if (formValidation()) {
             String nama = txtNama.getText();
-            String jumlah = txtJumlah.getText();
-            String tanggal = date.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            BigDecimal jumlah = new BigDecimal(txtJumlah.getText());
+            LocalDate tanggal = date.getValue();
 
-            if (donatur.id() == null) {
+            if (donatur == null) {
                 donatur = new DonasiAYatim(nama, jumlah, tanggal, operator);
             }
 

@@ -22,6 +22,11 @@ import jakarta.persistence.Table;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
+
+import jakarta.persistence.Convert;
+
+
 
 @Entity
 @Table(name = "kegiatan")
@@ -33,9 +38,11 @@ public class Kegiatan {
     @Column(name = "kegiatanNama", length = 50)
     private String nama;
 
+    @Convert(converter = LocalTimeStringConverter.class)
     @Column(name = "kegiatanWaktu")
     private LocalTime waktu;
 
+    @Convert(converter = LocalDateStringConverter.class)
     @Column(name = "kegiatanTanggal")
     private LocalDate tanggal;
 
@@ -46,8 +53,8 @@ public class Kegiatan {
     private String operator;
 
     public Kegiatan() {
-        this.waktu = LocalTime.now();
-        this.tanggal = LocalDate.now();
+        this.waktu = LocalTime.now(ZoneId.systemDefault());
+        this.tanggal = LocalDate.now(ZoneId.systemDefault());
     }
 
     public Kegiatan(String nama, LocalTime waktu, LocalDate tanggal, String tempat, String operator) {

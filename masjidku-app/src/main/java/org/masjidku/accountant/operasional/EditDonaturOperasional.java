@@ -27,8 +27,8 @@ import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import static org.masjidku.di.DiProvider.getAppComponent;
 import static org.masjidku.util.DaoHelper.saveOrUpdate;
@@ -72,9 +72,8 @@ public class EditDonaturOperasional {
 
     private void setDonasi(DonasiOperasional model) {
         txtNama.setText(model.nama());
-        txtJumlah.setText(model.jumlah());
-        LocalDate localDate = LocalDate.parse(model.tanggal());
-        date.setValue(localDate);
+        txtJumlah.setText(model.jumlah().toPlainString());
+        date.setValue(model.tanggal());
     }
 
     /**
@@ -90,8 +89,8 @@ public class EditDonaturOperasional {
     public void onSubmitted() {
         if (formValidation()) {
             String nama = txtNama.getText();
-            String jumlah = txtJumlah.getText();
-            String tanggal = date.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            BigDecimal jumlah = new BigDecimal(txtJumlah.getText());
+            LocalDate tanggal = date.getValue();
 
             if (donatur.id() == null) {
                 donatur = new DonasiOperasional(nama, jumlah, tanggal, operator);

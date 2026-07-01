@@ -15,19 +15,22 @@
 
 package org.masjidku.accounting.client.model.anakyatim;
 
-public record DonasiAYatim(String id, String donatur, String jumlah, String tanggal, String operator) {
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+public record DonasiAYatim(String id, String donatur, BigDecimal jumlah, LocalDate tanggal, String operator) {
 
     public DonasiAYatim() {
-        this(null, "", "0", null, "");
+        this(null, "", BigDecimal.ZERO, null, "");
     }
 
-    public DonasiAYatim(String donatur, String jumlah, String tanggal, String operator) {
+    public DonasiAYatim(String donatur, BigDecimal jumlah, LocalDate tanggal, String operator) {
         this(null, donatur, jumlah, tanggal, operator);
     }
 
     public String getId() { return id; }
     public String getDonatur() { return donatur; }
-    public String getJumlah() { return jumlah; }
-    public String getTanggal() { return tanggal; }
+    public BigDecimal getJumlah() { return jumlah; }
+    public LocalDate getTanggal() { return tanggal; }
     public String getOperator() { return operator; }
 }

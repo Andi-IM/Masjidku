@@ -22,11 +22,11 @@ import org.masjidku.navigation.AppRouter;
 
 public class RootLayoutController {
     @FXML
-    public ToggleButton btn_home;
+    public ToggleButton btnHome;
     @FXML
-    public ToggleButton btn_login;
+    public ToggleButton btnLogin;
     @FXML
-    public ToggleButton btn_about;
+    public ToggleButton btnAbout;
 
     @FXML
     public ToggleGroup groupButton;
@@ -41,14 +41,18 @@ public class RootLayoutController {
             });
         }
     }
+
     // Reference to the main application
     private AppRouter mainApp;
 
     /**
      * Is called by the main application to give a reference back to itself.
+     *
      * @param mainApp the context
      */
-    public void setMainApp(AppRouter mainApp){ this.mainApp = mainApp; }
+    public void setMainApp(AppRouter mainApp) {
+        this.mainApp = mainApp;
+    }
 
     /**
      * Opens home page.

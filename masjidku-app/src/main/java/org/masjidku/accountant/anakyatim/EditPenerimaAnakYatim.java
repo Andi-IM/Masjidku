@@ -28,8 +28,8 @@ import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import static org.masjidku.di.DiProvider.getAppComponent;
 import static org.masjidku.util.AlertHelper.alertError;
@@ -88,10 +88,9 @@ public class EditPenerimaAnakYatim {
 
     private void setModel(AnakYatim model) {
         txtNama.setText(model.nama());
-        txtJumlah.setText(model.jumlah());
+        txtJumlah.setText(model.jumlah().toPlainString());
         spnUsia.getValueFactory().setValue(model.usia());
-        LocalDate localDate = LocalDate.parse(model.tanggal());
-        date.setValue(localDate);
+        date.setValue(model.tanggal());
     }
 
     /**
@@ -108,8 +107,8 @@ public class EditPenerimaAnakYatim {
         if (formValidation()) {
             String nama = txtNama.getText();
             int usia = spnUsia.getValue();
-            String jumlah = txtJumlah.getText();
-            String tanggal = date.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            BigDecimal jumlah = new BigDecimal(txtJumlah.getText());
+            LocalDate tanggal = date.getValue();
 
             if (anakYatim.id() == null) {
                 anakYatim = new AnakYatim(nama, usia, jumlah, tanggal, operator);

@@ -26,12 +26,10 @@ public interface AppRouter {
     void showProfile();
     void editProfile(UserProfile profile);
     default void setAdminView() { navigateRoot(AppRoute.ADMIN_ROOT); }
-    default void showAdminHome() { navigate(AppRoute.ADMIN_HOME); }
     default void showUser() { navigate(AppRoute.USER_LIST); }
     void showUserEditScene(User user);
     default void showUserLog() { navigate(AppRoute.USER_LOG); }
     default void setPrincipalView() { navigateRoot(AppRoute.PRINCIPAL_ROOT); }
-    default void showPrincipalHome() { navigate(AppRoute.PRINCIPAL_HOME); }
     default void showLaporan() { navigate(AppRoute.PRINCIPAL_LAPORAN); }
     void showKegiatanReport();
     void showAnakYatimReport();
@@ -60,7 +58,6 @@ public interface AppRouter {
     default void showTpaMasuk() { navigate(AppRoute.LIST_DONATUR_TPA); }
     default void showTpaKeluar() { navigate(AppRoute.LIST_TPA); }
     default void setSecretaryView() { navigateRoot(AppRoute.SECRETARY_ROOT); }
-    default void setSecretaryHome() { navigate(AppRoute.SECRETARY_HOME); }
     default void showKegiatan() { navigate(AppRoute.SECRETARY_KEGIATAN); }
     void showKegiatanEditform(Kegiatan kegiatan);
     default void showTamu() { navigate(AppRoute.SECRETARY_TAMU); }
@@ -68,7 +65,6 @@ public interface AppRouter {
     default void showUndangan() { navigate(AppRoute.SECRETARY_UNDANGAN); }
     void showUndanganEditForm(TamuKegiatan undangan);
     default void setAccountantView() { navigateRoot(AppRoute.ACCOUNTANT_ROOT); }
-    default void setAccountantHome() { navigate(AppRoute.ACCOUNTANT_HOME); }
     default void showAnakYatim() { navigate(AppRoute.ACCOUNTANT_ANAKYATIM); }
     default void showDonasiAYatim() { navigate(AppRoute.ACCOUNTANT_DONASI_ANAKYATIM); }
     default void showDaftarAnakYatim() { navigate(AppRoute.ACCOUNTANT_DAFTAR_ANAKYATIM); }

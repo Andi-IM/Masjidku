@@ -27,8 +27,8 @@ import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import static org.masjidku.di.DiProvider.getAppComponent;
 import static org.masjidku.util.AlertHelper.alertError;
@@ -75,9 +75,8 @@ public class EditDonaturTpa {
 
     public void setDonatur(TpaMasuk model) {
         txtNama.setText(model.donatur());
-        txtJumlah.setText(model.jumlah());
-        LocalDate localDate = LocalDate.parse(model.tanggal());
-        date.setValue(localDate);
+        txtJumlah.setText(model.jumlah().toPlainString());
+        date.setValue(model.tanggal());
     }
 
     /**
@@ -93,8 +92,8 @@ public class EditDonaturTpa {
     public void onSubmitted() {
         if (formValidation()) {
             String nama = txtNama.getText();
-            String jumlah = txtJumlah.getText();
-            String tanggal = date.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            BigDecimal jumlah = new BigDecimal(txtJumlah.getText());
+            LocalDate tanggal = date.getValue();
 
             if (donatur == null) {
                 donatur = new TpaMasuk(nama, jumlah, tanggal, operator);

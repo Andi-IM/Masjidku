@@ -59,13 +59,13 @@ public class AccountantOperasional extends BaseAccountantController {
             DonasiOperasional pemberi = client.getLastDonasiOperasional();
 
             updateDashboardSummary(
-                    pemberi.jumlah(), // Pemasukan
-                    penerima.jumlah(), // Pengeluaran
+                    pemberi.jumlah().toPlainString(), // Pemasukan
+                    penerima.jumlah().toPlainString(), // Pengeluaran
                     client.getTotalOperasional(), // Total Pemasukan
                     client.getTotalDonasiOperasional(), // Total Pengeluaran
                     client.getOperationalBalance(),
-                    pemberi.tanggal(),
-                    penerima.tanggal()
+                    pemberi.tanggal().toString(),
+                    penerima.tanggal().toString()
             );
 
         } catch (Exception e) {

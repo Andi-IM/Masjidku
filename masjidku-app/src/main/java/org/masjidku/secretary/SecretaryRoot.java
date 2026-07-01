@@ -16,33 +16,30 @@
 package org.masjidku.secretary;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.ToggleGroup;
-import org.masjidku.navigation.AppRouter;
 import org.masjidku.controller.BaseRootController;
 
 public class SecretaryRoot extends BaseRootController {
 
-    
-    
-    
-    
-
-    
 
     @FXML
-    public void homeAction() { mainApp.setSecretaryView(); }
+    public void homeAction() {
+        mainApp.setSecretaryView();
+    }
 
-    
-
-    @FXML
-    public void activityManage() { mainApp.showKegiatan(); }
 
     @FXML
-    public void visitorManage() { mainApp.showTamu(); }
+    public void activityManage() {
+        mainApp.showKegiatan();
+    }
 
     @FXML
-    public void invitationManage() { mainApp.showUndangan(); }
+    public void visitorManage() {
+        mainApp.showTamu();
+    }
 
-    
+    @FXML
+    public void invitationManage() {
+        mainApp.showUndangan();
+    }
 }
 

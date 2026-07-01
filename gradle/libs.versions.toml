@@ -1,7 +1,7 @@
 [versions]
 javafx = "21"
 validatorfx = "0.5.0"
-mysql = "8.0.28"
+mysql = "8.4.0"
 sqlite = "3.42.0.0"
 openpdf = "1.3.26"
 jasperreports = "7.0.6"
@@ -22,7 +22,7 @@ jakarta-cdi = "4.0.1"
 [libraries]
 validatorfx = { group = "net.synedra", name = "validatorfx", version.ref = "validatorfx" }
 # Database
-mysql-connector = { group = "mysql", name = "mysql-connector-java", version.ref = "mysql" }
+mysql-connector = { group = "com.mysql", name = "mysql-connector-j", version.ref = "mysql" }
 sqlite-jdbc = { group = "org.xerial", name = "sqlite-jdbc", version.ref = "sqlite" }
 
 # Reporting

@@ -5,6 +5,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class TableHelper {
 
+    private TableHelper(){}
+
     public static void setupUndanganColumns(
             TableColumn<?, ?> colNama,
             TableColumn<?, ?> colAlamat,

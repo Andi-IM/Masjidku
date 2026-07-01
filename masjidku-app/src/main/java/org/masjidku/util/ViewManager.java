@@ -7,7 +7,6 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.masjidku.MainApp;
-import org.masjidku.accountant.AccountantHome;
 import org.masjidku.accountant.anakyatim.EditDonaturAnakYatim;
 import org.masjidku.accountant.anakyatim.EditPenerimaAnakYatim;
 import org.masjidku.accountant.operasional.EditDonaturOperasional;
@@ -28,8 +27,9 @@ import org.masjidku.accounting.client.model.tpa.TpaKeluar;
 import org.masjidku.accounting.client.model.tpa.TpaMasuk;
 import org.masjidku.accounting.client.model.zakat.ZakatKeluar;
 import org.masjidku.accounting.client.model.zakat.ZakatMasuk;
-import org.masjidku.admin.AdminHome;
 import org.masjidku.admin.UserForm;
+import org.masjidku.auth.client.model.User;
+import org.masjidku.auth.client.model.UserProfile;
 import org.masjidku.controller.BaseRootController;
 import org.masjidku.controller.EditProfileController;
 import org.masjidku.controller.ProfileController;
@@ -37,16 +37,11 @@ import org.masjidku.controller.RootLayoutController;
 import org.masjidku.events.client.model.Kegiatan;
 import org.masjidku.events.client.model.Tamu;
 import org.masjidku.events.client.model.TamuKegiatan;
-import org.masjidku.auth.client.model.User;
-import org.masjidku.auth.client.model.UserProfile;
-import org.masjidku.principal.PrincipalHome;
-import org.masjidku.principal.PrincipalLaporan;
-import org.masjidku.secretary.SecretaryHome;
+import org.masjidku.navigation.AppRoute;
+import org.masjidku.navigation.AppRouterAware;
 import org.masjidku.secretary.SecretaryKegiatanForm;
 import org.masjidku.secretary.SecretaryTamuForm;
 import org.masjidku.secretary.SecretaryUndanganForm;
-import org.masjidku.navigation.AppRouterAware;
-import org.masjidku.navigation.AppRoute;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -68,8 +63,8 @@ public class ViewManager {
     }
 
     public void injectMainApp(Object rawController) {
-        if (rawController instanceof AppRouterAware) {
-            ((AppRouterAware) rawController).setMainApp(mainApp);
+        if (rawController instanceof AppRouterAware aware) {
+            aware.setMainApp(mainApp);
         } else if (rawController != null) {
             // Fallback for controllers that haven't been updated yet
             try {
@@ -102,8 +97,8 @@ public class ViewManager {
             injectMainApp(loader.getController());
 
             Object controller = loader.getController();
-            if (controller instanceof BaseRootController) {
-                this.currentRootController = (BaseRootController) controller;
+            if (controller instanceof BaseRootController rootController) {
+                this.currentRootController = rootController;
             } else {
                 this.currentRootController = null;
             }
@@ -148,7 +143,7 @@ public class ViewManager {
                 this.rootLayoutController = controller;
                 this.currentRootController = null;
                 controller.setMainApp(mainApp);
-                controller.btn_home.setSelected(true);
+                controller.btnHome.setSelected(true);
             }
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, "An error occurred", e);
@@ -183,27 +178,6 @@ public class ViewManager {
         }
     }
 
-    public void showContent() {
-        loadView("home.fxml");
-        if (rootLayoutController != null && rootLayoutController.btn_home != null) {
-            rootLayoutController.btn_home.setSelected(true);
-        }
-    }
-
-    public void showLogin() {
-        loadView("login.fxml");
-        if (rootLayoutController != null && rootLayoutController.btn_login != null) {
-            rootLayoutController.btn_login.setSelected(true);
-        }
-    }
-
-    public void showAbout() {
-        loadView("about.fxml");
-        if (rootLayoutController != null && rootLayoutController.btn_about != null) {
-            rootLayoutController.btn_about.setSelected(true);
-        }
-    }
-
     public void showProfile() {
         ProfileController controller = loadViewAndGetController("profile.fxml");
         if (controller != null) {
@@ -218,21 +192,6 @@ public class ViewManager {
         }
     }
 
-    public void setAdminView() {
-        setRootView("admin/admin_root.fxml", this::showAdminHome);
-    }
-
-    public void showAdminHome() {
-        AdminHome controller = loadViewAndGetController("admin/admin_home.fxml");
-        if (controller != null) {
-            controller.setMainApp(mainApp);
-        }
-    }
-
-    public void showUser() {
-        loadView("admin/user_lists.fxml");
-    }
-
     public void showUserEditScene(User user) {
         UserForm controller = loadViewAndGetController("admin/user_form.fxml");
         if (controller != null) {
@@ -241,121 +200,28 @@ public class ViewManager {
         }
     }
 
-    public void showUserLog() {
-        loadView("admin/user_logs.fxml");
-    }
-
-    public void setPrincipalView() {
-        setRootView("principal/principal_root.fxml", this::showPrincipalHome);
-    }
-
-    public void showPrincipalHome() {
-        PrincipalHome controller = loadViewAndGetController("principal/principal_home.fxml");
-        if (controller != null) {
-            controller.setMainApp(mainApp);
-        }
-    }
-
-    public void showLaporan() {
-        PrincipalLaporan controller = loadViewAndGetController("principal/principal_laporan.fxml");
-        if (controller != null) {
-            controller.setMainApp(mainApp);
-        }
-    }
-
-    public void showData() {
-        loadView("principal/principal_read_data.fxml");
-    }
-
-    public void showKegiatanOverview() {
-        loadView("principal/report/kegiatan/report_kegiatan.fxml");
-    }
-
     public void showKegiatanData() {
         loadView("principal/report/kegiatan/list_kegiatan.fxml");
-    }
-
-    public void showTamuData() {
-        loadView("principal/report/kegiatan/list_tamu.fxml");
-    }
-
-    public void showUndanganData() {
-        loadView("principal/report/kegiatan/list_undangan.fxml");
     }
 
     public void showAnakYatimData() {
         loadView("principal/report/keuangan/report_anakyatim.fxml");
     }
 
-    public void showAnakYatimMasuk() {
-        loadView("principal/report/keuangan/anakyatim/list_donatur_anakyatim.fxml");
-    }
-
-    public void showAnakYatimKeluar() {
-        loadView("principal/report/keuangan/anakyatim/list_anakyatim.fxml");
-    }
-
     public void showPembangunanData() {
         loadView("principal/report/keuangan/report_pembangunan.fxml");
-    }
-
-    public void showPembangunanMasuk() {
-        loadView("principal/report/keuangan/pembangunan/list_donatur_pembangunan.fxml");
-    }
-
-    public void showPembangunanKeluar() {
-        loadView("principal/report/keuangan/pembangunan/list_pembangunan.fxml");
     }
 
     public void showOperasionalData() {
         loadView("principal/report/keuangan/report_operasional.fxml");
     }
 
-    public void showOperasionalMasuk() {
-        loadView("principal/report/keuangan/operasional/list_donatur_operasional.fxml");
-    }
-
-    public void showOperasionalKeluar() {
-        loadView("principal/report/keuangan/operasional/list_operasional.fxml");
-    }
-
     public void showZakatData() {
         loadView("principal/report/keuangan/report_zakat.fxml");
     }
 
-    public void showZakatMasuk() {
-        loadView("principal/report/keuangan/zakat/list_donatur_zakat.fxml");
-    }
-
-    public void showZakatKeluar() {
-        loadView("principal/report/keuangan/zakat/list_zakat.fxml");
-    }
-
     public void showTpaData() {
         loadView("principal/report/keuangan/report_tpa.fxml");
-    }
-
-    public void showTpaMasuk() {
-        loadView("principal/report/keuangan/tpa/list_donatur_tpa.fxml");
-    }
-
-    public void showTpaKeluar() {
-        loadView("principal/report/keuangan/tpa/list_tpa.fxml");
-    }
-
-    public void setSecretaryView() {
-        setRootView("secretary/secretary_root.fxml", this::setSecretaryHome);
-    }
-
-    public void setSecretaryHome() {
-        SecretaryHome controller = loadViewAndGetController("secretary/secretary_home.fxml");
-        if (controller != null) {
-            controller.setMainApp(mainApp);
-        }
-    }
-
-    public void showKegiatan() {
-        loadView("secretary/list_kegiatan.fxml");
     }
 
     public void showKegiatanEditform(Kegiatan kegiatan) {
@@ -365,10 +231,6 @@ public class ViewManager {
         }
     }
 
-    public void showTamu() {
-        loadView("secretary/list_tamu.fxml");
-    }
-
     public void showTamuEditForm(Tamu tamu) {
         SecretaryTamuForm controller = loadViewAndGetController("secretary/form_tamu.fxml");
         if (controller != null) {
@@ -376,38 +238,11 @@ public class ViewManager {
         }
     }
 
-    public void showUndangan() {
-        loadView("secretary/list_undangan.fxml");
-    }
-
     public void showUndanganEditForm(TamuKegiatan undangan) {
         SecretaryUndanganForm controller = loadViewAndGetController("secretary/form_undangan.fxml");
         if (controller != null) {
             controller.setMainApp(mainApp, undangan);
         }
-    }
-
-    public void setAccountantView() {
-        setRootView("accountant/accountant_root.fxml", this::setAccountantHome);
-    }
-
-    public void setAccountantHome() {
-        AccountantHome controller = loadViewAndGetController("accountant/accountant_home.fxml");
-        if (controller != null) {
-            controller.setMainApp(mainApp);
-        }
-    }
-
-    public void showAnakYatim() {
-        loadView("accountant/accountant_anakyatim.fxml");
-    }
-
-    public void showDonasiAYatim() {
-        loadView("accountant/anakyatim/list_donatur_anakyatim.fxml");
-    }
-
-    public void showDaftarAnakYatim() {
-        loadView("accountant/anakyatim/list_anakyatim.fxml");
     }
 
     public void editDonaturAnakYatim(DonasiAYatim model) {
@@ -424,18 +259,6 @@ public class ViewManager {
         }
     }
 
-    public void showZakat() {
-        loadView("accountant/accountant_zakat.fxml");
-    }
-
-    public void showDonaturZakat() {
-        loadView("accountant/zakat/list_donatur_zakat.fxml");
-    }
-
-    public void showDaftarPenerimaZakat() {
-        loadView("accountant/zakat/list_zakat.fxml");
-    }
-
     public void editDonaturZakat(ZakatMasuk model) {
         EditDonaturZakat controller = loadViewAndGetController("accountant/zakat/form_donatur_zakat.fxml");
         if (controller != null) {
@@ -448,18 +271,6 @@ public class ViewManager {
         if (controller != null) {
             controller.setMainApp(mainApp, model);
         }
-    }
-
-    public void showPembangunan() {
-        loadView("accountant/accountant_pembangunan.fxml");
-    }
-
-    public void showDonaturPembangunan() {
-        loadView("accountant/pembangunan/list_donatur_pembangunan.fxml");
-    }
-
-    public void showAlokasiPembangunan() {
-        loadView("accountant/pembangunan/list_pembangunan.fxml");
     }
 
     public void editDonaturPembangunan(DonasiPembangunan model) {
@@ -476,18 +287,6 @@ public class ViewManager {
         }
     }
 
-    public void showOperasional() {
-        loadView("accountant/accountant_operasional.fxml");
-    }
-
-    public void showDonaturOperasional() {
-        loadView("accountant/operasional/list_donatur_operasional.fxml");
-    }
-
-    public void showAlokasiOperasional() {
-        loadView("accountant/operasional/list_operasional.fxml");
-    }
-
     public void editDonaturOperasional(DonasiOperasional model) {
         EditDonaturOperasional controller = loadViewAndGetController("accountant/operasional/form_donatur_operasional.fxml");
         if (controller != null) {
@@ -500,18 +299,6 @@ public class ViewManager {
         if (controller != null) {
             controller.setMainApp(mainApp, model);
         }
-    }
-
-    public void showTpa() {
-        loadView("accountant/accountant_tpa.fxml");
-    }
-
-    public void showDonaturTpa() {
-        loadView("accountant/tpa/list_donatur_tpa.fxml");
-    }
-
-    public void showAlokasiTpa() {
-        loadView("accountant/tpa/list_tpa.fxml");
     }
 
     public void editDonaturTpa(TpaMasuk model) {
@@ -535,15 +322,12 @@ public class ViewManager {
         } else if (rootLayoutController != null) {
             group = rootLayoutController.groupButton;
         }
-        
+
         if (group != null) {
             for (javafx.scene.control.Toggle toggle : group.getToggles()) {
-                if (toggle instanceof javafx.scene.control.ToggleButton) {
-                    javafx.scene.control.ToggleButton btn = (javafx.scene.control.ToggleButton) toggle;
-                    if (text.equalsIgnoreCase(btn.getText().trim())) {
-                        btn.setSelected(true);
-                        break;
-                    }
+                if (toggle instanceof javafx.scene.control.ToggleButton btn && text.equalsIgnoreCase(btn.getText().trim())) {
+                    btn.setSelected(true);
+                    break;
                 }
             }
         }

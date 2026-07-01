@@ -15,22 +15,18 @@
 
 package org.masjidku.principal.report.keuangan;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-
-import org.masjidku.accounting.client.service.AccountingClient;
-import org.masjidku.util.ServiceProvider;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
-import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.pembangunan.DonasiPembangunan;
 import org.masjidku.accounting.client.model.pembangunan.Pembangunan;
+import org.masjidku.accounting.client.service.AccountingClient;
+import org.masjidku.navigation.AppRouter;
+import org.masjidku.util.ServiceProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class PembangunanReport implements Initializable {
@@ -53,16 +49,24 @@ public class PembangunanReport implements Initializable {
 
     private AppRouter mainApp;
 
-    public void setMainApp(AppRouter mainApp) { this.mainApp = mainApp; }
+    public void setMainApp(AppRouter mainApp) {
+        this.mainApp = mainApp;
+    }
 
     @FXML
-    public void uangMasuk() { mainApp.showPembangunanMasuk(); }
+    public void uangMasuk() {
+        mainApp.showPembangunanMasuk();
+    }
 
     @FXML
-    public void uangKeluar() { mainApp.showPembangunanKeluar(); }
+    public void uangKeluar() {
+        mainApp.showPembangunanKeluar();
+    }
 
     @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -76,8 +80,8 @@ public class PembangunanReport implements Initializable {
             txtTotalPemasukkan.setText("Rp. " + client.getTotalPembangunan());
             txtTotalPengeluaran.setText("Rp. " + client.getTotalDonasiPembangunan());
             txtSaldo.setText("Rp. " + client.getPembangunanBalance());
-            txtTglPemasukkan.setText(pemberi.tanggal());
-            txtTglPengeluaran.setText(penerima.tanggal());
+            txtTglPemasukkan.setText(pemberi.tanggal().toString());
+            txtTglPengeluaran.setText(penerima.tanggal().toString());
 
         } catch (Exception e) {
             log.error("An error occurred", e);
@@ -85,7 +89,9 @@ public class PembangunanReport implements Initializable {
     }
 
     @FXML
-    public void gotoHome() { mainApp.showData(); }
+    public void gotoHome() {
+        mainApp.showData();
+    }
 }
 
 

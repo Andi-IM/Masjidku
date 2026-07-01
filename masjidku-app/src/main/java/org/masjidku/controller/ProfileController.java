@@ -15,22 +15,17 @@
 
 package org.masjidku.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import org.masjidku.navigation.AppRouter;
-import org.masjidku.auth.client.model.UserProfile;
 import org.masjidku.auth.client.AuthClient;
+import org.masjidku.auth.client.model.UserProfile;
+import org.masjidku.navigation.AppRouter;
 import org.masjidku.util.ServiceProvider;
 
 import static org.masjidku.di.DiProvider.getAppComponent;
 
 
 public class ProfileController {
-    private static final Logger log = LoggerFactory.getLogger(ProfileController.class);
-
     @FXML
     private Label userId;
     @FXML
@@ -48,6 +43,7 @@ public class ProfileController {
 
     private AppRouter mainApp;
     private UserProfile profile;
+
     /**
      * get User Data from DAO.
      *
@@ -63,7 +59,7 @@ public class ProfileController {
         this.mainApp = mainApp;
         profile = getUserData(userid);
 
-        if (profile!=null){
+        if (profile != null && profile.user() != null) {
             userId.setText(profile.user().id());
             username.setText(profile.user().username());
             userRole.setText(profile.user().jabatan());

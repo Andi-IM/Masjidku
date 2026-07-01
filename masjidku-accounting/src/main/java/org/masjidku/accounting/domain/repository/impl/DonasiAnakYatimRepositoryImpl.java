@@ -92,8 +92,8 @@ public class DonasiAnakYatimRepositoryImpl implements DonasiAnakYatimRepository 
     public String getTotal() {
         try {
             var session = sessionFactory.getCurrentSession();
-            var count = session.createQuery("SELECT IFNULL(SUM(CAST(e.jumlah AS double)), 0) FROM DonasiAnakYatimEntity e", Double.class).uniqueResult();
-            return count != null ? String.valueOf(count.longValue()) : "0";
+            var count = session.createQuery("SELECT COALESCE(SUM(e.jumlah), 0) FROM DonasiAnakYatimEntity e", java.math.BigDecimal.class).uniqueResult();
+            return count != null ? count.toPlainString() : "0";
         } catch (Exception e) {
             throw new DataAccessException("Failed to get total DonasiAnakYatimEntity", e);
         }

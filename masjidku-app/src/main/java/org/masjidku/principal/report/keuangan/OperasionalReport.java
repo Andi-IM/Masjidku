@@ -15,22 +15,18 @@
 
 package org.masjidku.principal.report.keuangan;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-
-import org.masjidku.accounting.client.service.AccountingClient;
-import org.masjidku.util.ServiceProvider;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
-import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.operasional.DonasiOperasional;
 import org.masjidku.accounting.client.model.operasional.Operasional;
+import org.masjidku.accounting.client.service.AccountingClient;
+import org.masjidku.navigation.AppRouter;
+import org.masjidku.util.ServiceProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class OperasionalReport implements Initializable {
@@ -76,8 +72,8 @@ public class OperasionalReport implements Initializable {
             txtTotalPemasukkan.setText("Rp. " + client.getTotalOperasional());
             txtTotalPengeluaran.setText("Rp. " + client.getTotalDonasiOperasional());
             txtSaldo.setText("Rp. " + client.getOperationalBalance());
-            txtTglPemasukkan.setText(pemberi.tanggal());
-            txtTglPengeluaran.setText(penerima.tanggal());
+            txtTglPemasukkan.setText(pemberi.tanggal().toString());
+            txtTglPengeluaran.setText(penerima.tanggal().toString());
 
         } catch (Exception e) {
             log.error("An error occurred", e);

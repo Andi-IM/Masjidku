@@ -15,19 +15,22 @@
 
 package org.masjidku.accounting.client.model.tpa;
 
-public record TpaMasuk(String id, String donatur, String jumlah, String tanggal, String operator) {
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+public record TpaMasuk(String id, String donatur, BigDecimal jumlah, LocalDate tanggal, String operator) {
 
     public TpaMasuk() {
-        this(null, null, "0", null, null);
+        this(null, null, BigDecimal.ZERO, null, null);
     }
 
-    public TpaMasuk(String donatur, String jumlah, String tanggal, String operator) {
+    public TpaMasuk(String donatur, BigDecimal jumlah, LocalDate tanggal, String operator) {
         this(null, donatur, jumlah, tanggal, operator);
     }
 
     public String getId() { return id; }
     public String getDonatur() { return donatur; }
-    public String getJumlah() { return jumlah; }
-    public String getTanggal() { return tanggal; }
+    public BigDecimal getJumlah() { return jumlah; }
+    public LocalDate getTanggal() { return tanggal; }
     public String getOperator() { return operator; }
 }

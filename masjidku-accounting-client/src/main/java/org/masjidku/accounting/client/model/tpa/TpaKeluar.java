@@ -15,13 +15,16 @@
 
 package org.masjidku.accounting.client.model.tpa;
 
-public record TpaKeluar(String id, String tujuan, String keterangan, String jumlah, String tanggal, String operator) {
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+public record TpaKeluar(String id, String tujuan, String keterangan, BigDecimal jumlah, LocalDate tanggal, String operator) {
 
     public TpaKeluar() {
-        this(null, null, null, "0", null, null);
+        this(null, null, null, BigDecimal.ZERO, null, null);
     }
 
-    public TpaKeluar(String tujuan, String keterangan, String jumlah, String tanggal, String operator) {
+    public TpaKeluar(String tujuan, String keterangan, BigDecimal jumlah, LocalDate tanggal, String operator) {
         this(null, tujuan, keterangan, jumlah, tanggal, operator);
     }
 
@@ -32,8 +35,8 @@ public record TpaKeluar(String id, String tujuan, String keterangan, String juml
     public String getId() { return id; }
     public String getTujuan() { return tujuan; }
     public String getKeterangan() { return keterangan; }
-    public String getJumlah() { return jumlah; }
-    public String getTanggal() { return tanggal; }
+    public BigDecimal getJumlah() { return jumlah; }
+    public LocalDate getTanggal() { return tanggal; }
     public String getOperator() { return operator; }
     public String getNama() { return tujuan; }
 }

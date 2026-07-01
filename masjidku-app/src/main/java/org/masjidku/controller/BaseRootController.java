@@ -6,11 +6,9 @@ package org.masjidku.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleGroup;
 import org.masjidku.navigation.AppRouter;
-import org.masjidku.util.UIUtils;
+import org.masjidku.navigation.AppRouterAware;
 
 import static org.masjidku.util.UIUtils.preventEmptyToggleSelection;
-
-import org.masjidku.navigation.AppRouterAware;
 
 public abstract class BaseRootController implements AppRouterAware {
 

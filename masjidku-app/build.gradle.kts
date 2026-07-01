@@ -22,47 +22,46 @@ tasks.named<JavaCompile>("compileTestJava") {
 }
 
 dependencies {
-    // Database
-    implementation(libs.mysql.connector)
+    // Global excludes to prevent jdeps from finding them and requiring them
+    configurations.all {
+        exclude(group = "jakarta.enterprise", module = "jakarta.cdi-api")
+    }
+    
+    // implementation
+    implementation(libs.mysql.connector) {
+        exclude(group = "com.google.protobuf", module = "protobuf-java")
+    }
     implementation(libs.sqlite.jdbc)
     implementation(libs.hibernate.core)
-    implementation(libs.jboss.logging)
-    implementation(libs.jakarta.transaction)
     implementation(libs.jakarta.interceptor)
-    implementation(libs.jakarta.cdi)
-
-    // Submodules
     implementation(project(":masjidku-accounting-client"))
     implementation(project(":masjidku-events-client"))
     implementation(project(":masjidku-reporting-client"))
     implementation(project(":masjidku-auth-client"))
-    
-    // Service implementations (runtime)
     implementation(project(":masjidku-common"))
     implementation(project(":masjidku-accounting"))
     implementation(project(":masjidku-events"))
     implementation(project(":masjidku-reporting"))
     implementation(project(":masjidku-auth"))
-    
-    // XML Bind
     implementation(libs.jaxb.api)
     implementation(libs.jetbrains.annotations)
-
-    // Hash Security and other tools
     implementation(libs.guava)
-
-    // Utilities
     implementation(libs.slf4j)
-    runtimeOnly(libs.logback)
     implementation(libs.validatorfx)
+    implementation(libs.dagger)
 
-    // Unit Test
+    // runtimeOnly
+    runtimeOnly(libs.logback)
+
+    // testImplementation
     testImplementation(libs.junit)
     testImplementation(libs.archunit.junit5)
 
-    // Dagger 2 DI
-    implementation(libs.dagger)
+    // annotationProcessor
     annotationProcessor(libs.dagger.compiler)
+
+    // Fix for jlink missing module
+    implementation("jakarta.activation:jakarta.activation-api:2.1.3")
 }
 
 javafx {
@@ -80,10 +79,13 @@ application {
 }
 
 jlink {
+    forceMerge("HikariCP")
+    forceMerge("jakarta.transaction")
+    addExtraDependencies("jakarta.interceptor", "jakarta.annotation")
     launcher {
         name = "JPackage Demo"
     }
-
+    
     jpackage {
         installerOutputDir = layout.buildDirectory.dir("installers").get().asFile
         installerOptions = listOf(
@@ -105,21 +107,18 @@ tasks.compileTestJava {
 
 
 tasks.register<JavaExec>("runTestJasper") {
-    description = ""
+    group = "jasper"
+    description = "Runs the TestJasper class"
     mainClass.set("org.masjidku.TestJasper")
     classpath = sourceSets["main"].runtimeClasspath
 }
 
 
 tasks.register<JavaExec>("compileJasper") {
-    description = ""
+    group = "jasper"
+    description = "Compiles the Jasper Reports"
     mainClass.set("org.masjidku.Compiler")
     classpath = sourceSets["main"].runtimeClasspath
-}
-
-
-dependencies {
-
 }
 
 
@@ -131,10 +130,15 @@ tasks.named<JavaExec>("run") {
 
 
 
+
 tasks.named<JavaExec>("run") {
     doFirst {
+        val transactionJars = classpath.filter { it.name.contains("jakarta.transaction") }
+        val modulePathJars = classpath.filter { !it.name.contains("jakarta.transaction") }
+
         jvmArgs = listOf(
-            "--module-path", classpath.asPath,
+            "--module-path", modulePathJars.asPath,
+            "--class-path", transactionJars.asPath,
             "--add-modules", "ALL-MODULE-PATH",
             "--module", "main/org.masjidku.MainApp",
             "--enable-native-access=javafx.graphics",

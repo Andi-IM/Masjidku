@@ -1,13 +1,13 @@
 package org.masjidku.accounting.domain.repository.impl;
 
+import org.hibernate.SessionFactory;
 import org.masjidku.accounting.domain.entity.DonasiPembangunanEntity;
 import org.masjidku.accounting.domain.repository.DonasiPembangunanRepository;
 import org.masjidku.accounting.domain.repository.exception.DataAccessException;
+
+import javax.inject.Inject;
 import java.util.List;
 import java.util.Optional;
-import javax.inject.Inject;
-import org.hibernate.SessionFactory;
-import org.masjidku.common.TransactionHelper;
 
 public class DonasiPembangunanRepositoryImpl implements DonasiPembangunanRepository {
 
@@ -93,8 +93,8 @@ public class DonasiPembangunanRepositoryImpl implements DonasiPembangunanReposit
     public String getTotal() {
         try {
             var session = sessionFactory.getCurrentSession();
-            var count = session.createQuery("SELECT IFNULL(SUM(CAST(e.jumlah AS double)), 0) FROM DonasiPembangunanEntity e", Double.class).uniqueResult();
-            return count != null ? String.valueOf(count.longValue()) : "0";
+            var count = session.createQuery("SELECT COALESCE(SUM(e.jumlah), 0) FROM DonasiPembangunanEntity e", java.math.BigDecimal.class).uniqueResult();
+            return count != null ? count.toPlainString() : "0";
         } catch (Exception e) {
             throw new DataAccessException("Failed to get total DonasiPembangunanEntity", e);
         }
