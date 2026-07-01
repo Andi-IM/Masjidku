@@ -55,6 +55,10 @@ public class ReportServiceImpl implements ReportService {
     public void showReport(String reportPath, Map<String, Object> parameters) {
         InputStream reportStream = getClass().getResourceAsStream(reportPath);
         if (reportStream == null) {
+            String classLoaderPath = reportPath.startsWith("/") ? reportPath.substring(1) : reportPath;
+            reportStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(classLoaderPath);
+        }
+        if (reportStream == null) {
             log.error("Failed to show report. Template could not be found for path: {}", reportPath);
             return;
         }
@@ -81,6 +85,10 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public void exportToPdf(String reportPath, Map<String, Object> parameters, String destFilePath) {
         InputStream reportStream = getClass().getResourceAsStream(reportPath);
+        if (reportStream == null) {
+            String classLoaderPath = reportPath.startsWith("/") ? reportPath.substring(1) : reportPath;
+            reportStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(classLoaderPath);
+        }
         if (reportStream == null) {
             log.error("Failed to export PDF. Template could not be found for path: {}", reportPath);
             return;
