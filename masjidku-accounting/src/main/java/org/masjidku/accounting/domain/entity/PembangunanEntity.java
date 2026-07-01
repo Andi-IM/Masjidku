@@ -1,9 +1,9 @@
 package org.masjidku.accounting.domain.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.persistence.Column;
 
 @Entity
 @Table(name = "pembangunan_keluar")
@@ -21,18 +21,53 @@ public class PembangunanEntity {
     private String tanggal;
     @Column(name = "operator")
     private String operator;
-    public PembangunanEntity() {}
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
-    public String getTujuan() { return tujuan; }
-    public void setTujuan(String tujuan) { this.tujuan = tujuan; }
-    public String getKeterangan() { return keterangan; }
-    public void setKeterangan(String keterangan) { this.keterangan = keterangan; }
-    public String getJumlah() { return jumlah; }
-    public void setJumlah(String jumlah) { this.jumlah = jumlah; }
-    public String getTanggal() { return tanggal; }
-    public void setTanggal(String tanggal) { this.tanggal = tanggal; }
-    public String getOperator() { return operator; }
-    public void setOperator(String operator) { this.operator = operator; }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getTujuan() {
+        return tujuan;
+    }
+
+    public void setTujuan(String tujuan) {
+        this.tujuan = tujuan;
+    }
+
+    public String getKeterangan() {
+        return keterangan;
+    }
+
+    public void setKeterangan(String keterangan) {
+        this.keterangan = keterangan;
+    }
+
+    public String getJumlah() {
+        return jumlah;
+    }
+
+    public void setJumlah(String jumlah) {
+        this.jumlah = jumlah;
+    }
+
+    public String getTanggal() {
+        return tanggal;
+    }
+
+    public void setTanggal(String tanggal) {
+        this.tanggal = tanggal;
+    }
+
+    public String getOperator() {
+        return operator;
+    }
+
+    public void setOperator(String operator) {
+        this.operator = operator;
+    }
 }
 

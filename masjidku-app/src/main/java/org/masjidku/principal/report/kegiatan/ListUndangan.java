@@ -22,7 +22,6 @@ import org.masjidku.controller.ReadOnlyTableController;
 import org.masjidku.events.client.EventsClient;
 import org.masjidku.events.client.model.TamuKegiatan;
 import org.masjidku.navigation.AppRouter;
-import org.masjidku.reporting.client.service.ReportService;
 import org.masjidku.util.ServiceProvider;
 import org.masjidku.util.TableHelper;
 import org.slf4j.Logger;

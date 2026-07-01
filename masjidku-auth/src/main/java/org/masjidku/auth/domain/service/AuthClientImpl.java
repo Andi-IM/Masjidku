@@ -15,6 +15,7 @@
 
 package org.masjidku.auth.domain.service;
 
+import org.hibernate.SessionFactory;
 import org.masjidku.auth.client.AuthClient;
 import org.masjidku.auth.client.dto.UpdateUserCredentialsDto;
 import org.masjidku.auth.client.dto.UpdateUserProfileDto;
@@ -30,7 +31,6 @@ import org.masjidku.auth.domain.repository.impl.UserRepositoryImpl;
 import org.masjidku.auth.domain.repository.impl.UserSessionRepositoryImpl;
 import org.masjidku.common.HibernateContext;
 import org.masjidku.common.TransactionHelper;
-import org.hibernate.SessionFactory;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -110,11 +110,6 @@ public class AuthClientImpl implements AuthClient {
     }
 
     @Override
-    public void saveUserProfile(UserProfile userProfile) {
-        userProfileRepository.save(userProfile);
-    }
-
-    @Override
     public void updateUserProfile(UpdateUserProfileDto dto) {
         userProfileRepository.update(dto);
     }
@@ -142,11 +137,6 @@ public class AuthClientImpl implements AuthClient {
     @Override
     public List<UserSession> getAllSessions() {
         return userSessionRepository.getAllSessions();
-    }
-
-    @Override
-    public List<UserSession> getAllSessions(String userid) {
-        return userSessionRepository.getAllSessions(userid);
     }
 
     @Override

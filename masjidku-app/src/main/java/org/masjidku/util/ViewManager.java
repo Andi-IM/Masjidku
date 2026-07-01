@@ -30,6 +30,8 @@ import org.masjidku.accounting.client.model.zakat.ZakatKeluar;
 import org.masjidku.accounting.client.model.zakat.ZakatMasuk;
 import org.masjidku.admin.AdminHome;
 import org.masjidku.admin.UserForm;
+import org.masjidku.auth.client.model.User;
+import org.masjidku.auth.client.model.UserProfile;
 import org.masjidku.controller.BaseRootController;
 import org.masjidku.controller.EditProfileController;
 import org.masjidku.controller.ProfileController;
@@ -37,16 +39,14 @@ import org.masjidku.controller.RootLayoutController;
 import org.masjidku.events.client.model.Kegiatan;
 import org.masjidku.events.client.model.Tamu;
 import org.masjidku.events.client.model.TamuKegiatan;
-import org.masjidku.auth.client.model.User;
-import org.masjidku.auth.client.model.UserProfile;
+import org.masjidku.navigation.AppRoute;
+import org.masjidku.navigation.AppRouterAware;
 import org.masjidku.principal.PrincipalHome;
 import org.masjidku.principal.PrincipalLaporan;
 import org.masjidku.secretary.SecretaryHome;
 import org.masjidku.secretary.SecretaryKegiatanForm;
 import org.masjidku.secretary.SecretaryTamuForm;
 import org.masjidku.secretary.SecretaryUndanganForm;
-import org.masjidku.navigation.AppRouterAware;
-import org.masjidku.navigation.AppRoute;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -68,8 +68,8 @@ public class ViewManager {
     }
 
     public void injectMainApp(Object rawController) {
-        if (rawController instanceof AppRouterAware) {
-            ((AppRouterAware) rawController).setMainApp(mainApp);
+        if (rawController instanceof AppRouterAware aware) {
+            aware.setMainApp(mainApp);
         } else if (rawController != null) {
             // Fallback for controllers that haven't been updated yet
             try {
@@ -102,8 +102,8 @@ public class ViewManager {
             injectMainApp(loader.getController());
 
             Object controller = loader.getController();
-            if (controller instanceof BaseRootController) {
-                this.currentRootController = (BaseRootController) controller;
+            if (controller instanceof BaseRootController rootController) {
+                this.currentRootController = rootController;
             } else {
                 this.currentRootController = null;
             }
@@ -148,7 +148,7 @@ public class ViewManager {
                 this.rootLayoutController = controller;
                 this.currentRootController = null;
                 controller.setMainApp(mainApp);
-                controller.btn_home.setSelected(true);
+                controller.btnHome.setSelected(true);
             }
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, "An error occurred", e);
@@ -185,22 +185,22 @@ public class ViewManager {
 
     public void showContent() {
         loadView("home.fxml");
-        if (rootLayoutController != null && rootLayoutController.btn_home != null) {
-            rootLayoutController.btn_home.setSelected(true);
+        if (rootLayoutController != null && rootLayoutController.btnHome != null) {
+            rootLayoutController.btnHome.setSelected(true);
         }
     }
 
     public void showLogin() {
         loadView("login.fxml");
-        if (rootLayoutController != null && rootLayoutController.btn_login != null) {
-            rootLayoutController.btn_login.setSelected(true);
+        if (rootLayoutController != null && rootLayoutController.btnLogin != null) {
+            rootLayoutController.btnLogin.setSelected(true);
         }
     }
 
     public void showAbout() {
         loadView("about.fxml");
-        if (rootLayoutController != null && rootLayoutController.btn_about != null) {
-            rootLayoutController.btn_about.setSelected(true);
+        if (rootLayoutController != null && rootLayoutController.btnAbout != null) {
+            rootLayoutController.btnAbout.setSelected(true);
         }
     }
 
@@ -535,15 +535,12 @@ public class ViewManager {
         } else if (rootLayoutController != null) {
             group = rootLayoutController.groupButton;
         }
-        
+
         if (group != null) {
             for (javafx.scene.control.Toggle toggle : group.getToggles()) {
-                if (toggle instanceof javafx.scene.control.ToggleButton) {
-                    javafx.scene.control.ToggleButton btn = (javafx.scene.control.ToggleButton) toggle;
-                    if (text.equalsIgnoreCase(btn.getText().trim())) {
-                        btn.setSelected(true);
-                        break;
-                    }
+                if (toggle instanceof javafx.scene.control.ToggleButton btn && text.equalsIgnoreCase(btn.getText().trim())) {
+                    btn.setSelected(true);
+                    break;
                 }
             }
         }

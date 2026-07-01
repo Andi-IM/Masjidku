@@ -38,7 +38,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <ToggleButton fx:id="btn_home" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleHome" styleClass="sidebarButton" text="Beranda" textAlignment="CENTER" GridPane.valignment="CENTER">
+                        <ToggleButton fx:id="btnHome" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleHome" styleClass="sidebarButton" text="Beranda" textAlignment="CENTER" GridPane.valignment="CENTER">
                      <toggleGroup>
                         <ToggleGroup fx:id="groupButton" />
                      </toggleGroup>
@@ -49,7 +49,7 @@
                            </image>
                         </ImageView>
                      </graphic></ToggleButton>
-                        <ToggleButton fx:id="btn_login" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleLogin" styleClass="sidebarButton" text="Masuk" toggleGroup="$groupButton" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                        <ToggleButton fx:id="btnLogin" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleLogin" styleClass="sidebarButton" text="Masuk" toggleGroup="$groupButton" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -57,7 +57,7 @@
                            </image>
                         </ImageView>
                      </graphic></ToggleButton>
-                        <ToggleButton fx:id="btn_about" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleAbout" styleClass="sidebarButton" text="Tentang" toggleGroup="$groupButton" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                        <ToggleButton fx:id="btnAbout" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleAbout" styleClass="sidebarButton" text="Tentang" toggleGroup="$groupButton" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>

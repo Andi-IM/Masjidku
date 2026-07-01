@@ -13,23 +13,28 @@
  *                                HEREUNDER.
  */
 package org.masjidku.principal;
-import javafx.fxml.FXML;
-import javafx.scene.control.ToggleGroup;
-import org.masjidku.navigation.AppRouter;
-import org.masjidku.controller.BaseRootController;
-public class PrincipalRoot extends BaseRootController {
-    
-    
-    
 
-    
+import javafx.fxml.FXML;
+import org.masjidku.controller.BaseRootController;
+
+public class PrincipalRoot extends BaseRootController {
+
+
     @FXML
-    public void homeAction() { mainApp.setPrincipalView(); }
+    public void homeAction() {
+        mainApp.setPrincipalView();
+    }
+
     @FXML
-    public void laporanManage() { mainApp.showLaporan(); }
+    public void laporanManage() {
+        mainApp.showLaporan();
+    }
+
     @FXML
-    public void readData() { mainApp.showData(); }
-    
-    
+    public void readData() {
+        mainApp.showData();
+    }
+
+
 }
 

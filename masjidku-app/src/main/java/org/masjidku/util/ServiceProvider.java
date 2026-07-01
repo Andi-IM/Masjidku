@@ -7,6 +7,8 @@ import java.util.ServiceLoader;
  * Avoids code duplication across controllers.
  */
 public class ServiceProvider {
+
+    private ServiceProvider(){}
     
     /**
      * Retrieves the first available service provider for the given class.

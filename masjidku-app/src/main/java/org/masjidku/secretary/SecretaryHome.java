@@ -17,20 +17,12 @@ package org.masjidku.secretary;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.text.Text;
-import org.masjidku.di.DiProvider;
-import org.masjidku.navigation.AppRouter;
 import org.masjidku.controller.BaseHomeController;
 
 public class SecretaryHome extends BaseHomeController {
     @FXML
     public Button btnKegiatan;
-    
-    
 
-    
-
-    
 
     @FXML
     public void onKelolaKegiatanClick() {

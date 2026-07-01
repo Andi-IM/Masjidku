@@ -39,7 +39,6 @@ public interface AuthClient {
     boolean isUserExist(String userid, String password);
 
     // UserProfileRepository operations
-    void saveUserProfile(UserProfile userProfile);
     void updateUserProfile(UpdateUserProfileDto dto);
     UserProfile getFullUserData(String userid);
 
@@ -48,6 +47,5 @@ public interface AuthClient {
     void updateUserSession(String sessionId, String duration);
     UserSession getSessionData(String userId);
     List<UserSession> getAllSessions();
-    List<UserSession> getAllSessions(String userid);
     void truncateSessionData();
 }

@@ -15,20 +15,12 @@
 
 package org.masjidku.controller;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import org.masjidku.util.AlertHelper;
-import org.slf4j.Logger;
 
-import java.net.URL;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.ResourceBundle;
 
 public abstract class BaseTableController<T> extends ReadOnlyTableController<T> {
 

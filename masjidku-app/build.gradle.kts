@@ -22,46 +22,40 @@ tasks.named<JavaCompile>("compileTestJava") {
 }
 
 dependencies {
-    // Database
-    implementation(libs.mysql.connector)
+    // implementation
+    implementation(libs.mysql.connector) {
+        exclude(group = "com.google.protobuf", module = "protobuf-java")
+    }
     implementation(libs.sqlite.jdbc)
     implementation(libs.hibernate.core)
     implementation(libs.jboss.logging)
     implementation(libs.jakarta.transaction)
     implementation(libs.jakarta.interceptor)
     implementation(libs.jakarta.cdi)
-
-    // Submodules
     implementation(project(":masjidku-accounting-client"))
     implementation(project(":masjidku-events-client"))
     implementation(project(":masjidku-reporting-client"))
     implementation(project(":masjidku-auth-client"))
-    
-    // Service implementations (runtime)
     implementation(project(":masjidku-common"))
     implementation(project(":masjidku-accounting"))
     implementation(project(":masjidku-events"))
     implementation(project(":masjidku-reporting"))
     implementation(project(":masjidku-auth"))
-    
-    // XML Bind
     implementation(libs.jaxb.api)
     implementation(libs.jetbrains.annotations)
-
-    // Hash Security and other tools
     implementation(libs.guava)
-
-    // Utilities
     implementation(libs.slf4j)
-    runtimeOnly(libs.logback)
     implementation(libs.validatorfx)
+    implementation(libs.dagger)
 
-    // Unit Test
+    // runtimeOnly
+    runtimeOnly(libs.logback)
+
+    // testImplementation
     testImplementation(libs.junit)
     testImplementation(libs.archunit.junit5)
 
-    // Dagger 2 DI
-    implementation(libs.dagger)
+    // annotationProcessor
     annotationProcessor(libs.dagger.compiler)
 }
 
@@ -105,21 +99,18 @@ tasks.compileTestJava {
 
 
 tasks.register<JavaExec>("runTestJasper") {
-    description = ""
+    group = "jasper"
+    description = "Runs the TestJasper class"
     mainClass.set("org.masjidku.TestJasper")
     classpath = sourceSets["main"].runtimeClasspath
 }
 
 
 tasks.register<JavaExec>("compileJasper") {
-    description = ""
+    group = "jasper"
+    description = "Compiles the Jasper Reports"
     mainClass.set("org.masjidku.Compiler")
     classpath = sourceSets["main"].runtimeClasspath
-}
-
-
-dependencies {
-
 }
 
 

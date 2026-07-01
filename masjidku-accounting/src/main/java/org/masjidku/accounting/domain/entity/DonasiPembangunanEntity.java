@@ -1,9 +1,9 @@
 package org.masjidku.accounting.domain.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.persistence.Column;
 
 @Entity
 @Table(name = "infak_pembangunan")
@@ -19,16 +19,45 @@ public class DonasiPembangunanEntity {
     private String tanggal;
     @Column(name = "operator")
     private String operator;
-    public DonasiPembangunanEntity() {}
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
-    public String getDonatur() { return donatur; }
-    public void setDonatur(String donatur) { this.donatur = donatur; }
-    public String getJumlah() { return jumlah; }
-    public void setJumlah(String jumlah) { this.jumlah = jumlah; }
-    public String getTanggal() { return tanggal; }
-    public void setTanggal(String tanggal) { this.tanggal = tanggal; }
-    public String getOperator() { return operator; }
-    public void setOperator(String operator) { this.operator = operator; }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getDonatur() {
+        return donatur;
+    }
+
+    public void setDonatur(String donatur) {
+        this.donatur = donatur;
+    }
+
+    public String getJumlah() {
+        return jumlah;
+    }
+
+    public void setJumlah(String jumlah) {
+        this.jumlah = jumlah;
+    }
+
+    public String getTanggal() {
+        return tanggal;
+    }
+
+    public void setTanggal(String tanggal) {
+        this.tanggal = tanggal;
+    }
+
+    public String getOperator() {
+        return operator;
+    }
+
+    public void setOperator(String operator) {
+        this.operator = operator;
+    }
 }
 

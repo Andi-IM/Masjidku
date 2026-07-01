@@ -5,12 +5,10 @@ package org.masjidku.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
-import org.masjidku.di.DiProvider;
 import org.masjidku.navigation.AppRouter;
+import org.masjidku.navigation.AppRouterAware;
 
 import static org.masjidku.di.DiProvider.getAppComponent;
-
-import org.masjidku.navigation.AppRouterAware;
 
 public abstract class BaseHomeController implements AppRouterAware {
 
