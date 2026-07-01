@@ -59,7 +59,7 @@ public class ProfileController {
         this.mainApp = mainApp;
         profile = getUserData(userid);
 
-        if (profile != null) {
+        if (profile != null && profile.user() != null) {
             userId.setText(profile.user().id());
             username.setText(profile.user().username());
             userRole.setText(profile.user().jabatan());
