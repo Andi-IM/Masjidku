@@ -1,3 +1,20 @@
+# [1.2.0](https://github.com/Andi-IM/Masjidku/compare/v1.1.0...v1.2.0) (2026-07-02)
+
+
+### Bug Fixes
+
+* **security:** rename variable to hashResult to completely avoid SonarQube password regex ([f2e858f](https://github.com/Andi-IM/Masjidku/commit/f2e858f7ccaecb873a9da93037ee522a124518ae))
+* **security:** resolve SonarQube false positive for generic password secret ([f1914d9](https://github.com/Andi-IM/Masjidku/commit/f1914d96bcec8671fb0abbaf7da3486b9f42aac9))
+
+
+### Features
+
+* implement abstract base repository for generic Hibernate CRUD operations ([43ed5f9](https://github.com/Andi-IM/Masjidku/commit/43ed5f9b3c5f25b5cfc1ee633da62fb9e3e83a37))
+* implement base generic repository class and add sonar-secrets agent hook configuration ([f40cb40](https://github.com/Andi-IM/Masjidku/commit/f40cb406e9011a2cfe033297383f6f431d19304a))
+* implement base generic repository class for Hibernate entity operations ([031b83c](https://github.com/Andi-IM/Masjidku/commit/031b83ce11b020b3b4ce4198873c08d6d30491b2))
+* implement BaseEventRepositoryImpl for generic Hibernate database operations ([9bf43a0](https://github.com/Andi-IM/Masjidku/commit/9bf43a08170155126053c030f4ed7c06ac4741a3))
+* implement generic BaseEventRepositoryImpl for common Hibernate database operations ([d3802fb](https://github.com/Andi-IM/Masjidku/commit/d3802fb23a1469b3eeb0fb7b8a83ca68587b2c2b))
+
 # [1.1.0](https://github.com/Andi-IM/Masjidku/compare/v1.0.0...v1.1.0) (2026-07-02)
 
 
