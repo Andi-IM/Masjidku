@@ -15,6 +15,8 @@
 
 package org.masjidku.accountant.anakyatim;
 
+import org.masjidku.accountant.BaseEditController;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Spinner;
@@ -38,11 +40,8 @@ import static org.masjidku.util.Constants.ERROR;
 import static org.masjidku.util.Constants.SUCCESS;
 import static org.masjidku.util.ValidationHelper.*;
 
-public class EditPenerimaAnakYatim {
+public class EditPenerimaAnakYatim extends BaseEditController<AnakYatim> {
     private static final Logger log = LoggerFactory.getLogger(EditPenerimaAnakYatim.class);
-    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
-    private final Validator validator = new Validator();
-
     @FXML
     private TextField txtNama;
     @FXML
@@ -52,16 +51,9 @@ public class EditPenerimaAnakYatim {
     @FXML
     private DatePicker date;
     private AnakYatim anakYatim;
-    private AppRouter mainApp;
-    private String operator;
-
-    // create some stage
-    @SuppressWarnings("unused")
-    private Stage dialogStage;
-
     @FXML
     public void initialize() {
-        registerRequiredField(validator, txtNama, "nama", "Nama penerima harus diisi!");
+        registerRequiredField(validator, txtNama, "nama", "Nama model harus diisi!");
         registerNumericField(validator, txtJumlah, "jumlah", "Jumlah harus diisi!", "Jumlah harus berupa angka!");
         registerDatePicker(validator, date, "tanggal", "Tanggal harus dipilih!");
 
@@ -76,30 +68,19 @@ public class EditPenerimaAnakYatim {
                 .decorates(spnUsia);
     }
 
-    public void setMainApp(AppRouter mainApp, AnakYatim model) {
-        operator = getAppComponent().getSessionManager().getCurrentUsername();
-        this.mainApp = mainApp;
-        this.anakYatim = model;
+    
 
-        if (model.id() != null) {
-            setModel(model);
-        }
+    @Override
+    protected boolean isModelExists(AnakYatim model) {
+        return model.id() != null;
     }
 
-    private void setModel(AnakYatim model) {
+    @Override
+    protected void setModelData(AnakYatim model) {
         txtNama.setText(model.nama());
         txtJumlah.setText(model.jumlah().toPlainString());
         spnUsia.getValueFactory().setValue(model.usia());
         date.setValue(model.tanggal());
-    }
-
-    /**
-     * Validating form
-     *
-     * @return fieldStatus
-     */
-    private boolean formValidation() {
-        return validator.validate();
     }
 
     @FXML
@@ -134,11 +115,6 @@ public class EditPenerimaAnakYatim {
     @FXML
     public void gotoList() {
         mainApp.showDaftarAnakYatim();
-    }
-
-    @FXML
-    public void onLogoutClick() {
-        mainApp.onLogoutAction();
     }
 
     @FXML

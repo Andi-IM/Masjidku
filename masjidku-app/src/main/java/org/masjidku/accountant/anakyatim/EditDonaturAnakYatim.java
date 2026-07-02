@@ -15,6 +15,8 @@
 
 package org.masjidku.accountant.anakyatim;
 
+import org.masjidku.accountant.BaseEditController;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -37,44 +39,30 @@ import static org.masjidku.util.Constants.ERROR;
 import static org.masjidku.util.DaoHelper.saveOrUpdate;
 import static org.masjidku.util.ValidationHelper.*;
 
-public class EditDonaturAnakYatim {
+public class EditDonaturAnakYatim extends BaseEditController<DonasiAYatim> {
     private static final Logger log = LoggerFactory.getLogger(EditDonaturAnakYatim.class);
-    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
-    private final Validator validator = new Validator();
-
     @FXML
     private TextField txtNama;
     @FXML
     private TextField txtJumlah;
     @FXML
     private DatePicker date;
-    private DonasiAYatim donatur;
-    private AppRouter mainApp;
-    private String operator;
-
-    // create some stage
-    @SuppressWarnings("unused")
-    private Stage dialogStage;
-
     @FXML
     public void initialize() {
-        registerRequiredField(validator, txtNama, "nama", "Nama donatur harus diisi!");
+        registerRequiredField(validator, txtNama, "nama", "Nama model harus diisi!");
         registerNumericField(validator, txtJumlah, "jumlah", "Jumlah harus diisi!", "Jumlah harus berupa angka!");
         registerDatePicker(validator, date, "tanggal", "Tanggal harus dipilih!");
     }
 
-    public void setMainApp(AppRouter mainApp, DonasiAYatim model) {
-        operator = getAppComponent().getSessionManager().getCurrentUsername();
-        this.mainApp = mainApp;
-        this.donatur = model;
+    
 
-
-        if (model.id() != null) {
-            setDonasi(model);
-        }
+    @Override
+    protected boolean isModelExists(DonasiAYatim model) {
+        return model.id() != null;
     }
 
-    private void setDonasi(DonasiAYatim model) {
+    @Override
+    protected void setModelData(DonasiAYatim model) {
         txtNama.setText(model.donatur());
         txtJumlah.setText(model.jumlah().toPlainString());
         date.setValue(model.tanggal());
@@ -94,28 +82,19 @@ public class EditDonaturAnakYatim {
             BigDecimal jumlah = new BigDecimal(txtJumlah.getText());
             LocalDate tanggal = date.getValue();
 
-            if (donatur == null) {
-                donatur = new DonasiAYatim(nama, jumlah, tanggal, operator);
+            if (model == null) {
+                model = new DonasiAYatim(nama, jumlah, tanggal, operator);
             }
 
             saveOrUpdate(
-                    () -> client.isDonasiAYatimExist(donatur.id()),
-                    () -> client.update(new DonasiAYatim(donatur.id(), nama, jumlah, tanggal, operator)),
-                    () -> client.save(donatur),
+                    () -> client.isDonasiAYatimExist(model.id()),
+                    () -> client.update(new DonasiAYatim(model.id(), nama, jumlah, tanggal, operator)),
+                    () -> client.save(model),
                     dialogStage, log
             );
         } else {
             AlertHelper.alertError(dialogStage, ERROR, "Data belum lengkap!");
         }
-    }
-
-    /**
-     * Validating form
-     *
-     * @return fieldStatus
-     */
-    private boolean formValidation() {
-        return validator.validate();
     }
 
     @FXML

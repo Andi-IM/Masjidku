@@ -15,6 +15,8 @@
 
 package org.masjidku.accountant.zakat;
 
+import org.masjidku.accountant.BaseEditController;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -37,43 +39,30 @@ import static org.masjidku.util.AlertHelper.alertError;
 import static org.masjidku.util.Constants.ERROR;
 import static org.masjidku.util.ValidationHelper.*;
 
-public class EditDonaturZakat {
+public class EditDonaturZakat extends BaseEditController<ZakatMasuk> {
     private static final Logger log = LoggerFactory.getLogger(EditDonaturZakat.class);
-    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
-    private final Validator validator = new Validator();
-
     @FXML
     private TextField txtNama;
     @FXML
     private TextField txtJumlah;
     @FXML
     private DatePicker date;
-    private ZakatMasuk donatur;
-    private AppRouter mainApp;
-    private String operator;
-
-    // create some stage
-    @SuppressWarnings("unused")
-    private Stage dialogStage;
-
     @FXML
     public void initialize() {
-        registerRequiredField(validator, txtNama, "nama", "Nama donatur harus diisi!");
+        registerRequiredField(validator, txtNama, "nama", "Nama model harus diisi!");
         registerNumericField(validator, txtJumlah, "jumlah", "Jumlah harus diisi!", "Jumlah harus berupa angka!");
         registerDatePicker(validator, date, "tanggal", "Tanggal harus dipilih!");
     }
 
-    public void setMainApp(AppRouter mainApp, ZakatMasuk model) {
-        operator = getAppComponent().getSessionManager().getCurrentUsername();
-        this.mainApp = mainApp;
-        this.donatur = model;
+    
 
-        if (model.id() != null) {
-            setDonatur(model);
-        }
+    @Override
+    protected boolean isModelExists(ZakatMasuk model) {
+        return model.id() != null;
     }
 
-    public void setDonatur(ZakatMasuk model) {
+    @Override
+    protected void setModelData(ZakatMasuk model) {
         txtNama.setText(model.donatur());
         txtJumlah.setText(model.jumlah().toPlainString());
         date.setValue(model.tanggal());
@@ -87,20 +76,20 @@ public class EditDonaturZakat {
     }
 
     @FXML
-    public void onUserSubmitted() {
+    public void onSubmitted() {
         if (formValidation()) {
             String nama = txtNama.getText();
             BigDecimal jumlah = new BigDecimal(txtJumlah.getText());
             LocalDate tanggal = date.getValue();
 
-            if (donatur == null) {
-                donatur = new ZakatMasuk(nama, jumlah, tanggal, operator);
+            if (model == null) {
+                model = new ZakatMasuk(nama, jumlah, tanggal, operator);
             }
 
             org.masjidku.util.DaoHelper.saveOrUpdate(
-                () -> client.isZakatMasukExist(donatur.id()),
-                () -> client.update(new ZakatMasuk(donatur.id(), nama, jumlah, tanggal, operator)),
-                () -> client.save(donatur),
+                () -> client.isZakatMasukExist(model.id()),
+                () -> client.update(new ZakatMasuk(model.id(), nama, jumlah, tanggal, operator)),
+                () -> client.save(model),
                 dialogStage, log
             );
         } else {
@@ -108,28 +97,12 @@ public class EditDonaturZakat {
         }
     }
 
-    /**
-     * Validating form
-     *
-     * @return fieldStatus
-     */
-    private boolean formValidation() {
-        return validator.validate();
-    }
-
-
     @FXML
     public void gotoList() {
         mainApp.showDonaturZakat();
     }
 
-    @FXML
-    public void onLogoutClick() {
-        mainApp.onLogoutAction();
     }
-
-
-}
 
 
 

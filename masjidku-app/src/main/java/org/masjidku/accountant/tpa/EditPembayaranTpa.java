@@ -15,6 +15,8 @@
 
 package org.masjidku.accountant.tpa;
 
+import org.masjidku.accountant.BaseEditController;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -36,11 +38,8 @@ import static org.masjidku.util.Constants.ERROR;
 import static org.masjidku.util.DaoHelper.saveOrUpdate;
 import static org.masjidku.util.ValidationHelper.*;
 
-public class EditPembayaranTpa {
+public class EditPembayaranTpa extends BaseEditController<TpaKeluar> {
     private static final Logger log = LoggerFactory.getLogger(EditPembayaranTpa.class);
-    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
-    private final Validator validator = new Validator();
-
     @FXML
     private TextField txtNama;
     @FXML
@@ -49,14 +48,6 @@ public class EditPembayaranTpa {
     private TextField txtJumlah;
     @FXML
     private DatePicker date;
-    private TpaKeluar model;
-    private AppRouter mainApp;
-    private String operator;
-
-    // create some stage
-    @SuppressWarnings("unused")
-    private Stage dialogStage;
-
     @FXML
     public void initialize() {
         registerRequiredField(validator, txtNama, "nama", "Tujuan harus diisi!");
@@ -65,30 +56,19 @@ public class EditPembayaranTpa {
         registerDatePicker(validator, date, "tanggal", "Tanggal harus dipilih!");
     }
 
-    public void setMainApp(AppRouter mainApp, TpaKeluar model) {
-        operator = getAppComponent().getSessionManager().getCurrentUsername();
-        this.mainApp = mainApp;
-        this.model = model;
+    
 
-        if (model.id() != null) {
-            setModel(model);
-        }
+    @Override
+    protected boolean isModelExists(TpaKeluar model) {
+        return model.id() != null;
     }
 
-    private void setModel(TpaKeluar model) {
+    @Override
+    protected void setModelData(TpaKeluar model) {
         txtNama.setText(model.nama());
         txtKeterangan.setText(model.keterangan());
         txtJumlah.setText(model.jumlah().toPlainString());
         date.setValue(model.tanggal());
-    }
-
-    /**
-     * Validating form
-     *
-     * @return fieldStatus
-     */
-    private boolean formValidation() {
-        return validator.validate();
     }
 
     @FXML
@@ -117,11 +97,6 @@ public class EditPembayaranTpa {
     @FXML
     public void gotoList() {
         mainApp.showAlokasiTpa();
-    }
-
-    @FXML
-    public void onLogoutClick() {
-        mainApp.onLogoutAction();
     }
 
     @FXML

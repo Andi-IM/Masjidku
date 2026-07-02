@@ -15,6 +15,8 @@
 
 package org.masjidku.accountant.zakat;
 
+import org.masjidku.accountant.BaseEditController;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -37,43 +39,30 @@ import static org.masjidku.util.Constants.ERROR;
 import static org.masjidku.util.Constants.SUCCESS;
 import static org.masjidku.util.ValidationHelper.*;
 
-public class EditPenerimaZakat {
+public class EditPenerimaZakat extends BaseEditController<ZakatKeluar> {
     private static final Logger log = LoggerFactory.getLogger(EditPenerimaZakat.class);
-    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
-    private final Validator validator = new Validator();
-
     @FXML
     private TextField txtNama;
     @FXML
     private TextField txtJumlah;
     @FXML
     private DatePicker date;
-    private ZakatKeluar penerima;
-    private AppRouter mainApp;
-    private String operator;
-
-    // create some stage
-    @SuppressWarnings("unused")
-    private Stage dialogStage;
-
     @FXML
     public void initialize() {
-        registerRequiredField(validator, txtNama, "nama", "Nama penerima harus diisi!");
+        registerRequiredField(validator, txtNama, "nama", "Nama model harus diisi!");
         registerNumericField(validator, txtJumlah, "jumlah", "Jumlah harus diisi!", "Jumlah harus berupa angka!");
         registerDatePicker(validator, date, "tanggal", "Tanggal harus dipilih!");
     }
 
-    public void setMainApp(AppRouter mainApp, ZakatKeluar model) {
-        operator = getAppComponent().getSessionManager().getCurrentUsername();
-        this.mainApp = mainApp;
-        this.penerima = model;
+    
 
-        if (model.id() != null) {
-            setModel(model);
-        }
+    @Override
+    protected boolean isModelExists(ZakatKeluar model) {
+        return model.id() != null;
     }
 
-    private void setModel(ZakatKeluar model) {
+    @Override
+    protected void setModelData(ZakatKeluar model) {
         txtNama.setText(model.nama());
         txtJumlah.setText(model.jumlah().toPlainString());
         date.setValue(model.tanggal());
@@ -86,32 +75,23 @@ public class EditPenerimaZakat {
         date.getEditor().clear();
     }
 
-    /**
-     * Validating form
-     *
-     * @return fieldStatus
-     */
-    private boolean formValidation() {
-        return validator.validate();
-    }
-
     @FXML
-    public void onUserSubmitted() {
+    public void onSubmitted() {
         if (formValidation()) {
             String nama = txtNama.getText();
             BigDecimal jumlah = new BigDecimal(txtJumlah.getText());
             LocalDate tanggal = date.getValue();
 
-            if (penerima == null) {
-                penerima = new ZakatKeluar(nama, jumlah, tanggal, operator);
+            if (model == null) {
+                model = new ZakatKeluar(nama, jumlah, tanggal, operator);
             }
 
             try {
-                if (client.isZakatKeluarExist(penerima.id())) {
-                    client.update(new ZakatKeluar(penerima.id(), penerima.nama(), penerima.jumlah(), penerima.tanggal(), operator));
+                if (client.isZakatKeluarExist(model.id())) {
+                    client.update(new ZakatKeluar(model.id(), model.nama(), model.jumlah(), model.tanggal(), operator));
                     alertInfo(dialogStage, SUCCESS, "Data telah diupdate");
                 } else {
-                    client.save(penerima);
+                    client.save(model);
                 }
             } catch (Exception e) {
                 log.error("An error occurred", e);
@@ -127,13 +107,7 @@ public class EditPenerimaZakat {
         mainApp.showDaftarPenerimaZakat();
     }
 
-    @FXML
-    public void onLogoutClick() {
-        mainApp.onLogoutAction();
     }
-
-
-}
 
 
 

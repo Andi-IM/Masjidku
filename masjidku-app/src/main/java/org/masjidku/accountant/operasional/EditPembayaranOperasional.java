@@ -15,6 +15,8 @@
 
 package org.masjidku.accountant.operasional;
 
+import org.masjidku.accountant.BaseEditController;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -36,11 +38,8 @@ import static org.masjidku.util.Constants.ERROR;
 import static org.masjidku.util.DaoHelper.saveOrUpdate;
 import static org.masjidku.util.ValidationHelper.*;
 
-public class EditPembayaranOperasional {
+public class EditPembayaranOperasional extends BaseEditController<Operasional> {
     private static final Logger log = LoggerFactory.getLogger(EditPembayaranOperasional.class);
-    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
-    private final Validator validator = new Validator();
-
     @FXML
     private TextField txtNama;
     @FXML
@@ -49,14 +48,6 @@ public class EditPembayaranOperasional {
     private TextField txtJumlah;
     @FXML
     private DatePicker date;
-    private Operasional model;
-    private AppRouter mainApp;
-    private String operator;
-
-    // create some stage
-    @SuppressWarnings("unused")
-    private Stage dialogStage;
-
     @FXML
     public void initialize() {
         registerRequiredField(validator, txtNama, "nama", "Tujuan harus diisi!");
@@ -65,30 +56,19 @@ public class EditPembayaranOperasional {
         registerDatePicker(validator, date, "tanggal", "Tanggal harus dipilih!");
     }
 
-    public void setMainApp(AppRouter mainApp, Operasional model) {
-        operator = getAppComponent().getSessionManager().getCurrentUsername();
-        this.mainApp = mainApp;
-        this.model = model;
+    
 
-        if (model.id() != null) {
-            setModel(model);
-        }
+    @Override
+    protected boolean isModelExists(Operasional model) {
+        return model.id() != null;
     }
 
-    private void setModel(Operasional model) {
+    @Override
+    protected void setModelData(Operasional model) {
         txtNama.setText(model.tujuan());
         txtKeterangan.setText(model.keterangan());
         txtJumlah.setText(model.jumlah().toPlainString());
         date.setValue(model.tanggal());
-    }
-
-    /**
-     * Validating form
-     *
-     * @return fieldStatus
-     */
-    private boolean formValidation() {
-        return validator.validate();
     }
 
     @FXML
@@ -117,11 +97,6 @@ public class EditPembayaranOperasional {
     @FXML
     public void gotoList() {
         mainApp.showAlokasiOperasional();
-    }
-
-    @FXML
-    public void onLogoutClick() {
-        mainApp.onLogoutAction();
     }
 
     @FXML

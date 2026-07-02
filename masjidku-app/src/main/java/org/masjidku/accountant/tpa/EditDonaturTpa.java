@@ -15,6 +15,8 @@
 
 package org.masjidku.accountant.tpa;
 
+import org.masjidku.accountant.BaseEditController;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -36,11 +38,8 @@ import static org.masjidku.util.Constants.ERROR;
 import static org.masjidku.util.DaoHelper.saveOrUpdate;
 import static org.masjidku.util.ValidationHelper.*;
 
-public class EditDonaturTpa {
+public class EditDonaturTpa extends BaseEditController<TpaMasuk> {
     private static final Logger log = LoggerFactory.getLogger(EditDonaturTpa.class);
-    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
-    private final Validator validator = new Validator();
-
     @FXML
     private TextField txtNama;
     @FXML
@@ -48,44 +47,25 @@ public class EditDonaturTpa {
     @FXML
     private DatePicker date;
 
-    private TpaMasuk donatur;
-    private AppRouter mainApp;
-    private String operator;
-
-    // create some stage
-    @SuppressWarnings("unused")
-    private Stage dialogStage;
-
     @FXML
     public void initialize() {
-        registerRequiredField(validator, txtNama, "nama", "Nama donatur harus diisi!");
+        registerRequiredField(validator, txtNama, "nama", "Nama model harus diisi!");
         registerNumericField(validator, txtJumlah, "jumlah", "Jumlah harus diisi!", "Jumlah harus berupa angka!");
         registerDatePicker(validator, date, "tanggal", "Tanggal harus dipilih!");
     }
 
-    public void setMainApp(AppRouter mainApp, TpaMasuk model) {
-        operator = getAppComponent().getSessionManager().getCurrentUsername();
-        this.mainApp = mainApp;
-        this.donatur = model;
+    
 
-        if (model.id() != null) {
-            setDonatur(model);
-        }
+    @Override
+    protected boolean isModelExists(TpaMasuk model) {
+        return model.id() != null;
     }
 
-    public void setDonatur(TpaMasuk model) {
+    @Override
+    protected void setModelData(TpaMasuk model) {
         txtNama.setText(model.donatur());
         txtJumlah.setText(model.jumlah().toPlainString());
         date.setValue(model.tanggal());
-    }
-
-    /**
-     * Validating form
-     *
-     * @return fieldStatus
-     */
-    private boolean formValidation() {
-        return validator.validate();
     }
 
     @FXML
@@ -95,14 +75,14 @@ public class EditDonaturTpa {
             BigDecimal jumlah = new BigDecimal(txtJumlah.getText());
             LocalDate tanggal = date.getValue();
 
-            if (donatur == null) {
-                donatur = new TpaMasuk(nama, jumlah, tanggal, operator);
+            if (model == null) {
+                model = new TpaMasuk(nama, jumlah, tanggal, operator);
             }
 
             saveOrUpdate(
-                    () -> client.isTpaMasukExist(donatur.id()),
-                    () -> client.update(new TpaMasuk(donatur.id(), nama, jumlah, tanggal, operator)),
-                    () -> client.save(donatur),
+                    () -> client.isTpaMasukExist(model.id()),
+                    () -> client.update(new TpaMasuk(model.id(), nama, jumlah, tanggal, operator)),
+                    () -> client.save(model),
                     dialogStage, log
             );
         } else {
@@ -113,11 +93,6 @@ public class EditDonaturTpa {
     @FXML
     public void gotoList() {
         mainApp.showDonaturTpa();
-    }
-
-    @FXML
-    public void onLogoutClick() {
-        mainApp.onLogoutAction();
     }
 
     @FXML
