@@ -84,7 +84,17 @@ public abstract class BaseRepositoryImpl<T> implements BaseRepository<T> {
 
     @Override
     public boolean exists(String id) {
-        return findById(id).isPresent();
+        try {
+            var session = sessionFactory.getCurrentSession();
+            var builder = session.getCriteriaBuilder();
+            var query = builder.createQuery(Long.class);
+            var root = query.from(entityClass);
+            query.select(builder.count(root)).where(builder.equal(root.get(idFieldName), id));
+            var count = session.createQuery(query).uniqueResult();
+            return count != null && count > 0;
+        } catch (Exception e) {
+            throw new DataAccessException("Failed to check existence of " + entityClass.getSimpleName(), e);
+        }
     }
 
     @Override
