@@ -56,9 +56,7 @@ public class EditPenerimaZakat extends BaseEditController<ZakatKeluar> {
         date.setValue(model.tanggal());
     }
     @Override
-    @FXML
-    public void onSubmitted() {
-        if (formValidation()) {
+    protected void processSubmission() {
             String nama = txtNama.getText();
             BigDecimal jumlah = new BigDecimal(txtJumlah.getText());
             LocalDate tanggal = date.getValue();
@@ -77,9 +75,6 @@ public class EditPenerimaZakat extends BaseEditController<ZakatKeluar> {
             } catch (Exception e) {
                 log.error("An error occurred", e);
             }
-        } else {
-            alertError(dialogStage, ERROR, "Data belum lengkap!");
-        }
     }
     @Override
     @FXML

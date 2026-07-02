@@ -66,10 +66,18 @@ public abstract class BaseEditController<T> {
         return validator.validate();
     }
 
+    
     @FXML
-    public abstract void onSubmitted();
+    public void onSubmitted() {
+        if (formValidation()) {
+            processSubmission();
+        } else {
+            org.masjidku.util.AlertHelper.alertError(dialogStage, org.masjidku.util.Constants.ERROR, "Data belum lengkap!");
+        }
+    }
 
-    @FXML
+    protected abstract void processSubmission();
+@FXML
     public abstract void gotoList();
 
     @FXML

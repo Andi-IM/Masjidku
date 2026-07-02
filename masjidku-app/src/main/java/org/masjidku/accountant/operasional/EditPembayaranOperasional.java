@@ -66,9 +66,7 @@ public class EditPembayaranOperasional extends BaseEditController<Operasional> {
         date.setValue(model.tanggal());
     }
     @Override
-    @FXML
-    public void onSubmitted() {
-        if (formValidation()) {
+    protected void processSubmission() {
             String nama = txtNama.getText();
             String keterangan = txtKeterangan.getText();
             BigDecimal jumlah = new BigDecimal(txtJumlah.getText());
@@ -84,9 +82,6 @@ public class EditPembayaranOperasional extends BaseEditController<Operasional> {
                     () -> client.save(model),
                     dialogStage, log
             );
-        } else {
-            alertError(dialogStage, ERROR, "Data belum lengkap!");
-        }
     }
     @Override
     @FXML

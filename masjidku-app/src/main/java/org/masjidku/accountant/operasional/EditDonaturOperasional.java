@@ -53,9 +53,7 @@ public class EditDonaturOperasional extends BaseEditController<DonasiOperasional
         date.setValue(model.tanggal());
     }
     @Override
-    @FXML
-    public void onSubmitted() {
-        if (formValidation()) {
+    protected void processSubmission() {
             String nama = txtNama.getText();
             BigDecimal jumlah = new BigDecimal(txtJumlah.getText());
             LocalDate tanggal = date.getValue();
@@ -70,9 +68,6 @@ public class EditDonaturOperasional extends BaseEditController<DonasiOperasional
                     () -> client.save(model),
                     dialogStage, log
             );
-        } else {
-            org.masjidku.util.AlertHelper.alertError(dialogStage, "Error", "Data belum lengkap!");
-        }
     }
     @Override
     @FXML

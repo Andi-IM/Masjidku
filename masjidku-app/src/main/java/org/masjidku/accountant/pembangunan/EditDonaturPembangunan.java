@@ -55,9 +55,7 @@ public class EditDonaturPembangunan extends BaseEditController<DonasiPembangunan
         date.setValue(model.tanggal());
     }
     @Override
-    @FXML
-    public void onSubmitted() {
-        if (formValidation()) {
+    protected void processSubmission() {
             String nama = txtNama.getText();
             BigDecimal jumlah = new BigDecimal(txtJumlah.getText());
             LocalDate tanggal = date.getValue();
@@ -72,9 +70,6 @@ public class EditDonaturPembangunan extends BaseEditController<DonasiPembangunan
                     () -> client.save(model),
                     dialogStage, log
             );
-        } else {
-            alertError(dialogStage, ERROR, "Data belum lengkap!");
-        }
     }
     @Override
     @FXML

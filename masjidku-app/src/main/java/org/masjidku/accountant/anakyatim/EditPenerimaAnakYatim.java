@@ -78,9 +78,7 @@ public class EditPenerimaAnakYatim extends BaseEditController<AnakYatim> {
         date.setValue(model.tanggal());
     }
     @Override
-    @FXML
-    public void onSubmitted() {
-        if (formValidation()) {
+    protected void processSubmission() {
             String nama = txtNama.getText();
             int usia = spnUsia.getValue();
             BigDecimal jumlah = new BigDecimal(txtJumlah.getText());
@@ -102,9 +100,6 @@ public class EditPenerimaAnakYatim extends BaseEditController<AnakYatim> {
             } catch (Exception e) {
                 log.error("An error occurred", e);
             }
-        } else {
-            alertError(dialogStage, "Error", "Data belum lengkap!");
-        }
     }
     @Override
     @FXML
