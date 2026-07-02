@@ -15,6 +15,8 @@
 
 package org.masjidku.accountant.tpa;
 
+import org.masjidku.accountant.BaseEditController;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -36,100 +38,41 @@ import static org.masjidku.util.Constants.ERROR;
 import static org.masjidku.util.DaoHelper.saveOrUpdate;
 import static org.masjidku.util.ValidationHelper.*;
 
-public class EditPembayaranTpa {
+public class EditPembayaranTpa extends BaseEditController<TpaKeluar> {
     private static final Logger log = LoggerFactory.getLogger(EditPembayaranTpa.class);
-    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
-    private final Validator validator = new Validator();
 
-    @FXML
-    private TextField txtNama;
-    @FXML
-    private TextField txtKeterangan;
-    @FXML
-    private TextField txtJumlah;
-    @FXML
-    private DatePicker date;
-    private TpaKeluar model;
-    private AppRouter mainApp;
-    private String operator;
+    
 
-    // create some stage
-    @SuppressWarnings("unused")
-    private Stage dialogStage;
-
-    @FXML
-    public void initialize() {
-        registerRequiredField(validator, txtNama, "nama", "Tujuan harus diisi!");
-        registerRequiredField(validator, txtKeterangan, "keterangan", "Keterangan harus diisi!");
-        registerNumericField(validator, txtJumlah, "jumlah", "Jumlah harus diisi!", "Jumlah harus berupa angka!");
-        registerDatePicker(validator, date, "tanggal", "Tanggal harus dipilih!");
+    @Override
+    protected boolean isModelExists(TpaKeluar model) {
+        return model.id() != null;
     }
 
-    public void setMainApp(AppRouter mainApp, TpaKeluar model) {
-        operator = getAppComponent().getSessionManager().getCurrentUsername();
-        this.mainApp = mainApp;
-        this.model = model;
-
-        if (model.id() != null) {
-            setModel(model);
-        }
-    }
-
-    private void setModel(TpaKeluar model) {
+    @Override
+    protected void setModelData(TpaKeluar model) {
         txtNama.setText(model.nama());
         txtKeterangan.setText(model.keterangan());
         txtJumlah.setText(model.jumlah().toPlainString());
         date.setValue(model.tanggal());
     }
-
-    /**
-     * Validating form
-     *
-     * @return fieldStatus
-     */
-    private boolean formValidation() {
-        return validator.validate();
-    }
-
-    @FXML
-    public void onSubmitted() {
-        if (formValidation()) {
-            String nama = txtNama.getText();
-            String keterangan = txtKeterangan.getText();
-            BigDecimal jumlah = new BigDecimal(txtJumlah.getText());
-            LocalDate tanggal = date.getValue();
+    @Override
+    protected void processSubmission() {
 
             if (model.id() == null) {
-                model = new TpaKeluar(nama, keterangan, jumlah, tanggal, operator);
+                model = new TpaKeluar(txtNama.getText(), txtKeterangan.getText(), new BigDecimal(txtJumlah.getText()), date.getValue(), operator);
             }
 
             saveOrUpdate(
                     () -> client.isTpaKeluarExist(model.id()),
-                    () -> client.update(new TpaKeluar(model.id(), nama, keterangan, jumlah, tanggal, operator)),
+                    () -> client.update(new TpaKeluar(model.id(), txtNama.getText(), txtKeterangan.getText(), new BigDecimal(txtJumlah.getText()), date.getValue(), operator)),
                     () -> client.save(model),
                     dialogStage, log
             );
-        } else {
-            alertError(dialogStage, ERROR, "Data belum lengkap!");
-        }
     }
-
+    @Override
     @FXML
     public void gotoList() {
         mainApp.showAlokasiTpa();
-    }
-
-    @FXML
-    public void onLogoutClick() {
-        mainApp.onLogoutAction();
-    }
-
-    @FXML
-    public void clearForm() {
-        txtNama.clear();
-        txtKeterangan.clear();
-        txtJumlah.clear();
-        date.getEditor().clear();
     }
 
 

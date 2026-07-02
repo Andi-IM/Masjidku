@@ -15,6 +15,8 @@
 
 package org.masjidku.accountant.pembangunan;
 
+import org.masjidku.accountant.BaseEditController;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -36,100 +38,41 @@ import static org.masjidku.util.Constants.ERROR;
 import static org.masjidku.util.DaoHelper.saveOrUpdate;
 import static org.masjidku.util.ValidationHelper.*;
 
-public class EditPembayaranPembangunan {
+public class EditPembayaranPembangunan extends BaseEditController<Pembangunan> {
     private static final Logger log = LoggerFactory.getLogger(EditPembayaranPembangunan.class);
-    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
-    private final Validator validator = new Validator();
 
-    @FXML
-    private TextField txtNama;
-    @FXML
-    private TextField txtKeterangan;
-    @FXML
-    private TextField txtJumlah;
-    @FXML
-    private DatePicker date;
-    private Pembangunan model;
-    private AppRouter mainApp;
-    private String operator;
+    
 
-    // create some stage
-    @SuppressWarnings("unused")
-    private Stage dialogStage;
-
-    @FXML
-    public void initialize() {
-        registerRequiredField(validator, txtNama, "nama", "Tujuan harus diisi!");
-        registerRequiredField(validator, txtKeterangan, "keterangan", "Keterangan harus diisi!");
-        registerNumericField(validator, txtJumlah, "jumlah", "Jumlah harus diisi!", "Jumlah harus berupa angka!");
-        registerDatePicker(validator, date, "tanggal", "Tanggal harus dipilih!");
+    @Override
+    protected boolean isModelExists(Pembangunan model) {
+        return model.id() != null;
     }
 
-    public void setMainApp(AppRouter mainApp, Pembangunan model) {
-        operator = getAppComponent().getSessionManager().getCurrentUsername();
-        this.mainApp = mainApp;
-        this.model = model;
-
-        if (model.id() != null) {
-            setModel(model);
-        }
-    }
-
-    private void setModel(Pembangunan model) {
+    @Override
+    protected void setModelData(Pembangunan model) {
         txtNama.setText(model.tujuan());
         txtKeterangan.setText(model.keterangan());
         txtJumlah.setText(model.jumlah().toPlainString());
         date.setValue(model.tanggal());
     }
-
-    /**
-     * Validating form
-     *
-     * @return fieldStatus
-     */
-    private boolean formValidation() {
-        return validator.validate();
-    }
-
-    @FXML
-    public void onSubmitted() {
-        if (formValidation()) {
-            String nama = txtNama.getText();
-            String keterangan = txtKeterangan.getText();
-            BigDecimal jumlah = new BigDecimal(txtJumlah.getText());
-            LocalDate tanggal = date.getValue();
+    @Override
+    protected void processSubmission() {
 
             if (model.id() == null) {
-                model = new Pembangunan(nama, keterangan, jumlah, tanggal, operator);
+                model = new Pembangunan(txtNama.getText(), txtKeterangan.getText(), new BigDecimal(txtJumlah.getText()), date.getValue(), operator);
             }
 
             saveOrUpdate(
                     () -> client.isPembangunanExist(model.id()),
-                    () -> client.update(new Pembangunan(model.id(), nama, keterangan, jumlah, tanggal, operator)),
+                    () -> client.update(new Pembangunan(model.id(), txtNama.getText(), txtKeterangan.getText(), new BigDecimal(txtJumlah.getText()), date.getValue(), operator)),
                     () -> client.save(model),
                     dialogStage, log
             );
-        } else {
-            alertError(dialogStage, ERROR, "Data belum lengkap!");
-        }
     }
-
+    @Override
     @FXML
     public void gotoList() {
         mainApp.showAlokasiPembangunan();
-    }
-
-    @FXML
-    public void onLogoutClick() {
-        mainApp.onLogoutAction();
-    }
-
-    @FXML
-    public void clearForm() {
-        txtNama.clear();
-        txtKeterangan.clear();
-        txtJumlah.clear();
-        date.getEditor().clear();
     }
 }
 

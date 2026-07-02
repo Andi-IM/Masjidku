@@ -16,118 +16,57 @@
 package org.masjidku.accountant.anakyatim;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-import net.synedra.validatorfx.Validator;
+import org.masjidku.accountant.BaseEditController;
 import org.masjidku.accounting.client.model.anakyatim.DonasiAYatim;
-import org.masjidku.accounting.client.service.AccountingClient;
-import org.masjidku.navigation.AppRouter;
-import org.masjidku.util.AlertHelper;
-import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-
-import static org.masjidku.di.DiProvider.getAppComponent;
-import static org.masjidku.util.Constants.ERROR;
 import static org.masjidku.util.DaoHelper.saveOrUpdate;
-import static org.masjidku.util.ValidationHelper.*;
 
-public class EditDonaturAnakYatim {
+public class EditDonaturAnakYatim extends BaseEditController<DonasiAYatim> {
     private static final Logger log = LoggerFactory.getLogger(EditDonaturAnakYatim.class);
-    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
-    private final Validator validator = new Validator();
 
-    @FXML
-    private TextField txtNama;
-    @FXML
-    private TextField txtJumlah;
-    @FXML
-    private DatePicker date;
-    private DonasiAYatim donatur;
-    private AppRouter mainApp;
-    private String operator;
 
-    // create some stage
-    @SuppressWarnings("unused")
-    private Stage dialogStage;
-
-    @FXML
-    public void initialize() {
-        registerRequiredField(validator, txtNama, "nama", "Nama donatur harus diisi!");
-        registerNumericField(validator, txtJumlah, "jumlah", "Jumlah harus diisi!", "Jumlah harus berupa angka!");
-        registerDatePicker(validator, date, "tanggal", "Tanggal harus dipilih!");
+    @Override
+    protected boolean isModelExists(DonasiAYatim model) {
+        return model.id() != null;
     }
 
-    public void setMainApp(AppRouter mainApp, DonasiAYatim model) {
-        operator = getAppComponent().getSessionManager().getCurrentUsername();
-        this.mainApp = mainApp;
-        this.donatur = model;
-
-
-        if (model.id() != null) {
-            setDonasi(model);
-        }
-    }
-
-    private void setDonasi(DonasiAYatim model) {
+    @Override
+    protected void setModelData(DonasiAYatim model) {
         txtNama.setText(model.donatur());
         txtJumlah.setText(model.jumlah().toPlainString());
         date.setValue(model.tanggal());
     }
 
-    @FXML
-    public void clearForm() {
-        txtNama.clear();
-        txtJumlah.clear();
-        date.getEditor().clear();
-    }
+    @Override
+    protected void processSubmission() {
 
-    @FXML
-    public void onSubmitted() {
-        if (formValidation()) {
-            String nama = txtNama.getText();
-            BigDecimal jumlah = new BigDecimal(txtJumlah.getText());
-            LocalDate tanggal = date.getValue();
-
-            if (donatur == null) {
-                donatur = new DonasiAYatim(nama, jumlah, tanggal, operator);
-            }
-
-            saveOrUpdate(
-                    () -> client.isDonasiAYatimExist(donatur.id()),
-                    () -> client.update(new DonasiAYatim(donatur.id(), nama, jumlah, tanggal, operator)),
-                    () -> client.save(donatur),
-                    dialogStage, log
-            );
-        } else {
-            AlertHelper.alertError(dialogStage, ERROR, "Data belum lengkap!");
+        if (model == null) {
+            model = new DonasiAYatim(txtNama.getText(), new BigDecimal(txtJumlah.getText()), date.getValue(), operator);
         }
+
+        saveOrUpdate(
+                () -> client.isDonasiAYatimExist(model.id()),
+                () -> client.update(new DonasiAYatim(model.id(), txtNama.getText(), new BigDecimal(txtJumlah.getText()), date.getValue(), operator)),
+                () -> client.save(model),
+                dialogStage, log
+        );
     }
 
-    /**
-     * Validating form
-     *
-     * @return fieldStatus
-     */
-    private boolean formValidation() {
-        return validator.validate();
-    }
-
+    @Override
     @FXML
     public void gotoList() {
         mainApp.showDonasiAYatim();
     }
 
+    @Override
     public void onLogoutClick() {
         mainApp.onLogoutAction();
     }
-
-
 }
 
 
