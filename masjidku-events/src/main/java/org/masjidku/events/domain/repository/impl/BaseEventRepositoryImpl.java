@@ -82,6 +82,9 @@ public abstract class BaseEventRepositoryImpl<T> {
     }
 
     protected boolean checkExists(String id) {
+        if (id == null || id.isBlank()) {
+            return false;
+        }
         try {
             var session = sessionFactory.getCurrentSession();
             var builder = session.getCriteriaBuilder();
