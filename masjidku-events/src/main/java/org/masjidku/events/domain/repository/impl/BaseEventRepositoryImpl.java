@@ -22,6 +22,9 @@ public abstract class BaseEventRepositoryImpl<T> {
     }
 
     protected Optional<T> findById(String id) {
+        if (id == null || id.isBlank()) {
+            return Optional.empty();
+        }
         try {
             var session = sessionFactory.getCurrentSession();
             return Optional.ofNullable(session.get(entityClass, id));
