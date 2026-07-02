@@ -18,7 +18,6 @@ package org.masjidku.secretary;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.masjidku.controller.BaseTableController;
@@ -33,10 +32,6 @@ import org.slf4j.LoggerFactory;
 public class SecretaryUndangan extends BaseTableController<TamuKegiatan> {
     private static final Logger log = LoggerFactory.getLogger(SecretaryUndangan.class);
 
-    @FXML
-    public Button btnEdit;
-    @FXML
-    public Button btnRemove;
     @FXML
     public TableView<TamuKegiatan> tblUndangan;
     @FXML
@@ -53,17 +48,11 @@ public class SecretaryUndangan extends BaseTableController<TamuKegiatan> {
     @FXML
     public TableColumn<TamuKegiatan, String> colNotelp;
 
-    private AppRouter mainApp;
     private final EventsClient eventClient;
 
     public SecretaryUndangan() {
         eventClient = ServiceProvider.get(EventsClient.class);
     }
-
-    public void setMainApp(AppRouter mainApp) {
-        this.mainApp = mainApp;
-    }
-
 
     @Override
     protected void setupTableColumns() {
@@ -71,17 +60,10 @@ public class SecretaryUndangan extends BaseTableController<TamuKegiatan> {
     }
 
     @FXML
-    public void onLogoutClick() {
-        mainApp.onLogoutAction();
-    }
-
-
-    @FXML
     public void tamuListener() {
         TamuKegiatan temp = new TamuKegiatan();
         mainApp.showUndanganEditForm(temp);
     }
-
 
     @Override
     protected org.slf4j.Logger getLogger() {
@@ -91,16 +73,6 @@ public class SecretaryUndangan extends BaseTableController<TamuKegiatan> {
     @Override
     protected TableView<TamuKegiatan> getTableView() {
         return tblUndangan;
-    }
-
-    @Override
-    protected Button getBtnEdit() {
-        return btnEdit;
-    }
-
-    @Override
-    protected Button getBtnRemove() {
-        return btnRemove;
     }
 
     @Override
@@ -125,12 +97,5 @@ public class SecretaryUndangan extends BaseTableController<TamuKegiatan> {
         }
     }
 
-    @FXML
-    public void onEditListener() {
-        super.onEditAction();
     }
-}
-
-
-
 

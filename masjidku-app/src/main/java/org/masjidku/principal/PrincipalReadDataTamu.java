@@ -15,8 +15,8 @@
 
 package org.masjidku.principal;
 
-import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
@@ -37,12 +37,7 @@ public class PrincipalReadDataTamu extends BaseTableController<Tamu> {
     private static final Logger log = LoggerFactory.getLogger(PrincipalReadDataTamu.class);
 
     @FXML
-    public Button btnEdit;
-    @FXML
     public Button btnReset;
-    @FXML
-    public Button btnRemove;
-
     @FXML
     public Text greeting;
 
@@ -57,13 +52,13 @@ public class PrincipalReadDataTamu extends BaseTableController<Tamu> {
     @FXML
     public TableColumn<Tamu, String> colNomor;
 
-    private AppRouter mainApp;
     private final EventsClient eventClient;
 
     PrincipalReadDataTamu() {
         this.eventClient = ServiceProvider.get(EventsClient.class);
     }
 
+    @Override
     public void setMainApp(AppRouter mainApp) {
         String username = getAppComponent().getSessionManager().getCurrentUsername();
         this.mainApp = mainApp;
@@ -77,21 +72,11 @@ public class PrincipalReadDataTamu extends BaseTableController<Tamu> {
         org.masjidku.util.AlertHelper.setupTamuColumns(colNama, colAlamat, colNotelp);
     }
 
-    @FXML
-    public void onLogoutClick() {
-        mainApp.onLogoutAction();
-    }
-
     @Override
     protected void handleEdit(Tamu item) {
         if (mainApp != null) {
             mainApp.showTamuEditForm(item);
         }
-    }
-
-    @FXML
-    public void onEditListener() {
-        super.onEditAction();
     }
 
     @FXML
@@ -112,16 +97,6 @@ public class PrincipalReadDataTamu extends BaseTableController<Tamu> {
     }
 
     @Override
-    protected Button getBtnEdit() {
-        return btnEdit;
-    }
-
-    @Override
-    protected Button getBtnRemove() {
-        return btnRemove;
-    }
-
-    @Override
     protected List<Tamu> fetchAllData() throws SQLException {
         return eventClient.getAllTamu();
     }
@@ -136,5 +111,4 @@ public class PrincipalReadDataTamu extends BaseTableController<Tamu> {
         eventClient.delete(item);
     }
 }
-
 

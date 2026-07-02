@@ -18,7 +18,6 @@ package org.masjidku.secretary;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.masjidku.controller.BaseTableController;
@@ -34,10 +33,6 @@ public class SecretaryTamu extends BaseTableController<Tamu> {
     private final EventsClient eventClient = ServiceProvider.get(EventsClient.class);
 
     @FXML
-    public Button btnEdit;
-    @FXML
-    public Button btnRemove;
-    @FXML
     public TableView<Tamu> tblTamu;
     @FXML
     public TableColumn<Tamu, String> colNama;
@@ -47,17 +42,6 @@ public class SecretaryTamu extends BaseTableController<Tamu> {
     public TableColumn<Tamu, String> colNotelp;
     @FXML
     public TableColumn<Tamu, String> colNomor;
-
-    private AppRouter mainApp;
-
-    public void setMainApp(AppRouter mainApp) {
-        this.mainApp = mainApp;
-    }
-
-    @FXML
-    public void onLogoutClick() {
-        mainApp.onLogoutAction();
-    }
 
     @FXML
     public void addListener() {
@@ -78,16 +62,6 @@ public class SecretaryTamu extends BaseTableController<Tamu> {
     @Override
     protected TableView<Tamu> getTableView() {
         return tblTamu;
-    }
-
-    @Override
-    protected Button getBtnEdit() {
-        return btnEdit;
-    }
-
-    @Override
-    protected Button getBtnRemove() {
-        return btnRemove;
     }
 
     @Override
@@ -112,9 +86,5 @@ public class SecretaryTamu extends BaseTableController<Tamu> {
         }
     }
 
-    @FXML
-    public void onEditListener() {
-        super.onEditAction();
     }
-}
 

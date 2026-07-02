@@ -16,7 +16,6 @@
 package org.masjidku.accountant.tpa;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.masjidku.accounting.client.model.tpa.TpaKeluar;
@@ -41,30 +40,10 @@ public class PembayaranTpa extends BaseTableController<TpaKeluar> {
     private TableColumn<TpaKeluar, String> jumlah;
     @FXML
     private TableColumn<TpaKeluar, String> tanggal;
-    @FXML
-    private Button btnEdit;
-    @FXML
-    private Button btnRemove;
-
-
-    private AppRouter mainApp;
-
-
-    public void setMainApp(AppRouter mainApp) {
-        this.mainApp = mainApp;
-    }
-
-
     @Override
     protected void setupTableColumns() {
         org.masjidku.util.AlertHelper.setupOutflowColumns(nama, jumlah, tanggal);
     }
-
-    @FXML
-    public void onLogoutClick() {
-        mainApp.onLogoutAction();
-    }
-
 
     @FXML
     public void addListener() {
@@ -72,12 +51,10 @@ public class PembayaranTpa extends BaseTableController<TpaKeluar> {
         mainApp.editAlokasiTpa(temp);
     }
 
-
     @FXML
     public void gotoHome() {
         mainApp.showTpa();
     }
-
 
     @Override
     protected org.slf4j.Logger getLogger() {
@@ -87,16 +64,6 @@ public class PembayaranTpa extends BaseTableController<TpaKeluar> {
     @Override
     protected TableView<TpaKeluar> getTableView() {
         return tableTpa;
-    }
-
-    @Override
-    protected Button getBtnEdit() {
-        return btnEdit;
-    }
-
-    @Override
-    protected Button getBtnRemove() {
-        return btnRemove;
     }
 
     @Override
@@ -119,10 +86,5 @@ public class PembayaranTpa extends BaseTableController<TpaKeluar> {
         mainApp.editAlokasiTpa(item);
     }
 
-    @FXML
-    public void onEditListener() {
-        super.onEditAction();
     }
-}
-
 

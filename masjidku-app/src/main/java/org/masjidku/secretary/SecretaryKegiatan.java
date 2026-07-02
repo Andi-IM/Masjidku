@@ -18,7 +18,6 @@ package org.masjidku.secretary;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.masjidku.controller.BaseTableController;
@@ -35,10 +34,6 @@ public class SecretaryKegiatan extends BaseTableController<Kegiatan> {
     private final EventsClient eventClient = ServiceProvider.get(EventsClient.class);
 
     @FXML
-    public Button btnEdit;
-    @FXML
-    public Button btnRemove;
-    @FXML
     public TableView<Kegiatan> tblKegiatan;
     @FXML
     public TableColumn<Kegiatan, String> colNomor;
@@ -51,24 +46,11 @@ public class SecretaryKegiatan extends BaseTableController<Kegiatan> {
     @FXML
     public TableColumn<Kegiatan, String> colTanggalKegiatan;
 
-    private AppRouter mainApp;
-
-    public void setMainApp(AppRouter mainApp) {
-        this.mainApp = mainApp;
-    }
-
-
-    @FXML
-    public void onLogoutClick() {
-        mainApp.onLogoutAction();
-    }
-
     @FXML
     public void addListener() {
         Kegiatan temp = new Kegiatan();
         mainApp.showKegiatanEditform(temp);
     }
-
 
     /**
      * Remove the selected kegiatan.
@@ -86,16 +68,6 @@ public class SecretaryKegiatan extends BaseTableController<Kegiatan> {
     @Override
     protected TableView<Kegiatan> getTableView() {
         return tblKegiatan;
-    }
-
-    @Override
-    protected Button getBtnEdit() {
-        return btnEdit;
-    }
-
-    @Override
-    protected Button getBtnRemove() {
-        return btnRemove;
     }
 
     @Override
@@ -120,8 +92,4 @@ public class SecretaryKegiatan extends BaseTableController<Kegiatan> {
         }
     }
 
-    @FXML
-    public void onEditListener() {
-        super.onEditAction();
     }
-}

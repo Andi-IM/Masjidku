@@ -16,7 +16,6 @@
 package org.masjidku.accountant.zakat;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.masjidku.accounting.client.model.zakat.ZakatMasuk;
@@ -43,27 +42,9 @@ public class DonaturZakat extends BaseTableController<ZakatMasuk> {
     private TableColumn<ZakatMasuk, String> jumlah;
     @FXML
     private TableColumn<ZakatMasuk, String> tanggal;
-    @FXML
-    private Button btnEdit;
-    @FXML
-    private Button btnRemove;
-
-    private AppRouter mainApp;
-
-
-    public void setMainApp(AppRouter mainApp) {
-        this.mainApp = mainApp;
-    }
-
     @Override
     protected void setupTableColumns() {
         setupInflowColumns(donatur, jumlah, tanggal);
-    }
-
-
-    @FXML
-    public void onLogoutClick() {
-        mainApp.onLogoutAction();
     }
 
     @FXML
@@ -72,12 +53,10 @@ public class DonaturZakat extends BaseTableController<ZakatMasuk> {
         mainApp.editDonaturZakat(temp);
     }
 
-
     @FXML
     public void gotoHome() {
         mainApp.showZakat();
     }
-
 
     @Override
     protected org.slf4j.Logger getLogger() {
@@ -87,16 +66,6 @@ public class DonaturZakat extends BaseTableController<ZakatMasuk> {
     @Override
     protected TableView<ZakatMasuk> getTableView() {
         return zakatTable;
-    }
-
-    @Override
-    protected Button getBtnEdit() {
-        return btnEdit;
-    }
-
-    @Override
-    protected Button getBtnRemove() {
-        return btnRemove;
     }
 
     @Override
@@ -119,10 +88,5 @@ public class DonaturZakat extends BaseTableController<ZakatMasuk> {
         mainApp.editDonaturZakat(item);
     }
 
-    @FXML
-    public void onEditListener() {
-        super.onEditAction();
     }
-}
-
 

@@ -16,7 +16,6 @@
 package org.masjidku.accountant.pembangunan;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.masjidku.accounting.client.model.pembangunan.DonasiPembangunan;
@@ -41,29 +40,10 @@ public class DonaturPembangunan extends BaseTableController<DonasiPembangunan> {
     private TableColumn<DonasiPembangunan, String> jumlah;
     @FXML
     private TableColumn<DonasiPembangunan, String> tanggal;
-    @FXML
-    private Button btnEdit;
-    @FXML
-    private Button btnRemove;
-
-    private AppRouter mainApp;
-
-
-    public void setMainApp(AppRouter mainApp) {
-        this.mainApp = mainApp;
-    }
-
-
     @Override
     protected void setupTableColumns() {
         org.masjidku.util.AlertHelper.setupInflowColumns(donatur, jumlah, tanggal);
     }
-
-    @FXML
-    public void onLogoutClick() {
-        mainApp.onLogoutAction();
-    }
-
 
     @FXML
     public void addListener() {
@@ -71,12 +51,10 @@ public class DonaturPembangunan extends BaseTableController<DonasiPembangunan> {
         mainApp.editDonaturPembangunan(temp);
     }
 
-
     @FXML
     public void gotoHome() {
         mainApp.showPembangunan();
     }
-
 
     @Override
     protected org.slf4j.Logger getLogger() {
@@ -86,16 +64,6 @@ public class DonaturPembangunan extends BaseTableController<DonasiPembangunan> {
     @Override
     protected TableView<DonasiPembangunan> getTableView() {
         return tablePembangunan;
-    }
-
-    @Override
-    protected Button getBtnEdit() {
-        return btnEdit;
-    }
-
-    @Override
-    protected Button getBtnRemove() {
-        return btnRemove;
     }
 
     @Override
@@ -118,10 +86,5 @@ public class DonaturPembangunan extends BaseTableController<DonasiPembangunan> {
         mainApp.editDonaturPembangunan(item);
     }
 
-    @FXML
-    public void onEditListener() {
-        super.onEditAction();
     }
-}
-
 

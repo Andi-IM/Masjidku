@@ -1,7 +1,6 @@
 package org.masjidku.accountant.anakyatim;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.masjidku.accounting.client.model.anakyatim.DonasiAYatim;
@@ -26,17 +25,6 @@ public class DonaturAnakYatim extends BaseTableController<DonasiAYatim> {
     private TableColumn<DonasiAYatim, String> jumlah;
     @FXML
     private TableColumn<DonasiAYatim, String> tanggal;
-    @FXML
-    private Button btnEdit;
-    @FXML
-    private Button btnRemove;
-
-    private AppRouter mainApp;
-
-    public void setMainApp(AppRouter mainApp) {
-        this.mainApp = mainApp;
-    }
-
     @Override
     protected Logger getLogger() {
         return log;
@@ -45,16 +33,6 @@ public class DonaturAnakYatim extends BaseTableController<DonasiAYatim> {
     @Override
     protected TableView<DonasiAYatim> getTableView() {
         return tblAYMasuk;
-    }
-
-    @Override
-    protected Button getBtnEdit() {
-        return btnEdit;
-    }
-
-    @Override
-    protected Button getBtnRemove() {
-        return btnRemove;
     }
 
     @Override
@@ -83,19 +61,9 @@ public class DonaturAnakYatim extends BaseTableController<DonasiAYatim> {
     }
 
     @FXML
-    public void onLogoutClick() {
-        mainApp.onLogoutAction();
-    }
-
-    @FXML
     public void onCreateListener() {
         DonasiAYatim temp = new DonasiAYatim();
         mainApp.editDonaturAnakYatim(temp);
-    }
-
-    @FXML
-    public void onEditListener() {
-        super.onEditAction();
     }
 
     @FXML
@@ -103,5 +71,4 @@ public class DonaturAnakYatim extends BaseTableController<DonasiAYatim> {
         mainApp.showAnakYatim();
     }
 }
-
 

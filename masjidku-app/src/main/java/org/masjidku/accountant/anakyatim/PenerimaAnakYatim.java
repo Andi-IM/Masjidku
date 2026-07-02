@@ -16,14 +16,12 @@
 package org.masjidku.accountant.anakyatim;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.controller.BaseTableController;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.anakyatim.AnakYatim;
-
 
 import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
@@ -46,19 +44,6 @@ public class PenerimaAnakYatim extends BaseTableController<AnakYatim> {
     private TableColumn<AnakYatim, String> usia;
     @FXML
     private TableColumn<AnakYatim, String> tanggal;
-    @FXML
-    private Button btnEdit;
-    @FXML
-    private Button btnRemove;
-
-    private AppRouter mainApp;
-
-
-    public void setMainApp(AppRouter mainApp) {
-        this.mainApp = mainApp;
-    }
-
-
     @Override
     protected void setupTableColumns() {
         org.masjidku.util.AlertHelper.setupOutflowColumns(nama, jumlah, tanggal);
@@ -66,23 +51,15 @@ usia.setCellValueFactory(new PropertyValueFactory<>("usia"));
 }
 
     @FXML
-    public void onLogoutClick() {
-        mainApp.onLogoutAction();
-    }
-
-
-    @FXML
     public void onCreateListener() {
         AnakYatim temp = new AnakYatim();
         mainApp.editAnakYatim(temp);
     }
 
-
     @FXML
     public void gotoHome() {
         mainApp.showAnakYatim();
     }
-
 
     @Override
     protected org.slf4j.Logger getLogger() {
@@ -92,16 +69,6 @@ usia.setCellValueFactory(new PropertyValueFactory<>("usia"));
     @Override
     protected TableView<AnakYatim> getTableView() {
         return tableAnakyatim;
-    }
-
-    @Override
-    protected Button getBtnEdit() {
-        return btnEdit;
-    }
-
-    @Override
-    protected Button getBtnRemove() {
-        return btnRemove;
     }
 
     @Override
@@ -124,10 +91,5 @@ usia.setCellValueFactory(new PropertyValueFactory<>("usia"));
         mainApp.editAnakYatim(item);
     }
 
-    @FXML
-    public void onEditListener() {
-        super.onEditAction();
     }
-}
-
 
