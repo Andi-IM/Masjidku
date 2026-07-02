@@ -28,8 +28,6 @@ jobs:
       actions: read
       contents: read
       security-events: write
-    env:
-      GRADLE_OPTS: -Dorg.gradle.java.home=${{ env.JAVA_HOME }}
 
     strategy:
       fail-fast: false
