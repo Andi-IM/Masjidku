@@ -92,12 +92,12 @@ public class LoginController implements AppRouterAware {
 
     private void validateLogin() {
         String username = txtUsername.getText();
-        String password = Hashing
+        String hashedPassword = Hashing
                 .sha256()
                 .hashString(txtPassword.getText(), StandardCharsets.UTF_8)
                 .toString();
 
-        if (dao.isUserExist(username, password)) {
+        if (dao.isUserExist(username, hashedPassword)) {
             User user = dao.getUser(username);
 
             if (user.status().equals(ACTIVE)) {
