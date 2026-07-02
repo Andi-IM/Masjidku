@@ -9,95 +9,51 @@ import javax.inject.Inject;
 import java.util.List;
 import java.util.Optional;
 
-public class KegiatanRepositoryImpl implements KegiatanRepository {
-
-    private final SessionFactory sessionFactory;
+public class KegiatanRepositoryImpl extends BaseEventRepositoryImpl<Kegiatan> implements KegiatanRepository {
 
     @Inject
     public KegiatanRepositoryImpl(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
+        super(sessionFactory, Kegiatan.class, "idKegiatan", "nama");
     }
-
 
     @Override
     public Optional<Kegiatan> getKegiatanById(String id) {
-        try {
-            var session = sessionFactory.getCurrentSession();
-            return Optional.ofNullable(session.get(Kegiatan.class, id));
-        } catch (Exception e) {
-            throw new DataAccessException("Failed to get Kegiatan by ID", e);
-        }
+        return findById(id);
     }
 
     @Override
     public List<Kegiatan> getAllKegiatan() {
-        try {
-            var session = sessionFactory.getCurrentSession();
-            return session.createQuery("FROM Kegiatan", Kegiatan.class).list();
-        } catch (Exception e) {
-            throw new DataAccessException("Failed to get all Kegiatan", e);
-        }
+        return findAll();
     }
 
     @Override
     public void saveKegiatan(Kegiatan kegiatan) {
-        try {
-            var session = sessionFactory.getCurrentSession();
-            session.persist(kegiatan);
-        } catch (Exception e) {
-            throw new DataAccessException("Failed to save Kegiatan", e);
-        }
+        persist(kegiatan);
     }
 
     @Override
     public void updateKegiatan(Kegiatan kegiatan) {
-        try {
-            var session = sessionFactory.getCurrentSession();
-            session.merge(kegiatan);
-        } catch (Exception e) {
-            throw new DataAccessException("Failed to update Kegiatan", e);
-        }
+        merge(kegiatan);
     }
 
     @Override
     public void deleteKegiatan(String id) {
-        try {
-            var session = sessionFactory.getCurrentSession();
-            Kegiatan kegiatan = session.get(Kegiatan.class, id);
-            if (kegiatan != null) {
-                session.remove(kegiatan);
-            }
-        } catch (Exception e) {
-            throw new DataAccessException("Failed to delete Kegiatan", e);
-        }
+        remove(id);
     }
 
     @Override
     public boolean exists(String id) {
-        return getKegiatanById(id).isPresent();
+        return checkExists(id);
     }
 
     @Override
     public List<String> getAllKegiatanNames() {
-        try {
-            var session = sessionFactory.getCurrentSession();
-            return session.createQuery("SELECT k.nama FROM Kegiatan k", String.class).list();
-        } catch (Exception e) {
-            throw new DataAccessException("Failed to get Kegiatan names", e);
-        }
+        return findAllNames();
     }
 
     @Override
     public String getIdByName(String name) {
-        try {
-            var session = sessionFactory.getCurrentSession();
-            var query = session.createQuery("SELECT k.idKegiatan FROM Kegiatan k WHERE k.nama = :name", String.class);
-            query.setParameter("name", name);
-            var result = query.uniqueResult();
-            return result != null ? result : "";
-        } catch (Exception e) {
-            throw new DataAccessException("Failed to get Kegiatan ID by name", e);
-        }
+        return findIdByName(name);
     }
 
     @Override
