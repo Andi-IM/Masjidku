@@ -19,6 +19,18 @@ public abstract class BaseTableController<T> extends ReadOnlyTableController<T> 
     @FXML
     protected Button btnRemove;
 
+    protected AppRouter mainApp;
+
+    public void setMainApp(AppRouter mainApp) {
+        this.mainApp = mainApp;
+    }
+
+    @FXML
+    public void onLogoutClick() {
+        if (mainApp != null) {
+            mainApp.onLogoutAction();
+        }
+    }
 
     protected abstract boolean checkIfExist(T item) throws SQLException;
 

@@ -17,6 +17,7 @@ import java.util.List;
 
 public class DataDonaturOperasional extends org.masjidku.accountant.BaseFinanceReportController<DonasiOperasional> {
     private static final Logger log = LoggerFactory.getLogger(DataDonaturOperasional.class);
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
 
     @FXML
     private TableView<DonasiOperasional> tableOperasional;

@@ -29,8 +29,29 @@ import org.slf4j.LoggerFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PembangunanReport extends BaseKeuanganSummaryReport {
+public class PembangunanReport implements Initializable {
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
     private static final Logger log = LoggerFactory.getLogger(PembangunanReport.class);
+    @FXML
+    public Text txtPemasukanTerakhir;
+    @FXML
+    public Text txtPengeluaranTerakhir;
+    @FXML
+    public Text txtTglPemasukkan;
+    @FXML
+    public Text txtTotalPemasukkan;
+    @FXML
+    public Text txtTotalPengeluaran;
+    @FXML
+    public Text txtSaldo;
+    @FXML
+    public Text txtTglPengeluaran;
+
+    private AppRouter mainApp;
+
+    public void setMainApp(AppRouter mainApp) {
+        this.mainApp = mainApp;
+    }
 
     @FXML
     public void uangMasuk() {
@@ -40,6 +61,11 @@ public class PembangunanReport extends BaseKeuanganSummaryReport {
     @FXML
     public void uangKeluar() {
         mainApp.showPembangunanKeluar();
+    }
+
+    @FXML
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
     }
 
     @Override
@@ -60,6 +86,11 @@ public class PembangunanReport extends BaseKeuanganSummaryReport {
         } catch (Exception e) {
             log.error("An error occurred", e);
         }
+    }
+
+    @FXML
+    public void gotoHome() {
+        mainApp.showData();
     }
 }
 

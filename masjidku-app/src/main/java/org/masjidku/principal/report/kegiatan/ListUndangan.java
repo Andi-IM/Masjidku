@@ -51,9 +51,20 @@ public class ListUndangan extends ReadOnlyTableController<TamuKegiatan> {
     @FXML
     public TableColumn<TamuKegiatan, String> colOperator;
 
+    private AppRouter mainApp;
+
+    public void setMainApp(AppRouter mainApp) {
+        this.mainApp = mainApp;
+    }
+
     @Override
     protected void setupTableColumns() {
         TableHelper.setupUndanganColumns(colNama, colAlamat, colKeterangan, colKegiatan, colNotelp, colOperator);
+    }
+
+    @FXML
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
     }
 
     @FXML

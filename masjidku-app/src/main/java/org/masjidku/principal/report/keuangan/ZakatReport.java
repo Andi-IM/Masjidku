@@ -29,14 +29,40 @@ import org.slf4j.LoggerFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ZakatReport extends BaseKeuanganSummaryReport {
+public class ZakatReport implements Initializable {
+    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
     private static final Logger log = LoggerFactory.getLogger(ZakatReport.class);
+    @FXML
+    public Text txtPemasukanTerakhir;
+    @FXML
+    public Text txtPengeluaranTerakhir;
+    @FXML
+    public Text txtTglPemasukkan;
+    @FXML
+    public Text txtTotalPemasukkan;
+    @FXML
+    public Text txtTotalPengeluaran;
+    @FXML
+    public Text txtSaldo;
+    @FXML
+    public Text txtTglPengeluaran;
+
+    private AppRouter mainApp;
+
+    public void setMainApp(AppRouter mainApp) {
+        this.mainApp = mainApp;
+    }
 
     @FXML
     public void uangMasuk() { mainApp.showZakatMasuk(); }
 
     @FXML
     public void uangKeluar() { mainApp.showZakatKeluar(); }
+
+    @FXML
+    public void onLogoutClick() {
+        mainApp.onLogoutAction();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -56,6 +82,9 @@ public class ZakatReport extends BaseKeuanganSummaryReport {
             log.error("An error occurred", e);
         }
     }
+
+    @FXML
+    public void gotoHome() { mainApp.showData(); }
 }
 
 

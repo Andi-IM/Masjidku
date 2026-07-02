@@ -50,18 +50,4 @@ public abstract class ReadOnlyTableController<T> implements Initializable {
         AlertHelper.loadTableData(tableData, this::fetchAllData, getLogger());
         getTableView().setItems(tableData);
     }
-
-    protected org.masjidku.navigation.AppRouter mainApp;
-
-    public void setMainApp(org.masjidku.navigation.AppRouter mainApp) {
-        this.mainApp = mainApp;
-    }
-
-    @javafx.fxml.FXML
-    public void onLogoutClick() {
-        if (mainApp != null) {
-            mainApp.onLogoutAction();
-        }
-    }
-
 }
