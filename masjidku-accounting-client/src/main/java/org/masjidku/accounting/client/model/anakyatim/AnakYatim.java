@@ -60,4 +60,17 @@ public class AnakYatim extends BasePengeluaranModel {
     public int hashCode() {
         return java.util.Objects.hash(super.hashCode(), usia);
     }
+
+    @Override
+    public String toString() {
+        return "AnakYatim{"
+                + "id='" + getId() + '\''
+                + ", tujuan='" + getTujuan() + '\''
+                + ", keterangan='" + getKeterangan() + '\''
+                + ", jumlah=" + getJumlah()
+                + ", tanggal=" + getTanggal()
+                + ", operator='" + getOperator() + '\''
+                + ", usia=" + usia
+                + '}';
+    }
 }
