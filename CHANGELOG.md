@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/Andi-IM/Masjidku/compare/v1.0.0...v1.1.0) (2026-07-02)
+
+
+### Features
+
+* add PrincipalReadDataTamu controller for managing guest data display ([8acfc30](https://github.com/Andi-IM/Masjidku/commit/8acfc30014ba5cdf2c3b75492269a9f362d730e0))
+
 # 1.0.0 (2026-07-01)
 
 
