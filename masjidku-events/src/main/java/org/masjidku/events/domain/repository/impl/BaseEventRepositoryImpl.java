@@ -67,6 +67,9 @@ public abstract class BaseEventRepositoryImpl<T> {
     }
 
     protected void remove(String id) {
+        if (id == null || id.isBlank()) {
+            return;
+        }
         try {
             var session = sessionFactory.getCurrentSession();
             T entity = session.get(entityClass, id);
