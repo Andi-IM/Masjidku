@@ -11,15 +11,15 @@ public abstract class BasePengeluaranModel {
     private final LocalDate tanggal;
     private final String operator;
 
-    public BasePengeluaranModel() {
+    protected BasePengeluaranModel() {
         this(null, "", "", BigDecimal.ZERO, null, "");
     }
 
-    public BasePengeluaranModel(String tujuan, String keterangan, BigDecimal jumlah, LocalDate tanggal, String operator) {
+    protected BasePengeluaranModel(String tujuan, String keterangan, BigDecimal jumlah, LocalDate tanggal, String operator) {
         this(null, tujuan, keterangan, jumlah, tanggal, operator);
     }
 
-    public BasePengeluaranModel(String id, String tujuan, String keterangan, BigDecimal jumlah, LocalDate tanggal, String operator) {
+    protected BasePengeluaranModel(String id, String tujuan, String keterangan, BigDecimal jumlah, LocalDate tanggal, String operator) {
         this.id = id;
         this.tujuan = tujuan;
         this.keterangan = keterangan;
