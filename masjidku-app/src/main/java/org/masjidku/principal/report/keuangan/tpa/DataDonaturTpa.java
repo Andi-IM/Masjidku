@@ -17,7 +17,6 @@ import java.util.List;
 
 public class DataDonaturTpa extends org.masjidku.accountant.BaseFinanceReportController<TpaMasuk> {
     private static final Logger log = LoggerFactory.getLogger(DataDonaturTpa.class);
-    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
 
     @FXML
     private TableView<TpaMasuk> tableTpa;
