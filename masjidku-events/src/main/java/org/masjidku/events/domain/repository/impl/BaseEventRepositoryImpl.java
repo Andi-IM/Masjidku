@@ -15,10 +15,10 @@ public abstract class BaseEventRepositoryImpl<T> {
     protected final String namaFieldName;
 
     protected BaseEventRepositoryImpl(SessionFactory sessionFactory, Class<T> entityClass, String idFieldName, String namaFieldName) {
-        this.sessionFactory = sessionFactory;
-        this.entityClass = entityClass;
-        this.idFieldName = idFieldName;
-        this.namaFieldName = namaFieldName;
+        this.sessionFactory = Objects.requireNonNull(sessionFactory, "sessionFactory must not be null");
+        this.entityClass = Objects.requireNonNull(entityClass, "entityClass must not be null");
+        this.idFieldName = Objects.requireNonNull(idFieldName, "idFieldName must not be null");
+        this.namaFieldName = Objects.requireNonNull(namaFieldName, "namaFieldName must not be null");
     }
 
     protected Optional<T> findById(String id) {
