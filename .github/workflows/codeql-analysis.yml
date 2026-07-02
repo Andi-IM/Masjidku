@@ -14,9 +14,23 @@ name: "CodeQL"
 on:
   push:
     branches: [ production, development-modular ]
+    paths:
+      - '**.java'
+      - '**/build.gradle'
+      - 'settings.gradle'
+      - 'gradle/**'
+      - 'gradlew'
+      - 'gradlew.bat'
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [ production, development-modular ]
+    paths:
+      - '**.java'
+      - '**/build.gradle'
+      - 'settings.gradle'
+      - 'gradle/**'
+      - 'gradlew'
+      - 'gradlew.bat'
   schedule:
     - cron: '33 10 * * 6'
 

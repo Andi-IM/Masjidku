@@ -4,6 +4,13 @@ on:
   push:
     branches:
       - production
+    paths:
+      - '**.java'
+      - '**/build.gradle'
+      - 'settings.gradle'
+      - 'gradle/**'
+      - 'gradlew'
+      - 'gradlew.bat'
 
 env:
   DB_DATABASE: masjidku
