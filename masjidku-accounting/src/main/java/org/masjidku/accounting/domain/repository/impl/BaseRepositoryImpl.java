@@ -118,7 +118,7 @@ public abstract class BaseRepositoryImpl<T> implements BaseRepository<T> {
             var builder = session.getCriteriaBuilder();
             var query = builder.createQuery(java.math.BigDecimal.class);
             var root = query.from(entityClass);
-            query.select(builder.coalesce(builder.sum(root.get(jumlahFieldName)), new java.math.BigDecimal(0)));
+            query.select(builder.coalesce(builder.sum(root.get(jumlahFieldName)), java.math.BigDecimal.ZERO));
             var count = session.createQuery(query).uniqueResult();
             return count != null ? count.toPlainString() : "0";
         } catch (Exception e) {
