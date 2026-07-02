@@ -10,13 +10,12 @@ import org.masjidku.navigation.AppRouterAware;
 
 import static org.masjidku.di.DiProvider.getAppComponent;
 
-public abstract class BaseHomeController implements AppRouterAware {
+public abstract class BaseHomeController extends org.masjidku.controller.BaseAppController implements AppRouterAware {
 
     @FXML
     public Text greeting;
 
-    protected AppRouter mainApp;
-
+    @Override
     public void setMainApp(AppRouter mainApp) {
         String username = getAppComponent().getSessionManager().getCurrentUsername();
         this.mainApp = mainApp;
@@ -27,12 +26,5 @@ public abstract class BaseHomeController implements AppRouterAware {
 
     protected String getGreetingPrefix() {
         return "Bapak ";
-    }
-
-    @FXML
-    public void onLogoutClick() {
-        if (mainApp != null) {
-            mainApp.onLogoutAction();
-        }
     }
 }

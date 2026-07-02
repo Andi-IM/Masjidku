@@ -33,11 +33,7 @@ public abstract class BaseFinanceReportController<T> extends ReadOnlyTableContro
     @FXML
     protected TableColumn<T, String> operator;
 
-    protected AppRouter mainApp;
-
-    public void setMainApp(AppRouter mainApp) {
-        this.mainApp = mainApp;
-    }
+    protected final org.masjidku.accounting.client.service.AccountingClient client = org.masjidku.util.ServiceProvider.get(org.masjidku.accounting.client.service.AccountingClient.class);
 
     protected abstract String getReportTemplatePath();
 
@@ -56,11 +52,6 @@ public abstract class BaseFinanceReportController<T> extends ReadOnlyTableContro
         if (operator != null) {
             operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
         }
-    }
-
-    @FXML
-    public void onLogoutClick() {
-        mainApp.onLogoutAction();
     }
 
     protected void exportPdf(String templatePath, String defaultFileName) {

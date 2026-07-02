@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
 
-public abstract class BaseAccountantController implements Initializable {
+public abstract class BaseAccountantController extends org.masjidku.controller.BaseAppController implements Initializable {
 
     @FXML
     public Text txtPemasukanTerakhir;

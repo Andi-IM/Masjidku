@@ -29,30 +29,8 @@ import org.slf4j.LoggerFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class OperasionalReport implements Initializable {
-    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
+public class OperasionalReport extends BaseKeuanganSummaryReport {
     private static final Logger log = LoggerFactory.getLogger(OperasionalReport.class);
-    @FXML
-    public Text txtPemasukanTerakhir;
-    @FXML
-    public Text txtPengeluaranTerakhir;
-    @FXML
-    public Text txtTglPemasukkan;
-    @FXML
-    public Text txtTotalPemasukkan;
-    @FXML
-    public Text txtTotalPengeluaran;
-    @FXML
-    public Text txtSaldo;
-    @FXML
-    public Text txtTglPengeluaran;
-
-    private AppRouter mainApp;
-
-    public void setMainApp(AppRouter mainApp) { this.mainApp = mainApp; }
-
-    @FXML
-    public void onLogoutClick() { mainApp.onLogoutAction(); }
 
     @FXML
     public void laporanMasuk() { mainApp.showOperasionalMasuk(); }
@@ -79,9 +57,6 @@ public class OperasionalReport implements Initializable {
             log.error("An error occurred", e);
         }
     }
-
-    @FXML
-    public void gotoHome() { mainApp.showData(); }
 }
 
 

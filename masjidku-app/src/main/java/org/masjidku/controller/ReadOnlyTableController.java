@@ -33,7 +33,7 @@ import java.util.ResourceBundle;
  * 
  * @param <T> Model type displayed in the table.
  */
-public abstract class ReadOnlyTableController<T> implements Initializable {
+public abstract class ReadOnlyTableController<T> extends BaseAppController implements Initializable {
     protected final ObservableList<T> tableData = FXCollections.observableArrayList();
 
     protected abstract Logger getLogger();
@@ -50,4 +50,5 @@ public abstract class ReadOnlyTableController<T> implements Initializable {
         AlertHelper.loadTableData(tableData, this::fetchAllData, getLogger());
         getTableView().setItems(tableData);
     }
+
 }

@@ -29,29 +29,8 @@ import org.slf4j.LoggerFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AnakYatimReport implements Initializable {
-    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
+public class AnakYatimReport extends BaseKeuanganSummaryReport {
     private static final Logger log = LoggerFactory.getLogger(AnakYatimReport.class);
-    @FXML
-    public Text txtPemasukanTerakhir;
-    @FXML
-    public Text txtPengeluaranTerakhir;
-    @FXML
-    public Text txtTglPemasukkan;
-    @FXML
-    public Text txtTotalPemasukkan;
-    @FXML
-    public Text txtTotalPengeluaran;
-    @FXML
-    public Text txtSaldo;
-    @FXML
-    public Text txtTglPengeluaran;
-
-    private AppRouter mainApp;
-
-    public void setMainApp(AppRouter mainApp) {
-        this.mainApp = mainApp;
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -75,11 +54,6 @@ public class AnakYatimReport implements Initializable {
     }
 
     @FXML
-    public void onLogoutClick() {
-        mainApp.onLogoutAction();
-    }
-
-    @FXML
     public void laporanDonasiAnakYatim() {
         mainApp.showAnakYatimMasuk();
     }
@@ -87,11 +61,6 @@ public class AnakYatimReport implements Initializable {
     @FXML
     public void laporanDanaAnakYatim() {
         mainApp.showAnakYatimKeluar();
-    }
-
-    @FXML
-    public void gotoHome() {
-        mainApp.showData();
     }
 }
 

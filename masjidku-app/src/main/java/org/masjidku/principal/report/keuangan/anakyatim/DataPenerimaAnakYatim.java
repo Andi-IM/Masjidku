@@ -19,7 +19,6 @@ import java.util.List;
 
 public class DataPenerimaAnakYatim extends org.masjidku.accountant.BaseFinanceReportController<AnakYatim> {
     private static final Logger log = LoggerFactory.getLogger(DataPenerimaAnakYatim.class);
-    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
 
     @FXML
     private TableView<AnakYatim> tableAnakyatim;

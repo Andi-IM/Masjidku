@@ -19,7 +19,6 @@ import java.util.List;
 
 public class DataPembayaranOperasional extends org.masjidku.accountant.BaseFinanceReportController<Operasional> {
     private static final Logger log = LoggerFactory.getLogger(DataPembayaranOperasional.class);
-    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
 
     @FXML
     private TableView<Operasional> tableOperasional;

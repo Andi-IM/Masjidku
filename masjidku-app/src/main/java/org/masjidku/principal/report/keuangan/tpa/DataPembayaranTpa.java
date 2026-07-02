@@ -16,7 +16,6 @@ import java.util.List;
 
 public class DataPembayaranTpa extends org.masjidku.accountant.BaseFinanceReportController<TpaKeluar> {
     private static final Logger log = LoggerFactory.getLogger(DataPembayaranTpa.class);
-    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
 
     @FXML
     private TableView<TpaKeluar> tableTpa;

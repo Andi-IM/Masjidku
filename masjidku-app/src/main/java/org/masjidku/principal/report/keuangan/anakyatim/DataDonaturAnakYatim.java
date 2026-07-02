@@ -17,7 +17,6 @@ import java.util.List;
 
 public class DataDonaturAnakYatim extends org.masjidku.accountant.BaseFinanceReportController<DonasiAYatim> {
     private static final Logger log = LoggerFactory.getLogger(DataDonaturAnakYatim.class);
-    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
 
     @FXML
     private TableView<DonasiAYatim> tblAYMasuk;
