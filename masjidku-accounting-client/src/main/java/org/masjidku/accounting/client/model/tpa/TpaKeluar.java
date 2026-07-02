@@ -1,42 +1,27 @@
-/*
- * Copyright (c) 2021. Creative Commons Legal Code
- *
- *                            CC0 1.0 Universal
- *
- *                                CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
- *                                LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN
- *                                ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
- *                                INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
- *                                REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS
- *                                PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
- *                                THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
- *                                HEREUNDER.
- */
-
 package org.masjidku.accounting.client.model.tpa;
 
+import org.masjidku.accounting.client.model.BasePengeluaranModel;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public record TpaKeluar(String id, String tujuan, String keterangan, BigDecimal jumlah, LocalDate tanggal, String operator) {
-
+public class TpaKeluar extends BasePengeluaranModel {
     public TpaKeluar() {
-        this(null, null, null, BigDecimal.ZERO, null, null);
+        super();
     }
 
     public TpaKeluar(String tujuan, String keterangan, BigDecimal jumlah, LocalDate tanggal, String operator) {
-        this(null, tujuan, keterangan, jumlah, tanggal, operator);
+        super(tujuan, keterangan, jumlah, tanggal, operator);
+    }
+
+    public TpaKeluar(String id, String tujuan, String keterangan, BigDecimal jumlah, LocalDate tanggal, String operator) {
+        super(id, tujuan, keterangan, jumlah, tanggal, operator);
     }
 
     public String nama() {
-        return tujuan;
+        return getTujuan();
     }
 
-    public String getId() { return id; }
-    public String getTujuan() { return tujuan; }
-    public String getKeterangan() { return keterangan; }
-    public BigDecimal getJumlah() { return jumlah; }
-    public LocalDate getTanggal() { return tanggal; }
-    public String getOperator() { return operator; }
-    public String getNama() { return tujuan; }
+    public String getNama() {
+        return getTujuan();
+    }
 }

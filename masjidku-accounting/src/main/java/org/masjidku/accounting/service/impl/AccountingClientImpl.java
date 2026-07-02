@@ -449,7 +449,7 @@ public class AccountingClientImpl implements AccountingClient {
         entity.setJumlah(model.jumlah());
         entity.setTanggal(model.tanggal());
         entity.setOperator(model.operator());
-        entity.setDonatur(model.nama());
+        entity.setDonatur(model.donatur());
         return entity;
     }
 
@@ -508,14 +508,14 @@ public class AccountingClientImpl implements AccountingClient {
         entity.setJumlah(model.jumlah());
         entity.setTanggal(model.tanggal());
         entity.setOperator(model.operator());
-        entity.setNama(model.tujuan());
+        entity.setTujuan(model.tujuan());
         entity.setKeterangan(model.keterangan());
         return entity;
     }
 
     private Operasional toModel(OperasionalEntity entity) {
         if (entity == null) return new Operasional();
-        return new Operasional(entity.getId(), entity.getNama(), entity.getKeterangan(), entity.getJumlah(), entity.getTanggal(), entity.getOperator());
+        return new Operasional(entity.getId(), entity.getTujuan(), entity.getKeterangan(), entity.getJumlah(), entity.getTanggal(), entity.getOperator());
     }
 
     @Override
