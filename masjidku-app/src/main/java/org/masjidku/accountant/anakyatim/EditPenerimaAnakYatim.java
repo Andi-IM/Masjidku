@@ -46,6 +46,7 @@ public class EditPenerimaAnakYatim extends BaseEditController<AnakYatim> {
     private Spinner<Integer> spnUsia;
     private AnakYatim anakYatim;
     @FXML
+    @Override
     protected void customInitialize() {
         
         
@@ -76,7 +77,7 @@ public class EditPenerimaAnakYatim extends BaseEditController<AnakYatim> {
         spnUsia.getValueFactory().setValue(model.usia());
         date.setValue(model.tanggal());
     }
-
+    @Override
     @FXML
     public void onSubmitted() {
         if (formValidation()) {
@@ -105,13 +106,14 @@ public class EditPenerimaAnakYatim extends BaseEditController<AnakYatim> {
             alertError(dialogStage, "Error", "Data belum lengkap!");
         }
     }
-
+    @Override
     @FXML
     public void gotoList() {
         mainApp.showDaftarAnakYatim();
     }
 
     @FXML
+    @Override
     protected void customClearForm() {
         
         spnUsia.getValueFactory().setValue(6);

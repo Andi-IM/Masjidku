@@ -55,7 +55,7 @@ public class EditDonaturAnakYatim extends BaseEditController<DonasiAYatim> {
         txtJumlah.setText(model.jumlah().toPlainString());
         date.setValue(model.tanggal());
     }
-
+    @Override
     @FXML
     public void onSubmitted() {
         if (formValidation()) {
@@ -77,7 +77,7 @@ public class EditDonaturAnakYatim extends BaseEditController<DonasiAYatim> {
             AlertHelper.alertError(dialogStage, ERROR, "Data belum lengkap!");
         }
     }
-
+    @Override
     @FXML
     public void gotoList() {
         mainApp.showDonasiAYatim();

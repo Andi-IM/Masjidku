@@ -43,6 +43,7 @@ public class EditPembayaranOperasional extends BaseEditController<Operasional> {
     @FXML
     private TextField txtKeterangan;
     @FXML
+    @Override
     protected void customInitialize() {
         
         registerRequiredField(validator, txtKeterangan, "keterangan", "Keterangan harus diisi!");
@@ -64,7 +65,7 @@ public class EditPembayaranOperasional extends BaseEditController<Operasional> {
         txtJumlah.setText(model.jumlah().toPlainString());
         date.setValue(model.tanggal());
     }
-
+    @Override
     @FXML
     public void onSubmitted() {
         if (formValidation()) {
@@ -87,13 +88,14 @@ public class EditPembayaranOperasional extends BaseEditController<Operasional> {
             alertError(dialogStage, ERROR, "Data belum lengkap!");
         }
     }
-
+    @Override
     @FXML
     public void gotoList() {
         mainApp.showAlokasiOperasional();
     }
 
     @FXML
+    @Override
     protected void customClearForm() {
         
         txtKeterangan.clear();

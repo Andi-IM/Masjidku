@@ -55,7 +55,7 @@ public class EditDonaturZakat extends BaseEditController<ZakatMasuk> {
         txtJumlah.setText(model.jumlah().toPlainString());
         date.setValue(model.tanggal());
     }
-
+    @Override
     @FXML
     public void onSubmitted() {
         if (formValidation()) {
@@ -77,7 +77,7 @@ public class EditDonaturZakat extends BaseEditController<ZakatMasuk> {
             alertError(dialogStage, ERROR, "Data belum lengkap!");
         }
     }
-
+    @Override
     @FXML
     public void gotoList() {
         mainApp.showDonaturZakat();

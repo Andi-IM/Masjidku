@@ -54,7 +54,7 @@ public class EditDonaturTpa extends BaseEditController<TpaMasuk> {
         txtJumlah.setText(model.jumlah().toPlainString());
         date.setValue(model.tanggal());
     }
-
+    @Override
     @FXML
     public void onSubmitted() {
         if (formValidation()) {
@@ -76,7 +76,7 @@ public class EditDonaturTpa extends BaseEditController<TpaMasuk> {
             alertError(dialogStage, ERROR, "Data belum lengkap!");
         }
     }
-
+    @Override
     @FXML
     public void gotoList() {
         mainApp.showDonaturTpa();

@@ -43,6 +43,7 @@ public class EditPembayaranTpa extends BaseEditController<TpaKeluar> {
     @FXML
     private TextField txtKeterangan;
     @FXML
+    @Override
     protected void customInitialize() {
         
         registerRequiredField(validator, txtKeterangan, "keterangan", "Keterangan harus diisi!");
@@ -64,7 +65,7 @@ public class EditPembayaranTpa extends BaseEditController<TpaKeluar> {
         txtJumlah.setText(model.jumlah().toPlainString());
         date.setValue(model.tanggal());
     }
-
+    @Override
     @FXML
     public void onSubmitted() {
         if (formValidation()) {
@@ -87,13 +88,14 @@ public class EditPembayaranTpa extends BaseEditController<TpaKeluar> {
             alertError(dialogStage, ERROR, "Data belum lengkap!");
         }
     }
-
+    @Override
     @FXML
     public void gotoList() {
         mainApp.showAlokasiTpa();
     }
 
     @FXML
+    @Override
     protected void customClearForm() {
         
         txtKeterangan.clear();
