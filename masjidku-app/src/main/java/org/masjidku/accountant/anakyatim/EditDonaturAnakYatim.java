@@ -15,34 +15,20 @@
 
 package org.masjidku.accountant.anakyatim;
 
-import org.masjidku.accountant.BaseEditController;
-
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-import net.synedra.validatorfx.Validator;
+import org.masjidku.accountant.BaseEditController;
 import org.masjidku.accounting.client.model.anakyatim.DonasiAYatim;
-import org.masjidku.accounting.client.service.AccountingClient;
-import org.masjidku.navigation.AppRouter;
-import org.masjidku.util.AlertHelper;
-import org.masjidku.util.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-
-import static org.masjidku.di.DiProvider.getAppComponent;
-import static org.masjidku.util.Constants.ERROR;
 import static org.masjidku.util.DaoHelper.saveOrUpdate;
-import static org.masjidku.util.ValidationHelper.*;
 
 public class EditDonaturAnakYatim extends BaseEditController<DonasiAYatim> {
     private static final Logger log = LoggerFactory.getLogger(EditDonaturAnakYatim.class);
 
-    
 
     @Override
     protected boolean isModelExists(DonasiAYatim model) {
@@ -55,34 +41,35 @@ public class EditDonaturAnakYatim extends BaseEditController<DonasiAYatim> {
         txtJumlah.setText(model.jumlah().toPlainString());
         date.setValue(model.tanggal());
     }
+
     @Override
     protected void processSubmission() {
-            String nama = txtNama.getText();
-            BigDecimal jumlah = new BigDecimal(txtJumlah.getText());
-            LocalDate tanggal = date.getValue();
+        String nama = txtNama.getText();
+        BigDecimal jumlah = new BigDecimal(txtJumlah.getText());
+        LocalDate tanggal = date.getValue();
 
-            if (model == null) {
-                model = new DonasiAYatim(nama, jumlah, tanggal, operator);
-            }
+        if (model == null) {
+            model = new DonasiAYatim(nama, jumlah, tanggal, operator);
+        }
 
-            saveOrUpdate(
-                    () -> client.isDonasiAYatimExist(model.id()),
-                    () -> client.update(new DonasiAYatim(model.id(), nama, jumlah, tanggal, operator)),
-                    () -> client.save(model),
-                    dialogStage, log
-            );
+        saveOrUpdate(
+                () -> client.isDonasiAYatimExist(model.id()),
+                () -> client.update(new DonasiAYatim(model.id(), nama, jumlah, tanggal, operator)),
+                () -> client.save(model),
+                dialogStage, log
+        );
     }
+
     @Override
     @FXML
     public void gotoList() {
         mainApp.showDonasiAYatim();
     }
 
+    @Override
     public void onLogoutClick() {
         mainApp.onLogoutAction();
     }
-
-
 }
 
 
