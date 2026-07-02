@@ -10,8 +10,22 @@ env:
 on:
   push:
     branches: [ development-modular ]
+    paths:
+      - '**.java'
+      - '**/build.gradle'
+      - 'settings.gradle'
+      - 'gradle/**'
+      - 'gradlew'
+      - 'gradlew.bat'
   pull_request:
     branches: [ production, development-modular ]
+    paths:
+      - '**.java'
+      - '**/build.gradle'
+      - 'settings.gradle'
+      - 'gradle/**'
+      - 'gradlew'
+      - 'gradlew.bat'
 
 jobs:
   build:
