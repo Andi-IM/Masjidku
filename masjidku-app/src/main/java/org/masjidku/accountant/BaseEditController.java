@@ -20,6 +20,34 @@ public abstract class BaseEditController<T> {
     @SuppressWarnings("unused")
     protected Stage dialogStage;
 
+
+    @FXML
+    protected javafx.scene.control.TextField txtNama;
+    @FXML
+    protected javafx.scene.control.TextField txtJumlah;
+    @FXML
+    protected javafx.scene.control.DatePicker date;
+
+    @FXML
+    public void initialize() {
+        org.masjidku.util.ValidationHelper.registerRequiredField(validator, txtNama, "nama", "Nama/Tujuan harus diisi!");
+        org.masjidku.util.ValidationHelper.registerNumericField(validator, txtJumlah, "jumlah", "Jumlah harus diisi!", "Jumlah harus berupa angka!");
+        org.masjidku.util.ValidationHelper.registerDatePicker(validator, date, "tanggal", "Tanggal harus dipilih!");
+        customInitialize();
+    }
+
+    protected void customInitialize() {}
+
+    @FXML
+    public void clearForm() {
+        txtNama.clear();
+        txtJumlah.clear();
+        date.getEditor().clear();
+        customClearForm();
+    }
+
+    protected void customClearForm() {}
+
     public void setMainApp(AppRouter mainApp, T model) {
         this.operator = getAppComponent().getSessionManager().getCurrentUsername();
         this.mainApp = mainApp;
@@ -49,6 +77,4 @@ public abstract class BaseEditController<T> {
         mainApp.onLogoutAction();
     }
 
-    @FXML
-    public abstract void clearForm();
 }

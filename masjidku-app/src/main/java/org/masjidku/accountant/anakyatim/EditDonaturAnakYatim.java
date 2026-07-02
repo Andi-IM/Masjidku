@@ -41,18 +41,6 @@ import static org.masjidku.util.ValidationHelper.*;
 
 public class EditDonaturAnakYatim extends BaseEditController<DonasiAYatim> {
     private static final Logger log = LoggerFactory.getLogger(EditDonaturAnakYatim.class);
-    @FXML
-    private TextField txtNama;
-    @FXML
-    private TextField txtJumlah;
-    @FXML
-    private DatePicker date;
-    @FXML
-    public void initialize() {
-        registerRequiredField(validator, txtNama, "nama", "Nama model harus diisi!");
-        registerNumericField(validator, txtJumlah, "jumlah", "Jumlah harus diisi!", "Jumlah harus berupa angka!");
-        registerDatePicker(validator, date, "tanggal", "Tanggal harus dipilih!");
-    }
 
     
 
@@ -66,13 +54,6 @@ public class EditDonaturAnakYatim extends BaseEditController<DonasiAYatim> {
         txtNama.setText(model.donatur());
         txtJumlah.setText(model.jumlah().toPlainString());
         date.setValue(model.tanggal());
-    }
-
-    @FXML
-    public void clearForm() {
-        txtNama.clear();
-        txtJumlah.clear();
-        date.getEditor().clear();
     }
 
     @FXML

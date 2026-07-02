@@ -40,18 +40,6 @@ import static org.masjidku.util.ValidationHelper.*;
 
 public class EditDonaturPembangunan extends BaseEditController<DonasiPembangunan> {
     private static final Logger log = LoggerFactory.getLogger(EditDonaturPembangunan.class);
-    @FXML
-    private TextField txtNama;
-    @FXML
-    private TextField txtJumlah;
-    @FXML
-    private DatePicker date;
-    @FXML
-    public void initialize() {
-        registerRequiredField(validator, txtNama, "nama", "Nama model harus diisi!");
-        registerNumericField(validator, txtJumlah, "jumlah", "Jumlah harus diisi!", "Jumlah harus berupa angka!");
-        registerDatePicker(validator, date, "tanggal", "Tanggal harus dipilih!");
-    }
 
     
 
@@ -92,13 +80,6 @@ public class EditDonaturPembangunan extends BaseEditController<DonasiPembangunan
     @FXML
     public void gotoList() {
         mainApp.showDonaturPembangunan();
-    }
-
-    @FXML
-    public void clearForm() {
-        txtNama.clear();
-        txtJumlah.clear();
-        date.getEditor().clear();
     }
 
 

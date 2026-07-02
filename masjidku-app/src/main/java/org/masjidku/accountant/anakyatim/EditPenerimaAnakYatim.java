@@ -43,19 +43,13 @@ import static org.masjidku.util.ValidationHelper.*;
 public class EditPenerimaAnakYatim extends BaseEditController<AnakYatim> {
     private static final Logger log = LoggerFactory.getLogger(EditPenerimaAnakYatim.class);
     @FXML
-    private TextField txtNama;
-    @FXML
     private Spinner<Integer> spnUsia;
-    @FXML
-    private TextField txtJumlah;
-    @FXML
-    private DatePicker date;
     private AnakYatim anakYatim;
     @FXML
-    public void initialize() {
-        registerRequiredField(validator, txtNama, "nama", "Nama model harus diisi!");
-        registerNumericField(validator, txtJumlah, "jumlah", "Jumlah harus diisi!", "Jumlah harus berupa angka!");
-        registerDatePicker(validator, date, "tanggal", "Tanggal harus dipilih!");
+    protected void customInitialize() {
+        
+        
+        
 
         validator.createCheck()
                 .dependsOn("usia", spnUsia.valueProperty())
@@ -118,11 +112,11 @@ public class EditPenerimaAnakYatim extends BaseEditController<AnakYatim> {
     }
 
     @FXML
-    public void clearForm() {
-        txtNama.clear();
+    protected void customClearForm() {
+        
         spnUsia.getValueFactory().setValue(6);
-        txtJumlah.clear();
-        date.getEditor().clear();
+        
+        
     }
 }
 
