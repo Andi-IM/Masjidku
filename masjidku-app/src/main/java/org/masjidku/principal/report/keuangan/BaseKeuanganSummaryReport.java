@@ -7,9 +7,8 @@ import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
 
-public abstract class BaseKeuanganSummaryReport implements Initializable {
+public abstract class BaseKeuanganSummaryReport extends org.masjidku.controller.BaseAppController implements Initializable {
     protected final AccountingClient client = ServiceProvider.get(AccountingClient.class);
-    protected AppRouter mainApp;
 
     @FXML public Text txtPemasukanTerakhir;
     @FXML public Text txtPengeluaranTerakhir;
@@ -18,9 +17,5 @@ public abstract class BaseKeuanganSummaryReport implements Initializable {
     @FXML public Text txtTotalPengeluaran;
     @FXML public Text txtSaldo;
     @FXML public Text txtTglPengeluaran;
-
-    public void setMainApp(AppRouter mainApp) { this.mainApp = mainApp; }
-
-    @FXML public void onLogoutClick() { mainApp.onLogoutAction(); }
     @FXML public void gotoHome() { mainApp.showData(); }
 }

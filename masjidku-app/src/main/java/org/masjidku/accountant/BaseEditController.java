@@ -9,11 +9,9 @@ import org.masjidku.util.ServiceProvider;
 
 import static org.masjidku.di.DiProvider.getAppComponent;
 
-public abstract class BaseEditController<T> {
+public abstract class BaseEditController<T> extends org.masjidku.controller.BaseAppController {
     protected final AccountingClient client = ServiceProvider.get(AccountingClient.class);
     protected final Validator validator = new Validator();
-
-    protected AppRouter mainApp;
     protected String operator;
     protected T model;
 
@@ -87,10 +85,4 @@ public abstract class BaseEditController<T> {
     protected abstract void processSubmission();
 @FXML
     public abstract void gotoList();
-
-    @FXML
-    public void onLogoutClick() {
-        mainApp.onLogoutAction();
-    }
-
 }
