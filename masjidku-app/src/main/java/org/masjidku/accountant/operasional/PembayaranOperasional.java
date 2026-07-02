@@ -16,14 +16,12 @@
 package org.masjidku.accountant.operasional;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.masjidku.controller.BaseTableController;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.operasional.Operasional;
-
 
 import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
@@ -46,19 +44,6 @@ public class PembayaranOperasional extends BaseTableController<Operasional> {
     private TableColumn<Operasional, String> jumlah;
     @FXML
     private TableColumn<Operasional, String> tanggal;
-    @FXML
-    private Button btnEdit;
-    @FXML
-    private Button btnRemove;
-
-    private AppRouter mainApp;
-
-
-    public void setMainApp(AppRouter mainApp) {
-        this.mainApp = mainApp;
-    }
-
-
     @Override
     protected void setupTableColumns() {
         org.masjidku.util.AlertHelper.setupOutflowColumns(nama, jumlah, tanggal);
@@ -66,23 +51,15 @@ keterangan.setCellValueFactory(new PropertyValueFactory<>("keterangan"));
 }
 
     @FXML
-    public void onLogoutClick() {
-        mainApp.onLogoutAction();
-    }
-
-
-    @FXML
     public void addListener() {
         Operasional temp = new Operasional();
         mainApp.editAlokasiOperasional(temp);
     }
 
-
     @FXML
     public void gotoHome() {
         mainApp.showOperasional();
     }
-
 
     @Override
     protected org.slf4j.Logger getLogger() {
@@ -92,16 +69,6 @@ keterangan.setCellValueFactory(new PropertyValueFactory<>("keterangan"));
     @Override
     protected TableView<Operasional> getTableView() {
         return tableOperasional;
-    }
-
-    @Override
-    protected Button getBtnEdit() {
-        return btnEdit;
-    }
-
-    @Override
-    protected Button getBtnRemove() {
-        return btnRemove;
     }
 
     @Override
@@ -124,10 +91,5 @@ keterangan.setCellValueFactory(new PropertyValueFactory<>("keterangan"));
         mainApp.editAlokasiOperasional(item);
     }
 
-    @FXML
-    public void onEditListener() {
-        super.onEditAction();
     }
-}
-
 

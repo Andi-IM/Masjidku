@@ -16,13 +16,11 @@
 package org.masjidku.accountant.operasional;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.masjidku.controller.BaseTableController;
 import org.masjidku.navigation.AppRouter;
 import org.masjidku.accounting.client.model.operasional.DonasiOperasional;
-
 
 import org.masjidku.accounting.client.service.AccountingClient;
 import org.masjidku.util.ServiceProvider;
@@ -43,28 +41,10 @@ public class DonaturOperasional extends BaseTableController<DonasiOperasional> {
     private TableColumn<DonasiOperasional, String> jumlah;
     @FXML
     private TableColumn<DonasiOperasional, String> tanggal;
-    @FXML
-    private Button btnEdit;
-    @FXML
-    private Button btnRemove;
-
-    private AppRouter mainApp;
-
-
-    public void setMainApp(AppRouter mainApp) {
-        this.mainApp = mainApp;
-    }
-
-
     @Override
     protected void setupTableColumns() {
         org.masjidku.util.AlertHelper.setupInflowColumns(donatur, jumlah, tanggal);
 }
-
-    @FXML
-    public void onLogoutClick() {
-        mainApp.onLogoutAction();
-    }
 
     @FXML
     public void addUserListener() {
@@ -72,12 +52,10 @@ public class DonaturOperasional extends BaseTableController<DonasiOperasional> {
         mainApp.editDonaturOperasional(temp);
     }
 
-
     @FXML
     public void gotoHome() {
         mainApp.showOperasional();
     }
-
 
     @Override
     protected org.slf4j.Logger getLogger() {
@@ -87,16 +65,6 @@ public class DonaturOperasional extends BaseTableController<DonasiOperasional> {
     @Override
     protected TableView<DonasiOperasional> getTableView() {
         return tableOperasional;
-    }
-
-    @Override
-    protected Button getBtnEdit() {
-        return btnEdit;
-    }
-
-    @Override
-    protected Button getBtnRemove() {
-        return btnRemove;
     }
 
     @Override
@@ -119,10 +87,5 @@ public class DonaturOperasional extends BaseTableController<DonasiOperasional> {
         mainApp.editDonaturOperasional(item);
     }
 
-    @FXML
-    public void onEditListener() {
-        super.onEditAction();
     }
-}
-
 

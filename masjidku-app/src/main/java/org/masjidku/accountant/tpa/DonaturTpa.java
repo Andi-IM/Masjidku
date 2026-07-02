@@ -16,7 +16,6 @@
 package org.masjidku.accountant.tpa;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.masjidku.accounting.client.model.tpa.TpaMasuk;
@@ -41,27 +40,9 @@ public class DonaturTpa extends BaseTableController<TpaMasuk> {
     private TableColumn<TpaMasuk, String> jumlah;
     @FXML
     private TableColumn<TpaMasuk, String> tanggal;
-    @FXML
-    private Button btnEdit;
-    @FXML
-    private Button btnRemove;
-
-    private AppRouter mainApp;
-
-
-    public void setMainApp(AppRouter mainApp) {
-        this.mainApp = mainApp;
-    }
-
-
     @Override
     protected void setupTableColumns() {
         org.masjidku.util.AlertHelper.setupInflowColumns(donatur, jumlah, tanggal);
-    }
-
-    @FXML
-    public void onLogoutClick() {
-        mainApp.onLogoutAction();
     }
 
     @FXML
@@ -70,12 +51,10 @@ public class DonaturTpa extends BaseTableController<TpaMasuk> {
         mainApp.editDonaturTpa(temp);
     }
 
-
     @FXML
     public void gotoHome() {
         mainApp.showTpa();
     }
-
 
     @Override
     protected org.slf4j.Logger getLogger() {
@@ -85,16 +64,6 @@ public class DonaturTpa extends BaseTableController<TpaMasuk> {
     @Override
     protected TableView<TpaMasuk> getTableView() {
         return tableTpa;
-    }
-
-    @Override
-    protected Button getBtnEdit() {
-        return btnEdit;
-    }
-
-    @Override
-    protected Button getBtnRemove() {
-        return btnRemove;
     }
 
     @Override
@@ -117,10 +86,5 @@ public class DonaturTpa extends BaseTableController<TpaMasuk> {
         mainApp.editDonaturTpa(item);
     }
 
-    @FXML
-    public void onEditListener() {
-        super.onEditAction();
     }
-}
-
 

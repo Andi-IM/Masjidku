@@ -16,7 +16,6 @@
 package org.masjidku.accountant.zakat;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.masjidku.accounting.client.model.zakat.ZakatKeluar;
@@ -43,29 +42,10 @@ public class PenerimaZakat extends BaseTableController<ZakatKeluar> {
     private TableColumn<ZakatKeluar, String> jumlah;
     @FXML
     private TableColumn<ZakatKeluar, String> tanggal;
-    @FXML
-    private Button btnEdit;
-    @FXML
-    private Button btnRemove;
-
-    private AppRouter mainApp;
-
-
-    public void setMainApp(AppRouter mainApp) {
-        this.mainApp = mainApp;
-    }
-
-
     @Override
     protected void setupTableColumns() {
         setupOutflowColumns(nama, jumlah, tanggal);
     }
-
-    @FXML
-    public void onLogoutClick() {
-        mainApp.onLogoutAction();
-    }
-
 
     @FXML
     public void addListener() {
@@ -73,12 +53,10 @@ public class PenerimaZakat extends BaseTableController<ZakatKeluar> {
         mainApp.editPenerimaZakat(temp);
     }
 
-
     @FXML
     public void gotoHome() {
         mainApp.showZakat();
     }
-
 
     @Override
     protected org.slf4j.Logger getLogger() {
@@ -88,16 +66,6 @@ public class PenerimaZakat extends BaseTableController<ZakatKeluar> {
     @Override
     protected TableView<ZakatKeluar> getTableView() {
         return tableZakat;
-    }
-
-    @Override
-    protected Button getBtnEdit() {
-        return btnEdit;
-    }
-
-    @Override
-    protected Button getBtnRemove() {
-        return btnRemove;
     }
 
     @Override
@@ -120,10 +88,5 @@ public class PenerimaZakat extends BaseTableController<ZakatKeluar> {
         mainApp.editPenerimaZakat(item);
     }
 
-    @FXML
-    public void onEditListener() {
-        super.onEditAction();
     }
-}
-
 
