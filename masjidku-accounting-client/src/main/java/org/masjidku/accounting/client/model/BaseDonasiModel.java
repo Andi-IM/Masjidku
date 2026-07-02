@@ -87,4 +87,15 @@ public abstract class BaseDonasiModel {
     public int hashCode() {
         return java.util.Objects.hash(id, donatur, jumlah, tanggal, operator);
     }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "{"
+                + "id='" + id + '\''
+                + ", donatur='" + donatur + '\''
+                + ", jumlah=" + jumlah
+                + ", tanggal=" + tanggal
+                + ", operator='" + operator + '\''
+                + '}';
+    }
 }

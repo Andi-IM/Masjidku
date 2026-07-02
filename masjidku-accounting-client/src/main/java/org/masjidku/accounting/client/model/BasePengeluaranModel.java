@@ -60,4 +60,16 @@ public abstract class BasePengeluaranModel {
     public int hashCode() {
         return java.util.Objects.hash(id, tujuan, keterangan, jumlah, tanggal, operator);
     }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "{"
+                + "id='" + id + '\''
+                + ", tujuan='" + tujuan + '\''
+                + ", keterangan='" + keterangan + '\''
+                + ", jumlah=" + jumlah
+                + ", tanggal=" + tanggal
+                + ", operator='" + operator + '\''
+                + '}';
+    }
 }
