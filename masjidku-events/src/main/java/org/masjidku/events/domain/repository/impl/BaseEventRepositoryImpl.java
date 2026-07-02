@@ -47,6 +47,7 @@ public abstract class BaseEventRepositoryImpl<T> {
     }
 
     protected void persist(T entity) {
+        Objects.requireNonNull(entity, "Entity must not be null");
         try {
             var session = sessionFactory.getCurrentSession();
             session.persist(entity);
@@ -56,6 +57,7 @@ public abstract class BaseEventRepositoryImpl<T> {
     }
 
     protected void merge(T entity) {
+        Objects.requireNonNull(entity, "Entity must not be null");
         try {
             var session = sessionFactory.getCurrentSession();
             session.merge(entity);
