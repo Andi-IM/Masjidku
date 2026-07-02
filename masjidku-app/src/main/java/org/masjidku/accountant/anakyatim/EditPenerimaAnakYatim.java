@@ -79,18 +79,14 @@ public class EditPenerimaAnakYatim extends BaseEditController<AnakYatim> {
     }
     @Override
     protected void processSubmission() {
-            String nama = txtNama.getText();
-            int usia = spnUsia.getValue();
-            BigDecimal jumlah = new BigDecimal(txtJumlah.getText());
-            LocalDate tanggal = date.getValue();
 
             if (anakYatim.id() == null) {
-                anakYatim = new AnakYatim(nama, usia, jumlah, tanggal, operator);
+                anakYatim = new AnakYatim(txtNama.getText(), spnUsia.getValue(), new BigDecimal(txtJumlah.getText()), date.getValue(), operator);
             }
 
             try {
                 if (client.isAnakYatimExist(anakYatim.id())) {
-                    client.update(new AnakYatim(anakYatim.id(), nama, usia, jumlah, tanggal, operator));
+                    client.update(new AnakYatim(anakYatim.id(), txtNama.getText(), spnUsia.getValue(), new BigDecimal(txtJumlah.getText()), date.getValue(), operator));
                     alertInfo(dialogStage, ERROR, "Data telah diupdate");
                 } else {
                     client.save(anakYatim);

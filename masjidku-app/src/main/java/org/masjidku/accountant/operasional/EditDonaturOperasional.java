@@ -54,17 +54,14 @@ public class EditDonaturOperasional extends BaseEditController<DonasiOperasional
     }
     @Override
     protected void processSubmission() {
-            String nama = txtNama.getText();
-            BigDecimal jumlah = new BigDecimal(txtJumlah.getText());
-            LocalDate tanggal = date.getValue();
 
             if (model.id() == null) {
-                model = new DonasiOperasional(nama, jumlah, tanggal, operator);
+                model = new DonasiOperasional(txtNama.getText(), new BigDecimal(txtJumlah.getText()), date.getValue(), operator);
             }
 
             saveOrUpdate(
                     () -> client.isDonasiOperasionalExist(model.id()),
-                    () -> client.update(new DonasiOperasional(model.id(), nama, jumlah, tanggal, operator)),
+                    () -> client.update(new DonasiOperasional(model.id(), txtNama.getText(), new BigDecimal(txtJumlah.getText()), date.getValue(), operator)),
                     () -> client.save(model),
                     dialogStage, log
             );

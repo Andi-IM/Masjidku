@@ -56,17 +56,14 @@ public class EditDonaturTpa extends BaseEditController<TpaMasuk> {
     }
     @Override
     protected void processSubmission() {
-            String nama = txtNama.getText();
-            BigDecimal jumlah = new BigDecimal(txtJumlah.getText());
-            LocalDate tanggal = date.getValue();
 
             if (model == null) {
-                model = new TpaMasuk(nama, jumlah, tanggal, operator);
+                model = new TpaMasuk(txtNama.getText(), new BigDecimal(txtJumlah.getText()), date.getValue(), operator);
             }
 
             saveOrUpdate(
                     () -> client.isTpaMasukExist(model.id()),
-                    () -> client.update(new TpaMasuk(model.id(), nama, jumlah, tanggal, operator)),
+                    () -> client.update(new TpaMasuk(model.id(), txtNama.getText(), new BigDecimal(txtJumlah.getText()), date.getValue(), operator)),
                     () -> client.save(model),
                     dialogStage, log
             );

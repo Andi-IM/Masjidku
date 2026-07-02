@@ -57,17 +57,14 @@ public class EditDonaturZakat extends BaseEditController<ZakatMasuk> {
     }
     @Override
     protected void processSubmission() {
-            String nama = txtNama.getText();
-            BigDecimal jumlah = new BigDecimal(txtJumlah.getText());
-            LocalDate tanggal = date.getValue();
 
             if (model == null) {
-                model = new ZakatMasuk(nama, jumlah, tanggal, operator);
+                model = new ZakatMasuk(txtNama.getText(), new BigDecimal(txtJumlah.getText()), date.getValue(), operator);
             }
 
             org.masjidku.util.DaoHelper.saveOrUpdate(
                 () -> client.isZakatMasukExist(model.id()),
-                () -> client.update(new ZakatMasuk(model.id(), nama, jumlah, tanggal, operator)),
+                () -> client.update(new ZakatMasuk(model.id(), txtNama.getText(), new BigDecimal(txtJumlah.getText()), date.getValue(), operator)),
                 () -> client.save(model),
                 dialogStage, log
             );

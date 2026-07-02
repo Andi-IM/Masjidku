@@ -57,18 +57,14 @@ public class EditPembayaranOperasional extends BaseEditController<Operasional> {
     }
     @Override
     protected void processSubmission() {
-            String nama = txtNama.getText();
-            String keterangan = txtKeterangan.getText();
-            BigDecimal jumlah = new BigDecimal(txtJumlah.getText());
-            LocalDate tanggal = date.getValue();
 
             if (model.id() == null) {
-                model = new Operasional(nama, keterangan, jumlah, tanggal, operator);
+                model = new Operasional(txtNama.getText(), txtKeterangan.getText(), new BigDecimal(txtJumlah.getText()), date.getValue(), operator);
             }
 
             saveOrUpdate(
                     () -> client.isOperasionalExist(model.id()),
-                    () -> client.update(new Operasional(model.id(), nama, keterangan, jumlah, tanggal, operator)),
+                    () -> client.update(new Operasional(model.id(), txtNama.getText(), txtKeterangan.getText(), new BigDecimal(txtJumlah.getText()), date.getValue(), operator)),
                     () -> client.save(model),
                     dialogStage, log
             );

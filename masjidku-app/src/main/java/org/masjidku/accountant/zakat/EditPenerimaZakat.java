@@ -57,12 +57,9 @@ public class EditPenerimaZakat extends BaseEditController<ZakatKeluar> {
     }
     @Override
     protected void processSubmission() {
-            String nama = txtNama.getText();
-            BigDecimal jumlah = new BigDecimal(txtJumlah.getText());
-            LocalDate tanggal = date.getValue();
 
             if (model == null) {
-                model = new ZakatKeluar(nama, jumlah, tanggal, operator);
+                model = new ZakatKeluar(txtNama.getText(), new BigDecimal(txtJumlah.getText()), date.getValue(), operator);
             }
 
             try {

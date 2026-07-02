@@ -56,17 +56,14 @@ public class EditDonaturPembangunan extends BaseEditController<DonasiPembangunan
     }
     @Override
     protected void processSubmission() {
-            String nama = txtNama.getText();
-            BigDecimal jumlah = new BigDecimal(txtJumlah.getText());
-            LocalDate tanggal = date.getValue();
 
             if (model.id() == null) {
-                model = new DonasiPembangunan(nama, jumlah, tanggal, operator);
+                model = new DonasiPembangunan(txtNama.getText(), new BigDecimal(txtJumlah.getText()), date.getValue(), operator);
             }
 
             saveOrUpdate(
                     () -> client.isDonasiPembangunanExist(model.id()),
-                    () -> client.update(new DonasiPembangunan(model.id(), nama, jumlah, tanggal, operator)),
+                    () -> client.update(new DonasiPembangunan(model.id(), txtNama.getText(), new BigDecimal(txtJumlah.getText()), date.getValue(), operator)),
                     () -> client.save(model),
                     dialogStage, log
             );

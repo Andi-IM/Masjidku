@@ -57,18 +57,14 @@ public class EditPembayaranTpa extends BaseEditController<TpaKeluar> {
     }
     @Override
     protected void processSubmission() {
-            String nama = txtNama.getText();
-            String keterangan = txtKeterangan.getText();
-            BigDecimal jumlah = new BigDecimal(txtJumlah.getText());
-            LocalDate tanggal = date.getValue();
 
             if (model.id() == null) {
-                model = new TpaKeluar(nama, keterangan, jumlah, tanggal, operator);
+                model = new TpaKeluar(txtNama.getText(), txtKeterangan.getText(), new BigDecimal(txtJumlah.getText()), date.getValue(), operator);
             }
 
             saveOrUpdate(
                     () -> client.isTpaKeluarExist(model.id()),
-                    () -> client.update(new TpaKeluar(model.id(), nama, keterangan, jumlah, tanggal, operator)),
+                    () -> client.update(new TpaKeluar(model.id(), txtNama.getText(), txtKeterangan.getText(), new BigDecimal(txtJumlah.getText()), date.getValue(), operator)),
                     () -> client.save(model),
                     dialogStage, log
             );
