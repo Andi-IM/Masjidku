@@ -80,13 +80,14 @@ public abstract class BaseRepositoryImpl<T> implements BaseRepository<T> {
     }
 
     @Override
+    @Override
     public T getLastRecord() {
         try {
             var session = sessionFactory.getCurrentSession();
             var builder = session.getCriteriaBuilder();
             var query = builder.createQuery(entityClass);
             var root = query.from(entityClass);
-            query.select(root).orderBy(builder.desc(root.get("id")));
+            query.select(root).orderBy(builder.desc(root.get(idFieldName)));
             return session.createQuery(query).setMaxResults(1).uniqueResult();
         } catch (Exception e) {
             throw new DataAccessException("Failed to get last " + entityClass.getSimpleName(), e);
