@@ -58,6 +58,7 @@ public class PrincipalReadDataTamu extends BaseTableController<Tamu> {
         this.eventClient = ServiceProvider.get(EventsClient.class);
     }
 
+    @Override
     public void setMainApp(AppRouter mainApp) {
         String username = getAppComponent().getSessionManager().getCurrentUsername();
         this.mainApp = mainApp;
