@@ -1,3 +1,17 @@
+# [1.3.0](https://github.com/Andi-IM/Masjidku/compare/v1.2.0...v1.3.0) (2026-07-02)
+
+
+### Bug Fixes
+
+* **app:** fully extract onSubmitted body to base class to eliminate final 6.8% duplication ([a3612a6](https://github.com/Andi-IM/Masjidku/commit/a3612a61dccbfcdb01a444e145cf41a3d829bbf5))
+* **app:** move FXML fields and initialize logic to BaseEditController to fully eliminate new code duplication ([9e1a329](https://github.com/Andi-IM/Masjidku/commit/9e1a3293bc643ce2a265f71e7e9dcdf673cde855))
+* **app:** pull up txtKeterangan field to BaseEditController to fix residual duplication in Pembayaran controllers ([39d363a](https://github.com/Andi-IM/Masjidku/commit/39d363ab0b36b197af4867cd2a2ad990c1f55ba4))
+
+
+### Features
+
+* implement EditDonaturAnakYatim controller for managing orphan donation records ([0ece03b](https://github.com/Andi-IM/Masjidku/commit/0ece03bbc2205589aeebf2cccf39a7a29d492b71))
+
 # [1.2.0](https://github.com/Andi-IM/Masjidku/compare/v1.1.0...v1.2.0) (2026-07-02)
 
 
