@@ -11,10 +11,18 @@ public abstract class BaseRepositoryImpl<T> implements BaseRepository<T> {
 
     protected final SessionFactory sessionFactory;
     protected final Class<T> entityClass;
+    protected final String idFieldName;
+    protected final String jumlahFieldName;
 
     protected BaseRepositoryImpl(SessionFactory sessionFactory, Class<T> entityClass) {
+        this(sessionFactory, entityClass, "id", "jumlah");
+    }
+
+    protected BaseRepositoryImpl(SessionFactory sessionFactory, Class<T> entityClass, String idFieldName, String jumlahFieldName) {
         this.sessionFactory = sessionFactory;
         this.entityClass = entityClass;
+        this.idFieldName = idFieldName;
+        this.jumlahFieldName = jumlahFieldName;
     }
 
     @Override
@@ -80,7 +88,6 @@ public abstract class BaseRepositoryImpl<T> implements BaseRepository<T> {
     }
 
     @Override
-    @Override
     public T getLastRecord() {
         try {
             var session = sessionFactory.getCurrentSession();
@@ -101,7 +108,7 @@ public abstract class BaseRepositoryImpl<T> implements BaseRepository<T> {
             var builder = session.getCriteriaBuilder();
             var query = builder.createQuery(java.math.BigDecimal.class);
             var root = query.from(entityClass);
-            query.select(builder.coalesce(builder.sum(root.get("jumlah")), new java.math.BigDecimal(0)));
+            query.select(builder.coalesce(builder.sum(root.get(jumlahFieldName)), new java.math.BigDecimal(0)));
             var count = session.createQuery(query).uniqueResult();
             return count != null ? count.toPlainString() : "0";
         } catch (Exception e) {
