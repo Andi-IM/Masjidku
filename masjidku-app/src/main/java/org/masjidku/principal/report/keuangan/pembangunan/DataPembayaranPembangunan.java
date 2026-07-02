@@ -19,7 +19,6 @@ import java.util.List;
 
 public class DataPembayaranPembangunan extends org.masjidku.accountant.BaseFinanceReportController<Pembangunan> {
     private static final Logger log = LoggerFactory.getLogger(DataPembayaranPembangunan.class);
-    private final AccountingClient client = ServiceProvider.get(AccountingClient.class);
 
     @FXML
     private TableView<Pembangunan> tablePembangunan;

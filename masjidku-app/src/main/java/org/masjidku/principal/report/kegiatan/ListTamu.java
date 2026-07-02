@@ -44,23 +44,11 @@ public class ListTamu extends ReadOnlyTableController<Tamu> {
     @FXML
     public TableColumn<Tamu, String> colOperator;
 
-    private AppRouter mainApp;
-
     @Override
     protected void setupTableColumns() {
         org.masjidku.util.AlertHelper.setupTamuColumns(colNama, colAlamat, colNotelp);
         if (colOperator != null)
             colOperator.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("operator"));
-    }
-
-    public void setMainApp(AppRouter mainApp) {
-        this.mainApp = mainApp;
-    }
-
-
-    @FXML
-    public void onLogoutClick() {
-        mainApp.onLogoutAction();
     }
 
     @FXML
