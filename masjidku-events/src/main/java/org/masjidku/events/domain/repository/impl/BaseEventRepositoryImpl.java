@@ -112,6 +112,9 @@ public abstract class BaseEventRepositoryImpl<T> {
     }
 
     protected String findIdByName(String name) {
+        if (name == null || name.isBlank()) {
+            return "";
+        }
         try {
             var session = sessionFactory.getCurrentSession();
             var builder = session.getCriteriaBuilder();
