@@ -27,12 +27,17 @@ public abstract class BaseEditController<T> {
     protected javafx.scene.control.TextField txtJumlah;
     @FXML
     protected javafx.scene.control.DatePicker date;
+    @FXML
+    protected javafx.scene.control.TextField txtKeterangan;
 
     @FXML
     public void initialize() {
         org.masjidku.util.ValidationHelper.registerRequiredField(validator, txtNama, "nama", "Nama/Tujuan harus diisi!");
         org.masjidku.util.ValidationHelper.registerNumericField(validator, txtJumlah, "jumlah", "Jumlah harus diisi!", "Jumlah harus berupa angka!");
         org.masjidku.util.ValidationHelper.registerDatePicker(validator, date, "tanggal", "Tanggal harus dipilih!");
+        if (txtKeterangan != null) {
+            org.masjidku.util.ValidationHelper.registerRequiredField(validator, txtKeterangan, "keterangan", "Keterangan harus diisi!");
+        }
         customInitialize();
     }
 
@@ -43,6 +48,9 @@ public abstract class BaseEditController<T> {
         txtNama.clear();
         txtJumlah.clear();
         date.getEditor().clear();
+        if (txtKeterangan != null) {
+            txtKeterangan.clear();
+        }
         customClearForm();
     }
 

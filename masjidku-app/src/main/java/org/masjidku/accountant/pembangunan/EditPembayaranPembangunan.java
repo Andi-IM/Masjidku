@@ -40,16 +40,6 @@ import static org.masjidku.util.ValidationHelper.*;
 
 public class EditPembayaranPembangunan extends BaseEditController<Pembangunan> {
     private static final Logger log = LoggerFactory.getLogger(EditPembayaranPembangunan.class);
-    @FXML
-    private TextField txtKeterangan;
-    @FXML
-    @Override
-    protected void customInitialize() {
-        
-        registerRequiredField(validator, txtKeterangan, "keterangan", "Keterangan harus diisi!");
-        
-        
-    }
 
     
 
@@ -87,15 +77,6 @@ public class EditPembayaranPembangunan extends BaseEditController<Pembangunan> {
     @FXML
     public void gotoList() {
         mainApp.showAlokasiPembangunan();
-    }
-
-    @FXML
-    @Override
-    protected void customClearForm() {
-        
-        txtKeterangan.clear();
-        
-        
     }
 }
 
