@@ -4,6 +4,7 @@ import org.hibernate.SessionFactory;
 import org.masjidku.events.domain.repository.exception.DataAccessException;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public abstract class BaseEventRepositoryImpl<T> {
