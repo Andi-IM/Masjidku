@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/Andi-IM/Masjidku/compare/v1.3.0...v1.4.0) (2026-07-02)
+
+
+### Features
+
+* add EditDonaturAnakYatim controller, BaseKeuanganSummaryReport, BaseAccountantController, and agent guidelines ([2cf902c](https://github.com/Andi-IM/Masjidku/commit/2cf902c31a1b6abc8ede5c5546c076965af7f56b))
+
 # [1.3.0](https://github.com/Andi-IM/Masjidku/compare/v1.2.0...v1.3.0) (2026-07-02)
 
 
